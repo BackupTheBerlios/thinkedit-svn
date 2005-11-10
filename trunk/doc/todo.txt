@@ -1,0 +1,24 @@
+- login form
+
+- file management
+
+- relations
+
+- sub elements
+
+- edit button or browse
+
+- config folder instead of single file (recursive search)
+
+- db sync
+
+- mysql backticks
+
+séparation table et query :
+
+
+query fait du vocabulraire sql
+table utilise notamment query pour faire des query simples (et ajouter sécurité et verisoning et locale, etc...)
+
+si on fait table->select(id=1)
+il ajoute : and locale="fr" and published="1" par exemple

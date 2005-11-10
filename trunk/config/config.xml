@@ -1,0 +1,240 @@
+<?xml version='1.0'?>
+<!-- Interface main configuration file -->
+<!--  each config file begins with the config tag -->
+<config>
+
+
+
+<!-- An example article table -->
+<table id='article'>
+
+<title_field>title</title_field>
+
+<field id="id">
+<type>id</type>
+<primary>true</primary>
+</field>
+
+<field id="title">
+<type>string</type>
+<is_title>true</is_title>
+</field>
+
+<field id="body">
+<type>richtext</type>
+</field>
+
+
+
+
+<field id="author">
+<type>lookup</type>
+
+<source>
+<type>table</type>
+<name>author</name>
+</source>
+
+</field>
+
+</table>
+
+
+<!-- an author table -->
+<table id='author'>
+
+<field id="id">
+<type>id</type>
+<primary>true</primary>
+</field>
+
+
+<field id="firstname">
+<type>string</type>
+<is_title>true</is_title>
+</field>
+
+<field id="lastname">
+<type>string</type>
+<is_title>true</is_title>
+</field>
+
+
+
+
+</table>
+
+
+
+<!-- users table, it will be used to authenticate users -->
+<table id='user'>
+
+<field id="id">
+<type>id</type>
+<primary>true</primary>
+</field>
+
+
+<field id="login">
+<type>login</type>
+</field>
+
+<field id="password">
+<type>password</type>
+</field>
+
+
+</table>
+
+
+<!-- a many to many relation is built by using a table with two lookup columns -->
+<table id="articles2authors">
+
+<field id="id">
+<type>id</type>
+<primary>true</primary>
+</field>
+
+<field id="author_id">
+<type>lookup</type>
+
+<source>
+<type>table</type>
+<name>author</name>
+</source>
+
+</field>
+
+
+<field id="article_id">
+<type>lookup</type>
+
+<source>
+<type>table</type>
+<name>article</name>
+</source>
+
+</field>
+
+
+</table>
+
+
+<!-- this one will store the main tree of the site -->
+<table id="tree">
+
+<field id="id">
+<type>id</type>
+<primary>true</primary>
+</field>
+
+<field id="parent">
+<type>int</type>
+</field>
+
+
+<field id="type">
+<type>string</type>
+</field>
+
+<field id="name">
+<type>string</type>
+</field>
+
+<field id="uid">
+<type>string</type>
+</field>
+
+
+
+</table>
+
+
+
+
+<table id='translation'>
+
+
+
+<field id="id">
+<type>id</type>
+</field>
+
+<field id="translation">
+<type>string</type>
+<is_title>true</is_title>
+</field>
+
+<field id="locale">
+<type>string</type>
+</field>
+
+
+</table>
+
+
+<!-- proto -->
+<filesystem id="main">
+<type>local</type>
+<type>ftp</type>
+
+<path>/home/philippe/my_files</path>
+
+<host>localhost</host>
+<login>philippe</login>
+<password>123456</password>
+
+
+</filesystem>
+
+
+
+
+
+
+<!--  site-wide configuration -->
+<site>
+
+<help><fr>Bienvenue sur thinkedit</fr></help>
+
+
+
+<!-- available locales for this site -->
+
+<locale id='fr'>
+<help>
+<fr>Fran&#231;ais</fr>
+<en>French</en>
+</help>
+</locale>
+
+<locale id='en'>
+<help>
+<fr>Anglais</fr>
+<en>English</en>
+</help>
+</locale>
+
+
+
+
+<!-- main database storing all data for a site -->
+<database id='main'>
+<host>localhost</host>
+<database>thinkedit</database>
+<login>thinkedit</login>
+<password>thinkedit</password>
+</database>
+
+<!-- another database for storing interface localized strings -->
+<database id='interface_locale'>
+<host>localhost</host>
+<database>thinkedit</database>
+<login>thinkedit</login>
+<password>thinkedit</password>
+</database>
+
+
+
+</site>
+</config>

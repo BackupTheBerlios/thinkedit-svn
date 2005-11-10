@@ -1,0 +1,11 @@
+10/02/2005 : session::persist() and api.txt
+More focus on simple datagrid like data management, then will focus on tree like content management
+
+4/12/2004 : node and module content separated. css added. page class resurected form oldies
+Implemented path management on the include side of things. Need to fix also paths management on the user (browser/http side)
+
+7/7/2004 : reimplemented without pear db class. No dependency and simplier db accesses.
+db.class.php is the reference implementation. I won't do compromises on refactoring. If all must be rewritten, then let it be rewritten.
+
+
+1/1/2004 : start of the project, this is the third attempt at doing a data / content management system with universal features
