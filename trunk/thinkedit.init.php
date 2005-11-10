@@ -21,6 +21,8 @@
 	
 */
 
+
+// should we keep root ? Maybe te_root (te for thinkedit) would be better
 define ('ROOT', dirname(__FILE__));
 
 require_once ROOT . '/tools.inc.php';
