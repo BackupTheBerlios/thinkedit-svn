@@ -136,4 +136,152 @@ class db
 					return $result;
 				}
 				
-				//return $re
+				//return $result;
+				return false;
+			}
+			
+			/*
+			if (@mysql_affected_rows($this->query))
+			{
+				return mysql_affected_rows($this->query);
+			}
+			*/
+			
+			
+			//return $this->query; // ?
+			return false;
+		}
+		
+		
+	}
+	
+	function select($sql)
+	{
+		global $db_cache;
+		
+		$hash =  sha1($sql);
+		
+		if (isset($db_cache[$hash]))
+		{
+			// one line debugging tool :-)
+			debug($sql . '[cached]');
+			return ($db_cache[$hash]);
+		}
+		else
+		{
+			// one line debugging tool :-)
+			debug ($sql . '[select]');
+			
+			$this->sql = $sql;
+			if (!$this->query = mysql_query($sql,$this->connection))
+			{
+				trigger_error ('Query failed: '.mysql_error($this->connection).     ' <br>SQL: '.$sql);
+				return false;
+			}
+			
+			
+			while ($row = mysql_fetch_assoc($this->query))
+			{
+				$result[] = $row;
+			}
+			
+			$db_cache[$hash] = $result;
+			
+			
+			if (count($result > 0))
+			{
+				return $result;
+			}
+			else
+			{
+				//trigger_error($sql . ' nothing found');
+				return false;
+			}
+			
+		}
+	}
+	
+	
+	function size ()
+	{
+		return mysql_num_rows($this->query);
+	}
+	
+	function affectedRows ()
+	{
+		return mysql_affected_rows($this->query);
+	}
+	
+	function insertID ()
+	{
+		return mysql_insert_id($this->connection);
+	}
+	
+	
+	function escape($string)
+	{
+		if (get_magic_quotes_gpc())
+		{
+			trigger_error('gpc on');
+			return $string;
+		}
+		else
+		{
+			$string = mysql_real_escape_string($string);
+			return $string;
+			
+		}
+	}
+	
+	
+	function quote($string)
+	{
+		if (get_magic_quotes_gpc())
+		{
+			trigger_error('gpc on');
+			return $string;
+		}
+		else
+		{
+			// trigger_error('gpc off');
+			if (!is_numeric($string)) 
+			{
+				$string = "'" . mysql_real_escape_string($string) . "'";
+			}
+			return $string;
+			
+		}
+	}
+	
+	
+	function hasTable($table)
+	{
+		$tables = $this->select("SELECT 1 FROM " . $table . " LIMIT 0");
+		if ($tables)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
+	function createTable($table)
+	{
+		$results = $this->query("create table " . $table);
+		if ($results)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
+}
+
+?>
