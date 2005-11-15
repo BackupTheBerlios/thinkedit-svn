@@ -40,12 +40,14 @@ class dropdown
 	
 	function getSettings()
 	{
+		
 		//echo 'get settings called';
 		if ($this->getSelected())
 		{
 			$settings['selected'] = $this->getSelected();
+			return $settings;
 		}
-		return $settings;
+		return false;
 	}
 	
 	function setSettings($settings)

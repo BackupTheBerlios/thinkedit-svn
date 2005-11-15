@@ -11,6 +11,8 @@ pass/return only arrays
 class table
 {
 	
+	var $where;
+	
 	function table($table)
 	{
 		$this->table=$table;

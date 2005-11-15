@@ -180,6 +180,8 @@ class db
 			}
 			
 			
+			$result = '';
+			
 			while ($row = mysql_fetch_assoc($this->query))
 			{
 				$result[] = $row;

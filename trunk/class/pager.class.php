@@ -53,8 +53,9 @@ class pager
 		if ($this->getCurrentPage())
 		{
 			$settings['current_page'] = $this->getCurrentPage();
+			return $settings;
 		}
-		return $settings;
+		return false;
 	}
 	
 	function setSettings($settings)
@@ -129,6 +130,8 @@ class pager
 	
 	function render()
 	{
+		$out='';
+		
 		if (isset($this->pagination_dropdown))
 		{
 			$out.=$this->pagination_dropdown->render();

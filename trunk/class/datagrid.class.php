@@ -12,6 +12,9 @@ Some view logic is allowed
 class datagrid
 {
 	
+	var $global_action;
+	var $data;
+	
 	function setId($id)
 	{
 		$this->id = $id;
