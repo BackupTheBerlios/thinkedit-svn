@@ -2,50 +2,28 @@
 
 class pager
 {
+	// id of this pager
+	var $id;
+	
+	// items per page (default to 10)
+	var $page_size = 10;
+	
+	// total size of the pager
+	var $size;
+		
+	
 	function pager($id)
-	{
-		$this->setId($id);
-	}
-	
-	
-	function setId($id)
 	{
 		$this->id = $id;
 	}
 	
+	
 	function getId()
 	{
-		if (isset($this->id))
-		{
-			return $this->id;
-		}
-		else
-		{
-			trigger_error('pager::getId() id not set');
-			return false;
-		}
+		return $this->id;
 	}
 	
-	function setPageSize($size)
-	{
-		if ($size < 1)
-		{
-			$size = 1;
-		}
-		$this->page_size = $size;
-	}
 	
-	function getPageSize()
-	{
-		if (isset($this->page_size))
-		{
-			return $this->page_size;
-		}
-		else
-		{
-			return 10;
-		}
-	}
 	
 	
 	function getSettings()
@@ -70,9 +48,9 @@ class pager
 		require_once ROOT . '/class/url.class.php';
 		$url = new url();
 		
-		if ( !is_null($url->getParam($this->getId()) ) )
+		if ( !is_null($url->getParam($this->id ) ) )
 		{
-			$this->current_page = $url->getParam($this->getId());
+			$this->current_page = $url->getParam($this->id);
 		}
 		if (isset($this->current_page))
 		{
@@ -86,7 +64,7 @@ class pager
 	
 	function getCurrent()
 	{
-		return ($this->getCurrentPage() * $this->getPageSize());
+		return ($this->getCurrentPage() * $this->page_size);
 	}
 	
 	
@@ -105,7 +83,7 @@ class pager
 		
 		require_once 'dropdown.class.php';
 		$this->pagination_dropdown = new dropdown();
-		$this->pagination_dropdown->setId($this->getId() . '_pagination_dropdown'); // very stylish isnt it ? Unique id's are mandatory for proper session persistence
+		$this->pagination_dropdown->setId($this->id . '_pagination_dropdown'); // very stylish isnt it ? Unique id's are mandatory for proper session persistence
 		
 		require_once 'session.class.php';
 		$session = new session();
@@ -141,12 +119,13 @@ class pager
 		{
 			require_once ROOT . '/class/url.class.php';
 			$url = new url();
-			$pages = (int) ($this->total / $this->getPageSize());
+			$pages = (int) ($this->total / $this->page_size);
 			for ($i=0; $i<=$pages; $i++)
 			{
 				$page = $i + 1;
-				$url->setParam($this->getId(), $i);
+				$url->setParam($this->id, $i);
 				$out.= '<a class="pager_button" href="' . $url->render() .'">' . $page . '</a>' . " | ";
+				debug($url, 'URL');
 			}
 		}
 		

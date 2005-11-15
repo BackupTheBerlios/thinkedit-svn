@@ -47,6 +47,23 @@ class datagrid
 	}
 	
 	
+	
+	/*
+	adds more than one row
+	*/
+	function addMany($data)
+	{
+		foreach($data as $row)
+		{
+			$this->add($row);
+		}
+	
+	}
+	
+	
+	
+	
+	
 	/*
 	Adds a column
 	*/
@@ -76,6 +93,14 @@ class datagrid
 	}
 	
 	
+	
+	/*
+	Initialize columns first taking configured then taking simply data form this->data
+	*/
+	function initColumn()
+	{
+		
+	}
 	
 	
 	function render($type='list')
@@ -242,7 +267,7 @@ class datagrid
 				$i++;
 				if ($i >= count ($this->data))
 				{
-				$out.='<table class="icon_table" style="float: none">';
+					$out.='<table class="icon_table" style="float: none">';
 				}
 				else
 				{
@@ -305,14 +330,14 @@ class datagrid
 		}
 		else
 		{
-		
-		translate('empty_datagrid');
-
+			
+			translate('empty_datagrid');
+			
 		}
 		
 		
 		
-	
+		
 		
 		// add local action buttons
 		if (is_array($this->global_action))

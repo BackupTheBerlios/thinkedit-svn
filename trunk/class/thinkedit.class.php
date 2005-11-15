@@ -188,6 +188,13 @@ class thinkedit
 			return new tree($tree_name);
 	}
 	
+	function newConfig()
+	{
+		$config = new config();
+		return $config;
+	}
+		
+	
 	
 	function &newElement($module, $name, $data = false)
 	{

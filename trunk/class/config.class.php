@@ -43,7 +43,7 @@ class config
 		foreach ($this->config['table'][$table]['field'] as $id=>$field)
 		{
 			$all_fields[] = $id;
-			if ($field['primary'] == 'true')
+			if (isset($field['primary']) &&  $field['primary'] == 'true')
 			{
 				$fields[] = $id;
 			}

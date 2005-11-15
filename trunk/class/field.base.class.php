@@ -4,6 +4,8 @@
 class field
 {
 	
+	var $data;
+	
 	function field($table, $id, $data = false)
 	{
 		global $thinkedit;

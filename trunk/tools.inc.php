@@ -36,8 +36,10 @@ function error_handler($errno, $errstr , $errfile , $errline , $errcontext)
 // some security issues as well if debug is enabled, to say the least...
 function debug($data, $title=false)
 {
-	global $debug;
-	if ($debug)
+	
+	//global $debug;
+	if (isset($_GET['debug']))
+		
 	{
 		$out='';
 		if ($title) $out.="<h1>$title</h1>";
@@ -57,7 +59,7 @@ function debug($data, $title=false)
 
 function translate($id, $html = true)
 {
-    // todo : load everything in a single array to have only a single sql query per request
+	// todo : load everything in a single array to have only a single sql query per request
 	// todo : then cache
 	// todo : then check if it's faster
 	
@@ -65,20 +67,20 @@ function translate($id, $html = true)
 	$locale_db = $thinkedit->getDb('interface_locale');
 	$interface_locale = $user->getLocale();
 	// todo, use config
-    $table = 'translation';
-    $translation = $locale_db->select("select translation from $table where id='$id' and locale='$interface_locale'");
-    
+	$table = 'translation';
+	$translation = $locale_db->select("select translation from $table where id='$id' and locale='$interface_locale'");
+	
 	//print_a($translation);
 	
-    if (count($translation) > 0)
-    {
-        if (is_null($translation[0]['translation']))
-        {
-            return "#$id#";
-        }
-        else
-        {
-            if ($html)
+	if (count($translation) > 0)
+	{
+		if (!isset($translation[0]['translation']))
+		{
+			return "#" . $id . "#";
+		}
+		else
+		{
+			if ($html)
 			{
 				return htmlentities($translation[0]['translation']);
 			}
@@ -87,13 +89,13 @@ function translate($id, $html = true)
 				return $translation[0]['translation'];
 			}
 			
-        }
-    }
-    else
-    {
-        $locale_db->query("insert into $table (id, translation, locale) values ('$id', NULL, '$interface_locale')");
-        return $id;
-    }
+		}
+	}
+	else
+	{
+		$locale_db->query("insert into $table (id, translation, locale) values ('$id', NULL, '$interface_locale')");
+		return $id;
+	}
 }
 
 

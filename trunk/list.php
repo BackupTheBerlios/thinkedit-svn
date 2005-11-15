@@ -40,41 +40,6 @@ if ($url->getParam('message'))
 }
 
 
-/*
-//table selector
-$table_selector = new dropdown();
-$table_selector->setId('table_list');
-
-$table_selector->setTitle('Choisissez une table à afficher');
-$tables = $thinkedit->getTableList();
-*/
-
-/*
-
-foreach ($tables as $table)
-{
-	$table_selector->add($table, $table);
-}
-*/
-
-//print_r($table_selector->getSettings());
-
-// we preselect if ?type is found in the url, this would mean we are from the home page for instance
-/*
-if ($url->getParam('table'))
-{
-	$table_selector->setSelected($url->getParam('table'));
-}
-
-
-$session->persist($table_selector);
-
-
-$page->startPanel('table_list');
-$page->add($table_selector->render());
-$page->endPanel('table_list');
-*/
-
 
 
 if ($url->getParam('table'))
@@ -85,7 +50,7 @@ if ($url->getParam('table'))
 	if ($config->tableExists($table_name))
 	{
 		
-		$table = new table(	$table_name);
+		$table = new table($table_name);
 		
 		
 		// init datagrid
@@ -102,6 +67,8 @@ if ($url->getParam('table'))
 		
 		// $datagrid->addColumn('title', 'Title', true, false);
 		$datagrid->addColumn('table', 'Table', true, true);
+		
+		
 		$datagrid->addLocalAction('edit', 'edit.php', translate('edit'));
 		$datagrid->addLocalAction('delete', 'delete.php', translate('delete'));
 		
@@ -124,19 +91,22 @@ if ($url->getParam('table'))
 		debug ($pager->getCurrentPage(), 'pager current page');
 		debug ($pager->getPageSize(), 'pager page size');
 		*/	
-		$table->limit($pager->getCurrent(), $pager->getPageSize());
+		$table->limit($pager->getCurrent(), $pager->page_size);
 		
 		
 		$records = $table->select();
 		
 		if (is_array($records))
 		{
+			debug($records, 'Records');
 			foreach ($records as $record)
 			{
-				$data = $record->getNiceArray();
-				$data['table'] = 'test'; //$table->getTableName();
-				$datagrid->add($data);
+				$record['table'] = $table_name;
+				$datagrid->add($record);
 			}
+			
+			
+			//$datagrid->addMany($records);
 		}
 		
 		

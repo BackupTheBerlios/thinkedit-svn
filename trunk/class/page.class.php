@@ -12,7 +12,7 @@ class page
 	function page()
 	{
 		// todo: use server root
-		$this->addStyleSheet('./decoration/css/style2.css');
+		$this->addStyleSheet('./ressource/css/style2.css');
 	}
 	
 	

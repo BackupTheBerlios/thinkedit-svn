@@ -129,13 +129,22 @@ class table
 	
 	function insert($record)
 	{
+		global $thinkedit;
+		$config = $thinkedit->newConfig();
+		$fields_list = $config->getAllFields($this->getTableName());
+		$primary_fields_list = $config->getPrimaryFields($this->getTableName());
+		
+		
 		$sql = "insert into `" . $this->getSqlTableName();
 		
 		
 		$sql .= '` (';
 		foreach ($record as $field=>$value)
 		{
-			$fields[] =   "`" .$field . "`";
+			if (in_array($field, $fields_list))
+			{
+				$fields[] =   "`" .$field . "`";
+			}
 		}
 		
 		$sql .= implode(', ',  $fields );
@@ -147,7 +156,10 @@ class table
 		
 		foreach ($record as $field=>$data)
 		{
-			$fields_data[] =  "'" . $this->db->escape($data) . "'";
+			if (in_array($field, $fields_list))
+			{
+				$fields_data[] =  "'" . $this->db->escape($data) . "'";
+			}
 		}
 		$sql .= implode(', ',  $fields_data);
 		$sql .= ')';
@@ -196,30 +208,41 @@ class table
 	
 	*/
 	
+	
+	/*
+	givren an array, it will update the corresponding record(s)
+	*/
 	function update($record)
 	{
-		$sql = "update `" . $this->getSqlTableName();
+		global $thinkedit;
+		$config = $thinkedit->newConfig();
+		$fields_list = $config->getAllFields($this->getTableName());
+		$primary_fields_list = $config->getPrimaryFields($this->getTableName());
 		
-		$sql .= ' set ';
-		//$sql .= '` (';
+		$sql = "update `" . $this->getSqlTableName() . "`";
+		
+		$sql.= " set ";
+		
 		foreach ($record as $field=>$value)
 		{
-			$fields[] =   "`" .$field . "`";
+			if (in_array($field, $fields_list))
+			{
+				$fields[] =   "`" .$field . "`" . "=" . "'" . $this->db->escape($value) . "'";
+			}
 		}
 		
 		$sql .= implode(', ',  $fields );
-		$sql .= ')';
 		
-		$sql .= ' values ';
-		
-		$sql .= '(';
-		
-		foreach ($record as $field=>$data)
+		$sql .= ' where ';
+		foreach ($record as $field=>$value)
 		{
-			$fields_data[] =  "'" . $this->db->escape($data) . "'";
+			if (in_array($field, $primary_fields_list))
+			{
+				$primary_fields[] =   "`" .$field . "`" . "=" . "'" . $this->db->escape($value) . "'";
+			}
 		}
-		$sql .= implode(', ',  $fields_data);
-		$sql .= ')';
+		
+		$sql .= implode(' and ',  $primary_fields );
 		
 		
 		$results = $this->db->query($sql);
@@ -381,7 +404,8 @@ class table
 					$sql .= "'";
 				}
 				
-				if ($where['quote'])
+				
+				if (isset($where['quote']))
 				{
 					$sql .= $this->db->escape($where['value']);
 				}

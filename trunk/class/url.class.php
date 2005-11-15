@@ -32,7 +32,10 @@ class url
 			$this->orig_param[$key] = $value;
 		}
 		$this->self = $_SERVER['PHP_SELF'];
+		//$this->keepParam('debug');
 		$this->keepParam('debug');
+		$this->keepParam('table');
+		//$this->keepAll();
 	}
 	
 	/*
@@ -101,7 +104,7 @@ class url
 	function getQueryString()
 	{
 		$url = '';
-		
+		$final_param = '';
 		// populate final_param list with original params, but only the ones we want to keep
 		if (is_array ($this->orig_param))
 		{
@@ -119,7 +122,7 @@ class url
 		}
 		
 		
-		$final_param = '';
+		
 		
 		// override with user defined ones
 		if (is_array ($this->param))

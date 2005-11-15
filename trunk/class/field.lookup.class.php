@@ -46,7 +46,7 @@ class field_lookup extends field
 			}
 			else
 			{
-				return 'Source table is empty';
+				return translate('source_table_is_empty');
 			}
 			
 		}

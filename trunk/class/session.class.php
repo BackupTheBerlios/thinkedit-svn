@@ -5,6 +5,7 @@ class session
 	
 	function session () 
 	{
+		//session_start();
 		if (!isset($_SESSION))
 		{
 			
@@ -64,17 +65,17 @@ class session
 	{
 		if ( method_exists($object, 'getId') and method_exists($object, 'getSettings') and method_exists($object, 'setSettings') )
 		{
-			$id = $object->getId();
-			$current = $object->getSettings();
-			$in_session = $this->get($id);
+			$object_id = $object->getId();
+			$object_settings = $object->getSettings();
+			$saved_settings = $this->get($object_id);
 			
-			if (is_array($current))
+			if (is_array($object_settings))
 			{
-				$result = array_merge($in_session, $current);
+				$result = array_merge($saved_settings, $object_settings);
 			}
 			else
 			{
-				$result = $in_session;
+				$result = $saved_settings;
 			}
 			if (is_array($result))
 			{
@@ -82,13 +83,13 @@ class session
 				$object->setSettings($result);
 			}
 			
-			//debug($result, 'results from array merge');
-			//debug($_SESSION, 'Session data');
+			debug($result, 'results from array merge');
+			debug($_SESSION, 'Session data');
 			return true;
 		}
 		else
 		{
-			trigger_error('session::persist() the object you try to persist doesn\'t provide the persistence API, getId, get and setSettings()');
+			trigger_error('session::persist() the object you try to persist doesn\'t provide the persistence API, getId, get- and setSettings()');
 		}
 		
 	}
