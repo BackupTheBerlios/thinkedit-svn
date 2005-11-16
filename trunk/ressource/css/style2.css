@@ -1,280 +1,286 @@
+/***************** General structure ******************/
+
 body
 {
-margin: 0;
-padding: 0;
-//max-width: 800px;
-//background-color: #eee;
+	margin: 0;
+	padding: 0;
+	background-color: #aaa;
+	
+	/*
+	max-width: 800px;
+	background-color: #eee;
+	*/
 }
 
+
+/***************** typo ******************/
 
 body, th, td, p
 {
-font-size: 10px;
-font-family: verdana, sans-serif;
-}
-
-
-img
-{
-border: 0;
+	font-size: 10px;
+	font-family: verdana, sans-serif;
 }
 
 
 h1
 {
-font-size: 11px;
+	font-size: 11px;
 }
 
 
 
-/*
-.thinkedit
+/***************** standards ******************/
+
+img
 {
-	max-width: 80em;
-	border: 1px solid #444;
-	margin: 3em;
-	margin-left: auto; 
-	margin-right: auto;
-	
+	border: 0;
 }
-*/
 
 
 
-/*
-.shadow {
-  background: #ccc;
-  position: relative;
-  top: 2px;
-  left: 2px;
-}
-*/
+/***************** panels ******************/
 
 .panel
 {
-//margin: 1em;
-padding: 10px;
-background-color: #EEE;
-//border-bottom: 1px solid #999;
-// padding-top: 5px;
-// padding-bottom: 5px;
+	
+	padding: 10px;
+	background-color: #eee;
+	/*
+	margin: 1em;
+	border-bottom: 1px solid #999;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	*/
 }
 
 .inset
 {
-// background-color: red;
-border-top: 1px solid #333;
-border-left: 1px solid #333;
-border-bottom: 1px solid #999;
-border-right: 1px solid #999;
+	/*background-color: red;*/
+	border-top: 1px solid #333;
+	border-left: 1px solid #333;
+	border-bottom: 1px solid #999;
+	border-right: 1px solid #999;
 }
 
 .outset
 {
-// padding: 1em;
-// background-color: #<?php echo $medium?>;
-border-top: 0.1em solid #<?php echo $high?>;
-border-left: 0.1em solid #<?php echo $high?>;
-border-bottom: 0.1em solid #<?php echo $low?>;
-border-right: 0.1em solid #<?php echo $low?>;
+	/*
+	padding: 1em;
+	background-color: #<?php echo $medium?>;
+	*/
+	border-top: 0.1em solid #999;
+	border-left: 0.1em solid #999;
+	border-bottom: 0.1em solid #333;
+	border-right: 0.1em solid #333;
 }
 
 
+.page
+{
+	background-color: #999;
+}
+
 .title
 {
-background-color: #666;
-font-size: 12px;
-color: #fff;
-font-weight: bold;
-font-variant: small-caps;
-padding-top: 30px;
-padding-bottom: 5px;
-border-bottom: 1px solid #444;
+	background-color: #666;
+	font-size: 25px;
+	color: #fff;
+	font-weight: bold;
+	font-variant: small-caps;
+	padding-top: 30px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #444;
 }
 
 
 .menu
 {
-background-color: #666;
-border-bottom: 1px solid #444
-
+	background-color: #fff;
+	border-bottom: 1px solid #444;
+	height: 15px;
+	
 }
 
 .subtitle
 {
-background-color: #ccc;
-border-bottom: 1px solid #444
+	background-color: #ccc;
+	border-bottom: 1px solid #444
 }
 
 .breadcrumb
 {
-background-color: #aaa;
-border-bottom: 1px solid #777
+	background-color: #aaa;
+	border-bottom: 1px solid #777
 }
 
 .actions
 {
-background-color: #ccc;
-padding: 10px;
-padding-bottom: 8px;
-border-bottom: 1px solid #444
-}
-
-
-.button
-{
-border: 1px outset #ccc;
-background-color: #ccc;
-padding: 4px;
-//padding-left: 2px;
-//padding-right: 2px;
-margin-top: 5px;
-font-size: 12px;
-color: #000;
-font-weight: bold;
-
-}
-
-
-.button:hover
-{
-border: 1px outset #eee;
+	background-color: #ccc;
+	padding: 10px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #444
 }
 
 .browser
 {
-background-color: #eee;
-}
-
-
-table.datagrid 
-{
-		border-collapse:	collapse;
-		border: 1px solid #ccc;
-}
-	
-
-tr.datagrid:hover
-{
-background-color: #69c;
-cursor: pointer;
-}
-
-th.datagrid 
-{
-text-align: left;
-font-weight: bold;
-background-color: #eee;
-border-bottom: 1px solid #ccc;
-}
-
-td.datagrid 
-{
- border-bottom: 1px solid #ccc;
-}
-
-.bis
-{
-background-color: #ddd;
-}
-
-
-.footer
-{
-background-color: #ccc;
+	background-color: #eee;
 }
 
 .message
 {
-background-color: #ccc;
+	background-color: #ccc;
 }
 
 
 .dialog
 {
-background-color: #ddd;
+	background-color: #ddd;
 }
 
-
-
-fieldset 
-{ 
-border:1px solid #aaa;
-margin: 0;
-margin-bottom: 10px;
-
-}
-
-
-.input
-{
-margin: 5px;
-//border: 0;
-}
-	
-	
-input, select, textarea
-{
-padding: 0;
-margin: 0;
-border: 1px inset #aaa;
-}
-
-select
-{
-font-size: 1em;
-
-}
-
-input[type=submit], input[type=button] 
-{
-border: 1px outset #aaa;
-}
-
-
-
-.white
-{
-background-color: #FFF;
-}
 
 .error
 {
-background-color: #D00;
-padding-left: 40px;
-background-image: url("../icons/clanbomber.png");
-background-repeat: no-repeat;
-background-position: 10px 8px;
+	background-color: #d00;
+	padding-left: 40px;
+	background-image: url("../../image/icon/clanbomber.png");
+	background-repeat: no-repeat;
+	background-position: 10px 8px;
 }
 
 .warning
 {
-padding-left: 40px;
-background-color: #FA0;
-background-image: url("../icons/important.png");
-background-repeat: no-repeat;
-background-position: 10px 8px;
+	padding-left: 40px;
+	background-color: #FA0;
+	background-image: url("../icons/important.png");
+	background-repeat: no-repeat;
+	background-position: 10px 8px;
 }
 
 
 .info
 {
-padding-left: 40px;
-background-color: #fff000;
-background-image: url("../icons/ok.png");
-background-repeat: no-repeat;
-background-position: 10px 8px;
+	padding-left: 40px;
+	background-color: #009966;
+	background-image: url("../icons/ok.png");
+	background-repeat: no-repeat;
+	background-position: 10px 8px;
 }
+
+
+
+
+/***************** tools ******************/
+
+.button
+{
+	border: 1px outset #ccc;
+	background-color: #ccc;
+	padding: 4px;
+	//padding-left: 2px;
+	//padding-right: 2px;
+	margin-top: 5px;
+	font-size: 12px;
+	color: #000;
+	font-weight: bold;
+	
+}
+
+
+.button:hover
+{
+	border: 1px outset #eee;
+}
+
+
+/********************** Datagrid ******************/
+
+table.datagrid 
+{
+	border-collapse:	collapse;
+	border: 1px solid #ccc;
+}
+
+
+tr.datagrid:hover
+{
+	background-color: #69c;
+	cursor: pointer;
+}
+
+th.datagrid 
+{
+	text-align: left;
+	font-weight: bold;
+	background-color: #eee;
+	border-bottom: 1px solid #ccc;
+}
+
+td.datagrid 
+{
+	border-bottom: 1px solid #ccc;
+}
+
+
+.bis
+{
+	background-color: #ddd;
+}
+
+
+.footer
+{
+	background-color: #ccc;
+}
+
+
+
+/********************* forms *******************/
+
+fieldset 
+{ 
+	border:1px solid #aaa;
+	margin: 0;
+	margin-bottom: 10px;
+	
+}
+
+
+.input
+{
+	margin: 5px;
+	//border: 0;
+}
+
+
+input, select, textarea
+{
+	padding: 0;
+	margin: 0;
+	border: 1px inset #aaa;
+}
+
+select
+{
+	font-size: 1em;
+	
+}
+
+input[type=submit], input[type=button] 
+{
+	border: 1px outset #aaa;
+}
+
+
 
 
 .separator
 {
-margin: 10px;
+	margin: 10px;
 }
 
 .filet
 {
-border: 1px solid #000
+	border: 1px solid #000
 }
 
 
@@ -295,4 +301,59 @@ border: 1px solid #000
 	width: 40px;
 }
 
+
+/***************** Menu ******************/
+
+
+.menu
+{
+	/*border: 1px solid red;*/
+}
+
+.menu ul 
+{ /* all lists */
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.menu li { /* all list items */
+	float: left;
+	position: relative;
+	width: 10em;
+	cursor: pointer;
+}
+
+.menu li ul { /* second-level lists */
+	display: none;
+	position: absolute;
+	top: 1em;
+	left: 0;
+	border: 1px solid gray;
+	padding: 5px;
+}
+
+.menu li>ul { /* to override top and left in browsers other than IE, which will position to the top right of the containing li, rather than bottom left */
+	top: auto;
+	left: auto;
+}
+
+.menu li:hover ul, li.over ul { /* lists nested under hovered list items */
+	display: block;
+}
+
+
+.menu ul li ul li
+{
+	/*border: 5px solid red;*/
+	padding-bottom: 5px;
+}
+
+.menu ul li ul li a
+{
+	color: black;
+	/*border: 1px solid gray;*/
+	/*background-color: #003399;*/
+	/*padding-bottom: 5px;*/
+}
 
