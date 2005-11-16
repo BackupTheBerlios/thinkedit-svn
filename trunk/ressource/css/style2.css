@@ -82,21 +82,22 @@ img
 
 .title
 {
+	
 	background-color: #666;
 	font-size: 25px;
 	color: #fff;
 	font-weight: bold;
 	font-variant: small-caps;
-	padding-top: 30px;
-	padding-bottom: 5px;
-	border-bottom: 1px solid #444;
+	padding-top: 50px;
+	padding-bottom: 10px;
+	/*border-bottom: 1px solid #444;*/
 }
 
 
 .menu
 {
 	background-color: #fff;
-	border-bottom: 1px solid #444;
+	/*border-bottom: 1px solid #444;*/
 	height: 15px;
 	
 }
@@ -104,7 +105,7 @@ img
 .subtitle
 {
 	background-color: #ccc;
-	border-bottom: 1px solid #444
+	/*border-bottom: 1px solid #444;*/
 }
 
 .breadcrumb
@@ -123,7 +124,7 @@ img
 
 .browser
 {
-	background-color: #eee;
+	background-color: #f7f6f6;
 }
 
 .message

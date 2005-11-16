@@ -9,7 +9,7 @@
 
 
 
-<div class="title panel">Thinkedit</div>
+<div class="title panel">Thinkedit 1.0</div>
 <div class="subtitle panel">Content management has never been easier</div>
 
 
@@ -68,8 +68,9 @@
 
 </div>
 
-<!--
+
 <div class="error panel">Houston, we have a problem</div>
+<!--
 <div class="info panel">Ok, dude</div>
 -->
 
