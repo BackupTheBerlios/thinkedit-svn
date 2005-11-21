@@ -100,11 +100,26 @@ class record
 
 	function save()
 	{
+		die('not yet');
+		
+		// il all primary keys are set and we have a row in the DB (successfull load), we update
+		if ($this->checkPrimaryKeys() && $this->load())
+		{
+			$sql = "update " . $this->tableName . " where ";
+			foreach ($this->primaryKeys as $key)
+			{
+				$where[] =  $key . '=' . "'" . $this->$key . "'"; 
+			}
+			$sql .= implode($where, ' and ');
+			
+		
+		// if not all or no primary keys are set, insert
 		
 	}
 	
 	function delete()
 	{
+		die('not yet');
 		if ($this->checkPrimaryKey())
 		{
 			

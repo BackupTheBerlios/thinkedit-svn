@@ -88,7 +88,7 @@ function translate($id, $html = true)
 		return $id;
 	}
 	
-	
+	/*
 	if (count($translation) > 0)
 	{
 		if (!isset($translation[0]['translation']))
@@ -113,6 +113,7 @@ function translate($id, $html = true)
 		$locale_db->query("insert into $table (id, translation, locale) values ('$id', NULL, '$interface_locale')");
 		return $id;
 	}
+	*/
 }
 
 
