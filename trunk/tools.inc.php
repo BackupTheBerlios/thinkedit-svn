@@ -64,13 +64,30 @@ function translate($id, $html = true)
 	// todo : then check if it's faster
 	
 	global $thinkedit, $user;
-	$locale_db = $thinkedit->getDb('interface_locale');
-	$interface_locale = $user->getLocale();
-	// todo, use config
-	$table = 'translation';
-	$translation = $locale_db->select("select translation from $table where id='$id' and locale='$interface_locale'");
 	
-	//print_a($translation);
+	// todo, use config
+	$translation = $thinkedit->newRecord('translation');
+	
+	$translation->id = $id;
+	$translation->locale = $user->getLocale();
+	
+	if ($translation->load())
+	{
+		if (empty($translation->translation))
+		{
+			return "#" . $id . "#";
+		}
+		else
+		{
+			return $translation->translation;
+		}
+	}
+	else
+	{
+	// todo : insert translation
+		return $id;
+	}
+	
 	
 	if (count($translation) > 0)
 	{

@@ -1,9 +1,11 @@
 <?php
 require_once '../thinkedit.init.php';
-require_once ROOT . '/class/record.class.php';
+//require_once ROOT . '/class/record.class.php';
 
 
-$article = new record('article');
+
+
+$article = $thinkedit->newRecord('article');
 
 
 $article->id = 1;
@@ -16,7 +18,7 @@ if ($article->load())
 }
 else
 {
-	echo ('not loaded');
+	echo ('Not found, not loaded');
 }
 
 ?>
