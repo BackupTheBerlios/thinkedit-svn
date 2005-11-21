@@ -15,6 +15,9 @@ if ($article->load())
 	echo $article->title;
 	echo '<br>';
 	echo $article->body;
+	
+	$article->title = 'hopekes';
+	echo $article->save();
 }
 else
 {

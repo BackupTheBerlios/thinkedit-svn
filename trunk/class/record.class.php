@@ -100,17 +100,31 @@ class record
 
 	function save()
 	{
-		die('not yet');
+		
 		
 		// il all primary keys are set and we have a row in the DB (successfull load), we update
-		if ($this->checkPrimaryKeys() && $this->load())
+		if ($this->checkPrimaryKey() && $this->load())
 		{
-			$sql = "update " . $this->tableName . " where ";
+			$sql = "update " . $this->tableName . ' set ';
+			foreach ($this->field as $id=>$field)
+			{
+				$set[] =  $id . '=' . "'" . $this->$id . "'"; 
+			}
+			$sql .= implode($set, ', ');
+			
+			$sql .= " where ";
 			foreach ($this->primaryKeys as $key)
 			{
 				$where[] =  $key . '=' . "'" . $this->$key . "'"; 
 			}
 			$sql .= implode($where, ' and ');
+			
+			return  $sql;
+		}
+		else
+		{
+			die('not yet');
+		}
 			
 		
 		// if not all or no primary keys are set, insert
@@ -201,6 +215,29 @@ class record
 		}
 	}
 	
+	
+	/*
+	// Returns the fields in this record
+	function getFields()
+	{
+		foreach ($this->field as $field)
+		{
+			if ($field->isPrimary())
+			{
+				$list[] = $field->getId();
+			}
+		}
+		if (is_array ($list))
+		{
+			return $list;
+		}
+		else
+		{
+			trigger_error('record::getPrimaryKeys() : no primary keys found in table called ' . $this->table);
+			return false;
+		}
+	}
+	*/
 	
 	
 	function setArray($array)
