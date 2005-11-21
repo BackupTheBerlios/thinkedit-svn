@@ -6,7 +6,7 @@ class record
 	
 	function record($table)
 	{
-		$this->table = $table;
+		$this->tableName = $table;
 		
 		// load config
 		global $thinkedit;
@@ -18,6 +18,7 @@ class record
 		{
 			trigger_error('record::record() Table called "' . $this->table . '" not found in config, check table id spelling in config file / in code');
 		}
+		
 		
 		if (is_array($this->config['field']))
 		{
@@ -31,7 +32,90 @@ class record
 			trigger_error('record::record() Table called "' . $this->table . '" has no fields defined. Check config file');
 		}
 		
+		$this->primaryKeys = $this->getPrimaryKeys();
+		
+		
+		/*
+		foreach ($this->primaryKeys as $key)
+		{
+			@$this->$$key == "";
+		}
+		*/
 	}
+	
+	
+	
+	function load()
+	{
+		if ($this->checkPrimaryKey())
+		{
+			
+			$sql = "select * from " . $this->tableName . " where ";
+			foreach ($this->primaryKeys as $key)
+			{
+				$where[] =  $key . '=' . "'" . $this->$key . "'"; 
+			}
+			$sql .= implode($where, ' and ');
+			
+			global $thinkedit;
+			$db = $thinkedit->getDb();
+			
+			$results = $db->select($sql);
+			
+			if ($results && count($results) == 1)
+			{
+				//debug ($results);
+				foreach ($results[0] as $key=>$field)
+				{
+					$this->$key = $field;
+				}
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			trigger_error("record::load() you must set all primary keys if you want to load a record");
+			return false;
+		}
+	}
+	
+
+
+
+	function save()
+	{
+		
+	}
+	
+	function delete()
+	{
+	}
+	
+	
+	
+	
+	// returns true if all primary keys are _set_
+	// false else
+	function checkPrimaryKey()
+	{
+		foreach ($this->primaryKeys as $key)
+		{
+			
+			if (!isset ($this->$key))
+			{
+				return false;
+			}
+		}
+		
+		return true;
+		
+	
+	}
+	
 	
 	
 	
@@ -45,15 +129,15 @@ class record
 				$list[] = $field->getId();
 			}
 		}
-			if (is_array ($list))
-			{
-				return $list;
-			}
-			else
-			{
-				trigger_error('record::getPrimaryKeys() : no primary keys found in table called ' . $this->table);
-				return false;
-			}
+		if (is_array ($list))
+		{
+			return $list;
+		}
+		else
+		{
+			trigger_error('record::getPrimaryKeys() : no primary keys found in table called ' . $this->table);
+			return false;
+		}
 	}
 	
 	
@@ -110,10 +194,10 @@ class record
 		trigger_error('record::getId() : no id field found in table called ' . $this->table);
 		return false;
 	}
-
-
-
-
+	
+	
+	
+	
 }
 
 ?>

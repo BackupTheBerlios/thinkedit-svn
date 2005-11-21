@@ -12,8 +12,8 @@
 
 <field id="id">
 <type>id</type>
-<primary>true</primary>
 </field>
+
 
 <field id="title">
 <type>string</type>

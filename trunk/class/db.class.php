@@ -99,46 +99,39 @@ class db
 		// todo : don't use global vars !
 		global $db_cache;
 		
-		$hash =  sha1($sql);
 		
-		if (isset($db_cache[$hash]))
+		
+		
+		// one line debugging tool :-)
+		debug ($sql);
+		
+		$this->sql = $sql;
+		if (!$this->query = mysql_query($sql,$this->connection))
 		{
-			// one line debugging tool :-)
-			debug($sql . '[cached]');
-			return ($db_cache[$hash]);
+			trigger_error ('Query failed: '.mysql_error($this->connection).     ' <br>SQL: '.$sql);
+			return false;
 		}
-		else
+		
+		if (@mysql_num_rows($this->query))
 		{
-			// one line debugging tool :-)
-			debug ($sql);
+			$result = false;
 			
-			$this->sql = $sql;
-			if (!$this->query = mysql_query($sql,$this->connection))
+			while ($row = mysql_fetch_assoc($this->query))
 			{
-				trigger_error ('Query failed: '.mysql_error($this->connection).     ' <br>SQL: '.$sql);
-				return false;
+				$result[] = $row;
 			}
 			
-			if (@mysql_num_rows($this->query))
+			//$db_cache[$hash] = $result;
+			
+			
+			if (count($result > 0))
 			{
-				$result = false;
-				
-				while ($row = mysql_fetch_assoc($this->query))
-				{
-					$result[] = $row;
-				}
-				
-				$db_cache[$hash] = $result;
-				
-				
-				if (count($result > 0))
-				{
-					return $result;
-				}
-				
-				//return $result;
-				return false;
+				return $result;
 			}
+			
+			//return $result;
+			return false;
+			
 			
 			/*
 			if (@mysql_affected_rows($this->query))
