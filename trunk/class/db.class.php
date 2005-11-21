@@ -96,11 +96,6 @@ class db
 		{
 			trigger_error('don\'t use query() when selecting, you won\'t have any results back');
 		}
-		// todo : don't use global vars !
-		global $db_cache;
-		
-		
-		
 		
 		// one line debugging tool :-)
 		debug ($sql);
@@ -112,38 +107,19 @@ class db
 			return false;
 		}
 		
-		if (@mysql_num_rows($this->query))
+		
+		if (mysql_affected_rows($this->query) == -1)
 		{
-			$result = false;
-			
-			while ($row = mysql_fetch_assoc($this->query))
-			{
-				$result[] = $row;
-			}
-			
-			//$db_cache[$hash] = $result;
-			
-			
-			if (count($result > 0))
-			{
-				return $result;
-			}
-			
-			//return $result;
-			return false;
-			
-			
-			/*
-			if (@mysql_affected_rows($this->query))
-			{
-				return mysql_affected_rows($this->query);
-			}
-			*/
-			
-			
-			//return $this->query; // ?
 			return false;
 		}
+		else
+		{
+			return mysql_affected_rows($this->query);
+			
+		}
+		
+		
+		
 		
 		
 	}

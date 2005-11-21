@@ -45,6 +45,13 @@ class record
 	
 	
 	
+	/*
+	
+	Load will only load a single record and assign values to the current object
+	
+	Look at find() for multiple load
+	
+	*/
 	function load()
 	{
 		if ($this->checkPrimaryKey())
@@ -83,6 +90,11 @@ class record
 		}
 	}
 	
+	
+	function find()
+	{
+		die('not yet');
+	}
 
 
 
@@ -93,6 +105,40 @@ class record
 	
 	function delete()
 	{
+		if ($this->checkPrimaryKey())
+		{
+			
+			$sql = "delete * from " . $this->tableName . " where ";
+			foreach ($this->primaryKeys as $key)
+			{
+				$where[] =  $key . '=' . "'" . $this->$key . "'"; 
+			}
+			$sql .= implode($where, ' and ');
+			
+			global $thinkedit;
+			$db = $thinkedit->getDb();
+			
+			$results = $db->query($sql);
+			
+			if ($results && count($results) == 1)
+			{
+				//debug ($results);
+				foreach ($results[0] as $key=>$field)
+				{
+					$this->$key = $field;
+				}
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			trigger_error("record::load() you must set all primary keys if you want to load a record");
+			return false;
+		}
 	}
 	
 	
