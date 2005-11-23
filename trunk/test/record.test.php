@@ -8,7 +8,7 @@ require_once '../thinkedit.init.php';
 $article = $thinkedit->newRecord('article');
 
 
-$article->id = 1;
+//$article->id = 1;
 
 if ($article->load())
 {
@@ -24,4 +24,10 @@ else
 	echo ('Not found, not loaded');
 }
 
+$article->title = 'This is a test';
+
+echo $article->save();
+
+echo '<pre>';
+print_r($article);
 ?>
