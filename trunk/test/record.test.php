@@ -12,6 +12,8 @@ $article = $thinkedit->newRecord('article');
 
 if ($article->load())
 {
+	echo $article->field['title']->get();
+	// or
 	echo $article->title;
 	echo '<br>';
 	echo $article->body;
