@@ -1,0 +1,70 @@
+/***************** structure **************/
+
+body
+{
+	margin: 20px;
+	padding: 0;
+}
+
+
+.title, .menu
+{
+  font-size: 14px;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.content
+{
+  margin-top: 40px;
+}
+
+
+
+/***************** typo *******************/
+body
+{
+	font-size: 11px;
+	font-family: Arial, Sans-serif; 
+}
+
+a
+{
+	text-decoration: none;
+}
+
+A:link 
+{
+	text-decoration: none;
+	
+}
+
+A:visited 
+{
+	text-decoration: none;
+	color: #330033;
+}
+A:active 
+{
+	text-decoration: none;
+}
+
+A:hover
+{
+	text-decoration: underline;
+	/*color: red;*/
+}
+
+h1
+{
+  font-size: 14px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+
+.select, .select a
+{
+  color: #999;
+}
+

@@ -1,0 +1,112 @@
+/***************** structure **************/
+
+body
+{
+	margin: 20px;
+	padding: 0;
+}
+
+
+.title, .menu
+{
+  font-size: 14px;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.content
+{
+  margin-top: 40px;
+}
+
+
+
+/***************** typo *******************/
+body
+{
+	font-size: 11px;
+	font-family: Arial, Sans-serif; 
+}
+
+a
+{
+	text-decoration: none;
+}
+
+A:link 
+{
+	text-decoration: none;
+	
+}
+
+A:visited 
+{
+	text-decoration: none;
+	color: #330033;
+}
+A:active 
+{
+	text-decoration: none;
+}
+
+A:hover
+{
+	text-decoration: underline;
+	/*color: red;*/
+}
+
+h1
+{
+  font-size: 14px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+
+.select, .select a
+{
+  color: #999;
+}
+
+
+table
+{
+  border: 0;
+  padding: 0;
+  max-width: 600px:
+ 
+}
+
+table, tr, td
+{
+   font-size: 1em;
+   padding: 0;
+   margin: 0;
+}
+
+td
+{
+  border-bottom: 1px solid #999;
+}
+
+td.checkbox_col
+{
+  width: 25px;
+}
+
+td.title_col
+{
+  width: 400px;
+}
+
+
+.button
+{
+  /*display: block;*/
+  border: 1px solid black;
+  margin: 5px; 
+  padding: 5px;
+  color: black;
+}
+
+
