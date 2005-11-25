@@ -1,0 +1,37 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../../ressource/css/style3.css" type="text/css" media="screen" />
+</head>
+<body>
+
+<div class="title">
+Thinkedit 1.0
+</div>
+
+<div class="menu">
+Content | Structure | Files | Options | Help | Logout
+</div>
+
+
+<div class="content">
+<h1>List of articles</h1>
+
+<p>
+You are here : 
+<a href="">Home</a> > 
+<a href="">Content</a> >
+<a href="">Articles</a>
+</p>
+
+
+<div class="select">
+Select: <a href="">All</a>, <a href="">None</a>
+</div>
+
+
+</div>
+
+</body>
+
+</html>
