@@ -8,17 +8,18 @@ require_once '../thinkedit.init.php';
 $article = $thinkedit->newRecord('article');
 
 
-//$article->id = 1;
+$article->set('id', 1);
+
+
 
 if ($article->load())
 {
-	echo $article->field['title']->get();
+	echo $article->get('title');
 	// or
-	echo $article->title;
 	echo '<br>';
-	echo $article->body;
+	echo $article->get('body');
 	
-	$article->title = 'hopekes';
+	$article->set('title', 'hopekes');
 	echo $article->save();
 }
 else
@@ -26,7 +27,7 @@ else
 	echo ('Not found, not loaded');
 }
 
-$article->title = 'This is a test';
+$article->set('title', 'This is a test');
 
 echo $article->save();
 

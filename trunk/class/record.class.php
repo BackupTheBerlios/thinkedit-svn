@@ -32,25 +32,35 @@ class record
 	  trigger_error('record::record() Table called "' . $this->table . '" has no fields defined. Check config file');
 	}
 	
-	$this->primaryKeys = $this->getPrimaryKeys();
-	
-	
-	/*
-	foreach ($this->primaryKeys as $key)
+  }
+  
+  
+  
+  function get($field)
+  {
+	return $this->field[$field]->get();
+  }
+  
+  
+  function set($field, $value)
+  {
+	//debug ($field, 'field');
+	//debug($value, 'value');
+	if (isset($this->field[$field]))
 	{
-	  @$this->$$key == "";
+	  $this->field[$field]->set($value);
 	}
-	*/
+	else
+	{
+	  return false;
+	}
   }
   
   
   
   /*
-  
   Load will only load a single record and assign values to the current object
-  
   Look at find() for multiple load
-  
   */
   function load()
   {
@@ -58,11 +68,16 @@ class record
 	{
 	  
 	  $sql = "select * from " . $this->tableName . " where ";
-	  foreach ($this->primaryKeys as $key)
+	  foreach ($this->field as $field)
 	  {
-		$where[] =  $key . '=' . "'" . $this->$key . "'"; 
+		if ($field->isPrimary())
+		{
+		  $where[] =  $field->getId() . '=' . "'" . $field->get() . "'";
+		}
 	  }
 	  $sql .= implode($where, ' and ');
+	  
+	  debug($sql, 'Sql query');
 	  
 	  global $thinkedit;
 	  $db = $thinkedit->getDb();
@@ -71,10 +86,10 @@ class record
 	  
 	  if ($results && count($results) == 1)
 	  {
-		//debug ($results);
+		debug($results, 'results for select query');
 		foreach ($results[0] as $key=>$field)
 		{
-		  $this->$key = $field;
+		  $this->set($key, $field);
 		}
 		return true;
 	  }
@@ -107,14 +122,17 @@ class record
 	  $sql = "update " . $this->tableName . ' set ';
 	  foreach ($this->field as $id=>$field)
 	  {
-		$set[] =  $id . '=' . "'" . $this->$id . "'"; 
+		$set[] =  $id . '=' . "'" . $this->get($id) . "'"; 
 	  }
 	  $sql .= implode($set, ', ');
 	  
 	  $sql .= " where ";
-	  foreach ($this->primaryKeys as $key)
+	  foreach ($this->field as $field)
 	  {
-		$where[] =  $key . '=' . "'" . $this->$key . "'"; 
+		if ($field->isPrimary())
+		{
+		  $where[] =  $field->getId() . '=' . "'" . $field->get() . "'";
+		}
 	  }
 	  $sql .= implode($where, ' and ');
 	  
@@ -140,7 +158,7 @@ class record
 	  
 	  foreach ($this->field as $id=>$field)
 	  {
-		$values[] =  "'" . $this->$id . "'"; 
+		$values[] =  "'" . $this->get($id) . "'"; 
 	  }
 	  $sql.= ' ( ';
 	  $sql .= implode($values, ', ');
@@ -163,7 +181,7 @@ class record
 	  $sql = "delete * from " . $this->tableName . " where ";
 	  foreach ($this->primaryKeys as $key)
 	  {
-		$where[] =  $key . '=' . "'" . $this->$key . "'"; 
+		$where[] =  $key . '=' . "'" . $this->get($key) . "'"; 
 	  }
 	  $sql .= implode($where, ' and ');
 	  
@@ -195,10 +213,9 @@ class record
   // false else
   function checkPrimaryKey()
   {
-	foreach ($this->primaryKeys as $key)
+	foreach ($this->field as $field)
 	{
-	  
-	  if (!isset ($this->$key))
+	  if ($field->is_null() and $field->isPrimary())
 	  {
 		return false;
 	  }

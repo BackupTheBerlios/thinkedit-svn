@@ -135,6 +135,17 @@ class field
 	}
 	
 	
+	function is_null()
+	{
+	  if (is_null($this->data))
+	  {
+		return true;
+	  }
+	  else
+	  {
+		return false;
+	  }
+	}
 	
 }
 

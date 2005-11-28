@@ -98,7 +98,7 @@ class db
 		}
 		
 		// one line debugging tool :-)
-		debug ($sql);
+		debug($sql, 'db:query()');
 		
 		$this->sql = $sql;
 		if (!$this->query = mysql_query($sql,$this->connection))
@@ -133,13 +133,13 @@ class db
 		if (isset($db_cache[$hash]))
 		{
 			// one line debugging tool :-)
-			debug($sql . '[cached]');
+			debug($sql . '[cached]', 'db:select()');
 			return ($db_cache[$hash]);
 		}
 		else
 		{
 			// one line debugging tool :-)
-			debug ($sql . '[select]');
+			debug ($sql . '[select]', 'db:select()');
 			
 			$this->sql = $sql;
 			if (!$this->query = mysql_query($sql,$this->connection))
