@@ -68,18 +68,18 @@ function translate($id, $html = true)
 	// todo, use config
 	$translation = $thinkedit->newRecord('translation');
 	
-	$translation->id = $id;
-	$translation->locale = $user->getLocale();
+	$translation->set('id', $id);
+	$translation->set('locale', $user->getLocale());
 	
 	if ($translation->load())
 	{
-		if (empty($translation->translation))
+		if (!($translation->get('translation')))
 		{
 			return "#" . $id . "#";
 		}
 		else
 		{
-			return $translation->translation;
+			return $translation->get('translation');
 		}
 	}
 	else
