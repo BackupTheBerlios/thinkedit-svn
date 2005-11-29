@@ -19,7 +19,13 @@ body
   margin-top: 40px;
 }
 
-
+/*
+.actions
+{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+*/
 
 /***************** typo *******************/
 body
@@ -67,4 +73,73 @@ h1
 {
   color: #999;
 }
+
+
+/********************* table ***************/
+
+table
+{
+  border: 0;
+  padding: 0;
+  max-width: 600px;
+  /*padding-top: 10px;*/
+  padding-bottom: 20px;
+}
+
+table, tr, td
+{
+   font-size: 1em;
+}
+
+tr, td
+{
+   padding: 0;
+   margin: 0;
+}
+
+td
+{
+  border-bottom: 1px solid #999;
+}
+
+td.checkbox_col
+{
+  width: 25px;
+}
+
+td.title_col
+{
+  width: 400px;
+}
+
+
+/**************** forms ****************/
+
+.button
+{
+  /*display: block;*/
+  border: 1px solid black;
+  margin: 5px; 
+  padding: 5px;
+  color: black;
+}
+
+input
+{
+  font-size: 11px;
+  border: 1px solid black;
+  /*margin: 5px;*/ 
+  padding: 3px;
+  background-color: white;
+}
+
+
+/*************** debug *****************/
+
+/*
+div
+{
+  border: 1px solid red;
+}
+*/
 

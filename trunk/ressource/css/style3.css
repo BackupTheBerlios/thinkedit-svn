@@ -2,8 +2,8 @@
 
 body
 {
-	margin: 20px;
-	padding: 0;
+  margin: 20px;
+  padding: 0;
 }
 
 
@@ -19,49 +19,73 @@ body
   margin-top: 40px;
 }
 
-
+/*
+.actions
+{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+*/
 
 /***************** typo *******************/
 body
 {
-	font-size: 11px;
-	font-family: Arial, Sans-serif; 
+  font-size: 11px;
+  font-family: Arial, Sans-serif; 
 }
 
 a
 {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 A:link 
 {
-	text-decoration: none;
-	
+  text-decoration: none;
+  
 }
 
 A:visited 
 {
-	text-decoration: none;
-	color: #330033;
+  text-decoration: none;
+  color: #330033;
 }
 A:active 
 {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 A:hover
 {
-	text-decoration: underline;
-	/*color: red;*/
+  text-decoration: underline;
+  /*color: red;*/
 }
 
 h1
 {
-  font-size: 14px;
+  font-size: 1.3em;
   margin-bottom: 0;
   padding-bottom: 0;
+  line-height: 1em;
 }
 
+h2
+{
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #999;
+  line-height: 1em;
+}
+
+p
+{
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+}
+  
 
 .select, .select a
 {
@@ -69,19 +93,26 @@ h1
 }
 
 
+/********************* table ***************/
+
 table
 {
   border: 0;
   padding: 0;
-  max-width: 600px:
- 
+  max-width: 600px;
+  /*padding-top: 10px;*/
+  padding-bottom: 20px;
 }
 
 table, tr, td
 {
-   font-size: 1em;
-   padding: 0;
-   margin: 0;
+  font-size: 1em;
+}
+
+tr, td
+{
+  padding: 0;
+  margin: 0;
 }
 
 td
@@ -100,6 +131,8 @@ td.title_col
 }
 
 
+/**************** forms ****************/
+
 .button
 {
   /*display: block;*/
@@ -109,4 +142,27 @@ td.title_col
   color: black;
 }
 
+.action
+{
+   font-weight: bold;
+}
+
+input
+{
+  font-size: 11px;
+  border: 1px solid black;
+  /*margin: 5px;*/ 
+  padding: 3px;
+  background-color: white;
+}
+
+
+/*************** debug *****************/
+
+/*
+div
+{
+  border: 1px solid red;
+}
+*/
 
