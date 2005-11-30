@@ -108,8 +108,40 @@ class record
   
   function find()
   {
-	die('not yet');
+	
+	$sql = "select * from " . $this->tableName . " where ";
+	foreach ($this->field as $field)
+	{
+	  if ($field->isPrimary())
+	  {
+		$where[] =  $field->getId() . '=' . "'" . $field->get() . "'";
+	  }
+	}
+	$sql .= implode($where, ' and ');
+	
+	debug($sql, 'Sql query');
+	
+	global $thinkedit;
+	$db = $thinkedit->getDb();
+	
+	$results = $db->select($sql);
+	
+	if ($results && count($results) == 1)
+	{
+	  debug($results, 'results for select query');
+	  foreach ($results[0] as $key=>$field)
+	  {
+		$this->set($key, $field);
+	  }
+	  return true;
+	}
+	else
+	{
+	  return false;
+	}
   }
+  
+  
   
   
   

@@ -42,71 +42,31 @@ if ($url->getParam('table'))
   if ($config->tableExists($table_name))
   {
 	
-	$record = $thinkedit->newRecord($table_name);
+	$my_record = $thinkedit->newRecord($table_name);
 	
-	/*
-	// init datagrid
-	$datagrid = new datagrid();
-	$datagrid->setId('data_grid_for_' . $table_name );
-	
-	$record = $thinkedit->newRecord($table->getTableName());
-	
-	// add all fields
-	foreach ($record->field as $field)
-	{
-	  $datagrid->addColumn($field->getId(), $field->getTitle(), $field->isSortable(), $field->isPrimary());
-	}	
-	
-	// $datagrid->addColumn('title', 'Title', true, false);
-	$datagrid->addColumn('table', 'Table', true, true);
-	
-	
-	$datagrid->addLocalAction('edit', 'edit.php', translate('edit'));
-	$datagrid->addLocalAction('delete', 'delete.php', translate('delete'));
-	
-	
-	$url = new url();
-	$url->setParam('table', $table->getId());
-	$url->setParam('action', 'add');
-	$url->setFileName('edit.php');
-	$datagrid->addGlobalAction('add', $url->render(), translate('add'));
-	
-	
-	// init pagination
-	$pager = new pager('pager_for_' . $table_name );
-	$pager->enablePaginationDropDown();	
-	$pager->setTotal($table->count());
-	$session->persist($pager);
-	
-	
-	$table->limit($pager->getCurrent(), $pager->page_size);
-	
-	
-	$records = $table->select();
+	$records = $my_record->find();
 	
 	if (is_array($records))
 	{
-	  debug($records, 'Records');
 	  foreach ($records as $record)
 	  {
-		$record['table'] = $table_name;
-		$datagrid->add($record);
+		$out['data'][$record->getId()]['id'] = $record->getId();
+		$out['data'][$record->getId()]['title'] = $record->getTitle();
 	  }
 	  
 	  
-	  //$datagrid->addMany($records);
-	  */
+	}
+	
+	
+	
+	
+  }
+  else
+  {
+	//$page->add(translate('table_not_found'));
   }
   
-  
-  
-  
 }
-else
-{
-  //$page->add(translate('table_not_found'));
-}
-
 
 
 include_once(ROOT . '/template/header.php');
