@@ -37,7 +37,7 @@ function error_handler($errno, $errstr , $errfile , $errline , $errcontext)
 function debug($data, $title=false)
 {
 	
-	global $debug;
+	//global $debug;
 	if (isset($_GET['debug']))
 		
 	{
@@ -51,7 +51,7 @@ function debug($data, $title=false)
 		
 		
 		$out.='</pre>';
-		$debug[] = $out;
+		echo $out;
 	}
 	
 }

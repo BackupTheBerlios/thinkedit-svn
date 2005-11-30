@@ -7,25 +7,48 @@ body
 }
 
 
-.title, .menu
+.title, .mainmenu
 {
-  font-size: 14px;
-  color: #999;
-  text-transform: uppercase;
+	font-size: 14px;
+	color: #999;
+	text-transform: uppercase;
 }
 
 .content
 {
-  margin-top: 40px;
+	margin-left: 240px;
+	background-color:#fff;
+	overflow: auto;
+	margin-top: 40px;
 }
 
 /*
 .actions
 {
-  margin-top: 20px;
-  margin-bottom: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 */
+
+
+.breadcrumb
+{
+	margin-bottom: 20px;
+	
+	
+}
+
+.menu
+{
+	position: absolute;
+	width: 200px;
+	left: 20px;
+	padding:0px;
+	margin:0px;
+	top: 100px;
+}
+
+
 
 /***************** typo *******************/
 body
@@ -39,23 +62,13 @@ a
 	text-decoration: none;
 }
 
-A:link 
+a:link, a:active, a:visited  
 {
 	text-decoration: none;
 	
 }
 
-A:visited 
-{
-	text-decoration: none;
-	color: #330033;
-}
-A:active 
-{
-	text-decoration: none;
-}
-
-A:hover
+a:hover
 {
 	text-decoration: underline;
 	/*color: red;*/
@@ -63,15 +76,35 @@ A:hover
 
 h1
 {
-  font-size: 14px;
-  margin-bottom: 0;
-  padding-bottom: 0;
+	font-size: 1.3em;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	line-height: 1em;
+}
+
+h2
+{
+	margin: 0;
+	padding: 0;
+	margin-top: 20px;
+	font-size: 1.2em;
+	color: #999;
+	line-height: 1em;
+}
+
+p
+{
+	/*
+	margin: 0;
+	padding: 0;
+	*/
+	line-height: 1em;
 }
 
 
 .select, .select a
 {
-  color: #999;
+	color: #999;
 }
 
 
@@ -79,37 +112,37 @@ h1
 
 table
 {
-  border: 0;
-  padding: 0;
-  max-width: 600px;
-  /*padding-top: 10px;*/
-  padding-bottom: 20px;
+	border: 0;
+	padding: 0;
+	max-width: 600px;
+	/*padding-top: 10px;*/
+	padding-bottom: 20px;
 }
 
 table, tr, td
 {
-   font-size: 1em;
+	font-size: 1em;
 }
 
 tr, td
 {
-   padding: 0;
-   margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 td
 {
-  border-bottom: 1px solid #999;
+	border-bottom: 1px solid #999;
 }
 
 td.checkbox_col
 {
-  width: 25px;
+	width: 25px;
 }
 
 td.title_col
 {
-  width: 400px;
+	width: 400px;
 }
 
 
@@ -117,20 +150,25 @@ td.title_col
 
 .button
 {
-  /*display: block;*/
-  border: 1px solid black;
-  margin: 5px; 
-  padding: 5px;
-  color: black;
+	/*display: block;*/
+	border: 1px solid black;
+	margin: 5px; 
+	padding: 5px;
+	color: black;
+}
+
+.action
+{
+	font-weight: bold;
 }
 
 input
 {
-  font-size: 11px;
-  border: 1px solid black;
-  /*margin: 5px;*/ 
-  padding: 3px;
-  background-color: white;
+	font-size: 11px;
+	border: 1px solid black;
+	/*margin: 5px;*/ 
+	padding: 3px;
+	background-color: white;
 }
 
 
@@ -139,7 +177,8 @@ input
 /*
 div
 {
-  border: 1px solid red;
+	border: 1px solid red;
 }
 */
+
 

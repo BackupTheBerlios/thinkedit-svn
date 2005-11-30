@@ -154,8 +154,6 @@
 
 <table id='translation'>
 
-
-
 <field id="id">
 <type>id</type>
 <primary>true</primary>
