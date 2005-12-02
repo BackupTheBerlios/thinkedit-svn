@@ -59,11 +59,11 @@ if ($trees)
 
 
 
-include_once(ROOT . '/template/header.php');
-include_once(ROOT . '/template/left.php');
-include_once(ROOT . '/template/right.php');
-include_once(ROOT . '/template/homepage.php');
-include_once(ROOT . '/template/footer.php');
+include_once(ROOT . '/template/header.template.php');
+include_once(ROOT . '/template/left.template.php');
+include_once(ROOT . '/template/right.template.php');
+include_once(ROOT . '/template/homepage.template.php');
+include_once(ROOT . '/template/footer.template.php');
 
 
 ?>
