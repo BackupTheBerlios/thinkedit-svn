@@ -139,12 +139,12 @@ class record
 	  debug($results, 'record:find() results for select query');
 	  foreach ($results as $result)
 	  {
+		$record = $thinkedit->newRecord($this->getTableName());
 		foreach ($result as $key=>$field)
 		{
-		  $record = $thinkedit->newRecord($this->getTableName());
 		  $record->set($key, $field);
-		  $records[] = $record;
 		}
+		$records[] = $record;
 	  }
 	  return $records;
 	}
@@ -160,11 +160,14 @@ class record
   
   function save()
   {
-	// il all primary keys are set and we have a row in the DB (successfull load), 
+	global $thinkedit;
+	$db = $thinkedit->getDb();
+	
+	// if all primary keys are set and we have a row in the DB (successfull load), 
 	// we update
 	if ($this->checkPrimaryKey() && $this->load())
 	{
-	  $sql = "update " . $this->tableName . ' set ';
+	  $sql = "update " . $this->getTableName() . ' set ';
 	  foreach ($this->field as $id=>$field)
 	  {
 		$set[] =  $id . '=' . "'" . $this->get($id) . "'"; 
@@ -181,13 +184,22 @@ class record
 	  }
 	  $sql .= implode($where, ' and ');
 	  
-	  return  $sql;
+	  if ($db->query($sql))
+	  {
+		return true;
+	  }
+	  else
+	  {
+		trigger_error('record::save() failed while updating record');
+		return false;
+	  }
+	  //return  $sql;
 	}
 	else
 	// if not all or no primary keys are set,
 	// we do an insert
 	{
-	  $sql = "insert into " . $this->tableName;
+	  $sql = "insert into " . $this->getTableName();
 	  
 	  foreach ($this->field as $id=>$field)
 	  {
@@ -209,7 +221,17 @@ class record
 	  $sql .= implode($values, ', ');
 	  $sql.= ' ) ';
 	  
-	  return  $sql;
+	  
+	  if ($db->query($sql))
+	  {
+		return true;
+	  }
+	  else
+	  {
+		trigger_error('record::save() failed while inserting record');
+		return false;
+	  }
+	  
 	  
 	}
 	
@@ -223,7 +245,7 @@ class record
 	if ($this->checkPrimaryKey())
 	{
 	  
-	  $sql = "delete * from " . $this->tableName . " where ";
+	  $sql = "delete * from " . $this->getTableName() . " where ";
 	  foreach ($this->primaryKeys as $key)
 	  {
 		$where[] =  $key . '=' . "'" . $this->get($key) . "'"; 

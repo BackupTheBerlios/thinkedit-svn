@@ -52,7 +52,9 @@ function debug($data, $title=false)
 		
 		$out.='</pre>';
 		$debug[] = $out;
+		echo $out;
 	}
+	
 	
 }
 

@@ -41,29 +41,19 @@ if ($url->getParam('table'))
   
   if ($config->tableExists($table_name))
   {
-	
 	$my_record = $thinkedit->newRecord($table_name);
 	
 	$records = $my_record->find();
 	
 	if (is_array($records))
 	{
+	  debug ($records, "Records found");
 	  foreach ($records as $record)
 	  {
 		$out['data'][$record->getUid()]['id'] = $record->getUid();
 		$out['data'][$record->getUid()]['title'] = $record->getTitle();
-	  }
-	  
-	  
+	  }	 
 	}
-	
-	
-	
-	
-  }
-  else
-  {
-	//$page->add(translate('table_not_found'));
   }
   
 }

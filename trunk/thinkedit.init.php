@@ -2,7 +2,7 @@
 /*
     Thinkedit, Web based Content and Data Management System
     Copyright (C) 2000-2005  Philippe Jadin 
-	philippe@123piano.com
+	philippe@123piano.com (preferred)
 	philippe@thinkedit.com
 
     This program is free software; you can redistribute it and/or modify
