@@ -50,8 +50,8 @@ if ($url->getParam('table'))
 	{
 	  foreach ($records as $record)
 	  {
-		$out['data'][$record->getId()]['id'] = $record->getId();
-		$out['data'][$record->getId()]['title'] = $record->getTitle();
+		$out['data'][$record->getUid()]['id'] = $record->getUid();
+		$out['data'][$record->getUid()]['title'] = $record->getTitle();
 	  }
 	  
 	  
@@ -70,7 +70,8 @@ if ($url->getParam('table'))
 
 
 include_once(ROOT . '/template/header.php');
-include_once(ROOT . '/template/menu.php');
+include_once(ROOT . '/template/left.php');
+include_once(ROOT . '/template/right.php');
 include_once(ROOT . '/template/list.php');
 include_once(ROOT . '/template/footer.php');
 ?>

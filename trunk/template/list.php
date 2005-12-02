@@ -18,12 +18,12 @@ With selection : Edit | Delete | Move | Publish | Unpublish | Plugin...
 </div>
 
 
-<?php if (is_array($out['items'])) : ?>
-<?php foreach ($out['items'] as $item): ?>
+<?php if (is_array($out['data'])) : ?>
+<?php foreach ($out['data'] as $item): ?>
 
 <h2><?php echo $item['title']; ?></h2>
 
-<div class="action"><a href="list.php?table=<?php echo $table['table']?>">List</a> | <a href="add.php?table=<?php echo $table['table']?>">Add</a></div>
+<div class="action"><a href="">Edit</a> | <a href="">Delete</a></div>
 
 <?php endforeach; ?>
 <?php else: ?>

@@ -6,7 +6,7 @@ class record
   
   function record($table)
   {
-	$this->tableName = $table;
+	$this->table_name = $table;
 	
 	// load config
 	global $thinkedit;
@@ -34,7 +34,10 @@ class record
 	
   }
   
-  
+  function getTableName()
+  {
+	return $this->table_name;
+  }
   
   function get($field)
   {
@@ -67,7 +70,7 @@ class record
 	if ($this->checkPrimaryKey())
 	{
 	  
-	  $sql = "select * from " . $this->tableName . " where ";
+	  $sql = "select * from " . $this->getTableName() . " where ";
 	  foreach ($this->field as $field)
 	  {
 		if ($field->isPrimary())
@@ -106,34 +109,44 @@ class record
   }
   
   
-  function find()
+  function find($where= false, $order = false, $limit = false)
   {
 	
-	$sql = "select * from " . $this->tableName . " where ";
-	foreach ($this->field as $field)
-	{
-	  if ($field->isPrimary())
-	  {
-		$where[] =  $field->getId() . '=' . "'" . $field->get() . "'";
-	  }
-	}
-	$sql .= implode($where, ' and ');
+	$sql = "select * from " . $this->getTableName();
 	
-	debug($sql, 'Sql query');
+	if (is_array($where))
+	{
+	  $sql .= " where ";
+	  foreach ($where as $key=>$value)
+	  {
+		$where_clause[] =  $key . '=' . "'" . $value . "'";
+		
+	  }
+	  $sql .= implode($where_clause, ' and ');
+	}
+	
+	
+	debug($sql, 'record:find() sql');
 	
 	global $thinkedit;
 	$db = $thinkedit->getDb();
 	
 	$results = $db->select($sql);
 	
-	if ($results && count($results) == 1)
+	if ($results && count($results) > 0)
 	{
-	  debug($results, 'results for select query');
-	  foreach ($results[0] as $key=>$field)
+	  global $thinkedit;
+	  debug($results, 'record:find() results for select query');
+	  foreach ($results as $result)
 	  {
-		$this->set($key, $field);
+		foreach ($result as $key=>$field)
+		{
+		  $record = $thinkedit->newRecord($this->getTableName());
+		  $record->set($key, $field);
+		  $records[] = $record;
+		}
 	  }
-	  return true;
+	  return $records;
 	}
 	else
 	{
@@ -348,6 +361,7 @@ class record
   
   function getId()
   {
+	//die ('deprecated, use getUid() instead');
 	
 	foreach ($this->field as $field)
 	{
@@ -361,6 +375,17 @@ class record
   }
   
   
+  function getUid()
+  {
+	// todo include all keys in id
+	return $this->getId();
+  }
+  
+  
+  function getTitle()
+  {
+	return 'test';
+  }
   
   
 }

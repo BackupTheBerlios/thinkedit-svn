@@ -60,7 +60,8 @@ if ($trees)
 
 
 include_once(ROOT . '/template/header.php');
-include_once(ROOT . '/template/menu.php');
+include_once(ROOT . '/template/left.php');
+include_once(ROOT . '/template/right.php');
 include_once(ROOT . '/template/homepage.php');
 include_once(ROOT . '/template/footer.php');
 
