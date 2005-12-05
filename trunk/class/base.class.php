@@ -10,6 +10,12 @@ Consider this as an interface, not a base class you should extend. Currently I'd
 class base
 {
 	
+	var $class;
+	var $type;
+	var $id;
+	var $locale;
+	var $version;
+	
 	function setId($id)
 	{
 		$this->id = $id;
