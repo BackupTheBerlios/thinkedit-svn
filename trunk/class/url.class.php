@@ -1,7 +1,5 @@
 <?php
 
-
-
 class url
 {
 	var $url;
@@ -35,8 +33,38 @@ class url
 		//$this->keepParam('debug');
 		$this->keepParam('debug');
 		$this->keepParam('table');
+		
+		// those three parameters are what I call a GUID of a class
+		$this->keepParam('class');
+		$this->keepParam('type');
+		$this->keepParam('id');
+		
+		
 		//$this->keepAll();
 	}
+	
+	
+	
+	// this is an alias
+	function set($id, $value)
+	{
+		$this->setParam($id, $value);
+	}
+	
+	
+	function get($id)
+	{
+		return $this->getParam($id);
+	}
+	
+	function setArray($params)
+	{
+		foreach ($params as $key=>$value)
+		{
+			$this->set($key, $value);
+		}
+	}
+	
 	
 	/*
 	use this to add a parameter to an url
