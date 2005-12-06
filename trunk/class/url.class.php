@@ -75,6 +75,17 @@ class url
 	}
 	
 	/*
+	use this to add a parameter to an url
+	*/
+	function setParamArray($values)
+	{
+		foreach ($values as $key=>$value)
+		{
+		  $this->param[$key] = $value;
+		}
+	}
+	
+	/*
 	retrieve existing param, looking first at user defined ones, than in the existing parameters found in the url
 	*/
 	function getParam($id)

@@ -396,17 +396,27 @@ class record
 	return false;
   }
   
-  
+  // very important concept
   function getUid()
   {
-	// todo include all keys in id
-	return $this->getId();
+	// builds an array of all primary keys
+	foreach ($this->field as $field)
+	{
+	  if ($field->isPrimary())
+	  {
+		$data[$field->getId()] = $field->get();
+	  }
+	  
+	}
+	$data['class'] = 'record';
+	$data['type'] = $this->getTableName();
+	return $data;
   }
   
   
   function getTitle()
   {
-	return 'test';
+	return $this->field['title']->get();
   }
   
   

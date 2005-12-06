@@ -23,7 +23,7 @@ With selection : Edit | Delete | Move | Publish | Unpublish | Plugin...
 
 <h2><?php echo $item['title']; ?></h2>
 
-<div class="action"><a href="">Edit</a> | <a href="">Delete</a></div>
+<div class="action"><a href="edit.php?id=<?php echo $item['id']; ?>">Edit</a> | <a href="delete.php?">Delete</a></div>
 
 <?php endforeach; ?>
 <?php else: ?>

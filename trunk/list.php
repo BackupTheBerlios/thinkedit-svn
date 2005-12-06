@@ -50,8 +50,9 @@ if ($url->getParam('table'))
 	  debug ($records, "Records found");
 	  foreach ($records as $record)
 	  {
-		$out['data'][$record->getUid()]['id'] = $record->getUid();
-		$out['data'][$record->getUid()]['title'] = $record->getTitle();
+		$out['data'][$record->getId()]['uid'] = $record->getUid();
+		$out['data'][$record->getId()]['title'] = $record->getTitle();
+		$out['data'][$record->getId()]['title'] = $record->getTitle();
 	  }	 
 	}
   }

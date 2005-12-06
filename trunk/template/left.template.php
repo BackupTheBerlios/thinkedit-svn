@@ -1,3 +1,4 @@
+<!--
 <div id="left">
 Search
 <br/>
@@ -29,4 +30,4 @@ met wisit er sequi tis
 
 
 </div>
-
+-->
