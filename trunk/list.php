@@ -47,12 +47,14 @@ if ($url->getParam('table'))
 	
 	if (is_array($records))
 	{
-	  debug ($records, "Records found");
+	  debug($records, "Records found");
 	  foreach ($records as $record)
 	  {
+		$url->setArray($record->getUid());
 		$out['data'][$record->getId()]['uid'] = $record->getUid();
 		$out['data'][$record->getId()]['title'] = $record->getTitle();
-		$out['data'][$record->getId()]['title'] = $record->getTitle();
+		$out['data'][$record->getId()]['edit_link'] = $url->render('edit.php');
+		$out['data'][$record->getId()]['delete_link'] = $url->render('delete.php');
 	  }	 
 	}
   }

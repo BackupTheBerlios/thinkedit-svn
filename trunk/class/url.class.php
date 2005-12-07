@@ -142,24 +142,28 @@ class url
 	*/
 	function getQueryString()
 	{
-		$url = '';
-		$final_param = '';
-		// populate final_param list with original params, but only the ones we want to keep
+	  $url = '';
+	  $final_param = '';
+	  // populate final_param list with original params, but only the ones we want to keep
+	  
+	  if (isset ($this->orig_param))
+	  {
 		if (is_array ($this->orig_param))
 		{
-			foreach ($this->orig_param as $key=>$value)
+		  foreach ($this->orig_param as $key=>$value)
+		  {
+			if (is_array($this->keep))
 			{
-				if (is_array($this->keep))
-				{
-					if (in_array($key, $this->keep))
-					{
-						$final_param[$key] = $value;
-					}
-				}
+			  if (in_array($key, $this->keep))
+			  {
+				$final_param[$key] = $value;
+			  }
 			}
-			
+		  }
+		  
 		}
-		
+	  }
+	  
 		
 		
 		

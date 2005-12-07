@@ -108,8 +108,14 @@ class db
 	  trigger_error ('Query failed: '.mysql_error($this->connection).     ' <br>SQL: '.$sql);
 	  return false;
 	}
+	else
+	{
+	  return true;
+	}
 	
-	return mysql_affected_rows($this->connection);
+	
+	// if not rows affected, it wil return 0, and the caller will think it failed, but an update can succeed and change 0 rows
+	//return mysql_affected_rows($this->connection);
 	
 	/*
 	if (mysql_affected_rows($this->connection) == -1)

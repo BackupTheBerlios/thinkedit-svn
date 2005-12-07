@@ -103,7 +103,9 @@ class record
 	}
 	else
 	{
-	  trigger_error("record::load() you must set all primary keys if you want to load a record");
+	  // is it an error to try to load a record without filling all the primary keys?
+	  //trigger_error("record::load() you must set all primary keys if you want to load a record");
+	  // we should return false and set an error somewhere... 
 	  return false;
 	}
   }

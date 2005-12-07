@@ -12,66 +12,32 @@ $page = new page();
 $url = new url();
 
 
-if ($url->getParam('table'))
+if (!$url->getParam('type'))
 {
-	$table = $thinkedit->newTable($url->getParam('table'));
+  trigger_error('edit : you must supply a type in the url');
 }
-else
+
+if (!$url->getParam('class'))
 {
-	trigger_error('edit : you must supply a table name in the url');
+  trigger_error('edit : you must supply a class in the url');
 }
 
 
 
-// either we a new instance, either we  edit an existing one :
+$record = new record($url->getParam('type')); 
 
-if ($url->getParam('action') == 'add')
-{ 
-	// we edit a new one
-	$record = new record($url->getParam('table')); 
-	$edit_mode = 'insert';
+$keys = $record->getPrimaryKeys();
+
+foreach ($keys as $key)
+{
+  if ($url->getParam($key))
+  {
+	$record->set($key, $url->getParam($key));
+  }
 }
-else
-{ 
-	// we update an existing one
-	// build a list of primary keys
-	$record = $thinkedit->newRecord($table->getTableName());
-	$keys = $record->getPrimaryKeys();
-	
-	
-	// test if we have all those keys in the url
-	$unique_record = true; // assume it will work
-	foreach ($keys as $key)
-	{
-		if ($url->getParam($key))
-		{
-			$table->filter($key, '=', $url->getParam($key));
-		}
-		else
-		{
-			// trigger_error('edit : ' . $key . ' not found in url, won\'t be able to select unique item');
-			$unique_record = false;
-		}
-	}
-	
-	
-	// if yes : we count, we need one record, and we can edit
-	if ($unique_record)
-	{
-		if ($table->count() == 1)
-		{
-			$results = $table->select();
-			$record = new record($url->getParam('table'));
-			
-			$record->setArray($results[0]);
-			$edit_mode = 'update'; // ugly
-		}
-		else
-		{
-			trigger_error('edit : all primary keys found in url, but a query reported something strange, will not edit');
-		}
-	}
-}
+
+$record->load();
+
 
 // at this stage we have a $record, ready to use. either empty or filled with existing info
 
@@ -80,14 +46,16 @@ $form = new html_form();
 
 if ($form->isSent())
 {
-	if ($edit_mode == 'update')
+	foreach ($record->field as $field)
 	{
-		$table->update($_POST);
+	  if (isset($_POST[$field->getName()]))
+	  {
+		$field->set($_POST[$field->getName()]);
+	  }
 	}
-	elseif ($edit_mode == 'insert')
-	{
-		$table->insert($_POST);
-	}
+  
+	$record->save();
+	
 	$url = new url();
 	$url->setFileName('list.php');
 	$url->keepParam('table');

@@ -31,13 +31,17 @@ $tables = $config->getTableList();
 
 foreach ($tables as $table)
 {
-	$url->setArray
+ 
   $table_instance = $thinkedit->newTable($table);
+  
+   $url->setArray($table_instance->getUid());
+  
   $table_info['table'] = $table_instance->getTableName();
   $table_info['title'] = $table_instance->getTableName();
   $table_info['help'] = $table_instance->getTableName();
   $out['table'][$table_instance->getTableName()] = $table_info;
-  $out['table'][$table_instance->getTableName()]['edit_link']
+  $out['table'][$table_instance->getTableName()]['list_link'] = $url->render('list.php');
+  $out['table'][$table_instance->getTableName()]['add_link'] = $url->render('edit.php');
 }
 
 

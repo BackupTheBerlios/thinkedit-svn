@@ -435,6 +435,19 @@ class table
 	}
 	
 	
+	// very important concept
+  function getUid()
+  {
+	// builds an array of all primary keys
+	
+	$data['class'] = 'table';
+	$data['type'] = $this->getTableName();
+	return $data;
+  }
+  
+	
+	
+	
 }
 
 ?>
