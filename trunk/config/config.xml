@@ -178,15 +178,8 @@
 <!-- proto -->
 <filesystem id="main">
 <type>local</type>
-<type>ftp</type>
-
-<path>/home/philippe/my_files</path>
-
-<host>localhost</host>
-<login>philippe</login>
-<password>123456</password>
-
-
+<path>.</path>
+<url>/media</url>
 </filesystem>
 
 

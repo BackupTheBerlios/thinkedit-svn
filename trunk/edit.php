@@ -88,10 +88,8 @@ else 	// render form
 		$form->add('</div>');
 	}
 	
-	// header
-	$page->startPanel('title', 'title');
-	$page->add('Thinkedit 2.0');
-	$page->endPanel('title');
+// header
+require_once 'header.php';
 	
 	
 	// breadcrumb
@@ -102,6 +100,8 @@ else 	// render form
 	$url->setFileName('list.php');
 	$url->keepParam('table');
 	
+	
+	$breadcrumb->add(translate('content'), 'content.php');
 	$breadcrumb->add(translate('list'), $url->render());
 	$breadcrumb->add(translate('editing'));
 	

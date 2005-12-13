@@ -15,8 +15,75 @@ $page = new page();
 $url = new url();
 $config = new config();
 
+// header
+require_once 'header.php';
+
+//message
+if ($url->getParam('message'))
+{
+  $page->startPanel('title', 'info message');
+  $page->add(translate($url->getParam('message')));
+  $page->endPanel('title');
+}
+
+// breadcrumb
+$breadcrumb = new breadcrumb();
+$breadcrumb->add(translate('home'), 'homepage.php');
+$breadcrumb->add(translate('content'), 'content.php');
+$breadcrumb->add(translate('list'));
+
+$page->startPanel('breadcrumb', 'breadcrumb');
+$page->add($breadcrumb->render());
+$page->endPanel('breadcrumb');
 
 
+// check if we have everything in url
+if ($url->get('class') && $url->get('type'))
+{
+  if ($url->get('class') == 'table' or $url->get('class') == 'record')
+  {
+	
+	$table_name = $url->getParam('type');
+	
+	if ($config->tableExists($table_name))
+	{
+	  $my_record = $thinkedit->newRecord($table_name);
+	  
+	  $records = $my_record->find();
+	  
+	  if (is_array($records))
+	  {
+		$datagrid = new datagrid();
+		
+		foreach ($records as $record)
+		{
+		  $datagrid->addObject($record);  
+		}	 
+		
+		$datagrid->addLocalAction('edit', 'edit.php', 'Editer');
+		$datagrid->addLocalAction('delete', 'delete.php', 'Effacer');
+		
+		
+		$page->startPanel('list');
+		//$page->add('<h1></h1>');
+		$page->add($datagrid->render());
+		$page->endPanel('list');
+		
+		
+		
+	  }
+	  
+	}
+	
+	
+	
+  }
+  
+}
+
+echo $page->render();
+
+/*
 // message
 if ($url->getParam('message'))
 {
@@ -67,4 +134,6 @@ include_once(ROOT . '/template/left.template.php');
 include_once(ROOT . '/template/right.template.php');
 include_once(ROOT . '/template/list.template.php');
 include_once(ROOT . '/template/footer.template.php');
+
+*/
 ?>

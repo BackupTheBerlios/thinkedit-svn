@@ -151,6 +151,22 @@ class thinkedit
 	}
 	
 	
+	
+	
+	/**
+	* Given an id and a path, instantiate a filesystem
+	* id and path can be ommited
+	*
+	**/
+	function newFilesystem($id='main', $path=false)
+	{
+	  // will include the right module class if needed, for example, specialized modules like ftp datasource
+	  // currently the base module is used
+	  require_once('filesystem.class.php');
+	  return new filesystem($id, $path);
+	}
+	
+	
 	/**
 	* Given a node id, instantiate a module of the right type and id
 	* Assigns the node id to the module

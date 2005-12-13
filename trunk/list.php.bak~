@@ -18,7 +18,9 @@ $config = new config();
 
 
 // header
-require_once 'header.php';
+$page->startPanel('title', 'title');
+$page->add('Thinkedit 2.0');
+$page->endPanel('title');
 
 // breadcrumb
 $breadcrumb = new breadcrumb();

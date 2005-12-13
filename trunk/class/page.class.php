@@ -59,6 +59,25 @@ class page
 		$this->add("<!-- end panel $id -->\n\n");
 	}
 	
+	
+	
+	// adds an html div with content and optional class (this function will open AND close the div)
+	function div($content, $class=false)
+	{
+	  $this->add("<div class=\"$class\" >\n");
+	  $this->add($content);
+	  $this->add("</div>\n");
+	}
+	
+	// adds an arbitrary html tag ($tag) with content and optional class (this function will open AND close the tag)
+	function tag($tag, $content, $class=false)
+	{
+	  $this->add("<$tag class=\"$class\" >\n");
+	  $this->add($content);
+	  $this->add("</$tag>\n");
+	}
+	
+	
 	function getHeader()
 	{
 		$out = '<html><head><title>' . $this->title . '</title>';

@@ -44,10 +44,14 @@ class table
 	*/
 	function getId()
 	{
-		return $this->table;
+	  die('deprecated');
+	  return $this->table;
 	}
 	
-	
+	function getTitle()
+	{
+	  return $this->table;
+	}
 	
 	/*
 	Returns real sql table name, not table id in config

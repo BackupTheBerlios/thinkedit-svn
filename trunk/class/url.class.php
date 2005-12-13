@@ -215,6 +215,36 @@ class url
 	}
 	
 	
+	/*
+	Links an object to an action
+	
+	The object should provide getUid()
+	*/
+	function linkTo($object, $filename)
+	{
+	  if ($object->getUid())
+	  {
+		$uid = $object->getUid();
+		foreach ($uid as $key=>$value)
+		{
+		  $this->set($key, $value);
+		}
+		if ($filename)
+		{
+			$url = $filename;
+		}
+		else
+		{
+			$url = $this->self;
+		}
+		return $url . $this->getQueryString();
+	  }
+	  else
+	  {
+		return false;
+	  }
+	}
+	
 	function redirect($filename = false)
 	{
 		header('location: http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/'. $this->render($filename));

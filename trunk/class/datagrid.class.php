@@ -13,7 +13,9 @@ class datagrid
 {
 	
 	var $global_action;
+	var $local_action;
 	var $data;
+	var $column;
 	
 	function setId($id)
 	{
@@ -61,6 +63,17 @@ class datagrid
 	}
 	
 	
+	/*
+	Adds a single object to the datagrid. The object must provide :
+	- getTitle()
+	- getUid()
+	*/
+	function addObject($object)
+	{
+	  $this->object[] = $object; 
+	}
+	
+	
 	
 	
 	
@@ -103,7 +116,7 @@ class datagrid
 	}
 	
 	
-	function render($type='list')
+	function render($type='object_list')
 	{
 		if ($type=='list')
 		{
@@ -113,7 +126,100 @@ class datagrid
 		{
 			return $this->renderAsIcons();
 		}
+		if ($type=='object_list')
+		{
+			return $this->renderAsObjectList();
+		}
 	}
+	
+	
+	function renderAsObjectList()
+	{
+		$out = '';
+		
+		$out.='<table border="1" class="datagrid">';
+		
+		if (is_array($this->column))
+		{ 
+			foreach ($this->column as $id=>$column)
+			{
+				$out.='<th class="datagrid">' . $column['title'] .'</th>';
+			}
+		}
+		else
+		{
+			$out.='<th class="datagrid">' .translate('title') .'</th>';
+		}
+		
+		if (is_array($this->local_action))
+		{
+			$out.='<th class="datagrid">' . translate('datagrid_action_header') .'</th>';
+		}
+		
+		
+		if (is_array($this->object))
+		{
+			foreach ($this->object as $object)
+			{
+				$out.='<tr class="datagrid">';
+				$out.='<td class="datagrid">' . $object->getTitle() .'</td>';
+							
+				// add local action buttons
+				if (is_array($this->local_action))
+				{
+					$out .= '<td class="datagrid">';
+					foreach ($this->local_action as $action)
+					{
+						require_once ROOT . '/class/url.class.php';
+						$url = new url();						
+						$out .= '<a href="' . $url->linkTo($object, $action['url']) .'">' . $action['title'] . '</a> ';
+						
+					}
+					$out .= '</td>';
+					
+					
+				}
+				
+				$out.='</tr>';
+			}
+		}
+		else
+		{
+			$out.='<tr class="datagrid">';
+			$out.='<td class="datagrid">' . translate('empty_datagrid').'</td>';
+			$out.='</tr>';
+		}
+		
+		
+		
+		$out .= '</table>';
+		
+		// add local action buttons
+		if (is_array($this->global_action))
+		{
+			
+			
+			foreach ($this->global_action as $action)
+			{
+				require_once ROOT . '/class/url.class.php';
+				$url = new url();
+				
+				$url->setFilename($action['url']);
+				require_once ROOT . '/class/button.class.php';
+				$button = new button($action['title'], $url->render()); 
+				
+				$out .= $button->render();
+				
+			}
+			
+			
+			
+		}
+		
+		
+		return $out;
+	}
+	
 	
 	
 	function renderAsList()
