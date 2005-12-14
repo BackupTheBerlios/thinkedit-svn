@@ -16,21 +16,24 @@ class base
 	var $locale;
 	var $version;
 	
-	function setId($id)
+	
+	/*
+	Return Uid of this object. See docs for more info. This is an important part of Thinkedit
+	*/
+	function getUid()
 	{
-		$this->id = $id;
 	}
 	
-	function getId()
+	function getTitle()
 	{
-		if (isset($this->id))
-		{
-			return $this->id;
-		}
-		else
-		{
-			return false;
-		}
+	}
+	
+	/*
+	returns a full path to an icon representing this object
+	*/
+	function getIcon()
+	{
+	  return 
 	}
 	
 	

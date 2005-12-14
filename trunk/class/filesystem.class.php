@@ -66,6 +66,23 @@ class filesystem
 	
   }
   
+  
+  /*
+  will return children files of the curent folder
+  */
+  function getFiles()
+  {
+	$items = $this->getChildren();
+	// returns only files
+  }
+  
+  function getAll()
+  {
+	return $this->getChildren();
+  }
+	
+  
+  
   function getUid()
   {
 	$uid['class'] = 'filesystem';
@@ -111,6 +128,19 @@ class filesystem
 	
   }
   
+  
+  function setPath($path)
+  {
+	$this->path = $path;
+  }
+  
+  /*
+  returns a full path to an icon representing this object
+  */
+  function getIcon()
+  {
+	
+  }
   
 }
 ?>
