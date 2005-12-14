@@ -251,7 +251,34 @@ class url
 	}
 	
 	
+	function toPath($theURL)
+	{
+	  global $WIMPY_BASE, $slash;
+	  $AtheFile = explode ("/", $theURL);
+	  $theFileName = array_pop($AtheFile);
+	  $AwimpyPathWWW = explode ("/", $WIMPY_BASE['path']['www']);
+	  $AtheFilePath = array_values (array_diff ($AtheFile, $AwimpyPathWWW));
+	  if($AtheFilePath)
+	  {
+		$theFilePath = $slash.implode($slash, $AtheFilePath).$slash.$theFileName;
+	  } 
+	  else 
+	  {
+		$theFilePath = implode($slash, $AtheFilePath).$slash.$theFileName;
+	  }
+	  return ($WIMPY_BASE['path']['physical'].$theFilePath);
+	}
 	
+	function toUrl($local_path)
+	{
+	  $slash = '/';
+	  $AtheFile = explode ($slash, $local_path);
+	  $theFileName = array_pop($AtheFile);
+	  $AwimpyPathFILE = explode ($slash, ROOT);
+	  $AtheFilePath = array_values (array_diff ($AtheFile, $AwimpyPathFILE));
+	  $thFileURL = implode("/", $AtheFilePath)."/".$theFileName;
+	  return ($WIMPY_BASE['path']['www']."$thFileURL");
+}
 	
 	
 }
