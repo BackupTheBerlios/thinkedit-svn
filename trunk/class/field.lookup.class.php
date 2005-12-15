@@ -11,11 +11,12 @@ class field_lookup extends field
 		if ($this->config['source']['type'] == 'table' && isset($this->config['source']['name']))
 		{
 			global $thinkedit;
-			$source = $thinkedit->newTable($this->config['source']['name']);
-			if ($source->count() > 0)
+			$source = $thinkedit->newRecord($this->config['source']['name']);
+			$records = $source->find();
+						
+			if ($records)
 			{
 				$out='<select name="' . $this->getName() . '">';
-				$records = $source->select();
 				foreach ($records as $record)
 				{
 					if ($this->get() == $record->getId())
@@ -27,16 +28,8 @@ class field_lookup extends field
 							$selected = '';
 					}
 					$out .= '<option value="' . $record->getId() . '"' . $selected . '>';
-					foreach ($record->field as $id=>$field)
-					{
-						
-						if ($field->isTitle())
-						{
-							$out .= $field->get() . ' ';
-						}
-						
-					}
 					
+					$out .= $record->getTitle() . ' ';
 					$out .= '</option>';
 				}
 				

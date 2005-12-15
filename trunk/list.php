@@ -30,7 +30,7 @@ if ($url->getParam('message'))
 $breadcrumb = new breadcrumb();
 $breadcrumb->add(translate('home'), 'homepage.php');
 $breadcrumb->add(translate('content'), 'content.php');
-$breadcrumb->add(translate('list'));
+$breadcrumb->add($url->getParam('type'));
 
 $page->startPanel('breadcrumb', 'breadcrumb');
 $page->add($breadcrumb->render());

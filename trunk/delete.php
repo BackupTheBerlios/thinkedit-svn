@@ -1,15 +1,13 @@
 <?php
 require_once 'thinkedit.init.php';
-require_once ROOT . '/class/form.class.php';
+require_once ROOT . '/class/html_form.class.php';
 require_once ROOT . '/class/url.class.php';
 require_once ROOT . '/class/node.class.php';
 require_once ROOT . '/class/page.class.php';
+require_once ROOT . '/class/breadcrumb.class.php';
 
 
 /*
-
-
-
 */
 
 
@@ -17,123 +15,104 @@ $page = new page();
 $url = new url();
 
 
-// I need a node
-if ($url->getParam('table'))
+// will delete anything related to Uid passed to url
+
+// first see if we have some parameter passed in url
+$page = new page();
+$url = new url();
+
+
+if (!$url->getParam('type'))
 {
-	$table = $thinkedit->newTable($url->getParam('table'));
+  trigger_error('edit : you must supply a type in the url');
 }
-else
+
+if (!$url->getParam('class'))
 {
-	trigger_error(translate('need_table_to_delete'));
+  trigger_error('edit : you must supply a class in the url');
 }
 
+// instantiate record
 
-// todo : need rework !!!
-
-$record = $thinkedit->newRecord($table->getTable());
+$record = new record($url->getParam('type')); 
 
 $keys = $record->getPrimaryKeys();
 
-//echo '<pre>';
-//print_r($keys);
-
 foreach ($keys as $key)
 {
-		if ($url->getParam($key))
-		{
-			$record->field[$key]->set($url->getParam($key));
-		}
-		else
-		{
-		trigger_error('delete.php : primary key "'. $key . '" not found in url, won\'t delete'); 		
-		}
+  if ($url->getParam($key))
+  {
+	$record->set($key, $url->getParam($key));
+  }
 }
 
-
-$table->delete($record);
-
-
-$url = new url();
-$url->setFileName('list.php');
-$url->keepParam('table');
-$url->setParam('info', 'Record sucessfully deleted');
-header('location: ' . $url->render());
-
-die();
+$record->load();
 
 
-// print_a($_REQUEST);
-
-// various actions, based on submit buttons :
-
-$action = $url->getParam('action');
+// instantiate form
+$form = new html_form();
 
 
-
-
-if (!$action)
+// is form sent?
+if ($form->isSent())
 {
-	$out['title'] = 'Delete an item';
-	
-	$url = new url();
-	$url->setParam('action', 'delete');
-	$out['action_url'] = $url->render();
-	
-	// include templates :
-	require_once 'header.template.php';
-	require_once 'delete.template.php';
-	require_once 'footer.template.php';
+  // if yes, and action confirmed we delete
+  debug('delete.php : form sent');
+  
+  $record->delete();
+}
+elseif ($form->isCancel())
+{
+  // if yes and action cancelled, we redirect to previous page
+  $url = new url();
+  $url->setFileName('list.php');
+  $url->keepParam('table');
+  $url->setParam('message', 'delete_cancelled');
+  //header('location: ' . $url->render());
+  $url->redirect();
+}
+else
+{
+  // if form not sent, we build form
+  
+  // breadcrumb
+  $breadcrumb = new breadcrumb();
+  $breadcrumb->add(translate('home'), 'homepage.php');
+  
+  $url = new url();
+  $url->setFileName('list.php');
+  $url->keepParam('table');
+  
+  
+  $breadcrumb->add(translate('content'), 'content.php');
+  $breadcrumb->add($record->getTableName(), $url->render());
+  $breadcrumb->add(translate('deleting') . ' ' . '"' . $record->getTitle() . '"');
+  
+  $page->startPanel('breadcrumb', 'breadcrumb');
+  $page->add($breadcrumb->render());
+  $page->endPanel('breadcrumb');
+  
+  
+  $page->startPanel('form');
+  $page->add($form->render());
+  $page->endPanel('form');
+  
+  
+  
+  
+  // footer
+  $page->startPanel('footer', 'footer');
+  $page->add('&copy; Philippe Jadin');
+  $page->endPanel('footer');
+  
+  
+  // = translate('edit_title');
+  echo $page->render();
+  
 }
 
-if ($action == 'delete')
-{
-	// delete then redirect
-	$node = new node($node_id);
-	$module = $node->getModule();
-	
-	
-	
-	// we need a parent else we won't delete;
-	$parent = $node->getParent();
-	
-	if (!$parent)
-	{
-		// simply redirect
-		$url = new url();
-		$url->setFileName('browser.php');
-		$url->setParam('info', 'Item deletion aborted : cannot delete root item / item without parent');
-		header('location: ' . $url->render());
-	}
-	
-	
-	
-	if ($node->removeNode())
-	{
-		$url = new url();
-		$url->setFileName('browser.php');
-		$url->setParam('info', 'Item sucessfully deleted');
-		
-		// redirect to parent node 
-		$url->setParam('node', $parent->getNodeId());
-		header('location: ' . $url->render());
-	}
-	else
-	{
-		$url = new url();
-		$url->setFileName('browser.php');
-		$url->setParam('warning', 'Item could not be deleted');
-		header('location: ' . $url->render());
-	}
-}
 
-if ($action == 'cancel')
-{
-	// simply redirect
-	$url = new url();
-	$url->setFileName('browser.php');
-	$url->setParam('info', 'Item deletion cancelled');
-	header('location: ' . $url->render());
-}
+
 
 
 

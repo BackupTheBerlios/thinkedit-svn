@@ -167,7 +167,9 @@ class record
 	
 	// if all primary keys are set and we have a row in the DB (successfull load), 
 	// we update
-	if ($this->checkPrimaryKey() && $this->load())
+	//if ($this->checkPrimaryKey() && $this->load())
+	// why do we need to load before saving ?
+	if ($this->checkPrimaryKey())
 	{
 	  $sql = "update " . $this->getTableName() . ' set ';
 	  foreach ($this->field as $id=>$field)
@@ -185,6 +187,8 @@ class record
 		}
 	  }
 	  $sql .= implode($where, ' and ');
+	  
+	  debug($sql, 'record::save()');
 	  
 	  if ($db->query($sql))
 	  {
@@ -270,7 +274,7 @@ class record
 	}
 	else
 	{
-	  trigger_error("record::load() you must set all primary keys if you want to load a record");
+	  trigger_error("record::delete() you must set all primary keys if you want to load a record");
 	  return false;
 	}
   }
@@ -418,7 +422,15 @@ class record
   
   function getTitle()
   {
-	return $this->field['title']->get();
+	$title = '';
+	foreach ($this->field as $field)
+	{
+	  if ($field->isTitle())
+	  {
+		$title[]= $field->get();
+	  }
+	}
+	return implode($title, ' ');
   }
   
   

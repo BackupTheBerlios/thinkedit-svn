@@ -46,14 +46,16 @@ $form = new html_form();
 
 if ($form->isSent())
 {
-	foreach ($record->field as $field)
+	debug('edit.php : form sent');
+  foreach ($record->field as $field)
 	{
 	  if (isset($_POST[$field->getName()]))
 	  {
-		$field->set($_POST[$field->getName()]);
+		$record->set($field->getName(), $_POST[$field->getName()]);
 	  }
 	}
   
+	debug($record, 'Record before saving');
 	$record->save();
 	
 	$url = new url();
@@ -102,8 +104,8 @@ require_once 'header.php';
 	
 	
 	$breadcrumb->add(translate('content'), 'content.php');
-	$breadcrumb->add(translate('list'), $url->render());
-	$breadcrumb->add(translate('editing'));
+	$breadcrumb->add($record->getTableName(), $url->render());
+	$breadcrumb->add(translate('editing') . ' ' . '"' . $record->getTitle() . '"');
 	
 	$page->startPanel('breadcrumb', 'breadcrumb');
 	$page->add($breadcrumb->render());
