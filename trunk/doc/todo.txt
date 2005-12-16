@@ -1,24 +1,28 @@
+- security
+-- inside classes (like record)
+-- inside the interface with redirect to login form
+-- user permision : $user::hasPermission($permission, $object)
+
 - login form
 
 - file management
 
 - relations
 
-- sub elements
+- locale support
+-- translate() for interface and public website
 
-- edit button or browse
+- version support
 
-- config folder instead of single file (recursive search)
+- tree (nodes)
 
-- db sync
+- templates for public site (header / footer / template for each content type)
+
+- db sync tool (sync DB to xml (and vice-versa?))
 
 - mysql backticks
 
-séparation table et query :
 
+Done :
 
-query fait du vocabulraire sql
-table utilise notamment query pour faire des query simples (et ajouter sécurité et verisoning et locale, etc...)
-
-si on fait table->select(id=1)
-il ajoute : and locale="fr" and published="1" par exemple
+- config folder instead of single file (recursive search)
