@@ -1,0 +1,42 @@
+<?xml version='1.0'?>
+<!-- Interface main configuration file -->
+<!--  each config file begins with the config tag -->
+<config>
+
+<!-- An example article table -->
+<table id='article'>
+
+<title_field>title</title_field>
+
+<field id="id">
+<type>id</type>
+</field>
+
+
+
+
+<field id="title">
+<type>string</type>
+<is_title>true</is_title>
+</field>
+
+<field id="body">
+<type>richtext</type>
+</field>
+
+
+
+
+<field id="author">
+<type>lookup</type>
+
+<source>
+<type>table</type>
+<name>author</name>
+</source>
+
+</field>
+
+</table>
+</config>
+

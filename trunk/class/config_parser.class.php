@@ -3,6 +3,8 @@
 Thinkedit config tool
 */
 
+die 'deprecated';
+
 class config_parser
 {
 

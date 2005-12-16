@@ -30,7 +30,7 @@ require_once ROOT . '/class/thinkedit.class.php';
 require_once ROOT . '/class/user.class.php';
 require_once ROOT . '/class/config.class.php';
 
-$thinkedit = new thinkedit(ROOT . '/config/config.xml');
+$thinkedit = new thinkedit(ROOT . '/config/');
 $user = new user();
 
 

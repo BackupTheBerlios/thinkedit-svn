@@ -4,7 +4,7 @@
 */
 
 
-require_once('config_parser.class.php');
+require_once('xml_parser.class.php');
 require_once('db.class.php');
 
 
@@ -20,15 +20,14 @@ class thinkedit
 	
 	
 	/**
-	* Passing it a config filename, and it will use it for the whole application
-	* Todo, use a folder instead, for multiple config files
-	*
+	* Passing it a config folder, and it will use it for the whole application
 	**/
-	function thinkedit($config_filename = './config/config.xml')
+	function thinkedit($config_path = './config/')
 	{
 		
-		$config = new config_parser($config_filename);
-		$this->config = $config->get();
+		$config = new xml_parser();
+		$config = $config->parse_folder($config_path);
+		$this->config = $config['config'];
 	}
 	
 	

@@ -53,9 +53,16 @@ if ($filesystem->getChildren())
   $items = $filesystem->getChildren();
   foreach ($items as $item)
   {
-	$datagrid->addObject($item);
+	if (!$item->isFolder())
+	{
+	  $datagrid->addObject($item);
+	}
   }
 }
+
+$datagrid->addLocalAction('edit', 'file_edit.php', 'Editer');
+$datagrid->addLocalAction('delete', 'file_delete.php', 'Effacer');
+
 
 $page->startPanel('list', 'list');
 $page->add($datagrid->render());
