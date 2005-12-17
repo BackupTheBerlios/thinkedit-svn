@@ -10,19 +10,12 @@ require_once ROOT . '/class/user.class.php';
 
 
 
-// In short : 
+// simple is good :
 
-// check if we have authentification header
+// if form sent, try user::login
+// if ok, redirect
 
-// if yes : try to authenticate
-
-// if auth success redirect
-
-// else display error
-
-// no header found, show login screen
-
-// end
+// display form in all cases
 
 
 $login_failed = false;

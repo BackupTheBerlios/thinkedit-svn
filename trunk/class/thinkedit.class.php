@@ -89,6 +89,13 @@ class thinkedit
 	
 	
 	
+	// based on uid, will instantiate a class
+	function newObject($uid)
+	{
+		
+	}
+	
+	
 	/**
 	* Given a type and an id, instantiate a module
 	* If no id given, instantiate a new empty module of type, using the right class for this module type

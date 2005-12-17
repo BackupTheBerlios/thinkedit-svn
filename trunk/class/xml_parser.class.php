@@ -181,7 +181,7 @@ class xml_parser
 	  // find files in this folder
 	  while (($file = readdir($ressource)) !== false) 
 	  {
-        debug($file, 'xml_parser::parse_folder files');
+       // debug($file, 'xml_parser::parse_folder files');
 		if (is_file($folder . '/' . $file))
 		{
 		  $path_parts = pathinfo($file);
@@ -201,7 +201,7 @@ class xml_parser
 		{
 		  $final = array_merge($final, $config);
 		}
-		debug ($final, 'config final');
+		//debug ($final, 'config final');
 		return $final;
 	  }
 	  else
