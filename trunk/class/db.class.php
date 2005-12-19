@@ -178,17 +178,17 @@ class db
   }
   
   
-  function size ()
+  function size()
   {
 	return mysql_num_rows($this->query);
   }
   
-  function affectedRows ()
+  function affectedRows()
   {
 	return mysql_affected_rows($this->query);
   }
   
-  function insertID ()
+  function insertID()
   {
 	return mysql_insert_id($this->connection);
   }
@@ -241,6 +241,7 @@ class db
 	{
 	  return false;
 	}
+	
   }
   
   
@@ -255,6 +256,15 @@ class db
 	{
 	  return false;
 	}
+  }
+  
+  function hasField($table)
+  {
+  }
+  
+  
+  function createField($table, $field)
+  {
   }
   
   

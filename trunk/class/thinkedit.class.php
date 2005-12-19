@@ -96,25 +96,6 @@ class thinkedit
 	}
 	
 	
-	/**
-	* Given a type and an id, instantiate a module
-	* If no id given, instantiate a new empty module of type, using the right class for this module type
-	*
-	**/
-	function newModule($type, $id=false)
-	{
-		// will include the right module class if needed, for example, specialized modules like ftp datasource
-		// currently the base module is used
-		if ($type<>'')
-		{
-			require_once('module.sql.class.php');
-			return new module_sql($type, $id);
-		}
-		else
-		{
-			trigger_error('thinkedit::newModule() $type empty');
-		}
-	}
 	
 	
 	/**
@@ -218,42 +199,6 @@ class thinkedit
 		
 	
 	
-	function &newElement($module, $name, $data = false)
-	{
-		
-		if (isset($this->config['module'][$module]['element'][$name]))
-		{
-			if (isset($this->config['module'][$module]['element'][$name]['type']))
-			{
-				$type = $this->config['module'][$module]['element'][$name]['type'];
-				
-				// todo : class path management
-				$file = ROOT . '/class/element.' . $type . '.class.php';
-				$class = 'element_' . $type;
-				
-				if (file_exists($file))
-				{
-					require_once($file);
-					return new $class($module, $name, $data);
-				}
-				else
-				{
-					trigger_error("thinkedit::newElement config error, type $type for element $name not supported (class not found)");
-				}
-				
-			}
-			else // we default for string if no type defined
-			{
-				require_once('element.string.class.php');
-				return new element_string($module, $name, $data);
-			}
-			
-		}
-		trigger_error("thinkedit::newElement config error, type $name not found in config");
-		
-	}
-	
-	
 	function newField($table, $field, $data = false)
 	{
 		
@@ -274,7 +219,7 @@ class thinkedit
 				}
 				else
 				{
-					trigger_error("thinkedit::newElement config error, type $type for element $field not supported (class not found)");
+					trigger_error("thinkedit::newField config error, type $type for element $field not supported (class not found)");
 				}
 				
 			}

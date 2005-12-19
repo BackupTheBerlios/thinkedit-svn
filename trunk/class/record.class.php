@@ -266,11 +266,16 @@ class record
 						if ($this->checkPrimaryKey())
 						{
 								
-								$sql = "delete * from " . $this->getTableName() . " where ";
-								foreach ($this->primaryKeys as $key)
+								$sql = "delete from " . $this->getTableName() . " where ";
+								
+								foreach ($this->field as $field)
 								{
-										$where[] =  $key . '=' . "'" . $this->get($key) . "'"; 
+										if ($field->isPrimary())
+										{
+												$where[] =  $field->getId() . '=' . "'" . $field->get() . "'";
+										}
 								}
+																
 								$sql .= implode($where, ' and ');
 								
 								global $thinkedit;
@@ -304,7 +309,7 @@ class record
 		{
 				foreach ($this->field as $field)
 				{
-						if ($field->is_null() and $field->isPrimary())
+						if ($field->is_empty() and $field->isPrimary())
 						{
 								return false;
 						}

@@ -1,0 +1,43 @@
+<?xml version='1.0'?>
+<!-- Interface main configuration file -->
+<!--  each config file begins with the config tag -->
+<config>
+
+<table id='relation'>
+
+<title_field>title</title_field>
+
+<field id="id">
+<type>id</type>
+</field>
+
+
+<field id="source_class">
+<type>text</type>
+</field>
+
+<field id="source_type">
+<type>text</type>
+</field>
+
+<field id="source_id">
+<type>text</type>
+</field>
+
+
+<field id="target_class">
+<type>text</type>
+</field>
+
+<field id="target_type">
+<type>text</type>
+</field>
+
+<field id="target_id">
+<type>text</type>
+</field>
+
+
+</table>
+</config>
+

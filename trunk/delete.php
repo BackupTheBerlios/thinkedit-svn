@@ -58,8 +58,16 @@ if ($form->isSent())
 {
   // if yes, and action confirmed we delete
   debug('delete.php : form sent');
+  if ($record->delete())
+  {
+  $url = new url();
+  $url->setFileName('list.php');
+  $url->keepParam('table');
+  $url->setParam('message', 'delete_done');
+  //header('location: ' . $url->render());
+  $url->redirect();
+  }
   
-  $record->delete();
 }
 elseif ($form->isCancel())
 {

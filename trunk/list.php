@@ -63,6 +63,8 @@ if ($url->get('class') && $url->get('type'))
 		$datagrid->addLocalAction('edit', 'edit.php', 'Editer');
 		$datagrid->addLocalAction('delete', 'delete.php', 'Effacer');
 		
+		$datagrid->addGlobalAction('add', 'edit.php', 'Ajouter');
+		
 		
 		$page->startPanel('list');
 		//$page->add('<h1></h1>');

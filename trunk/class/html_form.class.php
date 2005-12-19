@@ -43,7 +43,8 @@ class html_form
 		$url->keepAll();
 		$out .= sprintf('<form action="%s" method="post">', $url->render());
 		
-		if (is_array($this->data ))
+		
+		if (isset($this->data) && is_array($this->data ))
 		{
 			foreach ($this->data as $data)
 			{

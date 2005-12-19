@@ -1,3 +1,6 @@
+- datagrid global actions
+
+
 - security
 -- inside classes (like record)
 -- inside the interface with redirect to login form

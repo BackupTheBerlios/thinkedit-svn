@@ -137,7 +137,21 @@ class field
 	
 	function is_null()
 	{
+	  die('not needed');
 	  if (is_null($this->data))
+	  {
+		return true;
+	  }
+	  else
+	  {
+		return false;
+	  }
+	}
+	
+	
+	function is_empty()
+	{
+	  if (empty($this->data))
 	  {
 		return true;
 	  }

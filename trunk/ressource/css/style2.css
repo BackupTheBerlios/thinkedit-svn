@@ -4,7 +4,7 @@ body
 {
 	margin: 0;
 	padding: 0;
-	background-color: #aaa;
+	/*background-color: #aaa;*/
 	
 	/*
 	max-width: 800px;
@@ -27,6 +27,18 @@ h1
 	font-size: 11px;
 }
 
+a:link, a:active, a:visited  
+{
+	text-decoration: none;
+	color: #666;
+	
+}
+
+a:hover
+{
+	text-decoration: underline;
+	/*color: red;*/
+}
 
 
 /***************** standards ******************/
@@ -37,6 +49,33 @@ img
 }
 
 
+/***************** menu ********************/
+
+.content
+{
+  border-bottom: 3px solid #ff0000;
+}
+
+
+.structure
+{
+  border-bottom: 3px solid #339900;
+}
+
+
+.files
+{
+  border-bottom: 3px solid #0066cc;
+}
+
+.help
+{
+  border-bottom: 3px solid #ff00ff;
+}
+
+
+
+
 
 /***************** panels ******************/
 
@@ -44,8 +83,8 @@ img
 {
 	
 	padding: 10px;
-	background-color: #eee;
 	/*
+	background-color: #eee;
 	margin: 1em;
 	border-bottom: 1px solid #999;
 	padding-top: 5px;
@@ -53,70 +92,37 @@ img
 	*/
 }
 
-.inset
-{
-	/*background-color: red;*/
-	border-top: 1px solid #333;
-	border-left: 1px solid #333;
-	border-bottom: 1px solid #999;
-	border-right: 1px solid #999;
-}
-
-.outset
-{
-	/*
-	padding: 1em;
-	background-color: #<?php echo $medium?>;
-	*/
-	border-top: 0.1em solid #999;
-	border-left: 0.1em solid #999;
-	border-bottom: 0.1em solid #333;
-	border-right: 0.1em solid #333;
-}
 
 
 .page
 {
-	background-color: #999;
+	/*background-color: #999;*/
 }
 
-.title
+.title, .menu
 {
-	
-	background-color: #666;
-	font-size: 25px;
-	color: #fff;
-	font-weight: bold;
-	font-variant: small-caps;
-	padding-top: 50px;
-	padding-bottom: 10px;
-	/*border-bottom: 1px solid #444;*/
+	font-size: 14px;
+	color: #999;
+	text-transform: uppercase;
+	text-decoration: none;
 }
 
 
-.menu
-{
-	background-color: #fff;
-	/*border-bottom: 1px solid #444;*/
-	height: 15px;
-	
-}
 
 .subtitle
 {
-	background-color: #ccc;
+	/*background-color: #ccc;*/
 	/*border-bottom: 1px solid #444;*/
 }
 
 .breadcrumb
 {
-	background-color: #aaa;
-	border-bottom: 1px solid #777
+	/*border-bottom: 1px solid #777*/
 }
 
 .actions
 {
-	background-color: #ccc;
+	/*background-color: #ccc;*/
 	padding: 10px;
 	padding-bottom: 8px;
 	border-bottom: 1px solid #444
@@ -124,8 +130,14 @@ img
 
 .browser
 {
-	background-color: #f7f6f6;
+	/*background-color: #f7f6f6;*/
 }
+
+.footer
+{
+	/*background-color: #ccc;*/
+}
+
 
 .message
 {
@@ -143,7 +155,7 @@ img
 {
 	background-color: #d00;
 	padding-left: 40px;
-	background-image: url("../../image/icon/clanbomber.png");
+	background-image: url("../image/icon/clanbomber.png");
 	background-repeat: no-repeat;
 	background-position: 10px 8px;
 }
@@ -152,7 +164,7 @@ img
 {
 	padding-left: 40px;
 	background-color: #FA0;
-	background-image: url("../icons/important.png");
+	background-image: url("../image/icon/important.png");
 	background-repeat: no-repeat;
 	background-position: 10px 8px;
 }
@@ -162,7 +174,7 @@ img
 {
 	padding-left: 40px;
 	background-color: #009966;
-	background-image: url("../icons/ok.png");
+	background-image: url("../image/icon/ok.png");
 	background-repeat: no-repeat;
 	background-position: 10px 8px;
 }
@@ -228,10 +240,6 @@ td.datagrid
 }
 
 
-.footer
-{
-	background-color: #ccc;
-}
 
 
 
