@@ -1,18 +1,20 @@
 <?php
-require_once '../init.inc.php';
+require_once '../thinkedit.init.php';
 require_once ROOT . '/class/table.class.php';
 
 
 $table = new table('article');
-//$table->limit(0,1);
-$table->filter('title', 'like', '%bi%');
+
+if ($table->hasField('publish'))
+{
+		echo 'the table has the field publish';
+}
+else
+{
+		echo 'nope, we don\'t have this field here';
+}
 
 
-
-echo '<pre>';
-
-echo $table->count();
-
-print_r ($table->select());
+$table->createField('test', 'varchar', array('size' => 255) ); 
 
 ?>
