@@ -130,6 +130,24 @@ class filesystem
 				}
 		}
 		
+		
+		// will return an image class, with thumbnailing abilities
+		function getImage()
+		{
+				global $user;
+				if ($user->hasPermission('view', $this))
+				{
+						if ($this->isFolder())
+						{
+								return false;
+						}
+						else
+						{
+								return file_get_contents($this->path);
+						}
+				}
+		}
+		
 		function isFolder()
 		{
 				if (is_dir($this->path))
