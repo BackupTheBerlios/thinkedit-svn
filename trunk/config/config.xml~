@@ -5,88 +5,7 @@
 
 
 
-<!-- An example article table -->
-<table id='article'>
 
-<title_field>title</title_field>
-
-<field id="id">
-<type>id</type>
-</field>
-
-
-
-
-<field id="title">
-<type>string</type>
-<is_title>true</is_title>
-</field>
-
-<field id="body">
-<type>richtext</type>
-</field>
-
-
-
-
-<field id="author">
-<type>lookup</type>
-
-<source>
-<type>table</type>
-<name>author</name>
-</source>
-
-</field>
-
-</table>
-
-
-<!-- an author table -->
-<table id='author'>
-
-<field id="id">
-<type>id</type>
-<primary>true</primary>
-</field>
-
-
-<field id="firstname">
-<type>string</type>
-<is_title>true</is_title>
-</field>
-
-<field id="lastname">
-<type>string</type>
-<is_title>true</is_title>
-</field>
-
-
-
-
-</table>
-
-
-
-<!-- users table, it will be used to authenticate users -->
-<table id='user'>
-
-<field id="id">
-<type>id</type>
-<primary>true</primary>
-</field>
-
-
-<field id="login">
-<type>login</type>
-</field>
-
-<field id="password">
-<type>password</type>
-</field>
-
-
-</table>
 
 
 <!-- a many to many relation is built by using a table with two lookup columns -->
@@ -117,8 +36,6 @@
 </source>
 
 </field>
-
-
 </table>
 
 
@@ -210,24 +127,6 @@
 </help>
 </locale>
 
-
-
-
-<!-- main database storing all data for a site -->
-<database id='main'>
-<host>localhost</host>
-<database>thinkedit</database>
-<login>thinkedit</login>
-<password>thinkedit</password>
-</database>
-
-<!-- another database for storing interface localized strings -->
-<database id='interface_locale'>
-<host>localhost</host>
-<database>thinkedit</database>
-<login>thinkedit</login>
-<password>thinkedit</password>
-</database>
 
 
 

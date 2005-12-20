@@ -13,11 +13,11 @@
 
 
 <field id="source_class">
-<type>text</type>
+<type>string</type>
 </field>
 
 <field id="source_type">
-<type>text</type>
+<type>string</type>
 </field>
 
 <field id="source_id">
@@ -26,11 +26,11 @@
 
 
 <field id="target_class">
-<type>text</type>
+<type>string</type>
 </field>
 
 <field id="target_type">
-<type>text</type>
+<type>string</type>
 </field>
 
 <field id="target_id">

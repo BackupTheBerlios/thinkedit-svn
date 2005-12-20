@@ -77,6 +77,13 @@ class page
 	  $this->add("</$tag>\n");
 	}
 	
+	function link($href, $title)
+	{
+	  $this->add("<a href=\"$href\" >\n");
+	  $this->add($title);
+	  $this->add("</a>\n");
+	  
+	}
 	
 	function getHeader()
 	{

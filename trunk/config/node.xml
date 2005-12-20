@@ -1,0 +1,35 @@
+<?xml version='1.0'?>
+<!-- Interface main configuration file -->
+<!--  each config file begins with the config tag -->
+<config>
+
+<!-- this one will store the main tree of the site -->
+<table id="node">
+
+<field id="id">
+<type>id</type>
+<primary>true</primary>
+</field>
+
+<field id="parent">
+<type>int</type>
+</field>
+
+
+<field id="class">
+<type>string</type>
+</field>
+
+<field id="type">
+<type>string</type>
+</field>
+
+<field id="uid">
+<type>text</type>
+</field>
+
+
+
+</table>
+
+</config>
