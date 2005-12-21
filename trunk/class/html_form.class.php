@@ -35,6 +35,16 @@ class html_form
 		$this->data[] = $data;
 	}
 	
+	function setConfirmLabel($label)
+	{
+	  $this->confirm_label = $label;
+	}
+	
+	
+	function setCancelLabel($label)
+	{
+	  $this->cancel_label = $label;
+	}
 	
 	function render()
 	{
@@ -55,8 +65,27 @@ class html_form
 		{
 			trigger_error('form::data no data found in this form, cannot render form');
 		}
-		$out .= sprintf('<input type="submit" value="%s" name="save"> ', translate('save_button'));
-		$out .= sprintf('<input type="submit" value="%s" name="cancel">', translate('cancel_button'));
+		
+		if (isset($this->confirm_label))
+		{
+		  $confirm_label = $this->confirm_label;
+		}
+		else
+		{
+		   $confirm_label = translate('save_button');
+		}
+		
+		if (isset($this->cancel_label))
+		{
+		  $cancel_label = $this->cancel_label;
+		}
+		else
+		{
+		   $cancel_label = translate('cancel_button');
+		}
+		
+		$out .= sprintf('<input type="submit" value="%s" name="save"> ', $confirm_label);
+		$out .= sprintf('<input type="submit" value="%s" name="cancel">', $cancel_label);
 		$out .= '</form>';
 		return $out;
 		

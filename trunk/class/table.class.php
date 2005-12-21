@@ -34,7 +34,15 @@ class table
   
   function getTitle()
   {
-	return $this->table;
+	global $user;
+	if (isset($this->config['title'][$user->getLocale()]))
+	{
+	  return $this->config['title'][$user->getLocale()];
+	}
+	else
+	{
+	  return $this->table;
+	}
   }
   
   /*
@@ -90,12 +98,12 @@ class table
 		$sql .= $name . ' varchar(255)';
 	  }
 	  
-	  if ($type == 'login')
+	  elseif ($type == 'login')
 	  {
 		$sql .= $name . ' varchar(255)';
 	  }
 	  
-	  if ($type == 'password')
+	  elseif ($type == 'password')
 	  {
 		$sql .= $name . ' varchar(255)';
 	  }

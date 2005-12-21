@@ -20,10 +20,12 @@ class field_password extends field
 				return '*********';
 		}
 		
+		/*
 		function isPrimary()
 		{
 				return true;
 		}
+		*/
 		
 		
 }

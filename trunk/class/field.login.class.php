@@ -6,11 +6,12 @@ class field_login extends field
 {
 
 
-	function isPrimary()
+	/*
+  function isPrimary()
 	{
 			return true;
 	}
-	
+	*/
 
 
 }

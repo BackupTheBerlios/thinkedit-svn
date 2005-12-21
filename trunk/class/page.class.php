@@ -130,6 +130,9 @@ class page
 	{
 		$out = '</div>';
 		//$out .= '</div>';
+		global $thinkedit;
+		$db = $thinkedit->getDb();
+		$out .= 'Db queries: ' . $db->getTotalQueries();
 		$out .= '</body></html>';
 		
 		return $out;

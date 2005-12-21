@@ -157,7 +157,7 @@ class datagrid
 		}
 		
 		
-		if (is_array($this->object))
+		if (isset($this->object) && is_array($this->object))
 		{
 			foreach ($this->object as $object)
 			{

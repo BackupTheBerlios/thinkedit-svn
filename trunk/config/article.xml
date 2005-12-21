@@ -6,6 +6,9 @@
 <!-- An example article table -->
 <table id='article'>
 
+<title><fr>Articles</fr></title>
+<help><fr>Les articles contiennent du texte et des images</fr></help>
+
 <title_field>title</title_field>
 
 <field id="id">
@@ -16,11 +19,18 @@
 
 
 <field id="title">
+<title><fr>Titre</fr></title>
+<help><fr>Un titre court est plus percutant</fr></help>
 <type>string</type>
 <is_title>true</is_title>
 </field>
 
+
+
 <field id="body">
+
+<title><fr>Corps du texte</fr></title>
+<help><fr>Regardez dans l'aide pour ajouter des images</fr></help>
 <type>richtext</type>
 </field>
 

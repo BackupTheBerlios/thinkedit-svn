@@ -6,6 +6,9 @@
 <!-- an author table -->
 <table id='author'>
 
+<title><fr>Auteurs</fr></title>
+
+
 <field id="id">
 <type>id</type>
 <primary>true</primary>

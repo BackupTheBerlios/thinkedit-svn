@@ -53,6 +53,11 @@ $record->load();
 $form = new html_form();
 
 
+$form->setConfirmLabel(translate('confirm_delete'));
+$form->setCancelLabel(translate('cancel_delete'));
+
+$form->add('<div>' . translate('delete_intro_message') . '</div>');
+
 // is form sent?
 if ($form->isSent())
 {

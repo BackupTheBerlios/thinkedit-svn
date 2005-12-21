@@ -58,6 +58,28 @@ foreach ($table_list as $table_id)
   if ($db->hasTable($table->getTableName()))
   {
 	$page->add('[OK]');
+	// handle fields
+	$field_list = $config->getAllFields($table->getTableName());
+	foreach ($field_list as $field_id)
+	{
+	  $page->add('<blockquote>');
+	  $page->add($field_id);
+	  if ($table->hasField($field_id))
+	  {
+		$page->add('[OK]');
+	  }
+	  else
+	  {
+		$url = new url();
+		$url->set('table', $table->getTableName());
+		$url->set('field', $field_id);
+		$url->set('action', 'create_field');
+		$page->link($url->render(), '[create]');
+	  }
+	  $page->add('</blockquote>');
+	}
+	
+	
   }
   else
   {
@@ -67,26 +89,7 @@ foreach ($table_list as $table_id)
 	$page->link($url->render(), '[create]');
   }
   
-  // handle fields
-  $field_list = $config->getAllFields($table->getTableName());
-  foreach ($field_list as $field_id)
-  {
-	$page->add('<blockquote>');
-	$page->add($field_id);
-	if ($table->hasField($field_id))
-	{
-	  $page->add('[OK]');
-	}
-	else
-	{
-	  $url = new url();
-	  $url->set('table', $table->getTableName());
-	  $url->set('field', $field_id);
-	  $url->set('action', 'create_field');
-	  $page->link($url->render(), '[create]');
-	}
-	$page->add('</blockquote>');
-  }
+  
   
   
   

@@ -78,9 +78,14 @@
 <primary>true</primary>
 </field>
 
-<field id="translation">
+<field id="translation_id">
 <type>string</type>
 <is_title>true</is_title>
+</field>
+
+
+<field id="translation">
+<type>text</type>
 </field>
 
 <field id="locale">

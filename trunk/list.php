@@ -32,6 +32,8 @@ $breadcrumb->add(translate('home'), 'homepage.php');
 $breadcrumb->add(translate('content'), 'content.php');
 $breadcrumb->add($url->getParam('type'));
 
+
+
 $page->startPanel('breadcrumb', 'breadcrumb');
 $page->add($breadcrumb->render());
 $page->endPanel('breadcrumb');
@@ -50,38 +52,35 @@ if ($url->get('class') && $url->get('type'))
 	  $my_record = $thinkedit->newRecord($table_name);
 	  
 	  $records = $my_record->find();
+	  $datagrid = new datagrid();
 	  
 	  if (is_array($records))
 	  {
-		$datagrid = new datagrid();
+		
 		
 		foreach ($records as $record)
 		{
 		  $datagrid->addObject($record);  
 		}	 
 		
-		$datagrid->addLocalAction('edit', 'edit.php', 'Editer');
-		$datagrid->addLocalAction('delete', 'delete.php', 'Effacer');
-		
-		$datagrid->addGlobalAction('add', 'edit.php', 'Ajouter');
-		
-		
-		$page->startPanel('list');
-		//$page->add('<h1></h1>');
-		$page->add($datagrid->render());
-		$page->endPanel('list');
-		
-		
-		
 	  }
+	  $datagrid->addLocalAction('edit', 'edit.php', translate('edit'));
+	  $datagrid->addLocalAction('delete', 'delete.php', translate('delete'));
 	  
+	  $datagrid->addGlobalAction('add', 'edit.php', translate('add'));
+	  
+	  
+	  $page->startPanel('list');
+	  //$page->add('<h1></h1>');
+	  $page->add($datagrid->render());
+	  $page->endPanel('list');
 	}
-	
-	
-	
   }
-  
 }
+
+
+
+
 
 echo $page->render();
 

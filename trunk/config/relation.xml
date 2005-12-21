@@ -7,34 +7,35 @@
 
 <title_field>title</title_field>
 
-<field id="id">
-<type>id</type>
-</field>
-
-
 <field id="source_class">
 <type>string</type>
+<primary>true</primary>
 </field>
 
 <field id="source_type">
 <type>string</type>
+<primary>true</primary>
 </field>
 
 <field id="source_id">
 <type>text</type>
+<primary>true</primary>
 </field>
 
 
 <field id="target_class">
 <type>string</type>
+<primary>true</primary>
 </field>
 
 <field id="target_type">
 <type>string</type>
+<primary>true</primary>
 </field>
 
 <field id="target_id">
 <type>text</type>
+<primary>true</primary>
 </field>
 
 

@@ -73,14 +73,22 @@
 
 <table id='translation'>
 
+<title><fr>Traductions</fr></title>
+<help><fr>Les traductions peuvent être utilisées dans l'interface et dans la partie publique du site. C'est très utile dans le cas d'un site multilingue</fr></help>
+
 <field id="id">
 <type>id</type>
 <primary>true</primary>
 </field>
 
-<field id="translation">
+<field id="translation_id">
 <type>string</type>
 <is_title>true</is_title>
+</field>
+
+
+<field id="translation">
+<type>text</type>
 </field>
 
 <field id="locale">

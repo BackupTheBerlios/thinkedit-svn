@@ -24,16 +24,24 @@ class base
 	{
 	}
 	
+	
+	/* Returns a human readable title of this object*/
 	function getTitle()
 	{
 	}
+	
+	
+	function getHelp()
+	{
+	}
+	
 	
 	/*
 	returns a full path to an icon representing this object
 	*/
 	function getIcon()
 	{
-	  return 
+	  return ;
 	}
 	
 	

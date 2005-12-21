@@ -5,6 +5,9 @@
 
 <!-- users table, it will be used to authenticate users -->
 <table id='user'>
+<title><fr>Utilisateurs</fr></title>
+<help><fr>Liste des personnes pouvant utiliser le site et modifier son contenu</fr></help>
+
 
 <field id="id">
 <type>id</type>
@@ -13,6 +16,7 @@
 
 
 <field id="login">
+<is_title>true</is_title>
 <type>login</type>
 </field>
 
