@@ -70,6 +70,8 @@ if ($url->get('class') && $url->get('type'))
 	  $datagrid->addGlobalAction('add', 'edit.php', translate('add'));
 	  
 	  
+	  $datagrid->enableCheckBox();
+	  
 	  $page->startPanel('list');
 	  //$page->add('<h1></h1>');
 	  $page->add($datagrid->render());

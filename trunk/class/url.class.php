@@ -131,9 +131,10 @@ class url
 	/*
 	unset a user defined parameter
 	*/
-	function unSetParam($id)
+	function unsetParam($id)
 	{
 		unset($this->param[$id]);
+		unset($this->orig_param[$id]);
 	}
 	
 	/*

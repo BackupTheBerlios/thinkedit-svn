@@ -134,7 +134,9 @@ else 	// render form
   // manage relations
   
   $page->startPanel('relations');
-  $page->add('relations');
+  $page->add('<iframe>');
+  
+  $page->add('</iframe>');
   $page->endPanel('relations');
   
   

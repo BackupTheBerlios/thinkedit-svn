@@ -23,7 +23,7 @@ class relation
 	$this->record->set('target_type', $target_uid['type']);
 	$this->record->set('target_id', $target_uid['id']);
 	
-	if ($this->record->insert())
+	if ($this->record->save())
 	{
 	  return true;
 	}

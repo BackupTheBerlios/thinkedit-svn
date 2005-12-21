@@ -193,7 +193,15 @@ class record
   function save()
   {
 	// if I find the same record in the DB based on the keys, I update
-	if ($this->load())
+	
+	foreach ($this->field as $field)
+	{
+	  if ($field->isPrimary())
+	  {
+		$fields[$field->getId()] = $field->get();
+	  }
+	}
+	if ($this->find($fields))
 	{
 	  $this->update();
 	}
