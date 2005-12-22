@@ -329,7 +329,7 @@ class record
 	  }
 	  else
 	  {
-		trigger_error("record::delete() you must set all primary keys if you want to load a record", E_USER_WARNING);
+		trigger_error("record::delete() you must set all primary keys if you want to delete a record", E_USER_WARNING);
 		return false;
 	  }
 	}

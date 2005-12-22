@@ -95,7 +95,7 @@ class relation
 	
 	if (is_array($items))
 	{
-	  return $item;
+	  return $items;
 	}
 	else
 	{
