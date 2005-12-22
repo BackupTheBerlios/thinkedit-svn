@@ -150,6 +150,28 @@ class thinkedit
   
   
   
+  function newNode($table = "node", $id = false)
+  {
+	// will include the right module class if needed, for example, specialized modules like ftp datasource
+	// currently the base module is used
+	if ($table<>'')
+	{
+	  require_once('node.class.php');
+	  $node = new node($table);
+	  if ($id)
+	  {
+		$node->setId($id);
+	  }
+	  return $node;
+	}
+	else
+	{
+	  trigger_error('thinkedit::newNode() $table not defined');
+	}
+  }
+  
+  
+  
   
   /**
   * Given an id and a path, instantiate a filesystem
@@ -165,42 +187,7 @@ class thinkedit
   }
   
   
-  /**
-  * Given a node id, instantiate a module of the right type and id
-  * Assigns the node id to the module
-  *
-  **/
-  function newNode($node_id)
-  {
-	trigger_error ('deprecated');
-	$db = $this->getDb();
-	$res = $db->query(sprintf("select * from node where id='%s'", $db->escape($node_id) ));
-	
-	if ($db->isError())
-	{
-	  trigger_error('thinkedit::newModuleByNode() Db error, node selection');
-	}
-	elseif (is_array($res))
-	{
-	  //debug($res);
-	  $module=$this->newModule($res[0]['module_type'], $res[0]['module_id']);
-	  $module->setNodeId($node_id);
-	  return $module;
-	}
-	else
-	{
-	  trigger_error(translate('node_not_found'));
-	  return false;
-	}
-	
-	
-  }
   
-  function newTree($tree_name)
-  {
-	require_once('tree.class.php');
-	return new tree($tree_name);
-  }
   
   function newConfig()
   {

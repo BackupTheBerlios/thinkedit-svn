@@ -57,6 +57,7 @@ class record
   
   function set($field, $value)
   {
+	$this->is_loaded = false;
 	//debug ($field, 'field');
 	//debug($value, 'value');
 	if (isset($this->field[$field]))
@@ -80,47 +81,55 @@ class record
 	global $user;
 	if ($user->hasPermission('view', $this))
 	{
-	  
-	  if ($this->checkPrimaryKey())
+	  if (isset($this->is_loaded) && $this->is_loaded)
 	  {
-		
-		$sql = "select * from " . $this->getTableName() . " where ";
-		foreach ($this->field as $field)
-		{
-		  if ($field->isPrimary())
-		  {
-			$where[] =  $field->getId() . '=' . "'" . $this->db->escape($field->get()) . "'";
-		  }
-		}
-		$sql .= implode($where, ' and ');
-		
-		debug($sql, 'Sql query');
-		
-		global $thinkedit;
-		$db = $thinkedit->getDb();
-		
-		$results = $db->select($sql);
-		
-		if ($results && count($results) == 1)
-		{
-		  debug($results, 'results for select query');
-		  foreach ($results[0] as $key=>$field)
-		  {
-			$this->set($key, $field);
-		  }
-		  return true;
-		}
-		else
-		{
-		  return false;
-		}
+		return true;
 	  }
 	  else
 	  {
-		// is it an error to try to load a record without filling all the primary keys?
-		//trigger_error("record::load() you must set all primary keys if you want to load a record");
-		// we should return false and set an error somewhere... 
-		return false;
+		
+		if ($this->checkPrimaryKey())
+		{
+		  
+		  $sql = "select * from " . $this->getTableName() . " where ";
+		  foreach ($this->field as $field)
+		  {
+			if ($field->isPrimary())
+			{
+			  $where[] =  $field->getId() . '=' . "'" . $this->db->escape($field->get()) . "'";
+			}
+		  }
+		  $sql .= implode($where, ' and ');
+		  
+		  debug($sql, 'Sql query');
+		  
+		  global $thinkedit;
+		  $db = $thinkedit->getDb();
+		  
+		  $results = $db->select($sql);
+		  
+		  if ($results && count($results) == 1)
+		  {
+			debug($results, 'results for select query');
+			foreach ($results[0] as $key=>$field)
+			{
+			  $this->set($key, $field);
+			}
+			$this->is_loaded = true;
+			return true;
+		  }
+		  else
+		  {
+			return false;
+		  }
+		}
+		else
+		{
+		  // is it an error to try to load a record without filling all the primary keys?
+		  //trigger_error("record::load() you must set all primary keys if you want to load a record");
+		  // we should return false and set an error somewhere... 
+		  return false;
+		}
 	  }
 	}
   }
@@ -296,6 +305,7 @@ class record
   
   function delete()
   {
+	$this->is_loaded = false;
 	global $user;
 	if ($user->hasPermission('delete', $this))
 	{
@@ -406,6 +416,7 @@ class record
   
   function setArray($array)
   {
+	$this->is_loaded = false;
 	if (is_array($array))
 	{
 	  foreach ($array as $id=>$value)
@@ -427,6 +438,7 @@ class record
   
   function getArray()
   {
+	
 	foreach ($this->field as $field)
 	{
 	  $data[$field->getId()] = $field->get();

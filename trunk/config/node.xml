@@ -11,20 +11,20 @@
 <primary>true</primary>
 </field>
 
-<field id="parent">
+<field id="parent_id">
 <type>int</type>
 </field>
 
 
-<field id="class">
+<field id="object_class">
 <type>string</type>
 </field>
 
-<field id="type">
+<field id="object_type">
 <type>string</type>
 </field>
 
-<field id="uid">
+<field id="object_id">
 <type>text</type>
 </field>
 
