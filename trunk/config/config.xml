@@ -39,41 +39,12 @@
 </table>
 
 
-<!-- this one will store the main tree of the site -->
-<table id="tree">
-
-<field id="id">
-<type>id</type>
-<primary>true</primary>
-</field>
-
-<field id="parent">
-<type>int</type>
-</field>
-
-
-<field id="type">
-<type>string</type>
-</field>
-
-<field id="name">
-<type>string</type>
-</field>
-
-<field id="uid">
-<type>string</type>
-</field>
-
-
-
-</table>
-
 
 
 
 <table id='translation'>
 
-<title><fr>Traductions</fr></title>
+<title><fr>Traduction</fr></title>
 <help><fr>Les traductions peuvent être utilisées dans l'interface et dans la partie publique du site. C'est très utile dans le cas d'un site multilingue</fr></help>
 
 <field id="id">

@@ -70,12 +70,13 @@ class node
   **/
   function getParent()
   {
+	global $thinkedit;
 	$this->record->load();
 	// todo : returns a node and not a record
 	$parent = $this->record->find(array('id'=>$this->record->get('parent_id')) );
 	if ($parent)
 	{
-	  $parent_node = $thinkedit->newNode($this->table, $parent->get('id'));
+	  $parent_node = $thinkedit->newNode($this->table, $parent[0]->get('id'));
 	  return $parent_node;
 	}
 	else
@@ -203,6 +204,78 @@ class node
 	$uid['type'] = $this->get('object_type');
 	$uid['id'] = $this->get('object_id');
 	return $thinkedit->newObject($uid);
+  }
+  
+  function loadRootNode()
+  {
+	return $this->load(1); // todo : configure or search where parent = 0 or config file for multiple sites in the same tree 
+  }
+  
+  
+  function isRoot()
+  {
+	if ($this->getId() == 1)
+	{
+	  return true;
+	}
+	else
+	{
+	  return false;
+	}
+  }
+  
+  /*
+  function getParentUntilRoot()
+  {
+	if ($this->hasParent())
+	{
+	  $parent = $this->getParent();
+	  $parents[] = $parent;
+	}
+	else
+	{
+	  return false;
+	}
+	$i = 0;
+	while ($parent->hasParent())
+	{
+	  $parent = $parent->getParent();
+	  $parents[] = $parent;
+	  $i++;
+	  if ($i > 20) // limit depth to 20 to avoid infinite loop, you never know what can go wrong
+	  {
+		break;
+	  }
+	}
+	
+	return $parents;
+  }*/
+  
+  
+  
+  function getParentUntilRoot()
+  {
+	$temp = $this;
+	$i = 0;
+	while ($temp->hasParent())
+	{
+	  
+	  $temp = $temp->getParent();
+	  $parents[] = $temp;
+	  $i++;
+	  if ($i > 20) // limit depth to 20 to avoid infinite loop, you never know what can go wrong
+	  {
+		break;
+	  }
+	}
+	
+	return $parents;
+  }
+  
+  
+  function debug()
+  {
+	return $this->record->debug();
   }
   
 }

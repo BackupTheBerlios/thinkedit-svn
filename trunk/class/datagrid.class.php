@@ -16,29 +16,14 @@ class datagrid
   var $local_action;
   var $data;
   var $column;
+  var $checkboxes = false;
   
   
   function datagrid()
   {
-	$this->checkboxes = false;
+	//$this->checkboxes = false;
   }
   
-  function setId($id)
-  {
-	$this->id = $id;
-  }
-  
-  function getId()
-  {
-	if (isset($this->id))
-	{
-	  return $this->id;
-	}
-	else
-	{
-	  return false;
-	}
-  }
   
   /*
   Needs to be given an array indexed by field id
@@ -86,13 +71,20 @@ class datagrid
   /*
   Adds a column
   */
-  function addColumn($id, $title, $sortable, $primary)
+  function addColumn($id, $args)
   {
+	$this->column[$id] = $args;
+	/*
 	$this->column[$id]['title'] = $title;
 	$this->column[$id]['sortable'] = $sortable;
-	$this->column[$id]['primary'] = $primary;
+	$this->column[$id]['function'] = $function;
+	*/
   }
   
+  
+  /*
+  An action performed for the whole datagrid
+  */
   function addGlobalAction($id, $url, $title, $icon = false)
   {
 	$action['id'] = $id;
@@ -102,6 +94,10 @@ class datagrid
 	$this->global_action[] = $action;
   }
   
+  
+  /*
+  An action performed on each row
+  */
   function addLocalAction($id, $url, $title, $icon = false)
   {
 	$action['id'] = $id;
@@ -109,6 +105,18 @@ class datagrid
 	$action['title'] = $title;
 	$action['icon'] = $icon;
 	$this->local_action[] = $action;
+  }
+  
+  /*
+  An action performed on each row, linked to the main title in the row
+  */
+  function setMainAction($id, $url, $title = false)
+  {
+	$action['id'] = $id;
+	$action['url'] = $url;
+	$action['title'] = $title;
+	//$action['icon'] = $icon;
+	$this->main_action = $action;
   }
   
   
@@ -184,7 +192,21 @@ class datagrid
 		  $out.='<td class="datagrid"><input type="checkbox"></td>';
 		}
 		
-		$out.='<td class="datagrid">' . $object->getTitle() .'</td>';
+		$out.='<td class="datagrid">'; 
+		
+		if (isset($this->main_action))
+		{
+		  require_once ROOT . '/class/url.class.php';
+		  $url = new url();						
+		  $out .= '<a href="' . $url->linkTo($object, $this->main_action['url']) .'">';
+		  $out.=$object->getTitle();
+		  $out .= '</a> ';
+		}
+		else
+		{
+		  $out.=$object->getTitle();
+		}
+		$out.='</td>';
 		
 		// add local action buttons
 		if (is_array($this->local_action))

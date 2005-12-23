@@ -105,6 +105,7 @@ class config
 	}
 	
 	
+	
 	function tableExists($table)
 	{
 		if (in_array($table, $this->getTableList()))

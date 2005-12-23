@@ -6,7 +6,7 @@
 <!-- an author table -->
 <table id='author'>
 
-<title><fr>Auteurs</fr></title>
+<title><fr>Auteur</fr></title>
 
 
 <field id="id">

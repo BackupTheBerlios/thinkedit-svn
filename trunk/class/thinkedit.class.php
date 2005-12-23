@@ -96,9 +96,14 @@ class thinkedit
 	{
 	  return $this->newRecord($uid['type'], $uid['id']);
 	}
+	elseif ($uid['class'] == 'filesystem')
+	{
+	  return $this->newFilesystem($uid['type'], $uid['id']);
+	}
+	
 	else
 	{
-	  trigger_error(__METHOD__ . " class $class not supported", E_USER_ERROR);
+	  trigger_error("thinkedit::newObject() class $class not supported", E_USER_ERROR);
 	}
   }
   

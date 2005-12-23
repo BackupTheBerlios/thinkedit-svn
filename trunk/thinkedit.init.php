@@ -24,6 +24,7 @@
 
 // should we keep root ? Maybe te_root (te for thinkedit) would be better
 define ('ROOT', dirname(__FILE__));
+define ('ROOT_URL', '/thinkedit/trunk/');
 
 require_once ROOT . '/tools.inc.php';
 require_once ROOT . '/class/thinkedit.class.php';

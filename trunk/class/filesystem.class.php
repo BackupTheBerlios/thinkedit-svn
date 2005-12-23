@@ -172,7 +172,13 @@ class filesystem
 		*/
 		function getIcon()
 		{
-				
+			return '/ressource/image/icon/text-x-generic.png';	
+		}
+		
+		
+		function load()
+		{
+		  return true;
 		}
 		
 }

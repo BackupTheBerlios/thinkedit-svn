@@ -510,7 +510,24 @@ class record
 	}
   }
   
+  function getIcon()
+  {
+	return '/ressource/image/icon/text-x-generic.png';
+  }
   
+  
+  
+  function debug()
+  {
+	$out = '';
+	$out .= '<p>';
+	foreach ($this->field as $field)
+	{
+	$out .= '<b>' .  $field->getId() . ' : ' .  $field->get() . '</b><br/>';
+	}
+	$out .= '</p>';
+	return $out;
+  }
 }
 
 ?>
