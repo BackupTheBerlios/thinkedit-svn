@@ -92,19 +92,19 @@ class thinkedit
   // based on uid, will instantiate a class
   function newObject($uid)
   {
-	if ($uid['class'] == 'record')
-	{
-	  return $this->newRecord($uid['type'], $uid['id']);
-	}
-	elseif ($uid['class'] == 'filesystem')
-	{
-	  return $this->newFilesystem($uid['type'], $uid['id']);
-	}
-	
-	else
-	{
-	  trigger_error("thinkedit::newObject() class $class not supported", E_USER_ERROR);
-	}
+			if ($uid['class'] == 'record')
+			{
+					return $this->newRecord($uid['type'], $uid['id']);
+			}
+			elseif ($uid['class'] == 'filesystem')
+			{
+					return $this->newFilesystem($uid['type'], $uid['id']);
+			}
+			
+			else
+			{
+					trigger_error("thinkedit::newObject() class $class not supported", E_USER_ERROR);
+			}
   }
   
   

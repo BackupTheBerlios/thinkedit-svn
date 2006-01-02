@@ -32,9 +32,10 @@ class url
 	$this->self = $_SERVER['PHP_SELF'];
 	//$this->keepParam('debug');
 	$this->keepParam('debug');
-	$this->keepParam('table');
+	//$this->keepParam('table');
 	
 	// those three parameters are what I call a GUID of a class
+	$this->keepParam('action');
 	$this->keepParam('class');
 	$this->keepParam('type');
 	$this->keepParam('id');
@@ -257,6 +258,8 @@ class url
 	header('location: http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/'. $this->render($filename));
   }
   
+	
+	/*
   
   function toPath($theURL)
   {
@@ -286,6 +289,7 @@ class url
 	$thFileURL = implode("/", $AtheFilePath)."/".$theFileName;
 	return ($WIMPY_BASE['path']['www']."$thFileURL");
   }
+	*/
   
   
 }

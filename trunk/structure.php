@@ -27,7 +27,10 @@ if ($url->get('node_id'))
 }
 else // else load root
 {
-  $node->loadRootNode();
+  if (!$node->loadRootNode())
+	{
+			trigger_error('structure : cannot load root node. DB Empty ?');
+	}
 }
 
 $breadcrumb = new breadcrumb();

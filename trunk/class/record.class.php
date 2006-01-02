@@ -254,7 +254,7 @@ class record
 	  }
 	  else
 	  {
-		trigger_error('record::save() failed while updating record', E_USER_WARNIN);
+		trigger_error('record::save() failed while updating record', E_USER_WARNING);
 		return false;
 	  }
 	}
