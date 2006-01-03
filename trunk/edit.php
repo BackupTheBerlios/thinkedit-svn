@@ -56,14 +56,29 @@ if ($form->isSent())
   }
   
   debug($record, 'Record before saving');
-  $record->save();
-  
-  $url = new url();
-  $url->setFileName('list.php');
-  $url->keepParam('table');
-  $url->setParam('message', 'edit_successfull');
-  //header('location: ' . $url->render());
-  $url->redirect();
+  if ($record->save())
+	{
+			
+			$url = new url();
+			$url->setFileName('list.php');
+			$url->keepParam('table');
+			$url->setParam('message', 'edit_successfull');
+			
+			if ($url->get('return_to'))
+			{
+					$url->set('node_id', $url->get('return_to_node'));
+					$url->redirect($url->get('return_to'));
+			}
+			else
+			{
+					//header('location: ' . $url->render());
+					$url->redirect();
+			}
+	}
+	else
+	{
+			trigger_error('edit.php failed saving record');
+	}
 }
 elseif ($form->isCancel())
 {

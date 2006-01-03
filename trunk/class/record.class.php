@@ -207,10 +207,10 @@ class record
 				{
 						if ($field->isPrimary())
 						{
-								if ($field->isEmpty())
-								{
-										trigger_error(__METHOD__ . ' cannot save if all primary keys are not defined');
-								}
+							//	if ($field->isEmpty())
+							//	{
+										//trigger_error(__METHOD__ . ' cannot save if all primary keys are not defined');
+							//	}
 								$fields[$field->getId()] = $field->get();
 						}
 				}
@@ -219,16 +219,17 @@ class record
 				{
 						if ($this->find($fields))
 						{
-								$this->update();
+								return $this->update();
 						}
 						else // else I insert
 						{
-								$this->insert();
+								return $this->insert();
 						}
 				}
 				else
 				{
 						trigger_error(__METHOD__ . ' no primary fields, cannot save');
+						return false;
 				}
 		}
 		

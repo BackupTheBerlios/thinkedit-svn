@@ -64,6 +64,11 @@ class url
 						$this->orig_param[$key] = $value;
 				}
 				$this->self = $_SERVER['PHP_SELF'];
+				
+				$this->url = $_SERVER['REQUEST_URI'];
+				
+				//echo $this->url;
+				
 				//$this->keepParam('debug');
 				$this->keepParam('debug');
 				//$this->keepParam('table');
@@ -75,6 +80,7 @@ class url
 				$this->keepParam('id');
 				$this->keepParam('node_id');
 				
+				//$this->set('referrer', $this->url);
 				
 				//$this->keepAll();
 		}
@@ -123,6 +129,10 @@ class url
 		}
 		
 		
+		function keepReferer()
+		{
+		$this->set('referrer', $this->url);
+		}
 		
 		
 		

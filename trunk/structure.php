@@ -87,7 +87,6 @@ $current->load();
 $breadcrumb->add($current->getTitle());
 
 $page->startPanel('node_breadcrumb');
-//$page->add('<h1></h1>');
 $page->add($breadcrumb->render());
 $page->endPanel('node_breadcrumb');
 
@@ -109,10 +108,13 @@ if ($node->hasChildren())
 	$content = $child_node->getContent();
 	$content->load();
 	$url->set('node_id', $child_node->getId());
-	$row['icon'] = '<img src="' . ROOT_URL . $content->getIcon() . '"/>';
+	$url->set('return_to', 'structure.php');
+	$url->set('return_to_node', $node->getId());
+	//$row['icon'] = '<img src="' . ROOT_URL . $content->getIcon() . '"/>';
 	$row['title'] = '<a href="' . $url->render() . '">' .$content->getTitle() . '</a>';
+	$row['edit_node'] = '<a href="' . $url->linkTo($child_node, 'edit.php') . '">' . translate('edit_node') . '</a>';
 	$row['edit'] = '<a href="' . $url->linkTo($content, 'edit.php') . '">' . translate('edit') . '</a>';
-	$row['delete'] = '<a href="' . $url->linkTo($content, 'delete.php') . '">' . translate('delete') . '</a>';
+	$row['delete'] = '<a href="' . $url->linkTo($child_node, 'delete.php') . '">' . translate('delete') . '</a>';
 	$html_table->add($row);
 	
   }

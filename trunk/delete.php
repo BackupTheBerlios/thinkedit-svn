@@ -62,18 +62,32 @@ $form->add('<div>' . translate('delete_intro_message') . '</div>');
 // is form sent?
 if ($form->isSent())
 {
-  // if yes, and action confirmed we delete
-  debug('delete.php : form sent');
-  if ($record->delete())
-  {
-  $url = new url();
-  $url->setFileName('list.php');
-  $url->keepParam('table');
-  $url->setParam('message', 'delete_done');
-  //header('location: ' . $url->render());
-  $url->redirect();
-  }
-  
+		// if yes, and action confirmed we delete
+		debug('delete.php : form sent');
+		if ($record->delete())
+		{
+				$url = new url();
+				$url->setFileName('list.php');
+				$url->keepParam('table');
+				$url->setParam('message', 'delete_done');
+				//header('location: ' . $url->render());
+				if ($url->get('return_to'))
+				{
+						$url->set('node_id', $url->get('return_to_node'));
+						$url->redirect($url->get('return_to'));
+				}
+				else
+				{
+						//header('location: ' . $url->render());
+						$url->redirect();
+				}
+				
+		}
+		else
+		{
+				trigger_error('delete.php failed delete record');
+		}
+		
 }
 elseif ($form->isCancel())
 {
