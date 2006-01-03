@@ -9,70 +9,48 @@
 
 
 <!-- a many to many relation is built by using a table with two lookup columns -->
-<table id="articles2authors">
+		<table id="articles2authors">
 
-<field id="id">
-<type>id</type>
-<primary>true</primary>
-</field>
+				<field id="id">
+						<type>id</type>
+						<primary>true</primary>
+				</field>
 
-<field id="author_id">
-<type>lookup</type>
+				<field id="author_id">
+						<type>lookup</type>
 
-<source>
-<type>table</type>
-<name>author</name>
-</source>
+						<source>
+								<type>table</type>
+								<name>author</name>
+						</source>
 
-</field>
-
-
-<field id="article_id">
-<type>lookup</type>
-
-<source>
-<type>table</type>
-<name>article</name>
-</source>
-
-</field>
-</table>
+				</field>
 
 
+				<field id="article_id">
+						<type>lookup</type>
+
+						<source>
+								<type>table</type>
+								<name>article</name>
+						</source>
+
+				</field>
+		</table>
 
 
 
-<table id='translation'>
-
-<title><fr>Traduction</fr></title>
-<help><fr>Les traductions peuvent être utilisées dans l'interface et dans la partie publique du site. C'est très utile dans le cas d'un site multilingue</fr></help>
 
 
-<field id="translation_id">
-<type>string</type>
-<is_title>true</is_title>
-</field>
-
-
-<field id="translation">
-<type>text</type>
-</field>
-
-<field id="locale">
-<type>string</type>
-<primary>true</primary>
-</field>
-
-
-</table>
+		
 
 
 <!-- proto -->
-<filesystem id="main">
-<type>local</type>
-<path>.</path>
-<url>/media</url>
-</filesystem>
+		<filesystem id="main">
+				<type>local</type>
+				<path>.</path>
+				<url>/media</url>
+		</filesystem>
 
 
 
@@ -80,30 +58,32 @@
 
 
 <!--  site-wide configuration -->
-<site>
+		<site>
 
-<help><fr>Bienvenue sur thinkedit</fr></help>
+				<help>
+						<fr>Bienvenue sur thinkedit</fr>
+				</help>
 
 
 
 <!-- available locales for this site -->
 
-<locale id='fr'>
-<help>
-<fr>Fran&#231;ais</fr>
-<en>French</en>
-</help>
-</locale>
+				<locale id="fr">
+						<help>
+								<fr>Fran&#231;ais</fr>
+								<en>French</en>
+						</help>
+				</locale>
 
-<locale id='en'>
-<help>
-<fr>Anglais</fr>
-<en>English</en>
-</help>
-</locale>
-
-
+				<locale id="en">
+						<help>
+								<fr>Anglais</fr>
+								<en>English</en>
+						</help>
+				</locale>
 
 
-</site>
+
+
+		</site>
 </config>

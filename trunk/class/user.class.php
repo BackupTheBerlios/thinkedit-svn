@@ -42,7 +42,7 @@ class user
 				$debug['permission'] = $permission;
 				$debug['uid'] = $object->getUid();
 				$debug['result'] = true;
-				debug($debug, 'user::hasPermission'); 
+				//debug($debug, 'user::hasPermission'); 
 				return true;
 		}
 		

@@ -33,6 +33,36 @@ else // else load root
 	}
 }
 
+
+
+// handle actions
+
+
+// if we have an item to add to curent node because we browsed for it :
+if ($url->get('action') == 'browse')
+{
+		$object = $url->getObject();
+		$node->add($object);
+		$url->unsetParam('action');
+		$url->unsetParam('class');
+		$url->unsetParam('type');
+		$url->unsetParam('id');
+}
+
+
+
+// if we have an item to add to curent node because we just created it :
+if ($url->get('action') == 'add_to_structure')
+{
+		$url->unsetParam('action');
+		$url->unsetParam('class');
+		$url->unsetParam('type');
+		$url->unsetParam('id');
+}
+
+
+
+
 $breadcrumb = new breadcrumb();
 
 $breadcrumb->add('root');
@@ -108,6 +138,8 @@ foreach ($tables as $table_id)
   $table = $thinkedit->newTable($table_id);
   $url->set('class', 'record');
   $url->set('type', $table_id);
+	$url->set('action', 'add_to_structure');
+	$url->set('node_id', $node->getId());
   $add_existing .= '<option value="'. $url->render('edit.php') .'">' . $table->getTitle() . '</option>';
 }  
 $add_existing .= '</select>';
@@ -125,6 +157,9 @@ foreach ($tables as $table_id)
   $table = $thinkedit->newTable($table_id);
   $url->set('class', 'record');
   $url->set('type', $table_id);
+	$url->set('action', 'browse');
+	$url->set('node_id', $node->getId());
+	
   $add_new .= '<option value="'. $url->render('list.php') .'">' . $table->getTitle() . '</option>';
 }  
 $add_new .= '</select>';

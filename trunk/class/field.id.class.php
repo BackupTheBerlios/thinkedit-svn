@@ -29,7 +29,8 @@ class field_id extends field
 				
 				if (!empty($this->data))
 				{
-						
+						return $this->data;
+						/*
 						if (is_numeric($this->data))
 						{
 								return $this->data;
@@ -38,7 +39,9 @@ class field_id extends field
 						{
 								//trigger_error('field_id::get() :
 								//trigger_error(__METHOD__ . ' id is not numeric');
+								return $this->data;
 						}
+						*/
 				}
 				else
 				{

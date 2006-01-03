@@ -18,12 +18,19 @@ $config = new config();
 // header
 require_once 'header.php';
 
+
+if ($url->getParam('action') == 'browse')
+{
+		echo 'browse mode';	
+}
+
+
 //message
 if ($url->getParam('message'))
 {
-  $page->startPanel('title', 'info message');
-  $page->add(translate($url->getParam('message')));
-  $page->endPanel('title');
+		$page->startPanel('title', 'info message');
+		$page->add(translate($url->getParam('message')));
+		$page->endPanel('title');
 }
 
 // breadcrumb
@@ -42,42 +49,48 @@ $page->endPanel('breadcrumb');
 // check if we have everything in url
 if ($url->get('class') && $url->get('type'))
 {
-  if ($url->get('class') == 'table' or $url->get('class') == 'record')
-  {
-	
-	$table_name = $url->getParam('type');
-	
-	if ($config->tableExists($table_name))
-	{
-	  $my_record = $thinkedit->newRecord($table_name);
-	  
-	  $records = $my_record->find();
-	  $datagrid = new datagrid();
-	  
-	  if (is_array($records))
-	  {
-		
-		
-		foreach ($records as $record)
+		if ($url->get('class') == 'table' or $url->get('class') == 'record')
 		{
-		  $datagrid->addObject($record);  
-		}	 
-		
-	  }
-	  $datagrid->addLocalAction('edit', 'edit.php', translate('edit'));
-	  $datagrid->addLocalAction('delete', 'delete.php', translate('delete'));
-	  
-	  $datagrid->addGlobalAction('add', 'edit.php', translate('add'));
-	  
-	  
-	  $datagrid->enableCheckBox();
-	  
-	  $page->startPanel('list');
-	  //$page->add('<h1></h1>');
-	  $page->add($datagrid->render());
-	  $page->endPanel('list');
-	}
-  }
+				
+				$table_name = $url->getParam('type');
+				
+				if ($config->tableExists($table_name))
+				{
+						$my_record = $thinkedit->newRecord($table_name);
+						
+						$records = $my_record->find();
+						$datagrid = new datagrid();
+						
+						if (is_array($records))
+						{
+								
+								
+								foreach ($records as $record)
+								{
+										$datagrid->addObject($record);  
+								}	 
+								
+						}
+						
+						if ($url->getParam('action') == 'browse')
+						{
+								$datagrid->addLocalAction('select', 'structure.php', translate('select'));
+						}
+						else
+						{
+								$datagrid->addLocalAction('edit', 'edit.php', translate('edit'));
+								$datagrid->addLocalAction('delete', 'delete.php', translate('delete'));
+								
+								$datagrid->addGlobalAction('add', 'edit.php', translate('add'));
+								$datagrid->enableCheckBox();
+						}
+						
+						$page->startPanel('list');
+						//$page->add('<h1></h1>');
+						$page->add($datagrid->render());
+						$page->endPanel('list');
+				}
+		}
 }
 
 
@@ -90,7 +103,7 @@ echo $page->render();
 // message
 if ($url->getParam('message'))
 {
-  $out['message'] = translate($url->getParam('message'));
+		$out['message'] = translate($url->getParam('message'));
 }
 
 
@@ -106,29 +119,29 @@ $out['breadcrumb'] = $breadcrumb->render();
 
 if ($url->getParam('table'))
 {
-  
-  $table_name = $url->getParam('table');
-  
-  if ($config->tableExists($table_name))
-  {
-	$my_record = $thinkedit->newRecord($table_name);
-	
-	$records = $my_record->find();
-	
-	if (is_array($records))
-	{
-	  debug($records, "Records found");
-	  foreach ($records as $record)
-	  {
-		$url->setArray($record->getUid());
-		$out['data'][$record->getId()]['uid'] = $record->getUid();
-		$out['data'][$record->getId()]['title'] = $record->getTitle();
-		$out['data'][$record->getId()]['edit_link'] = $url->render('edit.php');
-		$out['data'][$record->getId()]['delete_link'] = $url->render('delete.php');
-	  }	 
-	}
-  }
-  
+		
+		$table_name = $url->getParam('table');
+		
+		if ($config->tableExists($table_name))
+		{
+				$my_record = $thinkedit->newRecord($table_name);
+				
+				$records = $my_record->find();
+				
+				if (is_array($records))
+				{
+						debug($records, "Records found");
+						foreach ($records as $record)
+						{
+								$url->setArray($record->getUid());
+								$out['data'][$record->getId()]['uid'] = $record->getUid();
+								$out['data'][$record->getId()]['title'] = $record->getTitle();
+								$out['data'][$record->getId()]['edit_link'] = $url->render('edit.php');
+								$out['data'][$record->getId()]['delete_link'] = $url->render('delete.php');
+						}	 
+				}
+		}
+		
 }
 
 

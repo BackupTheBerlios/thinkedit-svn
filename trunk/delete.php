@@ -5,6 +5,7 @@ require_once ROOT . '/class/url.class.php';
 require_once ROOT . '/class/node.class.php';
 require_once ROOT . '/class/page.class.php';
 require_once ROOT . '/class/breadcrumb.class.php';
+require_once ROOT . '/class/record.class.php';
 
 
 /*
