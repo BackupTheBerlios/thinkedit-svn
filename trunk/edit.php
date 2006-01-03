@@ -59,6 +59,7 @@ if ($form->isSent())
   if ($record->save())
 	{
 			
+			debug($record, 'Record AFTER saving');
 			$url = new url();
 			$url->setFileName('list.php');
 			$url->keepParam('table');
@@ -68,6 +69,12 @@ if ($form->isSent())
 			{
 					$url->set('node_id', $url->get('return_to_node'));
 					$url->redirect($url->get('return_to'));
+			}
+			elseif ($url->get('action') == 'add_to_structure')
+			{
+					//$url->set('node_id', $url->get('return_to_node'));
+					$url->set('id', $record->getId());
+					$url->redirect('structure.php');
 			}
 			else
 			{

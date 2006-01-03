@@ -264,7 +264,7 @@ class record
 								}
 						}
 						$sql .= implode($where, ' and ');
-						debug($sql, 'record::save()');
+						debug($sql, 'record::update()');
 						if ($this->db->query($sql))
 						{
 								return true;
@@ -307,9 +307,11 @@ class record
 				$sql .= implode($values, ', ');
 				$sql.= ' ) ';
 				
-				
+				debug($sql, 'record::insert()');
 				if ($this->db->query($sql))
 				{
+						// when finished, set the id of the field to the new autoinserted id (mysql at least)
+						$this->field['id']->set($this->db->insertID());
 						return true;
 				}
 				else

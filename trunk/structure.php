@@ -54,6 +54,8 @@ if ($url->get('action') == 'browse')
 // if we have an item to add to curent node because we just created it :
 if ($url->get('action') == 'add_to_structure')
 {
+		$object = $url->getObject();
+		$node->add($object);
 		$url->unsetParam('action');
 		$url->unsetParam('class');
 		$url->unsetParam('type');
@@ -138,7 +140,8 @@ foreach ($tables as $table_id)
 {
   $url = new url();
   $table = $thinkedit->newTable($table_id);
-  $url->set('class', 'record');
+  $url->unsetParam('id');
+	$url->set('class', 'record');
   $url->set('type', $table_id);
 	$url->set('action', 'add_to_structure');
 	$url->set('node_id', $node->getId());
