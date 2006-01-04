@@ -78,7 +78,7 @@ if ($node->hasParent())
 	$content = $parent->getContent();
 	$content->load();
 	
-	$url = new url();
+	//$url = new url();
 	$url->set('node_id', $parent->getId());
 	$breadcrumb->add($content->getTitle(), $url->render());
   }

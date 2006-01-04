@@ -44,6 +44,7 @@ class user
 				$debug['result'] = true;
 				//debug($debug, 'user::hasPermission'); 
 				return true;
+				//return false;
 		}
 		
 		

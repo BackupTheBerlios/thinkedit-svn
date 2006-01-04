@@ -7,6 +7,20 @@ I was thinking about extending the record object. Fianlly, I will use a proxy ob
 $this->record contains the reocrd object used by this node.
 
 I feel safer this way
+
+
+TODO : optimize number of sql queries needed.
+
+Using the adjacency list model that anyone uses
+More info at http://www.sitepoint.com/article/hierarchical-data-database/1
+and at http://dev.mysql.com/tech-resources/articles/hierarchical-data.html
+
+It could be simply doing a single query of the whole node db, store it in a var, and work from this.
+
+Benchamrk is needed. Maybe do this for a tree smaller than x nodes
+
+Too early optimisation is the root of all evil
+
 */
 class node
 {

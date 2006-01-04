@@ -17,14 +17,17 @@
 
 
 <field id="object_class">
+<is_title>true</is_title>
 <type>string</type>
 </field>
 
 <field id="object_type">
+<is_title>true</is_title>
 <type>string</type>
 </field>
 
 <field id="object_id">
+<is_title>true</is_title>
 <type>text</type>
 </field>
 

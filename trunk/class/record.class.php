@@ -311,7 +311,7 @@ class record
 				if ($this->db->query($sql))
 				{
 						// when finished, set the id of the field to the new autoinserted id (mysql at least)
-						$this->field['id']->set($this->db->insertID());
+						$this->field[$this->getIdField()]->set($this->db->insertID());
 						return true;
 				}
 				else
@@ -464,6 +464,22 @@ class record
 						if ($field->getType() == 'id')
 						{
 								return $field->get();
+						}
+				}
+				trigger_error('record::getId() : no id field found in table called ' . $this->table, E_USER_WARNING);
+				return false;
+		}
+		
+		
+		function getIdField()
+		{
+				//die ('deprecated, use getUid() instead');
+				
+				foreach ($this->field as $field)
+				{
+						if ($field->getType() == 'id')
+						{
+								return $field->getName();
 						}
 				}
 				trigger_error('record::getId() : no id field found in table called ' . $this->table, E_USER_WARNING);
