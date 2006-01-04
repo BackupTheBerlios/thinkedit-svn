@@ -269,7 +269,9 @@ class node
   
   function getParentUntilRoot()
   {
+	
 	$temp = $this;
+	$parents = false;
 	$i = 0;
 	while ($temp->hasParent())
 	{

@@ -172,6 +172,7 @@ class record
 										{
 												$record->set($key, $field);
 										}
+										$record->is_loaded = true;
 										$records[] = $record;
 								}
 								return $records;
@@ -461,12 +462,12 @@ class record
 				
 				foreach ($this->field as $field)
 				{
-						if ($field->getType() == 'id')
+						if ($field->getType() == 'id' || $field->getType() == 'stringid')
 						{
 								return $field->get();
 						}
 				}
-				trigger_error('record::getId() : no id field found in table called ' . $this->table, E_USER_WARNING);
+				trigger_error('record::getId() : no id field found in table called ' . $this->getTableName(), E_USER_WARNING);
 				return false;
 		}
 		
@@ -477,12 +478,12 @@ class record
 				
 				foreach ($this->field as $field)
 				{
-						if ($field->getType() == 'id')
+						if ($field->getType() == 'id' || $field->getType() == 'stringid')
 						{
 								return $field->getName();
 						}
 				}
-				trigger_error('record::getId() : no id field found in table called ' . $this->table, E_USER_WARNING);
+				trigger_error('record::getId() : no id field found in table called ' . $this->getTableName(), E_USER_WARNING);
 				return false;
 		}
 		
@@ -508,6 +509,10 @@ class record
 		
 		function getTitle()
 		{
+				if (!$this->is_loaded)
+				{
+						trigger_error('record::getTitle() trying to get title on an unloaded record');
+				}
 				$title = '';
 				foreach ($this->field as $field)
 				{
@@ -518,7 +523,7 @@ class record
 				}
 				if (is_array($title))
 				{
-						return implode($title, ' ,');
+						return implode($title, ', ');
 				}
 				else
 				{

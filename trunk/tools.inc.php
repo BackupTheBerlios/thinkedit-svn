@@ -77,12 +77,12 @@ function translate($translation_id)
 				
 				//$translation->set('translation', $translation_id);
 				//$translation->set('locale', $user->getLocale());
-				$translations = $translation->find(array('translation_id' => $translation_id, 'locale' => $user->getLocale() ));
-				if ($translations)
+				$the_translation = $translation->findFirst(array('translation_id' => $translation_id, 'locale' => $user->getLocale() ));
+				if ($the_translation)
 				{
-						if ($translations[0]->get('translation'))
+						if ($the_translation->get('translation'))
 						{
-								return $translations[0]->get('translation');
+								return $the_translation->get('translation');
 						}
 						else
 						{
@@ -99,18 +99,7 @@ function translate($translation_id)
 						return "[translation_added] #" . $translation_id . "#";
 				}
 				
-				/*
-				
-				if ($html)
-				{
-						return htmlentities($translation[0]['translation']);
-				}
-				else
-				{
-						return $translation[0]['translation'];
-				}
-				
-				*/
+			
 		}
 		else
 		{
