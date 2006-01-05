@@ -6,10 +6,8 @@
 </head>
 <body>
 
-<div class="title">
-Thinkedit 1.0
-</div>
+<?php if (isset($out['breadcrumb'])): ?>
+<?php echo $out['breadcrumb']?>
+<?php endif; ?>
 
-<div class="mainmenu">
-Content | Structure | Files | Options | Help | Logout
-</div>
+

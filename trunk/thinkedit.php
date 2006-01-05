@@ -33,8 +33,17 @@ User can also sort (and filter?)
 require_once 'thinkedit.init.php';
 require_once ROOT . '/class/url.class.php';
 require_once ROOT . '/class/breadcrumb.class.php';
+require_once ROOT . '/class/grid.class.php';
+require_once ROOT . '/class/html.class.php';
+
 
 $url = new url();
+$grid = new grid();
+
+// init grid
+$grid->addColumn('title', array('title'=>'Name'));
+$grid->addColumn('type', array('title'=>'Type'));
+$grid->addColumn('actions', array('title'=>'Actions'));
 
 // init path
 if (!$path = $url->get('path'))
@@ -49,7 +58,7 @@ $breadcrumb = new breadcrumb();
 $url->set('path', '/');
 $breadcrumb->add(translate('homepage'), $url->render());
 
-$list = '';
+$out['list'] = '';
 
 /********************* home **********************/
 
@@ -58,21 +67,24 @@ if ($paths[0] == '')
 		// we are home
 		//echo 'home';
 		//$item['title'] = translate('content');
-		$item['title'] = translate('content');
-		$item['path'] = '/content';
-		$list[] = $item;
+		$url->set('path', '/content');
+		$item['title'] = $url->renderHref(translate('content'));
+		$grid->add($item);
 		
-		$item['title'] = translate('structure');
-		$item['path'] = '/structure';
-		$list[] = $item;
 		
-		$item['title'] = translate('options');
-		$item['path'] = '/options';
-		$list[] = $item;
+		$url->set('path', '/structure');
+		$item['title'] = $url->renderHref(translate('structure'));
+		$grid->add($item);
 		
-		$item['title'] = translate('help');
-		$item['path'] = '/help';
-		$list[] = $item;
+		
+		$url->set('path', '/options');
+		$item['title'] = $url->renderHref(translate('options'));
+		$grid->add($item);
+		
+		$url->set('path', '/help');
+		$item['title'] = $url->renderHref(translate('help'));
+		$grid->add($item);
+		
 		
 }
 /********************* Content **********************/
@@ -103,7 +115,7 @@ elseif ($paths[0] == 'content')
 										$url->set('id', $record->getId());
 										$item['actions'] = '<a href="' . $url->render('edit_record.php') . '" target="_blank">' . 'edit' . '</a>';
 										//$item['path'] = '/content/' . $table->getTableName();
-										$list[] = $item;
+										$out['list'][] = $item;
 								}	 
 						}
 				}
@@ -125,7 +137,7 @@ elseif ($paths[0] == 'content')
 				{
 						$item['title'] = $table->getTitle();
 						$item['path'] = '/content/' . $table->getTableName();
-						$list[] = $item;
+						$out['list'][] = $item;
 				}
 		}
 }
@@ -162,16 +174,14 @@ elseif ($paths[0] == 'structure')
 						$content->load();
 						$url->set('path', '/structure/' . $parent->getId());
 						$breadcrumb->add($content->getTitle(), $url->render());
-												
+						
 						
 				}
 		}
 		
-		
+		// last item in breadcrumb is current item
 		$content = $node->getContent();
 		$content->load();
-		//$url->set('path', '/structure/' . $node->getId());
-		//$breadcrumb->add($content->getTitle(), $url->render());
 		$breadcrumb->add($content->getTitle());
 		
 		
@@ -182,9 +192,10 @@ elseif ($paths[0] == 'structure')
 				{
 						$content = $child->getContent();
 						$content->load();
-						$item['title'] = $content->getTitle();
 						
-						$item['path'] = '/structure/' . $child->getId();
+						$url->set('path', '/structure/' . $child->getId());
+						$item['title'] = $url->renderHref($content->getTitle());
+										
 						
 						// todo check if item is foldersih
 						/*
@@ -197,9 +208,34 @@ elseif ($paths[0] == 'structure')
 						$url->set('node_id', $child->getId());
 						$item['actions'] = '<a href="' . $url->render('edit_node.php') . '" target="_blank">' . 'edit' . '</a>';
 						//$item['path'] = '/content/' . $table->getTableName();
-						$list[] = $item;
+						$grid->add($item);
 				}	 
 		}
+		
+		
+		// build add dropdown
+		
+		
+		$add_new = '<select OnChange="location.href=this.options[this.selectedIndex].value">';
+		$add_new .= '<option>' . translate('add') . '</option>';
+		
+		$config = $thinkedit->newConfig();
+		$tables = $config->getTableList();
+		foreach ($tables as $table_id)
+		{
+				$url = new url();
+				$table = $thinkedit->newTable($table_id);
+				$url->set('class', 'record');
+				$url->set('type', $table_id);
+				$url->set('action', 'browse');
+				$url->set('node_id', $node->getId());
+				
+				$add_new .= '<option value="'. $url->render('list.php') .'">' . $table->getTitle() . '</option>';
+		}  
+		$add_new .= '</select>';
+		$out['add_dropdown'] = $add_new; 
+		
+		
 		
 }
 /********************* help **********************/
@@ -220,83 +256,17 @@ else
 
 /********************* breadcrumb **********************/
 
-echo $breadcrumb->render();
-/*
-if (is_array($paths))
-{
-		foreach ($paths as $path_item)
-		{
-				$url->set('path', $path_item);
-				echo '<a href="' . $url->render() . '">' . $path_item . '</a> / ';
-		}
-}
-*/
-// show content
-echo '<hr>';
-
-if (is_array($list))
-{
-		echo '<table>';
-		foreach ($list as $item)
-		{
-				echo '<tr>';
-				foreach ($item as $key=>$data)
-				{
-						if ($key=='title')
-						{
-								echo '<td>';
-								if (isset($item['path']))
-								{
-										$url->set('path', $item['path']);
-										echo '<a href="' . $url->render() . '">' . $data . '</a>';
-								}
-								else
-								{
-										echo $data;
-								}
-								echo '</td>';
-						}
-						
-						if ($key=='actions')
-						{
-								echo '<td>';
-								echo $data;
-								echo '</td>';
-						}
-						
-				}
-				echo '</tr>';
-		}
-		echo '</table>';
-}
-else
-{
-		echo "empty";
-}
+$out['breadcrumb'] = $breadcrumb->render();
 
 
-// build add dropdown
+debug($out, 'OUT');
+
+include ROOT . '/template_admin/header.template.php';
+include ROOT . '/template_admin/browser.template.php';
+include ROOT . '/template_admin/footer.template.php';
 
 
-$add_new = '<select OnChange="location.href=this.options[this.selectedIndex].value">';
-$add_new .= '<option>' . translate('add') . '</option>';
 
-$config = $thinkedit->newConfig();
-$tables = $config->getTableList();
-foreach ($tables as $table_id)
-{
-  $url = new url();
-  $table = $thinkedit->newTable($table_id);
-  $url->set('class', 'record');
-  $url->set('type', $table_id);
-	$url->set('action', 'browse');
-	$url->set('node_id', $node->getId());
-	
-  $add_new .= '<option value="'. $url->render('list.php') .'">' . $table->getTitle() . '</option>';
-}  
-$add_new .= '</select>';
-
-echo $add_new; 
 
 
 ?>

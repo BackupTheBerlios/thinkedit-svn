@@ -74,11 +74,11 @@ class url
 	//$this->keepParam('table');
 	
 	// those three parameters are what I call a GUID of a class
-	$this->keepParam('action');
-	$this->keepParam('class');
-	$this->keepParam('type');
-	$this->keepParam('id');
-	$this->keepParam('node_id');
+	//$this->keepParam('action');
+	//$this->keepParam('class');
+	//$this->keepParam('type');
+	//$this->keepParam('id');
+	//$this->keepParam('node_id');
 	
 	//$this->set('referrer', $this->url);
 	
@@ -295,6 +295,10 @@ class url
   }
   
   
+	function renderHref($title, $filename=false)
+	{
+		return '<a href="' . $this->render($filename) . '">' . $title . '</a>';
+	}
   /*
   Links an object to an action
   
