@@ -1,5 +1,5 @@
       <div class="footer">
-        LA PETITE USINE&reg; | <a href="mailto:info@lapetiteusine.be" class="adress_link">info@lapetiteusine.be</a><br/>
+        &reg; <a href="http://www.thinkedit.com" class="adress_link">THINKEDIT.COM open source CMS</a><br/>
     </div>
 		</td>
 		</tr>

@@ -25,7 +25,7 @@ header("HTTP/1.0 304 Not Modified");
 <html>
   <head>
 
-    <meta http-equiv="content-type" content="text/html;charset=ISO-8859-1" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF8" />
 
     <meta name="generator" content="La Petite Usine &reg;"/>
 
