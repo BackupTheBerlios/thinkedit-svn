@@ -30,7 +30,7 @@ class base
 	{
 	}
 	
-	
+	/* returns a short help text for this object*/
 	function getHelp()
 	{
 	}

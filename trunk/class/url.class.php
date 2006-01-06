@@ -331,7 +331,8 @@ class url
   
   function redirect($filename = false)
   {
-	header('location: http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/'. $this->render($filename));
+	//header('location: http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/'. $this->render($filename));
+	header('location: '. $this->render($filename));
   }
   
   

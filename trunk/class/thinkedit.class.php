@@ -30,6 +30,8 @@ class thinkedit
 	$this->config = $config['config'];
   }
   
+	
+	/************************* DB factory methods **************************/
   
   function connectToDb($id)
   {
@@ -88,6 +90,7 @@ class thinkedit
   }
   
   
+	/************************* Factory methods **************************/
   
   // based on uid, will instantiate a class
   function newObject($uid)
@@ -222,7 +225,7 @@ class thinkedit
 		}
 		else
 		{
-		  trigger_error("thinkedit::newField config error, type $type for element $field not supported (class not found)");
+		  trigger_error("thinkedit::newField config error, type $type for element $field not supported (class file not found)");
 		}
 		
 	  }
@@ -237,8 +240,16 @@ class thinkedit
 	
   }
   
+	
+	function newSession()
+	{
+			require_once ROOT . '/class/session.class.php';
+			return new session();
+	}
   
   
+	/************************* TOOLS **************************/
+	
   /**
   * Should be moved to user prefenrences and context for the site (editing) interface locale
   *

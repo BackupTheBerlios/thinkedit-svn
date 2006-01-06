@@ -7,13 +7,18 @@ class user
 		
 		function user()
 		{
+				//auto load from session
+				global $thinkedit;
+				$session = $thinkedit->newSession();
+				
 		}
 		
 		function login($login, $password)
 		{
+				if ($login && $password)
+				{
 				global $thinkedit;
 				
-				// select from DB
 				
 				$user = $thinkedit->newRecord('user'); // todo custom user table
 				$user->set('login', $login); // login and password must be primary keys (todo)
@@ -21,11 +26,18 @@ class user
 				
 				if ($user->load())
 				{
+						$session = $thinkedit->newSession();
+						$session->set('thinkedit_user', $login);
 						return true;
 				}
 				else
 				{
 				return false;
+				}
+				}
+				else
+				{
+						return false;
 				}
 				
 				
@@ -33,8 +45,32 @@ class user
 		
 		function logout()
 		{
+				$session->delete('thinkedit_user');
 		}
 		
+		function isLogged()
+		{
+				if ($session->get('thinkedit_user'))
+				{
+						return true;
+				}
+				else
+				{
+						return false;
+				}
+		}
+		
+		function isAnonymous()
+		{
+				if ($session->get('thinkedit_user'))
+				{
+						return false;
+				}
+				else
+				{
+						return true;
+				}
+		}
 		
 		function hasPermission($permission, $object = false)
 		{
@@ -55,9 +91,7 @@ class user
 				return 'fr';
 		}
 		
-		function isLogged()
-		{
-		}
+		
 		
 }
 

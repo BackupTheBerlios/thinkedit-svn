@@ -1,4 +1,4 @@
-<?php if ($edit_mode): ?>
+<?php if (isset($edit_mode)): ?>
 <?php else: ?>
 
 <form name="preferred_locale">

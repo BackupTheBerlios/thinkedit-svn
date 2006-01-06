@@ -1,4 +1,4 @@
-<?php if (is_array($out['breadcrumb'])) : ?>
+<?php if (isset($out['breadcrumb']) && is_array($out['breadcrumb'])) : ?>
 
 
 	<table width="*" border="0" cellspacing="0" cellpadding="0"><tr><td>

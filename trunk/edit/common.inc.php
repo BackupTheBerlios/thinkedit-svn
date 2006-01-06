@@ -1,30 +1,29 @@
 <?php
+
+require_once '../thinkedit.init.php';
+
+//**** old tools :
 // common include file for thinkedit
-require_once('xml_parser.inc.php');
-require_once('debuglib.inc.php');
-require_once('debug.inc.php');
-require_once('ez_sql.inc.php');
-require_once('timer.inc.php');
+//require_once('xml_parser.inc.php');
+//require_once('debuglib.inc.php');
+//require_once('debug.inc.php');
+//require_once('ez_sql.inc.php');
 require_once('error.inc.php');
-require_once('locale.inc.php');
+//require_once('locale.inc.php');
 require_once('file.inc.php');
 require_once('tools.inc.php');
 require_once('user.inc.php');
 
+//***** new tools
+require_once(ROOT . '/lib/timer/timer.inc.php');
+require_once(ROOT . '/class/url.class.php');
+require_once(ROOT . '/class/user.class.php');
+require_once(ROOT . '/class/session.class.php');
 
-// start the session machinery
-session_start();
-
-// debug ? : uncomment to enable debugging
-// $debug = true;
-
-
-// read config and parse
-$xml_parser = &new xml_parser;
-$config = $xml_parser->parse_file('config.xml');
-
-$config['config']['interface']['image_extension']['1']='jpg';
-
+$config = $thinkedit->config;
+$url = new url();
+$user = new user();
+$session = new session();
 
 // set locale to 'fr' for testing purposes
 $interface_locale = 'fr';
@@ -32,12 +31,12 @@ $interface_locale = 'fr';
 
 
 // initialize DB class
-$db = new db($config['config']['site']['database']['main']['user'], $config['config']['site']['database']['main']['password'], $config['config']['site']['database']['main']['db'], $config['config']['site']['database']['main']['host']);
+$db = $thinkedit->getDb();
 
 
 
 // initialize DB class for interface translations
-$locale_db = new db($config['config']['site']['database']['locale']['user'], $config['config']['site']['database']['locale']['password'], $config['config']['site']['database']['locale']['db'], $config['config']['site']['database']['locale']['host']);
+$locale_db = $thinkedit->getDb();
 
 
 

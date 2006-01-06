@@ -4,7 +4,9 @@
 // returns the primary locale for the site
 function get_main_locale()
 {
-	global $config;
+	
+		return 'fr';
+		global $config;
 	foreach ($config['config']['site']['locale'] as $key=>$locale)
 	{
 		if ($locale['main'] == 'true') return $key;

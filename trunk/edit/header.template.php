@@ -2,7 +2,7 @@
 // handle cache if allowed to cahce page.
 // this feature is experiemental and could lead to inconsistencies in database if used in a wrong way, like setting 
 // the $enable_cache to true when saving something or changing order or wathever. 
-if ($enable_cache)
+if (isset($enable_cache) && $enable_cache)
 {
 //header("Cache-Control: public, max-age=3600");
 }
@@ -29,7 +29,11 @@ header("HTTP/1.0 304 Not Modified");
 
     <meta name="generator" content="La Petite Usine &reg;"/>
 
-    <title>La Petite Usine</title>
+		<?php if (isset($out['title'])): ?>
+		<title><?php echo $out['title']; ?></title>
+		<?php else: ?>
+    <title>Thinkedit</title>
+		<?php endif; ?>
 
     <link type="text/css" href="style.css" rel="stylesheet"
     media="screen"/>
@@ -37,7 +41,7 @@ header("HTTP/1.0 304 Not Modified");
 		
 		
 		
-<?php if ($enable_power_edit): ?>	
+<?php if (isset($enable_power_edit) && $enable_power_edit): ?>	
 <script>
 var user_changed = 0;
 
@@ -83,7 +87,7 @@ user_changed = 1;
 		
 		
 			
-	<?php if ($out['calendar_needed']) : ?>
+	<?php if (isset($out['calendar_needed']) && $out['calendar_needed']) : ?>
 	<style type="text/css">@import url(./calendar/calendar-win2k-1.css)</style>
 	<link href="./calendar/calendar-usine.css" rel="stylesheet" media="screen"/>
 <script type="text/javascript" src="./calendar/calendar.js"></script>
@@ -96,7 +100,7 @@ user_changed = 1;
 		
 		
 		
-<?php if ($out['wysiwyg_editor_needed']): ?>
+<?php if (isset($out['wysiwyg_editor_needed']) && $out['wysiwyg_editor_needed']): ?>
 <!-- To decrease bandwidth, change the src to richtext_compressed.js //-->
 <script language="JavaScript" type="text/javascript" src="richtext_compressed.js"></script>
 	
@@ -141,19 +145,7 @@ protect_links();
       <div class="header">
         <a href="main.php"><img src="logo.gif" alt="" border="0"/></a>			
 				
-				<!--
-				<a class="help_button" href="#"><?php echo translate('help_button') ?>!</a>
-				
-				<a class="serious_button" href="#"><?php echo translate('logout_button') ?>!</a>
-				-->
-				
-
-				
-
-				
-
-
-				
+			
 				
 				<br>
 				
@@ -170,7 +162,7 @@ protect_links();
 
 
 			
-<?php if ($out['error']) : ?>
+<?php if (isset($out['error'])) : ?>
 <div class="error">
 
 <table width="*" border="0" cellspacing="0" cellpadding="0">
@@ -186,7 +178,7 @@ protect_links();
 <?php endif; ?>
 
 
-<?php if ($out['info']) : ?>
+<?php if (isset($out['info'])) : ?>
 <div class="info">
 
 <table width="*" border="0" cellspacing="0" cellpadding="0">
@@ -216,7 +208,7 @@ protect_links();
 
 </div>
 
-<?php if ($out['banner']['needed']) : ?>
+<?php if (isset($out['banner']['needed'])) : ?>
 <div class="banner">
        
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
