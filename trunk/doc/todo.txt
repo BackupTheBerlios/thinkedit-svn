@@ -29,3 +29,44 @@
 Done :
 
 - config folder instead of single file (recursive search)
+
+
+Older :
+
+As of jan. 2004 :
+
+ok - check every use of 'locale' in sql queries : sometimes monolingual content cannot be queried
+ok - update order for sortable element on creation time (either on top or bottom of the "table")
+ok - order in relations
+ok - html internet explorer
+ok - limit text data in list view (limited to 32 chars for all type of data)
+ok - rework filters
+ok - relations with filemanager
+ok - config file protected using chmod
+ok - retain states of sort columns in the session
+ok - password field
+ok - checkbox field
+
+
+- module not displayed if sql table is empty
++- ok - header
+ok - layout header
+- layout file manager
+- layout module filemanager homepage
+- rework sort in list view (not displayed)
+
+
+
+
+
+new features
+- status
+- translate from edit detail page
+- poweredit
+- hierarchy manager
+- sql update (create table / fields ...) auto installer
+
+- filemanager with extended properties
+
+- edit relations
+ 
