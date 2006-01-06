@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<!-- Interface main configuration file -->
+<!--  each config file begins with the config tag -->
+<config>
+
+<!-- An example article table -->
+<table id='page'>
+
+<title><fr>Page</fr></title>
+<help><fr>Une page sur le site</fr></help>
+
+<title_field>title</title_field>
+
+<field id="id">
+<type>id</type>
+</field>
+
+<field id="title">
+<title><fr>Titre</fr></title>
+<help><fr>Un titre court est plus percutant</fr></help>
+<type>string</type>
+<is_title>true</is_title>
+</field>
+
+
+
+<field id="body">
+<title><fr>Corps du texte</fr></title>
+<help><fr>Regardez dans l'aide pour ajouter des images</fr></help>
+<type>richtext</type>
+</field>
+
+
+
+
+</table>
+</config>
+
