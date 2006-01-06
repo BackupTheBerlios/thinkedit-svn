@@ -13,12 +13,19 @@ include_once('common.inc.php');
 $out['title'] = 'Thinkedit Login';
 
 
+//print_r($_REQUEST);
+
 // check if we have a login and a password to validate user class
 
 if ($url->get('login') && $url->get('password'))
 {
+		$login = $url->get('login');
+		$password = $url->get('password');
+		debug($login, 'login');
+		debug($password, 'password');
 		
-		if ($user->login($url->get('login'), $url->get('password')))
+		
+		if ($user->login($login, $password))
 		{
 				$_SESSION['user'] = $url->get('login');
 				
