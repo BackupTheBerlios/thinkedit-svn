@@ -15,30 +15,32 @@ class user
 		
 		function login($login, $password)
 		{
-				if ($login && $password)
+				if (empty($login) || empty($password))
 				{
-				global $thinkedit;
-				
-				
-				$user = $thinkedit->newRecord('user'); // todo custom user table
-				$user->set('login', $login); // login and password must be primary keys (todo)
-				$user->set('password', $password);
-				
-				if ($user->load())
-				{
-						$session = $thinkedit->newSession();
-						$session->set('thinkedit_user', $login);
-						return true;
-				}
-				else
-				{
-				return false;
-				}
-				}
-				else
-				{
+						trigger_error('user::login() password or login empty');
 						return false;
 				}
+				else
+				{
+						global $thinkedit;
+						
+						
+						$user = $thinkedit->newRecord('user'); // todo custom user table
+						$user->set('login', $login); // login and password must be primary keys (todo)
+						$user->set('password', $password);
+						
+						if ($user->load())
+						{
+								$session = $thinkedit->newSession();
+								$session->set('thinkedit_user', $login);
+								return true;
+						}
+						else
+						{
+								return false;
+						}
+				}
+				
 				
 				
 		}
