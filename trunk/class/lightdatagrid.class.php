@@ -9,21 +9,36 @@ Some view logic is allowed
 
 
 */
-class datagrid
+class lightdatagrid
 {
   
-  var $global_action;
-  var $local_action;
-  var $data;
-  var $column;
-  var $checkboxes = false;
   
-  
-  function datagrid()
-  {
-	//$this->checkboxes = false;
-  }
-  
+		function addColumn($id, $options)
+		{
+				//options include sortable or not, title, ...
+		}
+		
+		
+		function add($data)
+		{
+				//only an array indexed by column id's with all the html needed for this datagrid
+		}
+		
+		
+		function render()
+		{
+		}
+		
+		
+		function getSortInfo()
+		{
+		}
+		
+		
+		
+		
+		
+		
   
   /*
   Needs to be given an array indexed by field id
@@ -489,7 +504,7 @@ class datagrid
 	
 	
 	
-	// add global action buttons
+	// add local action buttons
 	if (is_array($this->global_action))
 	{
 	  
