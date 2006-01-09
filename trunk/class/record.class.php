@@ -534,7 +534,7 @@ class record
 		
 		function getIcon()
 		{
-				return '/ressource/image/icon/text-x-generic.png';
+				return 'ressource/image/icon/text-x-generic.png';
 		}
 		
 		

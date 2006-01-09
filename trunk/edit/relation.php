@@ -1,68 +1,7 @@
 <?php
 /*
-Thinkedit 2.0 by Philippe Jadin and Pierre Lecrenier
-----------------------------------------------------
-
-
-Relation relates two table using a third one.
-
-Config is stored on a per element basis in the config.xml file.
-
-
-Input needed :
-
-
-$module
-$id
-$element
-
-
-
-if $action is defined :
-$action=relate
-we need : $relate_to=5 for instance
-
-
-if $action=create
-we need : $value="a_new_author"
-
-
-
-a relation can come from a file manager :
-
-<element id="images">
-<title>
-<fr>Images</fr>
-</title>
-
-<type>relation</type>
-
-<source>
-<type>filemanager</type>
-<name>main</name>
-</source>
-
-<store>
-<name>news_images2</name>
-<field>
-<current>news_id</current>
-<source>image_id</source>
-</field>
-</store>
-
-<sorting>
-<enable>true</enable>
-<field>order_by</field>
-</sorting>
-
-
-<help>
-<fr>Choisissez une ou plusieurs images à partir du filemanager</fr>
-</help>
-</element>
-
-
-
+See licence.txt
+API can be found in the relation.class.php file
 */
 
 //genral setup

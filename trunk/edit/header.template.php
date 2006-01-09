@@ -141,7 +141,7 @@ protect_links();
 	<td>
     <div class="main">
       <div class="header">
-        <a href="main.php"><img src="logo.gif" alt="" border="0"/></a>			
+        <a href="main.php"><img src="ressource/image/general/thinkedit_logo.gif" alt="" border="0"/></a>			
 				
 			
 				
@@ -154,7 +154,16 @@ protect_links();
 			
 
 <div class="breadcrumb">
-<table width="100%" cellpadding="0" border="0" cellspacing="0"><tr><td><?php include ('breadcrumb.template.php') ?></td><td align="right"><?php include_once('choose_locale.inc.php'); ?></td></tr></table>
+<table width="100%" cellpadding="0" border="0" cellspacing="0">
+<tr>
+<td>
+<?php include ('breadcrumb.template.php') ?>
+</td>
+<td align="right">
+<?php /*include_once('choose_locale.inc.php'); */?>
+</td>
+</tr>
+</table>
 </div>
 
 
@@ -165,7 +174,7 @@ protect_links();
 
 <table width="*" border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td><img src="error.gif"></td>
+<td><img src="ressource/image/icon/error.gif"></td>
 <td><div class="error_text">
 <b><?php echo translate('error') ?> - </b><?php echo $out['error'] ?>
 </div></td>
@@ -181,7 +190,7 @@ protect_links();
 
 <table width="*" border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td><img src="info.gif"></td>
+<td><img src="ressource/image/icon/info.gif"></td>
 <td><div class="info_text">
 <b><?php echo translate('info') ?> - </b><?php echo $out['info'] ?>
 </div></td>
@@ -197,7 +206,7 @@ protect_links();
 
 <table width="*" border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td VALIGN=middle><img src="loading_bar.gif"></td>
+<td VALIGN=middle><img src="ressource/image/icon/loading_bar.gif"></td>
 <td><div class="loading_text">
 <b><?php echo translate('loading_in_progress') ?></b>
 </div></td>

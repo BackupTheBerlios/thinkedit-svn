@@ -205,7 +205,7 @@ class db
 		{
 				if (get_magic_quotes_gpc())
 				{
-						trigger_error('get_magic_quotes_gpc() php setting is ON, I don\'t like this');
+						//trigger_error('get_magic_quotes_gpc() php setting is ON, I don\'t like this');
 						return $string;
 				}
 				else

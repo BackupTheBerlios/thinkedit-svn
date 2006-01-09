@@ -1,12 +1,8 @@
 <?php
 /*
-Thinkedit by Philippe Jadin and Pierre Lecrenier
-
-
+See licence.txt for licence info
 List displays a list page for the current $table
-
 todo : validation of the request arguments against the config file to avoid hack
-
 */
 
 include_once('common.inc.php');
@@ -32,155 +28,11 @@ else
 
 $out['table'] = $table;
 
-
-//$title_row = get_table_title_row($table);
-
-
-if (is_multilingual($table))
-{
-		$out['multilingual'] = true;
-}
-else
-{
-		$out['multilingual'] = false;
-}
-
-/*
-// check if we have poweredit mode
-if ($_REQUEST['enable_power_edit']=='yes')
-{
-		$_SESSION[$table]['power_edit']['enable'] = true;
-}
-elseif ($_REQUEST['enable_power_edit']=='no')
-{
-		$_SESSION[$table]['power_edit']['enable'] = false;
-}
-
-$enable_power_edit = $_SESSION[$table]['power_edit']['enable'] or false;
-*/
-
-
-//if ($debug) print_a($_SESSION);
-
-//if ($debug) echo(get_preferred_locale());
-
-/*
-if ($config['config']['table'][$table]['use']['buttons']=='false')
-{
-		$out['buttons'] = 'false';
-}
-*/
 // -----------------------------
-//handle SAVE from poweredit mode
-// we do this now, so the updated data are shown in the query done bellow
+// Handle icons
 // -----------------------------
+$out['enable_thumbnails'] = true;
 
-/*
-if (($enable_power_edit) and ($_REQUEST['input']))
-{
-		$input = $_REQUEST['input'];
-		if ($debug) print_a($input);
-		
-		foreach ($input as $id=>$fields)
-		{
-				$query = "UPDATE " . $config['config']['table'][$table]['table']. " set ";
-				
-				$insert_into='';
-				foreach ($fields as $field=>$data)
-				{
-						$insert_into.=" " . $field . "='" . $db->$data ."',";
-				}
-				
-				
-				
-				
-				// remove last ',' from query string
-				$insert_into=rtrim($insert_into, ",");
-				$query .= $insert_into;
-				$query .= " WHERE id='$id'";;
-				
-				if ($config['config']['table'][$table]['locale']['type'] == 'multilingual')
-				{
-						$query .= " and locale='$preferred_locale'";
-				}
-				
-				//echo $query . '<hr>';
-				$db->query($query);
-				if ($debug) $db->debug();
-				//$db->debug();
-		}
-		
-		$out['info'] = translate('items_save_successfully');
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-// -----------------------------
-// publish ?
-// -----------------------------
-/*
-
-<!-- used to publish on / off / wathever an element. Per locale -->
-<publish>
-<!-- name of the table storing the different states of the status of something -->
-<source>status</source>
-</publish>
-
-*/
-/*
-if (isset($config['config']['table'][$table]['publish']['source']))
-{
-		$enable_publish = true;
-		$publish_table = $config['config']['table'][$table]['publish']['source'];
-		
-		// build a list of available status, with their colors and code :
-		$publish_table = $config['config']['table'][$publish_table]['table'];
-		
-		if (!publish_table) die ('wrong publish table in config.xml file');
-		
-		$query = "select * from $publish_table";
-		
-		$publish = $db->get_results($query);
-		if ($debug) $db->debug();
-		
-		if ($publish)
-		{
-				
-				foreach ($publish as $publish_item)
-				{
-						$out['publish'][$publish_item->id]['title'] = $publish_item->title;
-						$out['publish'][$publish_item->id]['color'] = $publish_item->color;
-						$out['publish'][$publish_item->id]['code'] = $publish_item->code;
-						
-				}
-				
-		}
-		
-		//print_a($out['status']);
-}
-*/
-
-//$title_row = $config['config']['table'][$table]['title_row'];
-//$locale_field = get_table_locale_field($table);
-//$main_locale = get_main_locale();
-
-
-// special case for file manager : add an image / icon column
-/*
-if ($config['config']['table'][$table]['type'] == 'filemanager')
-{
-		$out['enable_thumbnails'] = true;
-}
-*/
 
 
 
@@ -193,20 +45,21 @@ if ($url->get('sort'))
 		//$sort_field = $db->($_REQUEST['sort']);
 		$_SESSION[$table]['sort_field'] = $url->get('sort');
 }
+
 /*
-else
+if ($config['config']['table'][$table]['sorting']['enable']=='true')
 {
-		if (isset($_SESSION[$table]['sort_field']))
-		{
-				$sort_field = $_SESSION[$table]['sort_field'];
-		}
-		else
-		{
-				$sort_field = $title_row;
-		}
+		$sort_field = $config['config']['table'][$table]['sorting']['field'];
+		$out['enable_sort'] = true;
 }
 */
 
+
+
+
+// -----------------------------
+// Filters
+// -----------------------------
 
 
 if ($url->get('action') =='add_filter')
@@ -222,13 +75,6 @@ if ($url->get('action')=='remove_filter')
 
 
 
-/*
-if ($config['config']['table'][$table]['sorting']['enable']=='true')
-{
-		$sort_field = $config['config']['table'][$table]['sorting']['field'];
-		$out['enable_sort'] = true;
-}
-*/
 
 
 
@@ -240,17 +86,9 @@ foreach($record->field as $field)
 		
 		if ($field->useInView('list'))
 		{
-				$out['element'][$field->getName()]['title'] = $field->getTitle();;
-				$out['element'][$field->getName()]['help'] = $field->getHelp();
-				$out['element'][$field->getName()]['type'] = $field->getType();
-				
-				/*
-				if ($element['type'] =='image')
-				{
-						$out['element'][$key]['path'] = $config['config']['table'][$table]['element'][$key]['source']['path'];
-				}
-				*/
-				
+				$out['field'][$field->getName()]['title'] = $field->getTitle();;
+				$out['field'][$field->getName()]['help'] = $field->getHelp();
+				$out['field'][$field->getName()]['type'] = $field->getType();
 		}
 		
 		// generating the filter dropdown menus
@@ -262,33 +100,33 @@ foreach($record->field as $field)
 				
 				
 				/*
-				$query = "select * from " . $element['source']['table'] ;
+				$query = "select * from " . $field['source']['table'] ;
 				
-				if (is_multilingual($element['source']['table']))
+				if (is_multilingual($field['source']['table']))
 				{
-						$filter_locale_field = get_table_locale_field($element['source']['table']);
+						$filter_locale_field = get_table_locale_field($field['source']['table']);
 						$query .=" where $filter_locale_field='$main_locale' ";
 				}
 				
 				
-				$filter_title_row = $config['config']['table'][$element['source']['table']]['title_row'];
+				$filter_title_row = $config['config']['table'][$field['source']['table']]['title_row'];
 				
 				$query .=" order by $filter_title_row";
 				
-				//$query = "select * from " . $element['source']['table'] . " order by title";
+				//$query = "select * from " . $field['source']['table'] . " order by title";
 				$items = $db->get_results($query);
 				if ($debug) $db->debug();
 				
 				//$db->debug();
 				
-				$out['filters'][$key]['filter_name'] = $element['title'][$interface_locale];
+				$out['filters'][$key]['filter_name'] = $field['title'][$interface_locale];
 				$i=0;
 				foreach ($items as $item)
 				{
-						$out['filters'][$key]['data'][$i]['value'] = $item->$element['source']['value_field'];
-						$out['filters'][$key]['data'][$i]['label'] = $item->$element['source']['label_field'];
+						$out['filters'][$key]['data'][$i]['value'] = $item->$field['source']['value_field'];
+						$out['filters'][$key]['data'][$i]['label'] = $item->$field['source']['label_field'];
 						
-						if (($item->$element['source']['value_field'] == $_SESSION['filters'][$table][$key]['value']) and (isset($_SESSION['filters'][$table][$key])))
+						if (($item->$field['source']['value_field'] == $_SESSION['filters'][$table][$key]['value']) and (isset($_SESSION['filters'][$table][$key])))
 						{
 								$out['filters'][$key]['data'][$i]['selected'] = true;
 						}
@@ -313,10 +151,10 @@ if (isset($_SESSION['filters'][$table]))
 		{
 				$i=0;
 				$where_clause .= ' where ';
-				foreach ($_SESSION['filters'][$table] as $the_element=>$filter)
+				foreach ($_SESSION['filters'][$table] as $the_field=>$filter)
 				{
 						$i++;
-						///$filter_field = $db->($the_element);
+						///$filter_field = $db->($the_field);
 						///$filter_value = $db->($filter['value']);
 						$where_clause .= " $filter_field=$filter_value ";
 						if ($i < $num_filters) $where_clause .= ' and ';
@@ -507,48 +345,20 @@ if ($records)
 {
 		foreach ($records as $item)
 		{
+				$out['data'][$item->getId()]['icon'] = $record->getIcon();
+				$out['data'][$item->getId()]['uid'] = $record->getUid();
 				
-				
+				$url = new url();
+				$out['data'][$item->getId()]['edit_url'] = $url->linkTo($record, 'edit.php');
+				$out['data'][$item->getId()]['delete_url'] = $url->linkTo($record, 'delete.php');
+				//$out['data'][$item->getId()]['plugin_url'] = $url->linkTo($record, '');
+				// todo plugin urls
 				
 				foreach ($item->field as $field )
 				{
 						$item_locale = 'fr';
-						$out['data'][$item->getId()][$field->getName()] = $field->get();
+						$out['data'][$item->getId()]['field'][$field->getName()] = $field->get();
 						// $out['data'][$item['id']][$item['locale']][$key] = substr($val, 0, 15);
-						/*
-						if ($key == 'publish')
-						{
-								$out['data'][$item['id']][$item_locale]['publish'] = $val or '1';
-						}
-						
-						else
-						{
-								if (is_multilingual($table))
-								{
-										// if we use the poweredit, we should not strip anything from the query
-										if (!$enable_power_edit)
-										{
-												$out['data'][$item['id']][$item_locale][$key] = strip_tags(substr ($val, 0, 32));
-										}
-										else
-										{
-												$out['data'][$item['id']][$item_locale][$key] = $val;
-										}
-										
-										//fill in missing translations adding some special chars
-										//foreach
-								}
-								else
-								{
-										if (!$enable_power_edit)
-										{
-												$out['data'][$item['id']][$item_locale][$key] = strip_tags(substr ($val, 0, 32));
-										}
-										else
-										{
-												$out['data'][$item['id']][$item_locale][$key] = $val;
-										}
-										*/
         }
 		}
 		$i++;
@@ -560,45 +370,6 @@ if ($records)
 // -----------------------------
 //handle poweredit mode
 // -----------------------------
-
-
-if (isset($enable_power_edit))
-{
-		
-		$power_edit_element_count = 0;
-		foreach($config['config']['table'][$table]['element'] as $key=>$element)
-		{
-				
-				if ( ($element['use']['power_edit'] == 'true') or ( $config['config']['table'][$table]['title_row'] == $key )  )
-				{
-						$power_edit_element_count++;
-						$out['power_edit']['elements'][$key]['title'] = $element['title'][$interface_locale];
-						$out['power_edit']['elements'][$key]['help'] = $element['help'][$interface_locale];
-						$out['power_edit']['elements'][$key]['type'] = $element['type'];
-						
-						if ($element['type'] =='date')
-						{
-								$out['calendar_needed'] = true;
-								$out['interface_locale'] = $interface_locale;
-								// blazblabla
-						}
-						
-						if ($element['type'] == 'image') die ('image not supported in power edit, check config.xml');
-						if ($element['type'] == 'password') die ('password not supported in power edit for security reasons, check config.xml');
-						if ($element['type'] == 'checkbox') die ('checkbox not supported in power edit, check config.xml');
-						if ($element['type'] == 'relation') die ('relation not supported in power edit, check config.xml');
-						
-				}
-		}
-		
-		$out['power_edit']['element_count'] = $power_edit_element_count;
-		
-		$out['power_edit']['element_html_width'] = (int) (100 / $power_edit_element_count);
-		
-		
-}
-
-
 
 
 
@@ -637,18 +408,7 @@ if (isset($config['config']['table'][$table]['plugin']))
 }
 
 
-
-
 debug($out, 'OUT');
-
-
-//print_a ($out);
-
-
-
-
-
-
 
 
 // -----------------------------

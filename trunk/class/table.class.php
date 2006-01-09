@@ -61,6 +61,14 @@ class table
 		function getIcon()
 		{
 				//todo : implement this!
+				if (isset($this->config['icon']))
+				{
+						return ROOT_URL . '/ressource/image/icon/' . $this->config['icon'];
+				}
+				else
+				{
+						return ROOT_URL . 'edit/ressource/image/icon/text-x-generic.png';
+				}
 		}
 		
 		

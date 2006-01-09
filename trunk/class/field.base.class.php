@@ -35,6 +35,11 @@ class field
 		{
 				return $this->data;
 		}
+		
+		function getRaw()
+		{
+				return $this->data;
+		}
 	
 		
 		function set($data)

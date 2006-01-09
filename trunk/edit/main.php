@@ -27,11 +27,6 @@ foreach($tables as $table_id)
 {
 		
 		$table = $thinkedit->newTable($table_id);
-		if (!isset($module['type']))
-		{
-				$module['type'] = 'list';
-		}
-		
 		$out['table'][$i]['type'] = 'list';
 		$out['table'][$i]['title'] = $table->getTitle();
 		$out['table'][$i]['help'] = $table->getHelp();
@@ -157,7 +152,7 @@ $out['breadcrumb'][0]['url'] = 'main.php';
 $out['banner']['needed'] = true;
 $out['banner']['title'] = translate('welcome_msg');
 $out['banner']['message'] = $thinkedit->getHelp();
-$out['banner']['image'] = 'icons/icon_banner.gif';
+$out['banner']['image'] = 'ressource/image/general/icon_banner.gif';
 
 debug($out);
 

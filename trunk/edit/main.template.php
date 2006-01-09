@@ -31,9 +31,9 @@
 			
       <?php if (isset($out['table'])) : ?>
       
-			<?php foreach ($out['table'] as $module): ?>
+			<?php foreach ($out['table'] as $table): ?>
 			
-			<?php if ($module['type'] == 'list') : ?>
+			<?php if ($table['type'] == 'list') : ?>
 			
 			<td valign="top" class="module" width="205">		
 				 	 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -42,10 +42,10 @@
 													<table class="module_header">
 														<tbody>
 															<tr>
-																<td class="module_header"><a class="module_title" href="list.php?module=<?php echo $module['id']; ?>"><?php echo $module['title'] ?></a>
-																	<p><?php echo $module['help'] ?></p>
+																<td class="module_header"><a class="module_title" href="list.php?table=<?php echo $table['id']; ?>"><?php echo $table['title'] ?></a>
+																	<p><?php echo $table['help'] ?></p>
 																</td>
-																<td><a class="module_title" href="list.php?module=<?php echo $module['id']; ?>"><img class="module_image" src="./icons/<?php echo $module['icon'] ?>" alt="" border="0"></a></td>
+																<td><a class="module_title" href="list.php?table=<?php echo $table['id']; ?>"><img class="module_image" src="<?php echo $table['icon'] ?>" alt="" border="0"></a></td>
 															</tr>
 														</tbody>
 													</table>
@@ -60,12 +60,12 @@
 												<td>
 													<table width="100%" class="module_list">
 														
-														<?php if (isset($module['items'])) : ?>
-           									<?php foreach ($module['items'] as $item): ?>
+														<?php if (isset($table['items'])) : ?>
+           									<?php foreach ($table['items'] as $item): ?>
 														
 														<tr>
-															<td><a href="edit.php?id=<?php echo $item['id'] ?>&module=<?php echo $module['id']?>&db_locale=<?php echo $item['locale'] ?>" ><?php echo $item['title'] ?></a></td>
-															<td align="right"><a class="edit_link_button" href="edit.php?id=<?php echo $item['id'] ?>&module=<?php echo $module['id']?>&db_locale=<?php echo $item['locale'] ?>" >[<?php echo translate('edit_button') ?>]</a></td>
+															<td><a href="edit.php?id=<?php echo $item['id'] ?>&table=<?php echo $table['id']?>&db_locale=<?php echo $item['locale'] ?>" ><?php echo $item['title'] ?></a></td>
+															<td align="right"><a class="edit_link_button" href="edit.php?id=<?php echo $item['id'] ?>&table=<?php echo $table['id']?>&db_locale=<?php echo $item['locale'] ?>" >[<?php echo translate('edit_button') ?>]</a></td>
 														</tr>
 														
 														 <?php endforeach?>
@@ -85,8 +85,8 @@
 											</tr>
 											<tr height="15">
 												<td height="15">
-												<?php if (isset($module['buttons']) &&  $module['buttons'] <> 'false'): ?> 
-												<a href="list.php?module=<?php echo $module['id']?>" class="action_button"  title="<?php echo $module['help'] ?>"><?php echo translate('list')?></a> <a href="add.php?module=<?php echo $module['id']?>&db_locale=<?php echo get_preferred_locale() ?>" class="action_button"><?php echo translate('add')?></a>
+												<?php if (isset($table['buttons']) &&  $table['buttons'] <> 'false'): ?> 
+												<a href="list.php?table=<?php echo $table['id']?>" class="action_button"  title="<?php echo $table['help'] ?>"><?php echo translate('list')?></a> <a href="add.php?module=<?php echo $table['id']?>&db_locale=<?php echo get_preferred_locale() ?>" class="action_button"><?php echo translate('add')?></a>
 												<?php endif; ?>
 												</td>
 											</tr>
@@ -131,20 +131,20 @@
 								<td valign="top" height="152" background="images/sticker.gif">
 								
 								
-								<?php foreach ($out['filemanager_table'] as $module): ?>
+								<?php foreach ($out['filemanager_table'] as $table): ?>
 								
 									<table cellpadding="0px" cellspacing="0" class="module_right" height="152">
 										<tr height="28">
-											<td height="28"><div class="module_right_title"><?php echo $module['title'] ?> >></div></td>
+											<td height="28"><div class="module_right_title"><?php echo $table['title'] ?> >></div></td>
 										</tr>
 										<tr height="124">
 											<td valign="top" height="124">
 												<table width="100%" border="0" cellspacing="0" cellpadding="10" height="100%">
 													<tr>
-														<td valign="top" width="50%"><a href="file_manager.php?module=<?php echo $module['id']; ?>"  title="<?php echo $module['help'] ?>"><img src="images/armoire.jpg" alt="" width="95" height="102" border="0"></a></td>
+														<td valign="top" width="50%"><a href="file_manager.php?module=<?php echo $table['id']; ?>"  title="<?php echo $table['help'] ?>"><img src="images/armoire.jpg" alt="" width="95" height="102" border="0"></a></td>
 														<td valign="top" width="50%">
-														<a href="file_manager.php?module=<?php echo $module['id']; ?>"  title="<?php echo $module['help'] ?>"><?php echo $module['help'] ?></a><br/><br/>
-														<a href="list.php?module=<?php echo $module['id']; ?>"  title="<?php echo translate('metadata_link_homepage') ?>"><?php echo translate('metadata_link_homepage') ?></a>
+														<a href="file_manager.php?module=<?php echo $table['id']; ?>"  title="<?php echo $table['help'] ?>"><?php echo $table['help'] ?></a><br/><br/>
+														<a href="list.php?module=<?php echo $table['id']; ?>"  title="<?php echo translate('metadata_link_homepage') ?>"><?php echo translate('metadata_link_homepage') ?></a>
 														</td>
 													</tr>
 												</table>
@@ -171,9 +171,9 @@
 										
 										
 										<?php $x = 0; ?>
-										<?php foreach ($out['minilist_table'] as $module): ?>
+										<?php foreach ($out['minilist_table'] as $table): ?>
 										<tr>
-											<td valign="top" bgcolor="white"><div class="module_right_list"><a class="module_list_button" href="list.php?module=<?php echo $module['id']; ?>" title="<?php echo $module['help'] ?>"><?php echo $module['title'] ?></a></div></td>
+											<td valign="top" bgcolor="white"><div class="module_right_list"><a class="module_list_button" href="list.php?module=<?php echo $table['id']; ?>" title="<?php echo $table['help'] ?>"><?php echo $table['title'] ?></a></div></td>
 										</tr>
 										
 										<?php $x++ ?>

@@ -65,6 +65,13 @@ class url
 	}
 	$this->self = $_SERVER['PHP_SELF'];
 	
+	
+	// fix for IIS
+	if (! isset($_SERVER['REQUEST_URI'])) 
+	{
+			$_SERVER['REQUEST_URI'] = $_SERVER['SCRIPT_NAME'];
+	}
+	
 	$this->url = $_SERVER['REQUEST_URI'];
 	
 	//echo $this->url;
@@ -368,7 +375,7 @@ class url
   }
   */
   
-  
+	
 }
 
 

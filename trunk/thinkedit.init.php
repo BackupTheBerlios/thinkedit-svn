@@ -35,6 +35,10 @@ $thinkedit = new thinkedit(ROOT . '/config/');
 $user = new user();
 
 
+// turn on error reporting
+//error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(E_ALL);
+ini_set('display_errors', true);
 
 
 ?>

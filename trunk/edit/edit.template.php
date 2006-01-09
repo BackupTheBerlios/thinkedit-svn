@@ -1,7 +1,7 @@
 
 
 
-<?php if ($out['wysiwyg_editor_needed']): ?>
+<?php if (isset($out['wysiwyg_editor_needed'])): ?>
 <!-- To decrease bandwidth, change the src to richtext_compressed.js //-->
 <script language="JavaScript" type="text/javascript" src="richtext_compressed.js"></script>
 	
@@ -122,22 +122,42 @@ $class = "tr_on";
 <div class="detail_margin">
 
 
-<?php if ($out['error']) :?>
+<?php if (isset($out['error'])) :?>
 <div class="error"><?php echo translate('error') ?> : <?php echo $out['error'] ?></div>
 <?php endif;?>
 
 			
-<form name="edit_form" action="<?php echo $PHP_SELF?>?action=save&id=<?php echo $out['id']?>&module=<?php echo $out['module']?>" method="post" onsubmit="return submitForm();">			
+<form name="edit_form" action="<?php echo $out['save_url']?>" method="post" onsubmit="return submitForm();">			
+
+<?php /****************** start field rendering ***********/ ?>
+
+<?php if (isset($out['field'])): ?>
+
+<?php foreach ($out['field'] as $field): ?>
+<div class="detail_items_title">
+<?php echo $field['title']; ?> :
+</div>
+
+<?php echo $field['ui']; ?>
+<hr/>
+<br/>
+
+<?php endforeach; ?>
+
+<?php endif; ?>
+
+<?php /****************** stop field rendering ***********/ ?>
+
 
 
 <?php // here we define the needed variables in case of save ?>
-<input type="hidden" name="module" value="<?echo $out['module'];?>">
+<input type="hidden" name="table" value="<?echo $out['table'];?>">
 <input type="hidden" name="id" value="<?echo $out['id'];?>">
 <input type="hidden" name="db_locale" value="<?echo $out['db_locale'];?>">
 
 
 
-<?php if ($enable_publish): ?>
+<?php if (isset($enable_publish)): ?>
 <div class="detail_items_title">
 <?php echo translate('edit_publish_title') ?>
 </div>			
@@ -171,7 +191,7 @@ $class = "tr_on";
 
 <?php endif; ?>
 
-
+<?php if(isset($out['element'])): ?>
 <?php foreach ($out['element'] as $element_name=>$element) : ?>			
 			
 <div class="detail_items_title">
@@ -270,8 +290,8 @@ writeRichText('<?php echo $element['field']; ?>', '<?php echo RTESafe($out['data
 <!--<div style="visibility:hidden">-->
 	 <input class="input" type="text" name="<?php echo $element['field']; ?>" value="<?php echo $out['data'][$element['field']]?>" size="50">
 <!--</div>	--> 
-	 <a href="image_browser.php?module=<?php echo $element['source']?>&element=<?php echo $element['field'] ?>" target="_blank" onClick="javascript: 
-        find_window=window.open('image_browser.php?module=<?php echo $element['source']?>&element=<?php echo $element['field'] ?>','find','scrollbars=yes, toolbar=no,top=105,left=145,width=250,height=500,alwaysRaised, resizable=yes'); return false;" class="action_button">
+	 <a href="image_browser.php?table=<?php echo $element['source']?>&element=<?php echo $element['field'] ?>" target="_blank" onClick="javascript: 
+        find_window=window.open('image_browser.php?table=<?php echo $element['source']?>&element=<?php echo $element['field'] ?>','find','scrollbars=yes, toolbar=no,top=105,left=145,width=250,height=500,alwaysRaised, resizable=yes'); return false;" class="action_button">
 <?php echo translate('browse_button') ?>
 </a>	
 
@@ -308,7 +328,7 @@ writeRichText('<?php echo $element['field']; ?>', '<?php echo RTESafe($out['data
 	 
 	 <iframe name="<?php echo $element['field']; ?>" id="<?php echo $element['field']; ?>" 
 scrolling="no" width="500" frameborder="0" marginheight="0"
-marginwidth="0" src="relation.php?module=<?php echo $module ?>&element=<?php echo $element['field']; ?>&id=<?php echo $_REQUEST['id']; ?>">
+marginwidth="0" src="relation.php?table=<?php echo $table ?>&element=<?php echo $element['field']; ?>&id=<?php echo $_REQUEST['id']; ?>">
 	 </iframe>
 	 </div>
 	 
@@ -338,7 +358,7 @@ marginwidth="0" src="relation.php?module=<?php echo $module ?>&element=<?php ech
 	 
 	 
   <?php elseif ($element['type']=='filename'): ?>
-	Image ou icône ici pour le filemanager
+	Image ou icï¿½ne ici pour le filemanager
 	 
 	 
 		 
@@ -354,11 +374,12 @@ marginwidth="0" src="relation.php?module=<?php echo $module ?>&element=<?php ech
   <?php endif; ?>
 
 
+
 <hr/>
 <br/>
 
 <?php endforeach; ?>			
-
+<?php endif; ?>
 <input class="action_button" type="submit" value="<?php echo translate('save_button') ?>" name="save">
 <input class="action_button" type="submit" value="<?php echo translate('save_and_return_to_list_button') ?>" name="save_and_return_to_list">
 
