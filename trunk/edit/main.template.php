@@ -5,7 +5,7 @@
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					
-					<!-- modules sections -->
+					<!-- table sections -->
 					
 					<td valign="top">
 					
@@ -29,9 +29,9 @@
 				
 			<?php $i=1 ?>
 			
-      <?php if ($out['modules']) : ?>
+      <?php if (isset($out['table'])) : ?>
       
-			<?php foreach ($out['modules'] as $module): ?>
+			<?php foreach ($out['table'] as $module): ?>
 			
 			<?php if ($module['type'] == 'list') : ?>
 			
@@ -113,7 +113,7 @@
 					</table>
 					</td>
 			
-					<!-- fin  modules sections-->
+					<!-- fin  table sections-->
 					
 					<!-- separator -->
 					<td valign="top" background="separator.gif">
@@ -121,17 +121,17 @@
 					</td>
 					<!-- fin separator -->
 					
-					<!-- modules listes -->
+					<!-- table listes -->
 					<td valign="top">
 					
 						<table cellpadding="0" cellspacing="10" border="0">
-						<?php if (isset($out['filemanager_modules'])) : ?>
+						<?php if (isset($out['filemanager_table'])) : ?>
 							<tr height="152">		
 								
 								<td valign="top" height="152" background="images/sticker.gif">
 								
 								
-								<?php foreach ($out['filemanager_modules'] as $module): ?>
+								<?php foreach ($out['filemanager_table'] as $module): ?>
 								
 									<table cellpadding="0px" cellspacing="0" class="module_right" height="152">
 										<tr height="28">
@@ -159,7 +159,7 @@
 								
 							</tr>
 							<?php endif; ?>					
-							<?php if (isset ($out['minilist_modules'])): ?>
+							<?php if (isset ($out['minilist_table'])): ?>
 							<tr>
 								<td valign="top">
 									<table cellpadding="0px" cellspacing="0" height="59">
@@ -171,13 +171,13 @@
 										
 										
 										<?php $x = 0; ?>
-										<?php foreach ($out['minilist_modules'] as $module): ?>
+										<?php foreach ($out['minilist_table'] as $module): ?>
 										<tr>
 											<td valign="top" bgcolor="white"><div class="module_right_list"><a class="module_list_button" href="list.php?module=<?php echo $module['id']; ?>" title="<?php echo $module['help'] ?>"><?php echo $module['title'] ?></a></div></td>
 										</tr>
 										
 										<?php $x++ ?>
-										<?php if ($x < count($out['minilist_modules'])) : ?>
+										<?php if ($x < count($out['minilist_table'])) : ?>
 										<tr height="1">
 											<td bgcolor="#999999" height="1"></td>
 										</tr>
@@ -199,7 +199,7 @@
 						</table>
 				</td>
 				
-				<!-- fin modules listes-->
+				<!-- fin table listes-->
 					
 			</tr>
 			</table>

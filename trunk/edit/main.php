@@ -18,7 +18,7 @@ $config_tool = $thinkedit->newConfig();
 $tables = $config_tool->getTableList();
 
 
-// generating the modules list from the config array
+// generating the table list from the config array
 $i=0;
 $j=0;
 $k=0;
@@ -32,27 +32,27 @@ foreach($tables as $table_id)
 				$module['type'] = 'list';
 		}
 		
-		$out['modules'][$i]['type'] = 'list';
-		$out['modules'][$i]['title'] = $table->getTitle();
-		$out['modules'][$i]['help'] = $table->getHelp();
-		//$out['modules'][$i]['icon'] = $module['icon'];
-		$out['modules'][$i]['id'] = $table->getTableName();
+		$out['table'][$i]['type'] = 'list';
+		$out['table'][$i]['title'] = $table->getTitle();
+		$out['table'][$i]['help'] = $table->getHelp();
+		$out['table'][$i]['icon'] = $table->getIcon();;
+		$out['table'][$i]['id'] = $table->getTableName();
 		$i++;
 }
 
 /*
-// only show modules we want to in the config files
+// only show table we want to in the config files
 if  ((!$module['use']['homepage'] == 'false') and ($module['type'] == 'list'))
 {
 		
-    $out['modules'][$i]['type'] = $module['type'];
-    $out['modules'][$i]['title'] = $module['title'][$interface_locale];
-    $out['modules'][$i]['help'] = $module['help'][$interface_locale];
-    $out['modules'][$i]['icon'] = $module['icon'];
-    $out['modules'][$i]['id'] = $key;
+    $out['table'][$i]['type'] = $module['type'];
+    $out['table'][$i]['title'] = $module['title'][$interface_locale];
+    $out['table'][$i]['help'] = $module['help'][$interface_locale];
+    $out['table'][$i]['icon'] = $module['icon'];
+    $out['table'][$i]['id'] = $key;
     if ($module['use']['buttons']=='false')
     {
-				$out['modules'][$i]['buttons'] = 'false';
+				$out['table'][$i]['buttons'] = 'false';
     }
 		
 		
@@ -90,9 +90,9 @@ if  ((!$module['use']['homepage'] == 'false') and ($module['type'] == 'list'))
 				$x=0;
 				foreach ($items as $item)
 				{
-						$out['modules'][$i]['items'][$x]['title'] = strip_tags(substr($item->$module['title_row'], 0, 15)) . "...";
-						$out['modules'][$i]['items'][$x]['id'] = $item->id;
-						$out['modules'][$i]['items'][$x]['locale'] = $item->locale;
+						$out['table'][$i]['items'][$x]['title'] = strip_tags(substr($item->$module['title_row'], 0, 15)) . "...";
+						$out['table'][$i]['items'][$x]['id'] = $item->id;
+						$out['table'][$i]['items'][$x]['locale'] = $item->locale;
 						$x++;
 				}
 				
@@ -106,30 +106,30 @@ if  ((!$module['use']['homepage'] == 'false') and ($module['type'] == 'list'))
 
 
 
-// only show modules we want to in the config files
+// only show table we want to in the config files
 if  ((!$module['use']['homepage'] == 'false') and ($module['type'] == 'minilist'))
 {
 		
-    $out['minilist_modules'][$j]['type'] = $module['type'];
-    $out['minilist_modules'][$j]['title'] = $module['title'][$interface_locale];
-    $out['minilist_modules'][$j]['help'] = $module['help'][$interface_locale];
-    $out['minilist_modules'][$j]['icon'] = $module['icon'];
-    $out['minilist_modules'][$j]['id'] = $key;
+    $out['minilist_table'][$j]['type'] = $module['type'];
+    $out['minilist_table'][$j]['title'] = $module['title'][$interface_locale];
+    $out['minilist_table'][$j]['help'] = $module['help'][$interface_locale];
+    $out['minilist_table'][$j]['icon'] = $module['icon'];
+    $out['minilist_table'][$j]['id'] = $key;
 		
     $j++;
 		
 }
 
 
-// only show modules we want to in the config files
+// only show table we want to in the config files
 if  ((!$module['use']['homepage'] == 'false') and ($module['type'] == 'filemanager'))
 {
 		
-    $out['filemanager_modules'][$k]['type'] = $module['type'];
-    $out['filemanager_modules'][$k]['title'] = $module['title'][$interface_locale];
-    $out['filemanager_modules'][$k]['help'] = $module['help'][$interface_locale];
-    $out['filemanager_modules'][$k]['icon'] = $module['icon'];
-    $out['filemanager_modules'][$k]['id'] = $key;
+    $out['filemanager_table'][$k]['type'] = $module['type'];
+    $out['filemanager_table'][$k]['title'] = $module['title'][$interface_locale];
+    $out['filemanager_table'][$k]['help'] = $module['help'][$interface_locale];
+    $out['filemanager_table'][$k]['icon'] = $module['icon'];
+    $out['filemanager_table'][$k]['id'] = $key;
     $k++;
 		
 }

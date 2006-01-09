@@ -27,9 +27,7 @@ header("HTTP/1.0 304 Not Modified");
 
     <meta http-equiv="content-type" content="text/html;charset=UTF8" />
 
-    <meta name="generator" content="La Petite Usine &reg;"/>
-
-		<?php if (isset($out['title'])): ?>
+    <?php if (isset($out['title'])): ?>
 		<title><?php echo $out['title']; ?></title>
 		<?php else: ?>
     <title>Thinkedit</title>
