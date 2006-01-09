@@ -23,13 +23,13 @@ class user
 				else
 				{
 						global $thinkedit;
-						
+				  	$session = $thinkedit->newSession();
 						
 						$user = $thinkedit->newRecord('user'); // todo custom user table
-						$user->set('login', $login); // login and password must be primary keys (todo)
-						$user->set('password', $password);
+						//$user->set('login', $login); // login and password must be primary keys (todo)
+						//$user->set('password', $password);
 						
-						if ($user->load())
+						if ($user->find(array('login'=>$login, 'password'=>$password)))
 						{
 								$session = $thinkedit->newSession();
 								$session->set('thinkedit_user', $login);
@@ -37,6 +37,8 @@ class user
 						}
 						else
 						{
+								$this->logout();
+								//trigger_error('user::login() login failed');
 								return false;
 						}
 				}
@@ -47,11 +49,16 @@ class user
 		
 		function logout()
 		{
+				global $thinkedit;
+				$session = $thinkedit->newSession();
+				
 				$session->delete('thinkedit_user');
 		}
 		
 		function isLogged()
 		{
+				global $thinkedit;
+				$session = $thinkedit->newSession();
 				if ($session->get('thinkedit_user'))
 				{
 						return true;
@@ -64,6 +71,9 @@ class user
 		
 		function isAnonymous()
 		{
+				global $thinkedit;
+				$session = $thinkedit->newSession();
+				
 				if ($session->get('thinkedit_user'))
 				{
 						return false;

@@ -23,6 +23,12 @@
 <help><fr>Un titre court est plus percutant</fr></help>
 <type>string</type>
 <is_title>true</is_title>
+
+<use>
+<poweredit>true</poweredit>
+<list>true</list>
+</use>
+
 </field>
 
 
@@ -39,7 +45,7 @@
 
 <field id="author">
 <type>lookup</type>
-
+<is_title>true</is_title>
 <source>
 <type>table</type>
 <name>author</name>

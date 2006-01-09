@@ -128,7 +128,7 @@ initRTE("images/", "", "");
 function page_loaded() 
 {
 document.getElementById('loading').style.display='none';
-<?php if ($enable_power_edit): ?>	
+<?php if (isset($enable_power_edit)): ?>	
 protect_links();
 <?php endif; ?>
 //alert('page loaded');

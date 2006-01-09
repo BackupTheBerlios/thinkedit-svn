@@ -26,7 +26,7 @@
 define ('ROOT', dirname(__FILE__));
 define ('ROOT_URL', '/thinkedit/trunk/'); //todo : find a way to compute this reliably
 
-//require_once ROOT . '/tools.inc.php';
+require_once ROOT . '/lib/thinkedit/tools.inc.php';
 require_once ROOT . '/class/thinkedit.class.php';
 require_once ROOT . '/class/user.class.php';
 require_once ROOT . '/class/config.class.php';

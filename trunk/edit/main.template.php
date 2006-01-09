@@ -60,7 +60,7 @@
 												<td>
 													<table width="100%" class="module_list">
 														
-														<?php if ($module['items']) : ?>
+														<?php if (isset($module['items'])) : ?>
            									<?php foreach ($module['items'] as $item): ?>
 														
 														<tr>
@@ -85,7 +85,7 @@
 											</tr>
 											<tr height="15">
 												<td height="15">
-												<?php if ($module['buttons'] <> 'false'): ?> 
+												<?php if (isset($module['buttons']) &&  $module['buttons'] <> 'false'): ?> 
 												<a href="list.php?module=<?php echo $module['id']?>" class="action_button"  title="<?php echo $module['help'] ?>"><?php echo translate('list')?></a> <a href="add.php?module=<?php echo $module['id']?>&db_locale=<?php echo get_preferred_locale() ?>" class="action_button"><?php echo translate('add')?></a>
 												<?php endif; ?>
 												</td>
@@ -125,7 +125,7 @@
 					<td valign="top">
 					
 						<table cellpadding="0" cellspacing="10" border="0">
-						<?php if (is_array ($out['filemanager_modules'])) : ?>
+						<?php if (isset($out['filemanager_modules'])) : ?>
 							<tr height="152">		
 								
 								<td valign="top" height="152" background="images/sticker.gif">
@@ -159,7 +159,7 @@
 								
 							</tr>
 							<?php endif; ?>					
-							<?php if (is_array ($out['minilist_modules'])): ?>
+							<?php if (isset ($out['minilist_modules'])): ?>
 							<tr>
 								<td valign="top">
 									<table cellpadding="0px" cellspacing="0" height="59">

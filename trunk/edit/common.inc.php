@@ -11,7 +11,7 @@ require_once '../thinkedit.init.php';
 require_once('error.inc.php');
 //require_once('locale.inc.php');
 require_once('file.inc.php');
-require_once('tools.inc.php');
+//require_once('tools.inc.php');
 require_once('user.inc.php');
 
 //***** new tools
@@ -49,11 +49,11 @@ require_once('api.inc.php');
 
 if (isset($_SESSION['preferred_locale']))
 {
-$preferred_locale = $_SESSION['preferred_locale'];
+		$preferred_locale = $_SESSION['preferred_locale'];
 }
 else
 {
-$preferred_locale = get_main_locale();
+		$preferred_locale = get_main_locale();
 }
 
 

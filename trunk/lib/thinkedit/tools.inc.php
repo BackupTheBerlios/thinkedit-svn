@@ -38,10 +38,8 @@ function error_handler($errno, $errstr , $errfile , $errline , $errcontext)
 // idem for user less setup
 function debug($data, $title=false)
 {
-		
 		global $debug;
-		if (isset($_GET['debug']))
-				
+		if (isset($_GET['debug']))		
 		{
 				$out='';
 				if ($title) $out.="<h1>$title</h1>";
@@ -105,6 +103,26 @@ function translate($translation_id)
 		{
 				return false;
 		}
+}
+
+
+
+
+function redirect($page)
+{
+header("Location: http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/".$page);
+}
+
+function get_file_extension($filename)
+{
+return strtolower(end(explode('.', $filename)));
+}
+			
+			
+function get_file_filename($filename)
+{
+$tmp = explode('.', $filename);
+return strtolower($tmp[0]);
 }
 
 

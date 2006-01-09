@@ -151,6 +151,7 @@ class db
 						$total_queries++;	
 						// one line debugging tool :-)
 						// debug($sql . '[select]', 'db:select()');
+						//echo ($sql. "[select]" . "db:select()");
 						
 						$this->sql = $sql;
 						if (!$this->query = mysql_query($sql,$this->connection))

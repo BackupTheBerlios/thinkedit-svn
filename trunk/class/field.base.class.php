@@ -29,21 +29,13 @@ class field
 		}
 		
 		
-		function getNice()
-		{
-				return strip_tags($this->get());
-		}
 		
 		
 		function get()
 		{
 				return $this->data;
 		}
-		
-		function getRaw()
-		{
-				return $this->data;
-		}
+	
 		
 		function set($data)
 		{
@@ -151,6 +143,32 @@ class field
 				if (empty($this->data))
 				{
 						return true;
+				}
+				else
+				{
+						return false;
+				}
+		}
+		
+		
+		function useInView($view)
+		{
+				// enable by default title columns in list view
+				if ($this->isTitle() && $view == 'list')
+				{
+						return true;
+				}
+				
+				if (isset($this->config['use'][$view]))
+				{
+						if ($this->config['use'][$view] == true)
+						{
+								return true;
+						}
+						else
+						{
+								return false;
+						}
 				}
 				else
 				{
