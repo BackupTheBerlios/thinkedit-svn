@@ -42,10 +42,10 @@
 													<table class="module_header">
 														<tbody>
 															<tr>
-																<td class="module_header"><a class="module_title" href="list.php?table=<?php echo $table['id']; ?>"><?php echo $table['title'] ?></a>
+																<td class="module_header"><a class="module_title" href="<?php echo $table['list_url']; ?>"><?php echo $table['title'] ?></a>
 																	<p><?php echo $table['help'] ?></p>
 																</td>
-																<td><a class="module_title" href="list.php?table=<?php echo $table['id']; ?>"><img class="module_image" src="<?php echo $table['icon'] ?>" alt="" border="0"></a></td>
+																<td><a class="module_title" href="<?php echo $table['list_url']; ?>"><img class="module_image" src="<?php echo $table['icon'] ?>" alt="" border="0"></a></td>
 															</tr>
 														</tbody>
 													</table>

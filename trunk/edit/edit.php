@@ -53,7 +53,7 @@ if ($url->get('action')=='save')
 		debug($record, 'Record before saving');
 		if ($record->save())
 		{
-		$out['info'] = translate('item_save_successfully');
+				$out['info'] = translate('item_save_successfully');
 		}
 		else
 		{
@@ -208,7 +208,7 @@ foreach ($items as $key => $val)
 //$out['breadcrumb'][0]['url'] = 'main.php';
 
 $out['breadcrumb'][1]['title'] = $table_object->getTitle();
-$out['breadcrumb'][1]['url'] = 'list.php?table=' . $table;
+$out['breadcrumb'][1]['url'] = $url->linkTo($table_object, 'list.php');
 
 $out['breadcrumb'][2]['title'] = translate('editing_link');
 $out['breadcrumb'][2]['url'] = '';
@@ -227,12 +227,11 @@ $out['banner']['image'] = $table_object->getIcon();
 
 debug($out, 'OUT');
 debug($_REQUEST, 'Request');
-//if ($debug) print_a ($_REQUEST);
 
 
 if ($url->get('save_and_return_to_list'))
 {
-		//		redirect("list.php?table=$table");
+		$url->set('info', 'edit_successfull');
 		$url->set('action', 'save');
 		$url->keepParam('type');
 		$url->keepParam('class');

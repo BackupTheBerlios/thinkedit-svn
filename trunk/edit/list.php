@@ -14,13 +14,13 @@ check_user();
 // -----------------------------
 // we need a table if we want to work on it
 // -----------------------------
-if (!$url->get('table'))
+if (!$url->get('type'))
 {
-		error("Please select a table from the main menu");
+		error("Please select a type from the main menu");
 }
 else
 {
-		$table = $url->get('table');
+		$table = $url->get('type');
 		$table_object = $thinkedit->newTable($table);
 		$record = $thinkedit->newRecord($table);
 }
@@ -345,18 +345,17 @@ if ($records)
 {
 		foreach ($records as $item)
 		{
-				$out['data'][$item->getId()]['icon'] = $record->getIcon();
-				$out['data'][$item->getId()]['uid'] = $record->getUid();
+				$out['data'][$item->getId()]['icon'] = $item->getIcon();
+				$out['data'][$item->getId()]['uid'] = $item->getUid();
 				
 				$url = new url();
-				$out['data'][$item->getId()]['edit_url'] = $url->linkTo($record, 'edit.php');
-				$out['data'][$item->getId()]['delete_url'] = $url->linkTo($record, 'delete.php');
+				$out['data'][$item->getId()]['edit_url'] = $url->linkTo($item, 'edit.php');
+				$out['data'][$item->getId()]['delete_url'] = $url->linkTo($item, 'delete.php');
 				//$out['data'][$item->getId()]['plugin_url'] = $url->linkTo($record, '');
 				// todo plugin urls
 				
 				foreach ($item->field as $field )
 				{
-						$item_locale = 'fr';
 						$out['data'][$item->getId()]['field'][$field->getName()] = $field->get();
 						// $out['data'][$item['id']][$item['locale']][$key] = substr($val, 0, 15);
         }
@@ -374,10 +373,22 @@ if ($records)
 
 
 // -----------------------------
+//handle global actions
+// -----------------------------
+
+// add
+$url = new url();
+$add_action['title'] = translate('add');
+$add_action['url'] = $url->linkTo($table_object, 'edit.php');
+$out['global_action'][] = $add_action;
+
+
+
+// -----------------------------
 // generates the breadcrumb data
 // -----------------------------
 $out['breadcrumb'][1]['title'] = $table_object->getTitle();
-$out['breadcrumb'][1]['url'] = 'list.php?table=' . $table_object->getTableName();
+$out['breadcrumb'][1]['url'] = $url->linkTo($table_object, 'list.php');
 
 
 
@@ -409,6 +420,12 @@ if (isset($config['config']['table'][$table]['plugin']))
 
 
 debug($out, 'OUT');
+
+
+if ($url->get('info'))
+{
+		$out['info'] = translate($url->get('info')); // todo security check in translate and in record
+}
 
 
 // -----------------------------

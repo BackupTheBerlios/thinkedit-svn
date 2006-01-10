@@ -1,8 +1,6 @@
 <?php
 /*
-Thinkedit 2.0 by Philippe Jadin and Pierre Lecrenier
-
-
+See licence.txt
 */
 
 include_once('common.inc.php');
@@ -10,68 +8,35 @@ include_once('common.inc.php');
 //check_user
 check_user();
 
-
-
-// check module name
-// todo : need validation (from config file)!
-if (!$_REQUEST['module'])
+if (!$url->get('type'))
 {
-  error("Please choose a module");
+		error("Please choose a table");
 }
 
-$module = $_REQUEST['module'];
-$out['module'] = $module;
+$table = $url->get('type');
+$out['table'] = $table;
 
+$table_object = $thinkedit->newTable($table);
+$record = $url->getObject();
 
-if (is_null($_REQUEST['id']))
+if ($record->load())
 {
-  error("Please choose an id");
-}
-
-$id = $_REQUEST['id'];
-$out['id'] = $id;
-
-
-
-if (!$_REQUEST['db_locale'] and $config['config']['module'][$module]['locale']['type'] == 'multilingual')
-{
-  error("Please choose a db locale");
-}
-
-$db_locale  = $_REQUEST['db_locale'];
-$out['db_locale'] = $db_locale;
-
-
-
-/* changed : delete all locales at all time */
-
-
-//depending if the module is multiligual or not, we create a query including locale or not.
-/*
-if ($config['config']['module'][$module]['locale']['type'] == 'multilingual')
-{
-$query = "delete from " . $config['config']['module'][$module]['table'] . " where id='$id' and locale='$db_locale'";
+		if ($record->delete())
+		{
+		debug($record, 'Record after loading');
+		$url->keepParam('class');
+		$url->keepParam('type');
+		$url->redirect('list.php');
+		die();
+		}
+		else
+		{
+				error(translate('cannot_delete_record'));
+		}
 }
 else
 {
-$query = "delete from " . $config['config']['module'][$module]['table'] . " where id='$id'";
+		error(translate('cannot_load_record'));
 }
-
-*/
-
-$query = "delete from " . $config['config']['module'][$module]['table'] . " where id='$id'";
-
-
-$db->query($query);
-
-if ($debug) $db->debug();
-
-
-redirect("list.php?module=$module&db_locale=$db_locale&id=$id");
-
-// redirect to list page...
-header("Location: http://".$_SERVER['HTTP_HOST']
-.dirname($_SERVER['PHP_SELF'])
-."/". "list.php?module=$module&db_locale=$db_locale&id=$id");
 
 ?>

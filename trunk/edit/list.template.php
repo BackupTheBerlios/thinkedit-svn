@@ -371,6 +371,8 @@ $i++;
 </tr>
 <?php endforeach; ?>
 
+<?php /****************** if no data ***************/ ?>
+
 <?php else: ?>
 <tr>
 <td>
@@ -382,34 +384,18 @@ $i++;
 
 <br>
 
+<?php /****************** global tools ***************/ ?>
 
 
-
-<?php if ($out['buttons'] <> 'false') : ?>
+<?php if (isset($out['global_action'])): ?>
 <table border="0" cellspacing="0" cellpadding="0" class="power_list_tools_table">
+<?php foreach ($out['global_action'] as $action): ?>
 <th class="action_button">
-<a class="white_link" href="add.php?table=<?php echo $out['table']?>&db_locale=<?php echo get_preferred_locale() ?>">Ajouter</a>
+<a class="white_link" href="<?php echo $action['url']?>"><?php echo $action['title']?></a>
 </th>
-
-
-<!-- affichage des boutons plug-in's -->
-<?php if (isset ($out['plugins'])) : ?>
-
-<?php foreach($out['plugins'] as $plugin) : ?>
-
-<?php if ($plugin['use']['list'] == 'true') : ?>
-<th class="action_button">
-<a class="white_link" target="_blank" href="<?php echo $plugin['plugin_file'] ?>?table=<?php echo $out['table']?>&db_locale=<?php echo get_preferred_locale() ?>">
-<?php echo $plugin['title'][$interface_locale] ?></a>
-</th>
-<?php endif; ?>
-
 <?php endforeach; ?>
-
-<?php endif; ?>
-
 </table>
-<?php endif; ?> 
+<?php endif; ?>
 
 
 

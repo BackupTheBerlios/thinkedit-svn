@@ -7,6 +7,11 @@
 
 <title_field>title</title_field>
 
+<field id="id">
+<type>id</type>
+</field>
+
+
 <field id="source_class">
 <type>string</type>
 <primary>true</primary>

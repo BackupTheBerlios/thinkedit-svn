@@ -30,8 +30,11 @@ foreach($tables as $table_id)
 		$out['table'][$i]['type'] = 'list';
 		$out['table'][$i]['title'] = $table->getTitle();
 		$out['table'][$i]['help'] = $table->getHelp();
-		$out['table'][$i]['icon'] = $table->getIcon();;
-		$out['table'][$i]['id'] = $table->getTableName();
+		$out['table'][$i]['icon'] = $table->getIcon();
+		// $out['table'][$i]['id'] = $table->getTableName();
+		$out['table'][$i]['uid'] = $table->getUid();
+		$out['table'][$i]['list_url'] = $url->linkTo($table, 'list.php');
+		
 		$i++;
 }
 
