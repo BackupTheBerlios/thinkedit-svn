@@ -137,6 +137,27 @@ class record
 		
 		function find($where = false, $order = false, $limit = false)
 		{
+				/*
+				This is nicer
+				or
+				Is this nicer : 
+				
+				$args['where'][0]['field'] = 'title'
+				$args['where'][0]['cond'] = 'like';
+				$args['where'][0]['value'] = '%test%';
+				
+				$args['limit']['start'] = 10;
+				$args['limit']['end'] = 100;
+				
+				$args['sort'][0]['field'] = 'title';
+				$args['sort'][0]['order'] = 'asc';
+				
+				
+				$record->find($args) ...
+				
+				
+				*/
+				
 				global $user;
 				if ($user->hasPermission('view', $this))
 				{
@@ -151,6 +172,19 @@ class record
 										
 								}
 								$sql .= implode($where_clause, ' and ');
+						}
+						
+						
+						// todo  : validation !
+						if (is_array($order))
+						{
+								$sql .= " order by ";
+								foreach ($order as $field=>$sort_order)
+								{
+										$order_by_clause[] =  $field . " " . $sort_order;
+										
+								}
+								$sql .= implode($order_by_clause, ' , ');
 						}
 						
 						

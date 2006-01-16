@@ -111,12 +111,28 @@ class url
 				return $this->getParam($id);
 		}
 		
+		
+		function addObject($object, $prefix=false)
+		{
+				if ($object->getUid())
+				{
+						$uid = $object->getUid();
+						foreach ($uid as $key=>$value)
+						{
+								$this->set($prefix . $key, $value);
+						}
+						
+						return true;
+				}
+				return false;
+		}
+		
 		function getObject($prefix = false)
 		{
 				global $thinkedit;
-				$class = $this->get('class');
-				$type = $this->get('type');
-				$id = $this->get('id');
+				$class = $this->get($prefix . 'class');
+				$type = $this->get($prefix . 'type');
+				$id = $this->get($prefix . 'id'); // todo : custom primary keys parameters
 				
 				if ($class && $type && $id)
 				{
@@ -198,6 +214,15 @@ class url
 				$this->keep[] = $param;
 		}
 		
+		
+		/*
+		Alias
+		Keep an existing parameter when rendering an url
+		*/
+		function keep($param)
+		{
+				$this->keepParam($param);
+		}
 		
 		/*
 		Keep all existing parameter when rendering an url

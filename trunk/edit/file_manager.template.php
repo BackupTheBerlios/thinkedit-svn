@@ -16,7 +16,7 @@ function jump(targ,selObj,restore){ //v3.0
 
 <div class="path_chooser">
 
-<?php if ($out['folders']) : ?>
+<?php if (isset($out['folders'])) : ?>
 <select size="1" onChange="jump('parent',this,0)">
 <?php foreach ($out['folders'] as $folder): ?>
 
@@ -32,7 +32,7 @@ $selected="";
 
 ?>
 
-<option value="file_manager.php?path=<?php echo $folder->path ?>&module=<?php echo $filemanager_id?>" <?php echo $selected ?> ><?php echo  $folder->path ?></option>
+<option value="<?php echo $folder['url'] ?>" <?php echo $selected ?> ><?php echo  $folder['path'] ?></option>
 
 <?php endforeach; ?>
 </select>
@@ -106,11 +106,21 @@ No files yet
 
 <div class="file_actions">
 
-
+<p>
 <form action="file_manager.php?path=<?php echo $path?>&module=<?php echo $filemanager_id?>" enctype="multipart/form-data" method="post">
-<input type="file" name="uploaded_file" class="action_button" size="10">
-<button class="action_button" type="submit">Add this file</button>
+<input type="file" name="uploaded_file" class="action_button" size="30">
+<button class="action_button" type="submit"><?php echo translate('upload_file_button') ?></button>
 </form>
+</p>
+
+<p>
+<form action="file_manager.php?path=<?php echo $path?>&module=<?php echo $filemanager_id?>" enctype="multipart/form-data" method="post">
+<input type="text" name="folder_name"  size="30">
+<button class="action_button" type="submit"><?php echo translate('create_folder_button') ?></button>
+</form>
+</p>
+
+
 
 <p>
 

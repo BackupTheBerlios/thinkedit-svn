@@ -42,17 +42,6 @@
 
 
 
-		
-
-
-<!-- proto -->
-		<filesystem id="main">
-				<type>local</type>
-				<path>.</path>
-				<url>/media</url>
-		</filesystem>
-
-
 
 
 

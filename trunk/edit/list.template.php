@@ -233,14 +233,18 @@ Current page : <?php echo $out['batch']['current_page'] ?>
 
 
 <?php /****************** Sorting ***************/ ?>
-<?php if (isset ($sort_field) && $key==$sort_field): ?>
+<?php if (isset ($out['sort_field']) && $key==$out['sort_field']): ?>
 <th class="table_header_on">
 <?php echo $field['title']; ?>
 
 <?php else: ?>
-<th class="table_header" style="cursor:pointer" onClick="document.location.href='<?php echo $_SERVER['PHP_SELF'] ?>?table=<?php echo $table ?>&sort=<?php echo $key ?>'">
-<a href="<?php echo $_SERVER['PHP_SELF'] ?>?table=<?php echo $table ?>&sort=<?php echo $key ?>">
-<?php echo $field['title']; ?></a>
+<th class="table_header">
+<?php if (isset($field['sortable'])) : ?>
+<a href="<?php echo $field['sort_url']; ?>">
+<?php echo $field['title']; ?>
+</a>
+<?php endif; ?>
+
 <?php endif; ?>
 
 

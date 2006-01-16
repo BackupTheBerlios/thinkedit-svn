@@ -77,6 +77,19 @@ foreach ($record->field as $field)
 		$out['field'][$field->getName()]['help'] = $field->getHelp();
 }
 
+
+
+/****************** Relations ******************/
+
+$url = new url();
+$url->addObject($record, 'source_');
+
+$out['relation']['enable'] = true;
+$out['relation']['url'] = $url->render('relation.php');
+
+// clean url
+$url = new url();
+
 /*
 foreach($config['config']['table'][$table]['element'] as $field=>$element)
 {

@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<!-- Interface main configuration file -->
+<!--  each config file begins with the config tag -->
+<config>
+
+
+<!-- proto -->
+		<filesystem id="main">
+				<type>local</type>
+				
+				<!-- You can define a document root if it not auto magically found using $_SERVER['DOCUMENT_ROOT'];
+				<root>/home/mywebsite.com/htdocs/</root>
+				-->
+				<path>/thinkedit/trunk/files</path>
+				<url>/media</url>
+		</filesystem>
+
+
+</config>

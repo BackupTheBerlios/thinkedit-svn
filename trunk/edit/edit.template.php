@@ -57,67 +57,6 @@ function adjustIFrameSize (iframeWindow) {
 
 
 
-
-<!--
-				
-<div class="detail_tools_position">
-			
-
-<table class="detail_tools_table">
-
-<tr>
-   <th><?php echo translate('items_to_edit') ?></th>     
-</tr>
-
-
-<?php foreach ($out['element'] as $element) : ?>
-
-<?php 
-$i++; // used to alternate rows, of course)
-if (($i % 2)==0)
-{
-$class = "tr_off";
-}
-else
-{
-$class = "tr_on";
-}
-?>
-
-
-   <tr class="<?php echo $class?>">
-	 <td class="power_cell">
-   <a href="#<?php echo $element['field']; ?>"><?php echo $element['title']; ?></a>
-	 </td>
-   </tr>
-   
-<?php endforeach; ?>
-
-</table>
-
-<p>
-
-<div class="infos">
-          <b><?php echo translate('info') ?>!</b><br/>
-          <br/>
-           <?php echo translate('welcome_msg') ?>
-					 <br/>
-</div>
-           
-          <hr/>
-          
-<div class="infos">
-           <?php echo translate('edit_help') ?><br/>
-</div>
-
-		  <hr/>
-          <input class="help_button" type="submit" name="submitButtonName" value="<?php echo translate('help_button') ?>!" border="0">
-
-
-</div>
-			
--->			
-	
 			
 <div class="detail_margin">
 
@@ -150,46 +89,18 @@ $class = "tr_on";
 
 
 
-<?php // here we define the needed variables in case of save ?>
-<input type="hidden" name="table" value="<?echo $out['table'];?>">
-<input type="hidden" name="id" value="<?echo $out['id'];?>">
-<input type="hidden" name="db_locale" value="<?echo $out['db_locale'];?>">
+<?php /****************** Relations ***********/ ?>
 
-
-
-<?php if (isset($enable_publish)): ?>
+<?php if (isset($out['relation'])) : ?>
 <div class="detail_items_title">
-<?php echo translate('edit_publish_title') ?>
-</div>			
-
-<div>
-<?php echo translate('edit_publish_help') ?>
+<?php echo translate('relation'); ?> :
 </div>
 
-
-  <select name="publish">
-
-    <?php foreach ($out['publish'] as $id=>$publish) : ?>
-      <?php 
-			if ($out['data']['publish'] == $id)
-			{
-			$selected='selected="selected"';
-			}
-			else
-			{
-			$selected="";
-			}
-  		?>
-  
-	    <option style="background-color:#<?php echo $publish['color'] ?>" value="<?php echo $id ?>" <?php echo $selected; ?> ><?php echo $publish['title'] ?> (<?php echo $publish['code'] ?>)</option>
-    <?php endforeach; ?>
-
-  </select>
-
-	<hr/>
-<br/>
+<iframe src="<?php echo $out['relation']['url']?>" name="relation" width="600" height="200"></iframe>
 
 <?php endif; ?>
+
+
 
 <?php if(isset($out['element'])): ?>
 <?php foreach ($out['element'] as $element_name=>$element) : ?>			

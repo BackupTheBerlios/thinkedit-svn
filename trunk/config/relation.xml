@@ -15,32 +15,51 @@
 <field id="source_class">
 <type>string</type>
 <primary>true</primary>
+
+<use>
+<list>true</list>
+</use>
 </field>
 
 <field id="source_type">
 <type>string</type>
 <primary>true</primary>
+<use>
+<list>true</list>
+</use>
 </field>
 
 <field id="source_id">
 <type>text</type>
 <primary>true</primary>
+<use>
+<list>true</list>
+</use>
 </field>
 
 
 <field id="target_class">
 <type>string</type>
 <primary>true</primary>
+<use>
+<list>true</list>
+</use>
 </field>
 
 <field id="target_type">
 <type>string</type>
 <primary>true</primary>
+<use>
+<list>true</list>
+</use>
 </field>
 
 <field id="target_id">
 <type>text</type>
 <primary>true</primary>
+<use>
+<list>true</list>
+</use>
 </field>
 
 

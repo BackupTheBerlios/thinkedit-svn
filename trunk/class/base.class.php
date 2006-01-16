@@ -41,7 +41,14 @@ class base
 	*/
 	function getIcon()
 	{
-	  return ;
+	}
+	
+	
+	/*
+	Load if needed the object
+	*/
+	function load()
+	{
 	}
 	
 	

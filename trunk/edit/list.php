@@ -42,8 +42,8 @@ $out['enable_thumbnails'] = true;
 
 if ($url->get('sort'))
 {
-		//$sort_field = $db->($_REQUEST['sort']);
-		$_SESSION[$table]['sort_field'] = $url->get('sort');
+		$sort_field = $url->get('sort');
+		$out['sort_field'] = $sort_field;
 }
 
 /*
@@ -89,6 +89,16 @@ foreach($record->field as $field)
 				$out['field'][$field->getName()]['title'] = $field->getTitle();;
 				$out['field'][$field->getName()]['help'] = $field->getHelp();
 				$out['field'][$field->getName()]['type'] = $field->getType();
+				
+				if ($field->isSortable())
+				{
+				$out['field'][$field->getName()]['sortable'] = true;
+				$url = new url();
+				$url->keep('type');
+				$url->keep('class');
+				$url->set('sort', $field->getName());
+				$out['field'][$field->getName()]['sort_url'] = $url->render();
+				}
 		}
 		
 		// generating the filter dropdown menus
@@ -138,6 +148,10 @@ foreach($record->field as $field)
 		
 }
 
+if (empty($out['field']))
+{
+		error('no title fields for this table');
+}
 
 
 
@@ -329,16 +343,25 @@ if ($config['config']['table'][$table]['type'] == 'filemanager')
 // -----------------------------
 // query items to show content on the table page
 // -----------------------------
-//$query = "select * from ".	$config['config']['table'][$table]['table'] . $where_clause . " order by '$sort_field'" . $limit_clause;
-//$items = $db->get_results($query, ARRAY_A);
 
-$records = $record->find(); 
 
-//if (isset($debug)) $db->debug();
+// sorting
 
-//debug($record);
 
-//$db->debug();
+if (isset($sort_field))
+{
+$sort_query = array($sort_field => 'asc');
+
+}
+else
+{
+		$sort_query = false;
+}
+
+$records = $record->find(false, $sort_query); 
+
+
+
 $i=0;
 
 if ($records)

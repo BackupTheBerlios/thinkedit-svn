@@ -8,7 +8,31 @@ API can be found in the relation.class.php file
 include_once('common.inc.php');
 //check_user
 check_user();
+$source = $url->getObject('source_');
+debug($source, 'Source');
+require_once ROOT . '/class/relation.class.php';
 
+$out['title'] = 'Relations';
+
+$relation = new relation();
+$relations = $relation->getRelations($source);
+
+if ($relations)
+{
+		foreach ($relations as $relation_object )
+		{
+				$item['title'] = $relation_object->getTitle();
+				$item['icon'] = $relation_object->getIcon();
+				$out['relation']['data'][] = $item;
+		}
+}
+
+debug($out, 'OUT');
+
+debug($relations);
+
+
+die();
 
 //$debug=true;
 
