@@ -60,7 +60,7 @@ class filesystem
 								$this->handle = opendir($this->getRealPath());
 								while (false !== ($file = readdir($this->handle))) 
 								{
-										if ($file <> '.' && $file <> '..')
+										if (substr($file,0,1)!=".")
 										{
 												$filesystem[] = new filesystem($this->id, $this->getPath() . '/' . $file);
 										}
@@ -271,6 +271,39 @@ class filesystem
 		}
 		
 		
+		/*
+		Here is a simple directory walker class that does not use recursion.
+	 ---- from http://be.php.net/readdir----
+	 
+		class DirWalker {
+				function go ($dir) {
+						$dirList[] = $dir;
+						while ( ($currDir = array_pop($dirList)) !== NULL ) {
+								$dir = opendir($currDir);
+								while((false!==($file=readdir($dir)))) {
+										if($file =="." || $file == "..") {
+												continue;
+										}
+										
+										$fullName = $currDir . DIRECTORY_SEPARATOR . $file;
+										
+										if ( is_dir ( $fullName ) ) {
+												array_push ( $dirList, $fullName );
+												continue;
+										}
+										
+										$this->processFile ($file, $currDir);
+								}
+								closedir($dir);
+						}
+				}
+				
+				function processFile ( $file, $dir ) {
+						print ("DirWalker::processFile => $file, $dir\n");
+				}
+		}
+		*/
+		
 		function getFolderListRecursive($object = false, $list = false)
 		{
 				global $my_strange_list_123; // how to avoid global ?
@@ -281,6 +314,8 @@ class filesystem
 				}
 				else
 				{
+						// add current folder to the list
+						$my_strange_list_123[] = $this;
 						$folders = $this->getFolders();
 				}
 				
@@ -301,6 +336,61 @@ class filesystem
 				return (isset($my_strange_list_123) ? $my_strange_list_123 : false);
 		} 
 		
+		function addFile($name, $content)
+		{
+				if ($this->isFolder())
+				{
+						$filename = $this->getRealPath() . '/' . $name;
+						
+						// Let's make sure the file exists and is writable first.
+						//if (is_writable($filename)) 
+						//{
+								
+								// In our example we're opening $filename in append mode.
+								// The file pointer is at the bottom of the file hence
+								// that's where $somecontent will go when we fwrite() it.
+								if (!$handle = fopen($filename, 'x')) 
+								{
+										trigger_error('filesystem::addFile() : ' . "Cannot write to file ($filename). Maybe it's already there?");
+										return false;
+								}
+								
+								// Write $somecontent to our opened file.
+								if (fwrite($handle, $content) === FALSE) 
+								{
+										trigger_error('filesystem::addFile() : ' . "Cannot write to file ($filename)");
+										return false;
+								}
+								
+								//	echo "Success, wrote ($somecontent) to file ($filename)";
+								
+								fclose($handle);
+								return true;
+								
+						//} 
+						//else 
+						//{
+						//		trigger_error('filesystem::addFile() : ' . "The file $filename is not writable");
+						//}
+				}
+				else
+				{
+						trigger_error('filesystem::addFile() : you can add a file only inside a folder');
+						return false;
+				}
+		}
+		
+		function addFolder($name)
+		{
+				if ($this->isFolder())
+				{
+						return mkdir ($this->getRealPath() . '/' . $name);
+				}
+				else
+				{
+						trigger_error('filesystem::addFolder() : you can add a folder only inside a folder');
+				}
+		}
 		
 		
 }

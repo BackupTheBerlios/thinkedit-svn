@@ -21,13 +21,13 @@ function jump(targ,selObj,restore){ //v3.0
 <?php foreach ($out['folders'] as $folder): ?>
 
 <?php 
-if ($folder->path==$path)
+if (isset($folder['current']))
 {
-$selected="selected";
+$selected='selected = "selected"';
 }
 else
 {
-$selected="";
+$selected='';
 } 
 
 ?>
@@ -45,7 +45,7 @@ $selected="";
 
 <div class="power_margin">
 
-<?php if ($out['files']) : ?>
+<?php if (isset($out['files'])) : ?>
 
 <table class="power_table" border="0" cellspacing="0" cellpadding="0">
 <?php  $i=0 ?>
@@ -69,27 +69,16 @@ $i++;
 
 <tr class="<?php echo $class?>">
 
-<td class="power_cell power_cell_border" style="cursor:pointer">
-<?php if ($file['is_image']): ?>
-
-<img class="preview" src="resize/phpthumb.php?src=<?php echo $file['url']; ?>&w=<?php echo $file['width']; ?>&h=<?php echo $file['height']; ?>">
-
-<!--
-<img class="preview" src="<?php echo thumbnail_path($filemanager_id, $file['id']) ?>">
--->
-
-
-<?php else: ?>
-<img src="./icons/extensions/<?php echo  $file['icon'] ?>">
-<?php endif; ?>
+<td class="power_cell power_cell_border">
+<img class="preview" src="<?php echo $file['icon']; ?>">
 </td>
 
-<td class="power_cell power_cell_border" style="cursor:pointer">
+<td class="power_cell power_cell_border">
 <?php echo  $file['filename'] ?>
 </td>
 
 <td class="power_cell power_cell_border" style="cursor:pointer">
-<a href="file_manager.php?path=<?php echo $path ?>&file_to_delete=<?php echo  $file['filename'] ?>&action=delete&module=<?php echo $filemanager_id?>">[delete]</a>
+<a href="<?php echo $file['delete_url']?>"><?php echo translate('file_delete'); ?></a>
 <?php /* <a href="edit.php?id=<?php echo  $file['id'] ?>&module=<?php echo $filemanager_id?>">[edit details]</a> */?>
 </td>
 
@@ -98,7 +87,7 @@ $i++;
 
 </table>
 <?php else: ?>
-No files yet
+<?php echo translate('folder_empty')?>
 <?php endif; ?>
 
 </div>
@@ -107,24 +96,19 @@ No files yet
 <div class="file_actions">
 
 <p>
-<form action="file_manager.php?path=<?php echo $path?>&module=<?php echo $filemanager_id?>" enctype="multipart/form-data" method="post">
+<form action="<?php echo $out['upload_file_url']?>" enctype="multipart/form-data" method="post">
 <input type="file" name="uploaded_file" class="action_button" size="30">
 <button class="action_button" type="submit"><?php echo translate('upload_file_button') ?></button>
 </form>
 </p>
 
 <p>
-<form action="file_manager.php?path=<?php echo $path?>&module=<?php echo $filemanager_id?>" enctype="multipart/form-data" method="post">
+<form action="<?php echo $out['add_folder_url']?>" method="post">
 <input type="text" name="folder_name"  size="30">
 <button class="action_button" type="submit"><?php echo translate('create_folder_button') ?></button>
 </form>
 </p>
 
-
-
-<p>
-
-<a class="action_button" href="file_manager.php?action=sync&path=<?php echo $path?>&module=<?php echo $filemanager_id?>">Sync with ftp server</a>
 
 </div>
 

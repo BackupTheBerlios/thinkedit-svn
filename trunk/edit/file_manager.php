@@ -21,32 +21,74 @@ if ($url->get('path'))
 }
 
 
-$out['path'] =  $filesystem->path;
+$out['path'] =  $filesystem->getPath();
 
 // handle adding of a new file from http upload
-
-// Check if we have afile uploaded
-
-if ($_FILES['uploaded_file']['size'] > 0)
+if ($url->get('action') == 'upload_file')
 {
-		
-		if ($debug) echo $_FILES['uploaded_file']['tmp_name'];
-		
-		//safe filename
-		$safe_filename = ereg_replace("[^a-z0-9._]", "",str_replace(" ", "_",str_replace("%20", "_", strtolower($_FILES['uploaded_file']['name']))));
-		
-		
-		$server->put( $_FILES['uploaded_file']['tmp_name'], $safe_filename);
-		
-		// we added a file, we need to sync
-		$sync = true;
-		
+		// Check if we have a file uploaded
+		if (isset($_FILES['uploaded_file']['size']) && $_FILES['uploaded_file']['size'] > 0)
+		{
+				if (is_uploaded_file($_FILES['uploaded_file']['tmp_name'])) // todo : is it enough for a check ?
+				{
+						debug($_FILES['uploaded_file'], 'UPLOADED FILES');
+						//print_r($_FILES['uploaded_file']);
+						//safe filename
+						$safe_filename = ereg_replace("[^a-z0-9._]", "",str_replace(" ", "_",str_replace("%20", "_", strtolower($_FILES['uploaded_file']['name']))));
+						
+						$content = file_get_contents($_FILES['uploaded_file']['tmp_name']);
+						
+						if ($filesystem->addFile($safe_filename, $content))
+						{
+								$out['info'] = translate('file_added_successfully');
+						}
+						else
+						{
+								$out['error'] = translate('file_added_failed');
+						}
+						
+				}
+				else
+				{
+						die('not an uploaded file aborting');
+				}
+		}
+		else
+		{
+				$out['error'] = translate('empty_file_provided');
+		}
 }
+
+
+
+// handle adding of a new folder 
+if ($url->get('action') == 'add_folder')
+{
+		if ($url->get('folder_name'))
+		{
+				$folder_name = $url->get('folder_name');
+				if ($filesystem->addFolder($folder_name))
+				{
+						$out['info'] = translate('folder_added_successfully');
+				}
+				else
+				{
+						$out['error'] = translate('folder_added_failed');
+				}
+		}
+		else
+		{
+				$out['error'] = translate('empty_foldername_provided');
+		}
+}
+
+
+
 
 
 // handle deletion of a file on the ftp server
 
-if ($_REQUEST['action'] == 'delete')
+if ($url->get('action') == 'delete')
 {
 		$server->rm($_REQUEST['file_to_delete']);
 		
@@ -56,9 +98,9 @@ if ($_REQUEST['action'] == 'delete')
 
 
 // build a list of folders (excluding cache and thumbnails folders / files)
-
-
-$folders = $filesystem->getFolderListRecursive();
+// we use a new instance of filesystem to have all folders form root allways
+$filesystem2 = $thinkedit->newFilesystem();
+$folders = $filesystem2->getFolderListRecursive();
 
 debug($folders, 'folders');
 
@@ -67,16 +109,25 @@ if ($folders)
 		$url = new url();
 		foreach ($folders as $folder)
 		{
-				$folder_out['path'] = $folder->getPath();
+				$folder_out = '';
+				
 				$url->set('path', $folder->getPath());
+				
+				$folder_out['path'] = $folder->getPath();
 				$folder_out['url'] = $url->render();
+				if ($folder->getPath() == $filesystem->getPath())
+				{
+						$folder_out['current'] = true;
+				}
+				
+				
 				$out['folders'][] = $folder_out;
 		}
 		
 }
 
 
-
+/*
 // handle icons for each file
 
 $dir = dirname($_SERVER['PATH_TRANSLATED']) . "/icons/extensions";
@@ -87,6 +138,7 @@ while (false !== ($filename = readdir($dh)))
 		if ($icon_name <> '') 	 $icons[] = $icon_name;
 		
 }
+*/
 
 /*
 print_a($icons);
@@ -102,58 +154,35 @@ die();
 // build a list of files in the current folder (excluding cache and thumbnails folders / files)
 
 //$files = $db->get_results("select * from $table where path='$path' group by 'id' order by filename");
-if ($debug) $db->debug();
+//if ($debug) $db->debug();
 
-if ($debug) print_a ($files);
+//if ($debug) print_a ($files);
 
-if ($files)
+$childs = $filesystem->getFiles();
+
+if ($childs)
 {
-		
-		
-		$i=0;
-		foreach ($files as $file)
+		foreach ($childs as $child)
 		{
-				$out['files'][$i]['filename'] = $file->filename;
-				$out['files'][$i]['id'] = $file->id;
-				$out['files'][$i]['path'] = $file->path;
+				$file['filename'] = $child->getFilename();
+				$file['icon'] = $child->getIcon();
 				
-				$out['files'][$i]['url'] = $config['config']['module']['media']['public_path'] . $file->path . '/' . $file->filename;
-				
-				$out['files'][$i]['width'] = $config['config']['site']['thumbnails']['width'];
-				$out['files'][$i]['height'] = $config['config']['site']['thumbnails']['height'];
-				
-				
-				
-				$out['files'][$i]['extension'] = get_file_extension($file->filename);
-				
-				
-				// handle image / non image file types (makes a link to thumbnail or not)
-				if (in_array(get_file_extension($file->filename), $image_extensions))
+				if ($child->isFolder())
 				{
-						$out['files'][$i]['is_image'] = true;
-				}
-				else
-				{
-						$out['files'][$i]['is_image'] = false;
-						
-						// if not an image, handle icon type
-						if (in_array(get_file_extension($file->filename), $icons))
-						{
-								$out['files'][$i]['icon'] = get_file_extension($file->filename) . ".gif";
-						}
-						else
-						{
-								$out['files'][$i]['icon'] = "unknown.gif";
-						}
-						
+						$url = new url();
+						$url->set('path', $child->getPath());
+						$file['url'] = $url->render();
 				}
 				
+				$url = new url();
+				$url->set('path', $child->getPath());
+				$url->set('action', 'delete');
+				$file['delete_url'] = $url->render();
 				
-				
-				
-				$i++;
+				$out['files'][] = $file;
 		}
 }
+
 
 
 
@@ -165,11 +194,22 @@ if ($files)
 // handle sync with folder
 
 
+// define action buttons urls
+$url = new url();
+$url->keep('path');
+$url->set('action', 'add_folder');
+$out['add_folder_url'] = $url->render();
+
+$url = new url();
+$url->keep('path');
+$url->set('action', 'upload_file');
+$out['upload_file_url'] = $url->render();
+
 
 // add breadcrumb
-
-$out['breadcrumb'][1]['title'] = $config['config']['module'][$module]['title'][$interface_locale];
-$out['breadcrumb'][1]['url'] = 'file_manager.php?module=' . $module;
+$url = new url();
+$out['breadcrumb'][1]['title'] = translate('filemanager_title');
+$out['breadcrumb'][1]['url'] = $url->render();
 
 
 
