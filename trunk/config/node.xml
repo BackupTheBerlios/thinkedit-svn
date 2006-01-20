@@ -9,10 +9,12 @@
 <field id="id">
 <type>id</type>
 <primary>true</primary>
+<is_title>true</is_title>
 </field>
 
 <field id="parent_id">
 <type>int</type>
+<is_title>true</is_title>
 </field>
 
 

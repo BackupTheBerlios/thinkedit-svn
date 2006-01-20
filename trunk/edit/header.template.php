@@ -26,12 +26,14 @@ header("HTTP/1.0 304 Not Modified");
   <head>
 
     <meta http-equiv="content-type" content="text/html;charset=UTF8" />
-
-    <?php if (isset($out['title'])): ?>
-		<title><?php echo $out['title']; ?></title>
+		
+		<title>
+		<?php if (isset($out['title'])): ?>
+		<?php echo $out['title']; ?>
 		<?php else: ?>
-    <title>Thinkedit</title>
+    Thinkedit
 		<?php endif; ?>
+		</title>
 
     <link type="text/css" href="style.css" rel="stylesheet"
     media="screen"/>

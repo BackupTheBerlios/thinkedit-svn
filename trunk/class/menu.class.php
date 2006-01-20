@@ -3,6 +3,8 @@
 class menu
 {
 		
+		var 
+		
 		function setCurrentNode($node_id)
 		{
 				$this->node_id = $node_id;
@@ -13,7 +15,7 @@ class menu
 		{
 		}
 		
-		
+		/*
 		function getFullMenu()
 		{
 				global $thinkedit;
@@ -41,6 +43,7 @@ class menu
 						$out .= '</li>';
 				}
 		}
+		*/
 		
 		function displayChildren($node_id, $level = false, $out = false) 
 		{
@@ -97,6 +100,13 @@ class menu
 				
 				return $out;
 		}
+		
+		
+		function render($start = 0)
+		{
+				return $this->displayChildren($start);
+		}
+		
 }
 
 ?>

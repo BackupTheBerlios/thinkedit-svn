@@ -254,14 +254,52 @@ class filesystem
 				return $this->root . $this->path;
 		}
 		
+		function getExtension()
+		{
+				if ($this->isFolder())
+				{
+						return false;
+				}
+				else
+				{
+						$ext = substr(strrchr($this->getPath(), "."), 1);
+						if (isset($ext))
+						{
+								return $ext;
+						}
+						else
+						{
+								return false;
+						}
+				}
+		}
 		
+		
+		function isImage()
+		{
+				if (in_array($this->getExtension(), array('png', 'jpeg', 'jpg', 'gif')))
+				{
+						return true;
+				}
+				else
+				{
+						return false;
+				}
+		}
 		
 		/*
 		returns a full path to an icon representing this object
 		*/
 		function getIcon()
 		{
-				return '/ressource/image/icon/text-x-generic.png';	
+				if ($this->isImage())
+				{
+						return ROOT_URL . '/lib/phpthumb/phpThumb.php?src=' . $this->getPath() . '&w=22&h=22'; // todo custom thumbnail width / height
+				}
+				else
+				{
+						return ROOT_URL . '/edit/ressource/image/icon/text-x-generic.png';
+				}
 		}
 		
 		
@@ -390,6 +428,24 @@ class filesystem
 				{
 						trigger_error('filesystem::addFolder() : you can add a folder only inside a folder');
 				}
+		}
+		
+		
+		/*
+		Deletes this file or this folder
+		*/
+		function delete()
+		{
+				if ($this->isFolder())
+				{
+						trigger_error('filesystem::delete() not yet for folders. Do it manually with FTP or wathever');
+						// todo : implement this ;-)
+				}
+				else
+				{
+						return unlink ($this->getRealPath());
+				}
+				
 		}
 		
 		

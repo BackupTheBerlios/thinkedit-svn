@@ -30,7 +30,7 @@ $menu->setCurrentNode(14);
 
 //echo '<pre>';
 
-echo $menu->displayChildren(1);
+echo $menu->displayChildren(0);
 
 echo '<hr>';
 

@@ -66,12 +66,12 @@ $selected='';
 
 <div class="power_margin">
 
-<?php if (isset($out['files'])) : ?>
+<?php if (isset($out['nodes'])) : ?>
 
 <table class="power_table" border="0" cellspacing="0" cellpadding="0">
 <?php  $i=0 ?>
 
-<?php foreach ($out['files'] as $file): ?>
+<?php foreach ($out['nodes'] as $node): ?>
 
 
 <?php 
@@ -91,17 +91,19 @@ $i++;
 <tr class="<?php echo $class?>">
 
 <td class="power_cell power_cell_border">
-<img class="preview" src="<?php echo $file['icon']; ?>">
+<img class="preview" src="<?php echo $node['icon']; ?>">
 </td>
 
 <td class="power_cell power_cell_border">
-<?php echo  $file['filename'] ?>
+<a href="<?php echo $node['url']?>">
+<?php echo  $node['title'] ?>
+</a>
 </td>
 
 <td class="power_cell power_cell_border" style="cursor:pointer">
 
-<a href="<?php echo $file['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_delete') ?>', '<?php echo $file['delete_url']?>'); return false;">
-<?php echo translate('file_delete'); ?>
+<a href="<?php echo $node['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_delete') ?>', '<?php echo $file['delete_url']?>'); return false;">
+<?php echo translate('node_delete'); ?>
 </a>
 
 <?php /* <a href="edit.php?id=<?php echo  $file['id'] ?>&module=<?php echo $filemanager_id?>">[edit details]</a> */?>
@@ -118,13 +120,20 @@ $i++;
 </div>
 
 
-<div class="file_actions">
+
+<div class="node_actions">
 
 <p>
-<form action="<?php echo $out['upload_file_url']?>" enctype="multipart/form-data" method="post">
-<input type="file" name="uploaded_file" class="action_button" size="30">
-<button class="action_button" type="submit"><?php echo translate('upload_file_button') ?></button>
-</form>
+<?php if (isset($out['allowed_items'])) : ?>
+<select size="1" onChange="jump('parent',this,0)">
+<?php foreach ($out['allowed_items'] as $item): ?>
+
+
+<option value="<?php echo $item['title'] ?>"><?php echo ucfirst($item['title']) ?></option>
+
+<?php endforeach; ?>
+</select>
+<?php endif; ?>
 </p>
 
 <p>
@@ -136,7 +145,6 @@ $i++;
 
 
 </div>
-
 
 
 

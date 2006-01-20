@@ -155,6 +155,7 @@ class record
 				
 				$record->find($args) ...
 				
+				or provide both ?
 				
 				*/
 				

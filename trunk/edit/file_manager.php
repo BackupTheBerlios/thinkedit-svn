@@ -90,10 +90,23 @@ if ($url->get('action') == 'add_folder')
 
 if ($url->get('action') == 'delete')
 {
-		$server->rm($_REQUEST['file_to_delete']);
+		//$server->rm($_REQUEST['file_to_delete']);
+		if ($url->get('file_to_delete'))
+		{
+				$tmp_filesystem = $thinkedit->newFilesystem();
+				$tmp_filesystem->setPath($url->get('file_to_delete'));
+				
+				if ($tmp_filesystem->delete())
+				{
+						$out['info'] = translate('file_deleted');
+				}
+				else
+				{
+						$out['error'] = translate('file_delete_failled');
+				}
+		}
 		
-		// we deleted a file, we need to sync
-		$sync = true;
+		
 }
 
 
@@ -175,7 +188,8 @@ if ($childs)
 				}
 				
 				$url = new url();
-				$url->set('path', $child->getPath());
+				$url->keep('path');
+				$url->set('file_to_delete', $child->getPath());
 				$url->set('action', 'delete');
 				$file['delete_url'] = $url->render();
 				
