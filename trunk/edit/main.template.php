@@ -1,3 +1,22 @@
+
+<div class="content">
+
+<?php if (is_array($out['item'])): ?>
+
+<?php foreach ($out['item'] as $item): ?>
+<a href="<?php echo $item['action']?>">
+<div class="box">
+<h1><?php echo $item['title']?></h1>
+<p>
+<?php echo $item['help']?>
+</p>
+</div>
+</a>
+<?php endforeach; ?>
+
+<?php endif; ?>
+
+</div>
       
 
       <div class="content">

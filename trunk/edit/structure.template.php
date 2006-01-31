@@ -62,6 +62,23 @@ $selected='';
 </div>
 
 
+<div class="box">
+
+<?php $x=1 ?>
+
+<?php foreach ($out['structure_breadcrumb'] as $breadcrumb) : ?>
+
+<a class="structure_breadcrumb" href="<?php echo $breadcrumb['url']  ?>"><?php echo $breadcrumb['title']  ?>  </a>
+
+<?php if ($x < count($out['structure_breadcrumb'])): ?>
+ > 
+<?php endif;?>
+
+<?php $x++ ?>
+<?php endforeach; ?>
+
+
+</div>
 
 
 <div class="power_margin">
@@ -114,7 +131,7 @@ $i++;
 
 </table>
 <?php else: ?>
-<?php echo translate('folder_empty')?>
+<?php echo translate('node_empty')?>
 <?php endif; ?>
 
 </div>
@@ -127,23 +144,11 @@ $i++;
 <?php if (isset($out['allowed_items'])) : ?>
 <select size="1" onChange="jump('parent',this,0)">
 <?php foreach ($out['allowed_items'] as $item): ?>
-
-
 <option value="<?php echo $item['title'] ?>"><?php echo ucfirst($item['title']) ?></option>
-
 <?php endforeach; ?>
 </select>
 <?php endif; ?>
 </p>
-
-<p>
-<form action="<?php echo $out['add_folder_url']?>" method="post">
-<input type="text" name="folder_name"  size="30">
-<button class="action_button" type="submit"><?php echo translate('create_folder_button') ?></button>
-</form>
-</p>
-
-
 </div>
 
 

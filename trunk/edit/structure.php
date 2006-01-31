@@ -131,7 +131,8 @@ $url = new url();
 $out['breadcrumb'][1]['title'] = translate('structure_title');
 $out['breadcrumb'][1]['url'] = $url->render();
 
-$i = 2;
+
+$i = 0;
 if ($node_object->hasParent())
 {
 		$parents = $node_object->getParentUntilRoot();
@@ -142,11 +143,11 @@ if ($node_object->hasParent())
 				$content = $parent->getContent();
 				$content->load();
 				
-				$out['breadcrumb'][$i]['title'] = $content->getTitle();
+				$out['structure_breadcrumb'][$i]['title'] = $content->getTitle();
 				
 				$url = new url();
 				$url->set('node_id', $parent->getId());
-				$out['breadcrumb'][$i]['url'] = $url->render();
+				$out['structure_breadcrumb'][$i]['url'] = $url->render();
 				$i++;
 				
 		}
@@ -156,16 +157,14 @@ if ($node_object->hasParent())
 // add current
 $content = $node_object->getContent();
 $content->load();
-
-$out['breadcrumb'][$i]['title'] = $content->getTitle();
-
+$out['structure_breadcrumb'][$i]['title'] = $content->getTitle();
 $url = new url();
 $url->set('node_id', $node_object->getId());
-$out['breadcrumb'][$i]['url'] = $url->render();
+$out['structure_breadcrumb'][$i]['url'] = $url->render();
 
 
+/*
 $allowed_items = $node_object->getAllowedItems();
-
 foreach ($allowed_items as $item)
 {
 		if ($item['type'] == 'record')
@@ -175,7 +174,7 @@ foreach ($allowed_items as $item)
 				$url->render
 }
 $out['allowed_items'] = $node_object->getAllowedItems();
-
+*/
 
 // define action buttons urls
 $url = new url();
