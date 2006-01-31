@@ -163,18 +163,43 @@ $url->set('node_id', $node_object->getId());
 $out['structure_breadcrumb'][$i]['url'] = $url->render();
 
 
+
+/************************ Allowed items ************************/
 /*
 $allowed_items = $node_object->getAllowedItems();
-foreach ($allowed_items as $item)
+foreach ($allowed_items as $allowed_item)
 {
-		if ($item['type'] == 'record')
+		if ($allowed_item['class'] == 'record')
 		{
-				$url->set('class', 'record')
-				$url->set('type', $)
-				$url->render
+				$url->set('class', 'record');
+				$url->set('type', $allowed_item['class']);
+				$url->render('edit.php');
+		}
 }
-$out['allowed_items'] = $node_object->getAllowedItems();
 */
+
+// first allow anything :
+
+$config_tool = $thinkedit->newConfig();
+$tables = $config_tool->getTableList();
+
+// generating the table list from the config array
+foreach($tables as $table_id)
+{
+		$table = $thinkedit->newTable($table_id);
+		$item['title'] = $table->getTitle();
+		//$item['help'] = $table->getHelp();
+		//$item['icon'] = $table->getIcon();
+		$url = new url();
+		$url->set('mode', 'new_node');
+		$url->set('node_id', $node_object->getId());
+		
+		$item['action'] = $url->linkTo($table, 'edit.php');
+		$out['allowed_items'][] = $item;
+}
+
+
+
 
 // define action buttons urls
 $url = new url();
@@ -190,14 +215,8 @@ $out['add_existing_node_url'] = $url->render();
 
 
 
-
-
-
-
-
 debug($out, 'OUT');
 
-//print_a($out);
 
 // include template :
 include('header.template.php');

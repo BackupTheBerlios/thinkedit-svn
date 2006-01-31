@@ -7,6 +7,7 @@ todo : validation of the request arguments agains the config file to avoid hack
 
 include_once('common.inc.php');
 
+
 //check_user
 check_user();
 
