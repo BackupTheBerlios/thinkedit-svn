@@ -21,6 +21,19 @@ if (!$url->getParam('class'))
 		trigger_error('edit : you must supply a class in the url');
 }
 
+
+if ($url->get('mode') == 'new_node')
+{
+		$out['mode'] = 'new_node';
+		$new_node = true;
+}
+else
+{
+		$new_node = false;
+}
+
+
+
 $table = $url->get('type');
 $out['table'] = $table;
 
@@ -63,12 +76,29 @@ if ($url->get('action')=='save')
 }
 
 
+/************** handle add node *****************/
+// if we have saved something, and if we need to add to thge node tree, we redirect with the record ID
+
+if ($url->get('action')=='save' && $url->get('mode') == 'new_node')
+{
+		$url->keep('mode');
+		$url->keep('node_id');
+		$redirect = $url->linkTo($record, 'structure.php');
+		header('location: ' . $redirect); // todo better url class api
+}
+
+
+
+
+
 // generating the items list from the config array
 /****************** Form items ******************/
 
 $url->set('action', 'save');
 $url->keepParam('type');
 $url->keepParam('class');
+$url->keepParam('mode');
+$url->keep('node_id');
 $out['save_url'] = $url->render();
 
 foreach ($record->field as $field)

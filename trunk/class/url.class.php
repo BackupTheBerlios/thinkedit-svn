@@ -30,6 +30,9 @@ donnerait une instance de cet objet...
 
 Pourquoi pas ?
 
+Idem pour :
+url->addObject($object, $prefix = false)
+
 
 */
 
@@ -134,11 +137,14 @@ class url
 				$type = $this->get($prefix . 'type');
 				$id = $this->get($prefix . 'id'); // todo : custom primary keys parameters
 				
-				if ($class && $type && $id)
+				if ($class && $type)
 				{
 						$uid['class'] = $class;
 						$uid['type'] = $type;
-						$uid['id'] = $id;
+						if ($id)
+						{
+								$uid['id'] = $id;
+						}
 						return $thinkedit->newObject($uid);
 				}
 				else
@@ -371,6 +377,8 @@ class url
 				//header('location: http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/'. $this->render($filename));
 				header('location: '. $this->render($filename));
 		}
+		
+		
 }
 
 ?>

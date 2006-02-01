@@ -47,7 +47,6 @@
 
 <field id="author">
 <type>lookup</type>
-<is_title>true</is_title>
 <source>
 <type>table</type>
 <name>author</name>

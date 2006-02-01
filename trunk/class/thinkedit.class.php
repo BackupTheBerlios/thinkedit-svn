@@ -97,7 +97,15 @@ class thinkedit
   {
 			if ($uid['class'] == 'record')
 			{
-					return $this->newRecord($uid['type'], $uid['id']);
+					if (isset($uid['id']))
+					{
+							return $this->newRecord($uid['type'], $uid['id']);
+					}
+					else
+					{
+							return $this->newRecord($uid['type']);
+					}
+					
 			}
 			elseif ($uid['class'] == 'filesystem')
 			{

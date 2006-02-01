@@ -42,6 +42,14 @@ else // we are in root
 }
 
 // handle adding new node from existing record
+if ($url->get('mode') == 'new_node')
+{
+		// todo : url loading of objects, universal object instancifier
+		$record = $thinkedit->newRecord($url->get('type'), $url->get('id'));
+		$node_object->add($record);
+}
+
+
 // handle adding new node from new record
 // handle deleting node
 
