@@ -1,68 +1,6 @@
-
-<script LANGUAGE="JavaScript">
-<!--
-
-function jump(targ,selObj,restore){ //v3.0
-  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
-  if (restore) selObj.selectedIndex=0;
-}
-//-->
-</script>
-
-
-
-<script language="JavaScript">
-<!--
-function confirm_link(message, url)
-{
-		input_box=confirm(message);
-		if (input_box==true)
-		
-		{ 
-				// Output when OK is clicked
-				window.location.href=url; 
-		}
-		
-		else
-		{
-				return false;
-		}
-		
-}
---></script>
-
-
 <div class="content">
 
-
-<div class="path_chooser">
-
-<?php if (isset($out['folders'])) : ?>
-<select size="1" onChange="jump('parent',this,0)">
-<?php foreach ($out['folders'] as $folder): ?>
-
-<?php 
-if (isset($folder['current']))
-{
-$selected='selected = "selected"';
-}
-else
-{
-$selected='';
-} 
-
-?>
-
-<option value="<?php echo $folder['url'] ?>" <?php echo $selected ?> ><?php echo  $folder['path'] ?></option>
-
-<?php endforeach; ?>
-</select>
-<?php endif; ?>
-
-</div>
-
-
-<div>
+<div class="box">
 
 <?php echo translate('you_are_here') ?> : 
 
@@ -121,8 +59,13 @@ $i++;
 
 <td class="power_cell power_cell_border" style="cursor:pointer">
 
-<a href="<?php echo $node['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_delete') ?>', '<?php echo $file['delete_url']?>'); return false;">
-<?php echo translate('node_delete'); ?>
+<a href="<?php echo $node['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_node_delete') ?>', '<?php echo $node['delete_url']?>'); return false;">
+<img src="ressource/image/icon/trash.gif" border="0" alt="<?php echo translate('node_delete'); ?>">
+</a>
+
+<a href="<?php echo $node['edit_url']?>">
+<?php echo translate('node_edit'); ?>
+<!--<img src="ressource/image/icon/edit.gif" border="0" alt="<?php echo translate('node_edit'); ?>">-->
 </a>
 
 <?php /* <a href="edit.php?id=<?php echo  $file['id'] ?>&module=<?php echo $filemanager_id?>">[edit details]</a> */?>

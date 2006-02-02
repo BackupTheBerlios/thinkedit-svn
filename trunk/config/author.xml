@@ -25,6 +25,8 @@
 <is_title>true</is_title>
 </field>
 
+<allowed_items>none</allowed_items>
+
 </table>
 
 

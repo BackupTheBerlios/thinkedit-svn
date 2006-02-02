@@ -1,24 +1,3 @@
-<script language="JavaScript">
-<!--
-function confirm_link(message, url)
-{
-		input_box=confirm(message);
-		if (input_box==true)
-		
-		{ 
-				// Output when OK is clicked
-				window.location.href=url; 
-		}
-		
-		else
-		{
-				return false;
-		}
-		
-}
---></script>
-
-
 <?php /****************** alpha batch ***************/ ?>
 <?php if (isset($out['alpha']['enable'])): ?>
 <div class="content_alpha">

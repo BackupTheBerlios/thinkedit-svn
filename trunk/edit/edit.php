@@ -22,9 +22,16 @@ if (!$url->getParam('class'))
 }
 
 
+if ($url->get('mode') == 'edit_node')
+{
+		$out['edit_node'] = true;
+		$edit_node = true;
+}
+
+
 if ($url->get('mode') == 'new_node')
 {
-		$out['mode'] = 'new_node';
+		$out['edit_node'] = true;
 		$new_node = true;
 }
 else
@@ -83,10 +90,25 @@ if ($url->get('action')=='save' && $url->get('mode') == 'new_node')
 {
 		$url->keep('mode');
 		$url->keep('node_id');
+		$url->addObject($record, 'object_');
+		$url->redirect('structure.php');
+		/*
 		$redirect = $url->linkTo($record, 'structure.php');
 		header('location: ' . $redirect); // todo better url class api
+		*/
 }
 
+if ($url->get('action')=='save' && $url->get('mode') == 'edit_node')
+{
+		$url->keep('mode');
+		$url->keep('node_id');
+		//$url->addObject($record, 'object_');
+		$url->redirect('structure.php');
+		/*
+		$redirect = $url->linkTo($record, 'structure.php');
+		header('location: ' . $redirect); // todo better url class api
+		*/
+}
 
 
 
@@ -251,8 +273,19 @@ foreach ($items as $key => $val)
 //$out['breadcrumb'][0]['title'] = translate('home_link');
 //$out['breadcrumb'][0]['url'] = 'main.php';
 
-$out['breadcrumb'][1]['title'] = $table_object->getTitle();
-$out['breadcrumb'][1]['url'] = $url->linkTo($table_object, 'list.php');
+
+// if we are from a node form
+if ($url->get('mode') == 'edit_node' or $url->get('mode') == 'new_node')
+{
+		$out['breadcrumb'][1]['title'] = translate('structure');
+		$url->keep('node_id');
+		$out['breadcrumb'][1]['url'] = $url->render('structure.php');
+}
+else
+{
+		$out['breadcrumb'][1]['title'] = $table_object->getTitle();
+		$out['breadcrumb'][1]['url'] = $url->linkTo($table_object, 'list.php');
+}
 
 $out['breadcrumb'][2]['title'] = translate('editing_link');
 $out['breadcrumb'][2]['url'] = '';

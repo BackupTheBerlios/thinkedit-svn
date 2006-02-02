@@ -105,7 +105,14 @@ class node
 		
 		function delete()
 		{
-				return $this->record->delete();
+				if ($this->hasChildren())
+				{
+						trigger_error('node::delete() cannot delete non empty nodes, please delete childs of this node first');
+				}
+				else
+				{
+						return $this->record->delete();
+				}
 		}
 		
 		

@@ -1,25 +1,3 @@
-<?php
-// handle cache if allowed to cahce page.
-// this feature is experiemental and could lead to inconsistencies in database if used in a wrong way, like setting 
-// the $enable_cache to true when saving something or changing order or wathever. 
-if (isset($enable_cache) && $enable_cache)
-{
-//header("Cache-Control: public, max-age=3600");
-}
-
-/*
-header("Cache-Control: public, max-age=3600");
-header("HTTP/1.0 304 Not Modified");
-
-// calc an offset of 24 hours
-  $offset = 3600;	
-// calc the string in GMT not localtime and add the offset
-  $expire = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
-//output the HTTP header
-  header($expire);
-*/
-
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -35,107 +13,11 @@ header("HTTP/1.0 304 Not Modified");
 		<?php endif; ?>
 		</title>
 
-    <link type="text/css" href="style.css" rel="stylesheet"
-    media="screen"/>
-
+    <link type="text/css" href="style.css" rel="stylesheet" media="screen"/>
 		
-		
-		
-<?php if (isset($enable_power_edit) && $enable_power_edit): ?>	
-<script>
-var user_changed = 0;
-
-function protect_links()
-{
-var links = document.getElementsByTagName("a");
-for (i = 0; i < links.length; i++) 
-  {
-  //links[i].style.display = "none";
-	links[i].setAttribute('onclick', "return is_page_saved();");
-  } 
-}
-
-function is_page_saved()
-{
-if (user_changed == 1)
-  {
-	if (window.confirm('Cliquez sur OK pour quitter cette page sans sauver votre travail'))
-    {
-    // alert('ok');
-    return true;
-    }
-  else
-    {
-    //alert('Cancel');
-    return false;
-    }
-  }
-else
-{
-return true;
-}
-}
-
-// use this to request a save confirm dialog on change of content on the poweredit
-function set_user_changed()
-{
-user_changed = 1;
-}
-
-</script>
-<?php endif; ?>	
-		
-		
-			
-	<?php if (isset($out['calendar_needed']) && $out['calendar_needed']) : ?>
-	<style type="text/css">@import url(./calendar/calendar-win2k-1.css)</style>
-	<link href="./calendar/calendar-usine.css" rel="stylesheet" media="screen"/>
-<script type="text/javascript" src="./calendar/calendar.js"></script>
-<script type="text/javascript" src="./calendar/lang/calendar-<?php echo $out['interface_locale'] ?>.js"></script>
-<script type="text/javascript" src="./calendar/calendar-setup.js"></script>
-	<?php endif; ?>
-
-		
-		
-		
-		
-		
-<?php if (isset($out['wysiwyg_editor_needed']) && $out['wysiwyg_editor_needed']): ?>
-<!-- To decrease bandwidth, change the src to richtext_compressed.js //-->
-<script language="JavaScript" type="text/javascript" src="richtext_compressed.js"></script>
-	
-<script language="JavaScript" type="text/javascript">
-<!--
-function submitForm() {
-	//make sure hidden and iframe values are in sync before submitting form
-	//to sync only 1 rte, use updateRTE(rte)
-	//to sync all rtes, use updateRTEs
-	//updateRTE('rte1');
-	updateRTEs();
-	alert(document.RTEDemo.rte1.value);
-	
-	//change the following line to true to submit form
-	return false;
-}
-
-initRTE("images/", "", "");
-</script>
-<?php endif; ?>
-		
-		
-		
-<script type="text/javascript" language="JavaScript">
-function page_loaded() 
-{
-document.getElementById('loading').style.display='none';
-<?php if (isset($enable_power_edit)): ?>	
-protect_links();
-<?php endif; ?>
-//alert('page loaded');
-}
-</script>
-
+		<script src="thinkedit.js" type="text/javascript"></script>
   </head>
+	
   <body onLoad="page_loaded()">
 	
 	<table align="center" width="732px">

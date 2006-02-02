@@ -41,42 +41,57 @@ else // we are in root
 		
 }
 
+
+// handle editing node thus we need to go to the parent
+if ($url->get('mode') == 'edit_node')
+{
+		if ($node_object->getParent())
+		{
+				$new = $node_object->getParent();
+				$node_object = $new;
+		}
+}
+
+
+
 // handle adding new node from existing record
 if ($url->get('mode') == 'new_node')
 {
 		// todo : url loading of objects, universal object instancifier
-		$record = $thinkedit->newRecord($url->get('type'), $url->get('id'));
-		$node_object->add($record);
+		$object = $url->getObject('object_');
+		$node_object->add($object);
 }
 
 
 // handle adding new node from new record
+
 // handle deleting node
-
-
-
-// build a list of folders (excluding cache and thumbnails folders / files)
-// we use a new instance of filesystem to have all folders form root allways
-/*				
-$url->set('path', $folder->getPath());
-
-$folder_out['path'] = $folder->getPath();
-$folder_out['url'] = $url->render();
-if ($folder->getPath() == $filesystem->getPath())
+if ($url->get('action') == 'delete')
 {
-		$folder_out['current'] = true;
+		$node_to_delete = $url->getObject('node_');
+		
+		if ($node_to_delete->getParent())
+		{
+				$node_object = $node_to_delete->getParent();
+				if ($node_to_delete->delete())
+				{
+						$out['info'] = translate('node_deleted_successfully');
+				}
+				else
+				{
+						$out['error'] = translate('node_not_deleted');
+				}
+		}
+		else
+		{
+				$out['error'] = translate('cannot_delete_root_node');
+		}
+		
 }
-
-
-$out['folders'][] = $folder_out;
-*/
-
 
 
 
 // build a list of nodes within the current node :
-
-
 
 // if we are in root
 if (!$url->get('node_id'))
@@ -88,13 +103,15 @@ if (!$url->get('node_id'))
 		$node['icon'] = $content->getIcon();
 		
 		$url = new url();
+		$url->addObject($node_object, 'node_');
+		$url->addObject($content);
 		$url->set('node_id', $node_object->getId());
 		$node['url'] = $url->render();
 		
 		$url->set('action', 'delete');
 		$node['delete_url'] = $url->render();
 		
-		$url->set('action', 'edit_node');
+		$url->set('mode', 'edit_node');
 		$node['edit_url'] = $url->render('edit.php');
 		
 		
@@ -102,7 +119,7 @@ if (!$url->get('node_id'))
 }
 else
 {
-	
+		
 		if ($node_object->hasChildren())
 		{
 				$children = $node_object->getChildren();
@@ -115,13 +132,16 @@ else
 						$node['icon'] = $content->getIcon();
 						
 						$url = new url();
+						$url->addObject($child, 'node_');
+						$url->addObject($content);
 						$url->set('node_id', $child->getId());
+						
 						$node['url'] = $url->render();
 						
 						$url->set('action', 'delete');
 						$node['delete_url'] = $url->render();
 						
-						$url->set('action', 'edit_node');
+						$url->set('mode', 'edit_node');
 						$node['edit_url'] = $url->render('edit.php');
 						
 						
@@ -201,16 +221,20 @@ foreach($tables as $table_id)
 		$url = new url();
 		$url->set('mode', 'new_node');
 		$url->set('node_id', $node_object->getId());
+		$url->addObject($node_object, 'node_');
 		
-		$item['action'] = $url->linkTo($table, 'edit.php');
+		$url->addObject($table);
+		
+		$item['action'] = $url->render('edit.php');
 		$out['allowed_items'][] = $item;
 }
 
 
 
-
+/*
 // define action buttons urls
 $url = new url();
+$url->addObject($node_object, 'node_');
 $url->keep('node_id');
 $url->set('action', 'add_new_node');
 $out['add_new_node_url'] = $url->render();
@@ -218,9 +242,10 @@ $out['add_new_node_url'] = $url->render();
 
 $url = new url();
 $url->keep('node_id');
+$url->addObject($node_object, 'node_');
 $url->set('action', 'add_existing_node');
 $out['add_existing_node_url'] = $url->render();
-
+*/
 
 
 debug($out, 'OUT');

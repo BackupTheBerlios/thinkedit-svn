@@ -107,6 +107,18 @@ class thinkedit
 					}
 					
 			}
+			elseif ($uid['class'] == 'node')
+			{
+					if (isset($uid['id']))
+					{
+							return $this->newNode($uid['type'], $uid['id']);
+					}
+					else
+					{
+							return $this->newNode($uid['type']);
+					}
+					
+			}
 			elseif ($uid['class'] == 'filesystem')
 			{
 					return $this->newFilesystem($uid['type'], $uid['id']);

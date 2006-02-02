@@ -291,8 +291,13 @@ marginwidth="0" src="relation.php?table=<?php echo $table ?>&element=<?php echo 
 
 <?php endforeach; ?>			
 <?php endif; ?>
+
+<?php if (!isset($out['edit_node'])) : ?>
 <input class="action_button" type="submit" value="<?php echo translate('save_button') ?>" name="save">
 <input class="action_button" type="submit" value="<?php echo translate('save_and_return_to_list_button') ?>" name="save_and_return_to_list">
+<?php else: ?>
+<input class="action_button" type="submit" value="<?php echo translate('save_and_return_to_node_button') ?>" name="save">
+<?php endif; ?>
 
 </form>
 		

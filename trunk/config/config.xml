@@ -47,13 +47,10 @@
 
 
 <!--  site-wide configuration -->
-		<site>
-
+<site>
 				<help>
 						<fr>Bienvenue sur Thinkedit, le système de gestion de données et de contenu facile à utiliser</fr>
 				</help>
-
-
 
 <!-- available locales for this site -->
 
@@ -74,5 +71,12 @@
 
 
 
-		</site>
+</site>
+
+<!-- not used but may be used for incompatible servers, when path autodetect doesn't work -->
+<path>
+<document_root></document_root>
+<document_url></document_url>
+</path>
+
 </config>
