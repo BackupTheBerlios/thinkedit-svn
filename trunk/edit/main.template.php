@@ -2,18 +2,25 @@
 <div class="content">
 
 <?php if (is_array($out['item'])): ?>
-
+<div class="box">
 <?php foreach ($out['item'] as $item): ?>
 <a href="<?php echo $item['action']?>">
-<div class="box">
-<h1><?php echo $item['title']?></h1>
+<h1>
+
+<?php if (isset($item['icon'])):?>
+<img src="<?php echo($item['icon']) ?>">
+<?php endif; ?>
+
+<?php echo $item['title']?>
+
+</h1>
+
 <p>
 <?php echo $item['help']?>
 </p>
-</div>
 </a>
 <?php endforeach; ?>
-
+</div>
 <?php endif; ?>
 
 </div>

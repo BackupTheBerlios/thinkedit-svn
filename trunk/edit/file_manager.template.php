@@ -1,37 +1,3 @@
-
-<script LANGUAGE="JavaScript">
-<!--
-
-function jump(targ,selObj,restore){ //v3.0
-  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
-  if (restore) selObj.selectedIndex=0;
-}
-//-->
-</script>
-
-
-
-<script language="JavaScript">
-<!--
-function confirm_link(message, url)
-{
-		input_box=confirm(message);
-		if (input_box==true)
-		
-		{ 
-				// Output when OK is clicked
-				window.location.href=url; 
-		}
-		
-		else
-		{
-				return false;
-		}
-		
-}
---></script>
-
-
 <div class="content">
 
 
@@ -101,10 +67,11 @@ $i++;
 <td class="power_cell power_cell_border" style="cursor:pointer">
 
 <a href="<?php echo $file['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_delete') ?>', '<?php echo $file['delete_url']?>'); return false;">
-<?php echo translate('file_delete'); ?>
+<img src="ressource/image/icon/small/edit-delete.png" border="0" alt="<?php echo translate('file_delete'); ?>">
 </a>
 
-<?php /* <a href="edit.php?id=<?php echo  $file['id'] ?>&module=<?php echo $filemanager_id?>">[edit details]</a> */?>
+
+
 </td>
 
 </tr>

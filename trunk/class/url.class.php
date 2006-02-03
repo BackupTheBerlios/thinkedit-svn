@@ -66,7 +66,18 @@ class url
 				{
 						$this->orig_param[$key] = $value;
 				}
-				$this->self = $_SERVER['PHP_SELF'];
+				
+				// security todo
+				/*
+				from http://blog.phpdoc.info/archives/13-XSS-Woes.html
+				
+				Er... again without the carrots:
+				replace echo $_SERVER['PHP_SELF'] with the ugly ...
+				echo substr($_SERVER['PHP_SELF'], 0, (strlen($_SERVER['PHP_SELF']) - @strlen($_SERVER['PATH_INFO'])));
+				*/
+				//$this->self = $_SERVER['PHP_SELF'];
+				// becomes :
+				$this->self = substr($_SERVER['PHP_SELF'], 0, (strlen($_SERVER['PHP_SELF']) - @strlen($_SERVER['PATH_INFO'])));
 				
 				
 				// fix for IIS
@@ -201,6 +212,8 @@ class url
 				}
 				*/
 				//else
+				// todo security
+				// 
 				if (isset($this->orig_param[$id]))
 				{
 						return $this->orig_param[$id];
@@ -279,7 +292,8 @@ class url
 										{
 												if (in_array($key, $this->keep))
 												{
-														$final_param[$key] = $value;
+														// todo : security
+														$final_param[$key] = htmlentities($value);
 												}
 										}
 								}

@@ -8,6 +8,7 @@
 
 <title><fr>Dossier</fr></title>
 <help><fr>Un dossier du site</fr></help>
+<icon>folder.png</icon>
 
 <title_field>title</title_field>
 

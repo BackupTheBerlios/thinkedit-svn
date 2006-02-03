@@ -9,7 +9,7 @@
 					<table border="0" cellspacing="0" cellpadding="0">
 						<tr>
 						<td bgcolor="white" width="1"></td>
-						<td onClick="document.location.href='main.php'" style="cursor:pointer"><a class="breadcrumb" href="main.php"><img src="ressource/image/icon/home.gif" alt="" border="0"></a></td>
+						<td onClick="document.location.href='main.php'" style="cursor:pointer"><a class="breadcrumb" href="main.php"><img src="ressource/image/icon/small/home.gif" alt="" border="0"></a></td>
 						<td><img src="ressource/image/general/bread_arrow.gif" alt="" width="10" height="15" border="0"></td>
 
 <?php $x=1 ?>

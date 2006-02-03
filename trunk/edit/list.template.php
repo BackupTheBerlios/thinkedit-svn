@@ -306,8 +306,13 @@ $i++;
 <!-- tools follow : -->
 <td class="power_cell_border" align="center" width="55px">
 
+
+<a href="<?php echo $data['edit_url']?>">
+<img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('edit'); ?>">
+</a>
+
 <a href="<?php echo $data['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_delete') ?>', '<?php echo $data['delete_url']?>'); return false;">
-<img src="ressource/image/icon/trash.gif" border="0"></a>
+<img src="ressource/image/icon/small/edit-delete.png" border="0"></a>
 
 
 <?php if (isset ($out['plugins'])) : ?>

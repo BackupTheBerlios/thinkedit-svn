@@ -59,16 +59,17 @@ $i++;
 
 <td class="power_cell power_cell_border" style="cursor:pointer">
 
-<a href="<?php echo $node['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_node_delete') ?>', '<?php echo $node['delete_url']?>'); return false;">
-<img src="ressource/image/icon/trash.gif" border="0" alt="<?php echo translate('node_delete'); ?>">
-</a>
-
 <a href="<?php echo $node['edit_url']?>">
-<?php echo translate('node_edit'); ?>
-<!--<img src="ressource/image/icon/edit.gif" border="0" alt="<?php echo translate('node_edit'); ?>">-->
+<img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('node_edit'); ?>">
 </a>
 
-<?php /* <a href="edit.php?id=<?php echo  $file['id'] ?>&module=<?php echo $filemanager_id?>">[edit details]</a> */?>
+<img src="ressource/image/icon/small/go-up.png">
+<img src="ressource/image/icon/small/go-down.png">
+
+<a href="<?php echo $node['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_node_delete') ?>', '<?php echo $node['delete_url']?>'); return false;">
+<img src="ressource/image/icon/small/edit-delete.png" border="0" alt="<?php echo translate('node_delete'); ?>">
+</a>
+
 </td>
 
 </tr>

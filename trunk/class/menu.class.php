@@ -3,7 +3,69 @@
 class menu
 {
 		
-		var 
+		function menu($node = false)
+		{
+				if ($node)
+				{
+						$this->node = $node;
+				}
+				else
+				{
+						global $thinkedit;
+						$this->node = $thinkedit->newNode();
+						$this->node->loadRootNode();
+				}
+		}
+		
+		
+		function getChildren()
+		{
+				$out = '';
+				if ($this->node->getChildren())
+				{
+						foreach ($this->node->getChildren() as $child)
+						{
+								$content = $child->getContent();
+								$content->load();
+								$url = new url();
+								$url->set('node_id', $child->getId());
+								$out[] = '<a href="' . $url->render() . '">' . $content->getTitle() . '</a>';
+						}
+						return $out;
+				}
+				else
+				{
+						return false;
+				}
+				
+		}
+		
+		function getMainMenu()
+		{
+				$out = '';
+				global $thinkedit;
+				
+				$node = $thinkedit->newNode();
+				$node->loadRootNode();
+				
+				if ($node->getChildren())
+				{
+						foreach ($node->getChildren() as $child)
+						{
+								$content = $child->getContent();
+								$content->load();
+								$url = new url();
+								$url->set('node_id', $child->getId());
+								$out[] = '<a href="' . $url->render() . '">' . $content->getTitle() . '</a>';
+						}
+						return $out;
+				}
+				else
+				{
+						return false;
+				}
+		}
+		
 		
 		function setCurrentNode($node_id)
 		{

@@ -569,7 +569,14 @@ class record
 		
 		function getIcon()
 		{
-				return 'ressource/image/icon/text-x-generic.png';
+				if (isset($this->config['icon']))
+				{
+						return 'ressource/image/icon/small/' . $this->config['icon'];
+				}
+				else
+				{
+						return 'ressource/image/icon/small/text-x-generic.png';
+				}
 		}
 		
 		

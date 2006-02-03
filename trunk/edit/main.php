@@ -18,6 +18,8 @@ Files
   File manager
 Options
 
+
+Simply, we have this : 
 $out['item'][]['title']
               ['icon']
 							['action']
@@ -40,8 +42,14 @@ $tables = $config_tool->getTableList();
 
 $item['title'] = 'Structure';
 $item['help'] = '';
-$item['icon'] = '';
+$item['icon'] = 'ressource/image/icon/small/go-home.png';
 $item['action'] = $url->render('structure.php');
+$out['item'][] = $item;
+
+$item['title'] = 'Filemanager';
+$item['help'] = '';
+$item['icon'] = 'ressource/image/icon/small/system-file-manager.png';
+$item['action'] = $url->render('file_manager.php');
 $out['item'][] = $item;
 
 

@@ -33,6 +33,9 @@
 <type>text</type>
 </field>
 
+<field id="node_order">
+<type>order</type>
+</field>
 
 
 </table>

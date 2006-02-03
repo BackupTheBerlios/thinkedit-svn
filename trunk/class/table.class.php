@@ -63,11 +63,11 @@ class table
 				//todo : implement this!
 				if (isset($this->config['icon']))
 				{
-						return ROOT_URL . '/ressource/image/icon/' . $this->config['icon'];
+						return ROOT_URL . '/edit/ressource/image/icon/small/' . $this->config['icon'];
 				}
 				else
 				{
-						return ROOT_URL . 'edit/ressource/image/icon/text-x-generic.png';
+						return ROOT_URL . '/edit/ressource/image/icon/small/text-x-generic.png';
 				}
 		}
 		
@@ -159,6 +159,11 @@ class table
 						{
 								$sql .= $name . ' ' . $type;
 						}
+						elseif ($type == 'order')
+						{
+								$sql .= $name . ' float';
+						}
+						
 						else
 						{
 								trigger_error("type $type is not supported");
