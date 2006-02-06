@@ -76,7 +76,8 @@ function jump(targ,selObj,restore){ //v3.0
 <?php if (isset($out['dropdown'])) : ?>
 		<?php foreach ($out['dropdown'] as $dropdown): ?>
 				<select size="1" onChange="jump('document',this,0)">
-						<?php foreach ($dropdown['data'] as $data): ?>
+				<option value=""><?php echo translate('drop_down_choose')?>...</option>		
+				<?php foreach ($dropdown['data'] as $data): ?>
 						
 						<?php 
 						if (isset ($data['selected']))

@@ -36,6 +36,12 @@
 <type>text</type>
 </field>
 
+
+<field id="image">
+<title><fr>Image attachée au dossier</fr></title>
+<type>image</type>
+</field>
+
 <!-- <allowed_items>folder,article</allowed_items>-->
 
 

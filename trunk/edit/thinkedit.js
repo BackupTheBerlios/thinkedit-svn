@@ -1,3 +1,9 @@
+function popup(url, title)
+{
+		window.open(url, title,'width=400,height=500')
+}
+
+
 function confirm_link(message, url)
 {
 		input_box=confirm(message);

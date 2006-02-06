@@ -3,7 +3,7 @@
 class session 
 {
 		
-		function session () 
+		function session() 
 		{
 				//session_start();
 				if (!isset($_SESSION))
@@ -13,13 +13,13 @@ class session
 		}
 		
 		
-		function set ($id,$value) 
+		function set($id,$value) 
 		{
 				$_SESSION[$id]=$value;
 		}
 		
 		
-		function get ($id) 
+		function get($id) 
 		{
 				if ( isset ( $_SESSION[$id] ) )
 				{
@@ -62,6 +62,7 @@ class session
 		*/
 		function persist(&$object)
 		{
+				die ('deprecated');
 				if ( method_exists($object, 'getId') and method_exists($object, 'getSettings') and method_exists($object, 'setSettings') )
 				{
 						$object_id = $object->getId();

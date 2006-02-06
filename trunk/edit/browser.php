@@ -21,6 +21,11 @@ input :
 - class
 - type
 
+- mode : mode defiens the way the browser will send back results.
+if mode = edit :
+- field : the field to update from caller, using javascript
+
+
 
 other
 - pages
@@ -41,6 +46,12 @@ check_user();
 // check class
 //$class = $url->get('class') or $session->get('class');
 $class = $url->get('class');
+
+if ($url->get('mode') == 'edit')
+{
+		$url->keep('mode');
+		$out['mode'] = 'edit';
+}
 
 // check type
 $type = $url->get('type');
@@ -94,7 +105,53 @@ if ($class=='table')
 }
 
 
-debug($out, 'OUT');
+if ($class=='file')
+{
+		$filesystem = $thinkedit->newFilesystem();
+		$folders = $filesystem->getFolderListRecursive();
+		debug($folders, 'folders');
+		if ($folders)
+		{
+				foreach ($folders as $folder)
+				{
+						$folder_out = '';
+						$url->set('path', $folder->getPath());
+						$url->set('class', 'file');
+						$folder_out['title'] = $folder->getPath();
+						$folder_out['url'] = $url->render();
+						if ($folder->getPath() == $url->get('path'))
+						{
+								$folder_out['selected'] = 1;
+						}
+						$out['dropdown']['path']['data'][] = $folder_out;
+				}
+		}
+}
+
+
+if ($class=='file' && $url->get('path'))
+{
+		$filesystem = $thinkedit->newFilesystem();
+		$filesystem->setPath($url->get('path'));
+		
+		$childs = $filesystem->getFiles();
+		
+		if ($childs)
+		{
+				foreach ($childs as $child)
+				{
+						$item['title'] = $child->getFilename();
+						$item['icon'] = $child->getIcon();
+						$item['url'] = $url->render('relation.php');
+						$out['items'][] = $item;
+				}
+		}
+		
+		
+}
+
+
+
 
 
 if ($class=='table' && $type)
@@ -115,81 +172,8 @@ if ($class=='table' && $type)
 		}
 }
 
-// if class and type, display list
 
-// execute
-
-/*
-
-$out['path'] =  'Test path';
-
-
-if ($folders)
-{
-		$out['folders'] = $folders;
-		$out['filters']['path'] = $folders;
-		$out['filters']['path']['filter_name'] = 'path';
-		$out['filters']['path']['data'][]['value'] = '/';
-		$out['filters']['path']['data'][]['label'] = '/';
-}
-
-
-// handle icons for each file
-
-$dir = dirname($_SERVER['PATH_TRANSLATED']) . "/icons/extensions";
-$dh  = opendir($dir);
-while (false !== ($filename = readdir($dh))) 
-{
-		$icon_name = get_file_filename($filename);
-		if ($icon_name <> '') 	 $icons[] = $icon_name;
-		
-}
-
-
-if ($files)
-{
-		
-		
-		$i=0;
-		foreach ($files as $file)
-		{
-				$out['files'][$i]['filename'] = $file->filename;
-				$out['files'][$i]['id'] = $file->id;
-				
-				$out['files'][$i]['extension'] = get_file_extension($file->filename);
-				
-				
-				// handle image / non image file types (makes a link to thumbnail or not)
-				if (in_array(get_file_extension($file->filename), $image_extensions))
-				{
-						$out['files'][$i]['is_image'] = true;
-				}
-				else
-				{
-						$out['files'][$i]['is_image'] = false;
-						
-						// if not an image, handle icon type
-						if (in_array(get_file_extension($file->filename), $icons))
-						{
-								$out['files'][$i]['icon'] = get_file_extension($file->filename) . ".gif";
-						}
-						else
-						{
-								$out['files'][$i]['icon'] = "unknown.gif";
-						}
-						
-				}
-				
-				
-				
-				
-				$i++;
-		}
-}
-
-*/
-
-
+debug($out, 'OUT');
 include('browser.template.php');
 
 ?>

@@ -44,16 +44,6 @@
 
 
 
-
-<field id="author">
-<type>lookup</type>
-<source>
-<type>table</type>
-<name>author</name>
-</source>
-
-</field>
-
 </table>
 </config>
 

@@ -135,6 +135,11 @@ class table
 								$sql .= $name . ' varchar(255)';
 						}
 						
+						elseif ($type == 'image')
+						{
+								$sql .= $name . ' varchar(255)';
+						}
+						
 						elseif ($type == 'text')
 						{
 								$sql .= $name . ' text';

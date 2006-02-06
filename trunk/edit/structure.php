@@ -103,10 +103,12 @@ if (!$url->get('node_id'))
 		$node['icon'] = $content->getIcon();
 		
 		$url = new url();
-		$url->addObject($node_object, 'node_');
-		$url->addObject($content);
+		
 		$url->set('node_id', $node_object->getId());
 		$node['url'] = $url->render();
+		
+		$url->addObject($node_object, 'node_');
+		$url->addObject($content);
 		
 		$url->set('action', 'delete');
 		$node['delete_url'] = $url->render();
@@ -132,15 +134,21 @@ else
 						$node['icon'] = $content->getIcon();
 						
 						$url = new url();
-						$url->addObject($child, 'node_');
-						$url->addObject($content);
+						
 						$url->set('node_id', $child->getId());
 						
 						$node['url'] = $url->render();
 						
+						
+						$url->addObject($child, 'node_');
+						$url->addObject($content);
+						
 						$url->set('action', 'delete');
 						$node['delete_url'] = $url->render();
 						
+						$url = new url();
+						$url->addObject($child, 'node_');
+						$url->addObject($content);
 						$url->set('mode', 'edit_node');
 						$node['edit_url'] = $url->render('edit.php');
 						
