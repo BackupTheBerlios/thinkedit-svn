@@ -84,3 +84,23 @@ function set_user_changed()
 {
 		user_changed = 1;
 }
+
+
+function adjustIFrameSize (iframeWindow) 
+{
+  if (iframeWindow.document.height) {
+    var iframeElement = parent.document.getElementById(iframeWindow.name);
+    iframeElement.style.height = iframeWindow.document.height +  'px';
+    }
+  else if (document.all) {
+    var iframeElement = parent.document.all[iframeWindow.name];
+    if (iframeWindow.document.compatMode && iframeWindow.document.compatMode != 'BackCompat') 
+    {
+      iframeElement.style.height = iframeWindow.document.documentElement.scrollHeight +  5 +  'px';
+
+    }
+    else {
+      iframeElement.style.height = iframeWindow.document.body.scrollHeight  + 5 +  'px';
+    }
+  }
+}

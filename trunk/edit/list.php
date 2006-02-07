@@ -35,6 +35,12 @@ $out['enable_thumbnails'] = true;
 
 
 
+/********** handle relation mode *********/
+if ($session->get('action') == 'relate')
+{
+		$out['mode'] = 'relation';
+}
+
 
 // -----------------------------
 // sorting
@@ -374,6 +380,12 @@ if ($records)
 				$url = new url();
 				$out['data'][$item->getId()]['edit_url'] = $url->linkTo($item, 'edit.php');
 				$out['data'][$item->getId()]['delete_url'] = $url->linkTo($item, 'delete.php');
+				
+				if ($session->get('action') == 'relate')
+				{
+						$url->set('action', 'relate');
+						$out['data'][$item->getId()]['relate_url'] = $url->linkTo($item, 'relate.php');
+				}
 				//$out['data'][$item->getId()]['plugin_url'] = $url->linkTo($record, '');
 				// todo plugin urls
 				

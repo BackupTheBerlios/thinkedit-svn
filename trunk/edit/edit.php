@@ -136,9 +136,11 @@ foreach ($record->field as $field)
 
 $url = new url();
 $url->addObject($record, 'source_');
+$url->set('action', 'init');
 
 $out['relation']['enable'] = true;
-$out['relation']['url'] = $url->render('relation.php');
+
+$out['relation']['url'] = $url->render('relate.php');
 
 // clean url
 $url = new url();

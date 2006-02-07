@@ -306,6 +306,11 @@ $i++;
 <!-- tools follow : -->
 <td class="power_cell_border" align="center" width="55px">
 
+<?php if (isset($out['mode']) && $out['mode'] == 'relation'): ?>
+<a class="action_url" href="<?php echo $data['relate_url']?>">
+<?php echo translate('make_relation'); ?>
+</a>
+<?php endif; ?>
 
 <a href="<?php echo $data['edit_url']?>">
 <img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('edit'); ?>">
