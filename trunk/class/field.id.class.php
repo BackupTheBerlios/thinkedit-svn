@@ -21,6 +21,21 @@ class field_id extends field
 		
 		function isPrimary()
 		{
+				// handle very special case when an ID field is not primary (it is the case in the relation table)
+				// this can be configured in the config using :
+				/*
+				<field id="id">
+				<type>id</type>
+				<primary>false</primary>
+				</field>
+				*/
+				if (isset($this->config['primary']))
+				{
+						if ($this->config['primary'] == 'false')
+						{
+								return false;
+						}
+				}
 				return true;
 		}
 		

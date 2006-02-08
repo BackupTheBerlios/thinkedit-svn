@@ -40,6 +40,8 @@
 <title><fr>Corps du texte</fr></title>
 <help><fr>Regardez dans l'aide pour ajouter des images</fr></help>
 <type>richtext</type>
+<engine>fckeditor</engine>
+<!--<engine>tinymce</engine>-->
 </field>
 
 

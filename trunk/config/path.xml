@@ -1,0 +1,14 @@
+<?xml version='1.0'?>
+<config>
+<path>
+
+<!-- not used but may be used for incompatible servers, when path autodetect doesn't work -->
+<!--
+<document_root></document_root>
+-->
+
+<document_url>/thinkedit/trunk/</document_url>
+<tmp>./tmp/</tmp>
+</path>
+
+</config>

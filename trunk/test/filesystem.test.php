@@ -5,6 +5,10 @@ echo '<pre>';
 
 $filesystem = $thinkedit->newFilesystem();
 
+debug($filesystem->getPath(), 'getPath');
+debug($filesystem->getRealPath(), 'getRealPath');
+
+
 
 print_r($filesystem);
 

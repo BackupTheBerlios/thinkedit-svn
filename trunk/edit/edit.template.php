@@ -37,11 +37,7 @@
 <?php echo translate('relation'); ?> :
 </div>
 
-<a class="action_button" href="<?php echo $out['relation']['url']?>"><?php echo translate('add_relation'); ?></a>
-
-<!--
-<iframe src="<?php echo $out['relation']['url']?>" name="relation" width="600" height="200"></iframe>
--->
+<iframe src="<?php echo $out['relation']['url']?>" name="relation" id="relation" width="600" height="200" frameborder="0"></iframe>
 
 <?php endif; ?>
 

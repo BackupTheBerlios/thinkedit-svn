@@ -22,8 +22,11 @@ input :
 - type
 
 - mode : mode defiens the way the browser will send back results.
-if mode = edit :
-- field : the field to update from caller, using javascript
+if mode = relation :
+will reload relation iframe
+
+
+field : the field to update from caller, using javascript
 
 
 
@@ -49,15 +52,25 @@ $class = $url->get('class');
 
 if ($url->get('mode') == 'edit')
 {
+		$mode = 'edit';
 		$url->keep('mode');
 		$out['mode'] = 'edit';
 }
 
+
+if ($url->get('mode') == 'relation')
+{
+		$mode = 'relation';
+		$url->keep('mode');
+		$out['mode'] = 'relation';
+}
+
+
 // check type
 $type = $url->get('type');
 
-// display dropdown
 
+/*************************** First dropdown ***********/
 $out['dropdown']['class']['data'][0]['title'] = ucfirst(translate('file'));
 $url->set('class', 'file');
 $out['dropdown']['class']['data'][0]['url'] = $url->render();
@@ -85,7 +98,7 @@ if ($class=='node')
 }
 
 
-
+/*************************** Table dropdown ***********/
 if ($class=='table')
 {
 		$config = $thinkedit->newConfig();
@@ -104,6 +117,7 @@ if ($class=='table')
 		}
 }
 
+/*************************** File dropdown ***********/
 
 if ($class=='file')
 {
@@ -128,6 +142,7 @@ if ($class=='file')
 		}
 }
 
+/*************************** Files items ***********/
 
 if ($class=='file' && $url->get('path'))
 {
@@ -142,7 +157,15 @@ if ($class=='file' && $url->get('path'))
 				{
 						$item['title'] = $child->getFilename();
 						$item['icon'] = $child->getIcon();
-						$item['url'] = $url->render('relation.php');
+						$item['url'] = $url->render('browser.php'); // todo default (?)
+						
+						if ($mode == 'relation')
+						{
+								$url->addObject($child, 'target_');
+								$url->set('action', 'relate');
+								$item['url'] = $url->render('relation.php');
+						}
+						
 						$out['items'][] = $item;
 				}
 		}
@@ -151,9 +174,7 @@ if ($class=='file' && $url->get('path'))
 }
 
 
-
-
-
+/*************************** Record items dropdown ***********/
 if ($class=='table' && $type)
 {
 		$record = $thinkedit->newRecord($type);
@@ -164,8 +185,15 @@ if ($class=='table' && $type)
 				foreach ($records as $content)
 				{
 						$item['title'] = $content->getTitle();
-						
+						$url->addObject($content, 'target_');
 						$item['url'] = $url->render('relation.php');
+						if ($mode == 'relation')
+						{
+								$url->addObject($content, 'target_');
+								$url->set('action', 'relate');
+								$item['url'] = $url->render('relation.php');
+						}
+						
 						
 						$out['items'][] = $item;
 				}

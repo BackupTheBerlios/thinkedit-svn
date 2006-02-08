@@ -7,8 +7,10 @@
 
 <title_field>title</title_field>
 
+
 <field id="id">
 <type>id</type>
+<primary>false</primary>
 </field>
 
 

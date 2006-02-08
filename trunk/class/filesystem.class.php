@@ -19,27 +19,38 @@ class filesystem
 				}
 				
 				
+				
+				if (isset($this->config['path']))
+				{
+						$config_path = $this->config['path'];
+				}
+				else
+				{
+						trigger_error('filesystem:filesystem() : you must provide a path in filesystem config');
+				}
+				
+				
+				
 				// get path from config
 				if (isset($this->config['root']))
 				{
-						$this->root = $this->config['root'];
+						$this->root = $this->config['root'] . $config_path;
 				}
 				else
 				{
 						//trigger_error('filesystem::filesystem() path not defined in config, using server document root instead');
-						$this->root = $_SERVER['DOCUMENT_ROOT'];
+						$this->root = ROOT . $config_path;
 				}
 				
-				
-				if (isset($this->config['path']))
-				{
-						$this->path = $this->config['path'];
-				}
 				
 				// get path from parameter
 				if ($path)
 				{
 						$this->path = $path; 
+				}
+				else
+				{
+						$this->path = '/';
 				}
 				
 				

@@ -3,22 +3,16 @@
 <!--  each config file begins with the config tag -->
 <config>
 
-
 <!-- proto -->
 		<filesystem id="main">
 				<type>local</type>
-				
-				<!-- You can define a document root if it not auto magically found using $_SERVER['DOCUMENT_ROOT'];
-				<root>/home/mywebsite.com/htdocs/</root>
-				-->
-				
 				<!-- all paths are relative to document root it IS simplier this way. -->
 				<!-- Local path is in this case the same as remote path, as document root path is added in case of local loading 
 				todo : more info about this
 				todo : what if I want to store files outside document root ?
 				todo : what if document root is not defined by web server (IIS, apache2, php cgi ?)
 				-->
-				<path>/thinkedit/trunk/files</path>
+				<path>/files</path>
 		</filesystem>
 
 

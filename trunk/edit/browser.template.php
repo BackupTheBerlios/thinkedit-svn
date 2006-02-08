@@ -13,28 +13,9 @@
     <link type="text/css" href="style.css" rel="stylesheet"
     media="screen">	
 		
-		
-		
-<script LANGUAGE="JavaScript">
-<!--
-
-function jump(targ,selObj,restore){ //v3.0
-  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
-  if (restore) selObj.selectedIndex=0;
-}
-//-->
-</script>
+<script src="thinkedit.js" type="text/javascript"></script>
 
 
-<script language="javascript"><!--
-    	
-			function change_url(url)
-      {
-      parent.frames['relation'].location.href=url
-      }  
-			
-  //-->
-</script>
 		
 		
 </head>
@@ -105,29 +86,8 @@ function jump(targ,selObj,restore){ //v3.0
 
 <div class="image_browser_margin">
 
-
-	
-
-
-
 <table class="image_browser_table" cellspacing="0" cellpadding="0">
 
-
-
-
-<tr><td colspan="2" padding="0" margin="0">
-<!--
-<table cellspacing="0" cellpadding="0" width="100%">
-
-
-<tr>
-   <th width="50%"><?php echo translate('by_name') ?></th><th width="50%"><?php echo translate('by_date') ?></th>
-</tr>
-
-
-</table>
--->
-</td></tr>
 <?php if (isset($out['items'])): ?>
 <?php $i=0; ?>
 <?php foreach ($out['items'] as $item) : ?>
@@ -153,9 +113,18 @@ $i++;
 <img src="<?php echo $item['icon'] ?>">
 
 </td>
+
 <td>
-<a href="#" onClick="change_url('<?php echo $item['url'] ?>');"><?php echo $item['title'] ?></a>
+<?php echo $item['title'] ?>
 </td>
+
+<td>
+<?php if (isset($out['mode']) && $out['mode'] == 'relation'): ?>
+<a class="action_button" href="javascript:to_opener('<?php echo $item['url'] ?>')"><?php echo translate('relate')?></a>
+<?php endif; ?>
+</td>
+
+
 </tr>
 <?php endforeach; ?>
 <?php else: ?>

@@ -6,31 +6,79 @@ API can be found in the relation.class.php file
 
 //genral setup
 include_once('common.inc.php');
-//check_user
-check_user();
-$source = $url->getObject('source_');
-debug($source, 'Source');
 require_once ROOT . '/class/relation.class.php';
 
-$out['title'] = 'Relations';
+//check_user
+check_user();
+
+if ($url->get('source_class') && $url->get('source_type') && $url->get('source_id')) 
+{
+		$source = $url->getObject('source_');
+		debug($source, 'Source');
+		$session->set('relation_source', $source->getUid());
+}
+elseif ($url->get('action'))
+{
+		$source = $thinkedit->newObject($session->get('relation_source'));
+}
+else
+{
+		echo translate('save_before_relating');
+		die();
+		// todo more gracefull : do not display relation iframe iframe in edit when editing new record 
+}
+
 
 $relation = new relation();
+
+/*********** handle actions **********/
+if ($url->get('action') == 'relate')
+{
+		//echo 'I must relate';
+		$target = $url->getObject('target_');
+		$relation->relate($source, $target);
+}
+
+if ($url->get('action') == 'unrelate')
+{
+		//echo 'I must relate';
+		$target = $url->getObject('target_');
+		$relation->unrelate($source, $target);
+}
+
+
+
 $relations = $relation->getRelations($source);
 
 if ($relations)
 {
 		foreach ($relations as $relation_object )
 		{
+				$relation_object->load();
 				$item['title'] = $relation_object->getTitle();
 				$item['icon'] = $relation_object->getIcon();
+				$url->set('action', 'unrelate');
+				$url->addObject($relation_object, 'target_');
+				$item['remove_url'] = $url->render();
 				$out['relation']['data'][] = $item;
 		}
 }
+
+
+$url = new url();
+$url->set('mode', 'relation');
+$out['browse_url'] = $url->render('browser.php');
+
 
 debug($out, 'OUT');
 
 debug($relations);
 
+
+$out['title'] = 'Relations';
+
+// include template file
+include('relation.template.php');
 
 die();
 
@@ -42,7 +90,7 @@ die();
 
 if (!$_REQUEST['module'])
 {
-  error(translate('please_choose_a_module'));
+		error(translate('please_choose_a_module'));
 }
 
 $module = $_REQUEST['module'];
@@ -51,7 +99,7 @@ $out['module'] = $module;
 
 if (!$_REQUEST['element'])
 {
-  error(translate('please_choose_an_element'));
+		error(translate('please_choose_an_element'));
 }
 
 $element = $_REQUEST['element'];
@@ -60,7 +108,7 @@ $out['element'] = $element;
 
 if (!$_REQUEST['id'])
 {
-  error(translate('please_choose_an_id'));
+		error(translate('please_choose_an_id'));
 }
 
 $id = $_REQUEST['id'];
@@ -103,7 +151,7 @@ $source_module_id = $config['config']['module'][$module]['element'][$element]['s
 
 if ($config['config']['module'][$source_module_id]['type'] == 'filemanager')
 {
-  $use_filemanager = true;
+		$use_filemanager = true;
 }
 
 $source_module = $config['config']['module'][$module]['element'][$element]['source']['name'];
@@ -122,9 +170,9 @@ $current_table = $config['config']['module'][$module]['table'];
 
 if ($config['config']['module'][$module]['element'][$element]['sorting']['enable'] == 'true')
 {
-  $enable_sort = true;
-  $out['enable_sort'] = true;
-  $sort_field = $config['config']['module'][$module]['element'][$element]['sorting']['field'];
+		$enable_sort = true;
+		$out['enable_sort'] = true;
+		$sort_field = $config['config']['module'][$module]['element'][$element]['sorting']['field'];
 }
 
 
@@ -134,82 +182,82 @@ if ($config['config']['module'][$module]['element'][$element]['sorting']['enable
 
 if ($action=='move_up' or $action=='move_down' or $action=='move_bottom' or $action=='move_top')
 {
-  // get the order of the current element
-  $current_order = $db->get_var("select $sort_field from $store_table where $store_current_field='$id' and $store_source_field = '$item_to_move'");
-  if ($debug) $db->debug();
+		// get the order of the current element
+		$current_order = $db->get_var("select $sort_field from $store_table where $store_current_field='$id' and $store_source_field = '$item_to_move'");
+		if ($debug) $db->debug();
 }
 
 if ($action=='move_up') //if we move up, we need to decrease the order field between previous and current
 {
-  // we need to determine the order of previous element of the current one
-  $previous_order = $db->get_var("select $sort_field from $store_table where $sort_field < '$current_order' and $store_current_field = '$id' order by '$sort_field' desc limit 0,1");
-  if ($debug) $db->debug();
-  $pre_previous_order = $db->get_var("select $sort_field from $store_table where $sort_field < '$current_order' and $store_current_field = '$id' order by '$sort_field' desc limit 1,1");
-  if ($debug) $db->debug();
-
-  if ($previous_order)
-  {
-    if (!$pre_previous_order) $pre_previous_order = $previous_order - 1;
-    $new_order = $pre_previous_order + (($previous_order - $pre_previous_order) / 2);
-
-    if ($debug) echo 'new order : ' . $new_order . '<p>';
-
-    $order_changed = true;
-  }
+		// we need to determine the order of previous element of the current one
+		$previous_order = $db->get_var("select $sort_field from $store_table where $sort_field < '$current_order' and $store_current_field = '$id' order by '$sort_field' desc limit 0,1");
+		if ($debug) $db->debug();
+		$pre_previous_order = $db->get_var("select $sort_field from $store_table where $sort_field < '$current_order' and $store_current_field = '$id' order by '$sort_field' desc limit 1,1");
+		if ($debug) $db->debug();
+		
+		if ($previous_order)
+		{
+				if (!$pre_previous_order) $pre_previous_order = $previous_order - 1;
+				$new_order = $pre_previous_order + (($previous_order - $pre_previous_order) / 2);
+				
+				if ($debug) echo 'new order : ' . $new_order . '<p>';
+				
+				$order_changed = true;
+		}
 }
 
 if ($action=='move_down')
 {
-  // we need to determine the order of the next element of the current one
-  $next_order = $db->get_var("select $sort_field from $store_table where $sort_field > '$current_order' and $store_current_field = '$id' order by '$sort_field' asc limit 0,1");
-  if ($debug) $db->debug();
-  $next_next_order = $db->get_var("select $sort_field from $store_table where $sort_field > '$current_order' and $store_current_field = '$id' order by '$sort_field' asc limit 1,1");
-  if ($debug) $db->debug();
-
-  if ($next_order) // only if we have something lower than the current position we need to move
-  {
-    if (!$next_next_order) $next_next_order = $next_order + 1;
-    $new_order = $next_order + (($next_next_order - $next_order) / 2);
-    if ($debug) echo 'new order : ' . $new_order . '<p>';
-    $order_changed = true;
-  }
-
+		// we need to determine the order of the next element of the current one
+		$next_order = $db->get_var("select $sort_field from $store_table where $sort_field > '$current_order' and $store_current_field = '$id' order by '$sort_field' asc limit 0,1");
+		if ($debug) $db->debug();
+		$next_next_order = $db->get_var("select $sort_field from $store_table where $sort_field > '$current_order' and $store_current_field = '$id' order by '$sort_field' asc limit 1,1");
+		if ($debug) $db->debug();
+		
+		if ($next_order) // only if we have something lower than the current position we need to move
+		{
+				if (!$next_next_order) $next_next_order = $next_order + 1;
+				$new_order = $next_order + (($next_next_order - $next_order) / 2);
+				if ($debug) echo 'new order : ' . $new_order . '<p>';
+				$order_changed = true;
+		}
+		
 }
 
 
 
 if ($action=='move_bottom')
 {
-  // we need to determine the order of the next element of the current one
-  $new_order = $db->get_var("select max($sort_field) from $store_table where $store_current_field = '$id'") + 1;
-  // $new_order = $current_order + (($next_order - $current_order) / 2);
-  // echo ($new_order);
-  // $db->debug();
-
-  $order_changed = true;
+		// we need to determine the order of the next element of the current one
+		$new_order = $db->get_var("select max($sort_field) from $store_table where $store_current_field = '$id'") + 1;
+		// $new_order = $current_order + (($next_order - $current_order) / 2);
+		// echo ($new_order);
+		// $db->debug();
+		
+		$order_changed = true;
 }
 
 
 if ($action=='move_top')
 {
-  // we need to determine the order of the next element of the current one
-  $new_order = $db->get_var("select min($sort_field) from $store_table where $store_current_field = '$id'") - 1;
-
-  // $new_order = $current_order + (($next_order - $current_order) / 2);
-  // echo ($new_order);
-  // $db->debug();
-
-  $order_changed = true;
+		// we need to determine the order of the next element of the current one
+		$new_order = $db->get_var("select min($sort_field) from $store_table where $store_current_field = '$id'") - 1;
+		
+		// $new_order = $current_order + (($next_order - $current_order) / 2);
+		// echo ($new_order);
+		// $db->debug();
+		
+		$order_changed = true;
 }
 
 
 if ($order_changed)
 {
-  $set_order_query = "update $store_table set $sort_field = '$new_order' where $store_current_field = '$id' and $store_source_field = '$item_to_move'";
-  // echo $set_order_query;
-
-  $db->query($set_order_query);
-  if ($debug) $db->debug();
+		$set_order_query = "update $store_table set $sort_field = '$new_order' where $store_current_field = '$id' and $store_source_field = '$item_to_move'";
+		// echo $set_order_query;
+		
+		$db->query($set_order_query);
+		if ($debug) $db->debug();
 }
 
 
@@ -218,26 +266,26 @@ if ($order_changed)
 
 if ($action=='relate')
 {
-
-  // todo : need to check if the values are already in the db
-
-  if ($enable_sort)
-  {
-    // get bigest order
-    $latest_order = $db->get_var("SELECT max($sort_field) FROM $store_table where $store_current_field=$id") + 1;
-    //SELECT max(order_by) FROM news_authors where news_id=33;
-    // insert
-    $insert_query = ("insert into $store_table ($store_current_field, $store_source_field, $sort_field) values ($id, $relate_to, $latest_order)");
-  }
-  else
-  {
-    $insert_query = ("insert into $store_table ($store_current_field, $store_source_field) values ($id, $relate_to)");
-  }
-
-  debug($insert_query);
-
-  $db->query($insert_query);
-  if ($debug) $db->debug();
+		
+		// todo : need to check if the values are already in the db
+		
+		if ($enable_sort)
+		{
+				// get bigest order
+				$latest_order = $db->get_var("SELECT max($sort_field) FROM $store_table where $store_current_field=$id") + 1;
+				//SELECT max(order_by) FROM news_authors where news_id=33;
+				// insert
+				$insert_query = ("insert into $store_table ($store_current_field, $store_source_field, $sort_field) values ($id, $relate_to, $latest_order)");
+		}
+		else
+		{
+				$insert_query = ("insert into $store_table ($store_current_field, $store_source_field) values ($id, $relate_to)");
+		}
+		
+		debug($insert_query);
+		
+		$db->query($insert_query);
+		if ($debug) $db->debug();
 }
 
 
@@ -249,16 +297,16 @@ if ($action=='relate')
 
 if ($action=='unrelate')
 {
-
-  // todo : need to check if the values are already in the db
-
-
-  $delete_query = ("delete from $store_table where $store_current_field = $id and $store_source_field = $unrelate_to");
-
-  debug($delete_query);
-
-  $db->query($delete_query);
-  if ($debug) $db->debug();
+		
+		// todo : need to check if the values are already in the db
+		
+		
+		$delete_query = ("delete from $store_table where $store_current_field = $id and $store_source_field = $unrelate_to");
+		
+		debug($delete_query);
+		
+		$db->query($delete_query);
+		if ($debug) $db->debug();
 }
 
 
@@ -268,38 +316,38 @@ if ($action=='unrelate')
 
 if ($use_filemanager)
 {
-  // path is the current folder we are
-
-  if ($_REQUEST['path'])
-  {
-    $path = $_REQUEST['path'];
-    $_SESSION[$source_module][$element]['path'] = $path;
-  }
-  elseif ($_SESSION[$source_module][$element]['path'])
-  {
-    $path = $_SESSION[$source_module][$element]['path'];
-  }
-  else
-  {
-    $path = '/';
-  }
-
-
-
-// build a list of folders (excluding cache and thumbnails folders / files)
-
-$folders = $db->get_results("select distinct path from $source_table order by path");
-if ($debug) $db->debug();
-
-if ($debug) print_a ($folders);
-
-if ($folders)
-{
-
-  $out['folders'] = $folders;
-
-}
-
+		// path is the current folder we are
+		
+		if ($_REQUEST['path'])
+		{
+				$path = $_REQUEST['path'];
+				$_SESSION[$source_module][$element]['path'] = $path;
+		}
+		elseif ($_SESSION[$source_module][$element]['path'])
+		{
+				$path = $_SESSION[$source_module][$element]['path'];
+		}
+		else
+		{
+				$path = '/';
+		}
+		
+		
+		
+		// build a list of folders (excluding cache and thumbnails folders / files)
+		
+		$folders = $db->get_results("select distinct path from $source_table order by path");
+		if ($debug) $db->debug();
+		
+		if ($debug) print_a ($folders);
+		
+		if ($folders)
+		{
+				
+				$out['folders'] = $folders;
+				
+		}
+		
 }
 
 
@@ -312,12 +360,12 @@ if ($folders)
 
 if ($use_filemanager)
 {
-$where_clause = " and path='$path' ";
+		$where_clause = " and path='$path' ";
 }
 
 if ($config['config']['module'][$source_module]['locale']['type'] == 'multilingual')
 {
-$where_clause .= " and locale='$preferred_locale' ";
+		$where_clause .= " and locale='$preferred_locale' ";
 }
 
 $source_query = "SELECT $source_table.* FROM $source_table LEFT JOIN $store_table ON $source_table.id=$store_table.$store_source_field and $store_table.$store_current_field = $id WHERE $store_table.$store_current_field IS NULL $where_clause order by $source_title_row";
@@ -329,14 +377,14 @@ if ($debug) $db->debug();
 
 if ($db->num_rows > 0)
 {
-  $i = 0;
-  foreach ($source_results as $source_result)
-  {
-    
-		$out['source'][$i]['title'] =   substr($source_result->$source_title_row, 0, 30);
-    $out['source'][$i]['id'] =  $source_result->id;
-    $i++;
-  }
+		$i = 0;
+		foreach ($source_results as $source_result)
+		{
+				
+				$out['source'][$i]['title'] =   substr($source_result->$source_title_row, 0, 30);
+				$out['source'][$i]['id'] =  $source_result->id;
+				$i++;
+		}
 }
 
 
@@ -349,16 +397,16 @@ if ($db->num_rows > 0)
 
 if ($config['config']['module'][$source_module]['locale']['type'] == 'multilingual')
 {
-$where_clause = " and locale='$preferred_locale' ";
+		$where_clause = " and locale='$preferred_locale' ";
 }
 
 if ($enable_sort)
 {
-  $existing_query = "select * from $store_table, $source_table where $store_table.$store_current_field=$id and $store_table.$store_source_field=$source_table.id " . $where_clause . " order by " . $store_table . "." . $sort_field;
+		$existing_query = "select * from $store_table, $source_table where $store_table.$store_current_field=$id and $store_table.$store_source_field=$source_table.id " . $where_clause . " order by " . $store_table . "." . $sort_field;
 }
 else
 {
-  $existing_query = "select * from $store_table, $source_table where $store_table.$store_current_field=$id and $store_table.$store_source_field=$source_table.id " . $where_clause . " order by $source_title_row";
+		$existing_query = "select * from $store_table, $source_table where $store_table.$store_current_field=$id and $store_table.$store_source_field=$source_table.id " . $where_clause . " order by $source_title_row";
 }
 
 $existing_results = $db->get_results($existing_query);
@@ -368,14 +416,14 @@ if ($debug) $db->debug();
 
 if ($db->num_rows > 0)
 {
-  $i = 0;
-  foreach ($existing_results as $existing_result)
-  {
-    $out['existing'][$i]['title'] =  substr($existing_result->$source_title_row, 0, 16) . ' ...';
-    $out['existing'][$i]['id'] =  $existing_result->id;
-    $out['existing'][$i]['order'] =  $existing_result->$sort_field;
-    $i++;
-  }
+		$i = 0;
+		foreach ($existing_results as $existing_result)
+		{
+				$out['existing'][$i]['title'] =  substr($existing_result->$source_title_row, 0, 16) . ' ...';
+				$out['existing'][$i]['id'] =  $existing_result->id;
+				$out['existing'][$i]['order'] =  $existing_result->$sort_field;
+				$i++;
+		}
 }
 
 

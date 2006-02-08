@@ -30,5 +30,51 @@
 </table>
 
 
+
+
+
+
+
+
+
+
+
+
+<!-- a many to many relation is built by using a table with two lookup columns -->
+
+<!--
+<table id="articles2authors">
+
+				<field id="id">
+						<type>id</type>
+						<primary>true</primary>
+				</field>
+
+				<field id="author_id">
+						<type>lookup</type>
+
+						<source>
+								<type>table</type>
+								<name>author</name>
+						</source>
+
+				</field>
+
+
+				<field id="article_id">
+						<type>lookup</type>
+
+						<source>
+								<type>table</type>
+								<name>article</name>
+						</source>
+
+				</field>
+		</table>
+-->
+
+
+
+
 </config>
 
