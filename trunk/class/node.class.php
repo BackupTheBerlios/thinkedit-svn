@@ -21,6 +21,10 @@ Benchamrk is needed. Maybe do this for a tree smaller than x nodes
 
 Too early optimisation is the root of all evil
 
+
+
+GENERAL TODO : OPTIMIZE THIS
+
 */
 class node
 {
@@ -245,35 +249,6 @@ class node
 				}
 		}
 		
-		/*
-		function getParentUntilRoot()
-		{
-				if ($this->hasParent())
-				{
-						$parent = $this->getParent();
-						$parents[] = $parent;
-				}
-				else
-				{
-						return false;
-				}
-				$i = 0;
-				while ($parent->hasParent())
-				{
-						$parent = $parent->getParent();
-						$parents[] = $parent;
-						$i++;
-						if ($i > 20) // limit depth to 20 to avoid infinite loop, you never know what can go wrong
-						{
-								break;
-						}
-				}
-				
-				return $parents;
-		}*/
-		
-		
-		
 		function getParentUntilRoot()
 		{
 				
@@ -293,6 +268,21 @@ class node
 				}
 				
 				return $parents;
+		}
+		
+		
+		function getLevel()
+		{
+				$parents = $this->getParentUntilRoot(); // todo : optimize!
+				
+				if ($parents)
+				{
+						return count($parents);
+				}
+				else
+				{
+						return 0;
+				}
 		}
 		
 		
@@ -331,6 +321,27 @@ class node
 				
 				return $items;
 		}
+		
+		/*
+		function getNodeStructure($node = false, $data = false;)
+		{
+				if (!$node)
+				{
+						$node = $this;
+						$data[$node->getId()] = $node;
+				}
+				
+				if ($node->hasChildren())
+				{
+						$children = $node->getChildren();
+						// display each child
+						foreach  ($children as $child)
+						{
+								$node
+				
+		}
+		*/
+		
 }
 
 

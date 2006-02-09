@@ -7,29 +7,36 @@
 </head>
 <body>
 
+<?php if (isset($main_menu)) : ?>
 Menu principal:
-<?php if (isset($menu)) : ?>
-<?php if ($menu->getMainMenu()) : ?>
-<ul>
-<?php foreach ($menu->getMainMenu() as $child): ?>
-<li>
-<?php echo $child?>
-</li>
-<?php endforeach; ?>
-</ul>
-<?php endif; ?>
+<?php echo $main_menu->render() ?>
 <?php endif; ?>
 
 
-Menu contextuel : 
-<?php if (isset($menu)) : ?>
-<?php if ($menu->getChildren()) : ?>
-<ul>
-<?php foreach ($menu->getChildren() as $child): ?>
-<li>
-<?php echo $child?>
-</li>
-<?php endforeach; ?>
-</ul>
+<hr/>
+
+
+<?php if (isset($breadcrumb)) : ?>
+Breadcrumb :
+<?php echo $breadcrumb->render() ?>
 <?php endif; ?>
+
+<hr/>
+
+<?php if (isset($child_menu)) : ?>
+Sous menu :
+<br/>
+<?php echo $child_menu->render() ?>
 <?php endif; ?>
+
+<hr/>
+
+
+<?php if (isset($sitemap)) : ?>
+Sitemap : 
+<?php // echo $sitemap->render() ?>
+<?php endif; ?>
+
+<hr/>
+
+

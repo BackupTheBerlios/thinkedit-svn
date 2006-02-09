@@ -6,7 +6,7 @@
 require_once('thinkedit.init.php');
 
 require_once ROOT . '/class/url.class.php';
-require_once ROOT . '/class/menu.class.php';
+
 
 // helpers classes :
 //url
@@ -18,9 +18,10 @@ $url = new url();
 require_once ROOT . '/lib/pear/cache/Lite/Output.php';
 $options = array(
 'cacheDir' => ROOT . '/tmp/',
-'lifeTime' => 7200,
+'lifeTime' => 60,
 'pearErrorMode' => CACHE_LITE_ERROR_DIE
 );
+
 $cache = new Cache_Lite_Output($options);
 
 
@@ -58,8 +59,18 @@ if (!($cache->start($page_id)))
 		
 		
 		/******************* Menu *******************/
-		$menu = new menu($node);
+		require_once ROOT . '/class/menu.breadcrumb.class.php';
+		$breadcrumb = new menu_breadcrumb($node);
 		
+		require_once ROOT . '/class/menu.main.class.php';
+		$main_menu = new menu_main();
+		
+		
+		require_once ROOT . '/class/menu.child.class.php';
+		$child_menu = new menu_child($node);
+		
+		require_once ROOT . '/class/menu.sitemap.class.php';
+		$sitemap = new menu_sitemap($node);
 		
 		
 		/******************* Choose template *******************/
