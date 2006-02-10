@@ -18,7 +18,7 @@ $url = new url();
 require_once ROOT . '/lib/pear/cache/Lite/Output.php';
 $options = array(
 'cacheDir' => ROOT . '/tmp/',
-'lifeTime' => 60,
+'lifeTime' => 6000,
 'pearErrorMode' => CACHE_LITE_ERROR_DIE
 );
 
@@ -29,8 +29,8 @@ $cache = new Cache_Lite_Output($options);
 
 $page_id = 'node_' . $url->get('node_id');
 
-if (!($cache->start($page_id))) 
-{
+//if (!($cache->start($page_id))) 
+//{
 		
 		
 		/******************* Node *******************/
@@ -91,8 +91,8 @@ if (!($cache->start($page_id)))
 		
 		// include footer
 		include(ROOT . '/design/default/footer.template.php');
-    $cache->end();
-}
+    //$cache->end();
+//}
 
 $db = $thinkedit->getDb();
 echo 'Total Queries : ' . $db->getTotalQueries();

@@ -2,44 +2,34 @@
 <!-- Interface main configuration file -->
 <!--  each config file begins with the config tag -->
 <config>
-
-
-
-
-
-
-
-
-
-
-
 <!--  site-wide configuration -->
-<site>
+		<site>
 				<help>
 						<fr>Bienvenue sur Thinkedit, le système de gestion de données et de contenu facile à utiliser</fr>
 				</help>
 
-<!-- available locales for this site -->
+<!-- Root URL is the URL seen from your browser for the public thinkedit folder -->
+				<root_url>/thinkedit/trunk/</root_url>
+<!-- Root path is the path as seen from the webserver -->
+<!-- This could be /home/website/htdocs on a *nix host -->
+<!-- This could also be c:/my web sites/htdocs on a windows host -->
+<!-- If not set, will use the document root as reported by the web server -->
+				<root_path></root_path>
+<!-- Tmp is the path where all the cache files are stored. It's better to put this outside the webserver document root -->
+				<tmp_path>./tmp/</tmp_path>
 
+<!-- available locales for this site -->
 				<locale id="fr">
 						<help>
 								<fr>Fran&#231;ais</fr>
 								<en>French</en>
 						</help>
 				</locale>
-
 				<locale id="en">
 						<help>
 								<fr>Anglais</fr>
 								<en>English</en>
 						</help>
 				</locale>
-
-
-
-
-</site>
-
-
-
+		</site>
 </config>

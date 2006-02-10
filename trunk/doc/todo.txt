@@ -1,40 +1,27 @@
+TODO :
 - datagrid global actions
+- locale support
+-- translate() for interface and public website
+- version support
+- tree (nodes)
+- templates for public site (header / footer / template for each content type)
+- db sync tool (sync DB to xml (and vice-versa?))
+- mysql backticks
 
 
+DONE :
+- config folder instead of single file (recursive search)
 - security
 -- inside classes (like record)
 -- inside the interface with redirect to login form
 -- user permision : $user::hasPermission($permission, $object)
-
 - login form
-
 - file management
-
 - relations
 
-- locale support
--- translate() for interface and public website
 
-- version support
-
-- tree (nodes)
-
-- templates for public site (header / footer / template for each content type)
-
-- db sync tool (sync DB to xml (and vice-versa?))
-
-- mysql backticks
-
-
-Done :
-
-- config folder instead of single file (recursive search)
-
-
-Older :
-
+OLDER Stuff:
 As of jan. 2004 :
-
 ok - check every use of 'locale' in sql queries : sometimes monolingual content cannot be queried
 ok - update order for sortable element on creation time (either on top or bottom of the "table")
 ok - order in relations

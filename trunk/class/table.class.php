@@ -130,6 +130,15 @@ class table
 								$sql .= $name . ' varchar(255)';
 						}
 						
+						elseif ($type == 'stringid')
+						{
+								$sql .= $name . ' varchar(255)';
+						}
+							elseif ($type == 'locale')
+						{
+								$sql .= $name . ' varchar(10)';
+						}
+						
 						elseif ($type == 'password')
 						{
 								$sql .= $name . ' varchar(255)';
