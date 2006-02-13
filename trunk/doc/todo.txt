@@ -1,4 +1,5 @@
 TODO :
+- filesystem function to generatre 'safe filenames' (url friendly) (remove accents, space, etc...)
 - datagrid global actions
 - locale support
 -- translate() for interface and public website

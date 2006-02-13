@@ -72,6 +72,9 @@ $page_id = 'node_' . $url->get('node_id');
 		require_once ROOT . '/class/menu.sitemap.class.php';
 		$sitemap = new menu_sitemap($node);
 		
+		require_once ROOT . '/class/menu.context.class.php';
+		$context_menu = new menu_context($node);
+		
 		
 		/******************* Choose template *******************/
 		// find the right template

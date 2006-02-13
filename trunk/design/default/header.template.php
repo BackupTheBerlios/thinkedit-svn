@@ -32,6 +32,17 @@ Sous menu :
 <hr/>
 
 
+
+<?php if (isset($context_menu)) : ?>
+Menu contextuel:
+<br/>
+<?php echo $context_menu->render() ?>
+<?php endif; ?>
+
+<hr/>
+
+
+
 <?php if (isset($sitemap)) : ?>
 Sitemap : 
 <?php // echo $sitemap->render() ?>

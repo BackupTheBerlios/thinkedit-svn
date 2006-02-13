@@ -14,7 +14,7 @@
 <!-- This could be /home/website/htdocs on a *nix host -->
 <!-- This could also be c:/my web sites/htdocs on a windows host -->
 <!-- If not set, will use the document root as reported by the web server -->
-				<root_path></root_path>
+				<!--<root_path></root_path>-->
 <!-- Tmp is the path where all the cache files are stored. It's better to put this outside the webserver document root -->
 				<tmp_path>./tmp/</tmp_path>
 

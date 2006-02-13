@@ -20,26 +20,33 @@ class filesystem
 				
 				
 				
-				if (isset($this->config['path']))
+				/*
+				The goal is to set 2 variables :
+				
+				$this->root_path
+				$this->root_url
+				*/
+				
+				if (isset($this->config['root_url']))
 				{
-						$config_path = $this->config['path'];
+						$this->root_url = $this->config['root_url'];
 				}
 				else
 				{
-						trigger_error('filesystem:filesystem() : you must provide a path in filesystem config');
+						trigger_error('filesystem:filesystem() : you must provide a root_url in filesystem config', E_USER_ERROR);
 				}
 				
 				
 				
 				// get path from config
-				if (isset($this->config['root']))
+				if (isset($this->config['root_path']['relative']))
 				{
-						$this->root = $this->config['root'] . $config_path;
+						$this->root_path = ROOT_PATH . $this->config['root_path']['relative'];
 				}
 				else
 				{
-						//trigger_error('filesystem::filesystem() path not defined in config, using server document root instead');
-						$this->root = ROOT . $config_path;
+						trigger_error('filesystem::filesystem() root_path not defined in config', E_USER_ERROR);
+						//$this->root = ROOT . $config_path;
 				}
 				
 				
@@ -53,11 +60,40 @@ class filesystem
 						$this->path = '/';
 				}
 				
+				debug($this->path, 'path');
+				
+				if (!$this->isValidPath())
+				{
+						die('filesystem::filesystem() invalid path detected, exiting');
+				}
+				
+		}
+		
+		
+		function isValidPath()
+		{
+				$path = realpath($this->getRealPath());
+				$root = realpath($this->root_path);
+				
+				/*
+				echo 'path : ' . $path;
+				echo '<br/>';
+				echo 'root : '. $root;
+				echo '<br/>';
+				*/
+				
+				// todo security : is it totally safe ?
+				// we check if the path is found within the root
 				
 				
-				// todo validate path
-				
-				
+				if (substr_count($path, $root) == 1)
+				{
+						return true;
+				}
+				else
+				{
+						return false;
+				}
 		}
 		
 		
@@ -73,6 +109,9 @@ class filesystem
 								{
 										if (substr($file,0,1)!=".")
 										{
+												//$path_parts = pathinfo($file);
+												// $filename = $path_parts['basename'];
+												
 												$filesystem[] = new filesystem($this->id, $this->getPath() . '/' . $file);
 										}
 								}
@@ -254,15 +293,25 @@ class filesystem
 		function getPath()
 		{
 				// todo validate path
+				//debug($this->root_url . $this->path, 'getpath called');
+				//return $this->root_url . $this->path;
 				return $this->path;
 		}
 		
 		
+		function getUrl()
+		{
+				// todo validate path
+				//debug($this->root_url . $this->path, 'getpath called');
+				//return $this->root_url . $this->path;
+				return $this->root_url . $this->path;
+		}
+		
 		function getRealPath()
 		{
 				// todo validate path
-				//debug($this->root . $this->path, 'Real path called');
-				return $this->root . $this->path;
+				debug($this->root_path . $this->path, 'Real path called');
+				return realpath($this->root_path . $this->path);
 		}
 		
 		function getExtension()
@@ -305,7 +354,7 @@ class filesystem
 		{
 				if ($this->isImage())
 				{
-						return ROOT_URL . '/lib/phpthumb/phpThumb.php?src=' . $this->getPath() . '&w=22&h=22'; // todo custom thumbnail width / height
+						return ROOT_URL . '/lib/phpthumb/phpThumb.php?src=' . $this->getRealPath() . '&w=22&h=22'; // todo custom thumbnail width / height
 				}
 				else
 				{

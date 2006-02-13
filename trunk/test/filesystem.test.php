@@ -18,7 +18,15 @@ $childrens = $filesystem->getChildren();
 foreach ($childrens as $children)
 {
   echo '<h2>' . $children->getFilename() .'</h2>';
-  echo $children->getTitle();
+  echo 'Title : ' . $children->getTitle();
+	echo '<br/>';
+	echo 'Real Path : ' . $children->getRealPath();
+	echo '<br/>';
+	echo 'Url : ' . $children->getUrl();
+	echo '<br/>';
+	echo 'Icon : ' . $children->getIcon();
+	
+	
   echo '<br>';
   //echo $children->getContent();
   echo '<hr>';

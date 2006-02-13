@@ -119,42 +119,55 @@ class config
 		}
 		
 		
-		function getRootPath()
+		function cleanPath($path)
 		{
-				if (isset($this->config['site']['root_path'] && !empty($this->config['site']['root_path']) )
+				return rtrim($path, '/');
+		}
+		
+		
+		function getRootPath($default = false)
+		{
+				
+				if (isset($this->config['site']['root_path'] ))
 				{
-						return $this->config['site']['root_path'];
+						return $this->cleanPath($this->config['site']['root_path']);
 				}
 				else
 				{
-						return ROOT;
+						//trigger_error('config::getRootUrl() root_url not defined in config, please define it in config.xml');
+						return $default;
 				}
+				
 		}
 		
 		function getRootUrl()
 		{
-				if (isset($this->config['site']['root_url'] && !empty($this->config['site']['root_url']) )
+				
+				if (isset($this->config['site']['root_url'] ) )
 				{
-						return $this->config['site']['root_url'];
+						return $this->cleanPath($this->config['site']['root_url']);
 				}
 				else
 				{
-						trigger_error('config::getRootUrl() root_url not defined in config, please define it in config.xml');
+						trigger_error('config::getRootUrl() root_url not defined in config, please define it in config.xml', E_USER_ERROR);
 						return false;
 				}
+				
 		}
 		
 		function getTmpPath()
 		{
-				if (isset($this->config['site']['tmp_path'] && !empty($this->config['site']['tmp_path']) )
+				
+				if (isset($this->config['site']['tmp_path'] ) )
 				{
-						return $this->config['site']['tmp_path'];
+						return $this->cleanPath($this->config['site']['tmp_path']);
 				}
 				else
 				{
-						//trigger_error('config::getTmpPath() root_url not defined in config, please define it in config.xml');
+						trigger_error('config::getTmpPath() root_url not defined in config, please define it in config.xml' , E_USER_ERROR);
 						return false;
 				}
+				
 		}
 		
 		

@@ -23,16 +23,20 @@
 
 
 // should we keep root ? Maybe te_root (te for thinkedit) would be better
-define ('ROOT', dirname(__FILE__));
-define ('ROOT_URL', '/thinkedit/trunk'); //todo : find a way to compute this reliably
 
+require_once dirname(__FILE__) . '/lib/thinkedit/tools.inc.php';
+require_once dirname(__FILE__) . '/class/thinkedit.class.php';
+require_once dirname(__FILE__) . '/class/user.class.php';
+require_once dirname(__FILE__) . '/class/config.class.php';
 
-require_once ROOT . '/lib/thinkedit/tools.inc.php';
-require_once ROOT . '/class/thinkedit.class.php';
-require_once ROOT . '/class/user.class.php';
-require_once ROOT . '/class/config.class.php';
+$thinkedit = new thinkedit(dirname(__FILE__) . '/config/');
+$config = $thinkedit->newConfig();
 
-$thinkedit = new thinkedit(ROOT . '/config/');
+define ('ROOT', $config->getRootPath(dirname(__FILE__)));
+define ('ROOT_PATH', $config->getRootPath(dirname(__FILE__)));
+define ('ROOT_URL', $config->getRootUrl());
+define ('TMP_PATH', $config->getTmpPath());
+
 $user = new user();
 
 

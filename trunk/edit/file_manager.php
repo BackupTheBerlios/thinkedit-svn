@@ -34,6 +34,8 @@ if ($url->get('action') == 'upload_file')
 						debug($_FILES['uploaded_file'], 'UPLOADED FILES');
 						//print_r($_FILES['uploaded_file']);
 						//safe filename
+						
+						// todo move this name conversion to filesystem class :
 						$safe_filename = ereg_replace("[^a-z0-9._]", "",str_replace(" ", "_",str_replace("%20", "_", strtolower($_FILES['uploaded_file']['name']))));
 						
 						$content = file_get_contents($_FILES['uploaded_file']['tmp_name']);

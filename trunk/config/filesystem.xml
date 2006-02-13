@@ -10,9 +10,10 @@
 				<!-- Local path is in this case the same as remote path, as document root path is added in case of local loading 
 				todo : more info about this
 				todo : what if I want to store files outside document root ?
-				todo : what if document root is not defined by web server (IIS, apache2, php cgi ?)
+				Currently only relative path to interface document root is supported
 				-->
-				<path>/files</path>
+				<root_path><relative>/files</relative></root_path>
+				<root_url>/thinkedit/trunk/files</root_url>
 		</filesystem>
 
 
