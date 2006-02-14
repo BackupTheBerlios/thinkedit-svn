@@ -1,7 +1,7 @@
 <div class="content">
 
 
-<div class="path_chooser">
+<div class="box">
 
 <?php if (isset($out['folders'])) : ?>
 <select size="1" onChange="jump('parent',this,0)">
@@ -85,7 +85,7 @@ $i++;
 </div>
 
 
-<div class="file_actions">
+<div class="box">
 
 <p>
 <form action="<?php echo $out['upload_file_url']?>" enctype="multipart/form-data" method="post">

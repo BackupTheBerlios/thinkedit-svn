@@ -53,6 +53,8 @@ $item['action'] = $url->render('file_manager.php');
 $out['item'][] = $item;
 
 
+
+/*
 // generating the table list from the config array
 $i=0;
 $j=0;
@@ -68,6 +70,8 @@ foreach($tables as $table_id)
 		$out['item'][] = $item;
 		
 }
+
+*/
 
 // group / title
 

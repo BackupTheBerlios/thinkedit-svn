@@ -104,6 +104,38 @@ class relation
 				
 		}
 		
+		
+		
+		/*
+		big todo here, and it will be hard !
+		*/
+		function moveUp()
+		{
+				// first find items before this one
+				
+				
+				
+				// if we have 2 or more
+				
+				// if we have one, move top
+				
+				// if we have none
+				// we are at top, do nothing
+		}
+		
+		function moveDown()
+		{
+		}
+		
+		function moveToBottom()
+		{
+		}
+		
+		function moveToTop()
+		{
+		}
+		
+		
 }
 
 

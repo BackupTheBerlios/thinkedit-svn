@@ -1,6 +1,6 @@
 <div class="content">
 
-<div class="box">
+<div class="white bigbox">
 
 <?php echo translate('you_are_here') ?> : 
 
@@ -63,8 +63,11 @@ $i++;
 <img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('node_edit'); ?>">
 </a>
 
+<!--
 <img src="ressource/image/icon/small/go-up.png">
 <img src="ressource/image/icon/small/go-down.png">
+-->
+
 
 <a href="<?php echo $node['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_node_delete') ?>', '<?php echo $node['delete_url']?>'); return false;">
 <img src="ressource/image/icon/small/edit-delete.png" border="0" alt="<?php echo translate('node_delete'); ?>">

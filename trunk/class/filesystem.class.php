@@ -64,7 +64,7 @@ class filesystem
 				
 				if (!$this->isValidPath())
 				{
-						die('filesystem::filesystem() invalid path detected, exiting');
+						trigger_error('filesystem::filesystem() invalid path detected, exiting', E_USER_WARNING);
 				}
 				
 		}
@@ -109,10 +109,20 @@ class filesystem
 								{
 										if (substr($file,0,1)!=".")
 										{
-												//$path_parts = pathinfo($file);
+												// not needed, readdir gives only filenames :
+												// $path_parts = pathinfo($file);
 												// $filename = $path_parts['basename'];
 												
-												$filesystem[] = new filesystem($this->id, $this->getPath() . '/' . $file);
+												// handle 2 cases : either path is simply / and we don't append / at the beginning,
+												// either it /something and we append a '/' before the file
+												if ($this->getPath() <> '/')
+												{
+														$filesystem[] = new filesystem($this->id, $this->getPath() . '/' . $file);
+												}
+												else
+												{
+														$filesystem[] = new filesystem($this->id, $this->getPath() . $file);
+												}
 										}
 								}
 								if (isset($filesystem) && is_array($filesystem))
@@ -233,6 +243,11 @@ class filesystem
 		
 		function getContent()
 		{
+				if (!$this->isValidPath())
+				{
+						trigger_error('filesystem::filesystem() invalid path detected, exiting', E_USER_ERROR);
+				}
+				
 				global $user;
 				if ($user->hasPermission('view', $this))
 				{
@@ -251,6 +266,11 @@ class filesystem
 		// will return an image class, with thumbnailing abilities
 		function getImage()
 		{
+				if (!$this->isValidPath())
+				{
+						trigger_error('filesystem::filesystem() invalid path detected, exiting', E_USER_ERROR);
+				}
+				
 				global $user;
 				if ($user->hasPermission('view', $this))
 				{

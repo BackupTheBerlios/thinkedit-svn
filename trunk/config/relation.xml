@@ -65,6 +65,14 @@
 </field>
 
 
+<field id="sort_order">
+<type>order</type>
+<use>
+<list>true</list>
+</use>
+</field>
+
+
 </table>
 </config>
 

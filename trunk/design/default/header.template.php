@@ -23,6 +23,7 @@ Breadcrumb :
 
 <hr/>
 
+<!--
 <?php if (isset($child_menu)) : ?>
 Sous menu :
 <br/>
@@ -30,7 +31,7 @@ Sous menu :
 <?php endif; ?>
 
 <hr/>
-
+-->
 
 
 <?php if (isset($context_menu)) : ?>

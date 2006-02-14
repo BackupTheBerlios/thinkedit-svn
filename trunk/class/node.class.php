@@ -105,7 +105,20 @@ class node
 				
 		}
 		
-		
+		function getParentId()
+		{
+				$parent = $this->record->get('parent_id');
+				if (isset($parent))
+				{
+						return $parent;
+				}
+				else
+				{
+						trigger_error('node::getParentId() no parent id found');
+						return false;
+				}
+				
+		}
 		
 		function delete()
 		{
@@ -145,6 +158,35 @@ class node
 				return $this->record->save();
 		}
 		
+		
+		function isSiblingOf($node)
+		{
+				$node->load();
+				$this->load();
+				if ($this->getParentId() == $node->getParentId())
+				{
+						return true;
+				}
+				else
+				{
+						return false;
+				}
+		}
+		
+		
+		function isChildOf($node)
+		{
+				$node->load();
+				$this->load();
+				if ($this->getParentId() == $node->getId())
+				{
+						return true;
+				}
+				else
+				{
+						return false;
+				}
+		}
 		
 		/**
 		* returns true if the node has childrens
@@ -189,6 +231,27 @@ class node
 				}
 		}
 		
+		
+		function getSiblings()
+		{
+				$this->load();
+				// todo : returns a node and not a record
+				$children =  $this->record->find(array('parent_id'=>$this->get('id')) );
+				
+				if ($children)
+				{
+						global $thinkedit;
+						foreach ($children as $child)
+						{
+								$childs[] = $thinkedit->newNode($this->table, $child->get('id'));
+						}
+						return $childs;
+				}
+				else
+				{
+						return false;
+				}
+		}
 		
 		function add($child_object)
 		{
@@ -322,25 +385,79 @@ class node
 				return $items;
 		}
 		
+		
+		
+		
 		/*
-		function getNodeStructure($node = false, $data = false;)
+		Return a list of all nodes in the right order (from $this node to last leaf)
+		*/
+		function getAllNodes($node_id = false, $level = false, $out = false)
 		{
-				if (!$node)
+				if (!$level)
+				{
+						$level = 0;
+				}
+				global $thinkedit;
+				$node = $thinkedit->newNode();
+				
+				if ($node_id)
+				{
+						$node->load($node_id);
+				}
+				else
 				{
 						$node = $this;
-						$data[$node->getId()] = $node;
+						$this->node_list[] = $node;
 				}
-				
+				debug($node);
 				if ($node->hasChildren())
 				{
 						$children = $node->getChildren();
 						// display each child
 						foreach  ($children as $child)
 						{
-								$node
+								$this->node_list[] = $child;
+								if ($level > 20)
+								{
+										trigger_error('menu::displayChildren() level higher than 20, infinite loop ?');
+								}
+								else
+								{
+										$this->getAllNodes($child->getId(), $level+1, $out);
+								}
+						}
+				}
+				
+				return $this->node_list;
 				
 		}
-		*/
+		
+		function moveUp()
+		{
+				// first find items before this one
+				
+				
+				
+				// if we have 2 or more
+				
+				// if we have one, move top
+				
+				// if we have none
+				// we are at top, do nothing
+		}
+		
+		function moveDown()
+		{
+		}
+		
+		function moveToBottom()
+		{
+		}
+		
+		function moveToTop()
+		{
+		}
+		
 		
 }
 
