@@ -95,6 +95,16 @@ class thinkedit
   // based on uid, will instantiate a class
   function newObject($uid)
   {
+			if (!isset($uid['class']))
+			{
+					trigger_error('thinkedit::newObject() $uid[\'class\'] not defined', E_USER_ERROR);
+			}
+			
+			if (!isset($uid['type']))
+			{
+					trigger_error('thinkedit::newObject() $uid[\'type\'] not defined', E_USER_ERROR);
+			}
+			
 			if ($uid['class'] == 'record')
 			{
 					if (isset($uid['id']))
@@ -126,7 +136,7 @@ class thinkedit
 			
 			else
 			{
-					trigger_error("thinkedit::newObject() class $class not supported", E_USER_ERROR);
+					trigger_error("thinkedit::newObject() class " . $uid['class'] . "not supported", E_USER_ERROR);
 			}
   }
   
@@ -180,22 +190,24 @@ class thinkedit
   
   function newNode($table = "node", $id = false)
   {
-	// will include the right module class if needed, for example, specialized modules like ftp datasource
-	// currently the base module is used
-	if ($table<>'')
-	{
-	  require_once('node.class.php');
-	  $node = new node($table);
-	  if ($id)
-	  {
-		$node->setId($id);
-	  }
-	  return $node;
-	}
-	else
-	{
-	  trigger_error('thinkedit::newNode() $table not defined');
-	}
+			// will include the right module class if needed, for example, specialized modules like ftp datasource
+			// currently the base module is used
+			if ($table<>'')
+			{
+					require_once('node.class.php');
+					$node = new node($table);
+					if ($id)
+					{
+							$node->setId($id);
+					}
+					return $node;
+			}
+			else
+			{
+					trigger_error('thinkedit::newNode() $table not defined');
+					return false;
+			}
+			return false;
   }
   
   

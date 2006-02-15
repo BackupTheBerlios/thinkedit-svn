@@ -7,6 +7,7 @@ class record
 		function record($table)
 		{
 				$this->table_name = $table;
+				$this->table = $table;
 				
 				// load config
 				global $thinkedit;
@@ -44,7 +45,14 @@ class record
 		
 		function get($field)
 		{
+				if (isset($this->field[$field]))
+				{
 				return $this->field[$field]->get();
+				}
+				else
+				{
+						trigger_error('record::get() field ' . $field .' not found');
+				}
 		}
 		
 		function getSqlSafe($field)
@@ -66,6 +74,7 @@ class record
 				}
 				else
 				{
+						//trigger_error('record::set() field ' . $field .' not found');
 						return false;
 				}
 		}

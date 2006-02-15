@@ -1,16 +1,18 @@
 TODO :
-- filesystem function to generatre 'safe filenames' (url friendly) (remove accents, space, etc...)
-- datagrid global actions
+- filesystem function to generate 'safe filenames' (url friendly) (remove accents, space, etc...)
+- node ordre fix bugs
 - locale support
--- translate() for interface and public website
+- translate() for interface and public website
 - version support
-- tree (nodes)
-- templates for public site (header / footer / template for each content type)
-- db sync tool (sync DB to xml (and vice-versa?))
 - mysql backticks
+- tags to use in templates and content
 
+Almost there :
+- db sync tool (sync DB to xml (and vice-versa?))
+- templates for public site (header / footer / template for each content type)
 
 DONE :
+- tree (nodes)
 - config folder instead of single file (recursive search)
 - security
 -- inside classes (like record)
@@ -20,6 +22,8 @@ DONE :
 - file management
 - relations
 
+Discarded :
+- datagrid global actions
 
 OLDER Stuff:
 As of jan. 2004 :

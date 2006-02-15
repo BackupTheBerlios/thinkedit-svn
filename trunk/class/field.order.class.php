@@ -7,7 +7,8 @@ class field_order extends field
 
   function get()
   {
-    return (float) $this->data;
+    //return (float) $this->data;
+		return $this->data;
     
   }
 

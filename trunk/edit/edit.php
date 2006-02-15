@@ -3,6 +3,13 @@
 See licence.txt for licence
 Edit displays an edit page for the current $table, $id, $db_locale
 todo : validation of the request arguments agains the config file to avoid hack
+
+input :
+
+
+- action : edit_node, new_node, edit, new
+- object_ : the object to edit
+
 */
 
 include_once('common.inc.php');
@@ -11,6 +18,43 @@ include_once('common.inc.php');
 //check_user
 check_user();
 
+/*
+// load object from url
+
+if ($url->getObject('object_'))
+{
+		$object = $url->getObject('object_');
+		// if object is node, get content, show form, enable node mode
+		if ($object->getType() == 'node')
+		{
+				$content = $object->getContent();
+				if ($content->getType() == 'record')
+				{
+						$record = $content;
+				}
+				else
+				{
+						trigger_error('When editing nodes, I can only edit records type node');
+				}
+		}
+		// if object is record, show form
+		elseif ($object->getType() == 'record')
+		{
+				$record = $object;
+		}
+		else
+		{
+				trigger_error('When editing I can only edit records type');
+		}
+}
+else
+{
+		trigger_error('Cannot instantiate object from url, cannot edit');
+}
+
+
+debug($record, 'Record found');
+*/
 if (!$url->getParam('type'))
 {
 		trigger_error('edit : you must supply a type in the url');

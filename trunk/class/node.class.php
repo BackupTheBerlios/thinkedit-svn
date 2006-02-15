@@ -89,7 +89,7 @@ class node
 		function getParent()
 		{
 				global $thinkedit;
-				$this->record->load();
+				$this->load();
 				// todo : returns a node and not a record
 				$parent = $this->record->find(array('id'=>$this->record->get('parent_id')) );
 				if ($parent)
@@ -144,11 +144,13 @@ class node
 				{
 						return true;
 				}
-				elseif ($this->record->load())
+				
+				if ($this->record->load())
 				{
 						$this->is_loaded = true;
 						return true;
 				}
+				trigger_error('node::load() cannot load node');
 				return false;
 		}
 		
@@ -214,7 +216,7 @@ class node
 		{
 				$this->load();
 				// todo : returns a node and not a record
-				$children =  $this->record->find(array('parent_id'=>$this->get('id')) );
+				$children =  $this->record->find(array('parent_id'=>$this->get('id')), array('sort_order' => 'asc') );
 				
 				if ($children)
 				{
@@ -235,17 +237,19 @@ class node
 		function getSiblings()
 		{
 				$this->load();
-				// todo : returns a node and not a record
-				$children =  $this->record->find(array('parent_id'=>$this->get('id')) );
+				debug($this->get('parent_id'), 'Sibligns current parent ID');
+				 
 				
-				if ($children)
+				$siblings =  $this->record->find(array('parent_id'=>$this->get('parent_id')), array('sort_order' => 'asc') );
+				
+				if ($siblings)
 				{
 						global $thinkedit;
-						foreach ($children as $child)
+						foreach ($siblings as $sibling)
 						{
-								$childs[] = $thinkedit->newNode($this->table, $child->get('id'));
+								$siblings_node[] = $thinkedit->newNode($this->table, $sibling->get('id'));
 						}
-						return $childs;
+						return $siblings_node;
 				}
 				else
 				{
@@ -432,30 +436,191 @@ class node
 				
 		}
 		
+		
+		function getOrder()
+		{
+				return $this->record->get('sort_order');
+		}
+		
 		function moveUp()
 		{
+				$this->load();
 				// first find items before this one
+				$siblings = $this->getSiblings();
+				if ($siblings)
+				{
+						foreach ($siblings as $sibling)
+						{
+								$sibling->load();
+								$sort_orders[] = $sibling->get('sort_order'); 
+						}
+				}
 				
+				rsort($sort_orders);
 				
+				debug($sort_orders, 'Sort Orders');
 				
-				// if we have 2 or more
+				if (is_array($sort_orders))
+				{
+						foreach ($sort_orders as $sort_order)
+						{
+								if ($sort_order < $this->get('sort_order'))
+								{
+										$higher_orders[] = $sort_order;
+								}
+						}
+				}
 				
-				// if we have one, move top
+				if (isset($higher_orders))
+				{
+						//echo '$higher_orders';
+						//print_r ($higher_orders);
+						
+						
+						// if we have 2 or more
+						if (count($higher_orders) >= 2)
+						{
+								$a = $higher_orders[0];
+								$b = $higher_orders[1];
+								$new_order = $b + (($a - $b) / 2);
+								//echo 'New order : ' . $new_order;
+								
+								
+								$this->set('sort_order', $new_order);
+								$this->save();
+								return true;
+						}
+						else // if we have one, move top
+						{
+								return $this->moveTop();
+						}
+				}
+				else
+				{
+						// if we have none
+						// we are at top, do nothing
+						trigger_error('node::moveUp() already on top');
+				}
 				
-				// if we have none
-				// we are at top, do nothing
 		}
 		
 		function moveDown()
 		{
+				$this->load();
+				// first find items on the same level as this one
+				$siblings = $this->getSiblings();
+				if ($siblings)
+				{
+						foreach ($siblings as $sibling)
+						{
+								$sibling->load();
+								$sort_orders[] = $sibling->get('sort_order'); 
+						}
+				}
+				
+				sort($sort_orders);
+				
+				debug($sort_orders, 'Sort Orders');
+				
+				if (is_array($sort_orders))
+				{
+						foreach ($sort_orders as $sort_order)
+						{
+								if ($sort_order > $this->get('sort_order'))
+								{
+										$higher_orders[] = $sort_order;
+								}
+						}
+				}
+				
+				if (isset($higher_orders))
+				{
+						//echo '$higher_orders';
+						//print_r ($higher_orders);
+						
+						
+						// if we have 2 or more
+						if (count($higher_orders) >= 2)
+						{
+								$a = $higher_orders[0];
+								$b = $higher_orders[1];
+								$new_order = $b + (($a - $b) / 2);
+								//echo 'New order : ' . $new_order;
+								
+								
+								$this->set('sort_order', $new_order);
+								$this->save();
+								return true;
+								
+						}
+						else // if we have one, move top
+						{
+								return $this->moveTop();
+						}
+				}
+				else
+				{
+						// if we have none
+						// we are at top, do nothing
+						trigger_error('node::moveUp() already on top');
+				}
+				
 		}
 		
-		function moveToBottom()
+		function moveBottom()
 		{
+				$this->load();
+				// first find items before this one
+				$siblings = $this->getSiblings();
+				if ($siblings)
+				{
+						foreach ($siblings as $sibling)
+						{
+								$sibling->load();
+								$sort_orders[] = $sibling->get('sort_order'); 
+						}
+				}
+				
+				rsort($sort_orders);
+				
+				debug($sort_orders, 'Sort Orders');
+				
+				if (is_array($sort_orders))
+				{
+				
+						$new_order = $sort_orders[0] + 1;
+						$this->set('sort_order', $new_order);
+						$this->save();
+						return true;
+				}
 		}
 		
-		function moveToTop()
+		function moveTop()
 		{
+				$this->load();
+				// first find items before this one
+				$siblings = $this->getSiblings();
+				if ($siblings)
+				{
+						foreach ($siblings as $sibling)
+						{
+								$sibling->load();
+								$sort_orders[] = $sibling->get('sort_order'); 
+						}
+				}
+				
+				sort($sort_orders);
+				
+				debug($sort_orders, 'Sort Orders');
+				
+				if (is_array($sort_orders))
+				{
+				
+						$new_order = $sort_orders[0] - 1;
+						$this->set('sort_order', $new_order);
+						$this->save();
+						return true;
+				}
 		}
 		
 		

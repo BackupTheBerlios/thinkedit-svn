@@ -1,6 +1,10 @@
 <?php
 
 
+/*
+todo : implement this either here, or directly in record
+*/
+
 class orderedRecord()
 {
 	

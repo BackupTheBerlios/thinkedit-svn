@@ -33,7 +33,7 @@
 <type>text</type>
 </field>
 
-<field id="node_order">
+<field id="sort_order">
 <type>order</type>
 </field>
 

@@ -63,10 +63,31 @@ $i++;
 <img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('node_edit'); ?>">
 </a>
 
-<!--
+
+<?php if (isset($node['movetop_url'])): ?>
+<a href="<?php echo $node['movetop_url']?>">
+<img src="ressource/image/icon/small/go-top.png">
+</a>
+<?php endif; ?>
+
+<?php if (isset($node['moveup_url'])): ?>
+<a href="<?php echo $node['moveup_url']?>">
 <img src="ressource/image/icon/small/go-up.png">
+</a>
+<?php endif; ?>
+
+<?php if (isset($node['movedown_url'])): ?>
+<a href="<?php echo $node['movedown_url']?>">
 <img src="ressource/image/icon/small/go-down.png">
--->
+</a>
+<?php endif; ?>
+
+<?php if (isset($node['movebottom_url'])): ?>
+<a href="<?php echo $node['movebottom_url']?>">
+<img src="ressource/image/icon/small/go-bottom.png">
+</a>
+<?php endif; ?>
+
 
 
 <a href="<?php echo $node['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_node_delete') ?>', '<?php echo $node['delete_url']?>'); return false;">
