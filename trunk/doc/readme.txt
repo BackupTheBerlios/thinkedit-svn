@@ -36,7 +36,7 @@ Names :
 
 
 Locales :
-
+(deprecated)
 Locales are of different type :
 
 - interface locale : translation of the interface error messages, buttons and info

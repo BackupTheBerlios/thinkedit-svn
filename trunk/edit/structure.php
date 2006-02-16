@@ -109,9 +109,9 @@ if ($url->get('action') == 'delete')
 /********************* Move action **********************/
 if ($url->get('action') == 'moveup')
 {
-		$node_to_move = $current_node;
+		//$node_to_move = $current_node;
 		
-		if ($node_to_move->moveUp())
+		if ($current_node->moveUp())
 		{
 				$out['info'] = translate('node_moved_successfully');
 		}
@@ -120,7 +120,7 @@ if ($url->get('action') == 'moveup')
 				$out['error'] = translate('node_not_moved');
 		}
 		
-		// use parent node as current node, so we'll still shwo the right node bellow
+		// use parent node as current node, so we'll still show the right node bellow
 		if (isset($parent_node))
 		{
 				$current_node = $parent_node;
@@ -130,9 +130,9 @@ if ($url->get('action') == 'moveup')
 
 if ($url->get('action') == 'movedown')
 {
-		$node_to_move = $current_node;
+		//$node_to_move = $current_node;
 		
-		if ($node_to_move->moveDown())
+		if ($current_node->moveDown())
 		{
 				$out['info'] = translate('node_moved_successfully');
 		}
@@ -141,7 +141,7 @@ if ($url->get('action') == 'movedown')
 				$out['error'] = translate('node_not_moved');
 		}
 		
-		// use parent node as current node, so we'll still shwo the right node bellow
+		// use parent node as current node, so we'll still show the right node bellow
 		if (isset($parent_node))
 		{
 				$current_node = $parent_node;
@@ -151,9 +151,9 @@ if ($url->get('action') == 'movedown')
 
 if ($url->get('action') == 'movetop')
 {
-		$node_to_move = $current_node;
+		//$node_to_move = $current_node;
 		
-		if ($node_to_move->moveTop())
+		if ($current_node->moveTop())
 		{
 				$out['info'] = translate('node_moved_successfully');
 		}
@@ -162,7 +162,7 @@ if ($url->get('action') == 'movetop')
 				$out['error'] = translate('node_not_moved');
 		}
 		
-		// use parent node as current node, so we'll still shwo the right node bellow
+		// use parent node as current node, so we'll still show the right node bellow
 		if (isset($parent_node))
 		{
 				$current_node = $parent_node;
@@ -171,9 +171,9 @@ if ($url->get('action') == 'movetop')
 
 if ($url->get('action') == 'movebottom')
 {
-		$node_to_move = $current_node;
+		//$node_to_move = $current_node;
 		
-		if ($node_to_move->moveBottom())
+		if ($current_node->moveBottom())
 		{
 				$out['info'] = translate('node_moved_successfully');
 		}
@@ -217,16 +217,16 @@ else
 if (isset($nodes) && is_array($nodes))
 {
 		$i = 0;
-		foreach ($nodes as $node)
+		foreach ($nodes as $node_item)
 		{
 				
 				
 				/********************* Visit link *****************/
 				$url = new url();
-				$url->set('node_id', $node->getId());
-				$content = $node->getContent();
+				$url->set('node_id', $node_item->getId());
+				$content = $node_item->getContent();
 				$content->load();
-				$node_info['title'] = $content->getTitle(); // . ' (' . $node->getOrder() . ')';
+				$node_info['title'] = $content->getTitle(); // . ' (' . $node_item->getOrder() . ')';
 				$node_info['icon'] = $content->getIcon();
 				$node_info['url'] = $url->render();
 				
@@ -256,7 +256,7 @@ if (isset($nodes) && is_array($nodes))
 				
 				/********************* Edit link *****************/
 				$url = new url();
-				$url->set('node_id', $node->getId());
+				$url->set('node_id', $node_item->getId());
 				$url->addObject($content);
 				$url->set('mode', 'edit_node');
 				$node_info['edit_url'] = $url->render('edit.php');

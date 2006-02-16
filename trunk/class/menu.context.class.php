@@ -118,7 +118,6 @@ class menu_context extends menu_base
 		
 		function render()
 		{
-				
 				// handle special case : if the current node is the "root" of the current section, 
 				// display siblings
 				

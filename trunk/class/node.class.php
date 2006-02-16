@@ -214,6 +214,7 @@ class node
 		**/
 		function getChildren()
 		{
+				//echo  'called get children<br>';
 				$this->load();
 				// todo : returns a node and not a record
 				$children =  $this->record->find(array('parent_id'=>$this->get('id')), array('sort_order' => 'asc') );
@@ -488,6 +489,11 @@ class node
 								
 								$this->set('sort_order', $new_order);
 								$this->save();
+								// this IS a hack ;-). But else DB cache will keep the old order and it will be bad for getChildren (it will give previous order)
+								// This took one hour to figure out...
+								global $thinkedit;
+								$db = $thinkedit->getDb();
+								$db->clearCache();
 								return true;
 						}
 						else // if we have one, move top
@@ -506,6 +512,9 @@ class node
 		
 		function moveDown()
 		{
+				//echo  'called move down<br>';
+				//echo 'order before move' . $this->getOrder();
+				
 				$this->load();
 				// first find items on the same level as this one
 				$siblings = $this->getSiblings();
@@ -550,19 +559,26 @@ class node
 								
 								$this->set('sort_order', $new_order);
 								$this->save();
+								// echo 'order after move save' . $this->getOrder();
+								// this IS a hack ;-). But else DB cache will keep the old order and it will be bad for getChildren (it will give previous order)
+								// This took one hour to figure out...
+								global $thinkedit;
+								$db = $thinkedit->getDb();
+								$db->clearCache();
+								
 								return true;
 								
 						}
 						else // if we have one, move top
 						{
-								return $this->moveTop();
+								return $this->moveBottom();
 						}
 				}
 				else
 				{
 						// if we have none
 						// we are at top, do nothing
-						trigger_error('node::moveUp() already on top');
+						trigger_error('node::moveDown() already on bottom');
 				}
 				
 		}
@@ -587,10 +603,15 @@ class node
 				
 				if (is_array($sort_orders))
 				{
-				
+						
 						$new_order = $sort_orders[0] + 1;
 						$this->set('sort_order', $new_order);
 						$this->save();
+						// this IS a hack ;-). But else DB cache will keep the old order and it will be bad for getChildren (it will give previous order)
+						// This took one hour to figure out...
+						global $thinkedit;
+						$db = $thinkedit->getDb();
+						$db->clearCache();
 						return true;
 				}
 		}
@@ -615,10 +636,15 @@ class node
 				
 				if (is_array($sort_orders))
 				{
-				
+						
 						$new_order = $sort_orders[0] - 1;
 						$this->set('sort_order', $new_order);
 						$this->save();
+						// this IS a hack ;-). But else DB cache will keep the old order and it will be bad for getChildren (it will give previous order)
+						// This took one hour to figure out...
+						global $thinkedit;
+						$db = $thinkedit->getDb();
+						$db->clearCache();
 						return true;
 				}
 		}

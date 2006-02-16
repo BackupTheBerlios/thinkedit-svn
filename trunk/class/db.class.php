@@ -142,7 +142,7 @@ class db
 				if (isset($db_cache[$hash]))
 				{
 						// one line debugging tool :-)
-						// debug($sql . '[cached]', 'db:select()');
+						//debug($sql . '[cached]', 'db:select()');
 						return ($db_cache[$hash]);
 				}
 				else
@@ -302,6 +302,12 @@ class db
 				return $total_queries;
 		}
 		
+		
+		function clearCache()
+		{
+				global $db_cache;
+				$db_cache = '';
+		}
 		
 		
 }

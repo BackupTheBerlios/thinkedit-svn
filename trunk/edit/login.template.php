@@ -42,6 +42,8 @@
 							<td bgcolor="#cccccc" width="1"></td>
 							
 							<td valign="top" width="204">
+							
+							<!--
 							<div class="login_table_padding">
 							<H4><?php echo translate('forgot_password') ?></H4>
 					 		<br/><H3><?php echo translate('forgot_password_message') ?></H3>
@@ -53,9 +55,9 @@
 							<p/>
 							<input type="submit" value="<?php echo translate('send_my_login') ?>" class="action_button">
 							</form>
-
-							
 							</div>
+							-->
+							
 							</div>
 							</td>
 							

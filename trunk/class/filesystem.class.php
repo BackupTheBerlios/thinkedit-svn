@@ -424,7 +424,7 @@ class filesystem
 		
 		function getFolderListRecursive($object = false, $list = false)
 		{
-				global $my_strange_list_123; // how to avoid global ?
+				global $my_strange_list_123; // how to avoid global ? this is a todo
 				
 				if ($object)
 				{
@@ -456,6 +456,7 @@ class filesystem
 		
 		function addFile($name, $content)
 		{
+				$name = $this->safeFileName($name);
 				if ($this->isFolder())
 				{
 						$filename = $this->getRealPath() . '/' . $name;
@@ -500,6 +501,8 @@ class filesystem
 		
 		function addFolder($name)
 		{
+				$name = $this->safeFileName($name);
+				
 				if ($this->isFolder())
 				{
 						return mkdir ($this->getRealPath() . '/' . $name);
@@ -526,6 +529,17 @@ class filesystem
 						return unlink ($this->getRealPath());
 				}
 				
+		}
+		
+		
+		// returns a safe filename (only alphanums, lowercase)
+		function safeFileName($filename)
+		{
+				// from http://www.qanswered.com/q/1-Remove_All_Non-Alphanumeric_Characters_From_A_String_In_PHP.htm
+				$filename = strtolower($filename);
+				$filename=ereg_replace("[^a-z,A-Z,0-9,_,-,.]","",$filename);
+				
+				return $filename;
 		}
 		
 		

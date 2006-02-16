@@ -194,8 +194,16 @@ class thinkedit
 			// currently the base module is used
 			if ($table<>'')
 			{
+					/*
 					require_once('node.class.php');
 					$node = new node($table);
+					*/
+					// experimental optimized node class support :
+					
+					
+					require_once('node_optimized.class.php');
+					$node = new node_optimized($table);
+					
 					if ($id)
 					{
 							$node->setId($id);
