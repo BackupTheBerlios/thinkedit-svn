@@ -76,6 +76,9 @@ $page_id = 'node_' . $url->get('node_id');
 		$context_menu = new menu_context($node);
 		
 		
+		/******************* Template helpers (aka "tags") *******************/
+		require_once ROOT . '/lib/thinkedit/template.lib.php';
+		
 		/******************* Choose template *******************/
 		// find the right template
 		// todo : how ?
@@ -87,13 +90,13 @@ $page_id = 'node_' . $url->get('node_id');
 		/******************* Render *******************/
 		
 		// include header
-		include(ROOT . '/design/default/header.template.php');
+		include(ROOT . '/design/yapaka/header.template.php');
 		
 		// include template
-		include(ROOT . '/design/default/content.template.php');
+		include(ROOT . '/design/yapaka/content.template.php');
 		
 		// include footer
-		include(ROOT . '/design/default/footer.template.php');
+		include(ROOT . '/design/yapaka/footer.template.php');
     //$cache->end();
 //}
 

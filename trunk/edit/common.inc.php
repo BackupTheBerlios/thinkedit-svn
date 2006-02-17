@@ -8,14 +8,14 @@ require_once '../thinkedit.init.php';
 //require_once('debuglib.inc.php');
 //require_once('debug.inc.php');
 //require_once('ez_sql.inc.php');
-require_once('error.inc.php');
+//require_once('error.inc.php');
 //require_once('locale.inc.php');
-require_once('file.inc.php');
+//require_once('file.inc.php');
 //require_once('tools.inc.php');
 require_once('user.inc.php');
 
 //***** new tools
-require_once(ROOT . '/lib/timer/timer.inc.php');
+//require_once(ROOT . '/lib/timer/timer.inc.php');
 require_once(ROOT . '/class/url.class.php');
 require_once(ROOT . '/class/user.class.php');
 require_once(ROOT . '/class/session.class.php');

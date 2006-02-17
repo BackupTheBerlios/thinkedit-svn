@@ -23,9 +23,9 @@ class menu_main extends menu_base
 		function render()
 		{
 				$out = '';
-				if ($this->node->getChildren())
+				if ($this->get())
 				{
-						foreach ($this->node->getChildren() as $child)
+						foreach ($this->get() as $child)
 						{
 								$content = $child->getContent();
 								$content->load();
@@ -34,6 +34,25 @@ class menu_main extends menu_base
 								$out .= '<a href="' . $url->render() . '">' . $content->getTitle() . '</a> ';
 						}
 						return $out;
+				}
+				else
+				{
+						return false;
+				}
+				
+		}
+		
+		
+		function get()
+		{
+				$out = '';
+				if ($this->node->getChildren())
+				{
+						foreach ($this->node->getChildren() as $child)
+						{
+								$result[] = $child;
+						}
+						return $result;
 				}
 				else
 				{

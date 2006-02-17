@@ -115,7 +115,11 @@ $i++;
 </td>
 
 <td>
-<?php echo $item['title'] ?>
+<?php if (isset($item['visit_url'])): ?>
+	<a href="<?php echo $item['visit_url'] ?>"><?php echo $item['title'] ?></a>
+<?php else: ?>
+	<?php echo $item['title'] ?>
+<?php endif; ?>
 </td>
 
 <td>

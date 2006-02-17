@@ -2,17 +2,16 @@
 
 function error_handler($errno, $errstr , $errfile , $errline , $errcontext)
 {
+		$error_message = "[$errno] $errstr<br />\n";
+		$error_message .= "Fatal error in line $errline of file $errfile";
+		$error_message .= "Aborting...<br />\n";
 		switch ($errno)
 		{
 				case E_USER_ERROR:
-				$error_message = "<b>FATAL</b> [$errno] $errstr<br />\n";
-				$error_message .= "  Fatal error in line $errline of file $errfile";
-				$error_message .= ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
-				$error_message .= "Aborting...<br />\n";
 				$out['title'] = 'An error occured';
-				include('header.template.php');
-				include('error.template.php');
-				include('footer.template.php');
+				include(ROOT . '/edit/header.template.php');
+				include(ROOT . '/edit/error.template.php');
+				include(ROOT . '/edit/footer.template.php');
 				die();
 				break;
 				
@@ -22,15 +21,19 @@ function error_handler($errno, $errstr , $errfile , $errline , $errcontext)
 				case E_USER_NOTICE:
 				echo "<b>WARNING</b> [$errno] $errstr in line $errline of file $errfile<br />\n";
 				break;
+				
 				default:
 				echo "Unkown error type: [$errno] $errstr in line $errline of file $errfile<br />\n";
+				//echo '<pre>';
+				//print_r($errcontext);
 				break;
+				
 		}
 		
 }
 
 
-
+//set_error_handler ('error_handler');
 
 
 // some security issues as well if debug is enabled, to say the least...
@@ -38,21 +41,29 @@ function error_handler($errno, $errstr , $errfile , $errline , $errcontext)
 // idem for user less setup
 function debug($data, $title=false)
 {
-		global $debug;
-		if (isset($_GET['debug']))		
+		global $thinkedit;
+		if ($thinkedit->isInProduction())
 		{
-				$out='';
-				if ($title) $out.="<h1>$title</h1>";
-				$out.= '<pre>';
-				ob_start();
-				print_r($data);
-				$out.= ob_get_contents();
-				ob_end_clean();
-				
-				
-				$out.='</pre>';
-				$debug[] = $out;
-				echo $out;
+				return true;
+		}
+		else
+		{
+				global $debug;
+				if (isset($_GET['debug']))		
+				{
+						$out='';
+						if ($title) $out.="<h1>$title</h1>";
+						$out.= '<pre>';
+						ob_start();
+						print_r($data);
+						$out.= ob_get_contents();
+						ob_end_clean();
+						
+						
+						$out.='</pre>';
+						$debug[] = $out;
+						echo $out;
+				}
 		}
 		
 		
@@ -97,7 +108,7 @@ function translate($translation_id)
 						return "[translation_added] #" . $translation_id . "#";
 				}
 				
-			
+				
 		}
 		else
 		{
@@ -110,19 +121,19 @@ function translate($translation_id)
 
 function redirect($page)
 {
-header("Location: http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/".$page);
+		header("Location: http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/".$page);
 }
 
 function get_file_extension($filename)
 {
-return strtolower(end(explode('.', $filename)));
+		return strtolower(end(explode('.', $filename)));
 }
-			
-			
+
+
 function get_file_filename($filename)
 {
-$tmp = explode('.', $filename);
-return strtolower($tmp[0]);
+		$tmp = explode('.', $filename);
+		return strtolower($tmp[0]);
 }
 
 

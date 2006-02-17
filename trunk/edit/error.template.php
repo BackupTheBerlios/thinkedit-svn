@@ -5,7 +5,7 @@
 <tr>
 <td><img src="ressource/image/icon/error.gif"></td>
 <td><div class="error_text">
-<b><?php echo translate('error') ?> - </b><?php echo $error_message ?>
+<b>ERROR : </b><?php echo $error_message ?>
 </div></td>
 </tr>
 </table>

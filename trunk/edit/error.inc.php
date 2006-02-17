@@ -7,4 +7,6 @@ function error($error_message)
 	include('error.template.php');
   include('footer.template.php');
 	die();
-	}
+}
+
+?>

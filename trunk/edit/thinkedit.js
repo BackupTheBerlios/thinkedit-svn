@@ -19,7 +19,7 @@ function popup(url)
 	}
 	else
 	{
-		newwindow=window.open(url,'name','height=400,width=500');
+		newwindow=window.open(url,'name','height=400,width=500,scrollbars=yes,resizable=yes,modal=yes');
 		if (!newwindow.opener) newwindow.opener = self;
 	}
 	if (window.focus) {newwindow.focus()}

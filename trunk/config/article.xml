@@ -35,6 +35,16 @@
 
 
 
+
+<field id="intro">
+<title><fr>Introduction</fr></title>
+<title><en>Short intro</en></title>
+<help><fr>Introduction courte à l'article</fr></help>
+<type>text</type>
+</field>
+
+
+
 <field id="body">
 
 <title><fr>Corps du texte</fr></title>

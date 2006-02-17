@@ -79,7 +79,7 @@ if ($class=='file')
 		$out['dropdown']['class']['data'][0]['selected'] = true;
 }
 
-$out['dropdown']['class']['data'][1]['title'] = ucfirst(translate('table'));
+$out['dropdown']['class']['data'][1]['title'] = ucfirst(translate('content'));
 $url->set('class', 'table');
 $out['dropdown']['class']['data'][1]['url'] = $url->render();
 if ($class=='table')
@@ -174,7 +174,7 @@ if ($class=='file' && $url->get('path'))
 }
 
 
-/*************************** Record items dropdown ***********/
+/*************************** Record items ***********/
 if ($class=='table' && $type)
 {
 		$record = $thinkedit->newRecord($type);
@@ -185,6 +185,7 @@ if ($class=='table' && $type)
 				foreach ($records as $content)
 				{
 						$item['title'] = $content->getTitle();
+						$item['icon'] = $content->getIcon();
 						$url->addObject($content, 'target_');
 						$item['url'] = $url->render('relation.php');
 						if ($mode == 'relation')
@@ -199,6 +200,77 @@ if ($class=='table' && $type)
 				}
 		}
 }
+
+
+/*************************** Node items ***********/
+if ($class=='node')
+{
+		$current_node = $thinkedit->newNode();
+		if ($url->get('node_id'))
+		{
+				$node_id = $url->get('node_id');
+				$current_node->setId($node_id);
+				
+				if (!$current_node->load())
+				{
+						trigger_error('structure : node not found', E_USER_ERROR);
+				}
+				
+				$we_are_root = false;
+				$parent_node = $current_node->getParent();
+		}
+		else // we are in root
+		{
+				$current_node->loadRootNode();
+				$we_are_root = true;
+		}
+		
+		
+		
+		// build a list of nodes within the current node :
+		// if we are in root
+		if ($we_are_root)
+		{
+				$nodes[] = $current_node;
+		}
+		//else we are not in root, show childrens 
+		else
+		{
+				if ($current_node->hasChildren())
+				{
+						$nodes = $current_node->getChildren();
+				}
+		}
+		
+		if (isset($nodes) && is_array($nodes))
+		{
+				$i = 0;
+				foreach ($nodes as $node_item)
+				{
+						$content = $node_item->getContent();
+						$content->load();
+						$item['title'] = $content->getTitle();
+						$item['icon'] = $content->getIcon();
+						$url = new url();
+					  $url->keep('class');
+						$url->keep('mode');
+						$url->set('node_id', $node_item->getId());
+						$item['visit_url'] = $url->render();
+						if ($mode == 'relation')
+						{
+								$url->addObject($content, 'target_');
+								$url->set('action', 'relate');
+								$item['url'] = $url->render('relation.php');
+						}
+						$out['items'][] = $item;
+				}
+				
+				
+				
+				
+		}
+}
+
 
 
 debug($out, 'OUT');

@@ -17,7 +17,12 @@ function te_title()
 		return $content->getTitle();
 }
 
-
+function te_design()
+{
+		// global $thinkedit;
+		return ROOT_URL . '/design/yapaka';
+		
+}
 
 
 

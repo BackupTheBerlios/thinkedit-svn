@@ -45,7 +45,7 @@ class db
 				// Make connection to MySQL server
 				if (!$this->connection = @mysql_pconnect($this->host, $this->login, $this->password))
 				{
-						trigger_error('Could not connect to server', E_USER_WARNING);
+						trigger_error('Could not connect to server', E_USER_ERROR);
 						$this->connectError=true;
 						// Select database
 				}

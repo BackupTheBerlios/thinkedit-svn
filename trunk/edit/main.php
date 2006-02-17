@@ -40,13 +40,13 @@ $config_tool = $thinkedit->newConfig();
 $tables = $config_tool->getTableList();
 
 
-$item['title'] = 'Structure';
+$item['title'] = translate('structure');
 $item['help'] = '';
 $item['icon'] = 'ressource/image/icon/small/go-home.png';
 $item['action'] = $url->render('structure.php');
 $out['item'][] = $item;
 
-$item['title'] = 'Filemanager';
+$item['title'] = translate('filemanager_title');
 $item['help'] = '';
 $item['icon'] = 'ressource/image/icon/small/system-file-manager.png';
 $item['action'] = $url->render('file_manager.php');
@@ -54,7 +54,7 @@ $out['item'][] = $item;
 
 
 
-/*
+
 // generating the table list from the config array
 $i=0;
 $j=0;
@@ -71,7 +71,7 @@ foreach($tables as $table_id)
 		
 }
 
-*/
+
 
 // group / title
 
