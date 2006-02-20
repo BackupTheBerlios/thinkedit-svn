@@ -3,43 +3,45 @@
 
 class breadcrumb
 {
-	
-	function add($title, $url=false)
-	{
-		$bread['title'] = $title;
-		$bread['url'] = $url;
-		$this->data[] = $bread;
-	}
-	
-	
-	function render()
-	{
-		$out = '';
 		
-		if (is_array($this->data))
+		function add($title, $url=false)
 		{
-			foreach ($this->data as $bread)
-			{
-				if ($bread['url'])
+				$bread['title'] = $title;
+				$bread['url'] = $url;
+				$this->data[] = $bread;
+		}
+		
+		
+		function render()
+		{
+				
+				trigger_error('deprecated');
+				$out = '';
+				
+				if (is_array($this->data))
 				{
-					$refs[]= '<a href="' . $bread['url'] . '">' . $bread['title'] . '</a>';
+						foreach ($this->data as $bread)
+						{
+								if ($bread['url'])
+								{
+										$refs[]= '<a href="' . $bread['url'] . '">' . $bread['title'] . '</a>';
+								}
+								else
+								{
+										$refs[]= $bread['title'];
+								}
+						}
+						$out .= implode(' &gt; ', $refs);
 				}
 				else
 				{
-					$refs[]= $bread['title'];
+						$out='Breadcrumb empty';
 				}
-			}
-			$out .= implode(' &gt; ', $refs);
-		}
-		else
-		{
-			$out='Breadcrumb empty';
+				
+				return $out;
 		}
 		
-		return $out;
-	}
-	
-	
+		
 }
 
 ?>

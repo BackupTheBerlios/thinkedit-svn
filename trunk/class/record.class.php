@@ -87,8 +87,8 @@ class record
 		*/
 		function load()
 		{
-				global $user;
-				if ($user->hasPermission('view', $this))
+				global $thinkedit;
+				if ($thinkedit->user->hasPermission('view', $this))
 				{
 						if (isset($this->is_loaded) && $this->is_loaded)
 						{
@@ -168,8 +168,8 @@ class record
 				
 				*/
 				
-				global $user;
-				if ($user->hasPermission('view', $this))
+				global $thinkedit;
+				if ($thinkedit->user->hasPermission('view', $this))
 				{
 						$sql = "select * from " . $this->getTableName();
 						
@@ -284,8 +284,8 @@ class record
 		
 		function update()
 		{
-				global $user;
-				if ($user->hasPermission('insert', $this))
+				global $thinkedit;
+				if ($thinkedit->user->hasPermission('insert', $this))
 				{
 						global $thinkedit;
 						
@@ -370,8 +370,8 @@ class record
 		function delete()
 		{
 				$this->is_loaded = false;
-				global $user;
-				if ($user->hasPermission('delete', $this))
+				global $thinkedit;
+				if ($thinkedit->user->hasPermission('delete', $this))
 				{
 						if ($this->checkPrimaryKey())
 						{
@@ -550,6 +550,11 @@ class record
 				return $data;
 		}
 		
+		
+		function getType()
+		{
+				return $this->getTableName();
+		}
 		
 		function getTitle()
 		{

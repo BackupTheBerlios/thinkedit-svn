@@ -86,7 +86,7 @@ function translate($translation_id)
 				
 				//$translation->set('translation', $translation_id);
 				//$translation->set('locale', $user->getLocale());
-				$the_translation = $translation->findFirst(array('translation_id' => $translation_id, 'locale' => $user->getLocale() ));
+				$the_translation = $translation->findFirst(array('translation_id' => $translation_id, 'locale' => $thinkedit->user->getLocale() ));
 				if ($the_translation)
 				{
 						if ($the_translation->get('translation'))
@@ -103,7 +103,7 @@ function translate($translation_id)
 						// todo : insert translation
 						//$translation->set('translation', $id);
 						$translation->set('translation_id', $translation_id);
-						$translation->set('locale', $user->getLocale());
+						$translation->set('locale', $thinkedit->user->getLocale());
 						$translation->insert();	
 						return "[translation_added] #" . $translation_id . "#";
 				}

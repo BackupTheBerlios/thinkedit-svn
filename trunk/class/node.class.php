@@ -334,8 +334,14 @@ class node
 								break;
 						}
 				}
-				
-				return $parents;
+				if (is_array($parents))
+				{
+						return $parents;
+				}
+				else
+				{
+						return false;
+				}
 		}
 		
 		

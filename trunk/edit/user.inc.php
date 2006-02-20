@@ -2,8 +2,8 @@
 // check if current user is valid
 function check_user ()
 {
-		global $user;
-		if ($user->isLogged())
+		global $thinkedit;
+		if ($thinkedit->user->isLogged())
 		{
 				return true;
 		}

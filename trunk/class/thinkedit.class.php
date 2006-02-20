@@ -28,6 +28,12 @@ class thinkedit
 				$config = new xml_parser();
 				$config = $config->parse_folder($config_path);
 				$this->config = $config['config'];
+				
+				
+				//$this->configuration = new config();
+				//return $config;
+				
+			
 		}
 		
 		
@@ -41,7 +47,7 @@ class thinkedit
 						$password = $this->config['site']['database'][$id]['password'];
 						$host = $this->config['site']['database'][$id]['host'];
 						$database = $this->config['site']['database'][$id]['database'];
-						$this->db[$id] = new db($host, $login, $password, $database);
+						$this->db_instance[$id] = new db($host, $login, $password, $database);
 						return true;
 				}
 				else
@@ -54,6 +60,9 @@ class thinkedit
 		}
 		
 		
+		
+		
+		
 		/**
 		* Returns a db instance ot be used anywhere. Usually, the main db is used, but multi db can be configure din config file
 		*
@@ -61,15 +70,15 @@ class thinkedit
 		**/
 		function getDb($id='main')
 		{
-				if (isset($this->db[$id]))
+				if (isset($this->db_instance[$id]))
 				{
-						return $this->db[$id];
+						return $this->db_instance[$id];
 				}
 				else
 				{
 						if ($this->connectToDb($id))
 						{
-								return $this->db[$id];
+								return $this->db_instance[$id];
 						}
 						else
 						{
@@ -294,11 +303,6 @@ class thinkedit
 		}
 		
 		
-		
-		
-		
-		
-		
 		/**
 		* Returns a list of available modules type in config
 		*
@@ -323,10 +327,6 @@ class thinkedit
 						return false;
 				}
 		}
-		
-		
-		
-		
 		
 		
 		
@@ -359,8 +359,6 @@ class thinkedit
 						return false;
 				}
 		}
-		
-		
 		
 		
 		function getRelationTable()

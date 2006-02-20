@@ -1,5 +1,17 @@
 <?php
 /*
+Thinkedit INIT file
+
+This file must be included on every page.
+
+It will only define one global var called $thinkedit. 
+This is the single starting point of your application, because with this $thinkedit-> object, 
+you have everything you need.
+
+*/
+
+
+/*
 Thinkedit, Web based Content and Data Management System
 Copyright (C) 2000-2006  Philippe Jadin 
 philippe@123piano.com (preferred)
@@ -22,7 +34,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
 
-// should we keep root ? Maybe te_root (te for thinkedit) would be better
+/*********************** Required includes ******************/
 
 require_once dirname(__FILE__) . '/lib/thinkedit/tools.inc.php';
 require_once dirname(__FILE__) . '/class/thinkedit.class.php';
@@ -30,7 +42,9 @@ require_once dirname(__FILE__) . '/class/user.class.php';
 require_once dirname(__FILE__) . '/class/config.class.php';
 
 
-// this simple thing will check two parents levels to find a config folder. 
+
+/*********************** Find config file ******************/
+// this simple thing will check two parents levels deep to find a config folder. 
 // This way you can store it outside the webserver doc root
 if (is_dir(dirname(__FILE__) . '/config/'))
 {
@@ -54,16 +68,42 @@ else
 		die('config folder not found');
 }
 
-$config = $thinkedit->newConfig();
-
-define ('ROOT', $config->getRootPath(dirname(__FILE__)));
-define ('ROOT_PATH', $config->getRootPath(dirname(__FILE__)));
-define ('ROOT_URL', $config->getRootUrl());
-define ('TMP_PATH', $config->getTmpPath());
-
-$user = new user();
+// no more global $thinkedit->config
+// $thinkedit->config = $thinkedit->newConfig();
+/*********************** Configuration object ******************/
+$thinkedit->configuration = $thinkedit->newConfig();
 
 
+
+/*********************** ROOT, PATH, URL constants ******************/
+define ('ROOT', $thinkedit->configuration->getRootPath(dirname(__FILE__)));
+define ('ROOT_PATH', $thinkedit->configuration->getRootPath(dirname(__FILE__)));
+define ('ROOT_URL', $thinkedit->configuration->getRootUrl());
+define ('TMP_PATH', $thinkedit->configuration->getTmpPath());
+
+
+/*********************** Thinkedit USER ******************/
+$thinkedit->user = new user();
+
+
+/*********************** Thinkedit DB ******************/
+$thinkedit->db = $thinkedit->getDb();
+
+
+/*********************** Output Cache ******************/
+
+// I hate pear global include system
+require_once ROOT . '/lib/pear/cache/Lite/Output.php';
+$options = array(
+'cacheDir' => TMP_PATH,
+'lifeTime' => 6000,
+'pearErrorMode' => CACHE_LITE_ERROR_DIE
+);
+$thinkedit->cache = new Cache_Lite_Output($options);
+
+
+
+/*********************** Error Reporting ******************/
 // turn on error reporting
 if ($thinkedit->isInProduction())
 {

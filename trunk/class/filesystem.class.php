@@ -99,8 +99,8 @@ class filesystem
 		
 		function getChildren()
 		{
-				global $user;
-				if ($user->hasPermission('view', $this))
+				global $thinkedit;
+				if ($thinkedit->user->hasPermission('view', $this))
 				{
 						if ($this->isFolder())
 						{
@@ -147,8 +147,8 @@ class filesystem
 		*/
 		function getFiles()
 		{
-				global $user;
-				if ($user->hasPermission('view', $this))
+				global $thinkedit;
+				if ($thinkedit->user->hasPermission('view', $this))
 				{
 						$items = $this->getChildren();
 						// todo returns only files
@@ -181,8 +181,8 @@ class filesystem
 		*/
 		function getFolders()
 		{
-				global $user;
-				if ($user->hasPermission('view', $this))
+				global $thinkedit;
+				if ($thinkedit->user->hasPermission('view', $this))
 				{
 						$items = $this->getChildren();
 						// todo returns only files
@@ -212,8 +212,8 @@ class filesystem
 		
 		function getAll()
 		{
-				global $user;
-				if ($user->hasPermission('load', $this))
+				global $thinkedit;
+				if ($thinkedit->user->hasPermission('load', $this))
 				{
 						return $this->getChildren();
 				}
@@ -248,8 +248,8 @@ class filesystem
 						trigger_error('filesystem::filesystem() invalid path detected, exiting', E_USER_ERROR);
 				}
 				
-				global $user;
-				if ($user->hasPermission('view', $this))
+				global $thinkedit;
+				if ($thinkedit->user->hasPermission('view', $this))
 				{
 						if ($this->isFolder())
 						{
@@ -271,8 +271,8 @@ class filesystem
 						trigger_error('filesystem::filesystem() invalid path detected, exiting', E_USER_ERROR);
 				}
 				
-				global $user;
-				if ($user->hasPermission('view', $this))
+				global $thinkedit;
+				if ($thinkedit->user->hasPermission('view', $this))
 				{
 						if ($this->isFolder())
 						{

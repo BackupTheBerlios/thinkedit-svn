@@ -23,14 +23,14 @@ class menu_main extends menu_base
 		function render()
 		{
 				$out = '';
-				if ($this->get())
+				if ($this->getArray())
 				{
-						foreach ($this->get() as $child)
+						foreach ($this->getArray() as $child)
 						{
-								$content = $child->getContent();
+								$content = $child['node']->getContent();
 								$content->load();
 								$url = new url();
-								$url->set('node_id', $child->getId());
+								$url->set('node_id', $child['node']->getId());
 								$out .= '<a href="' . $url->render() . '">' . $content->getTitle() . '</a> ';
 						}
 						return $out;
@@ -43,14 +43,16 @@ class menu_main extends menu_base
 		}
 		
 		
-		function get()
+		function getArray()
 		{
 				$out = '';
 				if ($this->node->getChildren())
 				{
+						require_once 'menuitem.class.php';
 						foreach ($this->node->getChildren() as $child)
 						{
-								$result[] = $child;
+								$menuitem = new menuitem($child);
+								$result[] = $menuitem;
 						}
 						return $result;
 				}

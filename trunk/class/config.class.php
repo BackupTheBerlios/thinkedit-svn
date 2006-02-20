@@ -2,8 +2,6 @@
 
 class config
 {
-		
-		
 		function config()
 		{
 				global $thinkedit;
@@ -164,13 +162,24 @@ class config
 				}
 				else
 				{
-						trigger_error('config::getTmpPath() root_url not defined in config, please define it in config.xml' , E_USER_ERROR);
+						trigger_error('config::getTmpPath() tmp_path not defined in config, please define it in config.xml' , E_USER_ERROR);
 						return false;
 				}
 				
 		}
 		
-		
+		function getDesign()
+		{
+				if (isset($this->config['site']['design']))
+				{
+						// todo check if folder exists
+						return $this->config['site']['design'];
+				}
+				else
+				{
+						return 'default';
+				}
+		}
 		
 }
 

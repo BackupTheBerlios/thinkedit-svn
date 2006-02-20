@@ -14,6 +14,8 @@ $url = new url();
 
 
 /******************** Cache **************************/
+/*
+// TODO todo : use thinkedit->cache-> etc...
 
 require_once ROOT . '/lib/pear/cache/Lite/Output.php';
 $options = array(
@@ -23,14 +25,14 @@ $options = array(
 );
 
 $cache = new Cache_Lite_Output($options);
-
+*/
 
 
 
 $page_id = 'node_' . $url->get('node_id');
 
-//if (!($cache->start($page_id))) 
-//{
+if (!($thinkedit->cache->start($page_id))) 
+{
 		
 		
 		/******************* Node *******************/
@@ -57,7 +59,6 @@ $page_id = 'node_' . $url->get('node_id');
 		$content = $node->getContent();
 		$content->load();
 		
-		
 		/******************* Menu *******************/
 		require_once ROOT . '/class/menu.breadcrumb.class.php';
 		$breadcrumb = new menu_breadcrumb($node);
@@ -80,27 +81,37 @@ $page_id = 'node_' . $url->get('node_id');
 		require_once ROOT . '/lib/thinkedit/template.lib.php';
 		
 		/******************* Choose template *******************/
-		// find the right template
-		// todo : how ?
+		// Which design ?
 		
+		$design = $thinkedit->configuration->getDesign();
+		
+		// find the right template
+		// if  a file called $content->getType .template.php exists, it is used as the template else, we use content.template.php
+		
+		$template_file = ROOT . '/design/'. $design . '/' . $content->getType() . '.template.php';
+		
+		if (!file_exists($template_file))
+		{
+				$template_file = ROOT . '/design/'. $design .'/content.template.php';
+		}
 		
 		
 		
 		
 		/******************* Render *******************/
 		
+		
 		// include header
-		include(ROOT . '/design/yapaka/header.template.php');
+		include(ROOT . '/design/'. $design .'/header.template.php');
 		
 		// include template
-		include(ROOT . '/design/yapaka/content.template.php');
+		include($template_file);
 		
 		// include footer
-		include(ROOT . '/design/yapaka/footer.template.php');
-    //$cache->end();
-//}
+		include(ROOT . '/design/'. $design .'/footer.template.php');
+    $thinkedit->cache->end();
+}
 
-$db = $thinkedit->getDb();
-echo 'Total Queries : ' . $db->getTotalQueries();
+echo 'Total Queries : ' . $thinkedit->db->getTotalQueries();
 
 ?>

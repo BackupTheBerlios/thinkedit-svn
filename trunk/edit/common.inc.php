@@ -20,9 +20,9 @@ require_once(ROOT . '/class/url.class.php');
 require_once(ROOT . '/class/user.class.php');
 require_once(ROOT . '/class/session.class.php');
 
-$config = $thinkedit->config;
+//$config = $thinkedit->config;
 $url = new url();
-$user = new user();
+//$user = new user();
 $session = new session();
 
 // set locale to 'fr' for testing purposes
@@ -31,22 +31,20 @@ $interface_locale = 'fr';
 
 
 // initialize DB class
-$db = $thinkedit->getDb();
+//$db = $thinkedit->getDb();
 
 
 
 // initialize DB class for interface translations
-$locale_db = $thinkedit->getDb();
-
-
+//$locale_db = $thinkedit->getDb();
 
 
 // include api
-require_once('api.inc.php');
+// require_once('api.inc.php');
 
 
 // choose preferred_locale
-
+/*
 if (isset($_SESSION['preferred_locale']))
 {
 		$preferred_locale = $_SESSION['preferred_locale'];
@@ -55,8 +53,7 @@ else
 {
 		$preferred_locale = get_main_locale();
 }
-
-
+*/
 
 
 ?>

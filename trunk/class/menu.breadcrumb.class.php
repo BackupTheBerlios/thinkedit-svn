@@ -24,22 +24,24 @@ class menu_breadcrumb extends menu_base
 		{
 				$out = '';
 				$items = $this->getArray();
-				for ($i=0; $i < count($items); $i++)
+				
+				foreach ($items as $item)
 				{
-						$item = $items[$i];
-						
-						if ($i == count($items)-1)
+						if ($item->isEnd())
 						{
-								$out .= $item['title'];
+								$out .= $item->getTitle();
 						}
 						else
 						{
-								$out .= '<a href="' . $item['url'] . '">' . $item['title'] . '</a> > ';
+								$out .= '<a href="' . $item->getUrl() . '">' . $item->getTitle() . '</a> &gt; ';
 						}
+						
+						
 				}
 				return $out;
 		}
 		
+		/*
 		function getArray()
 		{
 				// add current
@@ -73,8 +75,29 @@ class menu_breadcrumb extends menu_base
 				
 				return $items;
 		}
+		*/
 		
 		
+		function getArray()
+		{
+				require_once 'menuitem.class.php';
+				// add current
+				$menuitem = new menuitem($this->node);
+				$menuitem->is_end = true; // this is in fact the last item of this breadcrumb
+				$items[] = $menuitem;
+				
+				// add parents
+				if ($this->node->getParentUntilRoot())
+				{
+						foreach ($this->node->getParentUntilRoot() as $parent)
+						{
+								$items[] = new menuitem($parent);
+						}
+				}
+				$items = array_reverse($items);
+				
+				return $items;
+		}
 }
 
 ?>
