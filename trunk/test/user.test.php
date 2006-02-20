@@ -4,7 +4,7 @@ require_once '../thinkedit.init.php';
 
 debug('test', 'test');
 
-$user->login('philippe', '123456');
+$thinkedit->user->login('yourlogin', 'yourpassword');
 
 
 print_r($user);

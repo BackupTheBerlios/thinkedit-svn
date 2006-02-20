@@ -27,9 +27,9 @@ if ($url->get('login') && $url->get('password'))
 		debug($password, 'password');
 		
 		
-		if ($user->login($login, $password))
+		if ($thinkedit->user->login($login, $password))
 		{
-				$_SESSION['user'] = $login;
+				//$_SESSION['user'] = $login;
 				
 				
 				// now we redirect to the correct page
