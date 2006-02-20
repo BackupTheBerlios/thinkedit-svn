@@ -260,37 +260,48 @@ class menu_context extends menu_base
 						}
 						$nodes = $this->root->getAllNodes();
 				}
-				foreach ($nodes as $entry)
+				
+				
+				
+				if (is_array($nodes))
 				{
-						// two things to check :
-						// 1. if the node is a parent of the current node
-						// or
-						// 2. if the parent of the node is the same as the $level_node
+						/*
+						echo '<pre>';
+						print_r($nodes);
+						*/
 						
-						$show = false;
-						if (isset($this->parents) && in_array($entry->getId(), $this->parents))
+						foreach ($nodes as $entry)
 						{
-								$show = true;
-						}
-						if (isset($level_node) && $entry->isSiblingOf($level_node))
-						{
-								$show = true;
-						}
-						
-						// also include childs of this node
-						if ($entry->isChildOf($this->node))
-						{
-								$show = true;
-						}
-						
-						if ($entry->getLevel() < 2)
-						{
+								// two things to check :
+								// 1. if the node is a parent of the current node
+								// or
+								// 2. if the parent of the node is the same as the $level_node
+								
 								$show = false;
-						}
-						
-						if ($show)
-						{
-								$nodes_list[] = $entry;
+								if (isset($this->parents) && in_array($entry->getId(), $this->parents))
+								{
+										$show = true;
+								}
+								if (isset($level_node) && $entry->isSiblingOf($level_node))
+								{
+										$show = true;
+								}
+								
+								// also include childs of this node
+								if ($entry->isChildOf($this->node))
+								{
+										$show = true;
+								}
+								
+								if ($entry->getLevel() < 2)
+								{
+										$show = false;
+								}
+								
+								if ($show)
+								{
+										$nodes_list[] = $entry;
+								}
 						}
 				}
 				

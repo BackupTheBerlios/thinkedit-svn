@@ -22,7 +22,17 @@ class node_optimized extends node
 		**/
 		function node_optimized($table = 'node')
 		{
-				parent::node();
+				//parent::node();
+				
+				global $thinkedit;
+				$this->record = $thinkedit->newRecord($table);
+				$this->table = $table;
+				$this->initNodeList();
+				
+		}
+		
+		function initNodeList()
+		{
 				/*
 				How it works ?
 				We build an array of all the nodes once and we use this array for all database intensive functions
@@ -32,11 +42,11 @@ class node_optimized extends node
 				
 				It polutes the main namespace, but I don't care. (for now)
 				*/
-				global $node_list; // uggly, but does the job
+				global $thinkedit_cache_node_list; // uggly, but does the job
 				
-				if (isset($node_list))
+				if (isset($thinkedit_cache_node_list))
 				{
-						$this->node_list = $node_list;
+						$this->node_list_cache = $thinkedit_cache_node_list;
 				}
 				else
 				{
@@ -49,13 +59,13 @@ class node_optimized extends node
 										{
 												$node_item[$field->getId()] = $field->get();
 										}
-										$node_list[$record->getId()] = $node_item;
+										$thinkedit_cache_node_list[$record->getId()] = $node_item;
 								}
-								$this->node_list = $node_list;
+								$this->node_list_cache = $thinkedit_cache_node_list;
 						}
 						else
 						{
-								trigger_error('node_optimized::node_optimized() cannot load full array of nodes or no node found'); 
+								trigger_error('node_optimized::node_optimized() cannot load full array of nodes or no node found in DB'); 
 						}
 				}
 		}
@@ -69,8 +79,10 @@ class node_optimized extends node
 		
 		function getParent()
 		{
+				$this->load();
+				
 				global $thinkedit;
-				foreach ($this->node_list as $node)
+				foreach ($this->node_list_cache as $node)
 				{
 						if ($node['id'] == $this->record->get('parent_id'))
 						{
@@ -87,6 +99,7 @@ class node_optimized extends node
 		
 		function load($node_id = false)
 		{
+				
 				if (!$node_id)
 				{
 						$node_id = $this->getId();
@@ -96,9 +109,9 @@ class node_optimized extends node
 				{
 						return true;
 				}
-				elseif (isset($this->node_list[$node_id]))
+				elseif (isset($this->node_list_cache[$node_id]))
 				{
-						foreach ($this->node_list[$node_id] as $key=>$value)
+						foreach ($this->node_list_cache[$node_id] as $key=>$value)
 						{
 								$this->set($key, $value);
 						}
@@ -107,6 +120,7 @@ class node_optimized extends node
 						
 				}
 				return false;
+				
 		}
 		
 		
@@ -120,17 +134,19 @@ class node_optimized extends node
 				$this->load();
 				global $thinkedit;
 				// build a list of childs
-				foreach ($this->node_list as $node)
+				foreach ($this->node_list_cache as $node)
 				{
 						if ($node['parent_id'] == $this->get('id'))
 						{
-								$child_list[$node['sort_order']] = $node;
+								//echo $node['sort_order'] . '|';
+								$child_list[] = $node; //todo change if the sort is the same :-/
 						}
 				}
 				// order the childs
 				if (isset($child_list) && is_array($child_list))
 				{
-						ksort($child_list);
+						//ksort($child_list);
+						$child_list = $this->columnSort($child_list, 'sort_order');
 						
 						// create node objects
 						foreach ($child_list as $child)
@@ -146,6 +162,20 @@ class node_optimized extends node
 				}
 		}
 		
+		// from http://be.php.net/manual/en/function.usort.php#54957
+		function columnSort($unsorted, $column) 
+		{
+				$sorted = $unsorted;
+				for ($i=0; $i < sizeof($sorted)-1; $i++) {
+						for ($j=0; $j<sizeof($sorted)-1-$i; $j++)
+						if ($sorted[$j][$column] > $sorted[$j+1][$column]) {
+								$tmp = $sorted[$j];
+								$sorted[$j] = $sorted[$j+1];
+								$sorted[$j+1] = $tmp;
+						}
+				}
+				return $sorted;
+		}
 		
 		
 		

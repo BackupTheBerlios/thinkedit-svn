@@ -1,6 +1,6 @@
 <?php
 /*
-Thinkedit INIT file
+Thinkedit INITIALIZATION file
 
 This file must be included on every page.
 
@@ -92,7 +92,7 @@ $thinkedit->db = $thinkedit->getDb();
 
 /*********************** Output Cache ******************/
 
-// I hate pear global include system
+// I hate pear global include system, so I have this "solution" :-/
 require_once ROOT . '/lib/pear/cache/Lite/Output.php';
 $options = array(
 'cacheDir' => TMP_PATH,

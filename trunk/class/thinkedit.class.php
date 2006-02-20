@@ -60,9 +60,6 @@ class thinkedit
 		}
 		
 		
-		
-		
-		
 		/**
 		* Returns a db instance ot be used anywhere. Usually, the main db is used, but multi db can be configure din config file
 		*
@@ -196,15 +193,15 @@ class thinkedit
 				// currently the base module is used
 				if ($table<>'')
 				{
-						
+						/*
 						require_once('node.class.php');
 						$node = new node($table);
-						
+						*/
 						// experimental optimized node class support :
-						/*
+						
 						require_once('node_optimized.class.php');
 						$node = new node_optimized($table);
-						*/
+						
 						if ($id)
 						{
 								$node->setId($id);

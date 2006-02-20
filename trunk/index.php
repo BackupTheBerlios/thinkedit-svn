@@ -31,8 +31,8 @@ $cache = new Cache_Lite_Output($options);
 
 $page_id = 'node_' . $url->get('node_id');
 
-if (!($thinkedit->cache->start($page_id))) 
-{
+//if (!($thinkedit->cache->start($page_id))) 
+//{
 		
 		
 		/******************* Node *******************/
@@ -109,8 +109,8 @@ if (!($thinkedit->cache->start($page_id)))
 		
 		// include footer
 		include(ROOT . '/design/'. $design .'/footer.template.php');
-    $thinkedit->cache->end();
-}
+    //$thinkedit->cache->end();
+//}
 
 echo 'Total Queries : ' . $thinkedit->db->getTotalQueries();
 
