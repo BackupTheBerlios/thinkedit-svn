@@ -87,7 +87,7 @@ class field
 		
 		function getTitle()
 		{
-				;
+				global $thinkedit;
 				if (isset($this->config['title'][$thinkedit->user->getLocale()]))
 				{
 						return $this->config['title'][$thinkedit->user->getLocale()];

@@ -4,12 +4,12 @@
 <config>
 
 <!-- An example article table -->
-<table id='article'>
+<table id='publication'>
 
 
 
-<title><fr>Article</fr></title>
-<help><fr>Les articles contiennent du texte et des images</fr></help>
+<title><fr>Publication</fr></title>
+<help><fr></fr></help>
 
 <title_field>title</title_field>
 
@@ -25,34 +25,13 @@
 <help><fr>Un titre court est plus percutant</fr></help>
 <type>string</type>
 <is_title>true</is_title>
-
-<use>
-<poweredit>true</poweredit>
-<list>true</list>
-</use>
-
 </field>
-
-
-
 
 <field id="intro">
 <title><fr>Introduction</fr></title>
-<help><fr>Introduction courte à l'article</fr></help>
+<help><fr>Introduction courte à la publication</fr></help>
 <type>text</type>
 </field>
-
-
-
-<field id="body">
-
-<title><fr>Corps du texte</fr></title>
-<help><fr>Regardez dans l'aide pour ajouter des images</fr></help>
-<type>richtext</type>
-<engine>fckeditor</engine>
-<!--<engine>tinymce</engine>-->
-</field>
-
 
 
 </table>

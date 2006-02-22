@@ -197,6 +197,7 @@ class thinkedit
 						require_once('node.class.php');
 						$node = new node($table);
 						*/
+						
 						// experimental optimized node class support :
 						
 						require_once('node_optimized.class.php');
@@ -278,6 +279,12 @@ class thinkedit
 				
 		}
 		
+		
+		function newRelation()
+		{
+				require_once ROOT . '/class/relation.class.php';
+				return new relation();
+		}
 		
 		function newSession()
 		{

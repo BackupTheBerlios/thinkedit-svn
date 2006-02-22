@@ -225,6 +225,100 @@ class menu_context extends menu_base
 		}
 		
 		
+		function getArrayNew()
+		{
+				// handle special case : if the current node is the "root" of the current section, 
+				// display siblings
+				
+				$nodes = $this->node->getSiblings();
+				
+				//break;
+				exit;
+				die('too bad');
+				
+				if ($this->node->getLevel() == 1)
+				{
+						$nodes = $this->node->getChildren();
+				}
+				else
+				{
+						$nodes = $this->root->getAllNodes();
+				}
+				
+				
+				
+				if (is_array($nodes))
+				{
+						/*
+						echo '<pre>';
+						print_r($nodes);
+						*/
+						
+						foreach ($nodes as $entry)
+						{
+								// two things to check :
+								// 1. if the node is a parent of the current node
+								// or
+								// 2. if the parent of the node is the same as the $level_node
+								
+								$show = false;
+								if (isset($this->parents) && in_array($entry->getId(), $this->parents))
+								{
+										$show = true;
+								}
+								
+								if (isset($level_node) && $entry->isSiblingOf($level_node))
+								{
+										$show = true;
+								}
+								
+								
+								
+								// also include childs of this node
+								if ($entry->isChildOf($this->node))
+								{
+										$show = true;
+								}
+								
+								if ($entry->isSiblingOf($this->node))
+								{
+										$show = true;
+								}
+								
+								if ($entry->getLevel() < 2)
+								{
+										$show = false;
+								}
+								
+								if ($show)
+								{
+										$nodes_list[] = $entry;
+								}
+						}
+				}
+				
+				// now render this stuff
+				if (isset($nodes_list) && is_array($nodes_list))
+				{
+						foreach ($nodes_list as $entry)
+						{
+								$menuitem = new menuitem($entry);
+								if ($entry->getId() == $this->node->getId())
+								{
+										//$out .=  $content->getTitle();
+										$menuitem->is_current = true;
+								}
+								$menuitems[] = $menuitem;
+						}
+						
+						return $menuitems;
+				}
+				else
+				{
+						return false;
+				}
+				
+		}
 		
 		
 		
@@ -282,13 +376,21 @@ class menu_context extends menu_base
 								{
 										$show = true;
 								}
+								
 								if (isset($level_node) && $entry->isSiblingOf($level_node))
 								{
 										$show = true;
 								}
 								
+								
+								
 								// also include childs of this node
 								if ($entry->isChildOf($this->node))
+								{
+										$show = true;
+								}
+								
+								if ($entry->isSiblingOf($this->node))
 								{
 										$show = true;
 								}

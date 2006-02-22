@@ -16,7 +16,7 @@
 * @author Fabien MARTY <fab@php.net>
 */
  
-require_once('../Lite.php');
+require_once(ROOT . '/lib/pear/cache/Lite.php');
 
 class Cache_Lite_Function extends Cache_Lite
 {

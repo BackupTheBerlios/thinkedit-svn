@@ -77,6 +77,7 @@ class relation
 								$uid['type'] = $result->get('target_type');
 								$uid['id'] = $result->get('target_id');
 								$item = $thinkedit->newObject($uid);
+								$item->load();
 								$items[] = $item;
 						}
 				}
@@ -89,6 +90,7 @@ class relation
 								$uid['type'] = $result->get('source_type');
 								$uid['id'] = $result->get('source_id');
 								$item = $thinkedit->newObject($uid);
+								$item->load();
 								$items[] = $item;
 						}
 				}

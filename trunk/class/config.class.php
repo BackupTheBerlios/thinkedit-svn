@@ -155,15 +155,20 @@ class config
 		
 		function getTmpPath()
 		{
-				
 				if (isset($this->config['site']['tmp_path'] ) )
 				{
 						return $this->cleanPath($this->config['site']['tmp_path']);
 				}
 				else
 				{
-						trigger_error('config::getTmpPath() tmp_path not defined in config, please define it in config.xml' , E_USER_ERROR);
-						return false;
+						// is this better supported on hosts ? : 
+						// if safe mode is on, we'll have trouble : http://bugs.php.net/bug.php?id=27133
+						$path = realpath(dirname(tempnam('/tmp', 'foo'))) . '/';
+						//echo $path;
+						return $path;
+						
+						//trigger_error('config::getTmpPath() tmp_path not defined in config, please define it in config.xml' , E_USER_ERROR);
+						//return false;
 				}
 				
 		}

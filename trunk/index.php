@@ -4,7 +4,6 @@
 //user
 //thinkedit
 require_once('thinkedit.init.php');
-
 require_once ROOT . '/class/url.class.php';
 
 
@@ -13,26 +12,31 @@ require_once ROOT . '/class/url.class.php';
 $url = new url();
 
 
-/******************** Cache **************************/
-/*
-// TODO todo : use thinkedit->cache-> etc...
+$cache_id = 'node_' . $url->get('node_id');
 
-require_once ROOT . '/lib/pear/cache/Lite/Output.php';
-$options = array(
-'cacheDir' => ROOT . '/tmp/',
-'lifeTime' => 6000,
-'pearErrorMode' => CACHE_LITE_ERROR_DIE
-);
+$cache_enabled = true;
+//$cache_enabled = false;
 
-$cache = new Cache_Lite_Output($options);
-*/
+if ($url->get('refresh'))
+{
+		$thinkedit->outputcache->remove($cache_id);
+}
 
 
-
-$page_id = 'node_' . $url->get('node_id');
-
-//if (!($thinkedit->cache->start($page_id))) 
-//{
+if ($cache_enabled && $thinkedit->outputcache->start($cache_id))
+{
+		echo 'Total Queries : ' . $thinkedit->db->getTotalQueries();
+		echo '<br/>';
+		echo 'Total time : ' . $thinkedit->timer->render();
+		
+		$url->keep('node_id');
+		$url->set('refresh', 1);
+		echo '<br/>';
+		echo '<a href="' . $url->render() . '">Refresh</a>';
+		exit; 
+}
+else
+{
 		
 		
 		/******************* Node *******************/
@@ -58,6 +62,11 @@ $page_id = 'node_' . $url->get('node_id');
 		
 		$content = $node->getContent();
 		$content->load();
+		
+		
+		/******************* Relations *******************/
+		$relation = $thinkedit->newRelation();
+		
 		
 		/******************* Menu *******************/
 		require_once ROOT . '/class/menu.breadcrumb.class.php';
@@ -109,9 +118,18 @@ $page_id = 'node_' . $url->get('node_id');
 		
 		// include footer
 		include(ROOT . '/design/'. $design .'/footer.template.php');
-    //$thinkedit->cache->end();
-//}
+    
+		
+		
+		if ($cache_enabled)
+		{
+				$thinkedit->outputcache->end();
+		}
+	
+}
 
 echo 'Total Queries : ' . $thinkedit->db->getTotalQueries();
+echo '<br/>';
+echo 'Total time : ' . $thinkedit->timer->render();
 
 ?>

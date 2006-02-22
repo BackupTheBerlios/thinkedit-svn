@@ -31,8 +31,8 @@
 </field>
 
 
-<field id="description">
-<title><fr>Description du dossier</fr></title>
+<field id="intro">
+<title><fr>Introduction du dossier</fr></title>
 <type>text</type>
 </field>
 

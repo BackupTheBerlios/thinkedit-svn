@@ -190,6 +190,32 @@ class node
 				}
 		}
 		
+		function isAncestorOf($node)
+		{
+				$node->load();
+				$this->load();
+				
+				// handle the case of this is parent of $node
+				if ($this->getId() == $node->get('parent_id'))
+				{
+						return true;
+				}
+				
+				$parents = $node->getParentUntilRoot();
+				if (is_array($parents))
+				{
+						foreach ($parents as $parent)
+						{
+								if ($this->getId() == $parent->get('parent_id'))
+								{
+										return true;
+								}
+						}
+				}
+				return false;
+						
+		}
+		
 		/**
 		* returns true if the node has childrens
 		*
@@ -284,6 +310,11 @@ class node
 				$uid['type'] = 'node';
 				$uid['id'] = $this->getId();
 				return $uid;
+		}
+		
+		function getType()
+		{
+				return 'node';
 		}
 		
 		/*
@@ -398,11 +429,19 @@ class node
 		
 		
 		
+		function getAllNodes($node_id = false, $level = false, $out = false)
+		{
+				return $this->getAllNodesCached();
+				// or
+				// return $this->getAllNodesUnCached();
+				
+		}
+		
 		
 		/*
 		Return a list of all nodes in the right order (from $this node to last leaf)
 		*/
-		function getAllNodes($node_id = false, $level = false, $out = false)
+		function getAllNodesUnCached($node_id = false, $level = false, $out = false)
 		{
 				if (!$level)
 				{
@@ -419,6 +458,8 @@ class node
 				{
 						$node = $this;
 						$this->node_list[] = $node;
+						$this->node_list_id[] = $node->getId();
+						
 				}
 				debug($node);
 				if ($node->hasChildren())
@@ -428,6 +469,7 @@ class node
 						foreach  ($children as $child)
 						{
 								$this->node_list[] = $child;
+								$this->node_list_id[] = $child->getId();
 								if ($level > 20)
 								{
 										trigger_error('menu::displayChildren() level higher than 20, infinite loop ?');
@@ -438,10 +480,43 @@ class node
 								}
 						}
 				}
-				
 				return $this->node_list;
-				
 		}
+		
+		
+		
+		function getAllNodesCached($node_id = false)
+		{
+				// load form cache...
+				global $thinkedit;
+				$cache_id = 'getAllNodes_' . $node_id; 
+				if ($thinkedit->cache->get($cache_id))
+				{
+						$node_list_id = $thinkedit->cache->get($cache_id);
+						
+				}
+				else // ... or compute
+				{
+						$this->getAllNodesUnCached();
+						$thinkedit->cache->save($this->node_list_id, $cache_id);
+						$node_list_id = $this->node_list_id;
+				}
+				
+				// instantiate and return list
+				foreach ($node_list_id as $node_id)
+				{
+						$node = $thinkedit->newNode();
+						$node->setId($node_id);
+						$node_list[] = $node;
+				}
+				
+				return $node_list;
+		}
+		
+		
+		
+		
+		
 		
 		
 		function getOrder()

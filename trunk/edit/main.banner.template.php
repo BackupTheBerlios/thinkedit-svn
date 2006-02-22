@@ -1,1 +1,0 @@
-<img src="pub.jpg" alt="" width="519" height="96"/>

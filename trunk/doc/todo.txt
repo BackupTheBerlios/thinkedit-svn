@@ -32,7 +32,7 @@ TODO (by order of importance) :
 - design name config option / method to know which design we are currently using	
 - preview button
 - plugin system
-
+- optimize node->getAllNodes and menu classes
 - locale support
 - te_translate() for public website (where are public translations stored, in another table with fallback to admin translations?)
 - mysql backticks

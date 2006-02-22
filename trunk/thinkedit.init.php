@@ -1,4 +1,8 @@
 <?php
+
+
+//xdebug_dump_function_profile();
+
 /*
 Thinkedit INITIALIZATION file
 
@@ -40,6 +44,9 @@ require_once dirname(__FILE__) . '/lib/thinkedit/tools.inc.php';
 require_once dirname(__FILE__) . '/class/thinkedit.class.php';
 require_once dirname(__FILE__) . '/class/user.class.php';
 require_once dirname(__FILE__) . '/class/config.class.php';
+require_once dirname(__FILE__) . '/class/timer.class.php';
+
+
 
 
 
@@ -68,10 +75,16 @@ else
 		die('config folder not found');
 }
 
+
+/*********************** Timer ******************/
+$thinkedit->timer = new timer();
+$thinkedit->timer->marker('start init');
+
 // no more global $thinkedit->config
 // $thinkedit->config = $thinkedit->newConfig();
 /*********************** Configuration object ******************/
 $thinkedit->configuration = $thinkedit->newConfig();
+
 
 
 
@@ -96,10 +109,34 @@ $thinkedit->db = $thinkedit->getDb();
 require_once ROOT . '/lib/pear/cache/Lite/Output.php';
 $options = array(
 'cacheDir' => TMP_PATH,
-'lifeTime' => 6000,
+'lifeTime' => 7200,
 'pearErrorMode' => CACHE_LITE_ERROR_DIE
 );
-$thinkedit->cache = new Cache_Lite_Output($options);
+$thinkedit->outputcache = new Cache_Lite_Output($options);
+
+
+/*********************** Function Cache ******************/
+
+// I hate pear global include system, so I have this "solution" :-/
+require_once ROOT . '/lib/pear/cache/Lite/Function.php';
+$options = array(
+'cacheDir' => TMP_PATH,
+'lifeTime' => 7200,
+'pearErrorMode' => CACHE_LITE_ERROR_DIE
+);
+$thinkedit->functioncache = new Cache_Lite_Function($options);
+
+
+/*********************** Cache ******************/
+// I hate pear global include system, so I have this "solution" :-/
+require_once ROOT . '/lib/pear/cache/Lite.php';
+$options = array(
+'cacheDir' => TMP_PATH,
+'lifeTime' => 7200,
+'pearErrorMode' => CACHE_LITE_ERROR_DIE,
+'automaticSerialization' => true
+);
+$thinkedit->cache = new Cache_Lite($options);
 
 
 
@@ -116,5 +153,6 @@ else
 		ini_set('display_errors', true);
 }
 
+$thinkedit->timer->marker('end init');
 
 ?>
