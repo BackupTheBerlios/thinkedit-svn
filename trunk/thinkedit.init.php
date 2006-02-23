@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', true);
 
 //xdebug_dump_function_profile();
 
@@ -40,7 +41,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /*********************** Required includes ******************/
 
-require_once dirname(__FILE__) . '/lib/thinkedit/tools.inc.php';
+
 require_once dirname(__FILE__) . '/class/thinkedit.class.php';
 require_once dirname(__FILE__) . '/class/user.class.php';
 require_once dirname(__FILE__) . '/class/config.class.php';
@@ -75,6 +76,8 @@ else
 		die('config folder not found');
 }
 
+
+require_once dirname(__FILE__) . '/lib/thinkedit/tools.inc.php';
 
 /*********************** Timer ******************/
 $thinkedit->timer = new timer();

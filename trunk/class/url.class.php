@@ -301,9 +301,6 @@ class url
 						}
 				}
 				
-				
-				
-				
 				// override with user defined ones
 				if (is_array ($this->param))
 				{

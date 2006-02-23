@@ -1,0 +1,35 @@
+Thinkedit plugin system
+(work in progress)
+
+
+I'd like to use the same "hooks" system as wordpress which seems very sucessfull.
+Hooks look like observer pattern
+
+some ideas : 
+
+- be able to autogenerate the list of availables hooks (they should not be hidden in code)
+- have the authors of plugins write a php class (and not a simple function)
+- provide an api to register a plugin, either for an action or for a filter. Without distinction
+
+
+$pluginmanager->register('') ?
+
+Use case : write a plugin to put all titles fields uppsercase (but not save them in the db)
+
+hook name is : 'record_get'
+
+class myplugin
+{
+	function register()
+	{
+		global $thinkedit,
+		$thinkedit->register($this, 'make_uppercase', 'record_get'); 
+	}
+	
+	function make_uppercase($field)
+	{
+	  return uppercase($field);
+	}
+}
+
+

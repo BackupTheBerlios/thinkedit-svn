@@ -47,7 +47,6 @@ if ($cache_enabled && $thinkedit->outputcache->start($cache_id))
 		$url->set('clear_cache', 1);
 		echo '<br/>';
 		echo '<a href="' . $url->render() . '">Clear cache</a>';
-		
 		exit; 
 }
 else
@@ -100,6 +99,9 @@ else
 		require_once ROOT . '/class/menu.context.class.php';
 		$context_menu = new menu_context($node);
 		
+		require_once ROOT . '/class/menu.sibling.class.php';
+		$sibling_menu = new menu_sibling($node);
+		
 		
 		/******************* Template helpers (aka "tags") *******************/
 		require_once ROOT . '/lib/thinkedit/template.lib.php';
@@ -146,5 +148,6 @@ else
 echo 'Total Queries : ' . $thinkedit->db->getTotalQueries();
 echo '<br/>';
 echo 'Total time : ' . $thinkedit->timer->render();
+
 
 ?>

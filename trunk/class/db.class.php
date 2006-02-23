@@ -45,7 +45,7 @@ class db
 				// Make connection to MySQL server
 				if (!$this->connection = @mysql_pconnect($this->host, $this->login, $this->password))
 				{
-						trigger_error('Could not connect to server', E_USER_ERROR);
+						trigger_error('Could not connect to server', E_USER_WARNING);
 						$this->connectError=true;
 						// Select database
 				}
@@ -80,7 +80,16 @@ class db
 						}
 						else
 						{
-								trigger_error ($error_number . ' : ' . $error, E_USER_WARNING);
+								global $thinkedit;
+								if ($thinkedit->isInProduction())
+								{
+										trigger_error ($error_number . ' : (sql not shown)' , E_USER_WARNING);
+								}
+								else
+								{
+										trigger_error ($error_number . ' : ' . $error, E_USER_WARNING);		
+										
+								}
 								return true;
 						}
 				}

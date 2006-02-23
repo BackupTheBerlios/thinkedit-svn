@@ -1,6 +1,6 @@
 <?php
 
-function error_handler($errno, $errstr , $errfile , $errline , $errcontext)
+function production_error_handler($errno, $errstr , $errfile , $errline , $errcontext)
 {
 		$error_message = "[$errno] $errstr<br />\n";
 		$error_message .= "Fatal error in line $errline of file $errfile";
@@ -8,32 +8,30 @@ function error_handler($errno, $errstr , $errfile , $errline , $errcontext)
 		switch ($errno)
 		{
 				case E_USER_ERROR:
+				echo "<b>ERROR</b> An error occured<br />\n";
 				$out['title'] = 'An error occured';
+				/*
 				include(ROOT . '/edit/header.template.php');
 				include(ROOT . '/edit/error.template.php');
 				include(ROOT . '/edit/footer.template.php');
+				*/
 				die();
 				break;
 				
 				case E_USER_WARNING:
-				echo "<b>ERROR</b> [$errno] $errstr in line $errline of file $errfile<br />\n";
-				break;
-				case E_USER_NOTICE:
 				echo "<b>WARNING</b> [$errno] $errstr in line $errline of file $errfile<br />\n";
 				break;
-				
-				default:
-				echo "Unkown error type: [$errno] $errstr in line $errline of file $errfile<br />\n";
-				//echo '<pre>';
-				//print_r($errcontext);
-				break;
-				
 		}
 		
 }
 
+set_error_handler ('production_error_handler');
 
-//set_error_handler ('error_handler');
+
+if ($thinkedit->isInProduction())
+{
+		set_error_handler ('production_error_handler');
+}
 
 
 // some security issues as well if debug is enabled, to say the least...
