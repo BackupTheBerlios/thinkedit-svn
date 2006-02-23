@@ -431,6 +431,7 @@ class node
 		
 		function getAllNodes($node_id = false, $level = false, $out = false)
 		{
+				trigger_error('node::getAllNodes() is too slow, need to find a workaround');
 				return $this->getAllNodesCached();
 				// or
 				// return $this->getAllNodesUnCached();

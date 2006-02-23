@@ -19,7 +19,15 @@ $cache_enabled = true;
 
 if ($url->get('refresh'))
 {
-		$thinkedit->outputcache->remove($cache_id);
+		if ($thinkedit->outputcache->get($cache_id))
+		{
+				$thinkedit->outputcache->remove($cache_id);
+		}
+}
+
+if ($url->get('clear_cache'))
+{
+		$thinkedit->outputcache->clean();
 }
 
 
@@ -33,6 +41,13 @@ if ($cache_enabled && $thinkedit->outputcache->start($cache_id))
 		$url->set('refresh', 1);
 		echo '<br/>';
 		echo '<a href="' . $url->render() . '">Refresh</a>';
+		
+		$url = new url();
+		$url->keep('node_id');
+		$url->set('clear_cache', 1);
+		echo '<br/>';
+		echo '<a href="' . $url->render() . '">Clear cache</a>';
+		
 		exit; 
 }
 else

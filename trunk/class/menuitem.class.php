@@ -23,7 +23,7 @@ class menuitem
 		function getTitle()
 		{
 				$this->content->load();
-				return $this->content->getTitle(); // . ' | ' . $this->node->getLevel();
+				return $this->content->getTitle(); // . ' (' . $this->node->getLevel() . ')';
 		}
 		
 		
