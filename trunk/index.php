@@ -47,6 +47,9 @@ if ($cache_enabled && $thinkedit->outputcache->start($cache_id))
 		$url->set('clear_cache', 1);
 		echo '<br/>';
 		echo '<a href="' . $url->render() . '">Clear cache</a>';
+		
+		xdebug_dump_function_profile(3);
+		
 		exit; 
 }
 else
@@ -149,5 +152,5 @@ echo 'Total Queries : ' . $thinkedit->db->getTotalQueries();
 echo '<br/>';
 echo 'Total time : ' . $thinkedit->timer->render();
 
-
+xdebug_dump_function_profile(4) 
 ?>

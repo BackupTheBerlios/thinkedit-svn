@@ -25,7 +25,7 @@ function production_error_handler($errno, $errstr , $errfile , $errline , $errco
 		
 }
 
-set_error_handler ('production_error_handler');
+//set_error_handler ('production_error_handler');
 
 
 if ($thinkedit->isInProduction())

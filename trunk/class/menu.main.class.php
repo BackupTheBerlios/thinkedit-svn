@@ -25,13 +25,13 @@ class menu_main extends menu_base
 				$out = '';
 				if ($this->getArray())
 				{
-						foreach ($this->getArray() as $child)
+						foreach ($this->getArray() as $item)
 						{
-								$content = $child['node']->getContent();
-								$content->load();
-								$url = new url();
-								$url->set('node_id', $child['node']->getId());
-								$out .= '<a href="' . $url->render() . '">' . $content->getTitle() . '</a> ';
+								//$content = $child'node']->getContent();
+								//$content->load();
+								//$url = new url();
+								//$url->set('node_id', $child['node']->getId());
+								$out .= '<a href="' . $item->getUrl() . '">' . $item->getTitle() . '</a> ';
 						}
 						return $out;
 				}

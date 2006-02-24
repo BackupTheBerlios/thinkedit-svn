@@ -43,6 +43,27 @@ class menu_child extends menu_base
 		}
 		
 		
+		function getArray()
+		{
+				$out = '';
+				if ($this->node->getChildren())
+				{
+						require_once 'menuitem.class.php';
+						foreach ($this->node->getChildren() as $child)
+						{
+								$menuitem = new menuitem($child);
+								$result[] = $menuitem;
+						}
+						return $result;
+				}
+				else
+				{
+						return false;
+				}
+				
+		}
+		
+		
 }
 
 ?>

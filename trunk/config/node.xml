@@ -37,6 +37,16 @@
 <type>order</type>
 </field>
 
+<!--
+<field id="template">
+<type>string</type>
+</field>
+
+<field id="publish">
+<type>publish</type>
+</field>
+-->
+
 
 </table>
 
