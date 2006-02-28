@@ -1,11 +1,4 @@
 <?php
-xdebug_start_profiling();
-
-error_reporting(E_ALL);
-ini_set('display_errors', true);
-
-//xdebug_dump_function_profile();
-
 /*
 Thinkedit INITIALIZATION file
 
@@ -14,7 +7,6 @@ This file must be included on every page.
 It will only define one global var called $thinkedit. 
 This is the single starting point of your application, because with this $thinkedit-> object, 
 you have everything you need.
-
 */
 
 
@@ -40,16 +32,20 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 */
 
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+
+if (function_exists('xdebug_start_profiling'))
+{
+		xdebug_start_profiling();
+}
+
 
 /*********************** Required includes ******************/
-
-
 require_once dirname(__FILE__) . '/class/thinkedit.class.php';
 require_once dirname(__FILE__) . '/class/user.class.php';
 require_once dirname(__FILE__) . '/class/config.class.php';
 require_once dirname(__FILE__) . '/class/timer.class.php';
-
-
 
 
 

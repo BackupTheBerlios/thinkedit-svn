@@ -48,7 +48,10 @@ if ($cache_enabled && $thinkedit->outputcache->start($cache_id))
 		echo '<br/>';
 		echo '<a href="' . $url->render() . '">Clear cache</a>';
 		
-		xdebug_dump_function_profile(3);
+		if (function_exists('xdebug_dump_function_profile') && !$thinkedit->isInProduction())
+		{
+				xdebug_dump_function_profile(4);
+		}
 		
 		exit; 
 }
@@ -152,5 +155,11 @@ echo 'Total Queries : ' . $thinkedit->db->getTotalQueries();
 echo '<br/>';
 echo 'Total time : ' . $thinkedit->timer->render();
 
-xdebug_dump_function_profile(4) 
+/*
+if (function_exists('xdebug_dump_function_profile') && !$thinkedit->isInProduction())
+{
+		xdebug_dump_function_profile(4);
+}
+*/
+
 ?>
