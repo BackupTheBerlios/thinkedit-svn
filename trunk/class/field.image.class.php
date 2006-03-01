@@ -5,7 +5,7 @@ require_once 'field.base.class.php';
 class field_image extends field
 {
 		
-		function renderUI()
+		function renderUI($prefix = false)
 		{
 				return 'not yet';
 				/*

@@ -6,7 +6,7 @@ class field_lookup extends field
 {
 	
 	
-	function renderUI()
+	function renderUI($prefix = false)
 	{
 		if ($this->config['source']['type'] == 'table' && isset($this->config['source']['name']))
 		{
@@ -16,7 +16,7 @@ class field_lookup extends field
 						
 			if ($records)
 			{
-				$out='<select name="' . $this->getName() . '">';
+				$out='<select name="' . $prefix . $this->getName() . '">';
 				foreach ($records as $record)
 				{
 					if ($this->get() == $record->getId())

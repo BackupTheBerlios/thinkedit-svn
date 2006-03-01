@@ -130,6 +130,16 @@ class table
 								$sql .= $name . ' varchar(255)';
 						}
 						
+						elseif ($type == 'template')
+						{
+								$sql .= $name . ' varchar(255)';
+						}
+						
+						elseif ($type == 'publish')
+						{
+								$sql .= $name . ' int';
+						}
+						
 						elseif ($type == 'stringid')
 						{
 								$sql .= $name . ' varchar(255)';

@@ -4,7 +4,7 @@ require_once 'field.base.class.php';
 class field_id extends field
 {
 		
-		function renderUI()
+		function renderUI($prefix = false)
 		{
 				
 				$out = '';
@@ -14,7 +14,7 @@ class field_id extends field
 				$out .= $this->getName() . ' : ' . $this->get();
 				$out .= '--!>';
 				$out .= ' (' . translate('edit_id_is_not_editable') .')';
-				$out .='<input type="hidden" name="' . $this->getName() . '" value="' . $this->get() . '">';
+				$out .='<input type="hidden" name="' . $prefix . $this->getName() . '" value="' . $this->get() . '">';
 				return $out;
 		}
 		
@@ -64,6 +64,13 @@ class field_id extends field
 				}
 				
 		}
+		
+		
+		function isUsedIn($what)
+		{
+				return false; 
+		}
+	
 		
 		
 		

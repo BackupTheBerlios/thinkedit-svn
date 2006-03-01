@@ -330,6 +330,27 @@ class node
 				return $thinkedit->newObject($uid);
 		}
 		
+		function getTitle()
+		{
+				
+				$content = $this->getContent();
+				$content->load();
+				return ucfirst(translate('node')) . ' : ' . $content->getTitle();
+				
+				/*
+				return ucfirst(translate('node')) . ' : ' . $this->getPath();
+				*/
+		}
+		
+		
+		function getIcon()
+		{
+				$content = $this->getContent();
+				//$content->load();
+				return $content->getIcon();
+		}
+		
+		
 		function loadRootNode()
 		{
 				return $this->load(1); // todo : configure or search where parent = 0 or config file for multiple sites in the same tree 
@@ -375,6 +396,33 @@ class node
 				}
 		}
 		
+		
+		function getPath()
+		{
+				$parents[] = $this;
+				
+				$parents_until_root = $this->getParentUntilRoot();
+				
+				if (is_array($parents_until_root))
+				{
+						foreach ($parents_until_root as $parent)
+						{
+								$parents[] = $parent;
+						}
+				}
+				
+				$parents = array_reverse($parents);
+				$path = '/';
+				
+				foreach ($parents as $parent)
+				{
+						$content = $parent->getContent();
+						$content->load();
+						$path .= $content->getTitle() . '/';
+				}
+				
+				return $path;
+		}
 		
 		function getLevel()
 		{

@@ -58,10 +58,10 @@ class field
 		}
 		
 		
-		function renderUI()
+		function renderUI($prefix = false)
 		{
 				$out = '';
-				$out .= sprintf('<input type="text" value="%s" name="%s", size="32">', $this->getRaw(), $this->getName());
+				$out .= sprintf('<input type="text" value="%s" name="%s", size="32">', $this->getRaw(), $prefix . $this->getName());
 				return $out;
 		}
 		
@@ -158,6 +158,7 @@ class field
 		
 		function useInView($view)
 		{
+				trigger_error('useInView() is deprecated, use isUsedIn() instead');
 				// enable by default title columns in list view
 				if ($this->isTitle() && $view == 'list')
 				{
@@ -178,6 +179,33 @@ class field
 				else
 				{
 						return false;
+				}
+		}
+		
+		function isUsedIn($what)
+		{
+				// enable by default title columns in list view
+				if ($this->isTitle())
+				{
+						return true;
+				}
+				
+				if (isset($this->config['use'][$what]))
+				{
+						//echo 
+						if ($this->config['use'][$what] == 'true')
+						{
+								return true;
+						}
+						else
+						{
+								return false;
+						}
+				}
+				else
+				{
+				
+						return true;
 				}
 		}
 		

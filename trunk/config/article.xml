@@ -27,8 +27,8 @@
 <is_title>true</is_title>
 
 <use>
-<poweredit>true</poweredit>
 <list>true</list>
+<edit>true</edit>
 </use>
 
 </field>

@@ -18,43 +18,7 @@ include_once('common.inc.php');
 //check_user
 check_user();
 
-/*
-// load object from url
 
-if ($url->getObject('object_'))
-{
-		$object = $url->getObject('object_');
-		// if object is node, get content, show form, enable node mode
-		if ($object->getType() == 'node')
-		{
-				$content = $object->getContent();
-				if ($content->getType() == 'record')
-				{
-						$record = $content;
-				}
-				else
-				{
-						trigger_error('When editing nodes, I can only edit records type node');
-				}
-		}
-		// if object is record, show form
-		elseif ($object->getType() == 'record')
-		{
-				$record = $object;
-		}
-		else
-		{
-				trigger_error('When editing I can only edit records type');
-		}
-}
-else
-{
-		trigger_error('Cannot instantiate object from url, cannot edit');
-}
-
-
-debug($record, 'Record found');
-*/
 if (!$url->getParam('type'))
 {
 		trigger_error('edit : you must supply a type in the url');
@@ -70,6 +34,12 @@ if ($url->get('mode') == 'edit_node')
 {
 		$out['edit_node'] = true;
 		$edit_node = true;
+		$node_id = $url->get('node_id');
+		
+		$node = $thinkedit->newNode();
+		$node->setId($node_id);
+		$node->load();
+		
 }
 
 
@@ -122,9 +92,35 @@ if ($url->get('action')=='save')
 		}
 		else
 		{
-				error('failed saving record');
+				trigger_error('edit : failed saving record');
 		}
 }
+
+
+/****************** Handle Node save ******************/
+if ($url->get('action')=='save' && isset($node))
+{
+		debug($_REQUEST, 'Request');
+		foreach ($node->record->field as $field)
+		{
+				// we take only the posted form data with the node_ prefix
+				if (isset($_POST['node_' . $field->getName()]))
+				{
+						$node->record->set($field->getName(), $_POST['node_' . $field->getName()]);
+				}
+		}
+		
+		debug($record, 'Record before saving');
+		if ($node->save())
+		{
+				$out['info'] = translate('item_save_successfully');
+		}
+		else
+		{
+				trigger_error('edit : failed saving node record');
+		}
+}
+
 
 
 /************** handle add node *****************/
@@ -144,10 +140,16 @@ if ($url->get('action')=='save' && $url->get('mode') == 'new_node')
 
 if ($url->get('action')=='save' && $url->get('mode') == 'edit_node')
 {
-		$url->keep('mode');
-		$url->keep('node_id');
-		//$url->addObject($record, 'object_');
-		$url->redirect('structure.php');
+		
+		if ($url->get('save_and_return_to_structure'))
+		{
+				$url->set('info', 'edit_successfull');
+				$url->keep('mode');
+				$url->keep('node_id');
+				$url->redirect('structure.php');
+		}
+		
+		
 		/*
 		$redirect = $url->linkTo($record, 'structure.php');
 		header('location: ' . $redirect); // todo better url class api
@@ -169,10 +171,31 @@ $out['save_url'] = $url->render();
 
 foreach ($record->field as $field)
 {
-		$out['field'][$field->getName()]['ui'] = $field->renderUi();
-		$out['field'][$field->getName()]['title'] = $field->getTitle();
-		$out['field'][$field->getName()]['help'] = $field->getHelp();
+		if ($field->isUsedIn('edit'))
+		{
+				$out['field'][$field->getName()]['ui'] = $field->renderUi();
+				$out['field'][$field->getName()]['title'] = $field->getTitle();
+				$out['field'][$field->getName()]['help'] = $field->getHelp();
+		}
 }
+
+
+
+/****************** Node Form items ******************/
+
+if (isset($node))
+{
+		foreach ($node->record->field as $field)
+		{
+				if ($field->isUsedIn('edit'))
+				{
+						$out['node_field'][$field->getName()]['ui'] = $field->renderUi('node_');
+						$out['node_field'][$field->getName()]['title'] = $field->getTitle();
+						$out['node_field'][$field->getName()]['help'] = $field->getHelp();
+				}
+		}
+}
+
 
 
 
@@ -184,129 +207,6 @@ $out['relation']['url'] = $url->render('relation.php');
 
 // clean url
 $url = new url();
-
-/*
-foreach($config['config']['table'][$table]['element'] as $field=>$element)
-{
-		$out['element'][$field]['title'] = $element['title'][$interface_locale];
-		$out['element'][$field]['help'] = $element['help'][$interface_locale];
-		$out['element'][$field]['type'] = $element['type'];
-		$out['element'][$field]['field'] = $field;
-		
-		
-		
-		//handle linked tables :
-		// one_to_many is deprecated
-		if ($element['type']=='one_to_many' or $element['type']=='list') //one to many is deprecated
-		{
-				//debug ('<h1>list</h1>');
-				
-				$source_table = $element['source']['table'];
-				
-				if (is_multilingual($source_table))
-				{
-						$query = "select * from " . $source_table . " where locale='$preferred_locale'";
-				}
-				else
-				{
-						$query = "select * from " . $source_table;
-				}
-				
-				
-				
-				$items = $db->get_results($query);
-				if ($debug) $db->debug();
-				
-				
-				$out['element'][$field]['manage_list_url'] = "list.php?table=".$element['source']['table'];
-				
-				$i=0;
-				if ($items)
-				{
-						foreach ($items as $item)
-						{
-								$out['element'][$field]['combo'][$i]['value'] = $item->$element['source']['value_field'];
-								$out['element'][$field]['combo'][$i]['label'] = $item->$element['source']['label_field'];
-								$i++;
-						}
-				}
-				
-		}
-		
-		
-		
-		// is this needed in the interface ?
-		if ($element['type']=='relation')
-		{
-				$out['element'][$field]['manage_list_url'] = "list.php?table=".$element['source']['table'];
-		}
-		
-		
-		
-		//handle image folder :
-		if ($element['type']=='image')
-		{
-				// $out['element'][$field]['path'] = $config['config']['table'][$table]['element'][$field]['source']['path'];
-				
-				// define source
-				$out['element'][$field]['source'] = $config['config']['table'][$table]['element'][$field]['source']['name'];
-				
-				
-				// find base path from media manager instance
-				$out['element'][$field]['path'] = $config['config']['table'][$out['element'][$field]['source']]['base_path'];
-				
-		}
-		
-		
-		
-		//handle plugins :
-		if ($element['type']=='plugin')
-		{
-				$out['element'][$field]['plugin_file'] = $config['config']['table'][$table]['element'][$field]['plugin_file'];
-		}
-		
-		
-		if ($element['type']=='date')
-		{
-				$out['calendar_needed'] = true;
-				
-		}
-		
-		
-		// if we need one or more html editor (html_editor is then true),
-		// we populate a list of the field requiring html editor support, which is html_fields
-		if ($element['wysiwyg']['enable']=='true')
-		{
-				$out['wysiwyg_editor_needed'] = true;
-				$out['element'][$field]['wysiwyg'] = true;
-		}
-		
-		
-}
-*/
-
-/*
-// querying the db to get the data needed
-if ($config['config']['table'][$table]['locale']['type'] == 'multilingual')
-{
-		$query = "select * from ".	$config['config']['table'][$table]['table'] . " where id = '$id' and locale = '$db_locale'";
-}
-else
-{
-		$query = "select * from ".	$config['config']['table'][$table]['table'] . " where id = '$id'";
-}
-
-//$items = $db->get_row($query, ARRAY_A);
-if ($debug) $db->debug();
-
-foreach ($items as $key => $val)
-{
-		$out['data'][$key] = $val;
-		
-}
-*/
-
-
 
 
 // generates the breadcrumb data

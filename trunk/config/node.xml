@@ -14,35 +14,53 @@
 
 <field id="parent_id">
 <type>int</type>
-<is_title>true</is_title>
+<use>
+<list>false</list>
+<edit>false</edit>
+</use>
 </field>
 
 
 <field id="object_class">
-<is_title>true</is_title>
 <type>string</type>
+<use>
+<list>false</list>
+<edit>false</edit>
+</use>
 </field>
 
 <field id="object_type">
-<is_title>true</is_title>
 <type>string</type>
+<use>
+<list>false</list>
+<edit>false</edit>
+</use>
 </field>
 
 <field id="object_id">
-<is_title>true</is_title>
 <type>text</type>
+<use>
+<list>false</list>
+<edit>false</edit>
+</use>
 </field>
 
 <field id="sort_order">
 <type>order</type>
+<use>
+<list>false</list>
+<edit>false</edit>
+</use>
 </field>
 
 
 <field id="template">
+<title><fr>Modèle de page (pas encore fonctionnel)</fr></title>
 <type>template</type>
 </field>
 
 <field id="publish">
+<title><fr>Statut de publication</fr></title>
 <type>publish</type>
 </field>
 

@@ -4,7 +4,7 @@ require_once 'field.base.class.php';
 class field_richtext extends field
 {
 		
-		function renderUI()
+		function renderUI($prefix = false)
 		{
 				
 				$out = '';
@@ -29,10 +29,10 @@ class field_richtext extends field
 				*/
 				
 				// adaptive textarea rows lenght
-				$rows = round(strlen($this->get()) / 80) + 8;
-				if ($rows > 30) $rows = 30;
+				$rows = round(strlen($this->get()) / 80) + 20;
+				if ($rows > 40) $rows = 40;
 				
-				$out .= sprintf('<textarea name="%s" cols="80" rows="%s" mce_editable="true">%s</textarea>', $this->getName(), $rows, $this->getRaw());
+				$out .= sprintf('<textarea name="%s" cols="80" rows="%s" mce_editable="true">%s</textarea>', $prefix . $this->getName(), $rows, $this->getRaw());
 				return $out;
 		}
 		

@@ -26,7 +26,7 @@ if ($url->get('node_id'))
 		
 		if (!$current_node->load())
 		{
-				trigger_error('structure : node not found', E_USER_ERROR);
+				trigger_error('structure : node not found', E_USER_WARNING);
 		}
 		
 		$we_are_root = false;
@@ -105,6 +105,11 @@ if ($url->get('action') == 'delete')
 		
 }
 
+/*
+echo '<pre> after delete';
+print_r($db_cache);
+echo '</pre>';
+*/
 
 /********************* Move action **********************/
 if ($url->get('action') == 'moveup')
@@ -267,6 +272,11 @@ if (isset($nodes) && is_array($nodes))
 		}
 }
 
+/*
+echo '<pre> after list';
+print_r($db_cache);
+echo '</pre>';
+*/
 
 // build a breadcrumb of parent items
 // add breadcrumb

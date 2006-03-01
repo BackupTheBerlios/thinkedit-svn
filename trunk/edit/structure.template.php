@@ -21,6 +21,22 @@
 </div>
 
 
+<div class="box">
+
+<p>
+<?php if (isset($out['allowed_items'])) : ?>
+<select size="1" onChange="jump('parent',this,0)">
+<option value=""><?php echo translate('node_add_new') ?></option>
+<?php foreach ($out['allowed_items'] as $item): ?>
+<option value="<?php echo $item['action'] ?>"><?php echo ucfirst($item['title']) ?></option>
+<?php endforeach; ?>
+</select>
+<?php endif; ?>
+</p>
+</div>
+
+
+
 <div class="power_margin">
 
 <?php if (isset($out['nodes'])) : ?>
@@ -101,26 +117,13 @@ $i++;
 
 </table>
 <?php else: ?>
+<div class="white bigbox">
 <?php echo translate('node_empty')?>
+</div>
 <?php endif; ?>
 
 </div>
 
-
-
-<div class="node_actions">
-
-<p>
-<?php if (isset($out['allowed_items'])) : ?>
-<select size="1" onChange="jump('parent',this,0)">
-<option value=""><?php echo translate('node_add_new') ?></option>
-<?php foreach ($out['allowed_items'] as $item): ?>
-<option value="<?php echo $item['action'] ?>"><?php echo ucfirst($item['title']) ?></option>
-<?php endforeach; ?>
-</select>
-<?php endif; ?>
-</p>
-</div>
 
 
 

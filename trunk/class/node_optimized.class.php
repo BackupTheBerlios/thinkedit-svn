@@ -225,6 +225,38 @@ class node_optimized extends node
 				
 		}
 		*/
+		
+		function refreshNodeList()
+		{
+				
+				global $thinkedit_cache_node_list; // uggly, but does the job
+				
+				// if the cache array is found, unset it
+				if (isset($thinkedit_cache_node_list))
+				{
+						unset($thinkedit_cache_node_list);
+				}
+				// re-init node list
+				$this->initNodeList();
+		}
+		
+		
+		function delete()
+		{
+				$results = parent::delete();
+				
+				global $thinkedit;
+				$db = $thinkedit->getDb();
+				$db->clearCache();
+				$this->refreshNodeList();
+				return $results;
+		}
+		
+		/*
+		function add($node)
+		{
+		}
+		*/
 }
 
 

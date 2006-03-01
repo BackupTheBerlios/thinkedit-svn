@@ -148,7 +148,7 @@ class db
 				
 				$hash =  sha1($sql);
 				
-				if (isset($db_cache[$hash]))
+				if (isset($db_cache) && isset($db_cache[$hash]))
 				{
 						// one line debugging tool :-)
 						//debug($sql . '[cached]', 'db:select()');
@@ -315,7 +315,7 @@ class db
 		function clearCache()
 		{
 				global $db_cache;
-				$db_cache = '';
+				unset($db_cache);
 		}
 		
 		

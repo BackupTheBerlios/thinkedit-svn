@@ -258,7 +258,7 @@ if ($class=='node')
 						$item['visit_url'] = $url->render();
 						if ($mode == 'relation')
 						{
-								$url->addObject($content, 'target_');
+								$url->addObject($node_item, 'target_');
 								$url->set('action', 'relate');
 								$item['url'] = $url->render('relation.php');
 						}

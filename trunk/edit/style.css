@@ -1,4 +1,8 @@
-body {
+/***************** Typo ******************/
+
+
+body 
+{
 		font-family: verdana, arial, helvetica, sans-serif;
 		font-size : 10px;
 		margin : 0px;
@@ -6,6 +10,9 @@ body {
 		background-color: #F6F6F6; 
 }
 
+
+
+/***************** Boxes ******************/
 
 .box
 {
@@ -44,6 +51,8 @@ body.white {
 		background-color: #FFFFFF; 
 }
 
+
+/***************** Links ******************/
 
 a:link
 {
@@ -108,6 +117,8 @@ a.white_link
 		text-decoration: none;
 }
 
+/***************** Forms ******************/
+
 .input
 {
 		font-family: verdana, arial, helvetica, sans-serif;
@@ -158,13 +169,31 @@ textarea
 		color: #000000;
 		width: 44em;
 		margin: 0em;
-		margin-top: 1em;
+		/*margin-top: 1em;*/
 		margin-bottom: 1em;
 		padding: 0.5em;
 		border-width: 1px;
 		border-style: solid;
 		border-color: #949493;
 }
+
+
+fieldset
+{
+		border: 1px solid #cccccc;
+		padding: 10px;
+		margin-bottom: 20px;
+		background-color: #eee;
+}
+
+
+legend
+{
+		font-size: 1.3em;
+		font-weight : bold;
+}
+
+/***************** Layout ******************/
 
 div
 {
