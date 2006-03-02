@@ -1,0 +1,24 @@
+Configuration keywords
+
+
+<use></use>
+
+can be put in table, field, others (?)
+
+
+- main
+- list
+- edit
+- relation
+- structure
+
+
+<field>
+<use>list,edit</use>
+</field>
+means this field will be shown in list, edit  mode
+
+<table>
+<use>main</use>
+</table>
+Means this table will be shown on the homepage

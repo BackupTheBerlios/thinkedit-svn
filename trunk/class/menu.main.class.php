@@ -49,7 +49,7 @@ class menu_main extends menu_base
 				if ($this->node->getChildren())
 				{
 						require_once 'menuitem.class.php';
-						foreach ($this->node->getChildren() as $child)
+						foreach ($this->node->getChildren(true) as $child)
 						{
 								$menuitem = new menuitem($child);
 								$result[] = $menuitem;

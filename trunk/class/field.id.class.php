@@ -68,7 +68,7 @@ class field_id extends field
 		
 		function isUsedIn($what)
 		{
-				return false; 
+				return true; 
 		}
 	
 		

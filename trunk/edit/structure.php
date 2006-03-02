@@ -18,6 +18,18 @@ include_once('common.inc.php');
 //check_user
 check_user();
 
+if ($url->get('info'))
+{
+		$out['info'] = translate($url->get('info'));
+}
+
+
+if ($url->get('error'))
+{
+		$out['error'] = translate($url->get('error'));
+}
+
+
 $current_node = $thinkedit->newNode();
 if ($url->get('node_id'))
 {
@@ -40,19 +52,7 @@ else // we are in root
 
 debug($current_node, 'Current node init');
 
-/*
-if ($url->getObject('current_'))
-{
-		$current_node = $url->getObject('current_');
-		$we_are_root = false;
-}
-else
-{
-		$current_node = $thinkedit->newNode();
-		$current_node->loadRootNode();
-		$we_are_root = true;
-}
-*/
+
 
 /********************* Edit action **********************/
 
@@ -74,6 +74,9 @@ if ($url->get('mode') == 'new_node')
 		// done ??
 		$object = $url->getObject('object_');
 		$current_node->add($object);
+		$url->keep('node_id');
+		$url->redirect();
+		
 }
 
 
@@ -91,11 +94,17 @@ if ($url->get('action') == 'delete')
 				$current_node = $node_to_delete->getParent();
 				if ($node_to_delete->delete())
 				{
-						$out['info'] = translate('node_deleted_successfully');
+						$url->set('node_id', $current_node->getId());
+						$url->set('info', 'node_deleted_successfully');
+						$url->redirect();
+						//$out['info'] = translate('node_deleted_successfully');
 				}
 				else
 				{
-						$out['error'] = translate('node_not_deleted');
+						$url->keep('node_id');
+						$url->set('error', 'node_not_deleted');
+						$url->redirect();
+						// $out['error'] = translate('node_not_deleted');
 				}
 		}
 		else
@@ -105,11 +114,45 @@ if ($url->get('action') == 'delete')
 		
 }
 
-/*
-echo '<pre> after delete';
-print_r($db_cache);
-echo '</pre>';
-*/
+/********************* Publish action **********************/
+
+if ($url->get('action') == 'publish')
+{
+		if ($current_node->publish())
+		{
+				
+				$url->set('node_id', $parent_node->getId());
+				$url->set('info', 'node_published_successfully');
+				$url->redirect();
+		}
+		else
+		{
+				$url->set('node_id', $parent_node->getId());
+				$url->set('error', 'node_not_published');
+				$url->redirect();
+		}
+
+}
+
+
+if ($url->get('action') == 'unpublish')
+{
+		if ($current_node->unPublish())
+		{
+				
+				$url->set('node_id', $parent_node->getId());
+				$url->set('info', 'node_unpublished_successfully');
+				$url->redirect();
+		}
+		else
+		{
+				$url->set('node_id', $parent_node->getId());
+				$url->set('error', 'node_not_unpublished');
+				$url->redirect();
+		}
+
+}
+
 
 /********************* Move action **********************/
 if ($url->get('action') == 'moveup')
@@ -118,11 +161,17 @@ if ($url->get('action') == 'moveup')
 		
 		if ($current_node->moveUp())
 		{
-				$out['info'] = translate('node_moved_successfully');
+				$url->set('node_id', $parent_node->getId());
+				$url->set('info', 'node_moved_successfully');
+				$url->redirect();
+				//$out['info'] = translate('node_moved_successfully');
 		}
 		else
 		{
-				$out['error'] = translate('node_not_moved');
+				$url->set('node_id', $parent_node->getId());
+				$url->set('error', 'node_not_moved');
+				$url->redirect();
+				//$out['error'] = translate('node_not_moved');
 		}
 		
 		// use parent node as current node, so we'll still show the right node bellow
@@ -139,11 +188,15 @@ if ($url->get('action') == 'movedown')
 		
 		if ($current_node->moveDown())
 		{
-				$out['info'] = translate('node_moved_successfully');
+				$url->set('node_id', $parent_node->getId());
+				$url->set('info', 'node_moved_successfully');
+				$url->redirect();
 		}
 		else
 		{
-				$out['error'] = translate('node_not_moved');
+				$url->set('node_id', $parent_node->getId());
+				$url->set('error', 'node_not_moved');
+				$url->redirect();
 		}
 		
 		// use parent node as current node, so we'll still show the right node bellow
@@ -160,11 +213,15 @@ if ($url->get('action') == 'movetop')
 		
 		if ($current_node->moveTop())
 		{
-				$out['info'] = translate('node_moved_successfully');
+				$url->set('node_id', $parent_node->getId());
+				$url->set('info', 'node_moved_successfully');
+				$url->redirect();
 		}
 		else
 		{
-				$out['error'] = translate('node_not_moved');
+				$url->set('node_id', $parent_node->getId());
+				$url->set('error', 'node_not_moved');
+				$url->redirect();
 		}
 		
 		// use parent node as current node, so we'll still show the right node bellow
@@ -180,11 +237,15 @@ if ($url->get('action') == 'movebottom')
 		
 		if ($current_node->moveBottom())
 		{
-				$out['info'] = translate('node_moved_successfully');
+				$url->set('node_id', $parent_node->getId());
+				$url->set('info', 'node_moved_successfully');
+				$url->redirect();
 		}
 		else
 		{
-				$out['error'] = translate('node_not_moved');
+				$url->set('node_id', $parent_node->getId());
+				$url->set('error', 'node_not_moved');
+				$url->redirect();
 		}
 		
 		// use parent node as current node, so we'll still shwo the right node bellow
@@ -265,6 +326,26 @@ if (isset($nodes) && is_array($nodes))
 				$url->addObject($content);
 				$url->set('mode', 'edit_node');
 				$node_info['edit_url'] = $url->render('edit.php');
+				
+				/********************* Publish link *****************/
+				if ($node_item->isPublished())
+				{
+						$url = new url();
+						$url->set('node_id', $node_item->getId());
+						$url->set('action', 'unpublish');
+						$node_info['publish_url'] = $url->render();
+						$node_info['publish_title'] = translate('unpublish');
+						
+				}
+				else
+				{
+						$url = new url();
+						$url->set('node_id', $node_item->getId());
+						$url->set('action', 'publish');
+						$node_info['publish_url'] = $url->render();
+						$node_info['publish_title'] = translate('publish');
+						
+				}
 				
 				
 				$out['nodes'][] = $node_info;

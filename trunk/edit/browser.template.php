@@ -126,6 +126,11 @@ $i++;
 <?php if (isset($out['mode']) && $out['mode'] == 'relation'): ?>
 <a class="action_button" href="javascript:to_opener('<?php echo $item['url'] ?>')"><?php echo translate('relate')?></a>
 <?php endif; ?>
+
+<?php if (isset($out['mode']) && $out['mode'] == 'field'): ?>
+<a class="action_button" href="javascript:to_opener_field('<?php echo $item['field'] ?>', '<?php echo $item['value'] ?>')"><?php echo translate('choose')?></a>
+<?php endif; ?>
+
 </td>
 
 

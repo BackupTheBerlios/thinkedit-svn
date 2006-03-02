@@ -90,7 +90,7 @@ if ($url->get('action')=='remove_filter')
 foreach($record->field as $field)
 {
 		
-		if ($field->useInView('list'))
+		if ($field->isUsedIn('list'))
 		{
 				$out['field'][$field->getName()]['title'] = $field->getTitle();;
 				$out['field'][$field->getName()]['help'] = $field->getHelp();
@@ -107,244 +107,18 @@ foreach($record->field as $field)
 				}
 		}
 		
-		// generating the filter dropdown menus
-		
-		if ($field->getType() == 'lookup')
-		{
-				//$out['filters'][$key][];
-				
-				
-				
-				/*
-				$query = "select * from " . $field['source']['table'] ;
-				
-				if (is_multilingual($field['source']['table']))
-				{
-						$filter_locale_field = get_table_locale_field($field['source']['table']);
-						$query .=" where $filter_locale_field='$main_locale' ";
-				}
-				
-				
-				$filter_title_row = $config['config']['table'][$field['source']['table']]['title_row'];
-				
-				$query .=" order by $filter_title_row";
-				
-				//$query = "select * from " . $field['source']['table'] . " order by title";
-				$items = $db->get_results($query);
-				if ($debug) $db->debug();
-				
-				//$db->debug();
-				
-				$out['filters'][$key]['filter_name'] = $field['title'][$interface_locale];
-				$i=0;
-				foreach ($items as $item)
-				{
-						$out['filters'][$key]['data'][$i]['value'] = $item->$field['source']['value_field'];
-						$out['filters'][$key]['data'][$i]['label'] = $item->$field['source']['label_field'];
-						
-						if (($item->$field['source']['value_field'] == $_SESSION['filters'][$table][$key]['value']) and (isset($_SESSION['filters'][$table][$key])))
-						{
-								$out['filters'][$key]['data'][$i]['selected'] = true;
-						}
-						
-						$i++;
-				}
-			*/	
-		}
 		
 }
 
 if (empty($out['field']))
 {
-		error('no title fields for this table');
+		trigger_error('list : no title fields for this table');
 }
 
 
-
-// -----------------------------
-// test if we need to filter content :
-// -----------------------------
-if (isset($_SESSION['filters'][$table]))
-{
-		$num_filters = count($_SESSION['filters'][$table]);
-		if ($num_filters > 0)
-		{
-				$i=0;
-				$where_clause .= ' where ';
-				foreach ($_SESSION['filters'][$table] as $the_field=>$filter)
-				{
-						$i++;
-						///$filter_field = $db->($the_field);
-						///$filter_value = $db->($filter['value']);
-						$where_clause .= " $filter_field=$filter_value ";
-						if ($i < $num_filters) $where_clause .= ' and ';
-						
-				}
-		}
-}
-
-
-
-
-
-// -----------------------------
-// handle alphabatch if needed :
-// -----------------------------
-if (isset($config['config']['table'][$table]['alphabatch']['enable']))
-{
-		
-		
-		$alpha_query = "select lower(left($title_row,1)) as alphabet from $table group by alphabet order by alphabet";
-		
-		$alpha = $db->get_results($alpha_query, ARRAY_A);
-		//$db->debug();
-		
-		if ($db->num_rows > 0)
-		{
-				$out['alpha']['enable'] = true;
-				foreach ($alpha as $letter)
-				{
-						$out['alpha']['data'][] = strtoupper($letter['alphabet']);
-				}
-				// print_a ($out['alpha']);
-		}
-		
-		if (isset ($_REQUEST['letter']))
-		{
-				$letter = $_REQUEST['letter'];
-				$_SESSION[$table]['alpha']['letter'] = $letter;
-		}
-		
-		elseif (isset($_SESSION[$table]['alpha']['letter']))
-		{
-				$letter = $_SESSION[$table]['alpha']['letter'];
-		}
-		
-		else
-		{
-				$letter = false;
-		}
-		
-		
-		
-		if ($letter)
-		{
-				$out['alpha']['letter'] = $letter;
-				if ($where_clause)
-				{
-						$where_clause .= " and $title_row LIKE \"$letter%\" ";
-				}
-				else
-				{
-						$where_clause .= " where $title_row LIKE \"$letter%\" ";
-				}
-		}
-		
-		//print_a ($out['alpha']);
-}
-
-
-
-
-// -----------------------------
-// handle paged result sets (batch) from the <batch> tag in config at the table level :
-// -----------------------------
-/*
-if (get_table_batch_size($table) > 0)
-{
-		if (isset ($_REQUEST['page']))
-		{
-				$page = $_REQUEST['page'];
-				$_SESSION[$table]['batch']['page'] = $page;
-		}
-		
-		elseif (isset($_SESSION[$table]['batch']['page']))
-		{
-				$page = $_SESSION[$table]['batch']['page'];
-		}
-		
-		else
-		{
-				$page = 0;
-		}
-		
-		//reset batch if we have a filter
-		
-		if ($_REQUEST['action'] == 'add_filter')
-		{
-				$page=0;
-		}
-		
-		if ($_REQUEST['letter'])
-		{
-				$page=0;
-		}
-		
-		//   update session machinery when final judgement on the good value for page has been made;
-		
-		$_SESSION[$table]['batch']['page'] = $page;
-		
-		//print_a($_REQUEST);
-		//print_a($_SESSION);
-		//echo $page;
-		$batch_size = get_table_batch_size ($table);
-		$start = $page * $batch_size;
-		
-		$limit_clause = " limit $start, $batch_size ";
-		
-		
-		// not needed as far as I can see, as we use a global where clause $where_clause
-		// attention please ! : if we are using alpha tabs (cfr <alphabatch> tag in config), we need to count only those present in the alphabatch
-		if ($out['alpha']['enable'])
-		//{
-		//}
-		//
-		
-		
-		
-		
-		// handle number of pages if batch mode :
-		$query = "select count(*) from ".	$config['config']['table'][$table]['table'] . $where_clause;
-		$num_rows = $db->get_var($query);
-		if ($debug) $db->debug();
-		//$db->debug();
-		
-		
-		$num_of_pages = ceil($num_rows / (float)$batch_size);
-		$out['batch']['num_of_pages'] = $num_of_pages;
-		
-		$out['batch']['current_page'] = $page;
-		
-		if  ($num_of_pages > 1)
-		{
-				$out['batch']['enable'] = true;
-		}
-		
-		
-		
-		
-}
-*/
 
 //print_a($out['batch']);
 
-
-// -----------------------------
-// Handle file manager case : we don't want to show empty folders (with empty file names)
-// -----------------------------
-/*
-if ($config['config']['table'][$table]['type'] == 'filemanager')
-{
-    if ($where_clause)
-    {
-				$where_clause .= " and filename <> '' ";
-    }
-    else
-    {
-				$where_clause .= " where filename <> '' ";
-    }
-}
-*/
 
 // -----------------------------
 // query items to show content on the table page
@@ -352,7 +126,6 @@ if ($config['config']['table'][$table]['type'] == 'filemanager')
 
 
 // sorting
-
 
 if (isset($sort_field))
 {
@@ -364,7 +137,27 @@ else
 		$sort_query = false;
 }
 
-$records = $record->find(false, $sort_query); 
+// limit
+$record_count = $record->count();
+if ($record_count > 25)
+{
+		if ($url->get('page'))
+		{
+				$limit['start'] = $url->get('page') * 25;
+				$limit['stop'] = ($url->get('page') * 25) + 25;
+		}
+		else
+		{
+				$limit['start'] = 0;
+				$limit['stop'] = 25;
+		}
+}
+else
+{
+		$limit = false;
+}
+
+$records = $record->find(false, $sort_query, $limit); 
 
 
 
@@ -400,10 +193,39 @@ if ($records)
 
 
 
+// -----------------------------
+//handle pagination
+// -----------------------------
 
-// -----------------------------
-//handle poweredit mode
-// -----------------------------
+if ($record_count > 25)
+{
+		// find number of pages
+		$number_of_pages = intval($record_count / 25) + 1;
+		
+		for ($i=0; $i<$number_of_pages; $i++)
+		{
+				$out['pagination'][$i]['title'] = $i + 1;
+				$url = new url();
+				$url->keep('class');
+				$url->keep('type');
+				$url->keep('sort');
+				$url->set('page', $i);
+				$out['pagination'][$i]['url'] = $url->render();
+				
+				$url = new url();
+				if ($url->get('page') == $i)
+				{
+						$out['pagination'][$i]['current'] = true;
+				}
+		}
+		//echo $number_of_pages;
+		// create pages array
+}
+
+/*
+echo '<pre>';
+print_r($out['pagination']);
+*/
 
 
 

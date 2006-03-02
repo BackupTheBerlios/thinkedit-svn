@@ -197,6 +197,11 @@ class record
 								$sql .= implode($order_by_clause, ' , ');
 						}
 						
+						if (is_array($limit))
+						{
+								$sql .= " limit  " . $limit['start'] . ',' . $limit['stop'];
+						}
+						
 						
 						debug($sql, 'record:find() sql');
 						
@@ -225,6 +230,20 @@ class record
 						{
 								return false;
 						}
+				}
+				else
+				{
+						return false;
+				}
+		}
+		
+		function count($where = false, $order = false, $limit = false)
+		{
+				// todo use mysql count instead
+				$results = $this->find($where, $order, $limit);
+				if (is_array($results))
+				{
+						return count($results);
 				}
 				else
 				{
@@ -388,7 +407,7 @@ class record
 								
 								$sql .= implode($where, ' and ');
 								
-								
+								$sql .= ' limit 1 ';
 								
 								$results = $this->db->query($sql);
 								

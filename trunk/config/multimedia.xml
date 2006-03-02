@@ -8,13 +8,13 @@
 
 <title><fr>Elément multimédia</fr></title>
 <help><fr>Un élément multimédia peut être un film, un son, une musique, etc... Attachez un fichier à cet élément pour qu'il soit disponible en téléchargement</fr></help>
+<icon>video-x-generic.png</icon>
 
 <title_field>title</title_field>
 
 <field id="id">
 <type>id</type>
 </field>
-
 
 <field id="title">
 <title><fr>Titre</fr></title>
@@ -23,15 +23,11 @@
 <is_title>true</is_title>
 </field>
 
-
-
-
 <field id="intro">
 <title><fr>Introduction</fr></title>
 <help><fr>Introduction courte</fr></help>
 <type>text</type>
 </field>
-
 
 <field id="body">
 <title><fr>Corps du texte</fr></title>

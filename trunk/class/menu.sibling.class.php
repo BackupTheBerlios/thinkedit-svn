@@ -23,7 +23,7 @@ class menu_sibling extends menu_base
 		function render()
 		{
 				$out = '';
-				if ($siblings = $this->node->getSibling())
+				if ($siblings = $this->node->getSibling(true))
 				{
 						foreach ($siblings as $child)
 						{
@@ -44,7 +44,7 @@ class menu_sibling extends menu_base
 		
 		function getArray()
 		{
-				if ($siblings = $this->node->getSiblings())
+				if ($siblings = $this->node->getSiblings(true))
 				{
 						foreach ($siblings as $entry)
 						{

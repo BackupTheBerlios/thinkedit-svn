@@ -66,6 +66,8 @@ class node
 		}
 		
 		
+		
+		
 		function hasParent()
 		{
 				if ($this->getParent())
@@ -221,9 +223,9 @@ class node
 		*
 		*
 		**/
-		function hasChildren()
+		function hasChildren($only_published = false)
 		{
-				if ($this->getChildren() )
+				if ($this->getChildren($only_published) )
 				{
 						return true;
 				}
@@ -238,12 +240,18 @@ class node
 		*
 		*
 		**/
-		function getChildren()
+		function getChildren($only_published = false)
 		{
 				//echo  'called get children<br>';
 				$this->load();
 				// todo : returns a node and not a record
-				$children =  $this->record->find(array('parent_id'=>$this->get('id')), array('sort_order' => 'asc') );
+				$where['parent_id'] = $this->get('id');
+				if ($only_published)
+				{
+						$where['publish'] = 1;
+				}
+				
+				$children =  $this->record->find($where, array('sort_order' => 'asc') );
 				
 				if ($children)
 				{
@@ -261,13 +269,18 @@ class node
 		}
 		
 		
-		function getSiblings()
+		function getSiblings($only_published = false)
 		{
 				$this->load();
 				debug($this->get('parent_id'), 'Sibligns current parent ID');
-				 
 				
-				$siblings =  $this->record->find(array('parent_id'=>$this->get('parent_id')), array('sort_order' => 'asc') );
+				$where['parent_id'] = $this->get('parent_id');
+				if ($only_published)
+				{
+						$where['publish'] = 1;
+				}
+				
+				$siblings =  $this->record->find($where, array('sort_order' => 'asc') );
 				
 				if ($siblings)
 				{
@@ -295,7 +308,9 @@ class node
 						$node->set('object_type', $uid['type']);
 						$node->set('object_id', $uid['id']);
 						$node->set('parent_id', $this->getId());
-						return $node->save();
+						$results = $node->save();
+						$node->moveBottom();
+						return $results;
 				}
 				else
 				{
@@ -779,6 +794,34 @@ class node
 				}
 		}
 		
+		
+		
+		function publish()
+		{
+				$this->record->set('publish', 1);
+				return $this->record->save();
+		}
+		
+		function unPublish()
+		{
+				$this->record->set('publish', 0);
+				return $this->record->save();
+		}
+		
+		function isPublished()
+		{
+				if ($publish = $this->record->get('publish'))
+				{
+						if ($publish == 1)
+						{
+								return true;
+						}
+						else
+						{
+								return false;
+						}
+				}
+		}
 		
 }
 

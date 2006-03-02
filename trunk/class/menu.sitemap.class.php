@@ -19,11 +19,11 @@ class menu_sitemap extends menu_base
 				if ($node->hasChildren())
 				{
 						$out .= '<ul>'; 
-						$children = $node->getChildren();
+						$children = $node->getChildren(true);
 						// display each child
 						foreach  ($children as $child)
 						{
-								$content = $child->getContent();
+								$content = $child->getContent(true);
 								$content->load();
 								// indent and display the title of this child
 								//$out .= str_repeat('  ',$level) . '(' . $child->getId(). ')' . $content->getTitle() ."\n";

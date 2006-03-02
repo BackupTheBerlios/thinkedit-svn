@@ -370,11 +370,15 @@ class filesystem
 		/*
 		returns a full path to an icon representing this object
 		*/
-		function getIcon()
+		function getIcon($size = false)
 		{
 				if ($this->isImage())
 				{
-						return ROOT_URL . '/lib/phpthumb/phpThumb.php?src=' . $this->getRealPath() . '&w=22&h=22'; // todo custom thumbnail width / height
+						if (!$size)
+						{
+								$size = 22;
+						}
+						return ROOT_URL . '/lib/phpthumb/phpThumb.php?src=' . $this->getRealPath() . '&w=' . $size . '&h=' . $size; // todo custom thumbnail width / height
 				}
 				else
 				{

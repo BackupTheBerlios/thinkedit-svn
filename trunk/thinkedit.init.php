@@ -14,7 +14,8 @@ you have everything you need.
 Thinkedit, Web based Content and Data Management System
 Copyright (C) 2000-2006  Philippe Jadin 
 philippe@123piano.com (preferred)
-philippe@thinkedit.com
+philippe.jadin@gmail.com
+philippe@thinkedit.org
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

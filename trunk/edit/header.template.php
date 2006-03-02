@@ -113,7 +113,9 @@
 					</td>
 					<td valign="middle"><img class="banner_image" src="<?php echo $out['banner']['image'] ?>" alt="" border="0"></td>
 				
-<?php include ('banner.template.php') ?>
+<?php
+// include ('banner.template.php');
+?>
 
 					<td width="100%" height="96"></td>
 					

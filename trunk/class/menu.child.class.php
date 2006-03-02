@@ -23,9 +23,9 @@ class menu_child extends menu_base
 		function render()
 		{
 				$out = '';
-				if ($this->node->getChildren())
+				if ($this->node->getChildren(true))
 				{
-						foreach ($this->node->getChildren() as $child)
+						foreach ($this->node->getChildren(true) as $child)
 						{
 								$content = $child->getContent();
 								$content->load();
@@ -46,10 +46,10 @@ class menu_child extends menu_base
 		function getArray()
 		{
 				$out = '';
-				if ($this->node->getChildren())
+				if ($this->node->getChildren(true))
 				{
 						require_once 'menuitem.class.php';
-						foreach ($this->node->getChildren() as $child)
+						foreach ($this->node->getChildren(true) as $child)
 						{
 								$menuitem = new menuitem($child);
 								$result[] = $menuitem;

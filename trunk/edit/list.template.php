@@ -1,195 +1,37 @@
-<?php /****************** alpha batch ***************/ ?>
-<?php if (isset($out['alpha']['enable'])): ?>
-<div class="content_alpha">
-<?php else: ?>
-<div class="content">
-<?php endif; ?>
-<table cellpadding="0px" cellspacing="15px" border="0px">
-<tr>
-
-
-<?php /****************** Filters ***************/ ?>
-<?php if (isset($out['filters'])): ?>
-<td valign="middle">
-<form name="filters">
-<?php foreach ($out['filters'] as $key=>$filter) : ?>
-<select name="<?php echo $key ?>" OnChange="document.location.href=document.filters.<?php echo $key ?>.options[selectedIndex].value">
-<option value="">
-<?php echo translate('filter_intro') ?>
-<?php echo $filter['filter_name'] ?></option>
-<option value="<?php echo $_SERVER['PHP_SELF'] ?>?table=<?php echo $table ?>&sort=<?php echo $sort_row ?>&action=remove_filter&filter=<?php echo $key ?>">
-<?php echo translate('filter_show_all') ?></option>
-<?php foreach ($filter['data'] as $data) : ?>
-<option value="<?php echo $_SERVER['PHP_SELF'] ?>?table=<?php echo $table ?>&sort=<?php echo $sort_row ?>&filter=<?php echo $key ?>&action=add_filter&filter_value=<?php echo $data['value'] ?>"
-<?php if ($data['selected']) echo "selected";?>">
-<?php echo $data['label'] ?></option>
-<?php endforeach; ?>
-</select>
-</td>
-<td valign="middle">
-<?php endforeach; ?></form>
-</td>
-<?php endif; ?>
-
-
-
-<?php /****************** Power edit ***************/ ?>
-<!--
-<?php if (!isset($enable_power_edit)): ?>
-<td valign="middle">
-<table border="0" cellspacing="0" cellpadding="0" class="power_list_tools_table">
-<th class="table_list_tools_header">
-<a class="white_link" href="list.php?table=<?php echo $table ?>&enable_power_edit=yes"><?php echo translate('power_edit_enable')?></a>
-</th>
-</table>
-</td>
-<?php else: ?>
-<td valign="middle">
-<table border="0" cellspacing="0" cellpadding="0" class="power_list_tools_table">
-<th class="table_list_tools_header_on">
-<a class="white_link" href="list.php?table=<?php echo $table ?>&enable_power_edit=no"><?php echo translate('power_edit_enable')?></a>
-</th>
-</table>
-</td>
-<?php endif; ?>
-
--->
-</tr>
-</table>
-
-<!--
-current letter : <?php echo $_SESSION[$table]['alpha']['letter'] = $letter ?>
-
-Current page : <?php echo $_SESSION[$table]['batch']['page'] ?>
--->
-
-
-<?php /****************** Alpha batch ***************/ ?>
-<?php if (isset($out['alpha']['enable'])): ?>
-
-<!--
-<div class="alpha">
-Lettres :
-<?php foreach ($out['alpha']['data'] as $letter) : ?>
-<?php if ($out['alpha']['letter'] == $letter): ?>
-
-<b><?php echo $letter ?></b> |
-
-<?php else: ?>
-
-<a href="list.php?table=<?php echo $table ?>&letter=<?php echo $letter ?>"><?php echo $letter ?></a> |
-
-<?php endif; ?>  
-<?php endforeach; ?>
-
-</div>
--->
-
-
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td>
-<img src="icons/batch_bkg.gif" alt="" width="15px" height="19" border="0"></td>
-<?php $i=0 ?>
-<?php foreach ($out['alpha']['data'] as $letter) : ?>
-<?php if ($letter == '') $letter = "..." ?>
-<?php if ($out['alpha']['letter'] == $letter): ?>
-
-<?php if ($i == 0): ?>
-<td>
-<img src="icons/batch_1.gif" alt="" width="2" height="19" border="0"></td>
-<?php else: ?>
-<td>
-<img src="icons/batch_2.gif" alt="" width="3" height="19" border="0"></td>
-<?php endif; ?>
-<td align="center" valign="middle" width="17" background="icons/batch_on.gif">
-<div class="alpha_letters">
-
-
-<?php echo $letter ?>
-</div>
-</td>
-
-<?php else: ?>
-
-<?php if ($i == 0): ?>
-<td>
-<img src="icons/batch_1.gif" alt="" width="2" height="19" border="0"></td>
-<?php else: ?>
-<td>
-<img src="icons/batch_3.gif" alt="" width="3" height="19" border="0"></td>
-<?php endif; ?>
-
-<td align="center" valign="middle" width="17" background="icons/batch_off.gif">
-<div class="alpha_letters">
-
-<a href="list.php?table=<?php echo $table ?>&letter=<?php echo $letter ?>">
-<?php echo $letter ?></a>
-
-</div>
-</td>
-
-<?php endif; ?>
-
-<?php $i++ ?>
-
-<?php endforeach; ?>
-<td align="center" valign="middle">
-<img src="icons/batch_4.gif" alt="" width="3" height="19" border="0"></td>
-<td width="100%" background="icons/batch_bkg.gif" width="100%">
-<img src="icons/batch_bkg.gif" alt="" width="100%" height="19" border="0"></td>
-</tr>
-</table>
-
-
-<?php endif; ?>
-
-
-<?php if (isset($out['alpha']['enable'])): ?>
-</div>
-<div class="content_tab">
-<?php else: ?>
-<?php endif; ?>
+<?php /****************** Pagination ***************/ ?>
 
 <div class="power_margin">
 
-<?php if (isset($out['batch']['enable'])): ?>
+<?php if (isset($out['pagination'])): ?>
 <!--
-Num of pages : <?php echo $out['batch']['num_of_pages'] ?>
+Num of pages : <?php echo $out['pagination']['num_of_pages'] ?>
 / 
-Current page : <?php echo $out['batch']['current_page'] ?>
+Current page : <?php echo $out['pagination']['current_page'] ?>
 -->
 
 <table cellpadding="0" cellspacing="0" border="0" class="power_numbers_table">
 <tr>
-<?php for ($i=0; $i < $out['batch']['num_of_pages']; $i++) : ?>
-<?php if ($out['batch']['current_page'] == $i): ?>
+<?php foreach ($out['pagination'] as $pagination) : ?>
+<?php if (isset($pagination['current'])): ?>
 
 <th class="table_numbers_header_on">
 <b>
-<?php echo $i+1 ?></b>
+<?php echo $pagination['title'] ?></b>
 </th>
 
 <?php else: ?>
 
 <th class="table_numbers_header">
-<a class="number" href="list.php?table=<?php echo $table ?>&page=<?php echo $i ?>">
-<?php echo $i+1 ?></a>
+<a class="number" href="<?php echo $pagination['url'] ?>">
+<?php echo $pagination['title'] ?>
+</a>
 </th>
 
 <?php endif; ?>
-<?php endfor; ?>
+<?php endforeach; ?>
 </tr>
 </table>
 <?php endif; ?>
-
-<!--
-<?php if (!$enable_power_edit): ?>	
-<a class="power_button" href="list.php?table=<?php echo $table ?>&enable_power_edit=yes"><?php echo translate('power_edit_enable')?></a>
-<?php else: ?>
-<a class="power_button" href="list.php?table=<?php echo $table ?>&enable_power_edit=no"><?php echo translate('power_edit_disable')?></a>
-<?php endif; ?>
--->
 
 
 <table class="power_table" border="0" cellspacing="0" cellpadding="0">

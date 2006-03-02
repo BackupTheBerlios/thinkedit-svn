@@ -110,6 +110,15 @@ $i++;
 <img src="ressource/image/icon/small/edit-delete.png" border="0" alt="<?php echo translate('node_delete'); ?>">
 </a>
 
+<?php if (isset($node['publish_url'])): ?>
+<a class="action_button" href="<?php echo $node['publish_url']?>">
+<?php echo  $node['publish_title'];?>
+</a>
+<?php endif; ?>
+
+
+
+
 </td>
 
 </tr>

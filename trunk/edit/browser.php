@@ -10,7 +10,7 @@ With it you can easily select something and append it to a parent window
 It will be used for 
 - relations
 - image fields
-- add existing node
+- add existing content to node
 
 
 input : 
@@ -50,11 +50,12 @@ check_user();
 //$class = $url->get('class') or $session->get('class');
 $class = $url->get('class');
 
-if ($url->get('mode') == 'edit')
+if ($url->get('mode') == 'field')
 {
-		$mode = 'edit';
+		$mode = 'field';
 		$url->keep('mode');
-		$out['mode'] = 'edit';
+		$url->keep('field');
+		$out['mode'] = 'field';
 }
 
 
@@ -165,7 +166,11 @@ if ($class=='file' && $url->get('path'))
 								$url->set('action', 'relate');
 								$item['url'] = $url->render('relation.php');
 						}
-						
+						if ($mode == 'field')
+						{
+								$item['field'] = $url->get('field');
+								$item['value'] = $child->getPath();
+						}
 						$out['items'][] = $item;
 				}
 		}

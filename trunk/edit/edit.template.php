@@ -56,7 +56,7 @@
 
 
 
-<iframe src="<?php echo $out['relation']['url']?>" name="relation" id="relation" width="600" height="200" frameborder="0"></iframe>
+<iframe src="<?php echo $out['relation']['url']?>" name="relation" id="relation" width="600" height="40" frameborder="0"></iframe>
 
 </fieldset>
 <?php endif; ?>

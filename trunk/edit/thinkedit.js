@@ -33,6 +33,13 @@ function to_opener(url)
 }
 
 
+function to_opener_field(field, value)
+{
+	window.opener.document.edit_form[field].value = value;
+}
+
+
+
 function confirm_link(message, url)
 {
 		input_box=confirm(message);

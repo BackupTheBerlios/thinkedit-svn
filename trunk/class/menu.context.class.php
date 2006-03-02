@@ -79,23 +79,23 @@ class menu_context extends menu_base
 				// if level = 1, returns childs
 				if ($level == 1)
 				{
-						$node_list = $this->node->getChildren();
+						$node_list = $this->node->getChildren(true);
 				}
 				
 				
 				// if level = 2, returns siblings
 				if ($level == 2)
 				{
-						$siblings = $this->node->getSiblings();
+						$siblings = $this->node->getSiblings(true);
 						foreach ($siblings as $sibling)
 						{
 								// if current, we append the childrens as well
 								if ($sibling->getId() == $this->node->getId())
 								{
 										$node_list[] = $sibling;
-										if ($sibling->hasChildren())
+										if ($sibling->hasChildren(true))
 										{
-												$children = $sibling->getChildren();
+												$children = $sibling->getChildren(true);
 												foreach ($children as $child)
 												{
 														$node_list[] = $child;
@@ -114,7 +114,7 @@ class menu_context extends menu_base
 				if ($level == 3)
 				{
 						$parent = $this->node->getParent();
-						$siblings = $parent->getSiblings();
+						$siblings = $parent->getSiblings(true);
 						
 						foreach ($siblings as $sibling)
 						{
@@ -122,9 +122,9 @@ class menu_context extends menu_base
 								if ($sibling->getId() == $parent->getId())
 								{
 										$node_list[] = $sibling;
-										if ($sibling->hasChildren())
+										if ($sibling->hasChildren(true))
 										{
-												$children = $sibling->getChildren();
+												$children = $sibling->getChildren(true);
 												foreach ($children as $child)
 												{
 														$node_list[] = $child;
@@ -144,7 +144,7 @@ class menu_context extends menu_base
 				{
 						$parent1 = $this->node->getParent();
 						$parent = $parent1->getParent();
-						$siblings = $parent->getSiblings();
+						$siblings = $parent->getSiblings(true);
 						
 						foreach ($siblings as $sibling)
 						{
@@ -152,9 +152,9 @@ class menu_context extends menu_base
 								if ($sibling->getId() == $parent->getId())
 								{
 										$node_list[] = $sibling;
-										if ($sibling->hasChildren())
+										if ($sibling->hasChildren(true))
 										{
-												$children = $sibling->getChildren();
+												$children = $sibling->getChildren(true);
 												foreach ($children as $child)
 												{
 														$node_list[] = $child;
