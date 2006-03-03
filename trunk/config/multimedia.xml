@@ -36,9 +36,9 @@
 </field>
 
 <field id="cover">
-<title><fr>Image de couverture</fr></title>
+<title><fr>Vignette</fr></title>
 <help><fr></fr></help>
-<type>image</type>
+<type>file</type>
 </field>
 
 </table>

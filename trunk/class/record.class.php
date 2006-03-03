@@ -88,7 +88,8 @@ class record
 		function load()
 		{
 				global $thinkedit;
-				if ($thinkedit->user->hasPermission('view', $this))
+			  $user = $thinkedit->getUser();
+				if ($user->hasPermission('view', $this))
 				{
 						if (isset($this->is_loaded) && $this->is_loaded)
 						{
@@ -169,7 +170,8 @@ class record
 				*/
 				
 				global $thinkedit;
-				if ($thinkedit->user->hasPermission('view', $this))
+				$user = $thinkedit->getUser();
+				if ($user->hasPermission('view', $this))
 				{
 						$sql = "select * from " . $this->getTableName();
 						
@@ -304,7 +306,8 @@ class record
 		function update()
 		{
 				global $thinkedit;
-				if ($thinkedit->user->hasPermission('insert', $this))
+				$user = $thinkedit->getUser();
+				if ($user->hasPermission('insert', $this))
 				{
 						global $thinkedit;
 						
@@ -390,7 +393,8 @@ class record
 		{
 				$this->is_loaded = false;
 				global $thinkedit;
-				if ($thinkedit->user->hasPermission('delete', $this))
+				$user = $thinkedit->getUser();
+				if ($user->hasPermission('delete', $this))
 				{
 						if ($this->checkPrimaryKey())
 						{

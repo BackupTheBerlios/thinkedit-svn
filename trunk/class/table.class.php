@@ -35,9 +35,10 @@ class table
 		function getTitle()
 		{
 				global $thinkedit;
-				if (isset($this->config['title'][$thinkedit->user->getLocale()]))
+				$user = $thinkedit->getUser();
+				if (isset($this->config['title'][$user->getLocale()]))
 				{
-						return $this->config['title'][$thinkedit->user->getLocale()];
+						return $this->config['title'][$user->getLocale()];
 				}
 				else
 				{
@@ -48,9 +49,10 @@ class table
 		function getHelp()
 		{
 				global $thinkedit;
-				if (isset($this->config['help'][$thinkedit->user->getLocale()]))
+				$user = $thinkedit->getUser();
+				if (isset($this->config['help'][$user->getLocale()]))
 				{
-						return $this->config['help'][$thinkedit->user->getLocale()];
+						return $this->config['help'][$user->getLocale()];
 				}
 				else
 				{

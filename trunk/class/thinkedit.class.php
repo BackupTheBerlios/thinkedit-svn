@@ -16,7 +16,8 @@ require_once('db.class.php');
 class thinkedit
 {
 		
-		var $module; // object containing an instance of each module, ready to use
+		var $timer;
+		var $db;
 		
 		
 		/**
@@ -60,8 +61,11 @@ class thinkedit
 		}
 		
 		
+		/************************* Factory methods for single instance objects **************************/
+		
+		
 		/**
-		* Returns a db instance ot be used anywhere. Usually, the main db is used, but multi db can be configure din config file
+		* Returns a db instance ot be used anywhere. Usually, the main db is used, but multi db can be configured in config file
 		*
 		*
 		**/
@@ -86,8 +90,75 @@ class thinkedit
 		}
 		
 		
+		function getContext()
+		{
+				require_once ROOT . '/class/context.class.php';
+				return new context();
+		}
 		
 		
+		function getUser()
+		{
+				require_once ROOT . '/class/user.class.php';
+				return new user();
+		}
+		
+		function getOutputCache()
+		{
+				// I hate pear global include system, so I have this "solution" :-/
+				require_once ROOT . '/lib/pear/cache/Lite/Output.php';
+				$options = array(
+				'cacheDir' => TMP_PATH,
+				'lifeTime' => 7200,
+				'pearErrorMode' => CACHE_LITE_ERROR_DIE
+				);
+				return new Cache_Lite_Output($options);
+		}
+		
+		
+		function getFunctionCache()
+		{
+				// I hate pear global include system, so I have this "solution" :-/
+				require_once ROOT . '/lib/pear/cache/Lite/Function.php';
+				$options = array(
+				'cacheDir' => TMP_PATH,
+				'lifeTime' => 7200,
+				'pearErrorMode' => CACHE_LITE_ERROR_DIE
+				);
+				return new Cache_Lite_Function($options);
+		}
+		
+		function getCache()
+		{
+				// I hate pear global include system, so I have this "solution" :-/
+				require_once ROOT . '/lib/pear/cache/Lite.php';
+				$options = array(
+				'cacheDir' => TMP_PATH,
+				'lifeTime' => 7200,
+				'pearErrorMode' => CACHE_LITE_ERROR_DIE,
+				'automaticSerialization' => true
+				);
+				return new Cache_Lite($options);
+		}
+		
+		function getTimer()
+		{
+				if (isset($this->timer))
+				{
+						return $this->timer;
+				}
+				else
+				{
+						$this->timer = new timer();
+						//$this->timer->start();
+						return $this->timer;
+				}
+		}
+		
+		
+		function getConfig()
+		{
+		}
 		
 		/************************* Factory methods **************************/
 		
@@ -303,7 +374,7 @@ class thinkedit
 		**/
 		function getInterfaceLocale()
 		{
-				//die ('deprecated');
+				//trigger_error('deprecated');
 				return 'fr';
 		}
 		

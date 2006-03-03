@@ -12,6 +12,7 @@ require_once ROOT . '/class/url.class.php';
 $url = new url();
 
 
+
 $cache_id = 'node_' . $url->get('node_id');
 
 $cache_enabled = true;
@@ -155,11 +156,11 @@ echo 'Total Queries : ' . $thinkedit->db->getTotalQueries();
 echo '<br/>';
 echo 'Total time : ' . $thinkedit->timer->render();
 
-/*
+
 if (function_exists('xdebug_dump_function_profile') && !$thinkedit->isInProduction())
 {
 		xdebug_dump_function_profile(4);
 }
-*/
+
 
 ?>

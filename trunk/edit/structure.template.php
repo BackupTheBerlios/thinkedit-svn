@@ -58,16 +58,14 @@ else
 $class = "tr_on";
 }
 $i++;
-
 ?>
 
 <tr class="<?php echo $class?>">
 
 <td class="power_cell power_cell_border">
-<img class="preview" src="<?php echo $node['icon']; ?>">
-</td>
+<div style="float: left; width: <?php echo ($node['level'] * 15)?>px; border: 0px solid black">&nbsp;</div>
 
-<td class="power_cell power_cell_border">
+<img src="<?php echo $node['icon']; ?>">
 <a href="<?php echo $node['url']?>">
 <?php echo  $node['title'] ?>
 </a>

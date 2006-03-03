@@ -2,7 +2,7 @@
 require_once 'field.base.class.php'; 
 
 
-class field_image extends field
+class field_file extends field
 {
 		
 		function renderUI($prefix = false)
@@ -19,12 +19,9 @@ class field_image extends field
 				$out .= ' <a class="action_button" href="' . $url->render('browser.php') .'" target="_blank" onClick="popup(\'' . $url->render('browser.php') .'\');return false">' . translate('browse_button') . '</a>';
 				
 				
-				if ($this->getRaw() <>'')
+				if ($filesystem = $this->getFilesystem())
 				{
 						$out .= '<div>';
-						global $thinkedit;
-						$filesystem = $thinkedit->newFilesystem();
-						$filesystem->setPath($this->getRaw());
 						$out .= '<img src="' . $filesystem->getIcon(50) . '"/> ';
 						$out .= '</div>';
 				}
@@ -33,6 +30,21 @@ class field_image extends field
 				
 		}
 		
+		
+		/*
+		Returns correspoding filesystem object if available
+		*/
+		function getFilesystem()
+		{
+				if ($this->getRaw() <>'')
+				{
+						global $thinkedit;
+						$filesystem = $thinkedit->newFilesystem();
+						$filesystem->setPath($this->getRaw());
+						return $filesystem;
+				}
+				return false;
+		}
 		
 }
 ?>

@@ -79,8 +79,10 @@ else
 require_once dirname(__FILE__) . '/lib/thinkedit/tools.inc.php';
 
 /*********************** Timer ******************/
-$thinkedit->timer = new timer();
+
+$thinkedit->timer = $thinkedit->getTimer();
 $thinkedit->timer->marker('start init');
+
 
 // no more global $thinkedit->config
 // $thinkedit->config = $thinkedit->newConfig();
@@ -88,59 +90,24 @@ $thinkedit->timer->marker('start init');
 $thinkedit->configuration = $thinkedit->newConfig();
 
 
-
-
 /*********************** ROOT, PATH, URL constants ******************/
 define ('ROOT', $thinkedit->configuration->getRootPath(dirname(__FILE__)));
-define ('ROOT_PATH', $thinkedit->configuration->getRootPath(dirname(__FILE__)));
 define ('ROOT_URL', $thinkedit->configuration->getRootUrl());
 define ('TMP_PATH', $thinkedit->configuration->getTmpPath());
 
 
 /*********************** Thinkedit USER ******************/
-$thinkedit->user = new user();
+$thinkedit->user = $thinkedit->getUser();
 
 
 /*********************** Thinkedit DB ******************/
 $thinkedit->db = $thinkedit->getDb();
 
 
-/*********************** Output Cache ******************/
-
-// I hate pear global include system, so I have this "solution" :-/
-require_once ROOT . '/lib/pear/cache/Lite/Output.php';
-$options = array(
-'cacheDir' => TMP_PATH,
-'lifeTime' => 7200,
-'pearErrorMode' => CACHE_LITE_ERROR_DIE
-);
-$thinkedit->outputcache = new Cache_Lite_Output($options);
-
-
-/*********************** Function Cache ******************/
-
-// I hate pear global include system, so I have this "solution" :-/
-require_once ROOT . '/lib/pear/cache/Lite/Function.php';
-$options = array(
-'cacheDir' => TMP_PATH,
-'lifeTime' => 7200,
-'pearErrorMode' => CACHE_LITE_ERROR_DIE
-);
-$thinkedit->functioncache = new Cache_Lite_Function($options);
-
-
-/*********************** Cache ******************/
-// I hate pear global include system, so I have this "solution" :-/
-require_once ROOT . '/lib/pear/cache/Lite.php';
-$options = array(
-'cacheDir' => TMP_PATH,
-'lifeTime' => 7200,
-'pearErrorMode' => CACHE_LITE_ERROR_DIE,
-'automaticSerialization' => true
-);
-$thinkedit->cache = new Cache_Lite($options);
-
-
+/*********************** Cache *************************/
+$thinkedit->outputcache = $thinkedit->getOutputCache();
+$thinkedit->cache = $thinkedit->getCache();
+$thinkedit->functioncache = $thinkedit->getFunctionCache();
 
 /*********************** Error Reporting ******************/
 // turn on error reporting

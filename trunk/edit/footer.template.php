@@ -1,7 +1,16 @@
       <div class="footer">
         &reg; <a href="http://www.thinkedit.com" class="adress_link">THINKEDIT.COM open source CMS</a>
-				| <?php echo $thinkedit->db->getTotalQueries() ;?> queries.
-				| <?php echo $thinkedit->timer->render(); ?> elapsed time
+				| 
+				<?php 
+				$db = $thinkedit->getDb();
+				echo $db->getTotalQueries() ;
+				?> queries.
+				| 
+				<?php
+				$timer = $thinkedit->getTimer();
+				echo $timer->render(); 
+				?>
+				elapsed time
 				
     </div>
 		</td>

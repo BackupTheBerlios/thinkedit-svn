@@ -263,22 +263,43 @@ $url->set('node_id', $node_object->getId());
 
 /********************** LIST *********************/
 
+// append the parents to the list :
+if ($current_node->hasParent())
+{
+		$parents = $current_node->getParentUntilRoot();
+		$parents = array_reverse($parents);
+		
+		foreach ($parents as $parent)
+		{
+				$nodes[] = $parent;
+		}
+		
+}
+
 // build a list of nodes within the current node :
 
 // if we are in root
-debug($current_node, 'Current node before list');
-if ($we_are_root)
-{
+//debug($current_node, 'Current node before list');
+//if ($we_are_root)
+//{
+		
+		// root is now allways shown
 		$nodes[] = $current_node;
-}
+//}
+
 //else we are not in root, show childrens 
-else
-{
+//else
+//{
 		if ($current_node->hasChildren())
 		{
-				$nodes = $current_node->getChildren();
+				$children = $current_node->getChildren();
+				foreach ($children as $child)
+				{
+						$nodes[] = $child;
+				}
+				//$nodes[] = $current_node->getChildren();
 		}
-}
+//}
 
 if (isset($nodes) && is_array($nodes))
 {
@@ -295,6 +316,7 @@ if (isset($nodes) && is_array($nodes))
 				$node_info['title'] = $content->getTitle(); // . ' (' . $node_item->getOrder() . ')';
 				$node_info['icon'] = $content->getIcon();
 				$node_info['url'] = $url->render();
+				$node_info['level'] = $node_item->getLevel();
 				
 				/********************* Delete link *****************/
 				$url->set('action', 'delete');

@@ -385,8 +385,31 @@ class url
 		
 		function redirect($filename = false)
 		{
-				//header('location: http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/'. $this->render($filename));
-				header('location: '. $this->render($filename));
+				// what we do : use javascript redirect with IIS (IIS real php redirect seems flacky)
+				// else use real headers
+				// some docs here : http://www.agora-project.net/forumphpbb/viewtopic.php?p=300&
+				// and maybe here : http://bugs.php.net/bug.php?id=9852
+				
+				global $thinkedit;
+				$context = $thinkedit->getContext();
+				if (headers_sent())
+				{
+						echo("<script>location.href='". $this->render($filename). "'</script>");
+				}
+				
+				if ($context->getServerType() == 'apache')
+				{
+						$header = 'Location: '. $this->render($filename);
+						header($header);
+				}
+				else
+				{
+						echo("<script>location.href='". $this->render($filename). "'</script>");
+				}
+				die();
+				//$header = 'location: http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). $this->render($filename);
+				
+				
 		}
 		
 		

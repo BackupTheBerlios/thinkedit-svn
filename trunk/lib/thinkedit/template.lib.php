@@ -22,7 +22,8 @@ function te_title()
 function te_design()
 {
 		global $thinkedit;
-		$design = $thinkedit->configuration->getDesign();
+		$configuration = $thinkedit->newConfig();
+		$design = $configuration->getDesign();
 		return ROOT_URL . '/design/' . $design;
 		
 		
