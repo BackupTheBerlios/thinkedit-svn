@@ -46,6 +46,7 @@ if ($url->get('node_id'))
 }
 else // we are in root
 {
+		$parent_node = false;
 		$current_node->loadRootNode();
 		$we_are_root = true;
 }
@@ -59,7 +60,7 @@ debug($current_node, 'Current node init');
 // handle editing node thus we need to go to the parent
 if ($url->get('mode') == 'edit_node')
 {
-		if (isset($parent_node))
+		if ($parent_node)
 		{
 				$current_node = $parent_node;
 		}
@@ -200,7 +201,7 @@ if ($url->get('action') == 'movedown')
 		}
 		
 		// use parent node as current node, so we'll still show the right node bellow
-		if (isset($parent_node))
+		if ($parent_node)
 		{
 				$current_node = $parent_node;
 		}
@@ -225,7 +226,7 @@ if ($url->get('action') == 'movetop')
 		}
 		
 		// use parent node as current node, so we'll still show the right node bellow
-		if (isset($parent_node))
+		if ($parent_node)
 		{
 				$current_node = $parent_node;
 		}
@@ -249,7 +250,7 @@ if ($url->get('action') == 'movebottom')
 		}
 		
 		// use parent node as current node, so we'll still shwo the right node bellow
-		if (isset($parent_node))
+		if ($parent_node)
 		{
 				$current_node = $parent_node;
 		}

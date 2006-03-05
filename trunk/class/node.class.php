@@ -90,6 +90,11 @@ class node
 		**/
 		function getParent()
 		{
+				if ($this->getId() == 1)
+				{
+						return false;
+				}
+				
 				global $thinkedit;
 				$this->load();
 				// todo : returns a node and not a record
@@ -309,12 +314,21 @@ class node
 						$node->set('object_id', $uid['id']);
 						$node->set('parent_id', $this->getId());
 						$results = $node->save();
-						$node->moveBottom();
-						return $results;
+						if ($results)
+						{
+								$node->moveBottom();
+								trigger_error('node::add() failed saving node', E_USER_WARNING);
+								return $node;
+						}
+						else
+						{
+								return false;
+						}
 				}
 				else
 				{
 						trigger_error('node::add() must be given an object with getUid() method', E_USER_ERROR);
+						return false;
 				}
 		}
 		

@@ -46,7 +46,7 @@ class menu_main extends menu_base
 		function getArray()
 		{
 				$out = '';
-				if ($this->node->getChildren())
+				if ($this->node->getChildren(true))
 				{
 						require_once 'menuitem.class.php';
 						foreach ($this->node->getChildren(true) as $child)

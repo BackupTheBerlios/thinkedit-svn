@@ -7,12 +7,14 @@
 
 <!-- main database storing all data for a site -->
 
+
 <database id='main'>
 <host>localhost</host>
 <database>thinkedit</database>
 <login>thinkedit</login>
 <password>thinkedit</password>
 </database>
+
 
 
 

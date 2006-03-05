@@ -92,6 +92,7 @@ $thinkedit->configuration = $thinkedit->newConfig();
 
 /*********************** ROOT, PATH, URL constants ******************/
 define ('ROOT', $thinkedit->configuration->getRootPath(dirname(__FILE__)));
+define ('ROOT_PATH', $thinkedit->configuration->getRootPath(dirname(__FILE__)));
 define ('ROOT_URL', $thinkedit->configuration->getRootUrl());
 define ('TMP_PATH', $thinkedit->configuration->getTmpPath());
 
