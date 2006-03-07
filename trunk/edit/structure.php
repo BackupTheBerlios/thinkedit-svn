@@ -388,6 +388,7 @@ $url->set('node_id', $node_object->getId());
 								$url->set('action', 'unpublish');
 								$node_info['publish_url'] = $url->render();
 								$node_info['publish_title'] = translate('unpublish');
+								$node_info['published'] = 1;
 								
 						}
 						else
@@ -397,6 +398,7 @@ $url->set('node_id', $node_object->getId());
 								$url->set('action', 'publish');
 								$node_info['publish_url'] = $url->render();
 								$node_info['publish_title'] = translate('publish');
+								$node_info['published'] = 0;
 								
 						}
 						

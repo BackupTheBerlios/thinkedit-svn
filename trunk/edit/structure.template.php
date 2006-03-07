@@ -118,14 +118,21 @@ $i++;
 
 
 <?php if (isset($node['delete_url'])): ?>
-<a href="<?php echo $node['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_node_delete') ?>', '<?php echo $node['delete_url']?>'); return false;">
+<a class="action_button" href="<?php echo $node['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_node_delete') ?>', '<?php echo $node['delete_url']?>'); return false;">
 <img src="ressource/image/icon/small/user-trash-full.png" alt="<?php echo translate('node_delete'); ?>">
+<?php echo translate('delete'); ?>
 </a>
 <?php endif; ?>
 
 
 <?php if (isset($node['publish_url'])): ?>
 <a class="action_button" href="<?php echo $node['publish_url']?>">
+<?php if ($node['published']): ?>
+<img src="ressource/image/icon/small/lightbulb.png">
+<?php else: ?>
+<img src="ressource/image/icon/small/lightbulb_off.png">
+<?php endif; ?>
+
 <?php echo  $node['publish_title'];?>
 </a>
 <?php endif; ?>
