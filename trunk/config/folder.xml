@@ -4,6 +4,8 @@
 <config>
 
 <!-- An example article table -->
+
+<!--
 <table id='folder'>
 
 <title><fr>Dossier</fr></title>
@@ -37,11 +39,7 @@
 </field>
 
 
-
-<!-- <allowed_items>folder,article</allowed_items>-->
-
-
-
 </table>
+-->
 </config>
 

@@ -156,6 +156,11 @@ class db
 				}
 				else
 				{
+						/*
+						echo $sql;
+						echo '<br/>';
+						*/
+						
 						global $total_queries;
 						$total_queries++;	
 						// one line debugging tool :-)

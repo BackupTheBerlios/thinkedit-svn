@@ -33,6 +33,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 */
 
+// needed for ms iexplorer
+header ("Content-Type: text/html; charset=utf-8");
+
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 

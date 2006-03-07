@@ -51,7 +51,12 @@ $i++;
 
 <td class="power_cell power_cell_border"><img src="<?php echo $item['icon']?>"/></td>
 <td class="power_cell power_cell_border"><?php echo $item['title']?></td>
-<td class="power_cell power_cell_border"><a class="action_button" href="<?php echo $item['remove_url']?>"><?php echo translate('unrelate') ?></a></td>
+<td class="power_cell power_cell_border">
+<a class="action_button" href="<?php echo $item['remove_url']?>">
+<img src="ressource/image/icon/small/list-remove.png">
+<?php echo translate('unrelate') ?>
+</a>
+</td>
 
 </tr>
 
@@ -69,7 +74,7 @@ $i++;
 
 </table>
 
-<div class="action_button_group">
+<div>
 <a class="action_button" href="<?php echo $out['browse_url']?>" target="_blank" onClick="popup('<?php echo $out['browse_url']?>');return false"><?php echo translate('add_relation') ?></a>
 </div>
 

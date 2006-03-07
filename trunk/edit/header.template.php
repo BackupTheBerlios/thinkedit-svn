@@ -26,12 +26,6 @@
     <div class="main">
       <div class="header">
         <a href="main.php"><img src="ressource/image/general/thinkedit_logo.gif" alt="" border="0"/></a>			
-				
-			
-				
-				<br>
-				
-				
       </div>
 
 			
@@ -48,6 +42,9 @@
 </td>
 </tr>
 </table>
+
+
+
 </div>
 
 

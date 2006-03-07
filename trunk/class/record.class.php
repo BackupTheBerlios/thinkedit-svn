@@ -6,10 +6,14 @@ class record
 		
 		function record($table)
 		{
+				
+				 // todo : optimize !!!!!
+				
 				$this->table_name = $table;
 				$this->table = $table;
 				
 				// load config
+				
 				global $thinkedit;
 				if (isset($thinkedit->config['table'][$table]))
 				{
@@ -19,6 +23,7 @@ class record
 				{
 						trigger_error('record::record() Table called "' . $this->table . '" not found in config, check table id spelling in config file / in code', E_USER_ERROR);
 				}
+				
 				
 				// init fields
 				if (is_array($this->config['field']))
@@ -47,7 +52,7 @@ class record
 		{
 				if (isset($this->field[$field]))
 				{
-				return $this->field[$field]->get();
+						return $this->field[$field]->get();
 				}
 				else
 				{
@@ -239,18 +244,48 @@ class record
 				}
 		}
 		
-		function count($where = false, $order = false, $limit = false)
+		function count($where = false)
 		{
-				// todo use mysql count instead
-				$results = $this->find($where, $order, $limit);
-				if (is_array($results))
+				global $thinkedit;
+				$sql = "select count(*) from " . $this->getTableName();
+				
+				if (is_array($where))
 				{
-						return count($results);
+						$sql .= " where ";
+						foreach ($where as $key=>$value)
+						{
+								$where_clause[] =  $key . '=' . "'" . $this->db->escape($value) . "'";
+								
+						}
+						$sql .= implode($where_clause, ' and ');
+				}
+				
+				debug($sql, 'record:count() sql');
+				$results = $this->db->select($sql);
+				if ($results)
+				{
+						$count = $results[0]['count(*)'];
+						//print_r($results);
+						//print_r($count);
+						return $count;
 				}
 				else
 				{
-						return false;
+						return 0;
 				}
+				/*
+						// todo use mysql count instead
+						$results = $this->find($where, $order, $limit);
+						if (is_array($results))
+						{
+								return count($results);
+						}
+						else
+						{
+								return false;
+						}
+				}
+				*/
 		}
 		
 		

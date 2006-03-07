@@ -26,7 +26,7 @@ Too early optimisation is the root of all evil
 GENERAL TODO : OPTIMIZE THIS
 
 */
-class node
+class node2
 {
 		
 		/**
@@ -34,7 +34,7 @@ class node
 		*
 		*
 		**/
-		function node($table = 'node')
+		function node2($table = 'node')
 		{
 				// init a record with a tablename = 'node'
 				global $thinkedit;
@@ -405,7 +405,7 @@ class node
 		
 		function getParentUntilRoot()
 		{
-				
+				echo 'level : no <br>';
 				$temp = $this;
 				$parents = false;
 				$i = 0;
@@ -422,6 +422,7 @@ class node
 				}
 				if (is_array($parents))
 				{
+						
 						return $parents;
 				}
 				else
@@ -430,6 +431,35 @@ class node
 				}
 		}
 		
+		
+		function updatePath()
+		{
+				$parents[] = $this;
+				
+				$parents_until_root = $this->getParentUntilRoot();
+				
+				if (is_array($parents_until_root))
+				{
+						foreach ($parents_until_root as $parent)
+						{
+								$parents[] = $parent;
+						}
+				}
+				
+				$parents = array_reverse($parents);
+				
+				$path = '.';
+				
+				foreach ($parents as $parent)
+				{
+						$path .= str_pad($parent->getId(), 5, '0', STR_PAD_LEFT) . '.';
+						
+				}
+				$this->set('path', $path);
+				$this->save();
+				
+				return $path;
+		}
 		
 		function getPath()
 		{
@@ -462,6 +492,7 @@ class node
 		{
 				if (!$this->record->field['level']->isEmpty())
 				{
+						echo 'level : ' . $this->get('level') . '<br>';
 						return $this->get('level');
 				}
 				else
@@ -475,10 +506,13 @@ class node
 						{
 								$level = 0;
 						}
-						
+						$this->set('level', $level);
+						$this->save();
 						return $level;
 				}
 		}
+		
+		
 		
 		
 		function debug()

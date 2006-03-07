@@ -54,6 +54,35 @@
 </field>
 
 
+
+
+<field id="level">
+<type>int</type>
+<use>
+<list>false</list>
+<edit>false</edit>
+</use>
+</field>
+
+
+<field id="path">
+<type>string</type>
+<use>
+<list>false</list>
+<edit>false</edit>
+</use>
+</field>
+
+
+<field id="cache">
+<type>text</type>
+<use>
+<list>false</list>
+<edit>false</edit>
+</use>
+</field>
+
+
 <field id="template">
 <title><fr>Modèle de page (pas encore fonctionnel)</fr></title>
 <type>template</type>

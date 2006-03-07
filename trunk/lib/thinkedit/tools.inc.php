@@ -74,6 +74,11 @@ function translate($translation_id)
 		// todo : then cache
 		// todo : then check if it's faster ;-)
 		
+		global $interface_locale;
+		return $interface_locale->translate($translation_id);
+		
+		
+		
 		if (!empty ($translation_id))
 		{
 				

@@ -124,7 +124,10 @@ $i++;
 
 <td>
 <?php if (isset($out['mode']) && $out['mode'] == 'relation'): ?>
-<a class="action_button" href="javascript:to_opener('<?php echo $item['url'] ?>')"><?php echo translate('relate')?></a>
+<a class="action_button" href="javascript:to_opener('<?php echo $item['url'] ?>')">
+<img src="ressource/image/icon/small/list-add.png">
+<?php echo translate('relate')?>
+</a>
 <?php endif; ?>
 
 <?php if (isset($out['mode']) && $out['mode'] == 'field'): ?>

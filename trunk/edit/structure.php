@@ -132,7 +132,7 @@ if ($url->get('action') == 'publish')
 				$url->set('error', 'node_not_published');
 				$url->redirect();
 		}
-
+		
 }
 
 
@@ -151,7 +151,7 @@ if ($url->get('action') == 'unpublish')
 				$url->set('error', 'node_not_unpublished');
 				$url->redirect();
 		}
-
+		
 }
 
 
@@ -262,120 +262,156 @@ $url = new url();
 $url->set('node_id', $node_object->getId());
 */
 
-/********************** LIST *********************/
 
-// append the parents to the list :
-if ($current_node->hasParent())
-{
-		$parents = $current_node->getParentUntilRoot();
-		$parents = array_reverse($parents);
-		
-		foreach ($parents as $parent)
-		{
-				$nodes[] = $parent;
-		}
-		
-}
-
-// build a list of nodes within the current node :
-
-// if we are in root
-//debug($current_node, 'Current node before list');
-//if ($we_are_root)
+//if ($thinkedit->outputcache->get('interface_node_' . $current_node->getId()))
 //{
-		
-		// root is now allways shown
-		$nodes[] = $current_node;
 //}
-
-//else we are not in root, show childrens 
 //else
 //{
-		if ($current_node->hasChildren())
+		
+		/********************** LIST *********************/
+		
+		// append the parents to the list :
+		if ($current_node->hasParent())
 		{
-				$children = $current_node->getChildren();
-				foreach ($children as $child)
+				$parents = $current_node->getParentUntilRoot();
+				$parents = array_reverse($parents);
+				
+				foreach ($parents as $parent)
 				{
-						$nodes[] = $child;
+						$nodes[] = $parent;
 				}
-				//$nodes[] = $current_node->getChildren();
+				
 		}
-//}
-
-if (isset($nodes) && is_array($nodes))
-{
-		$i = 0;
-		foreach ($nodes as $node_item)
-		{
+		
+		// build a list of nodes within the current node :
+		
+		// if we are in root
+		//debug($current_node, 'Current node before list');
+		//if ($we_are_root)
+		//{
 				
-				
-				/********************* Visit link *****************/
-				$url = new url();
-				$url->set('node_id', $node_item->getId());
-				$content = $node_item->getContent();
-				$content->load();
-				$node_info['title'] = $content->getTitle(); // . ' (' . $node_item->getOrder() . ')';
-				$node_info['icon'] = $content->getIcon();
-				$node_info['url'] = $url->render();
-				$node_info['level'] = $node_item->getLevel();
-				
-				/********************* Delete link *****************/
-				$url->set('action', 'delete');
-				$node_info['delete_url'] = $url->render();
-				
-				/********************* Move links *****************/
-				//if ($i <> 0)
-				//{
-						$url->set('action', 'moveup');
-						$node_info['moveup_url'] = $url->render();
-						
-						$url->set('action', 'movetop');
-						$node_info['movetop_url'] = $url->render();
-				//}
-				
-				//if ($i <> count($nodes))
-				//{
-						$url->set('action', 'movedown');
-						$node_info['movedown_url'] = $url->render();
-						
-						$url->set('action', 'movebottom');
-						$node_info['movebottom_url'] = $url->render();
-				//}
-				
-				
-				/********************* Edit link *****************/
-				$url = new url();
-				$url->set('node_id', $node_item->getId());
-				$url->addObject($content);
-				$url->set('mode', 'edit_node');
-				$node_info['edit_url'] = $url->render('edit.php');
-				
-				/********************* Publish link *****************/
-				if ($node_item->isPublished())
+				// root is now allways shown
+				$nodes[] = $current_node;
+		//}
+		
+		//else we are not in root, show childrens 
+		//else
+		//{
+				if ($current_node->hasChildren())
 				{
+						$children = $current_node->getChildren();
+						foreach ($children as $child)
+						{
+								$nodes[] = $child;
+						}
+						//$nodes[] = $current_node->getChildren();
+				}
+		//}
+		
+		if (isset($nodes) && is_array($nodes))
+		{
+				$i = 0;
+				foreach ($nodes as $node_item)
+				{
+						
+						$node_info = false;
+						
+						/********************* Visit link *****************/
 						$url = new url();
 						$url->set('node_id', $node_item->getId());
-						$url->set('action', 'unpublish');
-						$node_info['publish_url'] = $url->render();
-						$node_info['publish_title'] = translate('unpublish');
+						$content = $node_item->getContent();
+						$content->load();
+						$node_info['title'] = substr($node_item->getTitle(), 0, 32); // . ' (' . $node_item->getOrder() . ')';
+						//$node_info['title'] .= $node_item->getLevel(); // . ' (' . $node_item->getOrder() . ')';
+						$node_info['icon'] = $content->getIcon();
+						$node_info['url'] = $url->render();
+						$node_info['level'] = $node_item->getLevel() + 1;
 						
-				}
-				else
-				{
+						if ($node_item->hasChildren())
+						{
+								if ($node_item->getLevel() > $current_node->getLevel())
+								{
+										$node_info['helper_icon'] = 'ressource/image/icon/small/plus.gif';
+								}
+								else
+								{
+										$node_info['helper_icon'] = 'ressource/image/icon/small/minus.gif';
+								}
+								if ($node_info['level'] > 0)
+								{
+										$node_info['level'] = $node_info['level'] -1 ;
+								}
+						}
+						
+						
+						
+						
+						/********************* Delete link *****************/
+						$url->set('action', 'delete');
+						$node_info['delete_url'] = $url->render();
+						
+						//if ($node_item->getLevel() > $current_node->getLevel())
+						//{
+								/********************* Move links *****************/
+								//if ($i <> 0)
+								//{
+										$url->set('action', 'moveup');
+										$node_info['moveup_url'] = $url->render();
+										
+										$url->set('action', 'movetop');
+										$node_info['movetop_url'] = $url->render();
+								//}
+								
+								//if ($i <> count($nodes))
+								//{
+										$url->set('action', 'movedown');
+										$node_info['movedown_url'] = $url->render();
+										
+										$url->set('action', 'movebottom');
+										$node_info['movebottom_url'] = $url->render();
+								//}
+						//}
+						
+						/********************* Edit link *****************/
 						$url = new url();
 						$url->set('node_id', $node_item->getId());
-						$url->set('action', 'publish');
-						$node_info['publish_url'] = $url->render();
-						$node_info['publish_title'] = translate('publish');
+						$url->addObject($content);
+						$url->set('mode', 'edit_node');
+						$node_info['edit_url'] = $url->render('edit.php');
 						
+						/********************* Publish link *****************/
+						if ($node_item->isPublished())
+						{
+								$url = new url();
+								$url->set('node_id', $node_item->getId());
+								$url->set('action', 'unpublish');
+								$node_info['publish_url'] = $url->render();
+								$node_info['publish_title'] = translate('unpublish');
+								
+						}
+						else
+						{
+								$url = new url();
+								$url->set('node_id', $node_item->getId());
+								$url->set('action', 'publish');
+								$node_info['publish_url'] = $url->render();
+								$node_info['publish_title'] = translate('publish');
+								
+						}
+						
+						
+						/********************* Preview link *****************/
+						$url = new url();
+						$url->set('node_id', $node_item->getId());
+						$node_info['preview_url'] = $url->render('../index.php');
+						$node_info['preview_title'] = translate('preview');
+						
+						$out['nodes'][] = $node_info;
+						$i++;
 				}
-				
-				
-				$out['nodes'][] = $node_info;
-				$i++;
-		}
+		//}
 }
-
 /*
 echo '<pre> after list';
 print_r($db_cache);

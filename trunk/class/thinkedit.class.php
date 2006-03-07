@@ -6,6 +6,7 @@
 
 require_once('xml_parser.class.php');
 require_once('db.class.php');
+require_once('record.class.php');
 
 
 
@@ -109,8 +110,9 @@ class thinkedit
 				require_once ROOT . '/lib/pear/cache/Lite/Output.php';
 				$options = array(
 				'cacheDir' => TMP_PATH,
-				'lifeTime' => 7200,
-				'pearErrorMode' => CACHE_LITE_ERROR_DIE
+				'lifeTime' => 86400,
+				'pearErrorMode' => CACHE_LITE_ERROR_DIE,
+				'automaticSerialization' => true
 				);
 				return new Cache_Lite_Output($options);
 		}
@@ -122,8 +124,9 @@ class thinkedit
 				require_once ROOT . '/lib/pear/cache/Lite/Function.php';
 				$options = array(
 				'cacheDir' => TMP_PATH,
-				'lifeTime' => 7200,
-				'pearErrorMode' => CACHE_LITE_ERROR_DIE
+				'lifeTime' => 86400,
+				'pearErrorMode' => CACHE_LITE_ERROR_DIE,
+				'automaticSerialization' => true
 				);
 				return new Cache_Lite_Function($options);
 		}
@@ -134,11 +137,26 @@ class thinkedit
 				require_once ROOT . '/lib/pear/cache/Lite.php';
 				$options = array(
 				'cacheDir' => TMP_PATH,
-				'lifeTime' => 7200,
+				'lifeTime' => 86400,
 				'pearErrorMode' => CACHE_LITE_ERROR_DIE,
 				'automaticSerialization' => true
 				);
 				return new Cache_Lite($options);
+		}
+		
+		
+		function getCacheFile($master_file)
+		{
+				// I hate pear global include system, so I have this "solution" :-/
+				require_once ROOT . '/lib/pear/cache/Lite/File.php';
+				$options = array(
+				'cacheDir' => TMP_PATH,
+				'lifeTime' => 86400,
+				'pearErrorMode' => CACHE_LITE_ERROR_DIE,
+				'automaticSerialization' => true,
+				'masterFile' => $master_file
+				);
+				return new Cache_Lite_File($options);
 		}
 		
 		function getTimer()
@@ -242,7 +260,8 @@ class thinkedit
 				// currently the base module is used
 				if ($table<>'')
 				{
-						require_once('record.class.php');
+						// optimization : file is required on top of this class file
+						//require_once('record.class.php');
 						$record = new record($table);
 						if ($id)
 						{
@@ -265,14 +284,15 @@ class thinkedit
 				if ($table<>'')
 				{
 						
-						require_once('node.class.php');
-						$node = new node($table);
+						
+						require_once('node2.class.php');
+						$node = new node2($table);
 						
 						
 						// experimental optimized node class support :
 						/*
-						require_once('node_optimized.class.php');
-						$node = new node_optimized($table);
+						require_once('node_cached.class.php');
+						$node = new node_cached($table);
 						*/
 						
 						if ($id)
@@ -329,15 +349,17 @@ class thinkedit
 								$file = ROOT . '/class/field.' . $type . '.class.php';
 								$class = 'field_' . $type;
 								
-								if (file_exists($file))
-								{
+								
+								// this is an optimization : 
+								//if (file_exists($file))
+								//{
 										require_once($file);
 										return new $class($table, $field, $data);
-								}
-								else
-								{
-										trigger_error("thinkedit::newField config error, type $type for element $field not supported (class file not found)");
-								}
+								//}
+								//else
+								//{
+								//		trigger_error("thinkedit::newField config error, type $type for element $field not supported (class file not found)");
+								//}
 								
 						}
 						else // we default for string if no type defined

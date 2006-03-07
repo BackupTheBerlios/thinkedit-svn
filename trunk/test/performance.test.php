@@ -4,29 +4,50 @@ require_once '../thinkedit.init.php';
 
 
 $root = $thinkedit->newNode();
+$root->load(236);
+
+echo $root->computePath();
+
+
+/*
+for ($i=0; $i < 100; $i++)
+{
+		$test = $thinkedit->newRecord('page');
+		//$test->load();
+}
+*/
+
+
+/*
+$root = $thinkedit->newNode();
 $root->loadRootNode();
 
 
-$folder = $thinkedit->newRecord('folder');
-$folder->set('title', 'Root');
+$folder = $thinkedit->newRecord('page');
+$folder->set('title', 'Test page');
 $folder->save();
-$root->add($folder);
+$test = $root->add($folder);
 
 
-$node = $thinkedit->newNode();
-$node->setId(236);
-$node->load();
-
-for ($x=0;$x<500;$x++)
+for ($x=0;$x<10;$x++)
 {
-		$folder = $thinkedit->newRecord('folder');
-		$folder->set('title', 'Test folder nr. ' . $x);
+		$folder = $thinkedit->newRecord('page');
+		$folder->set('title', 'Test page nr. ' . $x);
 		$folder->save();
-		$node->add($folder);
+		$sub_test = $test->add($folder);
 		
+		for ($y=0;$y<10;$y++)
+		{
+				$folder = $thinkedit->newRecord('page');
+				$folder->set('title', 'Sub Test page nr. ' . $x . ' ' . $y);
+				$folder->save();
+				$sub_test->add($folder);
+		}
 		
 }
 
+*/
 
-//xdebug_dump_function_profile(4);
+
+xdebug_dump_function_profile(4);
 ?>

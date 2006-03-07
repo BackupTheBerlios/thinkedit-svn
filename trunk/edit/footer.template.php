@@ -16,5 +16,13 @@
 		</td>
 		</tr>
 	</table>
+	
+	<?php
+	if (function_exists('xdebug_dump_function_profile') && !$thinkedit->isInProduction())
+	{
+			//xdebug_dump_function_profile(4);
+	}
+	?>
+
   </body>
 </html>

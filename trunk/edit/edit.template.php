@@ -9,24 +9,8 @@
 			
 <form name="edit_form" action="<?php echo $out['save_url']?>" method="post" onsubmit="return submitForm();">			
 
-<?php /****************** start field rendering ***********/ ?>
 
-
-<?php if (isset($out['node_field'])): ?>
-<fieldset>
-<legend><?php echo ucfirst(translate('metadata'));?></legend>
-<?php foreach ($out['node_field'] as $field): ?>
-
-<p>
-<?php echo $field['title']; ?> :
-<br/>
-<?php echo $field['ui']; ?>
-</p>
-
-<?php endforeach; ?>
-</fieldset>
-<?php endif; ?>
-
+<?php /****************** Field rendering ***********/ ?>
 
 
 <?php if (isset($out['field'])): ?>
@@ -44,8 +28,23 @@
 </fieldset>
 <?php endif; ?>
 
-<?php /****************** stop field rendering ***********/ ?>
 
+<?php /****************** Node properties ***********/ ?>
+
+<?php if (isset($out['node_field'])): ?>
+<fieldset>
+<legend><?php echo ucfirst(translate('metadata'));?></legend>
+<?php foreach ($out['node_field'] as $field): ?>
+
+<p>
+<?php echo $field['title']; ?> :
+<br/>
+<?php echo $field['ui']; ?>
+</p>
+
+<?php endforeach; ?>
+</fieldset>
+<?php endif; ?>
 
 
 <?php /****************** Relations ***********/ ?>
@@ -80,7 +79,7 @@ blablabla
 <input class="action_button" type="submit" value="<?php echo translate('save_button') ?>" name="save">
 <input class="action_button" type="submit" value="<?php echo translate('save_and_return_to_list_button') ?>" name="save_and_return_to_list">
 <?php else: ?>
-<input class="action_button" type="submit" value="<?php echo translate('save_button') ?>" name="save">
+<!--<input class="action_button" type="submit" value="<?php echo translate('save_button') ?>" name="save">-->
 <input class="action_button" type="submit" value="<?php echo translate('save_and_return_to_node_button') ?>" name="save_and_return_to_structure">
 <?php endif; ?>
 

@@ -4,14 +4,10 @@
 <config>
 
 <!-- An example article table -->
+<table id='page'>
 
-<!--
-<table id='article'>
-
-
-
-<title><fr>Article</fr></title>
-<help><fr>Les articles contiennent du texte et des images</fr></help>
+<title><fr>Page</fr></title>
+<help><fr>Une page du site</fr></help>
 
 <title_field>title</title_field>
 
@@ -19,44 +15,27 @@
 <type>id</type>
 </field>
 
-
-
-
 <field id="title">
-<title><fr>Titre</fr></title>
+<title><fr>Titre du dossier</fr></title>
 <help><fr>Un titre court est plus percutant</fr></help>
 <type>string</type>
 <is_title>true</is_title>
-
-<use>
-<list>true</list>
-<edit>true</edit>
-</use>
-
 </field>
 
 
-
-
 <field id="intro">
-<title><fr>Introduction</fr></title>
-<help><fr>Introduction courte à l'article</fr></help>
+<title><fr>Introduction du dossier</fr></title>
 <type>text</type>
 </field>
 
 
-
 <field id="body">
-
 <title><fr>Corps du texte</fr></title>
 <help><fr>Regardez dans l'aide pour ajouter des images</fr></help>
 <type>richtext</type>
-<engine>fckeditor</engine>
 </field>
 
 
-
-</table> 
--->
+</table>
 </config>
 

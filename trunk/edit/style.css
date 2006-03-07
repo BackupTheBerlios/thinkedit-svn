@@ -441,17 +441,41 @@ a.action_button, .action_button
 		color: white;
 		font-size : 0.9em;
 		font-weight : bold;
-		padding-top: 0em;
+		padding-top: 0.3em;
 		padding-left: 0.3em;
-		padding-bottom: 0em;
+		padding-bottom: 0.3em;
 		padding-right: 0.3em;
 		border-width: 1px;
 		border-style: solid;
 		border-color: #99CCFF #0066FF #0066FF #99CCFF;
 		text-decoration: none;
+		/*padding: 3px;*/
+		/*margin: 5px*/
 }
 
-a.action_button:visited { color: white; font-weight: bold; font-size: 0.9em; font-family: verdana, arial, helvetica, sans-serif; text-decoration: none; background-color: #6699ff; padding: 0em 0.3em; border-style: solid; border-width: 1px; border-color: #99ccff #0066ff #0066ff #99ccff; outline: none }
+.action_button > img
+{
+		/*border: 2px solid black;*/
+		vertical-align: middle;
+		padding-bottom: 3px;
+}
+
+/*
+a.action_button:visited 
+{ 
+color: white; 
+font-weight: bold; 
+font-size: 0.9em; 
+font-family: verdana, arial, helvetica, sans-serif; 
+text-decoration: none; 
+background-color: #6699ff; 
+padding: 0em 0.3em; 
+border-style: solid; 
+border-width: 1px; 
+border-color: #99ccff #0066ff #0066ff #99ccff; 
+outline: none 
+}
+*/
 
 a.action_button:active
 {

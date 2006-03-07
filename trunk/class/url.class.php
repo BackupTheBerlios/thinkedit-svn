@@ -394,7 +394,9 @@ class url
 				$context = $thinkedit->getContext();
 				if (headers_sent())
 				{
-						echo("<script>location.href='". $this->render($filename). "'</script>");
+						echo translate('headers_sent_help');
+						echo('<a href="'. $this->render($filename). '">Redirect</a>');
+						die();
 				}
 				
 				if ($context->getServerType() == 'apache')

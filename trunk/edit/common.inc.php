@@ -30,6 +30,10 @@ $interface_locale = 'fr';
 // debug(' Interface Locale is '. $interface_locale);
 
 
+require_once ROOT . '/class/interface_locale.class.php';
+$interface_locale = new interface_locale(ROOT . '/edit/ressource/locale/fr.yml');
+
+
 // initialize DB class
 //$db = $thinkedit->getDb();
 

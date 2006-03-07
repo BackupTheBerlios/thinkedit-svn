@@ -12,8 +12,9 @@ class field_id extends field
 				//$out .= sprintf('<input type="text" value="%s" name="%s">', $this->getRaw(), $this->getName());
 				$out .= '<!--';
 				$out .= $this->getName() . ' : ' . $this->get();
-				$out .= '--!>';
+				
 				$out .= ' (' . translate('edit_id_is_not_editable') .')';
+				$out .= '--!>';
 				$out .='<input type="hidden" name="' . $prefix . $this->getName() . '" value="' . $this->get() . '">';
 				return $out;
 		}
