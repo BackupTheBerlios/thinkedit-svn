@@ -161,14 +161,19 @@ class table
 								$sql .= $name . ' varchar(255)';
 						}
 						
+						elseif ($type == 'file')
+						{
+								$sql .= $name . ' varchar(255)';
+						}
+						
 						elseif ($type == 'text')
 						{
-								$sql .= $name . ' text';
+								$sql .= $name . ' mediumtext';
 						}
 						
 						elseif ($type == 'richtext')
 						{
-								$sql .= $name . ' text';
+								$sql .= $name . ' mediumtext';
 						}
 						
 						elseif ($type == 'int')
@@ -184,6 +189,10 @@ class table
 						elseif ($type == 'datetime')
 						{
 								$sql .= $name . ' ' . $type;
+						}
+						elseif ($type == 'date')
+						{
+								$sql .= $name . ' date';
 						}
 						elseif ($type == 'order')
 						{

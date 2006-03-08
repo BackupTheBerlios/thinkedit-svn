@@ -189,7 +189,11 @@ class xml_parser
 										// if it's an xml file, parse it and store thge results in an array
 										if ($path_parts['extension'] == 'xml')
 										{
-												$configs[] = $this->parse_file($folder. '/' . $file);
+												$cfg = $this->parse_file($folder. '/' . $file);
+												if (is_array($cfg))
+												{
+														$configs[] = $cfg;
+												}
 										}
 								}
 						}

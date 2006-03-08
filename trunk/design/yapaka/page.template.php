@@ -17,8 +17,6 @@
 		</p>
 		
 		<?php endforeach; ?>
-<?php else: ?>
-Il n'y a rien ici ...
 <?php endif; ?>
 
-
+<?php echo $content->get('body'); ?>

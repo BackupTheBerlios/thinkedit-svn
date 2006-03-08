@@ -6,8 +6,15 @@ class field_richtext extends field
 		
 		function renderUI($prefix = false)
 		{
+				// te_ mean thinkedit, and is used to prevent global namespace collision (which is quite unlikely)
+				global $te_wysiwyg_is_init;
+				
 				
 				$out = '';
+				
+				// we can init tinymce only once for a page.
+				if (!isset($te_wysiwyg_is_init))
+				{
 				$out .= '<script language="javascript" type="text/javascript" src="' . ROOT_URL . '/lib/tiny_mce/tiny_mce.js"></script>';
 				$out .=  '<!-- tinyMCE -->';
 				$out .= '<script language="javascript" type="text/javascript">';
@@ -19,6 +26,10 @@ class field_richtext extends field
 				$out .= '</script>';
 				$out .= '<!-- /tinyMCE -->';
 				
+				$te_wysiwyg_is_init = true;
+				}
+				
+						
 				/*
 				require_once ROOT . '/lib/fckeditor/fckeditor.php';
 				$fckeditor = new FCKeditor($this->getName()) ;

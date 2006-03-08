@@ -405,7 +405,7 @@ class node2
 		
 		function getParentUntilRoot()
 		{
-				echo 'level : no <br>';
+				// echo 'level : no <br>';
 				$temp = $this;
 				$parents = false;
 				$i = 0;
@@ -492,7 +492,7 @@ class node2
 		{
 				if (!$this->record->field['level']->isEmpty())
 				{
-						echo 'level : ' . $this->get('level') . '<br>';
+						//echo 'level : ' . $this->get('level') . '<br>';
 						return $this->get('level');
 				}
 				else
@@ -506,8 +506,11 @@ class node2
 						{
 								$level = 0;
 						}
-						$this->set('level', $level);
-						$this->save();
+						if ($this->load())
+						{
+								$this->set('level', $level);
+								$this->save();
+						}
 						return $level;
 				}
 		}

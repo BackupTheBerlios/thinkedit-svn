@@ -1,12 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Yapaka</title>
 <link href="<?php echo te_design() ?>/styles.css" rel="stylesheet" type="text/css" media="all">
 <meta name="generator" content="Thinkedit" />
+
+<script src="<?php echo te_design() ?>/script.js" type="text/javascript"></script>
+
 
 <?php
 // choix de la bonne CSS en fonction de la section dans laquelle on est
@@ -168,9 +169,18 @@ if ($menuitem->isCurrent())
 <td align="left" valign="top">
 
 <?php if ($node->getLevel() == 4): ?>
-Choisissez dans le menu ci-dessous:<br/>
 
+<?php if (isset($sibling_menu)) : ?>
+<select size="1" onChange="jump('parent',this,0)">
+<option value="#">Choisissez dans le menu ci-dessous:</option>
 
+<?php foreach ($sibling_menu->getArray() as $sibling_menu_item) : ?>
+<option value="<?php echo $sibling_menu_item->getUrl(); ?>" <?php if ($sibling_menu_item->isCurrent()): ?>selected="selected"<?php endif; ?>><?php echo $sibling_menu_item->getTitle()?></option>
+<?php endforeach; ?>
+</select>
+<?php endif; ?>
+
+<!--
 <?php if (isset($sibling_menu)) : ?>
 <ul>
 <?php foreach ($sibling_menu->getArray() as $sibling_menu_item) : ?>
@@ -184,7 +194,7 @@ Choisissez dans le menu ci-dessous:<br/>
 <?php endforeach; ?>
 </ul>
 <?php endif; ?>
-
+-->
 
 <?php endif; ?>
 
