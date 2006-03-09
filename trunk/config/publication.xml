@@ -27,12 +27,19 @@
 <is_title>true</is_title>
 </field>
 
+
 <field id="intro">
 <title><fr>Introduction</fr></title>
 <help><fr>Introduction courte à la publication</fr></help>
 <type>richtext</type>
 </field>
 
+
+<field id="authors">
+<title><fr>Auteurs</fr></title>
+<help><fr></fr></help>
+<type>text</type>
+</field>
 
 <field id="body">
 <title><fr>Corps du texte</fr></title>
@@ -42,6 +49,13 @@
 
 <field id="cover">
 <title><fr>Couverture</fr></title>
+<help><fr></fr></help>
+<type>file</type>
+</field>
+
+
+<field id="pdf">
+<title><fr>Fichier pdf</fr></title>
 <help><fr></fr></help>
 <type>file</type>
 </field>
