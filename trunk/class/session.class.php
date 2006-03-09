@@ -8,7 +8,15 @@ class session
 				//session_start();
 				if (!isset($_SESSION))
 				{
+						if (!headers_sent())
+						{
 						session_start();
+						}
+						else
+						{
+								trigger_error('Cannot start session, headers already sent. This a bad error. Aborting');
+								die();
+						}
 				}
 		}
 		

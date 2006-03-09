@@ -41,6 +41,8 @@ class record
 				// init DB
 				$this->db = $thinkedit->getDb();
 				
+				echo '<pre>';
+				print_r($this->config);
 		}
 		
 		function getTableName()

@@ -108,7 +108,7 @@ class field
 		{
 				if (isset($this->config['primary']))
 				{
-						if ($this->config['primary'] == 'true')
+						if ($this->config['primary'] == 1)
 						{
 								return true;
 						}

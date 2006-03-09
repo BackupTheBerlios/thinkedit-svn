@@ -147,7 +147,8 @@
         if (preg_match('/^(\t)+(\w+)/', $line)) {
           $err = 'ERROR: Line '. ($linenum + 1) .' in your input YAML begins'.
                  ' with a tab.  YAML only recognizes spaces.  Please reformat.';
-          die($err);
+          trigger_error($err);
+					return false;
         }
         
         if ($this->_inBlock === false && empty($ifchk)) {

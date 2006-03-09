@@ -1,0 +1,28 @@
+site: 
+    help: 
+        fr: Bienvenue sur Thinkedit, le système de gestion de données et de contenu facile à utiliser
+    root_url: /thinkedit/
+    tmp_path: ./tmp/
+    run_mode: development
+    design: yapaka
+    locale: 
+        fr: 
+            help: 
+                fr: Français
+                en: French
+        en: 
+            help: 
+                fr: Anglais
+                en: English
+    database: 
+        main: 
+            host: localhost
+            database: thinkedit
+            login: thinkedit
+            password: thinkedit
+filesystem: 
+    main: 
+        type: local
+        root_path: 
+            relative: /files
+        root_url: /thinkedit/trunk/files

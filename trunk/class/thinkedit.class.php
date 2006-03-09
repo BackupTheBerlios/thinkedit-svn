@@ -3,40 +3,114 @@
 * Thinkedit Base class
 */
 
-
-require_once('xml_parser.class.php');
-require_once('db.class.php');
-require_once('record.class.php');
-
-
-
-/**
-* Thinkedit 2 Base class
-*
-*/
 class thinkedit
 {
 		
 		var $timer;
 		var $db;
+		var $config;
+		var $configuration;
 		
 		
 		/**
 		* Passing it a config folder, and it will use it for the whole application
 		**/
-		function thinkedit($config_path = './config/')
+		function thinkedit($config_folder = './config/')
 		{
+				// responsabilities : find and load a correct config folder.
 				
-				$config = new xml_parser();
-				$config = $config->parse_folder($config_path);
-				$this->config = $config['config'];
+				// 1. find a config folder
+				if (is_dir(dirname(__FILE__) . '/config/'))
+				{
+						// todo security : check if the config folder is really out of the server doc root
+						trigger_error('config folder is still within the doc root, move it outside docroot', E_USER_WARNING);
+						$this->config_folder = realpath(dirname(__FILE__) . '/config/');
+				}
+				elseif (is_dir(dirname(__FILE__) . '/../config/'))
+				{
+						$this->config_folder = realpath(dirname(__FILE__) . '/../config/');
+				}
+				elseif (is_dir(dirname(__FILE__) . '/../../config/'))
+				{
+						$this->config_folder = realpath(dirname(__FILE__) . '/../../config/');
+				}
+				else
+				{
+						die('thinkedit::thinkedit() config folder not found. This is a fatal error, aborting');
+				}
 				
+				// 2. parse this folder
+				$config = $this->parseFolder($this->config_folder);
 				
-				//$this->configuration = new config();
-				//return $config;
+				// 3. init this->config[] array and $this->configuration object
+				$this->config = $config;
 				
-			
+				//echo '<pre>';
+				//print_r($this->config);
+				
 		}
+		
+		/************************ Initialisation methods *************************/
+		function parseFolder($folder)
+		{
+				//die($folder);
+				$complete_config = array();
+				
+				require_once 'yml_parser.class.php';
+				$parser = new yml_parser();
+				
+				// test if folder is found
+				if (file_exists($folder))
+				{
+						$ressource = opendir($folder);
+						
+						// find files in this folder
+						while (($file = readdir($ressource)) !== false) 
+						{
+								// debug($file, 'xml_parser::parse_folder files');
+								if (is_file($folder . '/' . $file))
+								{
+										$path_parts = pathinfo($file);
+										
+										// if it's an yaml file, parse it and store thge results in an array
+										if ($path_parts['extension'] == 'yml')
+										{
+												$we_have_config_files = true;
+												$config = $parser->load($folder. '/' . $file);
+												if (!$config)
+												{
+														trigger_error("we have a parsing error with $file");
+												}
+												if (is_array($config))
+												{
+														$complete_config = array_merge_recursive($complete_config, $config);
+												}
+										}
+								}
+						}
+						
+						if (isset($we_have_config_files))
+						{
+								//echo '<pre>';
+								//print_r($complete_config);
+								return $complete_config;
+						}
+						else
+						{
+								trigger_error("thinkedit::parse_folder() no config files found - aborting");
+								die();
+								return false;
+						}
+				}
+				else
+				{
+						trigger_error("thinkedit::parseFolder() : $folder is not found - aborting");
+						die();
+						return false;
+				}
+				
+		}
+		
 		
 		
 		/************************* DB factory methods **************************/
@@ -45,6 +119,7 @@ class thinkedit
 		{
 				if (isset($this->config['site']['database'][$id]))
 				{		
+						require_once 'db.class.php';
 						$login = $this->config['site']['database'][$id]['login'];
 						$password = $this->config['site']['database'][$id]['password'];
 						$host = $this->config['site']['database'][$id]['host'];
@@ -167,16 +242,13 @@ class thinkedit
 				}
 				else
 				{
+						require_once 'timer.class.php';
 						$this->timer = new timer();
 						//$this->timer->start();
 						return $this->timer;
 				}
 		}
 		
-		
-		function getConfig()
-		{
-		}
 		
 		/************************* Factory methods **************************/
 		
@@ -261,7 +333,7 @@ class thinkedit
 				if ($table<>'')
 				{
 						// optimization : file is required on top of this class file
-						//require_once('record.class.php');
+						require_once('record.class.php');
 						$record = new record($table);
 						if ($id)
 						{
@@ -330,6 +402,7 @@ class thinkedit
 		
 		function newConfig()
 		{
+				require_once('config.class.php');
 				$config = new config();
 				return $config;
 		}
@@ -358,7 +431,7 @@ class thinkedit
 								//}
 								//else
 								//{
-								//		trigger_error("thinkedit::newField config error, type $type for element $field not supported (class file not found)");
+										//		trigger_error("thinkedit::newField config error, type $type for element $field not supported (class file not found)");
 								//}
 								
 						}
@@ -496,7 +569,7 @@ class thinkedit
 						}
 				}
 				return 'production';
-						
+				
 		}
 		
 		/*
@@ -513,7 +586,7 @@ class thinkedit
 				}
 				else
 				{
-				return false;
+						return false;
 				}
 		}
 		

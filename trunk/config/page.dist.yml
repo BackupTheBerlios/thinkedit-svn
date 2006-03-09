@@ -1,0 +1,27 @@
+table:
+    page: 
+        title: 
+            fr: Page
+        help: 
+            fr: Une page du site
+        title_field: title
+        field: 
+            id: 
+                type: id
+            title: 
+                title: 
+                    fr: Titre du dossier
+                help: 
+                    fr: Un titre court est plus percutant
+                type: string
+                is_title: true
+            intro: 
+                title: 
+                    fr: Introduction du dossier
+                type: richtext
+            body: 
+                title: 
+                    fr: Corps du texte
+                help: 
+                    fr: Regardez dans l'aide pour ajouter des images
+                type: richtext

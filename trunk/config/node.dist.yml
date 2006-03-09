@@ -1,0 +1,55 @@
+table:
+    node: 
+        field: 
+            id: 
+                type: id
+                primary: true
+                is_title: true
+            parent_id: 
+                type: int
+                use: 
+                    list: false
+                    edit: false
+            object_class: 
+                type: string
+                use: 
+                    list: false
+                    edit: false
+            object_type: 
+                type: string
+                use: 
+                    list: false
+                    edit: false
+            object_id: 
+                type: text
+                use: 
+                    list: false
+                    edit: false
+            sort_order: 
+                type: order
+                use: 
+                    list: false
+                    edit: false
+            level: 
+                type: int
+                use: 
+                    list: false
+                    edit: false
+            path: 
+                type: string
+                use: 
+                    list: false
+                    edit: false
+            cache: 
+                type: text
+                use: 
+                    list: false
+                    edit: false
+            template: 
+                title: 
+                    fr: Modèle de page (pas encore fonctionnel)
+                type: template
+            publish: 
+                title: 
+                    fr: Statut de publication
+                type: publish

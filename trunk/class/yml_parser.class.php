@@ -29,7 +29,7 @@ class yml_parser
 		function load($filename)
 		{
 				global $thinkedit;
-				$cache = $thinkedit->getCacheFile($filename);
+				$cache = $this->getCache($filename);
 				if ($result = $cache->get($filename))
 				{
 						return $result;
@@ -49,6 +49,21 @@ class yml_parser
 				$handler = fopen($filename, 'w+');
 				fwrite($handler, $yml);
 				fclose($handler);
+		}
+		
+		
+		function getCache($master_file)
+		{
+				// I hate pear global include system, so I have this "solution" :-/
+				require_once '../lib/pear/cache/Lite/File.php';
+				$options = array(
+				'cacheDir' => './tmp',
+				'lifeTime' => 86400,
+				'pearErrorMode' => CACHE_LITE_ERROR_DIE,
+				'automaticSerialization' => true,
+				'masterFile' => $master_file
+				);
+				return new Cache_Lite_File($options);
 		}
 		
 }

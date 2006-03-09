@@ -45,38 +45,16 @@ if (function_exists('xdebug_start_profiling'))
 }
 
 
+/******************* Define root constant ***************/
+define ('ROOT', dirname(__FILE__));
+
+
 /*********************** Required includes ******************/
 require_once dirname(__FILE__) . '/class/thinkedit.class.php';
-require_once dirname(__FILE__) . '/class/user.class.php';
-require_once dirname(__FILE__) . '/class/config.class.php';
-require_once dirname(__FILE__) . '/class/timer.class.php';
 
 
-
-/*********************** Find config file ******************/
-// this simple thing will check two parents levels deep to find a config folder. 
-// This way you can store it outside the webserver doc root
-if (is_dir(dirname(__FILE__) . '/config/'))
-{
-		$thinkedit = new thinkedit(dirname(__FILE__) . '/config/');
-		if ($thinkedit->isInProduction())
-		{
-				// todo security : check if the config folder is really out of the server doc root
-				trigger_error('config folder is still within the doc root, move it outside docroot', E_USER_WARNING);
-		}
-}
-elseif (is_dir(dirname(__FILE__) . '/../config/'))
-{
-		$thinkedit = new thinkedit(realpath(dirname(__FILE__) . '/../config/'));
-}
-elseif (is_dir(dirname(__FILE__) . '/../../config/'))
-{
-		$thinkedit = new thinkedit(realpath(dirname(__FILE__) . '/../../config/'));
-}
-else
-{
-		die('config folder not found');
-}
+$thinkedit = new thinkedit();
+$thinkedit->configuration = $thinkedit->newConfig();
 
 
 require_once dirname(__FILE__) . '/lib/thinkedit/tools.inc.php';
@@ -90,11 +68,11 @@ $thinkedit->timer->marker('start init');
 // no more global $thinkedit->config
 // $thinkedit->config = $thinkedit->newConfig();
 /*********************** Configuration object ******************/
-$thinkedit->configuration = $thinkedit->newConfig();
+
 
 
 /*********************** ROOT, PATH, URL constants ******************/
-define ('ROOT', $thinkedit->configuration->getRootPath(dirname(__FILE__)));
+// define ('ROOT', $thinkedit->configuration->getRootPath(dirname(__FILE__)));
 define ('ROOT_PATH', $thinkedit->configuration->getRootPath(dirname(__FILE__)));
 define ('ROOT_URL', $thinkedit->configuration->getRootUrl());
 define ('TMP_PATH', $thinkedit->configuration->getTmpPath());
