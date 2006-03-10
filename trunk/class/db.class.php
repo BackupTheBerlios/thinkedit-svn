@@ -29,7 +29,7 @@ class db
 				$this->login=$login;
 				$this->password=$password;
 				$this->database=$database;
-				$this->connect();
+				//$this->connect();
 				//global $total_queries;
 				//$total_queries = 0;
 		}
@@ -39,21 +39,30 @@ class db
 		* @return void
 		* @access private
 		*/
-		function connect ()
+		function connect()
 		{
 				
-				// Make connection to MySQL server
-				if (!$this->connection = @mysql_pconnect($this->host, $this->login, $this->password))
+				if (isset($this->is_connected))
 				{
-						trigger_error('Could not connect to server', E_USER_WARNING);
-						$this->connectError=true;
-						// Select database
+						return true;
 				}
-				else if ( !@mysql_select_db($this->database,$this->connection) )
+				else
 				{
-						trigger_error('Could not select database, maybe this database doesn\'t exist ?', E_USER_WARNING);
-						$this->connectError=true;
-						return false;
+						// Make connection to MySQL server
+						if (!$this->connection = @mysql_pconnect($this->host, $this->login, $this->password))
+						{
+								trigger_error('Could not connect to server', E_USER_WARNING);
+								$this->connectError=true;
+								// Select database
+						}
+						else if ( !@mysql_select_db($this->database,$this->connection) )
+						{
+								trigger_error('Could not select database, maybe this database doesn\'t exist ?', E_USER_WARNING);
+								$this->connectError=true;
+								return false;
+						}
+						$this->is_connected = true;
+						return true;
 				}
 				
 		}
@@ -103,6 +112,7 @@ class db
 		*/
 		function query($sql)
 		{
+				$this->connect();
 				global $total_queries;
 				$total_queries++;
 				if (strstr($sql, 'select'))
@@ -156,6 +166,8 @@ class db
 				}
 				else
 				{
+						// ultra lazy connect : it means that we can still use a website if a query is in the cache and if the db is down
+						$this->connect();
 						/*
 						echo $sql;
 						echo '<br/>';
@@ -201,22 +213,26 @@ class db
 		
 		function size()
 		{
+				$this->connect();
 				return mysql_num_rows($this->query);
 		}
 		
 		function affectedRows()
 		{
+				$this->connect();
 				return mysql_affected_rows($this->query);
 		}
 		
 		function insertID()
 		{
+				$this->connect();
 				return mysql_insert_id($this->connection);
 		}
 		
 		
 		function escape($string)
 		{
+				$this->connect();
 				if (get_magic_quotes_gpc())
 				{
 						//trigger_error('get_magic_quotes_gpc() php setting is ON, I don\'t like this');
@@ -256,6 +272,7 @@ class db
 		*/
 		function hasTable($table_id)
 		{
+				$this->connect();
 				$sql = 'show tables';
 				// the following code is not very nice, but it's the only case
 				// we need to return rows as simple indexd array 
@@ -289,7 +306,7 @@ class db
 		*/
 		function createTable($table)
 		{
-				
+				$this->connect();
 				/* 
 				SQL is :
 				CREATE TABLE `test` (

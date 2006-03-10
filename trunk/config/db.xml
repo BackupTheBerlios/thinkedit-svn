@@ -13,18 +13,6 @@
 <login>thinkedit</login>
 <password>thinkedit</password>
 </database>
-
-
-
-
-<!-- another database for storing interface localized strings -->
-<database id='interface_locale'>
-<host>localhost</host>
-<database>thinkedit</database>
-<login>thinkedit</login>
-<password>thinkedit</password>
-</database>
-
 </site>
 
 </config>
