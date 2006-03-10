@@ -1,6 +1,4 @@
 TODO (by order of importance) :
-- node publish
-- node template
 - simple install
 - handling of path separators in *nix and windows. Define a constant, like PATH_SEPARATOR and use it everywhere
 - review all security todo in the code
@@ -19,11 +17,13 @@ TODO (by order of importance) :
 - custom error handlers with pretty display
 - version support
 - separate dist- config files and user customized config files 
-- use yaml file as config files (?) -> very simple conversion to AND from arrays, which is great to build config admin GUI
+
 
 
 
 ALMOST THERE :
+- node publish
+- node template
 - db sync tool (sync DB to xml (and vice-versa?))
 - templates for public site (header / footer / template for each content type)
 - tags to use in templates and content : those are defined in /lib/thinkedit/template.lib.php
@@ -84,6 +84,9 @@ DONE :
 
 DISCARDED (will never be done because of design changes) :
 - datagrid global actions
+
+This one won't be done because it quite sucks currently :
+- use yaml file as config files (?) -> very simple conversion to AND from arrays, which is great to build config admin GUI
 
 From an older unreleased version:
 As of jan. 2004 :

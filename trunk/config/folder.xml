@@ -1,0 +1,45 @@
+<?xml version='1.0'?>
+<!-- Interface main configuration file -->
+<!--  each config file begins with the config tag -->
+<config>
+
+<!-- An example article table -->
+
+<!--
+<table id='folder'>
+
+<title><fr>Dossier</fr></title>
+<help><fr>Un dossier du site</fr></help>
+<icon>folder.png</icon>
+
+<title_field>title</title_field>
+
+<field id="id">
+<type>id</type>
+</field>
+
+<field id="title">
+<title><fr>Titre du dossier</fr></title>
+<help><fr>Un titre court est plus percutant</fr></help>
+<type>string</type>
+<is_title>true</is_title>
+</field>
+
+
+<field id="slug">
+<title><fr>Identifiant simplifié (pour les urls)</fr></title>
+<help><fr>Cet identifiant sera utilisé pour générer les urls si nécessaire</fr></help>
+<type>string</type>
+</field>
+
+
+<field id="intro">
+<title><fr>Introduction du dossier</fr></title>
+<type>text</type>
+</field>
+
+
+</table>
+-->
+</config>
+

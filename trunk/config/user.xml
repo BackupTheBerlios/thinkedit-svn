@@ -1,0 +1,32 @@
+<?xml version='1.0'?>
+<!-- Interface main configuration file -->
+<!--  each config file begins with the config tag -->
+<config>
+
+<!-- users table, it will be used to authenticate users -->
+<table id='user'>
+<title><fr>Utilisateurs</fr></title>
+<help><fr>Liste des personnes pouvant utiliser le site et modifier son contenu</fr></help>
+
+
+<field id="id">
+<type>id</type>
+<primary>true</primary>
+</field>
+
+
+<field id="login">
+<is_title>true</is_title>
+<type>login</type>
+</field>
+
+<field id="password">
+<type>password</type>
+</field>
+
+
+</table>
+
+
+</config>
+

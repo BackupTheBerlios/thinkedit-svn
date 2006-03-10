@@ -30,13 +30,17 @@ class field_id extends field
 				<primary>false</primary>
 				</field>
 				*/
+				//print_r ($this->config);
+				
 				if (isset($this->config['primary']))
 				{
 						if ($this->config['primary'] == 'false')
 						{
+							
 								return false;
 						}
 				}
+				
 				return true;
 		}
 		

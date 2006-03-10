@@ -184,7 +184,7 @@ if ($records)
 				
 				foreach ($item->field as $field )
 				{
-						$out['data'][$item->getId()]['field'][$field->getName()] = $field->get();
+						$out['data'][$item->getId()]['field'][$field->getName()] = substr($field->get(), 0, 20);
 						// $out['data'][$item['id']][$item['locale']][$key] = substr($val, 0, 15);
         }
 		}

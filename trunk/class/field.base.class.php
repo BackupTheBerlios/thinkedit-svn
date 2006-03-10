@@ -26,6 +26,9 @@ class field
 				{
 						die('field::field() Field called "' . $this->id . '" not found in config, check table id spelling in config file / in code');
 				}
+				
+				// echo '<pre>';
+				// print_r ($this->config);
 		}
 		
 		
@@ -40,7 +43,7 @@ class field
 		{
 				return $this->data;
 		}
-	
+		
 		
 		function set($data)
 		{
@@ -106,9 +109,11 @@ class field
 		
 		function isPrimary()
 		{
+				// print_r ($this->config);
+			
 				if (isset($this->config['primary']))
 				{
-						if ($this->config['primary'] == 1)
+						if ($this->config['primary'] == 1 || $this->config['primary'] == 'true')
 						{
 								return true;
 						}
@@ -159,27 +164,6 @@ class field
 		function useInView($view)
 		{
 				trigger_error('useInView() is deprecated, use isUsedIn() instead');
-				// enable by default title columns in list view
-				if ($this->isTitle() && $view == 'list')
-				{
-						return true;
-				}
-				
-				if (isset($this->config['use'][$view]))
-				{
-						if ($this->config['use'][$view] == true)
-						{
-								return true;
-						}
-						else
-						{
-								return false;
-						}
-				}
-				else
-				{
-						return false;
-				}
 		}
 		
 		function isUsedIn($what)
@@ -190,21 +174,22 @@ class field
 						return true;
 				}
 				
+				
 				if (isset($this->config['use'][$what]))
 				{
-						//echo 
-						if ($this->config['use'][$what] == 'true')
+						//print_r ( $this->config['use']);
+						if ($this->config['use'][$what] == 'false')
 						{
-								return true;
+								return false;
 						}
 						else
 						{
-								return false;
+								return true;
 						}
 				}
 				else
 				{
-				
+						
 						return true;
 				}
 		}

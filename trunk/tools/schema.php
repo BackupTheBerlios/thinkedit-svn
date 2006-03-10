@@ -12,7 +12,11 @@
 
 
 // init
-require_once ('../thinkedit.init.php');
+require_once ('../edit/common.inc.php');
+
+//check_user
+check_user();
+
 require_once (ROOT . '/class/config.class.php');
 require_once (ROOT . '/class/page.class.php');
 require_once (ROOT . '/class/url.class.php');

@@ -109,7 +109,9 @@ class xml_parser
 						echo 'eval : ' . $evalme . '<br>';
 						print_a($this->tree);
 						*/
-						eval ($evalme);
+						
+						// todo security !
+						eval($evalme);
 				}
 				
 		}
@@ -151,7 +153,7 @@ class xml_parser
 		}
 		
 		
-		function parse_file($filename) 
+		function load($filename) 
 		{
 				if (file_exists($filename))
 				{
@@ -167,6 +169,7 @@ class xml_parser
 				}
 				
 		}
+		
 		
 		
 		function parse_folder($folder)

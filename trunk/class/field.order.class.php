@@ -12,10 +12,7 @@ class field_order extends field
     
   }
 
-	function isUsedIn($what)
-		{
-				return false; 
-		}
+	
 	
 }
 ?>

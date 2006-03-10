@@ -40,7 +40,7 @@ class thinkedit
 				}
 				
 				// 2. parse this folder
-				$config = $this->parseFolder($this->config_folder);
+				$config = $this->parseXmlFolder($this->config_folder);
 				
 				// 3. init this->config[] array and $this->configuration object
 				$this->config = $config;
@@ -111,6 +111,66 @@ class thinkedit
 				
 		}
 		
+		
+		function parseXmlFolder($folder)
+		{
+				//die($folder);
+				$complete_config = array();
+				
+				require_once 'xml_parser.class.php';
+				$parser = new xml_parser();
+				
+				// test if folder is found
+				if (file_exists($folder))
+				{
+						$ressource = opendir($folder);
+						
+						// find files in this folder
+						while (($file = readdir($ressource)) !== false) 
+						{
+								// debug($file, 'xml_parser::parse_folder files');
+								if (is_file($folder . '/' . $file))
+								{
+										$path_parts = pathinfo($file);
+										
+										// if it's an yaml file, parse it and store thge results in an array
+										if ($path_parts['extension'] == 'xml')
+										{
+												$we_have_config_files = true;
+												$config = $parser->load($folder. '/' . $file);
+												if (!$config)
+												{
+														trigger_error("we have a parsing error with $file");
+												}
+												if (is_array($config))
+												{
+														$complete_config = array_merge($complete_config, $config);
+												}
+										}
+								}
+						}
+						
+						if (isset($we_have_config_files))
+						{
+								//echo '<pre>';
+								//print_r($complete_config);
+								return $complete_config['config'];
+						}
+						else
+						{
+								trigger_error("thinkedit::parseXmlFolder() no config files found - aborting");
+								die();
+								return false;
+						}
+				}
+				else
+				{
+						trigger_error("thinkedit::parseXmlFolder() : $folder is not found - aborting");
+						die();
+						return false;
+				}
+				
+		}
 		
 		
 		/************************* DB factory methods **************************/
@@ -424,25 +484,24 @@ class thinkedit
 								
 								
 								// this is an optimization : 
-								//if (file_exists($file))
-								//{
+								if (file_exists($file))
+								{
 										require_once($file);
 										return new $class($table, $field, $data);
-								//}
-								//else
-								//{
-										//		trigger_error("thinkedit::newField config error, type $type for element $field not supported (class file not found)");
-								//}
+								}
+								else
+								{
+												trigger_error("thinkedit::newField config error, type $type for element $field not supported (class file not found)");
+								}
 								
 						}
 						else // we default for string if no type defined
 						{
-								require_once('element.string.class.php');
-								return new element_string($module, $name, $data);
+								trigger_error("thinkedit::newElement config error, type $field not found in config");
 						}
 						
 				}
-				trigger_error("thinkedit::newElement config error, type $name not found in config");
+				trigger_error("thinkedit::newElement config error, type $field not found in config");
 				
 		}
 		

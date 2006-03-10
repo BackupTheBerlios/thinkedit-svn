@@ -1,0 +1,80 @@
+<?xml version='1.0'?>
+<!-- Interface main configuration file -->
+<!--  each config file begins with the config tag -->
+<config>
+
+<!-- an author table -->
+<table id='author'>
+
+<title><fr>Auteur</fr></title>
+
+
+<field id="id">
+<type>id</type>
+<primary>true</primary>
+</field>
+
+
+<field id="firstname">
+<type>string</type>
+<is_title>true</is_title>
+</field>
+
+<field id="lastname">
+<type>string</type>
+<is_title>true</is_title>
+</field>
+
+<allowed_items>none</allowed_items>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- a many to many relation is built by using a table with two lookup columns -->
+
+<!--
+<table id="articles2authors">
+
+				<field id="id">
+						<type>id</type>
+						<primary>true</primary>
+				</field>
+
+				<field id="author_id">
+						<type>lookup</type>
+
+						<source>
+								<type>table</type>
+								<name>author</name>
+						</source>
+
+				</field>
+
+
+				<field id="article_id">
+						<type>lookup</type>
+
+						<source>
+								<type>table</type>
+								<name>article</name>
+						</source>
+
+				</field>
+		</table>
+-->
+
+
+
+
+</config>
+

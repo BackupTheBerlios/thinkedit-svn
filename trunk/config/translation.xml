@@ -1,0 +1,37 @@
+<?xml version='1.0'?>
+<!-- Interface main configuration file -->
+<!--  each config file begins with the config tag -->
+<config>
+
+
+<table id="translation">
+
+<title>
+<fr>Traduction</fr>
+</title>
+<help>
+<fr>Les traductions peuvent être utilisées dans l'interface et dans la partie publique du site. C'est très utile dans le cas d'un site multilingue</fr>
+</help>
+
+
+<field id="translation_id">
+<type>stringid</type>
+<is_title>true</is_title>
+
+</field>
+
+
+<field id="translation">
+<type>text</type>
+<is_title>true</is_title>
+</field>
+
+<field id="locale">
+<type>locale</type>
+<is_title>true</is_title>
+</field>
+
+
+</table>
+
+</config>

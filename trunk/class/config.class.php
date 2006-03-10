@@ -19,7 +19,7 @@ class config
 				foreach ($this->config['table'][$table]['field'] as $id=>$field)
 				{
 						$all_fields[] = $id;
-						if ($field['is_title'] == 'true')
+						if ($field['is_title'] == 1 || $field['is_title'] == 'true')
 						{
 								$fields[] = $id;
 						}
@@ -41,9 +41,12 @@ class config
 				foreach ($this->config['table'][$table]['field'] as $id=>$field)
 				{
 						$all_fields[] = $id;
-						if (isset($field['primary']) &&  $field['primary'] == 'true')
+						if (isset($field['primary']))
 						{
-								$fields[] = $id;
+								if ($field['primary'] == 'true' || $field['primary'] == 1)
+								{
+										$fields[] = $id;
+								}
 						}
 				}
 				if (is_array($fields))
