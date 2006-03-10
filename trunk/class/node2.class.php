@@ -526,12 +526,40 @@ class node2
 		
 		/*
 		Returns a list (array) of allowed items you can add inside this node
+		this array is an array of UID's
+		
+		class / type / (id)
+		
 		*/
 		function getAllowedItems()
 		{
-				// first let's say we can add anything
+				$content = $this->getContent();
 				
+				if ($content)
+				{
+				// first let's say we can add anything
+				if (isset($content->config['allowed_items']['record']))
+				{
+						foreach ($content->config['allowed_items']['record'] as $key=>$value)
+						{
+								$item['class'] = 'record';
+								$item['type'] = $key;
+								$items[] = $item;
+						}
+						return $items;
+						
+				}
+				else
+				{
+						return false;
+				}
+				}
+				else
+				{
+						return false;
+				}
 				global $thinkedit;
+				
 				$config = $thinkedit->newConfig();
 				$tables = $config->getTableList();
 				

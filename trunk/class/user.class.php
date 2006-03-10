@@ -95,7 +95,19 @@ class user
 				//return false;
 		}
 		
-		
+		function isAdmin()
+		{
+				// todo security : implement permission system and update this.
+				
+				if ($this->isLogged())
+				{
+						return true;
+				}
+				else
+				{
+						return false;
+				}
+		}
 		
 		
 		function getLocale()

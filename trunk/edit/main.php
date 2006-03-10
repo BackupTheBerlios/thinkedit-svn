@@ -56,18 +56,17 @@ $out['item'][] = $item;
 
 
 // generating the table list from the config array
-$i=0;
-$j=0;
-$k=0;
-$l=0;
 foreach($tables as $table_id)
 {
 		$table = $thinkedit->newTable($table_id);
-		$item['title'] = $table->getTitle();
-		$item['help'] = $table->getHelp();
-		$item['icon'] = $table->getIcon();
-		$item['action'] = $url->linkTo($table, 'list.php');
-		$out['item'][] = $item;
+		if ($table->isUsedIn('main'))
+		{
+				$item['title'] = $table->getTitle();
+				$item['help'] = $table->getHelp();
+				$item['icon'] = $table->getIcon();
+				$item['action'] = $url->linkTo($table, 'list.php');
+				$out['item'][] = $item;
+		}
 		
 }
 

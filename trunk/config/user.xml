@@ -8,6 +8,10 @@
 <title><fr>Utilisateurs</fr></title>
 <help><fr>Liste des personnes pouvant utiliser le site et modifier son contenu</fr></help>
 
+<use>
+<main>true</main>
+</use>
+
 
 <field id="id">
 <type>id</type>

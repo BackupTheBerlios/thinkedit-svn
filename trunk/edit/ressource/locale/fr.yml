@@ -78,7 +78,7 @@ structure_title: Structure du site
 node_delete: Effacer cet emplacement
 node_empty: Emplacement vide
 you_are_here: Vous êtes ici
-node_add_new: Ajouter un nouveau...
+node_add_new: Ajouter...
 save_and_return_to_node_button: Enregistrer et retourner à la structure
 cannot_delete_root_node: Il n'est pas possible d'effacer le noeud "racine" (principal)
 node_deleted_successfully: Le noeud a bien été effacé

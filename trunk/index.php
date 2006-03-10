@@ -34,20 +34,9 @@ if ($url->get('clear_cache'))
 
 if ($cache_enabled && $thinkedit->outputcache->start($cache_id))
 {
-		echo 'Total Queries : ' . $thinkedit->db->getTotalQueries();
-		echo '<br/>';
-		echo 'Total time : ' . $thinkedit->timer->render();
 		
-		$url->keep('node_id');
-		$url->set('refresh', 1);
-		echo '<br/>';
-		echo '<a href="' . $url->render() . '">Refresh</a>';
-		
-		$url = new url();
-		$url->keep('node_id');
-		$url->set('clear_cache', 1);
-		echo '<br/>';
-		echo '<a href="' . $url->render() . '">Clear cache</a>';
+		require_once ROOT . '/lib/thinkedit/template.lib.php';
+		echo te_admin_toolbox();
 		
 		if (function_exists('xdebug_dump_function_profile') && !$thinkedit->isInProduction())
 		{
@@ -149,12 +138,16 @@ else
 		{
 				$thinkedit->outputcache->end();
 		}
-	
+		
 }
 
+/*
 echo 'Total Queries : ' . $thinkedit->db->getTotalQueries();
 echo '<br/>';
 echo 'Total time : ' . $thinkedit->timer->render();
+*/
+
+echo te_admin_toolbox();
 
 
 if (function_exists('xdebug_dump_function_profile') && !$thinkedit->isInProduction())

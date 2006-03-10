@@ -462,19 +462,29 @@ $out['structure_breadcrumb'][$i]['url'] = $url->render();
 
 
 /************************ Allowed items ************************/
-/*
-$allowed_items = $node_object->getAllowedItems();
-foreach ($allowed_items as $allowed_item)
-{
-		if ($allowed_item['class'] == 'record')
-		{
-				$url->set('class', 'record');
-				$url->set('type', $allowed_item['class']);
-				$url->render('edit.php');
-		}
-}
-*/
 
+$allowed_items = $current_node->getAllowedItems();
+if (is_array($allowed_items))
+{
+		foreach ($allowed_items as $allowed_item)
+		{
+				if ($allowed_item['class'] == 'record')
+				{
+						$table = $thinkedit->newTable($allowed_item['type']);
+						$item['title'] = $table->getTitle();
+						$url = new url();
+						$url->set('mode', 'new_node');
+						$url->set('node_id', $current_node->getId());
+						$url->addObject($table);
+						$item['action'] = $url->render('edit.php');
+						$out['allowed_items'][] = $item;
+				}
+		}
+
+}
+
+
+/*
 // first allow anything :
 
 $config_tool = $thinkedit->newConfig();
@@ -497,8 +507,7 @@ foreach($tables as $table_id)
 		$item['action'] = $url->render('edit.php');
 		$out['allowed_items'][] = $item;
 }
-
-
+*/
 
 /*
 // define action buttons urls

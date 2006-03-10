@@ -44,5 +44,38 @@ function te_link($object)
 		}
 }
 
+function te_admin_toolbox()
+{
+		global $thinkedit;
+		if ($thinkedit->user->isAdmin())
+		{
+				$out = '';
+				
+				$out .= '<div class="admin_toolbox">';
+				$out .= 'Total Queries : ' . $thinkedit->db->getTotalQueries();
+				$out .= '<br/>';
+				$out .= 'Total time : ' . $thinkedit->timer->render();
+				
+				$url = new url();
+				
+				$url->keep('node_id');
+				$url->set('refresh', 1);
+				$out .= '<br/>';
+				$out .= '<a href="' . $url->render() . '">Refresh</a>';
+				
+				$url = new url();
+				$url->keep('node_id');
+				$url->set('clear_cache', 1);
+				$out .= '<br/>';
+				$out .= '<a href="' . $url->render() . '">Clear cache</a>';
+				$out .= '</div>';
+				return $out;
+		}
+		else
+		{
+				return false;
+		}
+}
+
 
 ?>

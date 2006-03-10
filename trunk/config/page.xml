@@ -8,8 +8,16 @@
 
 <title><fr>Page</fr></title>
 <help><fr>Une page du site</fr></help>
-
 <title_field>title</title_field>
+
+<allowed_items>
+<record id="page">true</record>
+<record id="publication">true</record>
+<filesystem id="main">true</filesystem>
+</allowed_items>
+
+
+
 
 <field id="id">
 <type>id</type>

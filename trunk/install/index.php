@@ -1,0 +1,8 @@
+<?php
+
+/*
+Thinkedit Install Wizard
+*/
+
+
+?>

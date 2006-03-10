@@ -146,7 +146,7 @@ class table
 						{
 								$sql .= $name . ' varchar(255)';
 						}
-							elseif ($type == 'locale')
+						elseif ($type == 'locale')
 						{
 								$sql .= $name . ' varchar(10)';
 						}
@@ -221,7 +221,19 @@ class table
 				
 		}
 		
-		
+		function isUsedIn($what)
+		{
+				
+				if (isset($this->config['use'][$what]))
+				{
+						//print_r ( $this->config['use']);
+						if ($this->config['use'][$what] == 'true')
+						{
+								return true;
+						}
+				}
+				return false;
+		}
 		
 }
 
