@@ -61,7 +61,7 @@ if (!isset($thinkedit->config['site']['database']['main']))
 				$parser = new php_parser();
 				
 				$parser->save(ROOT . '/config/db.php', $config);
-				$out['info'] = 'config file saved';
+				$out['info'] = 'The configuration (in /config/db.php) file has been saved';
 				include_once 'install.template.php';
 				exit;
 		}
@@ -106,14 +106,14 @@ if (!$thinkedit->db->canConnect())
 				$parser = new php_parser();
 				
 				$parser->save(ROOT . '/config/db.php', $config);
-				$out['info'] = 'config file saved';
+				$out['info'] = 'The configuration (in /config/db.php) file has been saved';
 				include_once 'install.template.php';
 				exit;
 		}
 		else
 		{
 				
-				$out['title'] = 'I cannot connect to DB';
+				$out['title'] = 'I cannot connect to DB server or select DB';
 				$out['help'] = '(re)enter your database settings here, and ensure that the database exists and the login and password are ok';
 				$out['content'] = '
 				<form method="post">
@@ -229,6 +229,42 @@ if (isset($something_missing))
 
 // Is there a user in the DB ?
 // if not, show user add screen + button to add a user
+$user = $thinkedit->newRecord('user');
+if ($user->count() == 0)
+{
+		if ($url->get('te_login') && $url->get('te_password'))
+		{
+				// todo security : use something like $user->register($login, $password) with check up
+				$user->set('login', $url->get('te_login'));
+				$user->set('password', $url->get('te_password'));
+				
+				$user->insert();
+				
+				
+				$out['info'] = 'The first user has been added !';
+				$out['content'] = '<a href="">Go to next step</a>';
+				include_once 'install.template.php';
+				exit;
+		}
+		else
+		{
+		$out['title'] = 'There is no user in the DB';
+		$out['help'] = 'Please create the first admin user bellow';
+		$out['content'] = '
+				<form method="post">
+				Login : <input type="text" name="te_login"> <br/>
+				Password : <input type="text" name="te_password"> <br/>
+				
+				<input type="submit">
+				
+				</form>
+				';
+		
+		// include template :
+		include_once 'install.template.php';
+		exit;
+		}
+}
 
 
 // Is there a root Node ?

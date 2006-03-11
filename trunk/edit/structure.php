@@ -43,14 +43,24 @@ if ($url->get('node_id'))
 		
 		$we_are_root = false;
 		$parent_node = $current_node->getParent();
+		
 }
 else // we are in root
 {
-		$parent_node = false;
+		
 		$current_node->loadRootNode();
 		$we_are_root = true;
 }
 
+
+// we define parent node in case of
+if (!$parent_node)
+		{
+				$parent_node = $current_node;
+		}
+		
+		
+		
 debug($current_node, 'Current node init');
 
 

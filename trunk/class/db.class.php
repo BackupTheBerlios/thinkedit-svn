@@ -74,7 +74,11 @@ class db
 		*/
 		function canConnect()
 		{
-				if (!$this->connection = @mysql_pconnect($this->host, $this->login, $this->password))
+				if (!$this->connection = mysql_pconnect($this->host, $this->login, $this->password))
+				{
+						return false;
+				}
+				elseif ( !mysql_select_db($this->database,$this->connection) )
 				{
 						return false;
 				}

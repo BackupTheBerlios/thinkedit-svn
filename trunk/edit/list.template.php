@@ -1,3 +1,5 @@
+<div class="content">
+
 <?php /****************** Pagination ***************/ ?>
 
 <div class="power_margin">
@@ -237,3 +239,4 @@ $i++;
 </div>
 
 </div>
+
