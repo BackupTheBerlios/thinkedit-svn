@@ -29,9 +29,9 @@ $session = new session();
 $interface_locale = 'fr';
 // debug(' Interface Locale is '. $interface_locale);
 
-
+// todo : setup user locale somewhere
 require_once ROOT . '/class/interface_locale.class.php';
-$interface_locale = new interface_locale(ROOT . '/edit/ressource/locale/en.php');
+$interface_locale = new interface_locale(ROOT . '/edit/ressource/locale/fr.php');
 
 
 // initialize DB class

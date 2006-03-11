@@ -17,6 +17,13 @@ class thinkedit
 		**/
 		function thinkedit($config_folder = './config/')
 		{
+				global $thinkedit;
+				
+				if (isset($thinkedit))
+				{
+						trigger_error('thinkedit::thinkedit() : Thinkedit has already been instantiated, I found an existing $thinkedit global var', E_USER_ERROR);
+				}
+				
 				// responsabilities : find and load a correct config folder.
 				
 				// 1. find a config folder
@@ -205,7 +212,7 @@ class thinkedit
 												}
 												if (is_array($config))
 												{
-														$complete_config = array_merge($complete_config, $config);
+														$complete_config = array_merge_recursive($complete_config, $config);
 												}
 										}
 								}
@@ -577,6 +584,14 @@ class thinkedit
 				require_once ROOT . '/class/session.class.php';
 				return new session();
 		}
+		
+		
+		function newUrl()
+		{
+				require_once ROOT . '/class/url.class.php';
+				return new url();
+		}
+		
 		
 		
 		/************************* TOOLS **************************/

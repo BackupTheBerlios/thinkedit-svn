@@ -67,6 +67,44 @@ class db
 				
 		}
 		
+		
+		/*
+		Return true if db connected successfully or false if not
+		usefull for intstaller
+		*/
+		function canConnect()
+		{
+				if (!$this->connection = @mysql_pconnect($this->host, $this->login, $this->password))
+				{
+						return false;
+				}
+				else
+				{
+						return true;
+				}
+				
+		}
+		
+		
+		/*
+		Return true if it can select db successfully or false if not
+		usefull for intstaller
+		*/
+		function canSelectDb()
+		{
+				if ( !@mysql_select_db($this->database,$this->connection) )
+				{
+						
+						return false;
+				}
+				else
+				{
+						return true;
+				}
+				
+		}
+		
+		
 		/**
 		* Checks for MySQL errors
 		* @return boolean
