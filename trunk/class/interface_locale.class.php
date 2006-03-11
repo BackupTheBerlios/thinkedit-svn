@@ -13,8 +13,8 @@ class interface_locale
 				
 				$this->locale_file = $locale_file;
 				
-				require_once 'yml_parser.class.php';
-				$this->parser = new yml_parser();
+				require_once 'php_parser.class.php';
+				$this->parser = new php_parser();
 				
 				$this->data = $this->parser->load($locale_file);
 				

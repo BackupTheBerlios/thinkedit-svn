@@ -31,7 +31,7 @@ $interface_locale = 'fr';
 
 
 require_once ROOT . '/class/interface_locale.class.php';
-$interface_locale = new interface_locale(ROOT . '/edit/ressource/locale/fr.yml');
+$interface_locale = new interface_locale(ROOT . '/edit/ressource/locale/en.php');
 
 
 // initialize DB class

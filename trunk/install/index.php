@@ -8,6 +8,8 @@ There are some mandatory actions that are to be done in a certain order.
 Each time a test passes, we go to the next without showin test resutl to user. 
 
 
+This one will be purelly procedural code for now, as the scope and use of it is not clearly defined
+
 */
 // include thinkedit.init.php
 include '../thinkedit.init.php';
@@ -15,12 +17,18 @@ include '../thinkedit.init.php';
 
 // Ask for simple admin password
 
+// todo : security
+
+
 // check general php and server environment
 // if fatal problem, show info screen
 
 
 // Is there a config file for db ?
 // If not, show DB config screen
+
+
+
 
 // Can we connect to DB ?
 // If not, show DB config screen + connect error info

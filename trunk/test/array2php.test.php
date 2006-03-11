@@ -1,19 +1,32 @@
 <?php
 require_once ('../thinkedit.init.php');
-require_once ROOT . '/class/array2php.class.php';
+require_once ROOT . '/class/php_parser.class.php';
 
 
-$parser = new array2php();
+$parser = new php_parser();
 
 echo '<pre>';
 
-echo $parser->toPhp($thinkedit->config, '$config');
+//echo $parser->save('config.php', $thinkedit->config);
 
 
-$config_php = $parser->toPhp($thinkedit->config, '$config');
+//echo $parser->toPhpHumanFriendly($thinkedit->config);
+
+$parser->save('config.php', $thinkedit->config);
+
+
+
+
+
+die();
 
 echo '<hr>';
 
+
+$test = $parser->load('config.php');
+
+
+print_r ($test);
 
 
 die();
