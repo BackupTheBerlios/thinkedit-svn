@@ -71,7 +71,7 @@ if (!isset($thinkedit->config['site']['database']['main']))
 				$out['help'] = 'Enter your database settings here';
 				$out['content'] = '
 				<form method="post">
-				Host : <input type="text" name="db_host"> <br/>
+				Host : <input type="text" name="db_host" value="localhost"> <br/>
 				Database name : <input type="text" name="db_database"> <br/>
 				Login : <input type="text" name="db_login"> <br/>
 				Password : <input type="text" name="db_password"> <br/>
@@ -117,7 +117,7 @@ if (!$thinkedit->db->canConnect())
 				$out['help'] = '(re)enter your database settings here, and ensure that the database exists and the login and password are ok';
 				$out['content'] = '
 				<form method="post">
-				Host : <input type="text" name="db_host"> <br/>
+				Host : <input type="text" name="db_host" value="localhost"> <br/>
 				Database name : <input type="text" name="db_database"> <br/>
 				Login : <input type="text" name="db_login"> <br/>
 				Password : <input type="text" name="db_password"> <br/>
@@ -137,6 +137,95 @@ if (!$thinkedit->db->canConnect())
 
 // is the DB schema up to date ?
 // if not, show info message about what can be done + button to update schema
+// loop each config table
+
+// if fix db is requested, do it beforehand :
+$url = $thinkedit->newUrl();
+
+
+if ($url->get('action') == 'fix_db')
+{
+		$out['content'] = '';
+		$table_list = $thinkedit->configuration->getTableList();
+		
+		foreach ($table_list as $table_id)
+		{
+				$table = $thinkedit->newTable($table_id);
+				if (!$thinkedit->db->hasTable($table->getTableName()))
+				{
+						$thinkedit->db->createTable($table->getTableName());
+						$out['content'] .= '<li>Table ' . $table->getTableName() . ' created</li>';
+				}
+				else
+				{
+						// handle fields
+						$field_list = $thinkedit->configuration->getAllFields($table->getTableName());
+						foreach ($field_list as $field_id)
+						{
+								if (!$table->hasField($field_id))
+								{
+										$table->createField($field_id);
+										$out['content'] .= '<li>Field ' . $field_id . ' created</li>';
+								}
+						}
+				}
+		}
+		
+		$out['title'] = 'The database schema has been upgraded';
+		$url = $thinkedit->newUrl();
+		$out['content'] .= '<a href="' . $url->render() . '">Go to next step</a>';
+		// include template :
+		include_once 'install.template.php';
+		exit;
+}
+
+$table_list = $thinkedit->configuration->getTableList();
+
+$out['content'] = '';
+
+foreach ($table_list as $table_id)
+{
+		$table = $thinkedit->newTable($table_id);
+		if ($thinkedit->db->hasTable($table->getTableName()))
+		{
+				// handle fields
+				$field_list = $thinkedit->configuration->getAllFields($table->getTableName());
+				foreach ($field_list as $field_id)
+				{
+						if (!$table->hasField($field_id))
+						{
+								$something_missing = true;
+								$out['content'] .= '<li>Table ' . $table->getTableName() . ' is missing the field ' . $field_id . '</li>';
+						}
+						
+				}
+		}
+		else
+		{
+				$something_missing = true;
+				$out['content'] .= '<li>Table ' . $table_id . ' is missing </li>';
+		}
+}
+
+if (isset($something_missing))
+{
+		$out['title'] = 'The database schema need some upgrade';
+		$out['help'] = '';
+		$url = $thinkedit->newUrl();
+		$url->set('action', 'fix_db');
+		$out['content'] .= '<a href="' . $url->render() . '">Click here to update DB (this is "riskless")</a>';
+		
+		// include template :
+		include_once 'install.template.php';
+		exit;
+}
+
+
+
+
+
+
+
 
 // Is there a user in the DB ?
 // if not, show user add screen + button to add a user
@@ -145,17 +234,17 @@ if (!$thinkedit->db->canConnect())
 // Is there a root Node ?
 // if not, ask for a title for the root node, and add it
 
+
 // is there something else to do ?
-// if yes show it.
-// if no : show congratulation screen
+// if no : show congratulation screen (other step did an exit() so this step will be shown if there is nothing to do
 
 $out['title'] = 'Congratulations';
 $out['help'] = 'It seems everything is ready to roll!';
 $out['content'] = '
 You can now start using thinkedit. Go to your root folder and see your site. You can also go to the admin interface.
 Don\'t forget to return here if you change your database schema, your config files or if you upgrade. The process will be the same each time.
-<p>Currently, it is better to delete the install folder. This is alpha software ;-)</p>		
-		
+		<p>Currently, it is better to delete the install folder. This is alpha software ;-)</p>		
+
 ';
 
 // include template :
