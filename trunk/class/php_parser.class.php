@@ -114,11 +114,26 @@ class php_parser
 				$out .= $this->toPhpHumanFriendly($data, $variable_name);
 				$out .= "\n" . '?' . '>' . "\n";
 				
+				/*
+				if (!is_writable($filename))
+				{
+						trigger_error("$filename is not writable, please change permissions on this file, else I cannot continue", E_USER_WARNING);
+						return false;
+				}
+				*/
 				
-				$handler = fopen($filename, 'w+');
+				$handler = @fopen($filename, 'w+');
+				
+				if (!$handler)
+				{
+						trigger_error("$filename cannot be written, please change permissions on this file or on the config folder, else I cannot continue", E_USER_WARNING);
+						return false;
+				}
+				
 				fwrite($handler, $out);
 				fclose($handler);
 				
+				return true;
 				
 				
 				

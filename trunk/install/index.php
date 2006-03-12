@@ -27,7 +27,8 @@ Input :
 */
 // reduce error reporting : the installer will generate notices by thinkedit, because it is not yet fully installed
 // this is an egg and chicken problem
-//error_reporting(E_ALL ^ E_NOTICE ^ E_USER_NOTICE); 
+
+error_reporting(E_ALL ^ E_NOTICE ^ E_USER_NOTICE); 
 
 // init (note that init should work in all situations (even if db is down))
 require_once '../thinkedit.init.php';
@@ -40,13 +41,15 @@ $url = $thinkedit->newUrl();
 // todo : security
 
 
+/***************************** General checkup *****************************/
 // check general php and server environment
 // if fatal problem, show info screen
 
 
+
+/***************************** DB config *****************************/
 // Is there a config file for db ?
 // If not, show DB config screen
-
 if (!isset($thinkedit->config['site']['database']['main']))
 {
 		// if form has been sent, update config
@@ -60,10 +63,21 @@ if (!isset($thinkedit->config['site']['database']['main']))
 				require_once ROOT . '/class/php_parser.class.php';
 				$parser = new php_parser();
 				
-				$parser->save(ROOT . '/config/db.php', $config);
+				if ($parser->save(ROOT . '/config/db.php', $config))
+				{
 				$out['info'] = 'The configuration (in /config/db.php) file has been saved';
 				include_once 'install.template.php';
 				exit;
+				}
+				else
+				{
+						$out['info'] = 'The configuration (in /config/db.php) file cannot be saved, please unprotect it by changing permissions on it (chmod 777 or somthing similar)';
+						
+						$out['content'] = 'If you cannot do this, you can also create the file manually and reload this installation wizard. 
+						<p>A sample config file is provided in /config/db.dist.php';
+						include_once 'install.template.php';
+						exit;
+				}
 		}
 		else
 		{
@@ -85,10 +99,11 @@ if (!isset($thinkedit->config['site']['database']['main']))
 				include_once 'install.template.php';
 				exit;
 		}
-		
 }
 
 
+
+/***************************** DB connection *****************************/
 // Can we connect to DB ?
 // If not, show DB config screen + connect error info
 
@@ -134,7 +149,57 @@ if (!$thinkedit->db->canConnect())
 
 
 
+/*
+TODO todo : url path management
+*/
 
+/*
+
+if (!isset($thinkedit->config['site']['database']['main']))
+{
+		// if form has been sent, update config
+		if ($url->get('db_database'))
+		{
+				$config['site']['database']['main']['host'] = $url->get('db_host');
+				$config['site']['database']['main']['database'] = $url->get('db_database');
+				$config['site']['database']['main']['login'] = $url->get('db_login');
+				$config['site']['database']['main']['password'] = $url->get('db_password');
+				
+				require_once ROOT . '/class/php_parser.class.php';
+				$parser = new php_parser();
+				
+				$parser->save(ROOT . '/config/db.php', $config);
+				$out['info'] = 'The configuration (in /config/db.php) file has been saved';
+				include_once 'install.template.php';
+				exit;
+		}
+		else
+		{
+				$out['title'] = 'Database setup';
+				$out['help'] = 'Enter your database settings here';
+				$out['content'] = '
+				<form method="post">
+				Host : <input type="text" name="db_host" value="localhost"> <br/>
+				Database name : <input type="text" name="db_database"> <br/>
+				Login : <input type="text" name="db_login"> <br/>
+				Password : <input type="text" name="db_password"> <br/>
+				
+				<input type="submit">
+				
+				</form>
+				';
+				
+				// include template :
+				include_once 'install.template.php';
+				exit;
+		}
+		
+}
+*/
+
+
+
+/***************************** DB Schema *****************************/
 // is the DB schema up to date ?
 // if not, show info message about what can be done + button to update schema
 // loop each config table
@@ -226,7 +291,7 @@ if (isset($something_missing))
 
 
 
-
+/***************************** Admin user *****************************/
 // Is there a user in the DB ?
 // if not, show user add screen + button to add a user
 $user = $thinkedit->newRecord('user');
@@ -267,17 +332,66 @@ if ($user->count() == 0)
 }
 
 
+
+/***************************** Root node *****************************/
 // Is there a root Node ?
 // if not, ask for a title for the root node, and add it
+// could be moved to structure.php
+$node = $thinkedit->newNode();
+
+if (!$node->loadRootNode())
+{
+		if ($url->get('te_node_title'))
+		{
+				$page = $thinkedit->newRecord('page');
+				
+				$page->set('title', $url->get('te_node_title'));
+				$page->save();
+				
+				$node = $thinkedit->newNode();
+				
+				$node->saveRootNode($page);
+				
+				
+				
+				
+				$out['info'] = 'The first page has been added !';
+				$out['content'] = '<a href="">Go to next step</a>';
+				include_once 'install.template.php';
+				exit;
+		}
+		else
+		{
+		$out['title'] = 'There is no root node in the DB';
+		$out['help'] = 'Please create your first page. The title can be changed later';
+		$out['content'] = '
+				<form method="post">
+				Title : <input type="text" name="te_node_title" value="Homepage"> <br/>
+				<input type="submit">
+				
+				</form>
+				';
+		
+		// include template :
+		include_once 'install.template.php';
+		exit;
+		}
+}
 
 
+
+/***************************** Something else? *****************************/
 // is there something else to do ?
+
+
+
+/***************************** Congratulation ! *****************************/
 // if no : show congratulation screen (other step did an exit() so this step will be shown if there is nothing to do
 
-$out['title'] = 'Congratulations';
+$out['title'] = 'Congratulation!';
 $out['help'] = 'It seems everything is ready to roll!';
 $out['content'] = '
-You can now start using thinkedit. Go to your root folder and see your site. You can also go to the admin interface.
+You can now start using thinkedit. <a href="../">Go to your root folder and see your site</a>. You can also <a href="../edit/">go to the admin interface</a>.
 Don\'t forget to return here if you change your database schema, your config files or if you upgrade. The process will be the same each time.
 		<p>Currently, it is better to delete the install folder. This is alpha software ;-)</p>		
 

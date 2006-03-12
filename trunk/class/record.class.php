@@ -392,6 +392,10 @@ class record
 						if ($field->getType() <> 'id')
 						{
 								$fields_names[] =  $id;
+						} // but if id is set, we use it (currently only used by node->saveRootNode() but hell...
+						else
+						{
+								
 						}
 				}
 				$sql.= ' ( ';

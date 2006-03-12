@@ -387,9 +387,63 @@ class node2
 		
 		function loadRootNode()
 		{
-				return $this->load(1); // todo : configure or search where parent = 0 or config file for multiple sites in the same tree 
+				
+				$root = $this->record->find(array('parent_id' => 0));
+				
+				if ($root)
+				{
+						return $this->load($root[0]->getId());
+				}
+				else
+				//if ($this->load(1)) // todo : configure or search where parent = 0 or config file for multiple sites in the same tree
+				//{
+				//		return true;
+				//}
+				//else
+				{
+						if ($this->record->count() == 0)
+						{
+								trigger_error('node::loadRootNode() : no nodes found in db. Please create at least one node in admin', E_USER_WARNING);
+								return false;
+						}
+				}
 		}
 		
+		
+		
+		/*
+		Create a root node using object as the content
+		*/
+		function saveRootNode($object)
+		{
+				
+				if ($object->getUid())
+				{
+						$uid = $object->getUid();
+						global $thinkedit;
+						$node = $thinkedit->newNode();
+						$node->set('object_class', $uid['class']);
+						$node->set('object_type', $uid['type']);
+						$node->set('object_id', $uid['id']);
+						$node->set('parent_id', 0);
+						$node->set('id', 1);
+						$results = $node->record->insert();
+						if ($results)
+						{
+								return $node;
+						}
+						else
+						{
+								trigger_error('node::saveRootNode() failed saving root node', E_USER_WARNING);
+								return false;
+						}
+				}
+				else
+				{
+						trigger_error('node::saveRootNode() must be given an object with getUid() method', E_USER_ERROR);
+						return false;
+				}
+		}
 		
 		function isRoot()
 		{

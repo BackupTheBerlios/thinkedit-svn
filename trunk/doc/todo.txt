@@ -1,15 +1,13 @@
 TODO (by order of importance) :
-- simple install
+
 - handling of path separators in *nix and windows. Define a constant, like PATH_SEPARATOR and use it everywhere
 - review all security todo in the code
 - friendly urls (in node class) / and node->loadByPath($path)
-- preview button
 - plugin/hooks system
 - validation of fields, with feedback in the edit UI
 - fields in/out filters (filters before a field is saved to the db and after it is loaded from the db)
 - optimize node->getAllNodes and menu classes
-- nodeOptimized refresh (redirect to the same page) on edit in structure moveup/down
-- locale support
+- locale support in public site / in record class
 - te_translate() for public website (where are public translations stored, in another table with fallback to admin translations?)
 - mysql backticks
 - password reminder (feature disabled in admin until there)
@@ -22,12 +20,8 @@ TODO (by order of importance) :
 
 
 ALMOST THERE :
-- node publish
+- node publish + preview
 - node template
-- db sync tool (sync DB to xml (and vice-versa?))
-- templates for public site (header / footer / template for each content type)
-- tags to use in templates and content : those are defined in /lib/thinkedit/template.lib.php
-  those are functions starting with te_
 - deprecate old stuff / delete unused files
 - separate thinkedit and config better : 
   thinkedit->configuration->getTableList()
@@ -60,9 +54,16 @@ ALMOST THERE :
 
 OPTIMIZATION STUFF :
 - optimize node for single query
-- caching where needed (using pear cache lite)
+- caching where needed (using pear cache lite) (done)
 	
 DONE :
+- nodeOptimized refresh (redirect to the same page) on edit in structure moveup/down
+- simple install (it is, but need some more features to be totally usefull)
+- db sync tool (sync DB to xml (and vice-versa?))
+- templates for public site (header / footer / template for each content type)
+- tags to use in templates and content : those are defined in /lib/thinkedit/template.lib.php
+  those are functions starting with te_
+- preview button
 - list pagination (could be revamped)
 - record delete sql add "limit 1" just in case (like phpmyadmin)
 - node properties in edit mode

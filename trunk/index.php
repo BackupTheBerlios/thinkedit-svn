@@ -65,7 +65,13 @@ else
 		}
 		else
 		{
-				$node->loadRootNode();
+				if ($node->loadRootNode())
+				{
+				}
+				else
+				{
+						die('<h1>There is no root node in the DB, your website is empty, aborting. Go to install and create your first node!</h1>');
+				}
 		}
 		
 		/******************* Content *******************/

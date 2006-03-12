@@ -48,13 +48,16 @@ if ($url->get('node_id'))
 else // we are in root
 {
 		
-		$current_node->loadRootNode();
+		if (!$current_node->loadRootNode())
+		{
+				die('No root node found : go to install and create your first node');
+		}
 		$we_are_root = true;
 }
 
 
 // we define parent node in case of
-if (!$parent_node)
+if (!isset($parent_node) || !$parent_node)
 		{
 				$parent_node = $current_node;
 		}
