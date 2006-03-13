@@ -16,7 +16,8 @@ class config_parser
   // content is added to $this->config
   function config_parser($config_file = 'config.xml')
   {
-    require_once('xml_parser.class.php');
+    trigger_error('deprecated');
+			require_once('xml_parser.class.php');
     $xml_parser = &new xml_parser;
     $config = &$xml_parser->parse_file($config_file);
     $this->config = $config['config'];

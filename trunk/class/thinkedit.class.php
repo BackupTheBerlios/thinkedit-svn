@@ -185,6 +185,36 @@ class thinkedit
 				//die($folder);
 				$complete_config = array();
 				
+				
+				 // this is a bit strange, but it works : a function definition inside a class method : todo : change this
+				 // taken from : http://php.belnet.be/manual/en/function.array-merge-recursive.php#38387
+				function array_merge_2(&$array, &$array_i) {
+						// For each element of the array (key => value):
+						foreach ($array_i as $k => $v) {
+								// If the value itself is an array, the process repeats recursively:
+								if (is_array($v)) {
+										if (!isset($array[$k])) {
+												$array[$k] = array();
+										}
+										array_merge_2($array[$k], $v);
+										
+										// Else, the value is assigned to the current element of the resulting array:
+								} else {
+										if (isset($array[$k]) && is_array($array[$k])) {
+												$array[$k][0] = $v;
+										} else {
+												if (isset($array) && !is_array($array)) {
+														$temp = $array;
+														$array = array();
+														$array[0] = $temp;
+												}
+												$array[$k] = $v;
+										}
+								}
+						}
+				}
+				
+				
 				require_once 'php_parser.class.php';
 				$parser = new php_parser();
 				
@@ -212,7 +242,18 @@ class thinkedit
 												}
 												if (is_array($config))
 												{
-														$complete_config = array_merge_recursive($complete_config, $config);
+														/*
+														echo '<pre>Complete config';
+														echo '<hr>';
+														print_r ($complete_config);
+														*/
+														//$complete_config = array_merge($complete_config, $config);
+														array_merge_2($complete_config, $config);
+														/*
+														echo '<pre>Complete config after';
+														echo '<hr>';
+														print_r ($complete_config);
+														*/
 												}
 										}
 								}
@@ -558,7 +599,7 @@ class thinkedit
 								}
 								else
 								{
-												trigger_error("thinkedit::newField config error, type $type for element $field not supported (class file not found)");
+										trigger_error("thinkedit::newField config error, type $type for element $field not supported (class file not found)");
 								}
 								
 						}
