@@ -64,7 +64,7 @@ class filesystem
 				
 				if (!$this->isValidPath())
 				{
-						trigger_error('filesystem::filesystem() invalid path detected, exiting', E_USER_WARNING);
+						trigger_error($this->getTitle() . ' : filesystem::filesystem() file not found');
 				}
 				
 		}
@@ -74,7 +74,6 @@ class filesystem
 		{
 				$path = realpath($this->getRealPath());
 				$root = realpath($this->root_path);
-				
 				/*
 				echo 'path : ' . $path;
 				echo '<br/>';
@@ -84,8 +83,6 @@ class filesystem
 				
 				// todo security : is it totally safe ?
 				// we check if the path is found within the root
-				
-				
 				if (substr_count($path, $root) == 1)
 				{
 						return true;
@@ -219,7 +216,15 @@ class filesystem
 				}
 		}
 		
+		function getClass()
+		{
+				return 'filesystem';
+		}
 		
+		function getType()
+		{
+				return $this->id;
+		}
 		
 		function getUid()
 		{
@@ -243,13 +248,31 @@ class filesystem
 		
 		function getContent()
 		{
-				if (!$this->isValidPath())
+				if ($this->isValidPath())
 				{
-						trigger_error('filesystem::filesystem() invalid path detected, exiting', E_USER_ERROR);
+						global $thinkedit;
+						if ($thinkedit->user->hasPermission('view', $this))
+						{
+								if ($this->isFolder())
+								{
+										return false;
+								}
+								else
+								{
+										return file_get_contents($this->getRealPath());
+								}
+						}
 				}
-				
-				global $thinkedit;
-				if ($thinkedit->user->hasPermission('view', $this))
+				else
+				{
+						trigger_error($this->getTitle() . ' : file not found / not valid');
+						return false;
+				}
+		}
+		
+		function getSize()
+		{
+				if ($this->isValidPath())
 				{
 						if ($this->isFolder())
 						{
@@ -257,32 +280,72 @@ class filesystem
 						}
 						else
 						{
-								return file_get_contents($this->getRealPath());
+								return $this->formatbytes(filesize($this->getRealPath()));
 						}
+				}
+				else
+				{
+						trigger_error($this->getTitle() . ' : file not found / not valid');
+						return false;
 				}
 		}
 		
 		
+		// from http://php.belnet.be/manual/en/function.filesize.php#62656
+		function    formatbytes($val, $digits = 3, $mode = "SI", $bB = "B")
+		{ //$mode == "SI"|"IEC", $bB == "b"|"B"
+				$si = array("", "k", "M", "G", "T", "P", "E", "Z", "Y");
+				$iec = array("", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi", "Yi");
+				switch(strtoupper($mode)) 
+				{
+						case "SI" : $factor = 1000; $symbols = $si; break;
+						case "IEC" : $factor = 1024; $symbols = $iec; break;
+						default : $factor = 1000; $symbols = $si; break;
+				}
+				switch($bB)
+				{
+						case "b" : $val *= 8; break;
+						default : $bB = "B"; break;
+				}
+				for($i=0;$i<count($symbols)-1 && $val>=$factor;$i++)
+				{
+						$val /= $factor;
+				}
+				$p = strpos($val, ".");
+				if($p !== false && $p > $digits) 
+				{
+						$val = round($val);
+				}
+				elseif($p !== false)
+				{
+						$val = round($val, $digits-$p);
+				}
+				return round($val, $digits) . " " . $symbols[$i] . $bB;
+		}
+		
 		// will return an image class, with thumbnailing abilities
 		function getImage()
 		{
-				if (!$this->isValidPath())
+				if ($this->isValidPath())
 				{
-						trigger_error('filesystem::filesystem() invalid path detected, exiting', E_USER_ERROR);
+						global $thinkedit;
+						if ($thinkedit->user->hasPermission('view', $this))
+						{
+								if ($this->isFolder())
+								{
+										return false;
+								}
+								else
+								{
+										// todo return image object or wathever
+										return file_get_contents($this->getRealPath());
+								}
+						}
 				}
-				
-				global $thinkedit;
-				if ($thinkedit->user->hasPermission('view', $this))
+				else
 				{
-						if ($this->isFolder())
-						{
-								return false;
-						}
-						else
-						{
-								// todo return image object or wathever
-								return file_get_contents($this->getRealPath());
-						}
+						trigger_error($this->getTitle() . ' : file not found / not valid');
+						return false;
 				}
 		}
 		

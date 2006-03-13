@@ -615,6 +615,11 @@ class record
 		}
 		
 		
+		function getClass()
+		{
+				return 'record';
+		}
+		
 		function getType()
 		{
 				return $this->getTableName();

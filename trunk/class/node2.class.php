@@ -343,10 +343,19 @@ class node2
 				return $uid;
 		}
 		
+		
+		// what's the status of this ?
 		function getType()
 		{
 				return 'node';
 		}
+		
+		function getClass()
+		{
+				return 'node';
+		}
+		
+		
 		
 		/*
 		Returns the content object of this node

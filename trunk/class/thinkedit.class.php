@@ -58,66 +58,6 @@ class thinkedit
 		}
 		
 		/************************ Initialisation methods *************************/
-		function parseFolder($folder)
-		{
-				//die($folder);
-				$complete_config = array();
-				
-				require_once 'yml_parser.class.php';
-				$parser = new yml_parser();
-				
-				// test if folder is found
-				if (file_exists($folder))
-				{
-						$ressource = opendir($folder);
-						
-						// find files in this folder
-						while (($file = readdir($ressource)) !== false) 
-						{
-								// debug($file, 'xml_parser::parse_folder files');
-								if (is_file($folder . '/' . $file))
-								{
-										$path_parts = pathinfo($file);
-										
-										// if it's an yaml file, parse it and store thge results in an array
-										if ($path_parts['extension'] == 'yml')
-										{
-												$we_have_config_files = true;
-												$config = $parser->load($folder. '/' . $file);
-												if (!$config)
-												{
-														trigger_error("we have a parsing error with $file");
-												}
-												if (is_array($config))
-												{
-														$complete_config = array_merge_recursive($complete_config, $config);
-												}
-										}
-								}
-						}
-						
-						if (isset($we_have_config_files))
-						{
-								//echo '<pre>';
-								//print_r($complete_config);
-								return $complete_config;
-						}
-						else
-						{
-								trigger_error("thinkedit::parse_folder() no config files found - aborting");
-								die();
-								return false;
-						}
-				}
-				else
-				{
-						trigger_error("thinkedit::parseFolder() : $folder is not found - aborting");
-						die();
-						return false;
-				}
-				
-		}
-		
 		
 		function parseXmlFolder($folder)
 		{
@@ -184,37 +124,6 @@ class thinkedit
 		{
 				//die($folder);
 				$complete_config = array();
-				
-				
-				 // this is a bit strange, but it works : a function definition inside a class method : todo : change this
-				 // taken from : http://php.belnet.be/manual/en/function.array-merge-recursive.php#38387
-				function array_merge_2(&$array, &$array_i) {
-						// For each element of the array (key => value):
-						foreach ($array_i as $k => $v) {
-								// If the value itself is an array, the process repeats recursively:
-								if (is_array($v)) {
-										if (!isset($array[$k])) {
-												$array[$k] = array();
-										}
-										array_merge_2($array[$k], $v);
-										
-										// Else, the value is assigned to the current element of the resulting array:
-								} else {
-										if (isset($array[$k]) && is_array($array[$k])) {
-												$array[$k][0] = $v;
-										} else {
-												if (isset($array) && !is_array($array)) {
-														$temp = $array;
-														$array = array();
-														$array[0] = $temp;
-												}
-												$array[$k] = $v;
-										}
-								}
-						}
-				}
-				
-				
 				require_once 'php_parser.class.php';
 				$parser = new php_parser();
 				
@@ -267,14 +176,14 @@ class thinkedit
 						}
 						else
 						{
-								trigger_error("thinkedit::parseXmlFolder() no config files found - aborting");
+								trigger_error("thinkedit::parsePhpFolder() no config files found - aborting");
 								die();
 								return false;
 						}
 				}
 				else
 				{
-						trigger_error("thinkedit::parseXmlFolder() : $folder is not found - aborting");
+						trigger_error("thinkedit::parsePhpFolder() : $folder is not found - aborting");
 						die();
 						return false;
 				}
@@ -525,8 +434,8 @@ class thinkedit
 				{
 						
 						
-						require_once('node2.class.php');
-						$node = new node2($table);
+						require_once('node.class.php');
+						$node = new node($table);
 						
 						
 						// experimental optimized node class support :
@@ -768,6 +677,37 @@ class thinkedit
 		
 		
 		
+}
+
+
+
+
+// taken from : http://php.belnet.be/manual/en/function.array-merge-recursive.php#38387
+function array_merge_2(&$array, &$array_i) 
+{
+		// For each element of the array (key => value):
+		foreach ($array_i as $k => $v) {
+				// If the value itself is an array, the process repeats recursively:
+				if (is_array($v)) {
+						if (!isset($array[$k])) {
+								$array[$k] = array();
+						}
+						array_merge_2($array[$k], $v);
+						
+						// Else, the value is assigned to the current element of the resulting array:
+				} else {
+						if (isset($array[$k]) && is_array($array[$k])) {
+								$array[$k][0] = $v;
+						} else {
+								if (isset($array) && !is_array($array)) {
+										$temp = $array;
+										$array = array();
+										$array[0] = $temp;
+								}
+								$array[$k] = $v;
+						}
+				}
+		}
 }
 
 
