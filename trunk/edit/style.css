@@ -183,7 +183,7 @@ fieldset
 		border: 1px solid #cccccc;
 		padding: 10px;
 		margin-bottom: 20px;
-		background-color: #eee;
+		background-color: #fff;
 }
 
 
@@ -200,7 +200,14 @@ legend
 		display: block;
 		color: white;
 		padding: 3px;
-		margin-top: 20px;
+		margin: 0;
+}
+
+.field_box
+{
+		/*background-color: #e5e5e5;*/
+		/*padding: 10px;*/
+		margin-bottom: 25px
 }
 
 /***************** Layout ******************/

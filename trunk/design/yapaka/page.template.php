@@ -1,9 +1,3 @@
-<h1><?php echo $content->getTitle() ?></h1>
-
-<p>
-		<?php echo $content->get('intro'); ?>
-</p>
-
 <?php if ($node->hasChildren(true)) : ?>
 		<?php foreach ($node->getChildren(true) as $child): ?>
 		<?php
@@ -18,6 +12,9 @@
 		<a href="<?php echo te_link($child);?>" class="link_intro color100">Entrez &gt;</a>
 		</p>
 		<?php endforeach; ?>
-<?php endif; ?>
+<?php else: ?>
+<h1><?php echo $content->getTitle(); ?></h1>
+<?php endif;?>
+
 
 <?php echo $content->get('body'); ?>

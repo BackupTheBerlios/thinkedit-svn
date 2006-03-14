@@ -18,12 +18,12 @@
 <legend><?php echo ucfirst(translate('content'));?></legend>
 <?php foreach ($out['field'] as $field): ?>
 
-<p>
+<div class="field_box">
 <h1 class="field_title"><?php echo $field['title']; ?></h1>
 <?php echo $field['help']; ?>
 <br/>
 <?php echo $field['ui']; ?>
-</p>
+</div>
 
 <?php endforeach; ?>
 </fieldset>
@@ -37,12 +37,12 @@
 <legend><?php echo ucfirst(translate('metadata'));?></legend>
 <?php foreach ($out['node_field'] as $field): ?>
 
-<p>
+<div class="field_box">
 <h1 class="field_title"><?php echo $field['title']; ?></h1>
 <?php echo $field['help']; ?>
 <br/>
 <?php echo $field['ui']; ?>
-</p>
+</div>
 
 
 <?php endforeach; ?>
