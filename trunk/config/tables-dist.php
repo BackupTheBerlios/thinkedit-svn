@@ -131,4 +131,26 @@ $data['table']['node']['field']['template']['title']['fr']='Modèle de page (pas
 $data['table']['node']['field']['template']['type']='template';
 $data['table']['node']['field']['publish']['title']['fr']='Statut de publication';
 $data['table']['node']['field']['publish']['type']='publish';
+
+/*
+$data['table']['role']['title']['fr']='Roles';
+$data['table']['role']['help']['fr']='Roles des différentes personnes qui utilisent l\'interface';
+$data['table']['role']['use']['main']='true';
+$data['table']['role']['field']['id']['type']='id';
+$data['table']['role']['field']['title']['type'] = 'string';
+$data['table']['role']['field']['title']['is_title']='true';
+
+$data['table']['permission']['title']['fr'] = 'Permissions';
+$data['table']['permission']['help']['fr'] = 'Permissions assignables à un rôle';
+$data['table']['permission']['use']['main']='true';
+$data['table']['permission']['field']['id']['type'] = 'id';
+$data['table']['permission']['field']['title']['type'] = 'string';
+$data['table']['permission']['field']['title']['is_title'] = 'true';
+$data['table']['permission']['field']['action']['type'] = 'string';
+$data['table']['permission']['field']['object_class']['type']='string';
+$data['table']['permission']['field']['object_type']['type']='string';
+$data['table']['permission']['field']['object_id']['type']='text';
+*/
+
+
 ?>
