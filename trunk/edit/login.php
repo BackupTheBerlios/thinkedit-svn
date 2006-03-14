@@ -29,11 +29,7 @@ if ($url->get('login') && $url->get('password'))
 		
 		if ($thinkedit->user->login($login, $password))
 		{
-				//$_SESSION['user'] = $login;
-				
-				
 				// now we redirect to the correct page
-				
 				// first case, we know where to send the user
 				if ($url->get('original_url'))
 				{

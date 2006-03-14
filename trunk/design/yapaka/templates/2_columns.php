@@ -5,6 +5,13 @@
 </p>
 
 <?php if ($node->hasChildren(true)) : ?>
+		
+<?php $count = count($node->getChildren(true)) ?>
+<?php $i=0 ?>
+
+<table border="0" width="100%">
+<tr valign="top">
+<td>
 		<?php foreach ($node->getChildren(true) as $child): ?>
 		<?php
 		$sub_content = $child->getContent();
@@ -17,7 +24,19 @@
 		<br/>
 		<a href="<?php echo te_link($child);?>" class="link_intro color100">Entrez &gt;</a>
 		</p>
+		<?php $i++?>
+		
+		<?php if ($i == ($count / 2)): ?>
+		</td>
+		<td>
+		<?php endif; ?>
 		<?php endforeach; ?>
+
+</td>
+</tr>
+</table>
+		
+		
 <?php endif; ?>
 
 <?php echo $content->get('body'); ?>

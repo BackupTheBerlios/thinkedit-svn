@@ -40,7 +40,8 @@ function te_link($object)
 		}
 		else
 		{
-				trigger_error('te_link : object is not a node, not yet supported');
+				trigger_error('te_link() : object is not a node, not yet supported');
+				return false;
 		}
 }
 

@@ -1,4 +1,6 @@
 <?php
+
+die();
 // xdebug_start_profiling();
 require_once '../thinkedit.init.php';
 

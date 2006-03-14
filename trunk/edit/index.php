@@ -2,6 +2,7 @@
 
 include ('common.inc.php');
 
-redirect('login.php');
+$url = $thinkedit->newUrl();
+$url->redirect('login.php');
 
 ?>

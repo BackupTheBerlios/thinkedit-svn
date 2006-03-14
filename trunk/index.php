@@ -116,7 +116,16 @@ else
 		// find the right template
 		// if  a file called $content->getType .template.php exists, it is used as the template else, we use content.template.php
 		
-		$template_file = ROOT . '/design/'. $design . '/' . $content->getType() . '.template.php';
+		
+		
+		if ($node->get('template'))
+		{
+				$template_file = ROOT . '/design/'. $design . '/templates/' . $node->get('template');
+		}
+		else
+		{
+				$template_file = ROOT . '/design/'. $design . '/' . $content->getType() . '.template.php';
+		}
 		
 		if (!file_exists($template_file))
 		{

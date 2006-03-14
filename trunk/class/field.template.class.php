@@ -4,22 +4,49 @@ require_once 'field.base.class.php';
 
 class field_template extends field
 {
-		/*
-		function renderUI()
+		
+		function renderUI($prefix = false)
 		{
-				return true;
-				if ($this->config['source']['type'] == 'table' && isset($this->config['source']['name']))
+				global $thinkedit;
+				
+				// generate a list of available templates
+				// templates are stored in the /design/**design_name**/templates/ folder
+				$design = $thinkedit->configuration->getDesign();
+				$design_folder = ROOT . '/design/'. $design . '/templates/';
+				if (file_exists($design_folder))
 				{
-						global $thinkedit;
-						$source = $thinkedit->newRecord($this->config['source']['name']);
-						$records = $source->find();
+						$ressource = opendir($design_folder);
 						
-						if ($records)
+						// find files in this folder
+						while (($file = readdir($ressource)) !== false) 
 						{
-								$out='<select name="' . $this->getName() . '">';
-								foreach ($records as $record)
+								if (is_file($design_folder . '/' . $file))
 								{
-										if ($this->get() == $record->getId())
+										$path_parts = pathinfo($file);
+										
+										if ($path_parts['extension'] == 'php')
+										{
+												$filename = basename($file);
+												$templates[] = $filename;
+										}
+								}
+						}
+				}
+				else
+				{
+						$out = translate('template_folder_not_found');
+						return $out;
+				}
+				
+				if (isset($templates) && is_array($templates))
+				{
+						$out='<select name="' . $prefix . $this->getName() . '">';
+						$out .= '<option value="">'. translate('automatic_template') .'</option>';
+						// render dropdown
+						foreach ($templates as $template)
+						{
+								// if template defined in db, selected=selected
+								if ($this->get() == $template)
 										{
 												$selected = ' selected="selected" ';
 										}
@@ -27,31 +54,21 @@ class field_template extends field
 										{
 												$selected = '';
 										}
-										$out .= '<option value="' . $record->getId() . '"' . $selected . '>';
 										
-										$out .= $record->getTitle() . ' ';
-										$out .= '</option>';
-								}
-								
-								$out .='</select>';
-								return $out;
-								
+								$out .= '<option value="' . $template . '"' . $selected . '>';
+								$out .= $template;
+								$out .= '</option>';
 						}
-						else
-						{
-								return translate('source_table_is_empty');
-						}
+						$out .= '</select>';
 						
+						
+						// returns
 				}
 				else
 				{
-						trigger_error('field_lookup::renderUI() source type not defined in config or unknown source type, must be a valid table for now');
-						return false;
+						$out = translate('custom_templates_not_found');
 				}
-				
+				return $out;
 		}
-		*/
-		
-		
 }
 ?>

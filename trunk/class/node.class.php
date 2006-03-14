@@ -26,7 +26,7 @@ Too early optimisation is the root of all evil
 GENERAL TODO : OPTIMIZE THIS
 
 */
-class node2
+class node
 {
 		
 		/**
@@ -34,7 +34,7 @@ class node2
 		*
 		*
 		**/
-		function node2($table = 'node')
+		function node($table = 'node')
 		{
 				// init a record with a tablename = 'node'
 				global $thinkedit;

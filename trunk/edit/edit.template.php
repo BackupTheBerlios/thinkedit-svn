@@ -19,7 +19,8 @@
 <?php foreach ($out['field'] as $field): ?>
 
 <p>
-<?php echo $field['title']; ?> :
+<h1 class="field_title"><?php echo $field['title']; ?></h1>
+<?php echo $field['help']; ?>
 <br/>
 <?php echo $field['ui']; ?>
 </p>
@@ -37,10 +38,12 @@
 <?php foreach ($out['node_field'] as $field): ?>
 
 <p>
-<?php echo $field['title']; ?> :
+<h1 class="field_title"><?php echo $field['title']; ?></h1>
+<?php echo $field['help']; ?>
 <br/>
 <?php echo $field['ui']; ?>
 </p>
+
 
 <?php endforeach; ?>
 </fieldset>
@@ -55,7 +58,7 @@
 
 
 
-<iframe src="<?php echo $out['relation']['url']?>" name="relation" id="relation" width="600" height="40" frameborder="0"></iframe>
+<iframe src="<?php echo $out['relation']['url']?>" name="relation" id="relation" width="600" height="20" frameborder="0"></iframe>
 
 </fieldset>
 <?php endif; ?>

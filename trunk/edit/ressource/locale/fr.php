@@ -76,7 +76,7 @@ $data['node_empty']='Emplacement vide';
 $data['you_are_here']='Vous êtes ici';
 $data['node_add_new']='Ajouter...';
 $data['save_and_return_to_node_button']='Enregistrer et retourner à la structure';
-$data['cannot_delete_root_node']='Il n\'est pas possible d\'effacer le noeud \\\\\\\"racine\\\\\\\" (principal)';
+$data['cannot_delete_root_node']='Il n\'est pas possible d\'effacer le noeud \\\\\\\\\\\\\"racine\\\\\\\\\\\\\" (principal)';
 $data['node_deleted_successfully']='Le noeud a bien été effacé';
 $data['node_not_deleted']='Le noeud n\'a pas été effacé';
 $data['confirm_node_delete']='Voulez vous vraiment effacer ce noeud (=emplacement) ?';
@@ -100,6 +100,8 @@ $data['publish']='Publier';
 $data['add_relation']='Ajouter';
 $data['headers_sent_help']='Une erreur est survenue avant que le système ait pu faire une redirection. Faites-là manuellement en cliquant sur le lien ci après. (et informez les développeurs!)';
 $data['nothing_in_list']='Rien dans la liste';
-
+$data['custom_templates_not_found']='Pas de modèle de page trouvé';
+$data['automatic_template']='Choisir automatiquement';
+$data['template_folder_not_found']='Le dossier de modèles de page n\'a pas été trouvé';
 
 ?>

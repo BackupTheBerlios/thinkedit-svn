@@ -193,6 +193,16 @@ legend
 		font-weight : bold;
 }
 
+.field_title
+{
+		font-size: 12px;
+		background-color: #3999FC;
+		display: block;
+		color: white;
+		padding: 3px;
+		margin-top: 20px;
+}
+
 /***************** Layout ******************/
 
 div

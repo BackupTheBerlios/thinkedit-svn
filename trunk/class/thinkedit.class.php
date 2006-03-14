@@ -27,10 +27,11 @@ class thinkedit
 				// responsabilities : find and load a correct config folder.
 				
 				// 1. find a config folder
+				// it is not required to check if the config folder is within doc root or not, because config files are stored in php files not readable from ext
 				if (is_dir(dirname(__FILE__) . '/config/'))
 				{
 						// todo security : check if the config folder is really out of the server doc root
-						trigger_error('config folder is still within the doc root, move it outside docroot', E_USER_WARNING);
+						//trigger_error('config folder is still within the doc root, move it outside docroot', E_USER_WARNING);
 						$this->config_folder = realpath(dirname(__FILE__) . '/config/');
 				}
 				elseif (is_dir(dirname(__FILE__) . '/../config/'))
@@ -41,6 +42,7 @@ class thinkedit
 				{
 						$this->config_folder = realpath(dirname(__FILE__) . '/../../config/');
 				}
+				
 				else
 				{
 						die('thinkedit::thinkedit() config folder not found. This is a fatal error, aborting');
@@ -432,18 +434,13 @@ class thinkedit
 				// currently the base module is used
 				if ($table<>'')
 				{
-						
-						
 						require_once('node.class.php');
 						$node = new node($table);
-						
-						
 						// experimental optimized node class support :
 						/*
 						require_once('node_cached.class.php');
 						$node = new node_cached($table);
 						*/
-						
 						if ($id)
 						{
 								$node->setId($id);
