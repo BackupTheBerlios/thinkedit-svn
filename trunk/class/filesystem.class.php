@@ -450,6 +450,34 @@ class filesystem
 		}
 		
 		
+		/*
+		returns a full path to an icon representing this object
+		*/
+		function getThumbnail($parameters = false)
+		{
+				if ($this->isImage())
+				{
+						global $thinkedit;
+						
+						$url = $thinkedit->newUrl();
+						$url->set('src', $this->getRealPath());
+						if (is_array($parameters))
+						{
+								foreach ($parameters as $key=>$value)
+								{
+										$url->set($key, $value);
+								}
+						}
+						return $url->render(ROOT_URL . '/lib/phpthumb/phpThumb.php'); // todo custom thumbnail width / height
+				}
+				else
+				{
+						return ROOT_URL . '/edit/ressource/image/icon/text-x-generic.png';
+				}
+		}
+		
+		
+		
 		function load()
 		{
 				return true;
