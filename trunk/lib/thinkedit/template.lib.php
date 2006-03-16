@@ -19,6 +19,19 @@ function te_title()
 		return $content->getTitle();
 }
 
+
+/*
+Returns a short version of the string passed with [...] apended to it if the stirng is longer than size
+*/
+function te_short($string, $size)
+{
+		if (strlen($string) > $size)
+		{
+				return (substr($string, 0, $size -4) . '[...]');
+		}
+		return $string;
+}
+
 function te_design()
 {
 		global $thinkedit;

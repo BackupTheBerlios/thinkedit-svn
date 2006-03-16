@@ -81,7 +81,7 @@ elseif (is_array($my_parents))
 				<?php if ($menuitem->isEnd()): ?>
 					<?php echo $menuitem->getTitle();?>
 				<?php else: ?>
-					<a href="<?php echo $menuitem->getUrl();?>"><?php echo $menuitem->getTitle();?></a>&gt;
+					<a href="<?php echo $menuitem->getUrl();?>"><?php echo te_short($menuitem->getTitle(), 20);?></a>&gt;
 				<?php endif; ?>
 		<?php endforeach; ?>
 <?php endif; ?>
@@ -96,6 +96,9 @@ elseif (is_array($my_parents))
 </tr>
 <tr height="12">
 <td align="left" valign="top" width="717">
+
+
+<?php /************************ start 3 columns table **********************/ ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td align="left" valign="top" width="168">
@@ -111,54 +114,7 @@ elseif (is_array($my_parents))
 <td>
 
 
-
-<?php $context_menu_items = $context_menu->getArray()?>
-<?php if ($context_menu_items): ?>
-<?php foreach ($context_menu_items as $menuitem): ?>
-<?php
-if ($menuitem->getLevel() == 3)
-{
-		$class = 'navigation bgcolor50';
-}
-elseif ($menuitem->getLevel() == 4)
-{
-		$class = 'navigation bgcolor25';
-}
-else
-{
-		$class = 'navigation bgcolor100';
-}
-
-if ($menuitem->isCurrent())
-{
-		$class .= " current_navigation";
-}
-?>
-<a class="<?php echo $class; ?>" href="<?php echo $menuitem->getUrl();?>">
-<?php if ($menuitem->node->hasChildren()): ?>
-
-		<?php if ($menuitem->node->isAncestorOf($node) || $menuitem->isCurrent() ): ?>
-		<img src="<?php echo te_design() ?>/sources/minus.gif" border="0px">
-		<?php else: ?>
-		<img src="<?php echo te_design() ?>/sources/plus.gif" border="0px">
-		<?php endif;?>
-
-<?php else: ?>
-<img src="<?php echo te_design() ?>/sources/empty.gif" border="0px">
-<?php endif;?>
-
-
-
-<?php echo $menuitem->getTitle();?>
-
-
-
-
-</a>
-
-<?php endforeach; ?>
-<?php endif; ?>
-
+<?php include_once 'context_menu.php' ?>
 
 
 </td>
@@ -169,33 +125,15 @@ if ($menuitem->isCurrent())
 <td align="left" valign="top">
 
 <?php if ($node->getLevel() == 4): ?>
-
 <?php if (isset($sibling_menu)) : ?>
 <select size="1" onChange="jump('parent',this,0)">
 <option value="#">Choisissez dans le menu ci-dessous:</option>
 
 <?php foreach ($sibling_menu->getArray() as $sibling_menu_item) : ?>
-<option value="<?php echo $sibling_menu_item->getUrl(); ?>" <?php if ($sibling_menu_item->isCurrent()): ?>selected="selected"<?php endif; ?>><?php echo $sibling_menu_item->getTitle()?></option>
+<option value="<?php echo $sibling_menu_item->getUrl(); ?>" <?php if ($sibling_menu_item->isCurrent()): ?>selected="selected"<?php endif; ?>><?php echo te_short($sibling_menu_item->getTitle(), 40)?></option>
 <?php endforeach; ?>
 </select>
 <?php endif; ?>
-
-<!--
-<?php if (isset($sibling_menu)) : ?>
-<ul>
-<?php foreach ($sibling_menu->getArray() as $sibling_menu_item) : ?>
-<li>
-<?php if ($sibling_menu_item->isCurrent()): ?>
-<?php echo $sibling_menu_item->getTitle()?>
-<?php else: ?>
-<a class="" href="<?php echo $sibling_menu_item->getUrl(); ?>"><?php echo $sibling_menu_item->getTitle()?></a>
-<?php endif; ?>
-</li>
-<?php endforeach; ?>
-</ul>
-<?php endif; ?>
--->
-
 <?php endif; ?>
 
 

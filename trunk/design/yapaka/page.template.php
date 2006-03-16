@@ -14,15 +14,10 @@
 				</div>
 		<?php endforeach; ?>
 <?php else: ?>
-		<div class="content">
-		<div class="content_text">
 		<div class="content_title">
 		<?php echo $content->getTitle(); ?>
 		</div>
 		<?php echo $content->get('body'); ?>
-		</div>
-		</div>
-		
 <?php endif;?>
 
 

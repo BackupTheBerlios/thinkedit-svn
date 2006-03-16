@@ -1,4 +1,4 @@
-<h1><?php echo $content->getTitle() ?></h1>
+<div class="content_title"><?php echo $content->getTitle() ?></div>
 
 
 <p style="float: right; padding: 20px">

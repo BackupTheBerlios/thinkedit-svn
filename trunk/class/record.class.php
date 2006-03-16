@@ -625,7 +625,7 @@ class record
 				return $this->getTableName();
 		}
 		
-		function getTitle()
+		function getTitle($size = false)
 		{
 				if (!$this->is_loaded)
 				{
