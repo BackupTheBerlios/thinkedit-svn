@@ -382,7 +382,9 @@ if (!$node->loadRootNode())
 
 /***************************** Something else? *****************************/
 // is there something else to do ?
+$node = $thinkedit->newNode();
 
+$node->rebuild();
 
 
 /***************************** Congratulation ! *****************************/

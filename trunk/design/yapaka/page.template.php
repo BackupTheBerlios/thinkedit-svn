@@ -1,3 +1,7 @@
+<?php include 'content_header.php'; ?>
+
+
+
 <?php if ($node->hasChildren(true)) : ?>
 		<?php foreach ($node->getChildren(true) as $child): ?>
 				<?php
@@ -17,10 +21,11 @@
 		<div class="content_title">
 		<?php echo $content->getTitle(); ?>
 		</div>
+		<div class="content_text">
 		<?php echo $content->get('body'); ?>
+		</div>
 <?php endif;?>
 
-
-
+<?php include 'content_footer.php'; ?>
 
 

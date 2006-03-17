@@ -22,8 +22,11 @@ class menuitem
 		
 		function getTitle()
 		{
+				return $this->node->getTitle(); // . ' (' . $this->node->getLevel() . ')';
+				/*
 				$this->content->load();
 				return $this->content->getTitle(); // . ' (' . $this->node->getLevel() . ')';
+				*/
 		}
 		
 		

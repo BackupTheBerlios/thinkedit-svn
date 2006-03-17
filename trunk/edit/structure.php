@@ -55,12 +55,18 @@ else // we are in root
 		$we_are_root = true;
 }
 
-
 // we define parent node in case of
 if (!isset($parent_node) || !$parent_node)
 		{
 				$parent_node = $current_node;
 		}
+		else
+		{
+				$url = $thinkedit->newUrl();
+				$url->set('node_id', $parent_node->getId());
+				$out['go_up_url'] = $url->render();
+		}
+
 		
 		
 		

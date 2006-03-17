@@ -43,6 +43,10 @@
 
 <?php //if (!$thinkedit->outputcache->start('interface_node_' . $current_node->getId())): ?>
 
+<?php if (isset($out['go_up_url'])): ?>
+<a class="" style="margin-bottom: 30px;" href="<?php echo $out['go_up_url'] ?>"><?php echo translate('go_up')?></a>
+<?php endif;?>
+
 <?php if (isset($out['nodes'])) : ?>
 
 <table class="power_table" border="0" cellspacing="0" cellpadding="0">

@@ -220,7 +220,16 @@ $url = new url();
 if ($url->get('mode') == 'edit_node' or $url->get('mode') == 'new_node')
 {
 		$out['breadcrumb'][1]['title'] = translate('structure');
-		$url->keep('node_id');
+		
+		if ($parent = $node->getParent())
+		{
+				$url->set('node_id', $parent->getId());
+		}
+		else
+		{
+				$url->set('node_id', $node->getId());
+				//	$url->keep('node_id');
+		}
 		$out['breadcrumb'][1]['url'] = $url->render('structure.php');
 }
 else

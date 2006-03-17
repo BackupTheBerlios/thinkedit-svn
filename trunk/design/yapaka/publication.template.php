@@ -1,5 +1,6 @@
-<div class="content_title"><?php echo $content->getTitle() ?></div>
+<?php include 'content_header.php'; ?>
 
+<div class="content_title"><?php echo $content->getTitle() ?></div>
 
 <p style="float: right; padding: 20px">
 		<?php
@@ -21,4 +22,4 @@
 </p>
 
 
-
+<?php include 'content_footer.php'; ?>

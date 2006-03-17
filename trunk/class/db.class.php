@@ -136,7 +136,7 @@ class db
 		*/
 		function query($sql)
 		{
-				echo $sql . '<br/>';
+				//echo $sql . '<br/>';
 				$this->connect();
 				global $total_queries;
 				$total_queries++;
@@ -144,6 +144,9 @@ class db
 				{
 						trigger_error('don\'t use query() when selecting, you won\'t have any results back');
 				}
+				
+				global $db_debug;
+				$db_debug[] = $sql;
 				
 				// one line debugging tool :-)
 				// debug($sql, 'db:query()');
@@ -179,7 +182,6 @@ class db
 		
 		function select($sql)
 		{
-				echo $sql . '<br/>';
 				global $db_cache;
 				
 				$hash =  sha1($sql);
@@ -192,6 +194,10 @@ class db
 				}
 				else
 				{
+						global $db_debug;
+						$db_debug[] = $sql;
+						
+						
 						// ultra lazy connect : it means that we can still use a website if a query is in the cache and if the db is down
 						$this->connect();
 						/*

@@ -150,6 +150,13 @@ class field
 		
 		function isEmpty()
 		{
+				if ($this->data == '0')
+				{
+						return false;
+				}
+				
+				
+				
 				if (empty($this->data))
 				{
 						return true;

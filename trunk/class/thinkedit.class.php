@@ -332,7 +332,7 @@ class thinkedit
 		/************************* Factory methods **************************/
 		
 		// based on uid, will instantiate a class
-		function newObject($uid)
+		function newObject($uid, $data = false)
 		{
 				if (!isset($uid['class']))
 				{
@@ -348,7 +348,7 @@ class thinkedit
 				{
 						if (isset($uid['id']))
 						{
-								return $this->newRecord($uid['type'], $uid['id']);
+								return $this->newRecord($uid['type'], $uid['id'], $data);
 						}
 						else
 						{
@@ -360,7 +360,7 @@ class thinkedit
 				{
 						if (isset($uid['id']))
 						{
-								return $this->newNode($uid['type'], $uid['id']);
+								return $this->newNode($uid['type'], $uid['id'], $data);
 						}
 						else
 						{
@@ -405,7 +405,7 @@ class thinkedit
 		* If no id given, instantiate a new empty module of type, using the right class for this module type
 		*
 		**/
-		function newRecord($table, $id=false)
+		function newRecord($table, $id=false, $data = false)
 		{
 				// will include the right module class if needed, for example, specialized modules like ftp datasource
 				// currently the base module is used
@@ -418,6 +418,10 @@ class thinkedit
 						{
 								$record->set('id', $id);
 						}
+						if ($data)
+						{
+								$record->loadByArray($data);
+						}
 						return $record;
 				}
 				else
@@ -428,7 +432,7 @@ class thinkedit
 		
 		
 		
-		function newNode($table = "node", $id = false)
+		function newNode($table = "node", $id = false, $data = false)
 		{
 				// will include the right module class if needed, for example, specialized modules like ftp datasource
 				// currently the base module is used
@@ -445,6 +449,12 @@ class thinkedit
 						{
 								$node->setId($id);
 						}
+						// if data is passed, we assign it to the node, and assume it is loaded. This is an optimization
+						if ($data)
+						{
+								$node->loadByArray($data);
+						}
+						
 						return $node;
 				}
 				else

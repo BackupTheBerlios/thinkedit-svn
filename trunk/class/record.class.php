@@ -152,6 +152,29 @@ class record
 		}
 		
 		
+		/*
+		given an array, the record is filled with the data, as long as the array contains all the fields of this record
+		if it is the case, $this->is_loaded = true, and further request for $this->load() won't do an sql query 
+		
+		This is an optimization
+		*/
+		function loadByArray($data)
+		{
+				foreach ($this->field as $field)
+				{
+						if (array_key_exists($field->getId(), $data))
+						{
+								$this->set($field->getId(), $data[$field->getId()]);
+						}
+						else
+						{
+								return false;
+						}
+				}
+				$this->is_loaded = true;
+				return true;
+		}
+		
 		function find($where = false, $order = false, $limit = false)
 		{
 				/*
@@ -545,8 +568,6 @@ class record
 		
 		function getArray()
 		{
-				die ('deprecated');
-				
 				foreach ($this->field as $field)
 				{
 						$data[$field->getId()] = $field->get();
@@ -554,20 +575,11 @@ class record
 				return $data;
 		}
 		
-		function getNiceArray()
-		{
-				die ('deprecated');
-				foreach ($this->field as $field)
-				{
-						$data[$field->getId()] = $field->getNice();
-				}
-				return $data;
-		}
+		
+		
 		
 		function getId()
 		{
-				//die ('deprecated, use getUid() instead');
-				
 				foreach ($this->field as $field)
 				{
 						if ($field->getType() == 'id' || $field->getType() == 'stringid')
@@ -582,8 +594,6 @@ class record
 		
 		function getIdField()
 		{
-				//die ('deprecated, use getUid() instead');
-				
 				foreach ($this->field as $field)
 				{
 						if ($field->getType() == 'id' || $field->getType() == 'stringid')
@@ -598,7 +608,6 @@ class record
 		// very important concept
 		function getUid()
 		{
-				
 				$data['class'] = 'record';
 				$data['type'] = $this->getTableName();
 				// builds an array of all primary keys

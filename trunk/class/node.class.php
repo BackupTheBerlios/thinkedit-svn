@@ -101,7 +101,7 @@ class node
 				$parent = $this->record->find(array('id'=>$this->record->get('parent_id')) );
 				if ($parent)
 				{
-						$parent_node = $thinkedit->newNode($this->table, $parent[0]->get('id'));
+						$parent_node = $thinkedit->newNode($this->table, $parent[0]->get('id'), $parent[0]->getArray());
 						return $parent_node;
 				}
 				else
@@ -136,7 +136,9 @@ class node
 				}
 				else
 				{
-						return $this->record->delete();
+						$result = $this->record->delete();
+						$this->rebuild();
+						return $result;
 				}
 		}
 		
@@ -163,12 +165,43 @@ class node
 		}
 		
 		
-		function save()
+		function loadByArray($data)
 		{
-				return $this->record->save();
+				//print_r($data);
+				//echo '<hr>';
+				foreach ($this->record->field as $field)
+				{
+						//echo $field->getId();
+						if (array_key_exists($field->getId(), $data))
+						{
+								$this->set($field->getId(), $data[$field->getId()]);
+						}
+						else
+						{
+								//echo '  bad  ';
+								return false;
+						}
+				}
+				$this->is_loaded = true;
+				//echo 'load by array ok';
+				return true;
 		}
 		
 		
+		
+		function save()
+		{
+				// todo, we must be safe with this !
+				if ($this->get('parent_id') > -1)
+				{
+						return $this->record->save();
+				}
+				else
+				{
+						trigger_error('node::save() cannot save a node without parent id defined');
+						return false;
+				}
+		}
 		
 		
 		// rebuilds nested set tree from adjacency list tree.
@@ -194,7 +227,10 @@ class node
 				
 				// we've got the left value, and now that we've processed
 				// the children of this node we also know the right value
-								
+				
+				/***************** big todo ***************/
+				// todo : update node level as well :
+				
 				$sql = 'UPDATE '. $this->table .' SET left_id='. $left .', right_id='.	$right .' WHERE id='. $parent_id;
 				
 				$thinkedit->db->query($sql);
@@ -266,8 +302,24 @@ class node
 		**/
 		function hasChildren($only_published = false)
 		{
-				// a node has children if any node has parent_id = this node id
-				if ($this->getChildren($only_published) )
+				if ($only_published)
+				{
+						if ($this->getChildren($only_published))
+						{
+								return true;
+						}
+						else
+						{
+								return false;
+						}
+				}
+				$this->load();
+				$right = $this->get('right_id');
+				$left = $this->get('left_id');
+				
+				$childs = ($right - $left - 1) / 2;
+				
+				if ($childs > 0)
 				{
 						return true;
 				}
@@ -300,7 +352,7 @@ class node
 						global $thinkedit;
 						foreach ($children as $child)
 						{
-								$childs[] = $thinkedit->newNode($this->table, $child->get('id'));
+								$childs[] = $thinkedit->newNode($this->table, $child->get('id'), $child->getArray());
 						}
 						return $childs;
 				}
@@ -330,7 +382,7 @@ class node
 				{
 						foreach ($results as $result)
 						{
-								$nodes[] = $thinkedit->newNode($this->table, $result['id']);
+								$nodes[] = $thinkedit->newNode($this->table, $result['id'], $result);
 						}
 						return $nodes;
 						
@@ -348,7 +400,29 @@ class node
 		*/
 		function getFamilly()
 		{
-				trigger_error('todo');
+				global $thinkedit;
+				$this->load();
+				$parent_id = $this->get('parent_id');
+				$id = $this->get('id');
+				// this is critical function, so we use direct sql to be faster (no use of the record class here)
+				// todo : check if it's faster this way
+				$sql = "SELECT * FROM {$this->table} WHERE id = {$parent_id} or parent_id = {$parent_id} or parent_id = {$id} ORDER BY left_id ASC;";
+				
+				$results = $thinkedit->db->select($sql);
+				
+				if (is_array($results))
+				{
+						foreach ($results as $result)
+						{
+								$nodes[] = $thinkedit->newNode($this->table, $result['id'], $result);
+						}
+						return $nodes;
+						
+				}
+				else
+				{
+						return false;
+				}
 		}
 		
 		function getSiblings($only_published = false)
@@ -369,7 +443,7 @@ class node
 						global $thinkedit;
 						foreach ($siblings as $sibling)
 						{
-								$siblings_node[] = $thinkedit->newNode($this->table, $sibling->get('id'));
+								$siblings_node[] = $thinkedit->newNode($this->table, $sibling->get('id'), $sibling);
 						}
 						return $siblings_node;
 				}
@@ -438,27 +512,50 @@ class node
 		*/
 		function getContent()
 		{
+				
 				global $thinkedit;
 				$this->load();
 				$uid['class'] = $this->get('object_class');
 				$uid['type'] = $this->get('object_type');
 				$uid['id'] = $this->get('object_id');
-				return $thinkedit->newObject($uid);
+				
+				////
+				$object = $thinkedit->newObject($uid);
+				return $object;
+				////
+				
+				
+				// todo
+				/// this is an optimization. Must be turned on, later...
+				if ($this->get('cache') <> '')
+				{
+						$data = unserialize($this->get('cache'));
+						//print_r($data);
+						return $thinkedit->newObject($uid, $data);
+				}
+				else
+				{
+						$object = $thinkedit->newObject($uid);
+						$object->load();
+						if ($data = $object->getArray())
+						{
+								$cache = serialize($data);
+								$this->set('cache', $cache);
+								$this->save();
+						}
+						return $object;
+				}
+				
+				
 		}
 		
 		function getTitle()
 		{
-				//return 'test';
-				
+				$this->load();
 				$content = $this->getContent();
 				$content->load();
-				return $content->getTitle();
-				
-				//return ucfirst(translate('node')) . ' : ' . $content->getTitle();
-				
-				/*
-				return ucfirst(translate('node')) . ' : ' . $this->getPath();
-				*/
+				$title = $content->getTitle();
+				return $title;
 		}
 		
 		
@@ -544,25 +641,23 @@ class node
 		
 		function getParentUntilRoot()
 		{
-				// echo 'level : no <br>';
-				$temp = $this;
-				$parents = false;
-				$i = 0;
-				while ($temp->hasParent())
+				global $thinkedit;
+				$this->load();
+				$left_id = $this->get('left_id');
+				$right_id = $this->get('right_id');
+				
+				$sql = "SELECT * FROM {$this->table} WHERE left_id < {$left_id} AND right_id > {$right_id} ORDER BY level desc";
+				
+				$results = $thinkedit->db->select($sql);
+				
+				if (is_array($results))
 				{
-						
-						$temp = $temp->getParent();
-						$parents[] = $temp;
-						$i++;
-						if ($i > 20) // limit depth to 20 to avoid infinite loop, you never know what can go wrong
+						foreach ($results as $result)
 						{
-								break;
+								$nodes[] = $thinkedit->newNode($this->table, $result['id'], $result);
 						}
-				}
-				if (is_array($parents))
-				{
+						return $nodes;
 						
-						return $parents;
 				}
 				else
 				{
@@ -629,14 +724,19 @@ class node
 		
 		function getLevel()
 		{
-				if (!$this->record->field['level']->isEmpty())
+				if ($this->get('parent_id') == 0)
 				{
-						//echo 'level : ' . $this->get('level') . '<br>';
+						return 0;
+				}
+				
+				$this->load();
+				if ($this->get('level'))
+				{
 						return $this->get('level');
 				}
 				else
 				{
-						$parents = $this->getParentUntilRoot(); // todo : optimize!
+						$parents = $this->getParentUntilRoot();
 						if ($parents)
 						{
 								$level = count($parents);
@@ -720,98 +820,6 @@ class node
 				
 				return $items;
 		}
-		
-		
-		
-		function getAllNodes($node_id = false, $level = false, $out = false)
-		{
-				trigger_error('node::getAllNodes() is too slow, need to find a workaround');
-				return $this->getAllNodesCached();
-				// or
-				// return $this->getAllNodesUnCached();
-				
-		}
-		
-		
-		/*
-		Return a list of all nodes in the right order (from $this node to last leaf)
-		*/
-		function getAllNodesUnCached($node_id = false, $level = false, $out = false)
-		{
-				if (!$level)
-				{
-						$level = 0;
-				}
-				global $thinkedit;
-				$node = $thinkedit->newNode();
-				
-				if ($node_id)
-				{
-						$node->load($node_id);
-				}
-				else
-				{
-						$node = $this;
-						$this->node_list[] = $node;
-						$this->node_list_id[] = $node->getId();
-						
-				}
-				debug($node);
-				if ($node->hasChildren())
-				{
-						$children = $node->getChildren();
-						// display each child
-						foreach  ($children as $child)
-						{
-								$this->node_list[] = $child;
-								$this->node_list_id[] = $child->getId();
-								if ($level > 20)
-								{
-										trigger_error('menu::displayChildren() level higher than 20, infinite loop ?');
-								}
-								else
-								{
-										$this->getAllNodes($child->getId(), $level+1, $out);
-								}
-						}
-				}
-				return $this->node_list;
-		}
-		
-		
-		
-		function getAllNodesCached($node_id = false)
-		{
-				// load form cache...
-				global $thinkedit;
-				$cache_id = 'getAllNodes_' . $node_id; 
-				if ($thinkedit->cache->get($cache_id))
-				{
-						$node_list_id = $thinkedit->cache->get($cache_id);
-						
-				}
-				else // ... or compute
-				{
-						$this->getAllNodesUnCached();
-						$thinkedit->cache->save($this->node_list_id, $cache_id);
-						$node_list_id = $this->node_list_id;
-				}
-				
-				// instantiate and return list
-				foreach ($node_list_id as $node_id)
-				{
-						$node = $thinkedit->newNode();
-						$node->setId($node_id);
-						$node_list[] = $node;
-				}
-				
-				return $node_list;
-		}
-		
-		
-		
-		
-		
 		
 		
 		function getOrder()
@@ -1027,7 +1035,6 @@ class node
 						return true;
 				}
 		}
-		
 		
 		
 		function publish()

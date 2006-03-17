@@ -1,13 +1,3 @@
-
-<?php include('relations.template.php'); ?>
-
-
-</td>
-													<td align="left" valign="top" width="168">
-													<?php include('image_relations.template.php'); ?>
-													</td>
-												</tr>
-											</table>
 										</td>
 									</tr>
 									<tr height="12">

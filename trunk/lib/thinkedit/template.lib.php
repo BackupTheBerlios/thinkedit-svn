@@ -82,6 +82,16 @@ function te_admin_toolbox()
 				$url->set('clear_cache', 1);
 				$out .= '<br/>';
 				$out .= '<a href="' . $url->render() . '">Clear cache</a>';
+				
+				global $db_debug;
+				if (isset($db_debug))
+				{
+						foreach ($db_debug as $sql)
+						{
+								$out .= "<li>{$sql}</li>";
+						}
+				}
+				
 				$out .= '</div>';
 				return $out;
 		}

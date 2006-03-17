@@ -98,42 +98,4 @@ elseif (is_array($my_parents))
 <td align="left" valign="top" width="717">
 
 
-<?php /************************ start 3 columns table **********************/ ?>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td align="left" valign="top" width="168">
-<table width="168" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td>
-<img src="<?php echo te_design(); ?>/sources/maman.jpg" alt="" width="168" height="118" border="0"></td>
-</tr>
-<tr height="15">
-<td height="15"></td>
-</tr>
-<tr>
-<td>
-
-
-<?php include_once 'context_menu.php' ?>
-
-
-</td>
-</tr>
-</table>
-</td>
-<td align="left" valign="top" width="15"></td>
-<td align="left" valign="top">
-
-<?php if ($node->getLevel() == 4): ?>
-<?php if (isset($sibling_menu)) : ?>
-<select size="1" onChange="jump('parent',this,0)">
-<option value="#">Choisissez dans le menu ci-dessous:</option>
-
-<?php foreach ($sibling_menu->getArray() as $sibling_menu_item) : ?>
-<option value="<?php echo $sibling_menu_item->getUrl(); ?>" <?php if ($sibling_menu_item->isCurrent()): ?>selected="selected"<?php endif; ?>><?php echo te_short($sibling_menu_item->getTitle(), 40)?></option>
-<?php endforeach; ?>
-</select>
-<?php endif; ?>
-<?php endif; ?>
-
 

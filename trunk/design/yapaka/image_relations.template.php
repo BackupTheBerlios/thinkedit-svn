@@ -3,7 +3,6 @@ $relations = $relation->getRelations($content);
 ?>
 
 <?php if (is_array($relations)): ?>
-		<div class="content_images">
 		<?php foreach($relations as $my_relation): ?>
 				<?php if ($my_relation->getClass() == 'filesystem'): ?>
 						<?php if ($my_relation->isImage()): ?>
@@ -12,5 +11,4 @@ $relations = $relation->getRelations($content);
 						<?php endif; ?>
 				<?php endif; ?>
 		<?php endforeach; ?>
-		</div>
 <?php endif; ?>
