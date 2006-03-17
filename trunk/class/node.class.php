@@ -520,8 +520,10 @@ class node
 				$uid['id'] = $this->get('object_id');
 				
 				////
+				
 				$object = $thinkedit->newObject($uid);
 				return $object;
+				
 				////
 				
 				
@@ -577,16 +579,16 @@ class node
 						return $this->load($root[0]->getId());
 				}
 				else
-				//if ($this->load(1)) // todo : configure or search where parent = 0 or config file for multiple sites in the same tree
-				//{
-				//		return true;
-				//}
-				//else
 				{
 						if ($this->record->count() == 0)
 						{
 								trigger_error('node::loadRootNode() : no nodes found in db. Please create at least one node in admin', E_USER_WARNING);
 								return false;
+						}
+						else
+						{
+						trigger_error('node::loadRootNode() : no nodes with parent_id = 0 found in db. Please create at least one node in admin', E_USER_WARNING);
+						return false;
 						}
 				}
 		}

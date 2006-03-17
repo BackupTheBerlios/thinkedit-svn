@@ -149,7 +149,7 @@ class db
 				$db_debug[] = $sql;
 				
 				// one line debugging tool :-)
-				// debug($sql, 'db:query()');
+				debug($sql, 'db:query()');
 				
 				$this->sql = $sql;
 				$result = mysql_query($sql, $this->connection);
@@ -200,10 +200,10 @@ class db
 						
 						// ultra lazy connect : it means that we can still use a website if a query is in the cache and if the db is down
 						$this->connect();
-						/*
-						echo $sql;
-						echo '<br/>';
-						*/
+						
+						// echo $sql . '<br/>';
+						
+						
 						
 						global $total_queries;
 						$total_queries++;	
@@ -267,7 +267,8 @@ class db
 				$this->connect();
 				if (get_magic_quotes_gpc())
 				{
-						//trigger_error('get_magic_quotes_gpc() php setting is ON, I don\'t like this');
+						// trigger_error('get_magic_quotes_gpc() php setting is ON, I don\'t like this');
+						$string = mysql_real_escape_string($string);
 						return $string;
 				}
 				else
