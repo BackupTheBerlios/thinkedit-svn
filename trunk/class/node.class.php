@@ -169,6 +169,41 @@ class node
 		}
 		
 		
+		
+		
+		// rebuilds nested set tree from adjacency list tree.
+		// from http://www.sitepoint.com/article/hierarchical-data-database/3
+		function rebuild($parent_id = 0, $left = 1)
+		{
+				global $thinkedit;
+				// the right value of this node is the left value + 1
+				$right = $left+1;
+				
+				// get all children of this node
+				$sql = 'SELECT id FROM ' . $this->table . ' WHERE parent_id=' . $parent_id . ' order by sort_order';
+				
+				$results = $thinkedit->db->select($sql);
+				
+				if (is_array($results))
+				{
+					foreach ($results as $result)
+					{
+						$right = $this->rebuild($result['id'], $right);
+					}
+				}
+				
+				// we've got the left value, and now that we've processed
+				// the children of this node we also know the right value
+								
+				$sql = 'UPDATE '. $this->table .' SET left_id='. $left .', right_id='.	$right .' WHERE id='. $parent_id;
+				
+				$thinkedit->db->query($sql);
+				
+				// return the right value of this node + 1
+				return $right+1; 
+				
+		}
+		
 		function isSiblingOf($node)
 		{
 				$node->load();
@@ -276,6 +311,46 @@ class node
 		}
 		
 		
+		/*
+		Returns all sub nodes of this node
+		*/
+		function getAllChildren()
+		{
+				global $thinkedit;
+				$this->load();
+				$left_id = $this->get('left_id');
+				$right_id = $this->get('right_id');
+				// this is critical function, so we use direct sql to be faster (no use of the record class here)
+				// todo : check if it's faster this way
+				$sql = "SELECT * FROM {$this->table} WHERE left_id BETWEEN {$left_id} AND {$right_id} ORDER BY left_id ASC;";
+				
+				$results = $thinkedit->db->select($sql);
+				
+				if (is_array($results))
+				{
+						foreach ($results as $result)
+						{
+								$nodes[] = $thinkedit->newNode($this->table, $result['id']);
+						}
+						return $nodes;
+						
+				}
+				else
+				{
+						return false;
+				}
+				
+		}
+		
+		
+		/*
+		Returns an array of 
+		*/
+		function getFamilly()
+		{
+				trigger_error('todo');
+		}
+		
 		function getSiblings($only_published = false)
 		{
 				$this->load();
@@ -319,6 +394,7 @@ class node
 						if ($results)
 						{
 								$node->moveTop();
+								$this->rebuild();
 								return $node;
 						}
 						else
@@ -794,6 +870,7 @@ class node
 								global $thinkedit;
 								$db = $thinkedit->getDb();
 								$db->clearCache();
+								$this->rebuild();
 								return true;
 						}
 						else // if we have one, move top
@@ -865,7 +942,7 @@ class node
 								global $thinkedit;
 								$db = $thinkedit->getDb();
 								$db->clearCache();
-								
+								$this->rebuild();
 								return true;
 								
 						}
@@ -912,6 +989,7 @@ class node
 						global $thinkedit;
 						$db = $thinkedit->getDb();
 						$db->clearCache();
+						$this->rebuild();
 						return true;
 				}
 		}
@@ -945,6 +1023,7 @@ class node
 						global $thinkedit;
 						$db = $thinkedit->getDb();
 						$db->clearCache();
+						$this->rebuild();
 						return true;
 				}
 		}

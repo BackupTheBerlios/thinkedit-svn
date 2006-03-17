@@ -11,7 +11,7 @@ select and query
 select() returns results as an array of associative arrays
 query() returns the number of rows affected
 
-see http://www.justinvincent.com/home/articles.php?articleId=1&page=4
+see also http://www.justinvincent.com/home/articles.php?articleId=1&page=4
 
 
 
@@ -36,8 +36,7 @@ class db
 		
 		/**
 		* Establishes connection to MySQL and selects a database
-		* @return void
-		* @access private
+		* @return true if it works, false if not, trigger warning on fail
 		*/
 		function connect()
 		{
@@ -71,6 +70,8 @@ class db
 		/*
 		Return true if db connected successfully or false if not
 		usefull for intstaller
+		
+		Doens't trigger error if fail
 		*/
 		function canConnect()
 		{
@@ -80,25 +81,6 @@ class db
 				}
 				elseif ( !mysql_select_db($this->database,$this->connection) )
 				{
-						return false;
-				}
-				else
-				{
-						return true;
-				}
-				
-		}
-		
-		
-		/*
-		Return true if it can select db successfully or false if not
-		usefull for intstaller
-		*/
-		function canSelectDb()
-		{
-				if ( !@mysql_select_db($this->database,$this->connection) )
-				{
-						
 						return false;
 				}
 				else
@@ -154,6 +136,7 @@ class db
 		*/
 		function query($sql)
 		{
+				echo $sql . '<br/>';
 				$this->connect();
 				global $total_queries;
 				$total_queries++;
@@ -196,6 +179,7 @@ class db
 		
 		function select($sql)
 		{
+				echo $sql . '<br/>';
 				global $db_cache;
 				
 				$hash =  sha1($sql);

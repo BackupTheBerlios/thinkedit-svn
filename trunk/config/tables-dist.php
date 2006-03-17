@@ -131,6 +131,8 @@ $data['table']['node']['field']['template']['title']['fr']='Modèle de page';
 $data['table']['node']['field']['template']['type']='template';
 $data['table']['node']['field']['publish']['title']['fr']='Statut de publication';
 $data['table']['node']['field']['publish']['type']='publish';
+$data['table']['node']['field']['left_id']['type']='int';
+$data['table']['node']['field']['right_id']['type']='int';
 
 /*
 $data['table']['role']['title']['fr']='Roles';
