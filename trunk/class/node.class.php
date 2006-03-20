@@ -160,7 +160,7 @@ class node
 						$this->is_loaded = true;
 						return true;
 				}
-				trigger_error('node::load() cannot load node');
+				//trigger_error('node::load() cannot load node');
 				return false;
 		}
 		
@@ -520,10 +520,10 @@ class node
 				$uid['id'] = $this->get('object_id');
 				
 				////
-				
+				/*
 				$object = $thinkedit->newObject($uid);
 				return $object;
-				
+				*/
 				////
 				
 				
@@ -547,8 +547,16 @@ class node
 						}
 						return $object;
 				}
-				
-				
+		}
+		
+		
+		/*
+		Must be called everytime the content attached to this node is updated
+		*/
+		function clearContentCache()
+		{
+				$this->set('cache', '');
+				$this->save();
 		}
 		
 		function getTitle()

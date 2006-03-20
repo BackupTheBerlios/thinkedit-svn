@@ -16,7 +16,10 @@
 <script src="thinkedit.js" type="text/javascript"></script>
 
 
-		
+<!--[if lt IE 7.]>
+<script defer type="text/javascript" src="pngfix.js"></script>
+<![endif]-->
+
 		
 </head>
 

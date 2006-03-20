@@ -121,6 +121,7 @@ a.white_link
 
 .input
 {
+		
 		font-family: verdana, arial, helvetica, sans-serif;
 		font-size : 9px;
 		font-weight: bold;
@@ -138,6 +139,7 @@ a.white_link
 		border-right: 0px;
 		border-style: solid;
 		border-color: #7C7C7C #FFFFFF #FFFFFF #CCCAC4;
+		
 }
 
 
@@ -184,6 +186,7 @@ fieldset
 		padding: 10px;
 		margin-bottom: 20px;
 		background-color: #fff;
+		display: block;
 }
 
 
@@ -205,20 +208,13 @@ legend
 
 .field_box
 {
-		/*background-color: #e5e5e5;*/
-		/*padding: 10px;*/
+		padding: 10px;
 		margin-bottom: 25px
 }
 
 /***************** Layout ******************/
 
-div
-{
-		/*font-size : 10px;*/ 
-		/*border : 1px solid black;*/
-		margin : 0;
-		padding: 0;
-}
+
 
 .main
 {
@@ -449,7 +445,7 @@ a.serious_button:active
 		border-style: inset;
 }
 
-a.action_button, .action_button
+a.action_button, .action_button, a.action_button:visited, a.action_button:hover 
 {
 		outline: none;
 		border-style: outset;
@@ -655,10 +651,12 @@ li,ul
 		padding: 0;
 }
 
+/*
 form
 {
 		display: inline;
 }
+*/
 
 .error
 {

@@ -18,11 +18,17 @@
 <legend><?php echo ucfirst(translate('content'));?></legend>
 <?php foreach ($out['field'] as $field): ?>
 
+
 <div class="field_box">
-<h1 class="field_title"><?php echo $field['title']; ?></h1>
+<div class="field_title"><?php echo $field['title']; ?></div>
+
+<div>
 <?php echo $field['help']; ?>
-<br/>
+</div>
+<div>
 <?php echo $field['ui']; ?>
+</div>
+
 </div>
 
 <?php endforeach; ?>

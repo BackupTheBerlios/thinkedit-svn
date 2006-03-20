@@ -12,7 +12,24 @@ class field_richtext extends field
 				
 				$out = '';
 				
-				// we can init tinymce only once for a page.
+				/*
+				require_once ROOT . '/lib/fckeditor/fckeditor.php';
+				$fckeditor = new FCKeditor($this->getName()) ;
+				$fckeditor->BasePath = ROOT_URL . '/lib/fckeditor/';
+				$fckeditor->Value = $this->getRaw();
+				$fckeditor->Height = '400' ;
+				return $fckeditor->CreateHtml();
+				*/
+				
+				// adaptive textarea rows lenght
+				$rows = round(strlen($this->get()) / 80) + 20;
+				if ($rows > 40) $rows = 40;
+				
+				$out .= sprintf('<textarea name="%s" cols="80" rows="%s" mce_editable="true">%s</textarea>', $prefix . $this->getName(), $rows, $this->getRaw());
+				
+					// we can init tinymce only once for a page.
+				
+				
 				if (!isset($te_wysiwyg_is_init))
 				{
 				$out .= '<script language="javascript" type="text/javascript" src="' . ROOT_URL . '/lib/tiny_mce/tiny_mce.js"></script>';
@@ -29,21 +46,10 @@ class field_richtext extends field
 				$te_wysiwyg_is_init = true;
 				}
 				
-						
-				/*
-				require_once ROOT . '/lib/fckeditor/fckeditor.php';
-				$fckeditor = new FCKeditor($this->getName()) ;
-				$fckeditor->BasePath = ROOT_URL . '/lib/fckeditor/';
-				$fckeditor->Value = $this->getRaw();
-				$fckeditor->Height = '400' ;
-				return $fckeditor->CreateHtml();
-				*/
 				
-				// adaptive textarea rows lenght
-				$rows = round(strlen($this->get()) / 80) + 20;
-				if ($rows > 40) $rows = 40;
 				
-				$out .= sprintf('<textarea name="%s" cols="80" rows="%s" mce_editable="true">%s</textarea>', $prefix . $this->getName(), $rows, $this->getRaw());
+				
+				
 				return $out;
 		}
 		

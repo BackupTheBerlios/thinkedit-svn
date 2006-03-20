@@ -1,9 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html>
   <head>
 
-    <meta http-equiv="content-type" content="text/html;charset=UTF8" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
 		
 		<title>
 		<?php if (isset($out['title'])): ?>
@@ -20,6 +21,8 @@
 <!--[if lt IE 7.]>
 <script defer type="text/javascript" src="pngfix.js"></script>
 <![endif]-->
+
+
 
 		
 		
@@ -62,7 +65,7 @@
 
 <table width="*" border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td><img src="ressource/image/icon/error.gif"></td>
+<td><img src="ressource/image/icon/error.gif"/></td>
 <td><div class="error_text">
 <b><?php echo translate('error') ?> - </b><?php echo $out['error'] ?>
 </div></td>

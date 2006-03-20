@@ -1,5 +1,5 @@
       <div class="footer">
-        &reg; <a href="http://www.thinkedit.com" class="adress_link">THINKEDIT.COM open source CMS</a>
+        &reg; <a href="http://www.thinkedit.org" class="adress_link">THINKEDIT.ORG open source CMS</a>
 				| 
 				<?php 
 				$db = $thinkedit->getDb();

@@ -3,9 +3,13 @@
 <html>
 <head>
 
-<meta http-equiv="content-type" content="text/html;charset=UTF8"/>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
 
-<meta name="generator" content="La Petite Usine &reg;"/>
+<!--[if lt IE 7.]>
+<script defer type="text/javascript" src="pngfix.js"></script>
+<![endif]-->
+
+<meta name="generator" content="Thinkedit.org">
 
 <title>
 </title>

@@ -46,6 +46,7 @@ if ($url->get('mode') == 'edit_node')
 if ($url->get('mode') == 'new_node')
 {
 		$out['edit_node'] = true;
+		$node = $thinkedit->newNode();
 		$new_node = true;
 }
 else
@@ -119,6 +120,7 @@ if ($url->get('action')=='save' && isset($node))
 		{
 				trigger_error('edit : failed saving node record');
 		}
+		$node->clearContentCache();
 }
 
 

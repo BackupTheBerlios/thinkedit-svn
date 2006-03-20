@@ -106,6 +106,7 @@ $data['table']['node']['field']['id']['type']='id';
 $data['table']['node']['field']['id']['primary']='true';
 $data['table']['node']['field']['id']['is_title']='true';
 $data['table']['node']['field']['parent_id']['type']='int';
+$data['table']['node']['field']['parent_id']['use']['edit']='false';
 $data['table']['node']['field']['object_class']['type']='string';
 $data['table']['node']['field']['object_class']['use']['list']='false';
 $data['table']['node']['field']['object_class']['use']['edit']='false';
@@ -132,7 +133,11 @@ $data['table']['node']['field']['template']['type']='template';
 $data['table']['node']['field']['publish']['title']['fr']='Statut de publication';
 $data['table']['node']['field']['publish']['type']='publish';
 $data['table']['node']['field']['left_id']['type']='int';
+$data['table']['node']['field']['left_id']['use']['list']='false';
+$data['table']['node']['field']['left_id']['use']['edit']='false';
 $data['table']['node']['field']['right_id']['type']='int';
+$data['table']['node']['field']['right_id']['use']['list']='false';
+$data['table']['node']['field']['right_id']['use']['edit']='false';
 
 /*
 $data['table']['role']['title']['fr']='Roles';
