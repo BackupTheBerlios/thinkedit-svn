@@ -4,6 +4,7 @@ $data['table']['page']['help']['fr']='Une page du sites';
 $data['table']['page']['title_field']='title';
 $data['table']['page']['allowed_items']['record']['page']='true';
 $data['table']['page']['allowed_items']['record']['publication']='true';
+$data['table']['page']['allowed_items']['record']['news']='true';
 $data['table']['page']['allowed_items']['filesystem']['main']='true';
 $data['table']['page']['field']['id']['type']='id';
 $data['table']['page']['field']['title']['title']['fr']='Titre du dossier';
@@ -92,7 +93,7 @@ $data['table']['multimedia']['field']['intro']['type']='text';
 $data['table']['multimedia']['field']['body']['title']['fr']='Corps du texte';
 $data['table']['multimedia']['field']['body']['help']['fr']='Regardez dans l\'aide pour ajouter des images';
 $data['table']['multimedia']['field']['body']['type']='richtext';
-$data['table']['multimedia']['field']['cover']['title']['fr']='Image de couverture';
+$data['table']['multimedia']['field']['cover']['title']['fr']='Image de prévisualisation';
 $data['table']['multimedia']['field']['cover']['type']='file';
 $data['table']['user']['title']['fr']='Utilisateurs';
 $data['table']['user']['help']['fr']='Liste des personnes pouvant utiliser le site et modifier son contenu';
@@ -138,6 +139,15 @@ $data['table']['node']['field']['left_id']['use']['edit']='false';
 $data['table']['node']['field']['right_id']['type']='int';
 $data['table']['node']['field']['right_id']['use']['list']='false';
 $data['table']['node']['field']['right_id']['use']['edit']='false';
+$data['table']['news']['title']['fr'] = 'actualité';
+$data['table']['news']['icon'] = 'calendar.png';
+$data['table']['news']['field']['id']['type'] = 'id';
+$data['table']['news']['field']['title']['type'] = 'string';
+$data['table']['news']['field']['title']['is_title'] = 'true';
+$data['table']['news']['field']['intro']['type'] = 'richtext';
+$data['table']['news']['field']['body']['type'] = 'richtext';
+$data['table']['news']['field']['image']['type'] = 'file';
+
 
 /*
 $data['table']['role']['title']['fr']='Roles';

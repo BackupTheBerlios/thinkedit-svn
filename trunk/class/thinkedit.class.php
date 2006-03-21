@@ -508,15 +508,15 @@ class thinkedit
 								
 								
 								// this is an optimization : 
-								if (file_exists($file))
-								{
+								//if (file_exists($file))
+								//{
 										require_once($file);
 										return new $class($table, $field, $data);
-								}
-								else
-								{
+								//}
+								//else
+								//{
 										trigger_error("thinkedit::newField config error, type $type for element $field not supported (class file not found)");
-								}
+								//}
 								
 						}
 						else // we default for string if no type defined

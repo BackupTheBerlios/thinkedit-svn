@@ -18,6 +18,8 @@ include_once('common.inc.php');
 //check_user
 check_user();
 
+$url = $thinkedit->newUrl();
+
 
 if (!$url->getParam('type'))
 {
@@ -120,7 +122,10 @@ if ($url->get('action')=='save' && isset($node))
 		{
 				trigger_error('edit : failed saving node record');
 		}
-		$node->clearContentCache();
+		if ($url->get('mode') == 'edit_node')
+		{
+				$node->clearContentCache();
+		}
 }
 
 
@@ -128,10 +133,15 @@ if ($url->get('action')=='save' && isset($node))
 /************** handle add node *****************/
 // if we have saved something, and if we need to add to thge node tree, we redirect with the record ID
 
+$url = $thinkedit->newUrl();
+
 if ($url->get('action')=='save' && $url->get('mode') == 'new_node')
 {
 		$url->keep('mode');
 		$url->keep('node_id');
+		// $url->debug();
+		
+		
 		$url->addObject($record, 'object_');
 		$url->redirect('structure.php');
 		/*

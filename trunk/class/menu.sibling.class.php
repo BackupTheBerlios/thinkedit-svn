@@ -48,13 +48,15 @@ class menu_sibling extends menu_base
 				{
 						foreach ($siblings as $entry)
 						{
-								
-								$menuitem = new menuitem($entry);
-								if ($entry->getId() == $this->node->getId())
+								if ($entry->useInNavigation())
 								{
-										$menuitem->is_current = true;
+										$menuitem = new menuitem($entry);
+										if ($entry->getId() == $this->node->getId())
+										{
+												$menuitem->is_current = true;
+										}
+										$menuitems[] = $menuitem;
 								}
-								$menuitems[] = $menuitem;
 						}
 						
 						return $menuitems;

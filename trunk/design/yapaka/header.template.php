@@ -3,7 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Yapaka</title>
+<link href="<?php echo te_design() ?>/accueil_template.css" rel="stylesheet" type="text/css" media="all">
 <link href="<?php echo te_design() ?>/styles.css" rel="stylesheet" type="text/css" media="all">
+
+
 <meta name="generator" content="Thinkedit" />
 
 <script src="<?php echo te_design() ?>/script.js" type="text/javascript"></script>
@@ -41,9 +44,53 @@ elseif (is_array($my_parents))
 
 
 <body bgcolor="#ffffff">
+
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td align="center" valign="top">
+
+
+
+<table width="717" border="0" style="margin-bottom: 20px">
+<tr>
+
+<td>
+<a href="http://www.cfwb.be/" target="_blank">
+<img src="<?php echo te_design()?>/cfwb/bandeau_01.gif"/>
+</a>
+</td>
+
+
+<td>
+<a href="http://www.cfwb.be/portail/" target="_blank">
+<img src="<?php echo te_design()?>/cfwb/bandeau_on_02.gif"/>
+</a>
+</td>
+
+<td>
+<a href="http://www.cfwb.be/portail/guichet" target="_blank">
+<img src="<?php echo te_design()?>/cfwb/bandeau_on_03.gif"/>
+</a>
+</td>
+
+<td>
+<a href="http://www.cfwb.be/presentation/recherche/pg001.htm" target="_blank">
+<img src="<?php echo te_design()?>/cfwb/bandeau_on_04.gif"/>
+</a>
+</td>
+
+<td>
+<a href="http://www.cfwb.be/actu/" target="_blank">
+<img src="<?php echo te_design()?>/cfwb/bandeau_on_05.gif"/>
+</a>
+</td>
+
+</tr>
+</table>
+
+
+
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 
@@ -60,7 +107,12 @@ elseif (is_array($my_parents))
 <td>
 <img src="<?php echo te_design() ?>/sources/logo.gif" alt="" width="351" height="76" border="0"></td>
 <td valign="top" width="168">
-<input class="search" type="text" name="textfieldName" value="Rechercher..." size="24"></td>
+<!--
+<input class="search" type="text" name="textfieldName" value="Rechercher..." size="24">
+-->
+
+</td>
+
 </tr>
 <tr>
 <td colspan="2">

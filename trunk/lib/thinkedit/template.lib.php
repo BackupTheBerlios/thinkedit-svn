@@ -27,7 +27,7 @@ function te_short($string, $size)
 {
 		if (strlen($string) > $size)
 		{
-				return (substr($string, 0, $size -4) . '[...]');
+				return (substr($string, 0, $size -4) . '...');
 		}
 		return $string;
 }

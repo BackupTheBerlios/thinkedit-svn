@@ -157,6 +157,7 @@ class node
 				
 				if ($this->record->load())
 				{
+						//echo 'load record';
 						$this->is_loaded = true;
 						return true;
 				}
@@ -167,23 +168,18 @@ class node
 		
 		function loadByArray($data)
 		{
-				//print_r($data);
-				//echo '<hr>';
 				foreach ($this->record->field as $field)
 				{
-						//echo $field->getId();
 						if (array_key_exists($field->getId(), $data))
 						{
 								$this->set($field->getId(), $data[$field->getId()]);
 						}
 						else
 						{
-								//echo '  bad  ';
 								return false;
 						}
 				}
 				$this->is_loaded = true;
-				//echo 'load by array ok';
 				return true;
 		}
 		
@@ -300,11 +296,13 @@ class node
 		*
 		*
 		**/
-		function hasChildren($only_published = false)
+		function hasChildren($options = false)
 		{
-				if ($only_published)
+				global $thinkedit;
+				
+				if (!$thinkedit->context->enablePreview())
 				{
-						if ($this->getChildren($only_published))
+						if ($this->getChildren($options))
 						{
 								return true;
 						}
@@ -313,6 +311,7 @@ class node
 								return false;
 						}
 				}
+				
 				$this->load();
 				$right = $this->get('right_id');
 				$left = $this->get('left_id');
@@ -334,16 +333,21 @@ class node
 		*
 		*
 		**/
-		function getChildren($only_published = false)
+		function getChildren($options = false)
 		{
 				//echo  'called get children<br>';
 				$this->load();
 				// todo : returns a node and not a record
 				$where['parent_id'] = $this->get('id');
-				if ($only_published)
+				
+				global $thinkedit;
+				
+				if (!$thinkedit->context->enablePreview())
 				{
 						$where['publish'] = 1;
 				}
+				
+				
 				
 				$children =  $this->record->find($where, array('sort_order' => 'asc') );
 				
@@ -425,16 +429,20 @@ class node
 				}
 		}
 		
-		function getSiblings($only_published = false)
+		function getSiblings($options = false)
 		{
 				$this->load();
 				debug($this->get('parent_id'), 'Sibligns current parent ID');
 				
 				$where['parent_id'] = $this->get('parent_id');
-				if ($only_published)
+				
+				global $thinkedit;
+				
+				if (!$thinkedit->context->enablePreview())
 				{
 						$where['publish'] = 1;
 				}
+				
 				
 				$siblings =  $this->record->find($where, array('sort_order' => 'asc') );
 				
@@ -443,7 +451,11 @@ class node
 						global $thinkedit;
 						foreach ($siblings as $sibling)
 						{
-								$siblings_node[] = $thinkedit->newNode($this->table, $sibling->get('id'), $sibling);
+								/*
+								echo $sibling->debug();
+								echo '<hr>';
+								*/
+								$siblings_node[] = $thinkedit->newNode($this->table, $sibling->get('id'), $sibling['cache']);
 						}
 						return $siblings_node;
 				}
@@ -1071,6 +1083,21 @@ class node
 						{
 								return false;
 						}
+				}
+		}
+		
+		
+		function useInNavigation()
+		{
+				// todo : configurable somewhat :-)
+				
+				if ($this->get('object_class') == 'record' && $this->get('object_type') == 'page')
+				{
+						return true;
+				}
+				else
+				{
+						return false;
 				}
 		}
 		

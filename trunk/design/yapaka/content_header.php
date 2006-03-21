@@ -19,7 +19,7 @@
 <option value="#">Choisissez dans le menu ci-dessous:</option>
 
 <?php foreach ($sibling_menu->getArray() as $sibling_menu_item) : ?>
-<option value="<?php echo $sibling_menu_item->getUrl(); ?>" <?php if ($sibling_menu_item->isCurrent()): ?>selected="selected"<?php endif; ?>><?php echo te_short($sibling_menu_item->getTitle(), 40)?></option>
+<option value="<?php echo $sibling_menu_item->getUrl(); ?>" <?php if ($sibling_menu_item->isCurrent()): ?>selected="selected"<?php endif; ?>><?php echo te_short($sibling_menu_item->getTitle(), 70)?></option>
 <?php endforeach; ?>
 </select>
 <?php endif; ?>

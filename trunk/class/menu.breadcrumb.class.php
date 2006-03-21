@@ -91,7 +91,10 @@ class menu_breadcrumb extends menu_base
 				{
 						foreach ($this->node->getParentUntilRoot() as $parent)
 						{
-								$items[] = new menuitem($parent);
+								if ($parent->useInNavigation())
+								{
+										$items[] = new menuitem($parent);
+								}
 						}
 				}
 				$items = array_reverse($items);

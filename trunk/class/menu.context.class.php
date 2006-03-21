@@ -79,7 +79,7 @@ class menu_context extends menu_base
 				// if level = 1, returns childs
 				if ($level == 1)
 				{
-						$node_list = $this->node->getChildren(true);
+						$node_list = $this->node->getChildren(array('class'=>'record', 'type' => 'page'));
 				}
 				
 				
@@ -93,12 +93,14 @@ class menu_context extends menu_base
 								if ($sibling->getId() == $this->node->getId())
 								{
 										$node_list[] = $sibling;
-										if ($sibling->hasChildren(true))
+										if ($sibling->hasChildren())
 										{
-												$children = $sibling->getChildren(true);
+												$children = $sibling->getChildren(array('class'=>'record', 'type' => 'page'));
 												foreach ($children as $child)
 												{
-														$node_list[] = $child;
+													
+																$node_list[] = $child;
+													
 												}
 										}
 										
@@ -179,13 +181,16 @@ class menu_context extends menu_base
 				{
 						foreach ($node_list as $node)
 						{
-								$menuitem = new menuitem($node);
-								if ($node->getId() == $this->node->getId())
+								if ($node->useInNavigation())
 								{
-										//$out .=  $content->getTitle();
-										$menuitem->is_current = true;
+										$menuitem = new menuitem($node);
+										if ($node->getId() == $this->node->getId())
+										{
+												//$out .=  $content->getTitle();
+												$menuitem->is_current = true;
+										}
+										$menuitems[] = $menuitem;
 								}
-								$menuitems[] = $menuitem;
 						}
 						return $menuitems;
 				}

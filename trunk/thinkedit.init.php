@@ -36,9 +36,35 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 // needed for ms iexplorer
 header ("Content-Type: text/html; charset=utf-8");
 
+
+/******************* Disable magic quotes ***************/
+if (get_magic_quotes_gpc()) 
+{
+		function stripslashes_deep($value)
+		{
+				if (is_array($value))
+				{
+						$value = array_map('stripslashes_deep', $value);
+				}
+				else
+				{
+						$value = stripslashes($value);
+				}
+				
+				return $value;
+		}
+		
+		$_POST = array_map('stripslashes_deep', $_POST);
+		$_GET = array_map('stripslashes_deep', $_GET);
+		$_COOKIE = array_map('stripslashes_deep', $_COOKIE);
+		$_REQUEST = array_map('stripslashes_deep', $_REQUEST);
+		// todo check if $_SESSION must be changed as well. Php doc is unclear on this subject
+}
+
+
+/******************* Profiling ***************/
 //error_reporting(E_ALL);
 //ini_set('display_errors', true);
-
 if (function_exists('xdebug_start_profiling'))
 {
 		xdebug_start_profiling();
@@ -53,6 +79,8 @@ define ('ROOT', dirname(__FILE__));
 require_once dirname(__FILE__) . '/class/thinkedit.class.php';
 
 
+
+/*********************** Configuration object ******************/
 $thinkedit = new thinkedit();
 $thinkedit->configuration = $thinkedit->newConfig();
 
@@ -65,9 +93,6 @@ $thinkedit->timer = $thinkedit->getTimer();
 $thinkedit->timer->marker('start init');
 
 
-// no more global $thinkedit->config
-// $thinkedit->config = $thinkedit->newConfig();
-/*********************** Configuration object ******************/
 
 
 
@@ -91,6 +116,11 @@ $thinkedit->outputcache = $thinkedit->getOutputCache();
 $thinkedit->cache = $thinkedit->getCache();
 $thinkedit->functioncache = $thinkedit->getFunctionCache();
 
+
+/*********************** Context *************************/
+$thinkedit->context = $thinkedit->getContext();
+
+
 /*********************** Error Reporting ******************/
 // turn on error reporting
 if ($thinkedit->isInProduction())
@@ -105,5 +135,7 @@ else
 }
 
 $thinkedit->timer->marker('end init');
+
+$thinkedit->context->set('public');
 
 ?>

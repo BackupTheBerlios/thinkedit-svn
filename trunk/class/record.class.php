@@ -667,7 +667,7 @@ class record
 				}
 				else
 				{
-						return 'ressource/image/icon/small/text-x-generic.png';
+						return 'ressource/image/icon/small/page_white.png';
 				}
 		}
 		

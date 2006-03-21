@@ -38,9 +38,36 @@ class context
 		}
 		
 		
-		function allowPreview()
+		function enablePreview()
 		{
-				return true;
+				// todo security add user is logged check
+				global $thinkedit;
+				$url = $thinkedit->newUrl();
+				if ($url->get('preview') || $this->get() == 'interface')
+				{
+						return true;
+				}
+				else
+				{
+						return false;
+				}
+		}
+		
+		function set($context)
+		{
+				$this->context = $context;
+		}
+		
+		function get()
+		{
+				if (isset($this->context))
+				{
+						return $this->context;
+				}
+				else
+				{
+						return false;
+				}
 		}
 		
 		

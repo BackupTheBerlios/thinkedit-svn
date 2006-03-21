@@ -67,6 +67,11 @@ class url
 						$this->orig_param[$key] = $value;
 				}
 				
+				foreach ($_GET as $key=>$value)
+				{
+						$this->orig_param[$key] = $value;
+				}
+				
 				// security todo
 				/*
 				from http://blog.phpdoc.info/archives/13-XSS-Woes.html
@@ -412,6 +417,19 @@ class url
 				//$header = 'location: http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). $this->render($filename);
 				
 				
+		}
+		
+		function debug()
+		{
+				echo '<pre>';
+				echo '<h1>URL DEBUG</h1>';
+				echo '<h2>Orig Params</h2>';
+				print_r ($this->orig_param);
+				echo '<h2>New Params</h2>';
+				print_r ($this->param);
+				echo '<h2>Keep</h2>';
+				print_r ($this->keep);
+				echo '</pre>';
 		}
 		
 		

@@ -92,9 +92,18 @@ if ($url->get('mode') == 'new_node')
 {
 		// todo : url loading of objects, universal object instancifier
 		// done ??
+		$url = $thinkedit->newUrl();
 		$object = $url->getObject('object_');
+		
+		/*
+		echo $current_node->getId();
+		echo '<hr>';
+		echo $current_node->debug();
+		*/
+		
 		$current_node->add($object);
 		$url->keep('node_id');
+		//$url->debug();
 		$url->redirect();
 		
 }
