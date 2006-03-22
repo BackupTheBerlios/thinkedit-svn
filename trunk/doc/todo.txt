@@ -1,3 +1,8 @@
+TODO for version 1.0 (mandatory things to fix before the 1.0 release)
+- remove unneeded files
+- make a simple demo design
+
+
 General TODO (General features that affect more than one file / class):
 - permissions / roles / users
 - validation

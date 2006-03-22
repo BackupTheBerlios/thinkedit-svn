@@ -468,7 +468,7 @@ class filesystem
 										$url->set($key, $value);
 								}
 						}
-						return $url->render(ROOT_URL . '/lib/phpthumb/phpThumb.php'); // todo custom thumbnail width / height
+						return $url->render(ROOT_URL . '/lib/phpthumb/phpThumb.php'); 
 				}
 				else
 				{

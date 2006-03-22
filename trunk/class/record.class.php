@@ -676,12 +676,13 @@ class record
 		function debug()
 		{
 				$out = '';
-				$out .= '<p>';
+				$out .= '<div>';
+				$out .= '<h1>Record debug</h1>';
 				foreach ($this->field as $field)
 				{
 						$out .= '<b>' .  $field->getId() . ' : ' .  $field->get() . '</b><br/>';
 				}
-				$out .= '</p>';
+				$out .= '</div>';
 				return $out;
 		}
 }

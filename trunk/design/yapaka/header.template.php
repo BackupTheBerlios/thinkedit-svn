@@ -12,6 +12,13 @@
 <script src="<?php echo te_design() ?>/script.js" type="text/javascript"></script>
 
 
+<?php 
+// inclusion des fonctions spécifiques à yapaka
+
+include_once 'template.lib.php';
+
+?>
+
 <?php
 // choix de la bonne CSS en fonction de la section dans laquelle on est
 // sinon, on inclut la css accueil

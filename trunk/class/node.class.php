@@ -168,19 +168,26 @@ class node
 		
 		function loadByArray($data)
 		{
-				foreach ($this->record->field as $field)
+				if (is_array($data))
 				{
-						if (array_key_exists($field->getId(), $data))
+						foreach ($this->record->field as $field)
 						{
-								$this->set($field->getId(), $data[$field->getId()]);
+								if (array_key_exists($field->getId(), $data))
+								{
+										$this->set($field->getId(), $data[$field->getId()]);
+								}
+								else
+								{
+										return false;
+								}
 						}
-						else
-						{
-								return false;
-						}
+						$this->is_loaded = true;
+						return true;
 				}
-				$this->is_loaded = true;
-				return true;
+				else
+				{
+						return false;
+				}
 		}
 		
 		
@@ -329,13 +336,29 @@ class node
 		}
 		
 		/**
-		* returns childrens (nodes)
-		*
-		*
+		returns childrens (nodes)
+		
+		$options is an array.
+		
+		set :
+		
+		- $options['type'] to limit to nodes of a specific type
+		- $options['class'] to limit to nodes of a specific class
+		
+		
 		**/
 		function getChildren($options = false)
 		{
-				//echo  'called get children<br>';
+				
+				/*
+				echo  'called get children with options :<br>';
+				echo '<pre>';
+				print_r($options);
+				echo '</pre>';
+				*/
+				
+				
+				
 				$this->load();
 				// todo : returns a node and not a record
 				$where['parent_id'] = $this->get('id');
@@ -347,7 +370,15 @@ class node
 						$where['publish'] = 1;
 				}
 				
+				if (isset($options['type']))
+				{
+						$where['object_type'] = $options['type'];
+				}
 				
+				if (isset($options['class']))
+				{
+						$where['object_class'] = $options['class'];
+				}
 				
 				$children =  $this->record->find($where, array('sort_order' => 'asc') );
 				
@@ -455,7 +486,7 @@ class node
 								echo $sibling->debug();
 								echo '<hr>';
 								*/
-								$siblings_node[] = $thinkedit->newNode($this->table, $sibling->get('id'), $sibling['cache']);
+								$siblings_node[] = $thinkedit->newNode($this->table, $sibling->get('id'), $sibling->getArray());
 						}
 						return $siblings_node;
 				}
