@@ -1,72 +1,72 @@
+<style>
+.field_box
+{
+		
+}
+
+</style>
+
+
 <div class="content">
 
-<div class="box">
+<div class="box inset_gray">
 
 <?php if (isset($out['error'])) :?>
 <div class="error"><?php echo translate('error') ?> : <?php echo $out['error'] ?></div>
 <?php endif;?>
 
-			
+
 <form name="edit_form" action="<?php echo $out['save_url']?>" method="post" onsubmit="return submitForm();">			
 
 
+<table>
 <?php /****************** Field rendering ***********/ ?>
-
-
 <?php if (isset($out['field'])): ?>
-<fieldset>
-<legend><?php echo ucfirst(translate('content'));?></legend>
+
 <?php foreach ($out['field'] as $field): ?>
-
-
-<div class="field_box">
-<div class="field_title"><?php echo $field['title']; ?></div>
-
-<div>
-<?php echo $field['help']; ?>
-</div>
-<div>
-<?php echo $field['ui']; ?>
-</div>
-
-</div>
-
+		<tr>
+				<td class="field_info" title="<?php echo $field['help']; ?>">
+					<?php echo $field['title']; ?>
+				</td>
+				<td class="field_ui">
+					<?php echo $field['ui']; ?>
+				</td>
+		</tr>
 <?php endforeach; ?>
-</fieldset>
+
 <?php endif; ?>
 
 
 <?php /****************** Node properties ***********/ ?>
 
 <?php if (isset($out['node_field'])): ?>
-<fieldset>
-<legend><?php echo ucfirst(translate('metadata'));?></legend>
-<?php foreach ($out['node_field'] as $field): ?>
-
-<div class="field_box">
-<h1 class="field_title"><?php echo $field['title']; ?></h1>
-<?php echo $field['help']; ?>
-<br/>
-<?php echo $field['ui']; ?>
-</div>
-
-
-<?php endforeach; ?>
-</fieldset>
+		
+		<?php foreach ($out['node_field'] as $field): ?>
+				<tr>
+						<td class="field_info" title="<?php echo $field['help']; ?>">
+							<?php echo $field['title']; ?>
+						</td>
+						<td class="field_ui">
+							<?php echo $field['ui']; ?>
+						</td>
+				</tr>
+		<?php endforeach; ?>
 <?php endif; ?>
 
 
 <?php /****************** Relations ***********/ ?>
 
 <?php if (isset($out['relation'])) : ?>
-<fieldset>
-<legend><?php echo ucfirst(translate('relation'));?></legend>
-
-
-
-<iframe src="<?php echo $out['relation']['url']?>" name="relation" id="relation" width="600" height="20" frameborder="0"></iframe>
-
-</fieldset>
+		
+		<tr>
+				<td class="field_info" title="<?php echo $field['help']; ?>">
+					<?php echo ucfirst(translate('relation'));?>
+				</td>
+				<td class="field_ui">
+					<iframe src="<?php echo $out['relation']['url']?>" name="relation" id="relation" width="500" height="20" frameborder="0"></iframe>
+				</td>
+		</tr>
+		
 <?php endif; ?>
 
 
@@ -79,6 +79,8 @@
 blablabla
 </fieldset>
 -->
+
+</table>
 
 
 
@@ -93,6 +95,7 @@ blablabla
 <?php endif; ?>
 
 </form>
+
 
 </div>
 

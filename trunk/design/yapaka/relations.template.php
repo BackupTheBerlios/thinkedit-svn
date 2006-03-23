@@ -7,11 +7,9 @@ $relations = $relation->getRelations($content);
 		<h3>En lien avec cette page</h3>
 				<?php foreach($relations as $my_relation): ?>
 						<?php if ($my_relation->getClass() == 'filesystem'): ?>
-						<a href="<?php echo $my_relation->getUrl(); ?>">
 								<?php if ($my_relation->getExtension() == 'pdf'): ?>
-								<li>Vous pouvez télécharger le fichier <?php echo $my_relation->getFilename(); ?> ici (<?php echo $my_relation->getSize(); ?>)</li>
+								<li>Vous pouvez télécharger le fichier <?php echo $my_relation->getFilename(); ?> <a href="<?php echo $my_relation->getUrl(); ?>">ici</a> (<?php echo $my_relation->getSize(); ?>)</li>
 								<?php endif; ?>
-						</a>
 								<?php else: ?>
 								<a href="<?php echo te_link($my_relation); ?>">
 								<?php echo $my_relation->getTitle(); ?>

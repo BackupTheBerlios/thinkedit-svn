@@ -186,7 +186,14 @@ foreach ($record->field as $field)
 		if ($field->isUsedIn('edit'))
 		{
 				$out['field'][$field->getName()]['ui'] = $field->renderUi();
-				$out['field'][$field->getName()]['title'] = $field->getTitle();
+				if ($field->getType() <> 'id')
+				{
+						$out['field'][$field->getName()]['title'] = $field->getTitle();
+				}
+				else
+				{
+						$out['field'][$field->getName()]['title'] = '';
+				}
 				$out['field'][$field->getName()]['help'] = $field->getHelp();
 		}
 }
@@ -202,7 +209,16 @@ if (isset($node))
 				if ($field->isUsedIn('edit'))
 				{
 						$out['node_field'][$field->getName()]['ui'] = $field->renderUi('node_');
-						$out['node_field'][$field->getName()]['title'] = $field->getTitle();
+						
+						if ($field->getType() <> 'id')
+						{
+								$out['node_field'][$field->getName()]['title'] = $field->getTitle();
+						}
+						else
+						{
+								$out['node_field'][$field->getName()]['title'] = '';
+						}
+						
 						$out['node_field'][$field->getName()]['help'] = $field->getHelp();
 				}
 		}

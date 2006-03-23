@@ -35,6 +35,21 @@ body
 		border-color: #868686 #ffffff #ffffff #868686;
 }
 
+.gray
+{
+		background-color: #eee;
+}
+
+
+.inset_gray 
+{
+		background-color: #eee;
+		margin: 0.7em; 
+		padding: 1em; 
+		border-style: solid;
+		border-width: 1px; 
+		border-color: #868686 #ffffff #ffffff #868686; 
+}
 
 table, tr, td, .tr_on, .tr_off 
 {
@@ -211,6 +226,24 @@ legend
 		padding: 10px;
 		margin-bottom: 25px
 }
+
+
+.field_info
+{
+text-align: right;
+vertical-align: top;
+width: 100px;
+cursor: help;
+font-weight: bold;
+}
+
+
+.field_ui
+{
+padding-left: 10px;
+padding-bottom: 20px;
+}
+
 
 /***************** Layout ******************/
 
@@ -987,6 +1020,11 @@ a.number
 .tr_on
 {
 		background-color: #CCE5FF;
+}
+
+.tr_on, .tr_off
+{
+		height: 30px;
 }
 
 .tr_on:HOVER

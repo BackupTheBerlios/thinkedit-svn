@@ -21,8 +21,8 @@
 
 
 </head>
-<body class="white" onLoad="if (parent.adjustIFrameSize) parent.adjustIFrameSize(window);">
-<div style="margin: 5px">
+<body onLoad="if (parent.adjustIFrameSize) parent.adjustIFrameSize(window);" class="gray">
+<div style="margin: 5px" class="gray">
 
 <table class="power_table">
 

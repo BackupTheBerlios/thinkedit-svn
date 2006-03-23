@@ -449,7 +449,7 @@ class thinkedit
 						{
 								$node->setId($id);
 						}
-						// if data is passed, we assign it to the node, and assume it is loaded. This is an optimization
+						// if a data array is passed, we assign it to the node, and assume it is loaded. This is an optimization
 						if ($data)
 						{
 								$node->loadByArray($data);

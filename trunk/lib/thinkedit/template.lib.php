@@ -102,4 +102,18 @@ function te_admin_toolbox()
 }
 
 
+function te_every($size)
+{
+		static $i;
+		$i++;
+		if (($i % $size) == 0)
+		 {
+				 return true;
+		 }
+		 else
+		 {
+				 return false;
+		 }
+}
+
 ?>

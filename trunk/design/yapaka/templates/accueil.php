@@ -1,11 +1,11 @@
 											<table border="0" cellspacing="0" cellpadding="0">
 												<tr>
 													<td align="left" valign="top" width="366">
-													<div class="title_accueil">Introduction</div>
+													<div class="title_accueil">La vie sans mode d’emploi...</div>
 													</td>
 													<td align="left" valign="top" width="183"></td>
 													<td align="left" valign="top" width="168">
-													<div class="title_accueil">A voir...</div>
+													<!--<div class="title_accueil">A voir...</div>-->
 													</td>
 												</tr>
 												<tr>
@@ -24,12 +24,13 @@
 													</div>
 													</td>
 													<td align="left" valign="top" width="168">
-													
+													<!--
 													<a class="parents_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Premier</a>
 													<a class="enfants_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Second</a>
 													<a class="ados_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Troisi&egrave;me</a>
 													<a class="professionnels_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Quatri&egrave;me</a>
 													<a class="professionnels_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Cinqui&egrave;me</a></td>
+													-->
 												</tr>
 												<tr>
 													<td align="left" valign="top" width="366">
@@ -49,33 +50,58 @@
 													?>
 													
 													<?php if (is_array($news_nodes)): ?>
+															<table border="0">
+															<tr>
 															<?php foreach ($news_nodes as $news_node): ?>
-																	<div class="news">
+															<td valign="top">
+															<table border="0">		
+															<tr>
+															<td width="168" valign="top" height="120" align="center">
 																	<?php $news_content = $news_node->getContent(); ?>
 																	<?php $news_image = $news_content->field['image']->getFilesystem(); ?>
 																		<?php if ($news_image): ?>
-																		<img class="news_image" src="<?php echo $news_image->getThumbnail(array('w'=> 168, 'h'=>140) ); ?>">
+																		<img src="<?php echo $news_image->getThumbnail(array('hl'=> 120, 'hp'=>120, 'wl'=> 168, 'wp'=>168) ); ?>">
+																		<!--<center><img src="<?php echo $news_image->getThumbnail(array('h'=> 150, 'w'=>150, 'zc' => 1) ); ?>"></center>-->
 																		<?php endif; ?>
-																		<?php echo $news_content->get('body'); ?>
-																		<br>
-																		<br>
+															</td>
+															</tr>
+															<tr>
+															<td>
+															<br/>
+															<br/>
+															<b><?php echo $news_content->get('title'); ?></b>
+															<br/>
+															<?php echo $news_content->get('body'); ?>
+															<br/>
+															<br/>
 																		
-																		<?php 
+																	<?php 
 																		// maintenant, on sélectionne les relations :
-																		$relation = $thinkedit->newRelation();
-																		$news_relations = $relation->getRelations($news_content);
-																		?>
-																		<?php if (is_array($news_relations)): ?>
-																				<?php foreach ($news_relations as $news_relation): ?>
-																					<a class="news_<?php echo te_get_section_name($news_relation); ?>" href="<?php echo te_link($news_relation); ?>"><?php echo $news_relation->getTitle(); ?></a>
-																				<?php endforeach; ?>
-																		<?php endif; ?>
+																		$news_relations_object = $thinkedit->newRelation();
+																		$news_relations = $news_relations_object->getRelations($news_content);
+																	?>
+																	<?php if (is_array($news_relations)): ?>
+																		<?php foreach ($news_relations as $news_relation): ?>
+																			<a class="news_<?php echo te_get_section_name($news_relation); ?>" href="<?php echo te_link($news_relation); ?>"><?php echo $news_relation->getTitle(); ?></a>
+																		<?php endforeach; ?>
+																	<?php endif; ?>
 																	
-																	</div>
+															</td>
+															</tr>
+																	
+															</table>
+															</td>		
+															<td width="20">&nbsp;</td>
+															<?php if (te_every(3)): ?></tr><tr><td height="20"></tr></td><tr><?php endif; ?>
+															
 															<?php endforeach; ?>
+															</tr>
+															</table>
 													<?php else: ?>
 													Pas de news
 													<?php endif;?>
+													
+													
 													</td>
 												</tr>
 											</table>

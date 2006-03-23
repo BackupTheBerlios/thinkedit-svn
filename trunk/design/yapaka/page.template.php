@@ -3,6 +3,9 @@
 
 
 <?php if ($node->hasChildren(true)) : ?>
+		<div class="intro">
+		<?php echo $content->get('intro'); ?>
+		</div>
 		<?php foreach ($node->getChildren(true) as $child): ?>
 				<?php
 				$sub_content = $child->getContent();
