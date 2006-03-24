@@ -14,7 +14,7 @@
 								<?php echo translate('login_welcome_message') ?>
 								</div>
 							</td>
-							<td><div class="login_table_padding"><img src="clefs.gif"></div></td>
+							<td><div class="login_table_padding"><!--<img src="clefs.gif">--></div></td>
 							<td bgcolor="#cccccc" width="1"></td>
 							
 							<td valign="top" width="204">

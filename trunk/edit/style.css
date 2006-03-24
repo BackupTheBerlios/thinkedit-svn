@@ -1017,6 +1017,13 @@ a.number
 		border-color: #999
 }
 
+
+.tr_hilight
+{
+		background-color: #ffb700;
+		
+}
+
 .tr_on
 {
 		background-color: #CCE5FF;

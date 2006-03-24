@@ -33,7 +33,7 @@ if ($menuitem->isCurrent())
 <img src="<?php echo te_design() ?>/sources/empty.gif" border="0px">
 <?php endif;?>
 
-<?php echo $menuitem->getTitle();?>
+<?php echo te_short($menuitem->getTitle(), 30);?>
 </a>
 <?php endforeach; ?>
 <?php endif; ?>

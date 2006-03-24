@@ -42,13 +42,13 @@ class menu_sibling extends menu_base
 				
 		}
 		
-		function getArray()
+		function getArray($get_all = false)
 		{
 				if ($siblings = $this->node->getSiblings(true))
 				{
 						foreach ($siblings as $entry)
 						{
-								if ($entry->useInNavigation())
+								if ($entry->useInNavigation() || $get_all)
 								{
 										$menuitem = new menuitem($entry);
 										if ($entry->getId() == $this->node->getId())
@@ -58,8 +58,14 @@ class menu_sibling extends menu_base
 										$menuitems[] = $menuitem;
 								}
 						}
-						
-						return $menuitems;
+						if (isset($menuitems))
+						{
+								return $menuitems;
+						}
+						else
+						{
+								return false;
+						}
 				}
 				else
 				{

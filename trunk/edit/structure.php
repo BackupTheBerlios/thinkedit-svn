@@ -437,6 +437,15 @@ $url->set('node_id', $node_object->getId());
 						$node_info['preview_url'] = $url->render('../index.php');
 						$node_info['preview_title'] = translate('preview');
 						
+						
+						/********* node is current ? *******/
+						if ($node_item->getId() == $current_node->getId())
+						{
+								$node_info['is_current'] = true;
+						}
+						
+						
+						/******* append this node info to out nodes list ****/
 						$out['nodes'][] = $node_info;
 						$i++;
 				}

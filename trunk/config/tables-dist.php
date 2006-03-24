@@ -7,11 +7,17 @@ $data['table']['page']['allowed_items']['record']['publication']='true';
 $data['table']['page']['allowed_items']['record']['news']='true';
 $data['table']['page']['allowed_items']['filesystem']['main']='true';
 $data['table']['page']['field']['id']['type']='id';
-$data['table']['page']['field']['title']['title']['fr']='Titre du dossier';
+$data['table']['page']['field']['title']['title']['fr']='Titre';
 $data['table']['page']['field']['title']['help']['fr']='Un titre court est plus percutant';
 $data['table']['page']['field']['title']['type']='string';
 $data['table']['page']['field']['title']['is_title']='true';
-$data['table']['page']['field']['intro']['title']['fr']='Introduction du dossier';
+
+$data['table']['page']['field']['sub_title']['title']['fr']='Sous titre';
+$data['table']['page']['field']['sub_title']['help']['fr']='Utilisé dans la page si vous en proposez un';
+$data['table']['page']['field']['sub_title']['type']='string';
+
+
+$data['table']['page']['field']['intro']['title']['fr']='Introduction';
 $data['table']['page']['field']['intro']['type']='richtext';
 $data['table']['page']['field']['body']['title']['fr']='Corps du texte';
 $data['table']['page']['field']['body']['help']['fr']='Regardez dans l\'aide pour ajouter des images';

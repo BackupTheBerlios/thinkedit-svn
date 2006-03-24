@@ -21,20 +21,6 @@
 </div>
 
 
-<div class="box">
-
-<p>
-<?php if (isset($out['allowed_items'])) : ?>
-<select size="1" onChange="jump('parent',this,0)">
-<option value=""><?php echo translate('node_add_new') ?></option>
-<?php foreach ($out['allowed_items'] as $item): ?>
-<option value="<?php echo $item['action'] ?>"><?php echo ucfirst($item['title']) ?></option>
-<?php endforeach; ?>
-</select>
-<?php endif; ?>
-</p>
-</div>
-
 
 
 <div class="power_margin">
@@ -65,6 +51,12 @@ else
 {
 $class = "tr_on";
 }
+
+if (isset($node['is_current']))
+{
+		$class = "tr_hilight";
+}
+
 $i++;
 ?>
 
@@ -143,6 +135,18 @@ $i++;
 <a class="action_button" href="<?php echo $node['preview_url']?>" target="_blank">
 <?php echo  $node['preview_title'];?>
 </a>
+<?php endif; ?>
+
+
+<?php if (isset($node['is_current'])): ?>
+<?php if (isset($out['allowed_items'])) : ?>
+<select size="1" onChange="jump('parent',this,0)">
+<option value=""><?php echo translate('node_add_new') ?></option>
+<?php foreach ($out['allowed_items'] as $item): ?>
+<option value="<?php echo $item['action'] ?>"><?php echo ucfirst($item['title']) ?></option>
+<?php endforeach; ?>
+</select>
+<?php endif; ?>
 <?php endif; ?>
 
 </td>

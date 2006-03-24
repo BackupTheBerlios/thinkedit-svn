@@ -24,13 +24,13 @@
 													</div>
 													</td>
 													<td align="left" valign="top" width="168">
-													<!--
+													
 													<a class="parents_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Premier</a>
 													<a class="enfants_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Second</a>
-													<a class="ados_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Troisi&egrave;me</a>
+													<a class="adolescents_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Troisi&egrave;me</a>
 													<a class="professionnels_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Quatri&egrave;me</a>
 													<a class="professionnels_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Cinqui&egrave;me</a></td>
-													-->
+													
 												</tr>
 												<tr>
 													<td align="left" valign="top" width="366">
@@ -60,7 +60,7 @@
 																	<?php $news_content = $news_node->getContent(); ?>
 																	<?php $news_image = $news_content->field['image']->getFilesystem(); ?>
 																		<?php if ($news_image): ?>
-																		<img src="<?php echo $news_image->getThumbnail(array('hl'=> 120, 'hp'=>120, 'wl'=> 168, 'wp'=>168) ); ?>">
+																		<img src="<?php echo $news_image->getThumbnail(array('hl'=> 140, 'hp'=>140, 'wl'=> 168, 'wp'=>168, 'q' => 90) ); ?>">
 																		<!--<center><img src="<?php echo $news_image->getThumbnail(array('h'=> 150, 'w'=>150, 'zc' => 1) ); ?>"></center>-->
 																		<?php endif; ?>
 															</td>

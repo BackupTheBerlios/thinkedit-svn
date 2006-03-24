@@ -164,8 +164,11 @@ class config
 				}
 				else
 				{
+						return ROOT . '/tmp/';
+						
 						// is this better supported on hosts ? : 
 						// if safe mode is on, we'll have trouble : http://bugs.php.net/bug.php?id=27133
+						
 						$path = realpath(dirname(tempnam('/tmp', 'foo'))) . '/';
 						//echo $path;
 						return $path;

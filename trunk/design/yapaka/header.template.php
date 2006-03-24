@@ -138,7 +138,7 @@ elseif (is_array($my_parents))
 <?php if (isset($breadcrumb)) : ?>
 		<?php foreach ($breadcrumb->getArray() as $menuitem): ?>
 				<?php if ($menuitem->isEnd()): ?>
-					<?php echo $menuitem->getTitle();?>
+					<?php echo te_short($menuitem->getTitle(), 40);?>
 				<?php else: ?>
 					<a href="<?php echo $menuitem->getUrl();?>"><?php echo te_short($menuitem->getTitle(), 20);?></a>&gt;
 				<?php endif; ?>

@@ -71,7 +71,6 @@ function te_admin_toolbox()
 				$out .= 'Total time : ' . $thinkedit->timer->render();
 				
 				$url = new url();
-				
 				$url->keep('node_id');
 				$url->set('refresh', 1);
 				$out .= '<br/>';
@@ -82,6 +81,12 @@ function te_admin_toolbox()
 				$url->set('clear_cache', 1);
 				$out .= '<br/>';
 				$out .= '<a href="' . $url->render() . '">Clear cache</a>';
+				
+				$url = new url();
+				$url->keep('node_id');
+				$out .= '<br/>';
+				$out .= '<a href="' . $url->render('./edit/structure.php') . '" target="_blank">Edit</a>';
+				
 				
 				global $db_debug;
 				if (isset($db_debug))
