@@ -65,27 +65,57 @@ function te_admin_toolbox()
 		{
 				$out = '';
 				
-				$out .= '<div class="admin_toolbox">';
-				$out .= 'Total Queries : ' . $thinkedit->db->getTotalQueries();
-				$out .= '<br/>';
-				$out .= 'Total time : ' . $thinkedit->timer->render();
+				// todo move style sheet somewhere, but this one is common to all designs, and designs author can what they want
+				$out .= '
+				<style>
+				.admin_toolbox
+				{
+						position: absolute;
+						position: fixed;
+						top: 1em;
+						right: 1em;
+						width: 8em;
+						background-color : white;
+						padding: 1em;
+				}
 				
+				.admin_toolbox_button
+				{
+						background-color : #0080ff;
+						/*margin: 5px;*/
+						padding: 5px;
+						display: block;
+						text-decoration: none;
+						color: white;
+				}
+				
+				</style>
+				';
+				
+				$out .= '<div class="admin_toolbox">';
 				$url = new url();
 				$url->keep('node_id');
 				$url->set('refresh', 1);
 				$out .= '<br/>';
-				$out .= '<a href="' . $url->render() . '">Refresh</a>';
+				$out .= '<a href="' . $url->render() . '" class="admin_toolbox_button">'. te_translate('refresh') .'</a>';
 				
 				$url = new url();
 				$url->keep('node_id');
 				$url->set('clear_cache', 1);
 				$out .= '<br/>';
-				$out .= '<a href="' . $url->render() . '">Clear cache</a>';
+				$out .= '<a href="' . $url->render() . '" class="admin_toolbox_button">'. te_translate('clear_cache') .'</a>';
 				
 				$url = new url();
 				$url->keep('node_id');
 				$out .= '<br/>';
-				$out .= '<a href="' . $url->render('./edit/structure.php') . '" target="_blank">Edit</a>';
+				$out .= '<a href="' . $url->render('./edit/structure.php') . '" target="_blank" class="admin_toolbox_button">'. te_translate('edit') .'</a>';
+				$out .= '</div>';
+				
+				
+				$out .= 'Total Queries : ' . $thinkedit->db->getTotalQueries();
+				$out .= '<br/>';
+				$out .= 'Total time : ' . $thinkedit->timer->render();
+				
 				
 				
 				global $db_debug;
@@ -97,7 +127,7 @@ function te_admin_toolbox()
 						}
 				}
 				
-				$out .= '</div>';
+				
 				return $out;
 		}
 		else
@@ -112,13 +142,19 @@ function te_every($size)
 		static $i;
 		$i++;
 		if (($i % $size) == 0)
-		 {
-				 return true;
-		 }
-		 else
-		 {
-				 return false;
-		 }
+		{
+				return true;
+		}
+		else
+		{
+				return false;
+		}
+}
+
+
+function te_translate($id)
+{
+		return $id;
 }
 
 ?>

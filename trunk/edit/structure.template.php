@@ -64,7 +64,7 @@ $i++;
 
 
 <td class="power_cell power_cell_border" style="cursor:pointer" onClick="document.location.href='<?php echo $node['url']?>';">
-<a href="<?php echo $node['url']?>">
+<a href="<?php echo $node['url']?>" title="<?php echo  $node['full_title'] ?>">
 <div style="float: left; width: <?php echo ($node['level'] * 20)?>px; border: 0px solid black">&nbsp;</div>
 
 <?php if (isset($node['helper_icon'])): ?>

@@ -23,7 +23,12 @@
 <![endif]-->
 
 
-
+	<style>
+	table
+	{
+			/*border: 1px solid red !important;*/
+	}
+	</style>
 		
 		
   </head>
@@ -48,7 +53,7 @@
 <?php include ('breadcrumb.template.php') ?>
 </td>
 <td align="right">
-<?php /*include_once('choose_locale.inc.php'); */?>
+<?php /*include_once('choose_locale.inc.php');*/ ?>
 </td>
 </tr>
 </table>

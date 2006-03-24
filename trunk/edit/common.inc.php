@@ -16,4 +16,8 @@ $interface_locale = new interface_locale(ROOT . '/edit/ressource/locale/fr.php')
 
 $thinkedit->context->set('interface');
 
+
+/******************* Template helpers (aka "tags") *******************/
+require_once ROOT . '/lib/thinkedit/template.lib.php';
+
 ?>

@@ -1021,6 +1021,11 @@ a.number
 .tr_hilight
 {
 		background-color: #ffb700;
+}
+
+.tr_hilight:hover
+{
+		background-color: #ff9100;
 		
 }
 

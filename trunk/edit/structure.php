@@ -350,7 +350,16 @@ $url->set('node_id', $node_object->getId());
 						$url->set('node_id', $node_item->getId());
 						$content = $node_item->getContent();
 						$content->load();
-						$node_info['title'] = substr($node_item->getTitle(), 0, 32); // . ' (' . $node_item->getOrder() . ')';
+						
+						if ($node_item->getLevel() > 3)
+						{
+								$node_info['title'] = te_short($node_item->getTitle(), 20); // . ' (' . $node_item->getOrder() . ')';
+						}
+						else
+						{
+								$node_info['title'] = te_short($node_item->getTitle(), 32); // . ' (' . $node_item->getOrder() . ')';
+						}
+						$node_info['full_title'] = $node_item->getTitle();
 						//$node_info['title'] .= $node_item->getLevel(); // . ' (' . $node_item->getOrder() . ')';
 						$node_info['icon'] = $content->getIcon();
 						$node_info['url'] = $url->render();
