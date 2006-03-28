@@ -55,7 +55,7 @@ if ($relations)
 		foreach ($relations as $relation_object )
 		{
 				$relation_object->load();
-				$item['title'] = $relation_object->getTitle();
+				$item['title'] = te_short($relation_object->getTitle(), 50);
 				$item['icon'] = $relation_object->getIcon();
 				$url->set('action', 'unrelate');
 				$url->addObject($relation_object, 'target_');

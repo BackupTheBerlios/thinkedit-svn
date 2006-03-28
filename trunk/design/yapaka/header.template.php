@@ -55,9 +55,8 @@ elseif (is_array($my_parents))
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
+
 <td align="center" valign="top">
-
-
 
 <table width="717" border="0" style="margin-bottom: 20px">
 <tr>
@@ -96,16 +95,31 @@ elseif (is_array($my_parents))
 </tr>
 </table>
 
+</td>
+</tr>
 
+
+<tr>
+<td align="center" valign="top"><img src="<?php echo te_design(); ?>/sources/shadow_top.gif" alt="" width="777" border="0">
+</td>
+</tr>
+
+
+
+
+<tr>
+<td align="center" valign="top">
 
 <table border="0" cellspacing="0" cellpadding="0">
+
+
 <tr>
 
 <td align="right" valign="top" width="15" background="<?php echo te_design() ?>/sources/shadow_left.gif">
 </td>
 
 
-<td align="left" valign="top" class="content_padding">
+<td align="left" valign="top" class="content_padding" >
 <table width="717" border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td align="left" valign="top" bgcolor="#003366" width="717">

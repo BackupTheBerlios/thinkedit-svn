@@ -21,7 +21,7 @@
 
 <?php if (is_array($sibling_menu->getArray(true) )): ?>
 <?php foreach ($sibling_menu->getArray(true) as $sibling_menu_item) : ?>
-<option value="<?php echo $sibling_menu_item->getUrl(); ?>" <?php if ($sibling_menu_item->isCurrent()): ?>selected="selected"<?php endif; ?>><?php echo te_short($sibling_menu_item->getTitle(), 70)?></option>
+<option value="<?php echo $sibling_menu_item->getUrl(); ?>" <?php if ($sibling_menu_item->isCurrent()): ?>selected="selected"<?php endif; ?>><?php echo te_short($sibling_menu_item->getTitle(), 50)?></option>
 <?php endforeach; ?>
 <?php endif;?>
 

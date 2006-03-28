@@ -109,6 +109,7 @@ $data['table']['user']['field']['id']['primary']='true';
 $data['table']['user']['field']['login']['is_title']='true';
 $data['table']['user']['field']['login']['type']='login';
 $data['table']['user']['field']['password']['type']='password';
+$data['table']['user']['field']['password']['use']['list']='false';
 $data['table']['node']['field']['id']['type']='id';
 $data['table']['node']['field']['id']['primary']='true';
 $data['table']['node']['field']['id']['is_title']='true';

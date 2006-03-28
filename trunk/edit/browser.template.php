@@ -85,9 +85,16 @@
 
 
 
+<?php if (isset($out['parent_url'])): ?>
+<div style="margin-top: 20px; margin-bottom: 20px">
+<a href="<?php echo $out['parent_url']; ?>" class="action_button"><?php echo translate('go_up'); ?></a>
+</div>
+<?php endif; ?>
+
 
 
 <div class="image_browser_margin">
+
 
 <table class="image_browser_table" cellspacing="0" cellpadding="0">
 

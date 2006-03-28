@@ -189,7 +189,7 @@ if ($class=='table' && $type)
 		{
 				foreach ($records as $content)
 				{
-						$item['title'] = $content->getTitle();
+						$item['title'] = te_short($content->getTitle(), 40);
 						$item['icon'] = $content->getIcon();
 						$url->addObject($content, 'target_');
 						$item['url'] = $url->render('relation.php');
@@ -232,6 +232,24 @@ if ($class=='node')
 		
 		
 		
+		if ($parent_node = $current_node->getParent())
+		{
+			$url = new url();
+			$url->keep('class');
+			$url->keep('mode');
+			$url->set('node_id', $parent_node->getId());
+			$out['parent_url'] = $url->render();
+		}
+		else
+		{
+			$url = new url();
+			$url->keep('class');
+			$url->keep('mode');
+			$url->set('node_id', '');
+			$out['parent_url'] = $url->render();
+		}
+		
+		
 		// build a list of nodes within the current node :
 		// if we are in root
 		if ($we_are_root)
@@ -254,7 +272,7 @@ if ($class=='node')
 				{
 						$content = $node_item->getContent();
 						$content->load();
-						$item['title'] = $content->getTitle();
+						$item['title'] = te_short($content->getTitle(), 40);
 						$item['icon'] = $content->getIcon();
 						$url = new url();
 					  $url->keep('class');

@@ -10,8 +10,14 @@ Input :
  -> init : store referrer url in a cookie and returns to main
  -> cancel : redirect to url storred in session and remove mode within session.
 
-
 */
+
+
+
+/****************** deprecated ******************/
+
+
+die ('deprecated');
 
 //genral setup
 include_once('common.inc.php');
@@ -59,7 +65,7 @@ if ($relations)
 {
 		foreach ($relations as $relation_object )
 		{
-				$item['title'] = $relation_object->getTitle();
+				$item['title'] = te_short(20, $relation_object->getTitle());
 				$item['icon'] = $relation_object->getIcon();
 				$out['relation']['data'][] = $item;
 		}
