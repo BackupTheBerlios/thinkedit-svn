@@ -421,6 +421,9 @@ class record
 								
 						}
 				}
+				
+				// todo : build a list of fields then use it for both the field name and value to build the sql query
+				
 				$sql.= ' ( ';
 				$sql .= implode($fields_names, ', ');
 				$sql.= ' ) ';

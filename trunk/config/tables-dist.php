@@ -5,7 +5,11 @@ $data['table']['page']['title_field']='title';
 $data['table']['page']['allowed_items']['record']['page']='true';
 $data['table']['page']['allowed_items']['record']['publication']='true';
 $data['table']['page']['allowed_items']['record']['news']='true';
+$data['table']['page']['allowed_items']['record']['discussion']='true';
+$data['table']['page']['allowed_items']['record']['question_parent']='true';
 $data['table']['page']['allowed_items']['filesystem']['main']='true';
+
+
 $data['table']['page']['field']['id']['type']='id';
 $data['table']['page']['field']['title']['title']['fr']='Titre';
 $data['table']['page']['field']['title']['help']['fr']='Un titre court est plus percutant';
@@ -22,6 +26,12 @@ $data['table']['page']['field']['intro']['type']='richtext';
 $data['table']['page']['field']['body']['title']['fr']='Corps du texte';
 $data['table']['page']['field']['body']['help']['fr']='Regardez dans l\'aide pour ajouter des images';
 $data['table']['page']['field']['body']['type']='richtext';
+$data['table']['page']['field']['cover']['title']['fr']='Image de présentation';
+$data['table']['page']['field']['cover']['help']['fr']='Facultative. Si vous en ajoutez une, elle apparaitra dans le site, dans chaque page de listing des sous pages';
+$data['table']['page']['field']['cover']['type']='file';
+
+
+
 $data['table']['translation']['title']['fr']='Traduction';
 $data['table']['translation']['help']['fr']='Les traductions peuventêtre utilisées dans l\'interface et dans la partie publique du site. C\'est très utile dans le cas d\'un site multilingue';
 $data['table']['translation']['field']['translation_id']['type']='stringid';
@@ -30,6 +40,7 @@ $data['table']['translation']['field']['translation']['type']='text';
 $data['table']['translation']['field']['translation']['is_title']='true';
 $data['table']['translation']['field']['locale']['type']='locale';
 $data['table']['translation']['field']['locale']['is_title']='true';
+
 $data['table']['author']['title']['fr']='Auteur';
 $data['table']['author']['field']['id']['type']='id';
 $data['table']['author']['field']['id']['primary']='true';
@@ -38,6 +49,7 @@ $data['table']['author']['field']['firstname']['is_title']='true';
 $data['table']['author']['field']['lastname']['type']='string';
 $data['table']['author']['field']['lastname']['is_title']='true';
 $data['table']['author']['allowed_items']='none';
+
 $data['table']['publication']['title']['fr']='Publication';
 $data['table']['publication']['icon']='book.png';
 $data['table']['publication']['title_field']='title';
@@ -61,6 +73,7 @@ $data['table']['publication']['field']['pdf']['type']='file';
 $data['table']['publication']['field']['publication']['title']['fr']='Date de publication';
 $data['table']['publication']['field']['publication']['help']['fr']='Il faut pour le moment mettre aaaa-mm-jj (année, mois, jour)';
 $data['table']['publication']['field']['publication']['type']='date';
+
 $data['table']['relation']['title_field']='title';
 $data['table']['relation']['field']['id']['type']='id';
 $data['table']['relation']['field']['id']['primary']='false';
@@ -84,6 +97,7 @@ $data['table']['relation']['field']['target_id']['primary']='true';
 $data['table']['relation']['field']['target_id']['use']['list']='true';
 $data['table']['relation']['field']['sort_order']['type']='order';
 $data['table']['relation']['field']['sort_order']['use']['list']='true';
+
 $data['table']['multimedia']['title']['fr']='Elément multimédia';
 $data['table']['multimedia']['help']['fr']='Unélément multimédia peut être un film, un son, une musique, etc... Attachez un fichier à cet élément pour qu\'il soit disponible en téléchargement';
 $data['table']['multimedia']['icon']='video-x-generic.png';
@@ -101,6 +115,7 @@ $data['table']['multimedia']['field']['body']['help']['fr']='Regardez dans l\'ai
 $data['table']['multimedia']['field']['body']['type']='richtext';
 $data['table']['multimedia']['field']['cover']['title']['fr']='Image de prévisualisation';
 $data['table']['multimedia']['field']['cover']['type']='file';
+
 $data['table']['user']['title']['fr']='Utilisateurs';
 $data['table']['user']['help']['fr']='Liste des personnes pouvant utiliser le site et modifier son contenu';
 $data['table']['user']['use']['main']='true';
@@ -110,6 +125,8 @@ $data['table']['user']['field']['login']['is_title']='true';
 $data['table']['user']['field']['login']['type']='login';
 $data['table']['user']['field']['password']['type']='password';
 $data['table']['user']['field']['password']['use']['list']='false';
+
+
 $data['table']['node']['field']['id']['type']='id';
 $data['table']['node']['field']['id']['primary']='true';
 $data['table']['node']['field']['id']['is_title']='true';
@@ -146,6 +163,8 @@ $data['table']['node']['field']['left_id']['use']['edit']='false';
 $data['table']['node']['field']['right_id']['type']='int';
 $data['table']['node']['field']['right_id']['use']['list']='false';
 $data['table']['node']['field']['right_id']['use']['edit']='false';
+
+
 $data['table']['news']['title']['fr'] = 'actualité';
 $data['table']['news']['icon'] = 'calendar.png';
 $data['table']['news']['field']['id']['type'] = 'id';
@@ -154,6 +173,44 @@ $data['table']['news']['field']['title']['is_title'] = 'true';
 $data['table']['news']['field']['intro']['type'] = 'richtext';
 $data['table']['news']['field']['body']['type'] = 'richtext';
 $data['table']['news']['field']['image']['type'] = 'file';
+
+
+$data['table']['discussion']['title']['fr']='Discussion';
+$data['table']['discussion']['icon']='comment.png';
+$data['table']['discussion']['title_field']='title';
+$data['table']['discussion']['field']['id']['type']='id';
+$data['table']['discussion']['field']['title']['title']['fr']='Titre';
+$data['table']['discussion']['field']['title']['type']='string';
+$data['table']['discussion']['field']['title']['is_title']='true';
+$data['table']['discussion']['field']['body']['title']['fr']='Corps du texte';
+$data['table']['discussion']['field']['body']['help']['fr']='Texte plus long (si nécessaire)';
+$data['table']['discussion']['field']['body']['type']='text';
+
+
+
+
+$data['table']['question_parent']['title']['fr']='Question parent';
+$data['table']['question_parent']['icon']='book_open.png';
+$data['table']['question_parent']['title_field']='title';
+
+$data['table']['question_parent']['field']['id']['type']='id';
+
+$data['table']['question_parent']['field']['title']['title']['fr']='Titre';
+$data['table']['question_parent']['field']['title']['type']='string';
+$data['table']['question_parent']['field']['title']['is_title']='true';
+
+$data['table']['question_parent']['field']['cover']['title']['fr']='Image de présentation';
+$data['table']['question_parent']['field']['cover']['type']='file';
+
+$data['table']['question_parent']['field']['intro']['title']['fr']='Chapo';
+$data['table']['question_parent']['field']['intro']['type']='richtext';
+
+
+$data['table']['question_parent']['field']['body']['title']['fr']='Corps du texte';
+$data['table']['question_parent']['field']['body']['help']['fr']='Texte plus long (si nécessaire)';
+$data['table']['question_parent']['field']['body']['type']='richtext';
+
+
 
 
 /*

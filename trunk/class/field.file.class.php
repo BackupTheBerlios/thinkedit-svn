@@ -9,7 +9,7 @@ class field_file extends field
 		{
 				$out = '';
 				
-				$out .= sprintf('<input type="text" value="%s" name="%s", size="64">', $this->getRaw(), $this->getName());
+				$out .= sprintf('<input type="text" value="%s" name="%s", size="64">', $this->getHtmlSafe(), $this->getName());
 				require_once(ROOT . '/class/url.class.php');
 				$url = new url();
 				$url->set('class', 'file');

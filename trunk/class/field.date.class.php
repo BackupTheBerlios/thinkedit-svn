@@ -7,7 +7,7 @@ class field_date extends field
 		function renderUI($prefix = false)
 		{
 				$out = '';
-				$out .= sprintf('<input type="text" value="%s" name="%s", size="32">', $this->getRaw(), $prefix . $this->getName());
+				$out .= sprintf('<input type="text" value="%s" name="%s", size="32">', $this->getHtmlSafe(), $prefix . $this->getName());
 				return $out;
 				
 				$date_array = explode("-", $this->get());

@@ -37,9 +37,23 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 header ("Content-Type: text/html; charset=utf-8");
 
 
+
+
+
+
 /******************* Disable magic quotes ***************/
+// from http://fr.php.net/manual/en/security.magicquotes.disabling.php
+
 if (get_magic_quotes_gpc()) 
 {
+		/*
+		echo '<pre>';
+		echo '<h1>Before conversion</h1>';
+		print_r($_REQUEST);
+		echo '</pre>';
+		*/
+		
+		
 		function stripslashes_deep($value)
 		{
 				if (is_array($value))
@@ -59,7 +73,16 @@ if (get_magic_quotes_gpc())
 		$_COOKIE = array_map('stripslashes_deep', $_COOKIE);
 		$_REQUEST = array_map('stripslashes_deep', $_REQUEST);
 		// todo check if $_SESSION must be changed as well. Php doc is unclear on this subject
+		
+		/*
+		echo '<pre>';
+		echo '<h1>After conversion</h1>';
+		print_r($_REQUEST);
+		echo '</pre>';
+		*/
 }
+
+
 
 
 /******************* Profiling ***************/

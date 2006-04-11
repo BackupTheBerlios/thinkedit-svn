@@ -15,7 +15,7 @@ class field_id extends field
 				
 				$out .= ' (' . translate('edit_id_is_not_editable') .')';
 				$out .= '-->';
-				$out .='<input type="hidden" name="' . $prefix . $this->getName() . '" value="' . $this->get() . '">';
+				$out .='<input type="hidden" name="' . $prefix . $this->getName() . '" value="' . $this->getHtmlSafe() . '">';
 				return $out;
 		}
 		

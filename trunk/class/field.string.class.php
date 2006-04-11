@@ -8,7 +8,7 @@ class field_string extends field
 function renderUI($prefix = false)
 	{
 		$out = '';
-		$out .= sprintf('<input type="text" value="%s" name="%s" size="64">', $this->getRaw(), $prefix . $this->getName());
+		$out .= sprintf('<input type="text" value="%s" name="%s" size="64">', $this->getHtmlSafe(), $prefix . $this->getName());
 		return $out;
 	}
 	

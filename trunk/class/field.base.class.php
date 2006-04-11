@@ -45,6 +45,12 @@ class field
 		}
 		
 		
+		function getHtmlSafe()
+		{
+				return htmlspecialchars($this->get());
+		}
+		
+		
 		function set($data)
 		{
 				$this->data = $data;
@@ -64,7 +70,7 @@ class field
 		function renderUI($prefix = false)
 		{
 				$out = '';
-				$out .= sprintf('<input type="text" value="%s" name="%s", size="32">', $this->getRaw(), $prefix . $this->getName());
+				$out .= sprintf('<input type="text" value="%s" name="%s", size="32">', $this->getHtmlSafe(), $prefix . $this->getName());
 				return $out;
 		}
 		
