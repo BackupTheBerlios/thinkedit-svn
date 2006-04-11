@@ -20,7 +20,7 @@ if ($menuitem->isCurrent())
 		$class .= " current_navigation";
 }
 ?>
-<a class="<?php echo $class; ?>" href="<?php echo $menuitem->getUrl();?>">
+<a class="<?php echo $class; ?>" href="<?php echo $menuitem->getUrl();?>" title="<?php echo $menuitem->getTitle();?>">
 <?php if ($menuitem->node->hasChildren()): ?>
 
 		<?php if ($menuitem->node->isAncestorOf($node) || $menuitem->isCurrent() ): ?>
@@ -33,7 +33,7 @@ if ($menuitem->isCurrent())
 <img src="<?php echo te_design() ?>/sources/empty.gif" border="0px">
 <?php endif;?>
 
-<?php echo te_short($menuitem->getTitle(), 30);?>
+<?php echo te_short($menuitem->getTitle(), 25);?>
 </a>
 <?php endforeach; ?>
 <?php endif; ?>

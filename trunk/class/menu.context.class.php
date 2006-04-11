@@ -79,7 +79,8 @@ class menu_context extends menu_base
 				// if level = 1, returns childs
 				if ($level == 1)
 				{
-						$node_list = $this->node->getChildren(array('class'=>'record', 'type' => 'page'));
+						// $node_list = $this->node->getChildren(array('class'=>'record', 'type' => 'page'));
+						$node_list = $this->node->getChildren();
 				}
 				
 				
@@ -95,7 +96,8 @@ class menu_context extends menu_base
 										$node_list[] = $sibling;
 										if ($sibling->hasChildren())
 										{
-												$children = $sibling->getChildren(array('class'=>'record', 'type' => 'page'));
+												//$children = $sibling->getChildren(array('class'=>'record', 'type' => 'page'));
+												$children = $sibling->getChildren();
 												foreach ($children as $child)
 												{
 													

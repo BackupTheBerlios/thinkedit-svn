@@ -2,7 +2,7 @@
 
 <div class="content_title"><?php echo $content->getTitle() ?></div>
 
-<p style="float: right; padding: 20px">
+<div class="publication_cover">
 		<?php
 		// render thumbnail
 		$file = $content->field['cover']->getFilesystem();
@@ -11,15 +11,15 @@
 		<?php if ($file): ?>
 		<img src="<?php echo $file->getIcon(150); ?>"/>
 		<?php endif; ?>
-</p>
+</div>
 
-<p>
+<div class="publication_intro">
 		<?php echo $content->get('intro'); ?>
-</p>
+</div>
 
-<p>
+<div class="publication_body">
 		<?php echo $content->get('body'); ?>
-</p>
+</div>
 
 
 <?php include 'content_footer.php'; ?>

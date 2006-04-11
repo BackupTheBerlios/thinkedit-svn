@@ -1122,6 +1122,18 @@ class node
 		{
 				// todo : configurable somewhat :-)
 				
+				$content = $this->getContent();
+				
+				if ($content->useInNavigation())
+				{
+						return true;
+				}
+				else
+				{
+						return false;
+				}
+				
+				
 				if ($this->get('object_class') == 'record' && $this->get('object_type') == 'page')
 				{
 						return true;

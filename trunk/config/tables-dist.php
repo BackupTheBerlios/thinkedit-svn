@@ -8,6 +8,7 @@ $data['table']['page']['allowed_items']['record']['news']='true';
 $data['table']['page']['allowed_items']['record']['discussion']='true';
 $data['table']['page']['allowed_items']['record']['question_parent']='true';
 $data['table']['page']['allowed_items']['filesystem']['main']='true';
+$data['table']['page']['use_in_navigation']='true';
 
 
 $data['table']['page']['field']['id']['type']='id';
@@ -192,6 +193,7 @@ $data['table']['discussion']['field']['body']['type']='text';
 $data['table']['question_parent']['title']['fr']='Question parent';
 $data['table']['question_parent']['icon']='book_open.png';
 $data['table']['question_parent']['title_field']='title';
+$data['table']['question_parent']['use_in_navigation']='true';
 
 $data['table']['question_parent']['field']['id']['type']='id';
 

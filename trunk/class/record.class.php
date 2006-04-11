@@ -58,7 +58,8 @@ class record
 				}
 				else
 				{
-						trigger_error('record::get() field ' . $field .' not found');
+						return false;
+						//trigger_error('record::get() field ' . $field .' not found');
 				}
 		}
 		
@@ -688,6 +689,20 @@ class record
 				$out .= '</div>';
 				return $out;
 		}
+		
+		
+		function useInNavigation()
+		{
+				if (isset($this->config['use_in_navigation']))
+				{
+						return true;
+				}
+				else
+				{
+						return false;
+				}
+		}
+		
 }
 
 ?>
