@@ -161,4 +161,16 @@ $thinkedit->timer->marker('end init');
 
 $thinkedit->context->set('public');
 
+/*********************** Session ******************/
+$session = new session();
+
+
+/*********************** Locales ******************/
+// set locale to 'fr' for testing purposes
+$interface_locale = 'fr';
+// todo : setup user locale somewhere
+require_once ROOT . '/class/interface_locale.class.php';
+$interface_locale = new interface_locale(ROOT . '/edit/ressource/locale/fr.php');
+
+
 ?>

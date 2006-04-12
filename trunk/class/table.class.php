@@ -190,6 +190,10 @@ class table
 						{
 								$sql .= $name . ' ' . $type;
 						}
+						elseif ($type == 'created')
+						{
+								$sql .= $name . ' datetime';
+						}
 						elseif ($type == 'date')
 						{
 								$sql .= $name . ' date';

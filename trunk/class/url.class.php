@@ -62,10 +62,12 @@ class url
 				// define a list of parameters automatically kepts across urls
 				// todo : could be configurable DONE : $this->keepParam($id)
 				//$keep_params = array('id', 'node', 'type', 'path', 'debug', 'module_id', 'node_id', 'module_type');
+				
 				foreach ($_REQUEST as $key=>$value)
 				{
 						$this->orig_param[$key] = $value;
 				}
+				
 				
 				foreach ($_GET as $key=>$value)
 				{

@@ -357,8 +357,6 @@ class node
 				echo '</pre>';
 				*/
 				
-				
-				
 				$this->load();
 				// todo : returns a node and not a record
 				$where['parent_id'] = $this->get('id');
@@ -378,6 +376,11 @@ class node
 				if (isset($options['class']))
 				{
 						$where['object_class'] = $options['class'];
+				}
+				
+				if (isset($option['navigation_only']))
+				{
+						// todo ;-)
 				}
 				
 				$children =  $this->record->find($where, array('sort_order' => 'asc') );

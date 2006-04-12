@@ -13,11 +13,10 @@ General TODO (General features that affect more than one file / class):
 
 
 TODO (by order of importance) :
-
 - handling of path separators in *nix and windows. Define a constant, like PATH_SEPARATOR and use it everywhere
 - review all security todo in the code
 - friendly urls (in node class) / and node->loadByPath($path)
-- plugin/hooks system
+- plugin/hooks/alert system
 - validation of fields, with feedback in the edit UI
 - fields in/out filters (filters before a field is saved to the db and after it is loaded from the db)
 - optimize node->getAllNodes and menu classes
@@ -31,6 +30,17 @@ TODO (by order of importance) :
 - separate dist- config files and user customized config files 
 
 
+New fields :
+- created
+- modifed
+- email
+- user_login
+- user_ip
+
+
+ATOMIC TODO (small bugs to fix)
+- url init uses also request as original parameter because else edit screen doesn't work. Use the form class in edit screen instead and update url class accordingly. URL should only handle http "get" parameters
+- better record find options (where with and / or, etc ...) see ruby on rails active record and zend active db object for ideas.
 
 ALMOST THERE :
 - node publish + preview

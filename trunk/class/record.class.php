@@ -549,7 +549,7 @@ class record
 		
 		function setArray($array)
 		{
-				die ('deprecated');
+				//die ('deprecated');
 				$this->is_loaded = false;
 				if (is_array($array))
 				{

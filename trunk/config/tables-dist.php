@@ -180,13 +180,24 @@ $data['table']['discussion']['title']['fr']='Discussion';
 $data['table']['discussion']['icon']='comment.png';
 $data['table']['discussion']['title_field']='title';
 $data['table']['discussion']['field']['id']['type']='id';
-$data['table']['discussion']['field']['title']['title']['fr']='Titre';
+
+$data['table']['discussion']['field']['title']['title']['fr']='Sujet';
 $data['table']['discussion']['field']['title']['type']='string';
 $data['table']['discussion']['field']['title']['is_title']='true';
-$data['table']['discussion']['field']['body']['title']['fr']='Corps du texte';
+
+$data['table']['discussion']['field']['email']['title']['fr']='Adresse email';
+$data['table']['discussion']['field']['email']['type']='string';
+
+$data['table']['discussion']['field']['name']['title']['fr']='Nom ou pseudo';
+$data['table']['discussion']['field']['name']['type']='string';
+
+$data['table']['discussion']['field']['body']['title']['fr']='Message';
 $data['table']['discussion']['field']['body']['help']['fr']='Texte plus long (si nécessaire)';
 $data['table']['discussion']['field']['body']['type']='text';
 
+$data['table']['discussion']['field']['posted']['type']='created';
+$data['table']['discussion']['field']['posted']['title']['fr']='Date de création';
+$data['table']['discussion']['field']['posted']['use']['public']='false';
 
 
 

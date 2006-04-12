@@ -15,9 +15,10 @@
 </div>
 
 
-<?php if ($node->hasChildren(true)) : ?>
+<?php $children =  $node->getChildren(array('type'=>'page')); ?>
+<?php if ($children) : ?>
 		
-		<?php foreach ($node->getChildren(true) as $child): ?>
+		<?php foreach ($children as $child): ?>
 				<?php
 				$sub_content = $child->getContent();
 				$sub_content->load();
@@ -39,7 +40,7 @@
 					<?php if ($sub_content_file): ?>
 						<div class="cover_intro">
 						<a href="<?php echo te_link($child);?>">
-						<img src="<?php echo $sub_content_file->getThumbnail(array('w'=>50)); ?>"/>
+						<img src="<?php echo $sub_content_file->getThumbnail(array('w'=>80, 'h'=>80, 'zc'=>1)); ?>"/>
 						</a>
 						</div>
 					<?php endif; ?>
@@ -55,6 +56,10 @@
 				
 		<?php endforeach; ?>
 <?php endif;?>
+
+
+<?php include 'comment.php'; ?>
+
 
 <?php include 'content_footer.php'; ?>
 

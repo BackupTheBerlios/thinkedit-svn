@@ -44,6 +44,10 @@ class field
 				return $this->data;
 		}
 		
+		function getFriendly($options = false)
+		{
+				return $this->data;
+		}
 		
 		function getHtmlSafe()
 		{
@@ -202,9 +206,27 @@ class field
 				}
 				else
 				{
-						
+						// this is the default behavior. 
+						// If a particular use is not defined in config, we assume the field must be shown. 
 						return true;
 				}
+		}
+		
+		
+		/*
+		todo : if this function is defined, it could handle posted items from a form.
+		
+		For instance, a password field could check if a second field is filled 
+		with the same password, for validation
+		
+		Other use case : a date or datetime field could be rendered 
+		using multiple select boxes (one for day, one for month, one for year). 
+		This function would "merge" the different select box as one single "mysql understandable"
+		string.
+		*/
+		function handleFormPost($prefix = false)
+		{
+				trigger_error('todo');
 		}
 		
 }
