@@ -8,7 +8,7 @@ $data['table']['page']['allowed_items']['record']['news']='true';
 $data['table']['page']['allowed_items']['record']['discussion']='true';
 $data['table']['page']['allowed_items']['record']['question_parent']='true';
 $data['table']['page']['allowed_items']['filesystem']['main']='true';
-$data['table']['page']['use_in_navigation']='true';
+$data['table']['page']['use']['navigation']='true';
 
 
 $data['table']['page']['field']['id']['type']='id';
@@ -34,7 +34,8 @@ $data['table']['page']['field']['cover']['type']='file';
 
 
 $data['table']['translation']['title']['fr']='Traduction';
-$data['table']['translation']['help']['fr']='Les traductions peuventêtre utilisées dans l\'interface et dans la partie publique du site. C\'est très utile dans le cas d\'un site multilingue';
+$data['table']['translation']['help']['fr']='Les traductions peuvent être utilisées dans l\'interface et dans la partie publique du site. C\'est très utile dans le cas d\'un site multilingue';
+$data['table']['translation']['use']['navigation']='false';
 $data['table']['translation']['field']['translation_id']['type']='stringid';
 $data['table']['translation']['field']['translation_id']['is_title']='true';
 $data['table']['translation']['field']['translation']['type']='text';
@@ -50,10 +51,12 @@ $data['table']['author']['field']['firstname']['is_title']='true';
 $data['table']['author']['field']['lastname']['type']='string';
 $data['table']['author']['field']['lastname']['is_title']='true';
 $data['table']['author']['allowed_items']='none';
+$data['table']['author']['use']['navigation']='false';
 
 $data['table']['publication']['title']['fr']='Publication';
 $data['table']['publication']['icon']='book.png';
 $data['table']['publication']['title_field']='title';
+$data['table']['publication']['use']['navigation']='true';
 $data['table']['publication']['field']['id']['type']='id';
 $data['table']['publication']['field']['title']['title']['fr']='Titre';
 $data['table']['publication']['field']['title']['help']['fr']='Un titre court est plus percutant';
@@ -103,6 +106,7 @@ $data['table']['multimedia']['title']['fr']='Elément multimédia';
 $data['table']['multimedia']['help']['fr']='Unélément multimédia peut être un film, un son, une musique, etc... Attachez un fichier à cet élément pour qu\'il soit disponible en téléchargement';
 $data['table']['multimedia']['icon']='video-x-generic.png';
 $data['table']['multimedia']['title_field']='title';
+$data['table']['multimedia']['use']['navigation']='false';
 $data['table']['multimedia']['field']['id']['type']='id';
 $data['table']['multimedia']['field']['title']['title']['fr']='Titre';
 $data['table']['multimedia']['field']['title']['help']['fr']='Un titre court est plus percutant';
@@ -120,6 +124,7 @@ $data['table']['multimedia']['field']['cover']['type']='file';
 $data['table']['user']['title']['fr']='Utilisateurs';
 $data['table']['user']['help']['fr']='Liste des personnes pouvant utiliser le site et modifier son contenu';
 $data['table']['user']['use']['main']='true';
+$data['table']['user']['use']['navigation']='false';
 $data['table']['user']['field']['id']['type']='id';
 $data['table']['user']['field']['id']['primary']='true';
 $data['table']['user']['field']['login']['is_title']='true';
@@ -168,6 +173,7 @@ $data['table']['node']['field']['right_id']['use']['edit']='false';
 
 $data['table']['news']['title']['fr'] = 'actualité';
 $data['table']['news']['icon'] = 'calendar.png';
+$data['table']['news']['use']['navigation']='false';
 $data['table']['news']['field']['id']['type'] = 'id';
 $data['table']['news']['field']['title']['type'] = 'string';
 $data['table']['news']['field']['title']['is_title'] = 'true';
@@ -179,6 +185,8 @@ $data['table']['news']['field']['image']['type'] = 'file';
 $data['table']['discussion']['title']['fr']='Discussion';
 $data['table']['discussion']['icon']='comment.png';
 $data['table']['discussion']['title_field']='title';
+$data['table']['discussion']['use']['navigation']='false';
+
 $data['table']['discussion']['field']['id']['type']='id';
 
 $data['table']['discussion']['field']['title']['title']['fr']='Sujet';
@@ -204,7 +212,7 @@ $data['table']['discussion']['field']['posted']['use']['public']='false';
 $data['table']['question_parent']['title']['fr']='Question parent';
 $data['table']['question_parent']['icon']='book_open.png';
 $data['table']['question_parent']['title_field']='title';
-$data['table']['question_parent']['use_in_navigation']='true';
+$data['table']['question_parent']['use']['navigation']='true';
 
 $data['table']['question_parent']['field']['id']['type']='id';
 

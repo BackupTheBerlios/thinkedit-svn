@@ -1,0 +1,12 @@
+In templates, on content objects, you can use :
+
+$content->isUsedIn($something);
+
+$something can be, for instance 'navigation'
+
+This means : do I need to display this content in my navigation.
+
+
+This can be set in configuration using : 
+
+['table']['page']['use']['navigation'] = 'true'

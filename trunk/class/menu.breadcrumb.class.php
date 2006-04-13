@@ -91,7 +91,8 @@ class menu_breadcrumb extends menu_base
 				{
 						foreach ($this->node->getParentUntilRoot() as $parent)
 						{
-								if ($parent->useInNavigation())
+								$content = $parent->getContent();
+								if ($content->isUsedIn('navigation'))
 								{
 										$items[] = new menuitem($parent);
 								}

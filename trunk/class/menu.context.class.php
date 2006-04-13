@@ -183,7 +183,8 @@ class menu_context extends menu_base
 				{
 						foreach ($node_list as $node)
 						{
-								if ($node->useInNavigation())
+								$content = $node->getContent();
+								if ($content->isUsedIn('navigation'))
 								{
 										$menuitem = new menuitem($node);
 										if ($node->getId() == $this->node->getId())

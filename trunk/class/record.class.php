@@ -693,13 +693,30 @@ class record
 		
 		function useInNavigation()
 		{
-				if (isset($this->config['use_in_navigation']))
+				trigger_error('deprecated, use $this->isUsedIn(\'navigation\') instead');
+				
+		}
+		
+		
+		function isUsedIn($what)
+		{
+				if (isset($this->config['use'][$what]))
 				{
-						return true;
+						//print_r ( $this->config['use']);
+						if ($this->config['use'][$what] == 'false')
+						{
+								return false;
+						}
+						else
+						{
+								return true;
+						}
 				}
 				else
 				{
-						return false;
+						// this is the default behavior. 
+						// If a particular use is not defined in config, we assume the field must be shown. 
+						return true;
 				}
 		}
 		

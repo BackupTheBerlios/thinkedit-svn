@@ -48,7 +48,8 @@ class menu_sibling extends menu_base
 				{
 						foreach ($siblings as $entry)
 						{
-								if ($entry->useInNavigation() || $get_all)
+								$content = $entry->getContent();
+								if ($content->isUsedIn('navigation') || $get_all)
 								{
 										$menuitem = new menuitem($entry);
 										if ($entry->getId() == $this->node->getId())

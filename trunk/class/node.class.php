@@ -1123,8 +1123,8 @@ class node
 		
 		function useInNavigation()
 		{
+				trigger_error('deprecated, use $this->isUsedIn(\'navigation\') instead');
 				// todo : configurable somewhat :-)
-				
 				$content = $this->getContent();
 				
 				if ($content->useInNavigation())
@@ -1144,6 +1144,28 @@ class node
 				else
 				{
 						return false;
+				}
+		}
+		
+		function isUsedIn($what)
+		{
+				if (isset($this->config['use'][$what]))
+				{
+						//print_r ( $this->config['use']);
+						if ($this->config['use'][$what] == 'false')
+						{
+								return false;
+						}
+						else
+						{
+								return true;
+						}
+				}
+				else
+				{
+						// this is the default behavior. 
+						// If a particular use is not defined in config, we assume the field must be shown. 
+						return true;
 				}
 		}
 		

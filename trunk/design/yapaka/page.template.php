@@ -15,7 +15,7 @@
 </div>
 
 
-<?php $children =  $node->getChildren(array('type'=>'page')); ?>
+<?php $children =  $node->getChildren(); ?>
 <?php if ($children) : ?>
 		
 		<?php foreach ($children as $child): ?>
@@ -24,7 +24,7 @@
 				$sub_content->load();
 				?>
 				
-				
+				<?php if ($content->isUsedIn('navigation')): ?>
 				
 				
 				
@@ -53,6 +53,7 @@
 				<br/>
 				<a href="<?php echo te_link($child);?>" class="link_intro color100">Entrez &gt;</a>
 				</div>
+				<?php endif; ?>
 				
 		<?php endforeach; ?>
 <?php endif;?>

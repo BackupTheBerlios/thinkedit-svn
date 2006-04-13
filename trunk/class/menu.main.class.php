@@ -51,7 +51,8 @@ class menu_main extends menu_base
 						require_once 'menuitem.class.php';
 						foreach ($this->node->getChildren(true) as $child)
 						{
-								if ($child->useInNavigation())
+								$content = $child->getContent();
+								if ($content->isUsedIn('navigation'))
 								{
 										$menuitem = new menuitem($child);
 										$result[] = $menuitem;
