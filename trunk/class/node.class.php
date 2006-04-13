@@ -128,7 +128,7 @@ class node
 				
 		}
 		
-		function delete()
+		function delete($keep_content = false)
 		{
 				if ($this->hasChildren())
 				{
@@ -136,6 +136,12 @@ class node
 				}
 				else
 				{
+						// delete attached content record
+						if (!$keep_content)
+						{
+								$content = $this->getContent();
+								$content->delete();
+						}
 						$result = $this->record->delete();
 						$this->rebuild();
 						return $result;

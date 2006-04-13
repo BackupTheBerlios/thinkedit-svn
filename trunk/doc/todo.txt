@@ -31,11 +31,12 @@ TODO (by order of importance) :
 
 
 New fields :
-- created
+- created (done)
 - modifed
 - email
 - user_login
 - user_ip
+- catpcha (for public comments for instance, but it must be only used on the public facing website)
 
 
 ATOMIC TODO (small bugs to fix)

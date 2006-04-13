@@ -24,7 +24,7 @@
 				$sub_content->load();
 				?>
 				
-				<?php if ($content->isUsedIn('navigation')): ?>
+				<?php if ($sub_content->isUsedIn('navigation')): ?>
 				
 				
 				
@@ -34,7 +34,7 @@
 				</a>
 				</div>
 				
-				
+				<?php /*
 				<?php if ($sub_content->get('cover')): ?>
 				<?php $sub_content_file = $sub_content->field['cover']->getFilesystem(); ?>
 					<?php if ($sub_content_file): ?>
@@ -45,6 +45,7 @@
 						</div>
 					<?php endif; ?>
 				<?php endif; ?>
+				*/ ?>
 				
 				
 				

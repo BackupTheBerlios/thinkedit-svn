@@ -183,9 +183,12 @@ $data['table']['news']['field']['image']['type'] = 'file';
 
 
 $data['table']['discussion']['title']['fr']='Discussion';
+$data['table']['discussion']['help']['fr']='Message posté par les utilisateurs du site en rapport avec une page du site';
 $data['table']['discussion']['icon']='comment.png';
 $data['table']['discussion']['title_field']='title';
 $data['table']['discussion']['use']['navigation']='false';
+$data['table']['discussion']['use']['main']='true';
+
 
 $data['table']['discussion']['field']['id']['type']='id';
 
