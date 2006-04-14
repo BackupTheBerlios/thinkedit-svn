@@ -200,8 +200,18 @@ class node
 		
 		function save()
 		{
+				//echo 'record unloaded on node save';
+				//$this->record->is_loaded = false;
+				//$this->record->load();
+				
+				return $this->record->save();
+				
 				// todo, we must be safe with this !
-				if ($this->get('parent_id') > -1)
+				if ($this->get('parent_id') == 0 && $this->get('id') == 1)
+				{
+						return $this->record->save();
+				}
+				elseif ($this->get('parent_id') > 0 && $this->get('id') > 1)
 				{
 						return $this->record->save();
 				}
@@ -217,6 +227,7 @@ class node
 		// from http://www.sitepoint.com/article/hierarchical-data-database/3
 		function rebuild($parent_id = 0, $left = 1)
 		{
+				//echo '<h1>rebuild called</h1>';
 				global $thinkedit;
 				// the right value of this node is the left value + 1
 				$right = $left+1;
@@ -244,7 +255,7 @@ class node
 				
 				$thinkedit->db->query($sql);
 				
-				// return the right value of this node + 1
+				// return the right value of this node (= +1)
 				return $right+1; 
 				
 		}
@@ -516,11 +527,16 @@ class node
 						$node->set('object_type', $uid['type']);
 						$node->set('object_id', $uid['id']);
 						$node->set('parent_id', $this->getId());
-						$results = $node->save();
+						$results = $node->record->insert();
 						if ($results)
 						{
 								$node->moveTop();
 								$this->rebuild();
+								
+								// because we rebuild, left, right and level values are changed.
+								// we have to reload the node from the db.
+								$node->is_loaded = false;
+								$node->is_new = true;
 								return $node;
 						}
 						else
@@ -786,13 +802,14 @@ class node
 		
 		function getLevel()
 		{
+				$this->load();
+				
 				if ($this->get('parent_id') == 0)
 				{
 						return 0;
 				}
 				
-				$this->load();
-				if ($this->get('level'))
+				if ($this->get('level') > 0)
 				{
 						return $this->get('level');
 				}
@@ -894,6 +911,14 @@ class node
 				$this->load();
 				// first find items before this one
 				$siblings = $this->getSiblings();
+				
+				// if we have only one item or no items, not needed to do anything
+				if (!is_array($siblings) || count ($siblings) < 2)
+				{
+						return true;
+				}
+				
+				
 				if ($siblings)
 				{
 						foreach ($siblings as $sibling)
@@ -965,6 +990,14 @@ class node
 				$this->load();
 				// first find items on the same level as this one
 				$siblings = $this->getSiblings();
+				
+				// if we have only one item or no items, not needed to do anything
+				if (!is_array($siblings) || count ($siblings) < 2)
+				{
+						return true;
+				}
+				
+				
 				if ($siblings)
 				{
 						foreach ($siblings as $sibling)
@@ -1035,6 +1068,11 @@ class node
 				$this->load();
 				// first find items before this one
 				$siblings = $this->getSiblings();
+				
+				if (!is_array($siblings) || count ($siblings) < 2)
+				{
+						return true;
+				}
 				if ($siblings)
 				{
 						foreach ($siblings as $sibling)
@@ -1044,13 +1082,12 @@ class node
 						}
 				}
 				
-				rsort($sort_orders);
 				
-				debug($sort_orders, 'Sort Orders');
 				
 				if (is_array($sort_orders))
 				{
-						
+						rsort($sort_orders);
+						debug($sort_orders, 'Sort Orders');
 						$new_order = $sort_orders[0] + 1;
 						$this->set('sort_order', $new_order);
 						$this->save();
@@ -1069,6 +1106,12 @@ class node
 				$this->load();
 				// first find items before this one
 				$siblings = $this->getSiblings();
+				
+				if (!is_array($siblings) || count ($siblings) < 2)
+				{
+						return true;
+				}
+				
 				if ($siblings)
 				{
 						foreach ($siblings as $sibling)
@@ -1078,12 +1121,12 @@ class node
 						}
 				}
 				
-				sort($sort_orders);
 				
-				debug($sort_orders, 'Sort Orders');
 				
 				if (is_array($sort_orders))
 				{
+						sort($sort_orders);
+						debug($sort_orders, 'Sort Orders');
 						
 						$new_order = $sort_orders[0] - 1;
 						$this->set('sort_order', $new_order);

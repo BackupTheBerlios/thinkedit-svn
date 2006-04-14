@@ -5,8 +5,9 @@ $data['table']['page']['title_field']='title';
 $data['table']['page']['allowed_items']['record']['page']='true';
 $data['table']['page']['allowed_items']['record']['publication']='true';
 $data['table']['page']['allowed_items']['record']['news']='true';
-$data['table']['page']['allowed_items']['record']['discussion']='true';
+$data['table']['page']['allowed_items']['record']['forum']='true';
 $data['table']['page']['allowed_items']['record']['question_parent']='true';
+$data['table']['page']['allowed_items']['record']['multimedia']='true';
 $data['table']['page']['allowed_items']['filesystem']['main']='true';
 $data['table']['page']['use']['navigation']='true';
 
@@ -120,6 +121,11 @@ $data['table']['multimedia']['field']['body']['help']['fr']='Regardez dans l\'ai
 $data['table']['multimedia']['field']['body']['type']='richtext';
 $data['table']['multimedia']['field']['cover']['title']['fr']='Image de prévisualisation';
 $data['table']['multimedia']['field']['cover']['type']='file';
+$data['table']['multimedia']['field']['sound_file']['title']['fr']='Fichier son (mp3)';
+$data['table']['multimedia']['field']['sound_file']['type']='file';
+$data['table']['multimedia']['field']['video_file']['title']['fr']='Fichier vidéo';
+$data['table']['multimedia']['field']['video_file']['type']='file';
+
 
 $data['table']['user']['title']['fr']='Utilisateurs';
 $data['table']['user']['help']['fr']='Liste des personnes pouvant utiliser le site et modifier son contenu';
@@ -180,6 +186,28 @@ $data['table']['news']['field']['title']['is_title'] = 'true';
 $data['table']['news']['field']['intro']['type'] = 'richtext';
 $data['table']['news']['field']['body']['type'] = 'richtext';
 $data['table']['news']['field']['image']['type'] = 'file';
+
+
+
+
+
+$data['table']['forum']['title']['fr']='Forum';
+$data['table']['forum']['help']['fr']='Boite qui contient les messages postés par les utilisateurs du site';
+$data['table']['forum']['icon']='comments.png';
+$data['table']['forum']['title_field']='title';
+$data['table']['forum']['use']['navigation']='false';
+$data['table']['forum']['use']['main']='false';
+$data['table']['forum']['allowed_items']['record']['discussion']='true';
+
+$data['table']['forum']['field']['id']['type']='id';
+$data['table']['forum']['field']['title']['title']['fr']='Sujet';
+$data['table']['forum']['field']['title']['type']='string';
+$data['table']['forum']['field']['title']['is_title']='true';
+
+$data['table']['forum']['field']['intro']['title']['fr']='Introduction';
+$data['table']['forum']['field']['intro']['type']='text';
+
+
 
 
 $data['table']['discussion']['title']['fr']='Discussion';

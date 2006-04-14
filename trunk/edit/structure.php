@@ -353,11 +353,11 @@ $url->set('node_id', $node_object->getId());
 						
 						if ($node_item->getLevel() > 3)
 						{
-								$node_info['title'] = te_short($node_item->getTitle(), 20); // . ' (' . $node_item->getOrder() . ')';
+								$node_info['title'] = te_short($node_item->getTitle(), 15); // . ' (' . $node_item->getOrder() . ')';
 						}
 						else
 						{
-								$node_info['title'] = te_short($node_item->getTitle(), 32); // . ' (' . $node_item->getOrder() . ')';
+								$node_info['title'] = te_short($node_item->getTitle(), 15); // . ' (' . $node_item->getOrder() . ')';
 						}
 						$node_info['full_title'] = $node_item->getTitle();
 						//$node_info['title'] .= $node_item->getLevel(); // . ' (' . $node_item->getOrder() . ')';

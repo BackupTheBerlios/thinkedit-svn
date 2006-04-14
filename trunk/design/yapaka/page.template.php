@@ -34,6 +34,7 @@
 				</a>
 				</div>
 				
+				
 				<?php /*
 				<?php if ($sub_content->get('cover')): ?>
 				<?php $sub_content_file = $sub_content->field['cover']->getFilesystem(); ?>
@@ -50,7 +51,7 @@
 				
 				
 				<div class="intro">
-				<?php echo te_short($sub_content->get('intro'), 400); ?>
+				<?php echo te_short($sub_content->get('intro'), 120); ?>
 				<br/>
 				<a href="<?php echo te_link($child);?>" class="link_intro color100">Entrez &gt;</a>
 				</div>
@@ -60,7 +61,9 @@
 <?php endif;?>
 
 
-<?php include 'comment.php'; ?>
+<?php 
+include 'comment.php'; 
+?>
 
 
 <?php include 'content_footer.php'; ?>

@@ -1,5 +1,14 @@
+<?php if ($forums = $node->getChildren(array('type' => 'forum'))): ?>
 
-<?php $discussions = $node->getChildren(array('type' => 'discussion')); ?>
+<?php foreach ($forums as $forum): ?>
+
+
+<?php $forum_content = $forum->getContent(); ?>
+<h1><?php echo $forum_content->get('title');?></h1>
+
+<p><?php echo $forum_content->get('intro');?></p>
+
+<?php $discussions = $forum->getChildren(array('type' => 'discussion')); ?>
 <?php if ($discussions): ?>
 <h1>Les commentaires</h1>
 <?php foreach ($discussions as $discussion_node): ?>
@@ -15,7 +24,7 @@ Posté le <?php echo $discussion_content->get('posted');?> par <?php echo $discu
 <?php endif; ?>
 
 
-<h1>Donnez votre avis !</h1>
+
 
 
 <?php
@@ -34,12 +43,18 @@ if ($form->isSent())
 {
 		$discussion->setArray($_POST);
 		
-		if ($img->check($_POST['code']))
-		{
+		//if ($img->check($_POST['code']))
+		//{
 				$discussion->setArray($_POST);
 				$discussion->insert();
-				$new_node = $node->add($discussion);
+				$new_node = $forum->add($discussion);
 				$new_node->moveBottom();
+				
+				
+				$new_node->set('publish', 1);
+				$new_node->save();
+				$new_node->rebuild();
+				
 				
 				$thinkedit->outputcache->end();
 				if ($thinkedit->outputcache->get($cache_id))
@@ -50,17 +65,17 @@ if ($form->isSent())
 				
 				if ($new_node)
 				{
-						echo '<div class="info">Votre commentaire a bien été envoyé. Il sera ajouté d\'ici peu après modération. Merci !</div>';
+						echo '<div class="info">Votre commentaire a bien été envoyé. Il sera ajouté d\'ici peu. Merci !</div>';
 				}
 				else
 				{
 						echo '<div class="info">Problème technique, votre commentaire n\'a pas été ajouté</div>';
 				}
-		}
-		else
-		{
-				echo '<div class="info">Vous n\'avez pas tapé le bon code. Veuillez réessayer afin que votre message soit posté.</div>';
-		}
+	//	}
+		//else
+	//	{
+	//			echo '<div class="info">Vous n\'avez pas tapé le bon code. Veuillez réessayer afin que votre message soit posté.</div>';
+	//	}
 		
 }
 
@@ -98,3 +113,7 @@ $form->add('</div>');
 echo $form->render();
 
 ?>
+
+
+<?php endforeach; ?>
+<?php endif; ?>

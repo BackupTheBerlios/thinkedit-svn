@@ -32,14 +32,26 @@ function te_short($string, $size)
 		return $string;
 }
 
+/*
+Returns the url of the current design (usefull for linking to css or design images)
+*/
 function te_design()
 {
 		global $thinkedit;
 		$configuration = $thinkedit->newConfig();
 		$design = $configuration->getDesign();
 		return ROOT_URL . '/design/' . $design;
-		
-		
+}
+
+/*
+Returns the local path of the current design (usefull for including design specific php files)
+*/
+function te_design_path()
+{
+		global $thinkedit;
+		$configuration = $thinkedit->newConfig();
+		$design = $configuration->getDesign();
+		return ROOT . '/design/' . $design;
 }
 
 

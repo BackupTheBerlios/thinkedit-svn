@@ -1,20 +1,31 @@
 <?php include 'content_header.php'; ?>
 
-<div class="content_title">
-<?php echo $content->get('title'); ?>
-</div>
-
 
 <?php if ($content->get('cover')): ?>
 		
 		<?php
 		$cover_file = $content->field['cover']->getFilesystem();
+		
+		if ($cover_file)
+		{
+				$sidebar_image = $cover_file;
+		}
 		?>
 		
+		
+		
+		<!--
 		<div class="cover_parents">
 		<img src="<?php echo $cover_file->getThumbnail(array('w' => 200) ); ?>"/>
 		</div>
+		-->
+		
 <?php endif; ?>
+
+
+<div class="content_title">
+<?php echo $content->get('title'); ?>
+</div>
 
 <div class="chapo_parents">
 <?php echo $content->get('intro'); ?>

@@ -101,30 +101,34 @@ if ($url->get('action')=='save')
 
 
 /****************** Handle Node save ******************/
-if ($url->get('action')=='save' && isset($node))
+// we save only if the node already exists
+if ($url->get('mode') <> 'new_node')
 {
-		debug($_REQUEST, 'Request');
-		foreach ($node->record->field as $field)
+		if ($url->get('action')=='save' && isset($node))
 		{
-				// we take only the posted form data with the node_ prefix
-				if (isset($_POST['node_' . $field->getName()]))
+				debug($_REQUEST, '(node) Request');
+				foreach ($node->record->field as $field)
 				{
-						$node->record->set($field->getName(), $_POST['node_' . $field->getName()]);
+						// we take only the posted form data with the node_ prefix
+						if (isset($_POST['node_' . $field->getName()]))
+						{
+								$node->record->set($field->getName(), $_POST['node_' . $field->getName()]);
+						}
 				}
-		}
-		
-		debug($record, 'Record before saving');
-		if ($node->save())
-		{
-				$out['info'] = translate('item_save_successfully');
-		}
-		else
-		{
-				trigger_error('edit : failed saving node record');
-		}
-		if ($url->get('mode') == 'edit_node')
-		{
-				$node->clearContentCache();
+				
+				debug($record, 'Node record before saving');
+				if ($node->save())
+				{
+						$out['info'] = translate('item_save_successfully');
+				}
+				else
+				{
+						trigger_error('edit : failed saving node record');
+				}
+				if ($url->get('mode') == 'edit_node')
+				{
+						$node->clearContentCache();
+				}
 		}
 }
 
