@@ -13,6 +13,7 @@ General TODO (General features that affect more than one file / class):
 
 
 TODO (by order of importance) :
+- node cache must be refeshed when a new field is added to the DB (else, objects are allways loaded in a separate query, lowering performance)
 - handling of path separators in *nix and windows. Define a constant, like PATH_SEPARATOR and use it everywhere
 - review all security todo in the code
 - friendly urls (in node class) / and node->loadByPath($path)

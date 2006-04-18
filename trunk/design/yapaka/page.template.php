@@ -4,6 +4,10 @@
 <div class="content_title">
 <?php echo $content->get('sub_title'); ?>
 </div>
+<?php else: ?>
+<div class="content_title">
+<?php echo $content->get('title'); ?>
+</div>
 <?php endif; ?>
 
 <div class="intro">
@@ -17,7 +21,10 @@
 
 <?php $children =  $node->getChildren(); ?>
 <?php if ($children) : ?>
+
+<hr><br/>
 		
+<div class="content_text">
 		<?php foreach ($children as $child): ?>
 				<?php
 				$sub_content = $child->getContent();
@@ -58,6 +65,7 @@
 				<?php endif; ?>
 				
 		<?php endforeach; ?>
+		</div>
 <?php endif;?>
 
 

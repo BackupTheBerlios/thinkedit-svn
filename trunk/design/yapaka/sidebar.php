@@ -5,13 +5,6 @@
 <?php endif; ?>
 
 
-
-
-<?php include('relations.template.php'); ?>
-
-<br/>
-<br/>
-
 <?php if ($news = $node->getChildren(array('type'=>'news'))): ?>
 <?php foreach ($news as $actu): ?>
 
@@ -23,4 +16,8 @@
 </a>
 
 <?php endforeach; ?>
+<br/>
+<br/>
 <?php endif; ?>
+
+<?php include('relations.template.php'); ?>

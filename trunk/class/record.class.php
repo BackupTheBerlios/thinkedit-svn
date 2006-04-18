@@ -169,6 +169,7 @@ class record
 						}
 						else
 						{
+								//trigger_error('object not loaded');
 								return false;
 						}
 				}
