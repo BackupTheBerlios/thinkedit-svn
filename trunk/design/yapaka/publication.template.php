@@ -2,23 +2,24 @@
 
 <div class="content_title"><?php echo $content->getTitle() ?></div>
 
-<div class="publication_cover">
-		<?php
-		// render thumbnail
-		$file = $content->field['cover']->getFilesystem();
-		?>
-		
-		<?php if ($file): ?>
-		<img src="<?php echo $file->getIcon(150); ?>"/>
-		<?php endif; ?>
-</div>
+<?php
+// render thumbnail
+$file = $content->field['cover']->getFilesystem();
+if ($file)
+{
+		$sidebar_image = $file;
+}
+
+?>
+
+
 
 <div class="publication_intro">
-		<?php echo $content->get('intro'); ?>
+<?php echo $content->get('intro'); ?>
 </div>
 
 <div class="publication_body">
-		<?php echo $content->get('body'); ?>
+<?php echo $content->get('body'); ?>
 </div>
 
 

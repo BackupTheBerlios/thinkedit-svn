@@ -16,12 +16,15 @@
 														</div>
 													</td>
 													<td align="left" valign="top" width="183">
+													
+													<!--
 													<div class="text_accueil">
 													<?php echo $content->get('intro'); ?>	
 													
 														<br>
 														<a href=""><img src="<?php echo te_design() ?>/sources/pdf_medium.gif" alt="" width="55" height="59" border="0"></a>
 													</div>
+													-->
 													</td>
 													<td align="left" valign="top" width="168">
 													

@@ -2,6 +2,8 @@
 
 <?php foreach ($forums as $forum): ?>
 
+<br/>
+<hr>
 
 <?php $forum_content = $forum->getContent(); ?>
 <h1><?php echo $forum_content->get('title');?></h1>

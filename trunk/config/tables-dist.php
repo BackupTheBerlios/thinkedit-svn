@@ -107,7 +107,7 @@ $data['table']['multimedia']['title']['fr']='Elément multimédia';
 $data['table']['multimedia']['help']['fr']='Unélément multimédia peut être un film, un son, une musique, etc... Attachez un fichier à cet élément pour qu\'il soit disponible en téléchargement';
 $data['table']['multimedia']['icon']='video-x-generic.png';
 $data['table']['multimedia']['title_field']='title';
-$data['table']['multimedia']['use']['navigation']='false';
+$data['table']['multimedia']['use']['navigation']='true';
 $data['table']['multimedia']['field']['id']['type']='id';
 $data['table']['multimedia']['field']['title']['title']['fr']='Titre';
 $data['table']['multimedia']['field']['title']['help']['fr']='Un titre court est plus percutant';
@@ -123,7 +123,7 @@ $data['table']['multimedia']['field']['cover']['title']['fr']='Image de prévisu
 $data['table']['multimedia']['field']['cover']['type']='file';
 $data['table']['multimedia']['field']['sound_file']['title']['fr']='Fichier son (mp3)';
 $data['table']['multimedia']['field']['sound_file']['type']='file';
-$data['table']['multimedia']['field']['video_file']['title']['fr']='Fichier vidéo';
+$data['table']['multimedia']['field']['video_file']['title']['fr']='Fichier vidéo (flv)';
 $data['table']['multimedia']['field']['video_file']['type']='file';
 
 

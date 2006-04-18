@@ -58,7 +58,7 @@ class relation
 				}
 		}
 		
-		function getRelations($object)
+		function getRelations($object, $bidirectional = false)
 		{
 				global $thinkedit;
 				$uid = $object->getUid();
@@ -66,8 +66,11 @@ class relation
 				// find any relation in the source columns
 				$results_1 = $this->record->find(array('source_class' => $uid['class'], 'source_type' => $uid['type'], 'source_id' => $uid['id']));
 				
-				// find any relation in the target columns
-				$results_2 = $this->record->find(array('target_class' => $uid['class'], 'target_type' => $uid['type'], 'target_id' => $uid['id']));
+				if ($bidirectional)
+				{
+						// find any relation in the target columns
+						$results_2 = $this->record->find(array('target_class' => $uid['class'], 'target_type' => $uid['type'], 'target_id' => $uid['id']));
+				}
 				
 				if (is_array($results_1))
 				{
@@ -82,16 +85,19 @@ class relation
 						}
 				}
 				
-				if (is_array($results_2))
+				if ($bidirectional)
 				{
-						foreach ($results_2 as $result)
+						if (is_array($results_2))
 						{
-								$uid['class'] = $result->get('source_class');
-								$uid['type'] = $result->get('source_type');
-								$uid['id'] = $result->get('source_id');
-								$item = $thinkedit->newObject($uid);
-								$item->load();
-								$items[] = $item;
+								foreach ($results_2 as $result)
+								{
+										$uid['class'] = $result->get('source_class');
+										$uid['type'] = $result->get('source_type');
+										$uid['id'] = $result->get('source_id');
+										$item = $thinkedit->newObject($uid);
+										$item->load();
+										$items[] = $item;
+								}
 						}
 				}
 				

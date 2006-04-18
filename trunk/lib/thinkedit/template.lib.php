@@ -27,9 +27,9 @@ function te_short($string, $size)
 {
 		if (strlen($string) > $size)
 		{
-				return (substr($string, 0, $size -4) . '...');
+				return strip_tags((substr($string, 0, $size -4) . '...'));
 		}
-		return $string;
+		return strip_tags($string);
 }
 
 /*
@@ -133,9 +133,16 @@ function te_admin_toolbox()
 				global $db_debug;
 				if (isset($db_debug))
 				{
-						foreach ($db_debug as $sql)
+						if (!$thinkedit->isInProduction())
 						{
-								$out .= "<li>{$sql}</li>";
+								foreach ($db_debug as $sql)
+								{
+										$out .= "<li>{$sql}</li>";
+								}
+						}
+						else
+						{
+								$out .= "<li>SQL not shown in production mode</li>";
 						}
 				}
 				
