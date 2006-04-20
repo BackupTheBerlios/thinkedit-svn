@@ -1,7 +1,7 @@
 <h1><?php echo $content->getTitle() ?></h1>
 
 <p>
-This is the default template for showing content.
+Il n'y a pas encore de modèle pour afficher cette page. Voici le contenu "brut" de celle-ci.
 </p>
 
 

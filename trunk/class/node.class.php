@@ -452,9 +452,13 @@ class node
 		
 		/*
 		Returns an array of 
+		of what in fact ?
+		
+		This will be marked as deprecatd, this class becomes bloated
 		*/
 		function getFamilly()
 		{
+				trigger_error('node::getFamilly() is deprecated');
 				global $thinkedit;
 				$this->load();
 				$parent_id = $this->get('parent_id');

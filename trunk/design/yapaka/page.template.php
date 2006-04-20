@@ -10,9 +10,11 @@
 </div>
 <?php endif; ?>
 
+<?php if (!$content->get('body')): ?>
 <div class="intro">
 <?php echo $content->get('intro'); ?>
 </div>
+<?php endif; ?>
 
 <div class="content_text">
 <?php echo $content->get('body'); ?>
