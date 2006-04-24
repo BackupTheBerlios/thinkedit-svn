@@ -65,11 +65,17 @@ $data['empty_file_provided']='The file given is empty';
 $data['unpublish']='Unpublish';
 $data['preview']='Preview';
 $data['structure_title']='Web site structure';
-$data['you_are_here']='You are here : ';
+$data['you_are_here']='You are here';
 $data['node_add_new']='Add';
 $data['confirm_node_delete']='Are you sure you want to delete this location ?';
 $data['file_delete']='Delete this file';
 $data['folder_empty']='Folder is empty';
-$data['empty_foldername_provided']='!empty_foldername_provided!';
+$data['empty_foldername_provided']='Empty foldername provided';
+$data['publish']='publish';
+$data['icon']='icon';
+$data['tools']='tools';
+$data['no_relations']='no relations';
+$data['add_relation']='add relation';
+$data['nothing_in_list']='nothing in list';
 
 ?>

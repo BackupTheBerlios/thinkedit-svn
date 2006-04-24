@@ -2,7 +2,7 @@
 $data['site']['help']['fr']='Bienvenue sur Thinkedit, le système de gestion de données et de contenu facile à utiliser';
 $data['site']['root_url']='/thinkedit/trunk/';
 $data['site']['run_mode']='development';
-$data['site']['design']='default';
+$data['site']['design']='thinkedit';
 $data['site']['locale']['fr']['help']['fr']='Français';
 $data['site']['locale']['fr']['help']['en']='French';
 $data['site']['locale']['en']['help']['fr']='Anglais';
