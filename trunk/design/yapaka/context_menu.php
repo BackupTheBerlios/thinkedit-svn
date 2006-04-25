@@ -21,17 +21,12 @@ if ($menuitem->isCurrent())
 }
 ?>
 <a class="<?php echo $class; ?>" href="<?php echo $menuitem->getUrl();?>" title="<?php echo $menuitem->getTitle();?>">
-<?php if ($menuitem->node->hasChildren()): ?>
 
-		<?php if ($menuitem->node->isAncestorOf($node) || $menuitem->isCurrent() ): ?>
-		<img src="<?php echo te_design() ?>/sources/minus.gif" border="0px">
-		<?php else: ?>
-		<img src="<?php echo te_design() ?>/sources/plus.gif" border="0px">
-		<?php endif;?>
+<?php if ($menuitem->getLevel() == 3): ?>
+<span style="padding-left: 5px"></span>
+<?php endif; ?>
 
-<?php else: ?>
-<img src="<?php echo te_design() ?>/sources/empty.gif" border="0px">
-<?php endif;?>
+
 
 <?php echo te_short($menuitem->getTitle(), 25);?>
 </a>

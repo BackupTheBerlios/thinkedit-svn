@@ -58,7 +58,7 @@ else
 				if (!$node->load())
 				{
 						//include(ROOT . '/design/default/header.template.php');
-						include(ROOT . '/design/default/404.template.php');
+						include(ROOT . '/design/' . $thinkedit->configuration->getDesign() . '/404.template.php');
 						//include(ROOT . '/design/default/footer.template.php');
 						die();
 				}

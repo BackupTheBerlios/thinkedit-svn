@@ -5,7 +5,7 @@
 <title>Yapaka</title>
 <link href="<?php echo te_design() ?>/accueil_template.css" rel="stylesheet" type="text/css" media="all">
 <link href="<?php echo te_design() ?>/styles.css" rel="stylesheet" type="text/css" media="all">
-
+<link rel="stylesheet" type="text/css" media="print" href="<?php echo te_design() ?>/print.css" />
 
 <meta name="generator" content="Thinkedit" />
 
@@ -58,7 +58,7 @@ elseif (is_array($my_parents))
 
 <td align="center" valign="top">
 
-<table width="717" border="0" style="margin-bottom: 20px">
+<table width="717" border="0" style="margin-bottom: 20px" id="cfwb">
 <tr>
 
 <td>
@@ -95,11 +95,12 @@ elseif (is_array($my_parents))
 </tr>
 </table>
 
+
 </td>
 </tr>
 
 
-<tr>
+<tr class="layout">
 <td align="center" valign="top"><img src="<?php echo te_design(); ?>/sources/shadow_top.gif" alt="" width="777" border="0">
 </td>
 </tr>
@@ -110,23 +111,27 @@ elseif (is_array($my_parents))
 <tr>
 <td align="center" valign="top">
 
+
 <table border="0" cellspacing="0" cellpadding="0">
 
 
 <tr>
 
-<td align="right" valign="top" width="15" background="<?php echo te_design() ?>/sources/shadow_left.gif">
+<td align="right" valign="top" width="15" background="<?php echo te_design() ?>/sources/shadow_left.gif" class="layout">
 </td>
 
 
 <td align="left" valign="top" class="content_padding" >
 <table width="717" border="0" cellspacing="0" cellpadding="0">
-<tr>
+
+<!-- Header -->
+
+<tr id="header">
 <td align="left" valign="top" bgcolor="#003366" width="717">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td>
-<img src="<?php echo te_design() ?>/sources/logo.gif" alt="" width="351" height="76" border="0"></td>
+<img src="<?php echo te_design() ?>/sources/logo.gif" alt="" width="351" height="76" border="0" id="logo"></td>
 <td valign="top" width="168">
 <!--
 <input class="search" type="text" name="textfieldName" value="Rechercher..." size="24">
@@ -168,7 +173,7 @@ elseif (is_array($my_parents))
 <td align="left" valign="top" width="717" height="15"></td>
 </tr>
 <tr height="12">
-<td align="left" valign="top" width="717">
+<td align="left" valign="top" width="717" id="content">
 
 
 

@@ -28,11 +28,24 @@
 													</td>
 													<td align="left" valign="top" width="168">
 													
-													<a class="parents_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Premier</a>
-													<a class="enfants_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Second</a>
-													<a class="adolescents_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Troisi&egrave;me</a>
-													<a class="professionnels_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Quatri&egrave;me</a>
-													<a class="professionnels_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Cinqui&egrave;me</a></td>
+													<!-- News -->
+													
+													<?php $sections = $node->getChildren(); ?>
+													
+													<?php foreach ($sections as $section): ?>
+															<?php $actus = $section->getChildren( array('type' => 'news') ); ?>
+															
+															<?php if (is_array($actus)): ?>
+																	<?php foreach ($actus as $actu): ?>
+																	<!--<a class="_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Premier</a>-->
+																	<a class="<?php echo te_get_section_name($actu); ?>_sub" href="<?php echo te_link($actu); ?>">
+																	<img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> 
+																	<?php echo te_short($actu->getTitle(), 28); ?>
+																	</a>
+																	<?php endforeach; ?>
+															<?php endif; ?>
+													
+													<?php endforeach; ?>
 													
 												</tr>
 												<tr>

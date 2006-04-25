@@ -74,11 +74,7 @@ if ($content->get('cover'))
 				
 				
 				<div class="intro">
-				<?php if ($sub_content->get('intro')): ?>
-				<?php echo te_short($sub_content->get('intro'), 200); ?>
-				<?php else: ?>
-				<?php echo te_short($sub_content->get('body'), 200); ?>
-				<?php endif; ?>
+				<?php echo te_short($sub_content->get('intro'), 120); ?>
 				<br/>
 				<a href="<?php echo te_link($child);?>" class="link_intro color100">Entrez &gt;</a>
 				</div>

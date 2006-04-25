@@ -2,7 +2,8 @@
 $relations = $relation->getRelations($content);
 ?>
 <?php if (is_array($relations)): ?>
-				<?php foreach($relations as $my_relation): ?>
+<div id="relations">				
+<?php foreach($relations as $my_relation): ?>
 						<?php if ($my_relation->getClass() == 'filesystem'): ?>
 								<?php if ($my_relation->isImage()): ?>
 										<a href="<?php echo $my_relation->getUrl(); ?>">
@@ -26,4 +27,5 @@ $relations = $relation->getRelations($content);
 						<?php endif; ?>
 						
 				<?php endforeach; ?>
+				</div>
 <?php endif; ?>

@@ -23,7 +23,7 @@ class field_richtext extends field
 				
 				// adaptive textarea rows lenght
 				$rows = round(strlen($this->get()) / 80) + 20;
-				if ($rows > 40) $rows = 40;
+				if ($rows > 30) $rows = 30;
 				
 				$out .= sprintf('<textarea name="%s" cols="80" rows="%s" mce_editable="true">%s</textarea>', $prefix . $this->getName(), $rows, $this->getRaw());
 				
@@ -38,7 +38,9 @@ class field_richtext extends field
 				$out .= '   tinyMCE.init({';
 						$out .= '      mode : "specific_textareas", ';
 						$out .= '      theme_advanced_toolbar_align : "left", ';
-						$out .= '      theme_advanced_toolbar_location : "top"';
+						$out .= '      theme_advanced_toolbar_location : "top",';
+						$out .= '      plugins : "autosave"';
+						
 				$out .= '   });';
 				$out .= '</script>';
 				$out .= '<!-- /tinyMCE -->';

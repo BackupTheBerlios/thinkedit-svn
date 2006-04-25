@@ -441,10 +441,22 @@ class filesystem
 						{
 								$size = 22;
 						}
-						return ROOT_URL . '/lib/phpthumb/phpThumb.php?src=' . $this->getRealPath() . '&w=' . $size . '&h=' . $size; // todo custom thumbnail width / height
+						return $this->getThumbnail(array('w'=>$size, 'h'=>$size));
 				}
 				else
 				{
+						$file = '/edit/ressource/image/type/' . $this->getExtension() . '.gif';
+						if (file_exists(ROOT . $file))
+						{
+								return ROOT_URL . $file;
+						}
+						
+						$file = '/edit/ressource/image/type/' . $this->getExtension() . '.png';
+						if (file_exists(ROOT . $file))
+						{
+								return ROOT_URL . $file;
+						}
+						
 						return ROOT_URL . '/edit/ressource/image/icon/text-x-generic.png';
 				}
 		}

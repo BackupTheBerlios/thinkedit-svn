@@ -58,18 +58,56 @@ class relation
 				}
 		}
 		
-		function getRelations($object, $bidirectional = false)
+		/*
+		Returns relations of a given $object
+		$object : object we'd like to find relations of
+		$options is an array
+		  - type : only relations of a given type
+			- class : only relations of a given class
+			- bidirectional (boolean) : set to true if you want bidirectional relations
+			
+		*/
+		function getRelations($object, $options = false)
 		{
 				global $thinkedit;
 				$uid = $object->getUid();
 				
-				// find any relation in the source columns
-				$results_1 = $this->record->find(array('source_class' => $uid['class'], 'source_type' => $uid['type'], 'source_id' => $uid['id']));
+				// 1. find any relation in the source columns
+				// construct where clause
+				$where = array();
+				$where['source_class'] = $uid['class'];
+				$where['source_type'] = $uid['type'];
+				$where['source_id'] = $uid['id'];
+				if (isset ($options['type']))
+				{
+						$where['target_type'] = $options['type'];
+				}
+				if (isset ($options['class']))
+				{
+						$where['target_class'] = $options['class'];
+				}
+				$results_1 = $this->record->find($where);
 				
-				if ($bidirectional)
+				
+				// if we are asked to provide reverse relations, we do it 
+				if (isset ($options['bidirectional']))
 				{
 						// find any relation in the target columns
-						$results_2 = $this->record->find(array('target_class' => $uid['class'], 'target_type' => $uid['type'], 'target_id' => $uid['id']));
+						$where = array();
+						$where['target_class'] = $uid['class'];
+						$where['target_type'] = $uid['type'];
+						$where['target_id'] = $uid['id'];
+						if (isset ($options['type']))
+						{
+								$where['source_type'] = $options['type'];
+						}
+						
+						if (isset ($options['class']))
+						{
+								$where['source_class'] = $options['class'];
+						}
+						
+						$results_2 = $this->record->find($where);
 				}
 				
 				if (is_array($results_1))
@@ -85,7 +123,7 @@ class relation
 						}
 				}
 				
-				if ($bidirectional)
+				if (isset ($options['bidirectional']))
 				{
 						if (is_array($results_2))
 						{
@@ -111,6 +149,7 @@ class relation
 				}
 				
 		}
+		
 		
 		
 		

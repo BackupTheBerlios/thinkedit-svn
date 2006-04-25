@@ -1,0 +1,1 @@
+Custom tags in postings to link to nodes or images or wathever is needed
