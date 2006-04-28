@@ -176,4 +176,12 @@ function te_translate($id)
 		return $id;
 }
 
+
+// returns root node
+function te_root()
+{
+		
+}
+
+
 ?>
