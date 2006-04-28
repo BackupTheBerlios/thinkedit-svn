@@ -2,7 +2,7 @@
 
 <!-- Cover -->
 <?php if (isset($sidebar_image)): ?>
-<div id="image">
+<div id="cover">
 <img src="<?php echo $sidebar_image->getThumbnail(array('w' => 170) ); ?>"/>
 </div>
 <?php endif; ?>
@@ -18,14 +18,15 @@
 <div class="actu">
 <?php $actu_content = $actu->getContent(); ?>
 
-<a href="<?php echo te_link($actu); ?>">
+
 <div class="actu_title"><?php echo te_short($actu_content->get('title'), 25); ?></div>
 <div class="actu_intro">
 <?php echo te_short($actu_content->get('body'), 80); ?>
  
-<span class="color100 bold">Lire</span>
+<a href="<?php echo te_link($actu); ?>" class="color100 bold">Lire</a>
 </div>
-</a>
+
+
 </div>
 <?php endforeach; ?>
 </div>

@@ -1,5 +1,15 @@
-<div class="content">
+<script type="text/javascript" src="<?php echo ROOT_URL?>/lib/dojo/dojo.js"></script>
 
+<script type="text/javascript">
+	
+  dojo.require("dojo.widget.Menu2");
+	dojo.require("dojo.fx.html");
+	dojo.hostenv.writeIncludes();
+</script>
+
+
+
+<div class="content">
 
 
 
@@ -64,6 +74,19 @@ $i++;
 ?>
 
 <tr class="<?php echo $class?>" id="node_<?php echo $node['id']?>">
+
+
+
+
+<div dojoType="PopupMenu2" targetNodeIds="node_<?php echo $node['id']?>"><!--Note no spaces between nodeIds-->
+    <div dojoType="MenuItem2" caption="Cut"></div> 
+	<div dojoType="MenuItem2" caption="Copy"></div>
+    <div dojoType="MenuItem2" caption="Paste"></div> 
+</div>
+
+
+
+
 
 
 <td class="power_cell power_cell_border" style="cursor:pointer" onClick="document.location.href='<?php echo $node['url']?>';">
@@ -151,6 +174,16 @@ $i++;
 </select>
 <?php endif; ?>
 <?php endif; ?>
+
+
+<select size="1" onChange="jump('parent',this,0)">
+<option value="">Actions</option>
+<option value="">Publier</option>
+<option value="">-------</option>
+<option value="">Couper</option>
+<option value="">Copier</option>
+<option value="">Coller</option>
+</select>
 
 
 </td>

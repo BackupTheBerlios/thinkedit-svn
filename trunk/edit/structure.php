@@ -351,6 +351,8 @@ $url->set('node_id', $node_object->getId());
 						$content = $node_item->getContent();
 						$content->load();
 						
+						$node_info['id'] = $node_item->getId();
+						
 						if ($node_item->getLevel() > 3)
 						{
 								$node_info['title'] = te_short($node_item->getTitle(), 15); // . ' (' . $node_item->getOrder() . ')';
