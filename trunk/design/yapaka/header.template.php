@@ -2,7 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Yapaka</title>
+
+<?php if ($content->get('intro')): ?> 
+<meta name="description" content="<?php echo htmlentities(te_short($content->get('intro'), 400)) ?>"/>
+<?php endif; ?>
+
+<?php if ($content->get('body')): ?> 
+<meta name="description" content="<?php echo htmlentities(te_short($content->get('body'), 400)) ?>"/>
+<?php endif; ?>
+
+
+<title><?php echo $content->getTitle(); ?></title>
 <link href="<?php echo te_design() ?>/accueil_template.css" rel="stylesheet" type="text/css" media="all">
 <link href="<?php echo te_design() ?>/styles.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" type="text/css" media="print" href="<?php echo te_design() ?>/print.css" />

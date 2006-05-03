@@ -140,7 +140,7 @@ $data['table']['adresse']['field']['title']['help']['fr']='Nom de la personne ou
 $data['table']['adresse']['field']['title']['type']='string';
 $data['table']['adresse']['field']['title']['is_title']='true';
 $data['table']['adresse']['field']['intro']['title']['fr']='Description';
-$data['table']['adresse']['field']['intro']['type']='richtext';
+$data['table']['adresse']['field']['intro']['type']='text';
 
 $data['table']['adresse']['field']['adresse']['title']['fr']='Adresse';
 $data['table']['adresse']['field']['adresse']['type']='text';
