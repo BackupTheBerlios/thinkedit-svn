@@ -72,24 +72,6 @@ class menuitem
 				return $this->node->getLevel();
 		}
 		
-		
-		/*
-		function isStart()
-		{
-		}
-		
-		function isStop()
-		{
-		}
-		
-		function isCurent()
-		{
-		}
-		
-		function getLevel()
-		{
-		}
-		*/
 }
 
 ?>

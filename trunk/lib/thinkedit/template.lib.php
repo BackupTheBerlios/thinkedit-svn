@@ -43,6 +43,72 @@ function te_design()
 		return ROOT_URL . '/design/' . $design;
 }
 
+
+
+function te_every($size)
+{
+		static $i;
+		$i++;
+		if (($i % $size) == 0)
+		{
+				return true;
+		}
+		else
+		{
+				return false;
+		}
+}
+
+
+function te_translate($id)
+{
+		return $id;
+}
+
+
+// returns root node
+function te_root()
+{
+		global $thinkedit;
+		if (isset($thinkedit))
+		{
+				$node = $thinkedit->newNode();
+				if (isset($node))
+				{
+						if ($node->loadRootNode())
+						{
+								return $node;
+						}
+				}
+		}
+		return false;
+}
+
+
+/*********** Menu handling template tags ***************/
+/*
+Thos functions returns an array if a menu exists or false if no menu is found.
+The array is an array of menuitems objects, providing some methods
+*/
+
+// returns a main menu
+function te_main_menu()
+{
+}
+
+// returns a contextual menu
+function te_context_menu()
+{
+}
+
+
+// returns a child menu
+function te_child_menu()
+{
+}
+
+
+
 /*
 Returns the local path of the current design (usefull for including design specific php files)
 */
@@ -156,32 +222,6 @@ function te_admin_toolbox()
 }
 
 
-function te_every($size)
-{
-		static $i;
-		$i++;
-		if (($i % $size) == 0)
-		{
-				return true;
-		}
-		else
-		{
-				return false;
-		}
-}
-
-
-function te_translate($id)
-{
-		return $id;
-}
-
-
-// returns root node
-function te_root()
-{
-		
-}
 
 
 ?>

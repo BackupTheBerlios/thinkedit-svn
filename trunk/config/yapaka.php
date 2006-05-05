@@ -7,6 +7,7 @@ $data['table']['page']['allowed_items']['record']['forum']='true';
 $data['table']['page']['allowed_items']['record']['question_parent']='true';
 $data['table']['page']['allowed_items']['record']['multimedia']='true';
 $data['table']['page']['allowed_items']['record']['adresse']='true';
+$data['table']['page']['allowed_items']['record']['texte']='true';
 $data['table']['page']['allowed_items']['filesystem']['main']='true';
 
 
@@ -36,6 +37,36 @@ $data['table']['publication']['field']['pdf']['type']='file';
 $data['table']['publication']['field']['publication']['title']['fr']='Date de publication';
 $data['table']['publication']['field']['publication']['help']['fr']='Il faut pour le moment mettre aaaa-mm-jj (année, mois, jour)';
 $data['table']['publication']['field']['publication']['type']='date';
+
+
+
+$data['table']['texte']['title']['fr']='Texte à lire';
+$data['table']['texte']['icon']='book.png';
+$data['table']['texte']['title_field']='title';
+$data['table']['texte']['use']['navigation']='true';
+$data['table']['texte']['field']['id']['type']='id';
+$data['table']['texte']['field']['title']['title']['fr']='Titre';
+$data['table']['texte']['field']['title']['help']['fr']='Un titre court est plus percutant';
+$data['table']['texte']['field']['title']['type']='string';
+$data['table']['texte']['field']['title']['is_title']='true';
+$data['table']['texte']['field']['intro']['title']['fr']='Introduction';
+$data['table']['texte']['field']['intro']['help']['fr']='Introduction courte au texte';
+$data['table']['texte']['field']['intro']['type']='richtext';
+$data['table']['texte']['field']['authors']['title']['fr']='Auteurs';
+$data['table']['texte']['field']['authors']['type']='text';
+$data['table']['texte']['field']['body']['title']['fr']='Corps du texte';
+$data['table']['texte']['field']['body']['help']['fr']='Texte plus long (si nécessaire)';
+$data['table']['texte']['field']['body']['type']='richtext';
+$data['table']['texte']['field']['pages']['title']['fr']='Nombre de pages';
+$data['table']['texte']['field']['pages']['type']='int';
+$data['table']['texte']['field']['cover']['title']['fr']='Couverture';
+$data['table']['texte']['field']['cover']['type']='file';
+$data['table']['texte']['field']['pdf']['title']['fr']='Fichier pdf';
+$data['table']['texte']['field']['pdf']['type']='file';
+$data['table']['texte']['field']['publication']['title']['fr']='Date de publication';
+$data['table']['texte']['field']['publication']['help']['fr']='Il faut pour le moment mettre aaaa-mm-jj (année, mois, jour)';
+$data['table']['texte']['field']['publication']['type']='date';
+
 
 
 $data['table']['multimedia']['title']['fr']='Elément multimédia';
