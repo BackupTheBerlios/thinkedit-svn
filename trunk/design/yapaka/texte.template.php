@@ -34,7 +34,7 @@ if ($file)
 <?php if ($pdf): ?>
 <div class="pdf_download">
 <a href="<?php echo $pdf->getUrl(); ?>">
-<img src="<?php echo te_design()?>/sources/pdf_large.gif" class="texte_pdf_icon"/>
+<img src="<?php echo te_design()?>/sources/pdf_small.gif" class="texte_pdf_icon"/>
 Téléchargez ce texte en format pdf en cliquant ici (<?php echo $pdf->getSize(); ?>)
 </a>
 </div>

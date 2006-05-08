@@ -77,5 +77,10 @@ $data['tools']='tools';
 $data['no_relations']='no relations';
 $data['add_relation']='add relation';
 $data['nothing_in_list']='nothing in list';
+$data['file_added_successfully']='!file_added_successfully!';
+$data['automatic_template']='!automatic_template!';
+$data['save_and_return_to_node_button']='!save_and_return_to_node_button!';
+$data['image_browser_help_select']='!image_browser_help_select!';
+$data['drop_down_choose']='!drop_down_choose!';
 
 ?>
