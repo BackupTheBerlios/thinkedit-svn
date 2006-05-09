@@ -2,9 +2,10 @@
 
 
 <?php $children =  $node->getChildren(); ?>
+
 <?php if ($children) : ?>
 
-<hr><br/>
+<br/><hr/>
 		
 <div class="content_text">
 		<?php foreach ($children as $child): ?>
@@ -15,22 +16,26 @@
 				
 				<?php if ($sub_content->isUsedIn('navigation')): ?>
 				
-				<div class="child_title">
+				<h1>
 				<a href="<?php echo te_link($child);?>">
 				<?php echo $sub_content->getTitle(); ?>
 				</a>
-				</div>
+				</h1>
 				
 				
 				<div class="child_intro">
+				<a href="<?php echo te_link($child);?>">
 				<?php if ($sub_content->get('intro')): ?>
 				<?php echo te_short($sub_content->get('intro'), 200); ?>
 				<?php else: ?>
 				<?php echo te_short($sub_content->get('body'), 200); ?>
 				<?php endif; ?>
-				<br/>
-				<a href="<?php echo te_link($child);?>" class="link_intro color100">Enter &gt;</a>
 				</div>
+				</a>
+				<br/>
+				
+				
+				
 				<?php endif; ?>
 				
 		<?php endforeach; ?>

@@ -23,11 +23,30 @@
 		
 	</div>
 <div id="submenu">
-		<?php if ($node->hasChildren(true)): ?>
-				<?php foreach ($node->getChildren(true) as $child): ?>
-					<a href="<?php echo te_link($child)?>"><?php echo $child->getTitle(); ?></a><br/>
+		<?php if (isset($context_menu) && $context_menu->getArray()) : ?>
+				<?php foreach ($context_menu->getArray() as $context_menu_item): ?>
+					
+					<?php if ($context_menu_item->node->getLevel() == 3): ?>
+					<div style="margin-left: 15px">
+					<?php endif; ?>
+					
+					<?php if ($context_menu_item->isCurrent()): ?>
+					<span class="submenu_current">
+					<?php endif; ?>
+					
+				<a href="<?php echo te_link($context_menu_item->node);?>"><?php echo te_short($context_menu_item->getTitle(), 25); ?></a><br/>
+					
+					<?php if ($context_menu_item->isCurrent()): ?>
+					</span>
+					<?php endif; ?>
+				
+					<?php if ($context_menu_item->node->getLevel() == 3): ?>
+					</div>
+					<?php endif; ?>
+					
 				<?php endforeach; ?>
 		<?php endif; ?>
+	
 </div>
 <div id="content">
 <div class="title">
