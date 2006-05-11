@@ -23,4 +23,19 @@ Cliquez ci-dessous pour visionner la vidéo :<br/>
 
 
 
+<?php if ($content->get('sound_file')): ?>
+<?php $sound_file = $content->field['sound_file']->getFilesystem(); ?>
+
+
+<hr/>
+Vous pouvez télécharger le fichier mp3 pour l'écouter 
+<a href="<?php echo $sound_file->getUrl(); ?>">Cliquez ici</a>
+<hr/>
+<br/>
+<br/>
+
+<?php endif; ?>
+
+
+
 <?php include 'content_footer.php'; ?>

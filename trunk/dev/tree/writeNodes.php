@@ -25,33 +25,7 @@ if(isset($_GET['parentId']))
 				}
 		}
 		
-		die();
-	switch($_GET['parentId']){
-
-		case "1":
-			?>
-			<li><a href="#">Denmark</a>
-				<ul>
-					<li parentId="11"><a href="#">Loading</li>
-				</ul>			
-			</li>
-			<li><a href="#">Norway</a>
-				<ul>
-					<li parentId="12"><a href="#">Loading</li>
-				</ul>
-			</li>
-			<li><a href="#">Sweden</a></li>						
-			<?
-			break;
-		case "11":
-			?>
-			<li class="dhtmlgoodies_sheet.gif"><a href="#">Bergen</a></li>
-			<li class="dhtmlgoodies_sheet.gif"><a href="#">Stavanger</a></li>
-			<li class="dhtmlgoodies_sheet.gif"><a href="#">Trondheim</a></li>
-			<li class="dhtmlgoodies_sheet.gif"><a href="#">Oslo</a></li>					
-			<?
-			break;
-	}
 }
+	
 
 ?>

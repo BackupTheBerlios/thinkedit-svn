@@ -27,6 +27,14 @@ if ($file)
 <?php endif;?>
 
 
+
+<?php if ($content->get('authors')): ?>
+<div class="publication_authors">
+<?php echo $content->get('authors'); ?>
+</div>
+<?php endif;?>
+
+
 <br/>
 <br/>
 

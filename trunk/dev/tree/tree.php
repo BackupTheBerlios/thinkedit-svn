@@ -5,12 +5,23 @@
 	<link rel="stylesheet" href="css/folder-tree-static.css" type="text/css">
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" src="js/folder-tree-static.js"></script>
+
+	<script type="text/javascript" src="js/folder-tree-static.js"></script>
+
+	<script src="../../lib/scriptaculous/lib/prototype.js" type="text/javascript"></script>
+  <script src="../../lib/scriptaculous/src/scriptaculous.js" type="text/javascript"></script>
+	
+	<script type="text/javascript" language="javascript">
+  Sortable.create('test')
+</script>
+
+
 </head>
 <body>
 	<p>Tree where sub nodes are loaded dynamically</p>
 	<ul id="dhtmlgoodies_tree" class="dhtmlgoodies_tree">
 		<li><a href="#">Root</a>
-			<ul>
+			<ul id="test">
 				<li parentId="1"><a href="#">Loading...</a></li>
 			</ul>
 		</li>

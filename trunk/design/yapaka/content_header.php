@@ -3,8 +3,16 @@
 <td width="168" valign="top" id="menu">
 
 
+<?php
+$filesystem = $thinkedit->newFilesystem();
+$filesystem->setPath('/ressources/photos/');
+$intro_photo = $filesystem->getRandomFile();
 
-<img class="intro_photo" src="<?php echo te_design(); ?>/sources/maman.jpg">
+?>
+
+<?php if ($intro_photo): ?>
+<img class="intro_photo" src="<?php echo $intro_photo->getThumbnail(array('w'=>168, 'h'=>118, 'zc'=>1, 'q'=>90));?>">
+<?php endif; ?>
 
 <?php include_once 'context_menu.php' ?>
 

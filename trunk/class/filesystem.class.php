@@ -174,6 +174,23 @@ class filesystem
 		
 		
 		/*
+		Returns a random file in the current folder
+		*/
+		function getRandomFile()
+		{
+				$files = $this->getFiles();
+				if (is_array($files))
+				{
+						$file = $files[rand(0, count($files))];
+						return $file;
+				}
+				else
+				{
+						return false;
+				}
+		}
+		
+		/*
 		will return children files of the curent folder
 		*/
 		function getFolders()
@@ -648,6 +665,8 @@ class filesystem
 				
 				return $filename;
 		}
+		
+		
 		
 		
 }
