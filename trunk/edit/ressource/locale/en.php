@@ -82,5 +82,8 @@ $data['automatic_template']='!automatic_template!';
 $data['save_and_return_to_node_button']='!save_and_return_to_node_button!';
 $data['image_browser_help_select']='!image_browser_help_select!';
 $data['drop_down_choose']='!drop_down_choose!';
+$data['relate']='!relate!';
+$data['unrelate']='!unrelate!';
+$data['save_before_relating']='!save_before_relating!';
 
 ?>

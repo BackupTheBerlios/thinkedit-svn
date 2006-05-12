@@ -19,11 +19,19 @@
 <?php $actu_content = $actu->getContent(); ?>
 
 
-<div class="actu_title"><?php echo te_short($actu_content->get('title'), 25); ?></div>
+<div class="actu_title"><?php echo te_short($actu_content->get('title'), 50); ?></div>
 <div class="actu_intro">
-<?php echo te_short($actu_content->get('body'), 80); ?>
- 
-<a href="<?php echo te_link($actu); ?>" class="color100 bold">Lire</a>
+<?php echo te_short($actu_content->get('body'), 200); ?>
+<br/>
+<?php
+$actu_relation = $thinkedit->newRelation(); 
+$actu_relations =  $actu_relation->getRelations($actu_content);
+?>
+<?php if ($actu_relations): ?>
+<a href="<?php echo te_link($actu_relations[0]); ?>" class="color100 bold">Suite...</a>
+<?php else: ?>
+<a href="<?php echo te_link($actu); ?>" class="color100 bold">Suite...</a>
+<?php endif; ?>
 </div>
 
 

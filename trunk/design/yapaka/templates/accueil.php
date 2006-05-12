@@ -1,21 +1,20 @@
 											<table border="0" cellspacing="0" cellpadding="0">
 												<tr>
-													<td align="left" valign="top" width="366">
+													<td align="left" valign="top" width="300">
 													<div class="title_accueil">La vie sans mode d’emploi...</div>
 													</td>
-													<td align="left" valign="top" width="183"></td>
-													<td align="left" valign="top" width="168">
+													<td align="left" valign="top"></td>
+													<td align="left" valign="top">
 													<!--<div class="title_accueil">A voir...</div>-->
 													</td>
 												</tr>
 												<tr>
-													<td align="left" valign="top" width="366">
+													<td align="left" valign="top">
 														<div class="text_accueil">
-														<?php echo $content->get('body'); ?>
-														
+														<?php echo $content->get('intro'); ?>
 														</div>
 													</td>
-													<td align="left" valign="top" width="183">
+													<td align="left" valign="top" width="20">
 													
 													<!--
 													<div class="text_accueil">
@@ -26,40 +25,22 @@
 													</div>
 													-->
 													</td>
-													<td align="left" valign="top" width="168">
+													<td align="left" valign="top" width="300">
 													
-													<!-- News -->
-													
-													<?php $sections = $node->getChildren(); ?>
-													
-													<?php foreach ($sections as $section): ?>
-															<?php $actus = $section->getChildren( array('type' => 'news') ); ?>
-															
-															<?php if (is_array($actus)): ?>
-																	<?php foreach ($actus as $actu): ?>
-																	<!--<a class="_sub" href="#"><img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> Premier</a>-->
-																	<a class="<?php echo te_get_section_name($actu); ?>_sub" href="<?php echo te_link($actu); ?>">
-																	<img src="<?php echo te_design() ?>/sources/fleche.gif" border="0px"> 
-																	<?php echo te_short($actu->getTitle(), 28); ?>
-																	</a>
-																	<?php endforeach; ?>
-															<?php endif; ?>
-													
-													<?php endforeach; ?>
+													<div class="text_accueil">
+														<?php echo $content->get('body'); ?>
+														</div>
 													
 												</tr>
 												<tr>
-													<td align="left" valign="top" width="366">
+													<td align="left" valign="top">
 													<div class="title_accueil">Actualit&eacute;s</div>
 													</td>
-													<td align="left" valign="top" width="183"></td>
-													<td align="left" valign="top" width="168"></td>
+													<td align="left" valign="top"></td>
+													<td align="left" valign="top"></td>
 												</tr>
 												<tr>
-													<td colspan="3" align="left" valign="top" width="717">
-													
-													
-													
+													<td colspan="3" align="left" valign="top">
 													<?php
 													//sélection des news dans ce dossier (accueil)
 													$news_nodes = $node->getChildren(array('class' => 'record', 'type' => 'news')); 
