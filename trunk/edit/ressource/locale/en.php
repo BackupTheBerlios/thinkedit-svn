@@ -85,5 +85,7 @@ $data['drop_down_choose']='!drop_down_choose!';
 $data['relate']='!relate!';
 $data['unrelate']='!unrelate!';
 $data['save_before_relating']='!save_before_relating!';
+$data['headers_sent_help']='!headers_sent_help!';
+$data['node_deleted_successfully']='!node_deleted_successfully!';
 
 ?>

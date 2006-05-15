@@ -57,6 +57,16 @@ elseif (is_array($my_parents))
 
 <link href="<?php echo te_design() ?>/<?php echo $section_css?>" rel="stylesheet" type="text/css" media="all">
 
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-204371-2";
+urchinTracker();
+</script>
+
+
+
 </head>
 
 

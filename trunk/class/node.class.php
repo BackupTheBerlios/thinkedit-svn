@@ -227,8 +227,11 @@ class node
 		// from http://www.sitepoint.com/article/hierarchical-data-database/3
 		function rebuild($parent_id = 0, $left = 1)
 		{
-				//echo '<h1>rebuild called</h1>';
 				global $thinkedit;
+				$db = $thinkedit->getDb();
+				$db->clearCache();
+				
+				//echo '<h1>rebuild called</h1>';
 				// the right value of this node is the left value + 1
 				$right = $left+1;
 				
@@ -557,6 +560,40 @@ class node
 		}
 		
 		
+		function changeParent($new_parent_id)
+		{
+				if ($this->load())
+				{
+						
+						if ($this->getId() == $new_parent_id)
+						{
+								trigger_error('node::changeParent() cannot change the parent of this node : you are trying to change the parent to itself');
+								return false;
+						}
+						
+						global $thinkedit;
+						$parent = $thinkedit->newNode();
+						$parent->setId($new_parent_id);
+						if (!$parent->load())
+						{
+						  	trigger_error('node::changeParent() cannot change the parent of this node : I cannot load the parent you want to assing it');
+								return false;
+						}
+						
+						$this->set('parent_id', $new_parent_id);
+						$this->set('level', false);
+						$this->save();
+						$this->rebuild();
+						return true;
+						
+				}
+				else
+				{
+						trigger_error('node::changeParent() cannot change the parent of this node because I can\'t load it');
+						return false;
+				}
+		}
+		
 		function getUid()
 		{
 				$uid['class'] = 'node';
@@ -819,6 +856,10 @@ class node
 				}
 				else
 				{
+						global $thinkedit;
+						$db = $thinkedit->getDb();
+						$db->clearCache();
+						
 						$parents = $this->getParentUntilRoot();
 						if ($parents)
 						{

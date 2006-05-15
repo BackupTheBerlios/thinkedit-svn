@@ -26,6 +26,11 @@ Cliquez ci-dessous pour visionner la vidéo :<br/>
 <?php if ($content->get('sound_file')): ?>
 <?php $sound_file = $content->field['sound_file']->getFilesystem(); ?>
 
+<object type="application/x-shockwave-flash" data="<?php echo te_design(); ?>/mp3player/mp3player.swf?file=<?php echo $sound_file->getUrl(); ?>" width="200" height="20">
+<param name="movie" value="<?php echo te_design(); ?>/mp3player/mp3player.swf?file=<?php echo $sound_file->getUrl(); ?>" />
+</object>
+
+
 
 <hr/>
 Vous pouvez télécharger le fichier mp3 pour l'écouter 

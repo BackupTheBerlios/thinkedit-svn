@@ -99,8 +99,8 @@ $data['table']['news']['use']['navigation']='false';
 $data['table']['news']['field']['id']['type'] = 'id';
 $data['table']['news']['field']['title']['type'] = 'string';
 $data['table']['news']['field']['title']['is_title'] = 'true';
-$data['table']['news']['field']['intro']['type'] = 'richtext';
-$data['table']['news']['field']['body']['type'] = 'richtext';
+$data['table']['news']['field']['intro']['type'] = 'text';
+$data['table']['news']['field']['body']['type'] = 'text';
 $data['table']['news']['field']['image']['type'] = 'file';
 
 

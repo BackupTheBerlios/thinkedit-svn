@@ -51,8 +51,8 @@ class user
 		{
 				global $thinkedit;
 				$session = $thinkedit->newSession();
+				return $session->delete('thinkedit_user');
 				
-				$session->delete('thinkedit_user');
 		}
 		
 		function isLogged()

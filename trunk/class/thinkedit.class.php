@@ -1,8 +1,23 @@
 <?php
+
+
+
 /**
-* Thinkedit Base class
+* 
+* 
+* 
+* 
+* 
+* 
 */
 
+
+/**
+* Thinkedit Base class
+* This is the thinkedit most important class. It is a factory class for important thinkedit objects
+* 
+* See the api for the respective objects to understand how they work
+*/
 class thinkedit
 {
 		
@@ -13,7 +28,7 @@ class thinkedit
 		
 		
 		/**
-		* Passing it a config folder, and it will use it for the whole application
+		* Passing it a config folder, and it will use it for the whole application. Else it will use the default /config folder
 		**/
 		function thinkedit($config_folder = './config/')
 		{
@@ -244,7 +259,14 @@ class thinkedit
 				}
 		}
 		
-		
+		/**
+		*  Returns a $context object see context class for it's api
+		* 
+		* 
+		* 
+		* 
+		* 
+		*/
 		function getContext()
 		{
 				require_once ROOT . '/class/context.class.php';
@@ -252,12 +274,29 @@ class thinkedit
 		}
 		
 		
+		/**
+		* Returns the current user object
+		* 
+		* 
+		* 
+		* 
+		* 
+		*/
 		function getUser()
 		{
 				require_once ROOT . '/class/user.class.php';
 				return new user();
 		}
 		
+		
+		/**
+		* Returns a cache object used for output caching
+		* This initialises a pear cache lite object
+		* 
+		* 
+		* 
+		* 
+		*/
 		function getOutputCache()
 		{
 				// I hate pear global include system, so I have this "solution" :-/
@@ -272,6 +311,14 @@ class thinkedit
 		}
 		
 		
+		/**
+		* Returns a function cache object
+		* 
+		* 
+		* 
+		* 
+		* 
+		*/
 		function getFunctionCache()
 		{
 				// I hate pear global include system, so I have this "solution" :-/
@@ -285,6 +332,14 @@ class thinkedit
 				return new Cache_Lite_Function($options);
 		}
 		
+		/**
+		* Returns a pear cache lite object
+		* 
+		* 
+		* 
+		* 
+		* 
+		*/
 		function getCache()
 		{
 				// I hate pear global include system, so I have this "solution" :-/
@@ -313,6 +368,14 @@ class thinkedit
 				return new Cache_Lite_File($options);
 		}
 		
+		/**
+		* Returns the global timer object used for benchmarking
+		* 
+		* 
+		* 
+		* 
+		* 
+		*/
 		function getTimer()
 		{
 				if (isset($this->timer))
@@ -331,7 +394,16 @@ class thinkedit
 		
 		/************************* Factory methods **************************/
 		
-		// based on uid, will instantiate a class
+		/**
+		* Based on uid, will instantiate an object
+		* 
+		* UID= unique ID
+		* 
+		* a UID is an array with at least : 
+		* - class
+		* - type
+		* - id
+		*/
 		function newObject($uid, $data = false)
 		{
 				if (!isset($uid['class']))
@@ -401,8 +473,9 @@ class thinkedit
 		
 		
 		/**
-		* Given a type and an id, instantiate a module
-		* If no id given, instantiate a new empty module of type, using the right class for this module type
+		* Given a type and an id, instantiate a record
+		* If no id given, instantiate a new empty record of type, using the right class for this record type
+		* For instance if it is a multilingual table, it will return a multilingual record object (@todo)
 		*
 		**/
 		function newRecord($table, $id=false, $data = false)
@@ -431,7 +504,14 @@ class thinkedit
 		}
 		
 		
-		
+		/**
+		* Will return a new node object
+		* 
+		* @param string $table is the table id (not needed most of the time)
+		* @param integer $id is the id needed
+		* @param array $data may contain the data of the node, in order to preload it with data
+		* 
+		*/
 		function newNode($table = "node", $id = false, $data = false)
 		{
 				// will include the right module class if needed, for example, specialized modules like ftp datasource
@@ -483,7 +563,12 @@ class thinkedit
 		
 		
 		
-		
+		/**
+		* Returns a new config object
+		* 
+		* 
+		* 
+		*/
 		function newConfig()
 		{
 				require_once('config.class.php');
@@ -492,7 +577,14 @@ class thinkedit
 		}
 		
 		
-		
+		/**
+		* Returns a field object
+		* 
+		* @param string $table the table id
+		* @param string $field the field id
+		* @param mixed $data preloaded data if needed
+		* 
+		*/
 		function newField($table, $field, $data = false)
 		{
 				
@@ -529,20 +621,36 @@ class thinkedit
 				
 		}
 		
-		
+		/**
+		* Returns a new relation object
+		* 
+		* 
+		* 
+		*/
 		function newRelation()
 		{
 				require_once ROOT . '/class/relation.class.php';
 				return new relation();
 		}
 		
+		/**
+		* Returns a new session object
+		* 
+		* 
+		* 
+		*/
 		function newSession()
 		{
 				require_once ROOT . '/class/session.class.php';
 				return new session();
 		}
 		
-		
+		/**
+		* Returns a new url object
+		* 
+		* 
+		* 
+		*/
 		function newUrl()
 		{
 				require_once ROOT . '/class/url.class.php';
@@ -645,7 +753,12 @@ class thinkedit
 				return 1;
 		}
 		
-		
+		/**
+		* Returns the run mode of thinkedit. Usefull for developpers (for instance, to avoid showing debug info on a production site ;-) )
+		* 
+		* @return string 'development' or 'production'
+		* 
+		*/
 		function getRunMode()
 		{
 				if (isset($this->config['site']['run_mode']))
@@ -663,11 +776,13 @@ class thinkedit
 				
 		}
 		
-		/*
-		Return true if we are in a live, production system.
-		This is defined in config file.
-		
-		If true, we should not report any error to the user!
+		/**
+		* Return true if we are in a live, production system.
+		* This is defined in config file.
+		* 
+		* If true, we should not report any error to the user!
+		* 
+		* @param boolean true if we are in production
 		*/
 		function isInProduction()
 		{
@@ -688,8 +803,12 @@ class thinkedit
 
 
 
-
-// taken from : http://php.belnet.be/manual/en/function.array-merge-recursive.php#38387
+/**
+* Helper function used by this class only
+* 
+* taken from : http://php.belnet.be/manual/en/function.array-merge-recursive.php#38387
+* 
+*/
 function array_merge_2(&$array, &$array_i) 
 {
 		// For each element of the array (key => value):

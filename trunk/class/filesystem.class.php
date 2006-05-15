@@ -181,7 +181,7 @@ class filesystem
 				$files = $this->getFiles();
 				if (is_array($files))
 				{
-						$file = $files[rand(0, count($files))];
+						$file = $files[rand(0, count($files)-1)];
 						return $file;
 				}
 				else

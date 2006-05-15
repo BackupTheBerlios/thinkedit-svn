@@ -70,6 +70,11 @@ class context
 				}
 		}
 		
+		function getLocale()
+		{
+				return 'fr';
+		}
+		
 		
 }
 ?>
