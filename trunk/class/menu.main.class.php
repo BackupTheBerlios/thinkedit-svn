@@ -58,6 +58,8 @@ class menu_main extends menu_base
 										$result[] = $menuitem;
 								}
 						}
+						$result[0]->is_start = true;
+						$result[count($result)-1]->is_end = true;
 						return $result;
 				}
 				else

@@ -1,9 +1,20 @@
 <?php
 
-
+/**
+		* A record is the base class for any record manipulation in the DB
+		* Use $record = $thinkedit->newRecord($table_name) to instantiate a new record for any use (read and write) 
+		* 
+		* This record class uses the active record pattern
+		* 
+		*/
 class record
 {
-		
+		/**
+		* When you instantiate a record, use $thinkedit->newRecord($table)
+		* 
+		* 
+		* 
+		*/
 		function record($table)
 		{
 				
@@ -50,6 +61,12 @@ class record
 				return $this->table_name;
 		}
 		
+		/**
+		* Returns the value of the field named $field
+		* 
+		* 
+		* 
+		*/
 		function get($field)
 		{
 				if (isset($this->field[$field]))
@@ -70,7 +87,12 @@ class record
 				return $db->escape($this->field[$field]->get());
 		}
 		
-		
+		/**
+		* Sets the value of the field $field to $value
+		* 
+		* 
+		* 
+		*/
 		function set($field, $value)
 		{
 				$this->is_loaded = false;
@@ -88,10 +110,12 @@ class record
 		}
 		
 		
-		
-		/*
-		Load will only load a single record and assign values to the current object
-		Look at find() for multiple load
+		/**
+		* Load will only load a single record and assign values to the current object
+		* Look at find() for multiple load
+		* 
+		* You must fill all the primary keys of this record to be able to load it
+		* 
 		*/
 		function load()
 		{
@@ -153,11 +177,11 @@ class record
 		}
 		
 		
-		/*
-		given an array, the record is filled with the data, as long as the array contains all the fields of this record
-		if it is the case, $this->is_loaded = true, and further request for $this->load() won't do an sql query 
-		
-		This is an optimization
+		/**
+		* given an array, the record is filled with the data, as long as the array contains all the fields of this record
+		* if it is the case, $this->is_loaded = true, and further request for $this->load() won't do an sql query 
+		* 
+		* This is an optimization
 		*/
 		function loadByArray($data)
 		{
@@ -177,6 +201,13 @@ class record
 				return true;
 		}
 		
+		/**
+		* Will return an array of records
+		* 
+		* @param array $where is an array of field / values to limit returned records
+		* @param array $order is an array of field / 'asc' or 'desc' values to order
+		* @param array $limit set $limit['start'] and $limit['stop'] if you want to limit
+		*/
 		function find($where = false, $order = false, $limit = false)
 		{
 				/*
@@ -271,6 +302,12 @@ class record
 				}
 		}
 		
+		/**
+		* Returns the number of records (you can use $where)
+		* @param array $where @see record::find()
+		* 
+		* 
+		*/
 		function count($where = false)
 		{
 				global $thinkedit;
@@ -315,7 +352,12 @@ class record
 				*/
 		}
 		
-		
+		/**
+		* Will return the first found item, this is much like $this->find()
+		* 
+		* 
+		* 
+		*/
 		function findFirst($where = false, $order = false)
 		{
 				$results = $this->find($where, $order, '1');
@@ -326,7 +368,13 @@ class record
 				return false;
 		}
 		
-		
+		/**
+		* Will save the current record to the DB
+		* If some of the primary keys are filled and the record is found in the DB, the record is updated
+		* Else, the record is inserted in the DB
+		* 
+		* 
+		*/
 		function save()
 		{
 				// if I find the same record in the DB based on the keys, I update
@@ -364,7 +412,12 @@ class record
 		
 		
 		
-		
+		/**
+		* Will update the DB with this record
+		* 
+		* 
+		* 
+		*/
 		function update()
 		{
 				global $thinkedit;
@@ -407,7 +460,12 @@ class record
 		}
 		
 		
-		
+		/**
+		* Will insert this record in the DB
+		* 
+		* 
+		* 
+		*/
 		function insert()
 		{
 				$sql = "insert into " . $this->getTableName();
@@ -457,7 +515,12 @@ class record
 				}
 		}
 		
-		
+		/**
+		* Will delete this record form the DB
+		* 
+		* 
+		* 
+		*/
 		function delete()
 		{
 				$this->is_loaded = false;
@@ -504,8 +567,13 @@ class record
 		
 		
 		
-		// returns true if all primary keys are _set_
-		// false else
+		/**
+		* returns true if all primary keys are _set_
+		* false else
+		* 
+		* 
+		* 
+		*/
 		function checkPrimaryKey()
 		{
 				foreach ($this->field as $field)
@@ -523,8 +591,12 @@ class record
 		
 		
 		
-		
-		// Returns the primary keys in this record
+		/**
+		* Returns the primary keys in this record
+		* 
+		* 
+		* 
+		*/
 		function getPrimaryKeys()
 		{
 				foreach ($this->field as $field)
@@ -547,7 +619,12 @@ class record
 		
 		
 		
-		
+		/**
+		* Will set all fields from an array of fields
+		* 
+		* 
+		* 
+		*/
 		function setArray($array)
 		{
 				//die ('deprecated');
@@ -571,6 +648,12 @@ class record
 				
 		}
 		
+		/**
+		* Will return an array of all fields
+		* 
+		* 
+		* 
+		*/
 		function getArray()
 		{
 				foreach ($this->field as $field)
@@ -582,7 +665,12 @@ class record
 		
 		
 		
-		
+		/**
+		* Returns the ID of this record
+		* 
+		* 
+		* 
+		*/
 		function getId()
 		{
 				foreach ($this->field as $field)

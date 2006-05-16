@@ -77,15 +77,16 @@ $data['tools']='tools';
 $data['no_relations']='no relations';
 $data['add_relation']='add relation';
 $data['nothing_in_list']='nothing in list';
-$data['file_added_successfully']='!file_added_successfully!';
-$data['automatic_template']='!automatic_template!';
-$data['save_and_return_to_node_button']='!save_and_return_to_node_button!';
-$data['image_browser_help_select']='!image_browser_help_select!';
-$data['drop_down_choose']='!drop_down_choose!';
-$data['relate']='!relate!';
-$data['unrelate']='!unrelate!';
-$data['save_before_relating']='!save_before_relating!';
-$data['headers_sent_help']='!headers_sent_help!';
-$data['node_deleted_successfully']='!node_deleted_successfully!';
+$data['file_added_successfully']='file added successfully';
+$data['automatic_template']='Choose template automatically';
+$data['save_and_return_to_node_button']='Save this and return to structure';
+$data['image_browser_help_select']='Choose an item type in the first dropdown menu, then browse for your selected item';
+$data['drop_down_choose']='Choose';
+$data['relate']='Relate';
+$data['unrelate']='Unrelate';
+$data['save_before_relating']='You must save this item before you can make relations to it';
+$data['headers_sent_help']='HTTP headers have been already sent. You can still continue using the tool by clicking on this link';
+$data['node_deleted_successfully']='The node has been deleted successfully';
+$data['custom_templates_not_found']='Custom template not found';
 
 ?>

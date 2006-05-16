@@ -129,9 +129,14 @@ function te_link($object)
 				$url->set('node_id', $object->getId());
 				return $url->render();
 		}
+		elseif ($object->getClass() == 'filesystem')
+		{
+				$url->keep('node_id');
+				return $url->render($object->getUrl());
+		}
 		else
 		{
-				trigger_error('te_link() : object is not a node, not yet supported');
+				trigger_error('te_link() : object is not a node or a filesystem, not yet supported');
 				return false;
 		}
 }

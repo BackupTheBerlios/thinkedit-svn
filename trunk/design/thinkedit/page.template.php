@@ -44,3 +44,14 @@
 
 
 
+<?php
+$relation_object = $thinkedit->newRelation();
+$relations = $relation_object->getRelations($content);
+?>
+
+<?php if ($relations): ?>
+<hr/>
+<?php foreach ($relations as $relation): ?>
+<li><a href="<?php echo te_link($relation)?>"><?php echo $relation->getTitle();?></a></li> 
+<?php endforeach; ?>
+<?php endif; ?>

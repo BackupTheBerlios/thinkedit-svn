@@ -16,7 +16,8 @@
 		<div id="menu">
 		<?php if (isset($main_menu) && $main_menu->getArray()) : ?>
 				<?php foreach ($main_menu->getArray() as $main_menu_item): ?>
-				<a href="<?php echo te_link($main_menu_item->node);?>"><?php echo $main_menu_item->getTitle(); ?></a> <span class="menu_separator"></span>
+				<a href="<?php echo te_link($main_menu_item->node);?>"><?php echo $main_menu_item->getTitle(); ?></a> 
+				<?php if (!$main_menu_item->isEnd()):?><span class="menu_separator"></span><?php endif; ?>
 				<?php endforeach; ?>
 		<?php endif; ?>
 		</div>
