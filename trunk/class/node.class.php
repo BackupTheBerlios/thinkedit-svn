@@ -1,30 +1,31 @@
 <?php
 
-/*
-Node base class
-
-I was thinking about extending the record object. Fianlly, I will use a proxy object (is it the right name for this)
-$this->record contains the reocrd object used by this node.
-
-I feel safer this way
-
-
-TODO : optimize number of sql queries needed.
-
-Using the adjacency list model that evryone uses
-More info at http://www.sitepoint.com/article/hierarchical-data-database/1
-and at http://dev.mysql.com/tech-resources/articles/hierarchical-data.html
-
-It could be simply doing a single query of the whole node db, store it in a var, and work from this.
-
-Benchamrk is needed. Maybe do this for a tree smaller than x nodes
-
-Too early optimisation is the root of all evil
-
-
-
-GENERAL TODO : OPTIMIZE THIS
-
+/**
+* Node base class
+*
+* I was thinking about extending the record object. Finally, I will use a proxy object (is it the right name for this)
+* $this->record contains the reocrd object used by this node.
+*
+* I feel safer this way
+*
+*
+* TODO : optimize number of sql queries needed.
+*
+* Using the adjacency list model that evryone uses
+* More info at http://www.sitepoint.com/article/hierarchical-data-database/1
+* and at http://dev.mysql.com/tech-resources/articles/hierarchical-data.html
+* 
+* It could be simply doing a single query of the whole node db, store it in a var, and work from this.
+* 
+* Benchamrk is needed. Maybe do this for a tree smaller than x nodes
+* 
+* Too early optimisation is the root of all evil
+* 
+* 
+* 
+* GENERAL TODO : OPTIMIZE THIS
+* 
+* @author Philippe Jadin
 */
 class node
 {
@@ -43,23 +44,42 @@ class node
 				
 		}
 		
+		
+		/**
+		* Sets the id of this node, before load, or whenever you want.
+		*
+		*
+		**/
 		function setId($node_id)
 		{
 				return $this->record->set('id', $node_id);
 		}
 		
-		
+		/**
+		* Returns the id of this node
+		* 
+		* 
+		**/
 		function getId()
 		{
 				return $this->record->get('id');
 		}
 		
-		
+		/**
+		* Set some $field to $value
+		* You must save the node if you update it this way.
+		* 
+		**/
 		function set($field, $value)
 		{
 				return $this->record->set($field, $value);
 		}
 		
+		/**
+		* Returns the value of $field
+		* 
+		* 
+		**/
 		function get($field)
 		{
 				return $this->record->get($field);
@@ -67,7 +87,11 @@ class node
 		
 		
 		
-		
+		/**
+		* Returns true if this node has a parent ( a root node has no parents for instance)
+		* 
+		* 
+		**/
 		function hasParent()
 		{
 				if ($this->getParent())
@@ -84,7 +108,7 @@ class node
 		
 		
 		/**
-		* returns nodes
+		* Returns the parent of this node
 		*
 		*
 		**/
@@ -112,6 +136,11 @@ class node
 				
 		}
 		
+		/**
+		* Returns the id of the parent of this node
+		* 
+		* 
+		**/
 		function getParentId()
 		{
 				trigger_error('getParentId() is it a usefull function ?');
@@ -128,6 +157,11 @@ class node
 				
 		}
 		
+		/**
+		* Deletes this node. A node can be deleted only if it doesn't have children
+		* 
+		* 
+		**/
 		function delete($keep_content = false)
 		{
 				if ($this->hasChildren())
@@ -148,7 +182,11 @@ class node
 				}
 		}
 		
-		
+		/**
+		* Loads a node form the db. If $node_id is defined then the node with this ID is loaded
+		* Returns false on failure, true on success
+		* 
+		**/
 		function load($node_id = false)
 		{
 				if ($node_id)
@@ -171,7 +209,12 @@ class node
 				return false;
 		}
 		
-		
+		/**
+		* Load node data form an array ($data)
+		* This array must contain all the fields of the node table defined in config
+		* 
+		* 
+		**/
 		function loadByArray($data)
 		{
 				if (is_array($data))
@@ -197,7 +240,11 @@ class node
 		}
 		
 		
-		
+		/**
+		* Saves the current state of this node
+		* A node can be saved only if it has a parent or if it is root
+		* 
+		**/
 		function save()
 		{
 				//echo 'record unloaded on node save';
@@ -222,9 +269,13 @@ class node
 				}
 		}
 		
-		
-		// rebuilds nested set tree from adjacency list tree.
-		// from http://www.sitepoint.com/article/hierarchical-data-database/3
+		/**
+		* Rebuilds the node nested set.
+		* rebuilds nested set tree from adjacency list tree.
+		* from http://www.sitepoint.com/article/hierarchical-data-database/3
+		* 
+		* 
+		**/
 		function rebuild($parent_id = 0, $left = 1)
 		{
 				global $thinkedit;
@@ -263,6 +314,11 @@ class node
 				
 		}
 		
+		/**
+		* Returns true if this node is a sibling of the given $node
+		* Else returns false
+		* 
+		**/
 		function isSiblingOf($node)
 		{
 				$node->load();
@@ -277,7 +333,11 @@ class node
 				}
 		}
 		
-		
+		/**
+		* Returns true if this node is a child of the given $node
+		* Else returns false
+		* 
+		**/
 		function isChildOf($node)
 		{
 				$node->load();
@@ -292,6 +352,11 @@ class node
 				}
 		}
 		
+		/**
+		* Returns true if this node is an ancestor of $node
+		* This funciton may be expensive in computing time
+		* 
+		**/
 		function isAncestorOf($node)
 		{
 				$node->load();
@@ -319,8 +384,8 @@ class node
 		}
 		
 		/**
-		* returns true if the node has childrens
-		*
+		* Returns true if this node has childrens
+		* $options is an array documented in $this->getchildren()
 		*
 		**/
 		function hasChildren($options = false)
@@ -356,11 +421,11 @@ class node
 		}
 		
 		/**
-		returns childrens (nodes)
-		
-		$options is an array.
-		
-		set :
+		* returns childrens (nodes)
+		* 
+		* $options is an array.
+		* 
+		* set :
 		
 		- $options['type'] to limit to nodes of a specific type
 		- $options['class'] to limit to nodes of a specific class
@@ -616,8 +681,8 @@ class node
 		
 		
 		
-		/*
-		Returns the content object of this node
+		/**
+		* Returns the content object of this node
 		*/
 		function getContent()
 		{
@@ -659,8 +724,8 @@ class node
 		}
 		
 		
-		/*
-		Must be called everytime the content attached to this node is updated
+		/**
+		* Must be called everytime the content attached to this node is updated
 		*/
 		function clearContentCache()
 		{
@@ -685,7 +750,10 @@ class node
 				return $content->getIcon();
 		}
 		
-		
+		/**
+		* Loads the root node
+		* @todo optimize this to avoid 2 requests
+		*/
 		function loadRootNode()
 		{
 				
@@ -712,8 +780,9 @@ class node
 		
 		
 		
-		/*
-		Create a root node using object as the content
+		/**
+		* Create a root node using object as the content
+		* 
 		*/
 		function saveRootNode($object)
 		{
@@ -758,6 +827,10 @@ class node
 				}
 		}
 		
+		/**
+		* Returns all the parents of this node until root is met
+		* 
+		*/
 		function getParentUntilRoot()
 		{
 				global $thinkedit;
@@ -784,7 +857,10 @@ class node
 				}
 		}
 		
-		
+		/**
+		* Generate the path of this node and save it to the DB
+		* 
+		*/
 		function updatePath()
 		{
 				$parents[] = $this;
@@ -814,6 +890,10 @@ class node
 				return $path;
 		}
 		
+		/**
+		* Calculate and returns the path
+		* 
+		*/
 		function getPath()
 		{
 				$parents[] = $this;
@@ -841,6 +921,10 @@ class node
 				return $path;
 		}
 		
+		/**
+		* Returns the level of the node
+		* 
+		*/
 		function getLevel()
 		{
 				$this->load();
@@ -887,12 +971,12 @@ class node
 		}
 		
 		
-		/*
-		Returns a list (array) of allowed items you can add inside this node
+		/**
+		* Returns a list (array) of allowed items you can add inside this node
 		this array is an array of UID's
 		
 		class / type / (id)
-		
+		* 
 		*/
 		function getAllowedItems()
 		{
@@ -945,11 +1029,15 @@ class node
 				return $items;
 		}
 		
-		
+		/**
+		* Returns the order of the node
+		* 
+		*/
 		function getOrder()
 		{
 				return $this->record->get('sort_order');
 		}
+		
 		
 		function moveUp()
 		{
@@ -1212,6 +1300,10 @@ class node
 								return false;
 						}
 				}
+				else
+				{
+					return false;
+				}
 		}
 		
 		
@@ -1241,6 +1333,11 @@ class node
 				}
 		}
 		
+		/**
+		* Returns true if this node is used in $what
+		* This means that you can define use case for each node. For instance, use could be "public", "private" or wathever
+		* Not very usefulle for nodes, but could be used anyway
+		*/
 		function isUsedIn($what)
 		{
 				if (isset($this->config['use'][$what]))
