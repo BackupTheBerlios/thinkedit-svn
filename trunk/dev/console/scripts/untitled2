@@ -1,0 +1,10 @@
+include '../../thinkedit.init.php';
+$node = $thinkedit->newNode();
+$node->setId(13);
+
+$node->changeParent(1);
+
+echo 'getLevel result : ';
+echo $node->getLevel();
+echo '<br>';
+

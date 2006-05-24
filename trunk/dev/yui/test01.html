@@ -1,0 +1,43 @@
+<html>
+<head>
+
+
+	<!-- Namespace source file -->  
+	<script src = "../../lib/yui/build/yahoo/yahoo.js" ></script> 
+	 
+	<!-- Dependency source files -->  
+	<script src = "../../lib/yui/build/dom/dom.js" ></script> 
+	<script src = "../../lib/yui/build/event/event.js" ></script> 
+	 
+	<!-- Drag and Drop source file -->  
+<script src = "../../lib/yui/build/dragdrop/dragdrop.js" ></script> 
+
+<script type="text/javascript" language="javascript">
+
+y = YAHOO;
+
+var dd1 = new y.util.DDProxy("element1");
+var dd3 = new y.util.DDTarget("target");
+</script>
+
+<style>
+
+.box
+{
+border: 1px solid black;
+background-color: red;
+width: 100px;
+height: 50px;
+}
+</style>
+
+</head>
+<body>
+
+<div id="element1" class="box">test</div>
+
+
+<div id="target">target</div>
+
+</body>
+</html>

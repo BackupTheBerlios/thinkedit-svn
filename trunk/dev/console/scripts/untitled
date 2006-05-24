@@ -1,0 +1,35 @@
+include '../../thinkedit.init.php';
+
+$user = $thinkedit->getUser();
+
+$node = $thinkedit->newNode();
+
+$node->setId(14);
+
+echo 'before load : ' . $node->get('level');
+echo '<br>';
+
+$node->load();
+
+echo 'after load : ';
+echo $node->get('level');
+echo '<br>';
+
+$node->set('parent_id', 1);
+$node->set('level', false);
+
+echo 'after reset to false ';
+echo $node->get('level');
+echo '<br>';
+
+$node->save();
+
+$node->rebuild();
+
+echo 'getLevel result : ';
+echo $node->getLevel();
+echo '<br>';
+
+echo 'after getlevel ';
+echo $node->get('level');
+echo '<br>';
