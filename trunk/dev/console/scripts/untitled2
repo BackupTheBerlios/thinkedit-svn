@@ -1,10 +1,29 @@
 include '../../thinkedit.init.php';
+
 $node = $thinkedit->newNode();
-$node->setId(13);
+$node->loadRootNode();
+echo $node->getTitle();
 
-$node->changeParent(1);
+/*
+$page = $thinkedit->newRecord('page');
 
-echo 'getLevel result : ';
-echo $node->getLevel();
+$page->set('title', 'bonjour les amis');
+
+$page->save();
+
+$node->add($page);
+*/
+
+$children = $node->getChildren(true);
+
+if ($children)
+{
+foreach ($children as $child)
+{
+echo $child->getTitle();
 echo '<br>';
+}
+}
+
+print_r(count($node->getChildren()));
 

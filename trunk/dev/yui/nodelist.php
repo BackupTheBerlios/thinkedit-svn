@@ -1,31 +1,37 @@
 <?php
 include '../../thinkedit.init.php';
+require_once ROOT . '/lib/json/JSON.php';
 
+$json = new Services_JSON();
+$url = $thinkedit->newUrl();
 
-if(isset($_GET['parentId']))
+if($url->get('parent_id'))
 {
-
-		$node = $thinkedit->newNode();
-		$node->setId($_GET['parentId']);
-		$children = $node->getChildren();
-		
-		if ($children)
-		{
-				foreach ($children as $child)
-				{
-						echo '<li><a href="#">' . $child->getTitle() . '</a>';
-						echo '<input type="checkbox"> ';
-						if ($child->hasChildren())
-						{
-								echo '<ul>';
-								echo '<li parentId="'. $child->getId() .'"><a href="#">Loading</li>';
-								echo '</ul>';
-						}
-						echo '</li>';
-				}
-		}
-		
-}
 	
+	$node = $thinkedit->newNode();
+	$node->setId($url->get('parent_id'));
+	$children = $node->getChildren();
+	
+	if ($children)
+	{
+		$out['results'] = true;
+		foreach ($children as $child)
+		{
+			$node_data['id'] = $child->getId();
+			$node_data['title'] = $child->getTitle();
+			$node_data['test'] = 'test';
+			$out['nodes'][] = $node_data;
+		}
+	}
+	
+}
+else
+{
+	$out['results'] = false;
+}
+
+$output = $json->encode($out);
+print($output);
+
 
 ?>
