@@ -1,3 +1,4 @@
+die();
 include '../../thinkedit.init.php';
 
 $user = $thinkedit->getUser();

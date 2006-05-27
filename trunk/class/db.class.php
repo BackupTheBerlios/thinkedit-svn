@@ -374,6 +374,25 @@ class db
 		}
 		
 		
+		function debug()
+		{
+			$out = '<h1>DB debug</h1>';
+			global $db_debug;
+			if (isset($db_debug))
+			{
+				if (is_array($db_debug))
+				{
+					
+					foreach ($db_debug as $debug)
+					{
+						$out.='<li>'.$debug.'</li>';
+					}
+				}
+			}
+			return $out;
+					
+		}
+		
 }
 
 ?>

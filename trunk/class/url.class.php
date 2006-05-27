@@ -321,10 +321,19 @@ class url
 				if (is_array($final_param))
 				{
 						$url.='?';
+						
+
+						$i = 1;
 						foreach ($final_param as $key=>$value)
 						{
-								$url .= $key . '=' . $value . '&';
+								$url .= $key . '=' . $value;
+								if ($i < count($final_param))
+								{
+									$url .='&';
+								}
+								$i++;
 						}
+						
 				}
 				
 				

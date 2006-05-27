@@ -8,8 +8,6 @@ class record_multilingual extends record
 		function record_multilingual($table) 
 		{
 				parent::record($table);
-				
-		
 		}
 		
 		/**
@@ -53,6 +51,15 @@ class record_multilingual extends record
 				return $this->field[$this->getLocaleFieldId()]->get();
 		}
 		
+		/**
+		* Returns true if this record is multilingual
+		* of course, this record_multilingual object will allways return true
+		*
+		*/
+		function isMultilingual()
+		{
+			return true;
+		}
 }
 
 ?>

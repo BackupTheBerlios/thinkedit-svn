@@ -485,8 +485,33 @@ class thinkedit
 				if ($table<>'')
 				{
 						// optimization : file is required on top of this class file
-						require_once('record.class.php');
-						$record = new record($table);
+						// optimization removed, because no real speed impact found
+						
+						// find if the record has a locale field
+						$multilingual = false;
+						if (isset($this->config['table'][$table]['field']))
+						{
+							foreach ($this->config['table'][$table]['field'] as $field)
+							{
+								if ($field['type'] == 'locale')
+								{
+									$multilingual = true;
+								}
+							}
+						}
+						
+						if ($multilingual)
+						{
+							require_once('record.multilingual.class.php');
+							$record = new record_multilingual($table);
+						}
+						else
+						{
+							require_once('record.class.php');
+							$record = new record($table);
+						}
+						
+						
 						if ($id)
 						{
 								$record->set('id', $id);

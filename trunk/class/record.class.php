@@ -404,7 +404,7 @@ class record
 				}
 				else
 				{
-						trigger_error(__METHOD__ . ' no primary fields, cannot save');
+						trigger_error('record::save() :  no primary fields, cannot save');
 						return false;
 				}
 		}
@@ -440,7 +440,7 @@ class record
 								{
 										if ($field->isEmpty())
 										{
-												trigger_error(__METHOD__ . ' cannot save if all primary keys are not defined');
+												trigger_error('record::update cannot save if all primary keys are not defined');
 										}
 										$where[] =  $field->getId() . '=' . "'" . $this->db->escape($field->get()) . "'";
 								}
@@ -809,6 +809,16 @@ class record
 				}
 		}
 		
+		
+		/**
+		* Returns true if this record is multilingual
+		* of course, only record_multligula objects will return true
+		*
+		*/
+		function isMultilingual()
+		{
+			return false;
+		}
 }
 
 ?>

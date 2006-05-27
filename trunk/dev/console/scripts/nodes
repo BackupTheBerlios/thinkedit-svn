@@ -1,9 +1,21 @@
 include '../../thinkedit.init.php';
 
+
+$page = $thinkedit->newRecord('multilingual_page');
+
+$page->set('id', 1);
+$page->load();
+echo $page->debug();
+
+
+/*
+
+include '../../thinkedit.init.php';
+
 $node = $thinkedit->newNode();
 $node->loadRootNode();
 echo $node->getTitle();
-
+*/
 /*
 $page = $thinkedit->newRecord('page');
 
@@ -13,7 +25,7 @@ $page->save();
 
 $node->add($page);
 */
-
+/*
 $children = $node->getChildren(true);
 
 if ($children)
@@ -26,4 +38,4 @@ echo '<br>';
 }
 
 print_r(count($node->getChildren()));
-
+*/

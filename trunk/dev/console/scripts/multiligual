@@ -1,0 +1,16 @@
+include '../../thinkedit.init.php';
+
+echo '<pre>';
+
+$page = $thinkedit->newRecord('multilingual_page');
+$page->set('id', 1);
+$page->load();
+echo $page->debug();
+
+//print_r($page);
+
+$page->set('intro', 'test introduction de philippe');
+$page->save();
+
+$db = $thinkedit->getDb();
+echo $db->debug();

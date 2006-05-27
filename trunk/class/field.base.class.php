@@ -160,14 +160,16 @@ class field
 		
 		function isEmpty()
 		{
-				if ($this->data == '0')
+			$data = $this->get();	
+			
+			if ($data == '0')
 				{
 						return false;
 				}
 				
 				
 				
-				if (empty($this->data))
+				if (empty($data))
 				{
 						return true;
 				}

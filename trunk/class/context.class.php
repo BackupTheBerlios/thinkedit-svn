@@ -72,7 +72,8 @@ class context
 		
 		function getLocale()
 		{
-				return 'fr';
+			// todo: use the user class and browser to know which locale is default	
+			return 'fr';
 		}
 		
 		
