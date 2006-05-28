@@ -13,11 +13,22 @@
 <script src = "../../lib/yui/build/dragdrop/dragdrop.js" ></script> 
 
 <script type="text/javascript" language="javascript">
+var dd1 = new YAHOO.util.DDProxy("element1");
+var dd3 = new YAHOO.util.DDTarget("target");
 
-y = YAHOO;
 
-var dd1 = new y.util.DDProxy("element1");
-var dd3 = new y.util.DDTarget("target");
+YAHOO.util.Dom.setStyle(document.getElementById('test'), 'opacity', 0.5);
+
+/*
+function init()
+{
+YAHOO.util.Dom.setStyle(document.getElementById('test'), 'opacity', 0.5);
+//var opacity = YAHOO.util.Dom.getStyle('test2', 'opacity');
+}
+
+YAHOO.util.Event.addListener(window, 'load', init);
+*/
+
 </script>
 
 <style>
@@ -43,6 +54,8 @@ height: 50px;
 <td>test</td>
 </tr>
 </table>
+
+<div id="test" class="box">test</div>
 
 
 <!--

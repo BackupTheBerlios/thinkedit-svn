@@ -1,4 +1,31 @@
-<div class="content">
+<!-- Dependencies -->
+<link rel="stylesheet" type="text/css" href="../lib/yui/build/fonts/fonts.css">
+<link rel="stylesheet" type="text/css" href="../lib/yui/build/menu/assets/menu.css"> 
+<script type="text/javascript" src="../lib/yui/build/yahoo/yahoo.js"></script>
+<script type="text/javascript" src="../lib/yui/build/dom/dom.js"></script>
+<script type="text/javascript" src="../lib/yui/build/event/event.js"></script>
+<script type="text/javascript" src="../lib/yui/build/container/container_core.js"></script>
+
+<!-- Source File -->
+<script type="text/javascript" src="../lib/yui/build/menu/menu.js"></script>
+
+
+<script type="text/javascript">
+    var oContextMenu = new YAHOO.widget.ContextMenu("mycontextmenu", { trigger: "list" } );
+
+    menuitem = new YAHOO.widget.ContextMenuItem("cut", { url:"http://mail.yahoo.com"});
+    
+    oContextMenu.addItem(menuitem);
+    oContextMenu.addItem(new YAHOO.widget.ContextMenuItem("Copy"));
+    oContextMenu.addItem(new YAHOO.widget.ContextMenuItem("Paste"));
+    
+    oContextMenu.render(document.body);
+</script>
+
+
+
+
+<div class="content" id="list">
 
 
 
