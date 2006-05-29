@@ -1192,9 +1192,10 @@ th_image_browser:HOVER
 		border: 1px solid gray;
 		padding: 5px;
 		background-color: white;
-		width: 100px;
+		width: 150px;
 		position: absolute;
 		/*display: none;*/
+		
 }
 
 .context_menu_item a:hover

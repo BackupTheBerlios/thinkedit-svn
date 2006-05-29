@@ -45,7 +45,21 @@ function toggle(targetId)
 
 function toggle_and_move(id, e)
 {
+		menus = document.getElementsByClassName('context_menu');
+		menus.each(function(menu)
+		{
+			if (menu.id == id)
+			{
+			}
+			else
+			{
+			Element.hide(menu);
+			}
+		});
+		
+		
 		moveObject(id, e);
+		
 }
 
 

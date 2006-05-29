@@ -88,5 +88,13 @@ $data['save_before_relating']='You must save this item before you can make relat
 $data['headers_sent_help']='HTTP headers have been already sent. You can still continue using the tool by clicking on this link';
 $data['node_deleted_successfully']='The node has been deleted successfully';
 $data['custom_templates_not_found']='Custom template not found';
+$data['menu']='Menu';
+$data['actions']='Actions';
+$data['clipboard']='Clipboard';
+$data['cut']='Cut';
+$data['copy']='Copy';
+$data['paste']='Paste';
+$data['translate']='Translate';
+$data['cannot_add_here']='Cannot add here';
 
 ?>

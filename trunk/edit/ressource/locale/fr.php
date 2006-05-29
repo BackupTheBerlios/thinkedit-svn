@@ -103,5 +103,13 @@ $data['nothing_in_list']='Rien dans la liste';
 $data['custom_templates_not_found']='Pas de modèle de page trouvé';
 $data['automatic_template']='Choisir automatiquement';
 $data['template_folder_not_found']='Le dossier de modèles de page n\'a pas été trouvé';
+$data['clipboard']='Presse papier';
+$data['cut']='Couper';
+$data['copy']='Copier';
+$data['paste']='Coller';
+$data['translate']='Traduire';
+$data['cannot_add_here']='On ne peut rien ajouter ici';
+$data['actions']='Actions';
+$data['menu']='Menu';
 
 ?>

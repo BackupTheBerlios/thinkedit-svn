@@ -16,18 +16,10 @@
 
     <link type="text/css" href="style.css" rel="stylesheet" media="screen"/>
 		
-		
-			<script type="text/javascript">
-		var djConfig = 
-		{
-			isDebug: true
-		};
-	</script>
-	
-		
+		<script type="text/javascript" src="<?php echo ROOT_URL?>/lib/prototype/prototype.js"></script>				
 		<script src="thinkedit.js" type="text/javascript"></script>
 		
-		<script src="<?php echo ROOT_URL ?>/lib/dojo/dojo.js" type="text/javascript"></script>
+		
 		
 		
 <!--[if lt IE 7.]>
