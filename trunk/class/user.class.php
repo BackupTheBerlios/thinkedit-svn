@@ -29,11 +29,27 @@ class user
 						//$user->set('login', $login); // login and password must be primary keys (todo)
 						//$user->set('password', $password);
 						
-						if ($user->find(array('login'=>$login, 'password'=>$password)))
+						if ($result = $user->find(array('login'=>$login, 'password'=>$password)))
 						{
-								$session = $thinkedit->newSession();
-								$session->set('thinkedit_user', $login);
-								return true;
+								if (count($result == 1))
+								{
+										$user_record = $result[0];
+										
+										$session = $thinkedit->newSession();
+										$session->set('thinkedit_user', $login);
+										
+										if ($user_record->get('interface_locale'))
+										{
+												$session->set('thinkedit_user_locale', $user_record->get('interface_locale'));
+										}
+										return true;
+								}
+								else
+								{
+										$this->logout();
+										//trigger_error('user::login() login failed');
+										return false;
+								}
 						}
 						else
 						{
@@ -112,7 +128,17 @@ class user
 		
 		function getLocale()
 		{
-				return 'fr';
+				global $thinkedit;
+				$session = $thinkedit->newSession();
+				
+				if ($session->get('thinkedit_user_locale'))
+				{
+						return $session->get('thinkedit_user_locale');
+				}
+				else
+				{
+						return 'fr';
+				}
 		}
 		
 		

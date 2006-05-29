@@ -26,6 +26,75 @@ function popup(url)
 	return false;
 }
 
+function toggle(targetId)
+{
+		if (document.getElementById)
+		{
+				target = document.getElementById( targetId );
+				if (target.style.display == "none")
+				{
+						target.style.display = "block";
+				}
+				else 
+				{
+						target.style.display = "none";
+				}
+		}
+}
+
+
+function toggle_and_move(id, e)
+{
+		moveObject(id, e);
+}
+
+
+function moveObject( obj, e ) 
+{
+  // step 1
+  var tempX = 0;
+  var tempY = 0;
+  var offset = 5;
+  var objHolder = obj;
+
+  // step 2
+  obj = document.getElementById( obj )
+  if (obj==null) return;
+
+  // step 3
+  if (document.all) 
+	{
+    tempX = event.clientX + document.body.scrollLeft;
+    tempY = event.clientY + document.body.scrollTop;
+  } 
+	else 
+	{
+    tempX = e.pageX;
+    tempY = e.pageY;
+  }
+
+  // step 4
+  if (tempX < 0)
+			{
+			tempX = 0
+			}
+			
+  if (tempY < 0)
+			{
+			tempY = 0
+			}
+
+  // step 5
+  obj.style.top  = (tempY + offset) + 'px';
+  obj.style.left = (tempX + offset) + 'px';
+
+  // step 6
+  toggle(objHolder);
+ }
+
+
+
+
 
 function to_opener(url)
 {

@@ -1,34 +1,6 @@
-<!-- Dependencies -->
-<link rel="stylesheet" type="text/css" href="../lib/yui/build/fonts/fonts.css">
-<link rel="stylesheet" type="text/css" href="../lib/yui/build/menu/assets/menu.css"> 
-<script type="text/javascript" src="../lib/yui/build/yahoo/yahoo.js"></script>
-<script type="text/javascript" src="../lib/yui/build/dom/dom.js"></script>
-<script type="text/javascript" src="../lib/yui/build/event/event.js"></script>
-<script type="text/javascript" src="../lib/yui/build/container/container_core.js"></script>
-
-<!-- Source File -->
-<script type="text/javascript" src="../lib/yui/build/menu/menu.js"></script>
-
-
-<script type="text/javascript">
-    var oContextMenu = new YAHOO.widget.ContextMenu("mycontextmenu", { trigger: "list" } );
-
-    menuitem = new YAHOO.widget.ContextMenuItem("cut", { url:"http://mail.yahoo.com"});
-    
-    oContextMenu.addItem(menuitem);
-    oContextMenu.addItem(new YAHOO.widget.ContextMenuItem("Copy"));
-    oContextMenu.addItem(new YAHOO.widget.ContextMenuItem("Paste"));
-    
-    oContextMenu.render(document.body);
-</script>
-
-
-
+<iframe name="status" width="500" height="30" frameborder="0" scrolling="no"></iframe>
 
 <div class="content" id="list">
-
-
-
 
 <div class="white bigbox">
 
@@ -109,6 +81,12 @@ $i++;
 
 <td class="power_cell power_cell_border">
 
+<a class="action_button" onclick="toggle_and_move('context_menu_node_<?php echo $node['id']?>', event)">
+Menu
+</a>
+ 
+
+
 <?php if (isset($node['edit_url'])): ?>
 <a class="action_button" href="<?php echo $node['edit_url']?>">
 <img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('node_edit'); ?>">
@@ -178,6 +156,53 @@ $i++;
 </select>
 <?php endif; ?>
 <?php endif; ?>
+
+
+<?php if (isset($node['context_menu'])): ?>
+<?php endif; ?>
+
+<div class="context_menu" id="context_menu_node_<?php echo $node['id']?>" style="display:none">
+
+<div class="context_menu_item">
+<a href="" target="status">Cut</a>
+</div>
+
+<div class="context_menu_item">
+<a href="" target="status">Copy</a>
+</div>
+
+<div class="context_menu_item">
+<a href="" target="status">Paste</a>
+</div>
+
+<hr/>
+
+<div class="context_menu_title">Translate</div>
+
+<div class="context_menu_item">
+<a href="" target="status">Français</a>
+</div>
+
+<div class="context_menu_item">
+<a href="" target="status">English</a>
+</div>
+
+
+<hr/>
+
+<div class="context_menu_title">Add</div>
+
+<div class="context_menu_item">
+<a href="" target="status">Page</a>
+</div>
+
+<div class="context_menu_item">
+<a href="" target="status">Article</a>
+</div>
+
+
+</div>
+
 
 
 </td>

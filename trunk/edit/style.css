@@ -497,6 +497,7 @@ a.action_button, .action_button, a.action_button:visited, a.action_button:hover
 		text-decoration: none;
 		/*padding: 3px;*/
 		/*margin: 5px*/
+		cursor: pointer;
 }
 
 .action_button > img
@@ -1181,4 +1182,34 @@ th_image_browser:HOVER
 		background-color: #ffffff;
 		border-spacing: 0px;
 		border-width: 0px;
+}
+
+
+
+/*************** Context menu *************/
+.context_menu
+{
+		border: 1px solid gray;
+		padding: 5px;
+		background-color: white;
+		width: 100px;
+		position: absolute;
+		/*display: none;*/
+}
+
+.context_menu_item a:hover
+{
+		background-color: #0099ff;
+}
+
+.context_menu_title
+{
+		/*border-bottom: 1px solid gray;*/
+		font-weight: bold;
+}
+
+.context_menu hr
+{
+		
+		
 }

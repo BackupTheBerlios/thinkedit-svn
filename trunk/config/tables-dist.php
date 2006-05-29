@@ -89,6 +89,9 @@ $data['table']['user']['field']['login']['is_title']='true';
 $data['table']['user']['field']['login']['type']='login';
 $data['table']['user']['field']['password']['type']='password';
 $data['table']['user']['field']['password']['use']['list']='false';
+$data['table']['user']['field']['interface_locale']['type']='string';
+$data['table']['user']['field']['interface_locale']['title']['fr']='Langue de l\'interface';
+$data['table']['user']['field']['interface_locale']['title']['en']='Interface locale';
 
 
 $data['table']['node']['field']['id']['type']='id';
