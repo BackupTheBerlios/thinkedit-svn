@@ -111,5 +111,9 @@ $data['translate']='Traduire';
 $data['cannot_add_here']='On ne peut rien ajouter ici';
 $data['actions']='Actions';
 $data['menu']='Menu';
+$data['node_cut_ok']='!node_cut_ok!';
+$data['node_cut_failled']='!node_cut_failled!';
+$data['node_paste_ok']='!node_paste_ok!';
+$data['node_paste_failed']='!node_paste_failed!';
 
 ?>

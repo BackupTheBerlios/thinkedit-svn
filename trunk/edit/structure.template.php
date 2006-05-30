@@ -86,7 +86,22 @@ $i++;
 <a class="action_button" onclick="toggle_and_move('context_menu_node_<?php echo $node['id']?>', event)">
 <?php echo translate('menu');?>
 </a>
- 
+
+
+<a class="action_button" onclick="toggle_and_move('add_menu_node_<?php echo $node['id']?>', event)">
+<?php echo translate('add');?>
+</a>
+
+
+<?php if (isset($node['publish_url'])): ?>
+<a href="<?php echo $node['publish_url']?>">
+<?php if ($node['published']): ?>
+<img src="ressource/image/icon/small/lightbulb.png" title="<?php echo  $node['publish_title'];?>">
+<?php else: ?>
+<img src="ressource/image/icon/small/lightbulb_off.png" title="<?php echo  $node['publish_title'];?>">
+<?php endif; ?>
+</a>
+<?php endif; ?>
 
 
 <?php if (isset($node['movetop_url'])): ?>
@@ -140,21 +155,6 @@ $i++;
 <?php endif; ?>
 
 
-<?php if (isset($node['publish_url'])): ?>
-<div class="context_menu_item">
-<a href="<?php echo $node['publish_url']?>">
-<?php if ($node['published']): ?>
-<img src="ressource/image/icon/small/lightbulb.png" title="<?php echo  $node['publish_title'];?>">
-<?php echo translate('unpublish')?>
-<?php else: ?>
-<img src="ressource/image/icon/small/lightbulb_off.png" title="<?php echo  $node['publish_title'];?>">
-<?php echo translate('publish')?>
-<?php endif; ?>
-</a>
-</div>
-<?php endif; ?>
-
-
 <?php if (isset($node['preview_url'])): ?>
 <div class="context_menu_item">
 <a href="<?php echo $node['preview_url']?>" target="_blank">
@@ -171,36 +171,43 @@ $i++;
 
 <div class="context_menu_title"><?php echo translate('clipboard');?></div>
 <div class="context_menu_item">
-<a href="" target="status"><?php echo translate('cut');?></a>
+<a href="<?php echo $node['clipboard']['cut_link']?>" target="status" onclick="hide_menus()">
+<?php echo translate('cut');?>
+</a>
 </div>
+<!--
+<div class="context_menu_item">
+<a href="clipboard.php" target="status"><?php echo translate('copy');?></a>
+</div>
+-->
 
 <div class="context_menu_item">
-<a href="" target="status"><?php echo translate('copy');?></a>
+<a href="<?php echo $node['clipboard']['paste_link']?>" target="status" onclick="hide_menus()"><?php echo translate('paste');?></a>
 </div>
 
-<div class="context_menu_item">
-<a href="" target="status"><?php echo translate('paste');?></a>
-</div>
+
+<?php if (isset($node['locale'])) : ?>
 
 <hr/>
-
 
 <?php /******************* Translate *******************/ ?>
 
 <div class="context_menu_title"><?php echo translate('translate');?></div>
-
+<?php foreach ($node['locale'] as $locale_info): ?>
 <div class="context_menu_item">
-<a href="" target="status">Français</a>
+<a href="<?php echo $locale_info['edit_url']?>"><?php echo $locale_info['locale']?></a>
+</div>
+<?php endforeach; ?>
+<?php endif; ?>
+
+
 </div>
 
-<div class="context_menu_item">
-<a href="" target="status">English</a>
-</div>
 
 
-<hr/>
 
 <?php /******************* Add subitems *******************/ ?>
+<div class="context_menu" id="add_menu_node_<?php echo $node['id']?>" style="display:none">
 
 <div class="context_menu_title"><?php echo translate('node_add_new');?></div>
 
@@ -216,9 +223,7 @@ $i++;
 <?php echo translate('cannot_add_here');?>
 <?php endif; ?>
 
-
 </div>
-
 
 
 </td>

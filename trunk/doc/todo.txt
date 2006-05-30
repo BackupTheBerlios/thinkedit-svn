@@ -3,12 +3,19 @@ TODO for version 1.0 (mandatory things to fix before the 1.0 release)
 - make a simple demo design
 
 
+
+
 General TODO (General features that affect more than one file / class):
 - permissions / roles / users
 - validation
 - filters
 - encrypted passwords (?)
-- multilingual records
+- multilingual records mostly done !!!
+
+Comething like this must be done in the db updater : 
+ALTER TABLE `multilingual_page` DROP PRIMARY KEY ,
+ADD PRIMARY KEY ( `id` , `locale` ) 
+
 
 
 

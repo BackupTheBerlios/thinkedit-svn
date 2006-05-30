@@ -213,6 +213,31 @@ class table
 						debug($sql, 'Sql from createField');
 						
 						$results = $this->db->query($sql);
+						
+						// handle the case of add a locale field
+						if ($type == 'locale')
+						{
+								
+								/*
+								This is a very special case !!!
+								
+								When we add a locale field to the db, a new primary kay must be defined, including the locale field (and not only id)
+								This seems the most logical place to handle this.
+								
+								Once added, a locale field cannot be easily removed, because it would break primary key contraints
+								*/
+								
+								/*
+								ALTER TABLE `multilingual_page` DROP PRIMARY KEY ,
+								ADD PRIMARY KEY ( `id` , `locale` )
+								*/
+								
+								
+								$pk_locale_sql = 'ALTER TABLE `multilingual_page` DROP PRIMARY KEY ,';
+								$pk_locale_sql .= 'ADD PRIMARY KEY ( `id` , `'. $name .'` )';
+								$this->db->query($pk_locale_sql);
+						}
+						
 						return $results;
 						//examples :
 						// ALTER TABLE `article` ADD `test` VARCHAR( 250 ) NOT NULL ;

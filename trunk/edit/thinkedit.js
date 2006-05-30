@@ -42,24 +42,26 @@ function toggle(targetId)
 		}
 }
 
-
-function toggle_and_move(id, e)
+function hide_menus(id)
 {
-		menus = document.getElementsByClassName('context_menu');
+menus = document.getElementsByClassName('context_menu');
 		menus.each(function(menu)
 		{
-			if (menu.id == id)
+			if (id && menu.id == id)
 			{
 			}
 			else
 			{
 			Element.hide(menu);
 			}
+			
 		});
-		
-		
+}
+
+function toggle_and_move(id, e)
+{
 		moveObject(id, e);
-		
+		hide_menus(id);
 }
 
 

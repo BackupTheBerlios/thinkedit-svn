@@ -279,6 +279,11 @@ if ($url->get('action') == 'movebottom')
 }
 
 
+/********************** Locale *********************/
+
+$out['locales'] = $thinkedit->configuration->getLocaleList(); 
+
+
 
 /********************** LIST *********************/
 
@@ -452,7 +457,35 @@ if (isset($nodes) && is_array($nodes))
 			
 		}
 		
+		/******* clipboard links ****/
 		
+		$url = new url();
+		$url->set('source_node', $node_item->getId());
+		$url->set('action', 'cut');
+		$node_info['clipboard']['cut_link'] = $url->render('clipboard.php');
+		
+		$url = new url();
+		$url->set('target_node', $node_item->getId());
+		$url->set('action', 'paste');
+		$node_info['clipboard']['paste_link'] = $url->render('clipboard.php');
+		
+		
+		/******* locales links ****/
+		if ($content->isMultilingual())
+		{
+				$locales = $thinkedit->configuration->getLocaleList();
+				foreach ($locales as $locale)
+				{
+						$url = new url();
+						$url->set('node_id', $node_item->getId());
+						$content->setLocale($locale);
+						$url->addObject($content);
+						$url->set('mode', 'edit_node');
+						$node_info['locale'][$locale]['edit_url'] = $url->render('edit.php');
+						$node_info['locale'][$locale]['locale'] = $locale;
+				}
+		}
+				
 		
 		/******* append this node info to out nodes list ****/
 		$out['nodes'][] = $node_info;

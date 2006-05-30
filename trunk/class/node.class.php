@@ -627,6 +627,12 @@ class node
 		
 		function changeParent($new_parent_id)
 		{
+				if ($this->isRoot())
+				{
+								trigger_error('node::changeParent() cannot change the parent of this node : it is root');
+								return false;
+				}
+				
 				if ($this->load())
 				{
 						

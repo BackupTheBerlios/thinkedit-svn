@@ -60,6 +60,15 @@ class record_multilingual extends record
 		{
 			return true;
 		}
+		
+		/**
+		* Returns a list of translations for this record
+		* 
+		*
+		*/
+		function getTranslationsList()
+		{
+		}
 }
 
 ?>

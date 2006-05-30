@@ -192,7 +192,22 @@ class config
 				}
 		}
 		
-		
+		function getLocaleList()
+		{
+				if (isset($this->config['site']['locale']))
+				{
+						foreach ($this->config['site']['locale'] as $id=>$locale)
+						{
+								$result[$id] = $id;
+						}
+						return $result;
+				}
+				else
+				{
+						trigger_error('no locale, even main one found in config, please setup at least one locale');
+						return array('en');
+				}
+		}
 		
 		
 }
