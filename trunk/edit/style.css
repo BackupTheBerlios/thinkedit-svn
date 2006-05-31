@@ -67,6 +67,36 @@ body.white {
 }
 
 
+
+/*************** Context menu *************/
+.context_menu
+{
+		border: 1px solid gray;
+		padding: 5px;
+		background-color: white;
+		width: 150px;
+		position: absolute;
+		/*display: none;*/
+		
+}
+
+.context_menu_item a:hover
+{
+		background-color: #0099ff;
+}
+
+.context_menu_title
+{
+		/*border-bottom: 1px solid gray;*/
+		font-weight: bold;
+}
+
+.context_menu hr
+{
+		
+		
+}
+
 /***************** Links ******************/
 
 a:link
@@ -1186,31 +1216,3 @@ th_image_browser:HOVER
 
 
 
-/*************** Context menu *************/
-.context_menu
-{
-		border: 1px solid gray;
-		padding: 5px;
-		background-color: white;
-		width: 150px;
-		position: absolute;
-		/*display: none;*/
-		
-}
-
-.context_menu_item a:hover
-{
-		background-color: #0099ff;
-}
-
-.context_menu_title
-{
-		/*border-bottom: 1px solid gray;*/
-		font-weight: bold;
-}
-
-.context_menu hr
-{
-		
-		
-}
