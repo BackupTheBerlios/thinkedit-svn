@@ -1,0 +1,263 @@
+
+a.accueil  
+{ 
+		float: left;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		padding-left: 20px;
+		padding-right: 20px;
+		margin-right:2px ;
+		color: white;
+		font-weight:bold ;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: #0087E1;
+		display: block;
+}
+
+a.parents  
+{
+		float: left;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		padding-left: 20px;
+		padding-right: 20px;
+		margin-right:2px ;
+		color: white;
+		font-weight:bold ;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: #FF3300;
+		display: block;
+}
+
+a.parents_sub 
+{
+		padding: 4px;
+		margin-bottom:2px;
+		color: white;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: #FF3300;
+		display: block
+}
+
+a.parents_sub:hover 
+{
+		padding: 4px;
+		margin-bottom:2px;
+		color: #FF3300;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: white;
+		display: block;
+}
+
+a.enfants_sub  
+{
+		padding: 4px;
+		margin-bottom:2px;
+		color: white;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: #99CC00;
+		display: block
+}
+
+a.enfants_sub:hover 
+{
+		padding: 4px;
+		margin-bottom:2px;
+		color: #99CC00;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: white;
+		display: block;
+}
+
+a.adolescents_sub  
+{
+		padding: 4px;
+		margin-bottom:2px;
+		color: white;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: #993366;
+		display: block
+}
+
+a.adolescents_sub:hover 
+{
+		padding: 4px;
+		margin-bottom:2px;
+		color: #993366;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: white;
+		display: block;
+}
+
+a.professionnels_sub  
+{
+		padding: 4px;
+		margin-bottom:2px;
+		color: white;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: #FFCC00;
+		display: block
+}
+
+a.professionnels_sub:hover 
+{
+		padding: 4px;
+		margin-bottom:2px;
+		color: #FFCC00;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: white;
+		display: block;
+}
+
+a.parents_intro 
+{
+		color: #ff3300;
+		font-weight: bold;
+		text-decoration: none
+}
+
+a.parents_intro:hover  
+{
+		color: #f30;
+		font-weight: bold;
+		text-decoration: underline
+}
+
+a.enfants 
+{
+		float: left;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		padding-left: 20px;
+		padding-right: 20px;
+		margin-right:2px ;
+		color: white;
+		font-weight:bold ;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: #99CC00;
+		display: block;
+}
+
+a.adolescents  
+{
+		float: left;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		padding-left: 20px;
+		padding-right: 20px;
+		margin-right:2px ;
+		color: white;
+		font-weight:bold ;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: #993366;
+		display: block;
+}
+
+a.professionnels 
+{
+		float: left;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		padding-left: 20px;
+		padding-right: 20px;
+		margin-right:2px ;
+		color: white; 
+		font-weight:bold ;
+		font-size: 10px;
+		text-decoration: none;
+		background-color: #FFCC00;
+		display: block;
+}
+
+
+a.news_parents   
+{
+		font-weight:normal ;
+		font-size: 11px;
+		text-decoration: none;
+		line-height: 11px;
+		border-left: 3px;
+		border-left-color: #FF3300;
+		border-left-style: solid;
+		padding-left: 10px;
+		margin-bottom:2px ;
+		color: #FF3300;
+		display: block;
+}
+
+a.news_parents:hover   
+{
+		border-left-color: black;
+}
+
+a.news_enfants   
+{
+		font-weight:normal ;
+		font-size: 11px;
+		text-decoration: none;
+		line-height: 11px;
+		border-left: 3px;
+		border-left-color: #91B81B;
+		border-left-style: solid;
+		padding-left: 10px;
+		margin-bottom:2px ;
+		color: #91B81B;;
+		display: block;
+}
+
+a.news_enfants:hover   
+{
+		border-left-color: black;
+}
+
+a.news_adolescents   
+{
+		font-weight:normal ;
+		font-size: 11px;
+		text-decoration: none;
+		line-height: 11px;
+		border-left: 3px;
+		border-left-color: #993366;
+		border-left-style: solid;
+		padding-left: 10px;
+		margin-bottom:2px ;
+		color: #993366;
+		display: block;
+}
+
+a.news_adolescents:hover   
+{
+		border-left-color: black;
+}
+
+a.news_professionnels   
+{
+		font-weight:normal ;
+		font-size: 11px;
+		text-decoration: none;
+		line-height: 11px;
+		border-left: 3px;
+		border-left-color: #ff9900;
+		border-left-style: solid;
+		padding-left: 10px;
+		margin-bottom:2px ;
+		color: #ff9900;
+		display: block;
+}
+
+a.news_professionnels:hover   {
+		border-left-color: black;
+}
+
