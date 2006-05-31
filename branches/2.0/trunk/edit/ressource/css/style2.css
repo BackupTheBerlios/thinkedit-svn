@@ -1,0 +1,368 @@
+/***************** General structure ******************/
+
+body
+{
+	margin: 0;
+	padding: 0;
+	/*background-color: #aaa;*/
+	
+	/*
+	max-width: 800px;
+	background-color: #eee;
+	*/
+}
+
+
+/***************** typo ******************/
+
+body, th, td, p
+{
+	font-size: 10px;
+	font-family: verdana, sans-serif;
+}
+
+
+h1
+{
+	font-size: 11px;
+}
+
+a:link, a:active, a:visited  
+{
+	text-decoration: none;
+	color: #666;
+	
+}
+
+a:hover
+{
+	text-decoration: underline;
+	/*color: red;*/
+}
+
+
+/***************** standards ******************/
+
+img
+{
+	border: 0;
+}
+
+
+/***************** menu ********************/
+
+.content
+{
+  border-bottom: 3px solid #ff0000;
+}
+
+
+.structure
+{
+  border-bottom: 3px solid #339900;
+}
+
+
+.files
+{
+  border-bottom: 3px solid #0066cc;
+}
+
+.help
+{
+  border-bottom: 3px solid #ff00ff;
+}
+
+
+
+
+
+/***************** panels ******************/
+
+.panel
+{
+	
+	padding: 10px;
+	/*
+	background-color: #eee;
+	margin: 1em;
+	border-bottom: 1px solid #999;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	*/
+}
+
+
+
+.page
+{
+	/*background-color: #999;*/
+}
+
+.title, .menu
+{
+	font-size: 14px;
+	color: #999;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+
+
+.subtitle
+{
+	/*background-color: #ccc;*/
+	/*border-bottom: 1px solid #444;*/
+}
+
+.breadcrumb
+{
+	/*border-bottom: 1px solid #777*/
+}
+
+.actions
+{
+	/*background-color: #ccc;*/
+	padding: 10px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #444
+}
+
+.browser
+{
+	/*background-color: #f7f6f6;*/
+}
+
+.footer
+{
+	/*background-color: #ccc;*/
+}
+
+
+.message
+{
+	background-color: #ccc;
+}
+
+
+.dialog
+{
+	background-color: #ddd;
+}
+
+
+.error
+{
+	background-color: #d00;
+	padding-left: 40px;
+	background-image: url("../image/icon/clanbomber.png");
+	background-repeat: no-repeat;
+	background-position: 10px 8px;
+}
+
+.warning
+{
+	padding-left: 40px;
+	background-color: #FA0;
+	background-image: url("../image/icon/important.png");
+	background-repeat: no-repeat;
+	background-position: 10px 8px;
+}
+
+
+.info
+{
+	padding-left: 40px;
+	background-color: #009966;
+	background-image: url("../image/icon/ok.png");
+	background-repeat: no-repeat;
+	background-position: 10px 8px;
+}
+
+
+
+
+/***************** tools ******************/
+
+.button
+{
+	border: 1px outset #ccc;
+	background-color: #ccc;
+	padding: 4px;
+	//padding-left: 2px;
+	//padding-right: 2px;
+	margin-top: 5px;
+	font-size: 12px;
+	color: #000;
+	font-weight: bold;
+	
+}
+
+
+.button:hover
+{
+	border: 1px outset #eee;
+}
+
+
+/********************** Datagrid ******************/
+
+table.datagrid 
+{
+	border-collapse:	collapse;
+	border: 1px solid #ccc;
+}
+
+
+tr.datagrid:hover
+{
+	background-color: #69c;
+	cursor: pointer;
+}
+
+th.datagrid 
+{
+	text-align: left;
+	font-weight: bold;
+	background-color: #eee;
+	border-bottom: 1px solid #ccc;
+}
+
+td.datagrid 
+{
+	border-bottom: 1px solid #ccc;
+}
+
+
+.bis
+{
+	background-color: #ddd;
+}
+
+
+
+
+
+/********************* forms *******************/
+
+fieldset 
+{ 
+	border:1px solid #aaa;
+	margin: 0;
+	margin-bottom: 10px;
+	
+}
+
+
+.input
+{
+	margin: 5px;
+	//border: 0;
+}
+
+
+input, select, textarea
+{
+	padding: 0;
+	margin: 0;
+	border: 1px inset #aaa;
+}
+
+select
+{
+	font-size: 1em;
+	
+}
+
+input[type=submit], input[type=button] 
+{
+	border: 1px outset #aaa;
+}
+
+
+
+
+.separator
+{
+	margin: 10px;
+}
+
+.filet
+{
+	border: 1px solid #000
+}
+
+
+.action 
+{
+	clear: left;
+	float: left;
+}
+
+
+
+
+.icon_table
+{
+	float: left;
+	border: 0px;
+	margin: 10px;
+	width: 40px;
+}
+
+
+/***************** Menu ******************/
+
+
+.menu
+{
+	/*border: 1px solid red;*/
+}
+
+.menu ul 
+{ /* all lists */
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.menu li { /* all list items */
+	float: left;
+	position: relative;
+	width: 10em;
+	cursor: pointer;
+}
+
+.menu li ul { /* second-level lists */
+	display: none;
+	position: absolute;
+	top: 1em;
+	left: 0;
+	border: 1px solid gray;
+	padding: 5px;
+}
+
+.menu li>ul { /* to override top and left in browsers other than IE, which will position to the top right of the containing li, rather than bottom left */
+	top: auto;
+	left: auto;
+}
+
+.menu li:hover ul, li.over ul { /* lists nested under hovered list items */
+	display: block;
+}
+
+
+.menu ul li ul li
+{
+	/*border: 5px solid red;*/
+	padding-bottom: 5px;
+}
+
+.menu ul li ul li a
+{
+	color: black;
+	/*border: 1px solid gray;*/
+	/*background-color: #003399;*/
+	/*padding-bottom: 5px;*/
+}
+
