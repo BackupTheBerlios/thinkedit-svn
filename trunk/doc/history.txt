@@ -1,3 +1,5 @@
+31/05/2006 : Approaching a 2.0 public release ! 
+
 10/02/2005 : session::persist() and api.txt
 More focus on simple datagrid like data management, then will focus on tree like content management
 
