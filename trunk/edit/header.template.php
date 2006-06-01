@@ -50,24 +50,6 @@
 			
 			
 
-<div class="breadcrumb">
-<table width="100%" cellpadding="0" border="0" cellspacing="0">
-<tr>
-<td>
-<?php include ('breadcrumb.template.php') ?>
-</td>
-<td align="right">
-<?php /*include_once('choose_locale.inc.php');*/ ?>
-</td>
-</tr>
-</table>
-
-
-
-</div>
-
-
-
 			
 <?php if (isset($out['error'])) : ?>
 <div class="error">
@@ -139,5 +121,23 @@
 			</table>
 			 
 </div>
-
 <?php endif; ?>
+
+
+
+
+<div class="breadcrumb">
+<table width="100%" cellpadding="0" border="0" cellspacing="0">
+<tr>
+<td>
+<?php include ('breadcrumb.template.php') ?>
+</td>
+<td align="right">
+<?php /*include_once('choose_locale.inc.php');*/ ?>
+</td>
+</tr>
+</table>
+</div>
+
+
+

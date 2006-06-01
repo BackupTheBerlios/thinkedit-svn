@@ -1,9 +1,6 @@
-<iframe name="status" width="500" height="30" frameborder="0" scrolling="no"></iframe>
-
-
-
 <div class="content" id="list">
 
+<iframe name="status" width="500" height="20" frameborder="0" scrolling="no"></iframe>
 
 <?php if (isset($out['structure_breadcrumb'])): ?>
 <div class="white bigbox">

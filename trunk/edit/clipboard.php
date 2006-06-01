@@ -82,9 +82,6 @@ if ($url->get('action') == 'paste' && $url->get('target_node'))
 }
 
 
-
-echo $out['info'];
+include_once('clipboard.template.php');
 
 ?>
-
-

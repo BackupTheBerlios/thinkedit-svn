@@ -517,25 +517,15 @@ a.action_button, .action_button, a.action_button:visited, a.action_button:hover
 		color: white;
 		font-size : 0.9em;
 		font-weight : bold;
-		padding-top: 0.3em;
-		padding-left: 0.3em;
-		padding-bottom: 0.3em;
-		padding-right: 0.3em;
 		border-width: 1px;
 		border-style: solid;
 		border-color: #99CCFF #0066FF #0066FF #99CCFF;
 		text-decoration: none;
-		/*padding: 3px;*/
-		/*margin: 5px*/
+		padding: 3px;
 		cursor: pointer;
 }
 
-.action_button > img
-{
-		/*border: 2px solid black;*/
-		vertical-align: middle;
-		padding-bottom: 3px;
-}
+
 
 /*
 a.action_button:visited 

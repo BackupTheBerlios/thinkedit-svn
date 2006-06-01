@@ -59,6 +59,9 @@ else // we are in root
 if (!isset($parent_node) || !$parent_node)
 {
 	$parent_node = $current_node;
+	$url = $thinkedit->newUrl();
+	/*$url->set('node_id', $parent_node->getId());*/
+	$out['go_up_url'] = $url->render();
 }
 else
 {
