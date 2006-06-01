@@ -1,0 +1,79 @@
+<?php include '../../thinkedit.init.php'; ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="styles.css" />
+<script src="../../lib/scriptaculous/lib/prototype.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+<script src="../../lib/scriptaculous/src/scriptaculous.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+
+
+<style>
+.cell
+{
+	display: inline;
+}
+
+.row
+{
+		height: 30px;
+}
+
+.bis
+{
+		margin-left: 100px;
+}
+
+.ter
+{
+		margin-left: 200px;
+}
+
+
+</style>
+
+</head>
+<body>
+
+<div id="sort">
+<div class="row">
+    <div class="cell">foosdfsdsfdfsdf</div>
+    <div class="cell bis">barsdfsdf</div>
+    <div class="cell ter">zordsfkdfd</div>
+</div>
+
+<div class="row">
+    <div class="cell">foosdfdfdsfsdfsdsdfsdf</div>
+    <div class="cell bis">basdfdsfrsdfsdf</div>
+    <div class="cell ter">zorkdfd</div>
+</div>
+
+<div class="row">
+    <div class="cell">foosdffdsfdsfsdfsdf</div>
+    <div class="cell bis">badsfdsrsdfsdf</div>
+    <div class="cell ter">zorkdfd</div>
+</div>
+
+<div class="row">
+    <div class="cell">foosdfsdfdsfdfdfsfsdfsdf</div>
+    <div class="cell bis">barfdsfdsfsdfsdf</div>
+    <div class="cell ter">zorkdfd</div>
+</div>
+
+<div class="row">
+    <div class="cell">foosdfsdfsdf</div>
+    <div class="cell bis">barsdsfdsfddfsdf</div>
+    <div class="cell ter">zorsfsdfdsfkdfd</div>
+</div>
+
+
+</div>
+
+<script>
+Sortable.create('sort',{'tag':'div'});
+
+</script>
+
+
+</body>
+</html>
