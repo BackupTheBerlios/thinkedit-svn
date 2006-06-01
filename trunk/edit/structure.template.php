@@ -4,11 +4,14 @@
 
 <div class="content" id="list">
 
+
+<?php if (isset($out['structure_breadcrumb'])): ?>
 <div class="white bigbox">
 
 <?php echo translate('you_are_here') ?> : 
 
 <?php $x=1 ?>
+
 
 <?php foreach ($out['structure_breadcrumb'] as $breadcrumb) : ?>
 
@@ -20,21 +23,17 @@
 
 <?php $x++ ?>
 <?php endforeach; ?>
-
-
 </div>
-
+<?php endif; ?>
 
 
 
 <div class="power_margin">
 
 
-
-<?php //if (!$thinkedit->outputcache->start('interface_node_' . $current_node->getId())): ?>
-
 <?php if (isset($out['go_up_url'])): ?>
-<a class="" style="margin-bottom: 30px;" href="<?php echo $out['go_up_url'] ?>"><?php echo translate('go_up')?></a>
+<a class="action_button" style="margin-bottom: 30px;" href="<?php echo $out['go_up_url'] ?>"><?php echo translate('go_up')?></a>
+<br/>
 <?php endif;?>
 
 <?php if (isset($out['nodes'])) : ?>
@@ -69,7 +68,7 @@ $i++;
 
 <td class="power_cell power_cell_border" style="cursor:pointer" onClick="document.location.href='<?php echo $node['url']?>';">
 <a href="<?php echo $node['url']?>" title="<?php echo  $node['full_title'] ?>">
-<div style="float: left; width: <?php echo ($node['level'] * 20)?>px; border: 0px solid black">&nbsp;</div>
+
 
 <?php if (isset($node['helper_icon'])): ?>
 <img src="<?php echo $node['helper_icon']; ?>" style="vertical-align: middle;">
@@ -238,10 +237,6 @@ $i++;
 </div>
 <?php endif; ?>
 
-
-<?php //$thinkedit->outputcache->end();?>
-
-<?php //endif; ?>
 
 </div>
 

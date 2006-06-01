@@ -50,7 +50,7 @@ else // we are in root
 	
 	if (!$current_node->loadRootNode())
 	{
-		die('No root node found : go to install and create your first node');
+		die('No root node found : go to installer and create your first node');
 	}
 	$we_are_root = true;
 }
@@ -287,6 +287,7 @@ $out['locales'] = $thinkedit->configuration->getLocaleList();
 
 /********************** LIST *********************/
 
+/*
 // append the parents to the list :
 if ($current_node->hasParent())
 {
@@ -299,21 +300,22 @@ if ($current_node->hasParent())
 	}
 	
 }
+*/
 
 // build a list of nodes within the current node :
 
 // if we are in root
 //debug($current_node, 'Current node before list');
-//if ($we_are_root)
-//{
+if ($we_are_root)
+{
 	
 	// root is now allways shown
 	$nodes[] = $current_node;
-//}
+}
 
 //else we are not in root, show childrens 
-//else
-//{
+else
+{
 	if ($current_node->hasChildren())
 	{
 		$children = $current_node->getChildren();
@@ -323,7 +325,7 @@ if ($current_node->hasParent())
 		}
 		//$nodes[] = $current_node->getChildren();
 	}
-//}
+}
 
 if (isset($nodes) && is_array($nodes))
 {
@@ -340,39 +342,14 @@ if (isset($nodes) && is_array($nodes))
 		$content->load();
 		
 		$node_info['id'] = $node_item->getId();
-		
-		if ($node_item->getLevel() > 3)
-		{
-			$node_info['title'] = te_short($node_item->getTitle(), 15); // . ' (' . $node_item->getOrder() . ')';
-		}
-		else
-		{
-			$node_info['title'] = te_short($node_item->getTitle(), 15); // . ' (' . $node_item->getOrder() . ')';
-		}
+		$node_info['title'] = te_short($node_item->getTitle(), 15); // . ' (' . $node_item->getOrder() . ')';
 		$node_info['full_title'] = $node_item->getTitle();
 		//$node_info['title'] .= $node_item->getLevel(); // . ' (' . $node_item->getOrder() . ')';
 		$node_info['icon'] = $content->getIcon();
 		$node_info['url'] = $url->render();
 		$node_info['level'] = $node_item->getLevel() + 1;
 		
-		if ($node_item->hasChildren())
-		{
-			if ($node_item->getLevel() > $current_node->getLevel())
-			{
-				$node_info['helper_icon'] = 'ressource/image/icon/small/plus.gif';
-			}
-			else
-			{
-				$node_info['helper_icon'] = 'ressource/image/icon/small/minus.gif';
-			}
-			if ($node_info['level'] > 0)
-			{
-				$node_info['level'] = $node_info['level'] -1 ;
-			}
-		}
-		
-		
-		
+				
 		
 		/********************* Delete link *****************/
 		$url->set('action', 'delete');
@@ -506,7 +483,7 @@ $out['breadcrumb'][1]['title'] = translate('structure_title');
 $out['breadcrumb'][1]['url'] = $url->render();
 
 
-$i = 0;
+$i = 2;
 if ($current_node->hasParent())
 {
 	$parents = $current_node->getParentUntilRoot();
@@ -517,12 +494,12 @@ if ($current_node->hasParent())
 		$content = $parent->getContent();
 		$content->load();
 		
-		$out['structure_breadcrumb'][$i]['title'] = $content->getTitle();
+		$out['breadcrumb'][$i]['title'] = $content->getTitle();
 		
 		$url = new url();
 		$url->set('node_id', $parent->getId());
 		//$url->addObject($parent, 'current_');
-		$out['structure_breadcrumb'][$i]['url'] = $url->render();
+		$out['breadcrumb'][$i]['url'] = $url->render();
 		$i++;
 		
 	}
@@ -532,11 +509,11 @@ if ($current_node->hasParent())
 // add current
 $content = $current_node->getContent();
 $content->load();
-$out['structure_breadcrumb'][$i]['title'] = $content->getTitle();
+$out['breadcrumb'][$i]['title'] = $content->getTitle();
 $url = new url();
 $url->set('node_id', $current_node->getId());
 //$url->addObject($current_node, 'current_');
-$out['structure_breadcrumb'][$i]['url'] = $url->render();
+$out['breadcrumb'][$i]['url'] = $url->render();
 
 
 
