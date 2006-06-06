@@ -1,0 +1,469 @@
+/***************** Typo ******************/
+body 
+{
+		font-family: verdana, arial, helvetica, sans-serif;
+		font-size : 10px;
+		margin : 0px;
+		color: rgb(0,0,0);
+		background-color: #F6F6F6; 
+}
+
+h1
+{
+		font-size: 1.5em;
+}
+
+h2
+{
+		font-size: 1.2em;
+}
+
+h3
+{
+		font-size: 0.9em;
+		font-weight: lighter;
+}
+
+h4
+{
+		font-size: 0.9em;
+		font-weight: bold;
+}
+
+
+a
+{
+		text-decoration: none;
+		color: black;
+}
+
+
+.thinkedit
+{
+		margin: 4em;
+}
+
+
+/****************** Panels ***************************/
+
+.panel
+{
+		padding: 1em;
+}
+
+.header
+{
+		background-color: #999999; 
+		margin: 0px;
+		border-style: solid;
+		border-width: 1px; 
+		border-color: #FFFFFF #666666 #666666 #E9E9E9;
+		height: 5em;
+}
+
+/*
+.header  
+{
+		background-color: #999999; 
+		margin: 0px;
+		padding-left: 1em;
+		padding-top: 1em; 
+		padding-bottom: 1em; 
+		border-style: solid;
+		border-width: 1px; 
+		border-color: #FFFFFF #666666 #666666 #E9E9E9; 
+}
+*/
+
+.footer 
+{
+		color: white;
+		background-color: #999999; 
+		margin: 0px; 
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
+		padding-left: 1em;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #ffffff #666666 #666666 #e9e9e9;
+}
+
+.content
+{
+		background-color: #E7E7E7;
+		border-style: solid; 
+		border-width: 1px;
+		border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
+}
+
+
+.centered 
+{
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 50%;
+		height: 50%;
+		margin: auto;
+} 
+
+
+.dialog
+{
+		border-style: solid;
+		border-width: 1px; 
+		border-color: #FFFFFF #666666 #666666 #E9E9E9;
+		background-color: #ccc;
+		padding: 2em;
+}
+
+.opaque
+{
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		background-color: black;
+		color: white;
+		opacity: .4;
+} 
+
+.error
+{
+		background-color: #FFF600;
+		color: #FF0000;
+		margin: 0px;
+		padding-left: 1.5em;
+		padding-right: 1.5em;
+		padding-top: 0.8em;
+		padding-bottom: 0.8em;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #FFFFFF #AEAE00 #AEAE00 #E9E9E9;
+}
+
+
+.info
+{
+		background-color: #99CCFF;
+		color: #3366FF;
+		margin: 0px;
+		padding-left: 1.5em;
+		padding-right: 1.5em;
+		padding-top: 0.8em;
+		padding-bottom: 0.8em;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #CCFFFF #003399 #003399 #E9E9E9;
+}
+
+.loading
+{
+		background-color: #FF9FD7;
+		color: #FF0096;
+		margin: 0px;
+		padding-left: 1.5em;
+		padding-right: 1.5em;
+		padding-top: 0.8em;
+		padding-bottom: 0.8em;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #FFE8F5 #80004B #80004B #FFE8F5;
+}
+
+/*********************** breadcrumbs **************************/
+
+.breadcrumb
+{
+		background-color: #D6D6D6;
+		color: white;
+		margin: 0px;
+		padding: 0.2em;
+		height: 2em;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #FFFFFF #666666 #666666 #E9E9E9;
+}
+
+
+.breadcrumb_inside
+{
+		background-color: white;
+		color: #7f7f7f;
+		margin: 0em;
+		padding: 0em;
+		border-style: inset;
+		border-width: 1px;
+		border-color: #666666 #ffffff #ffffff #666666;
+}
+
+a.breadcrumb
+{
+		background-color: white;
+		color: #7F7F7F;
+		margin: 1em;
+		padding: 0em;
+		border-width:0em;
+}
+
+
+/************************ banner ***********************/
+
+.banner
+{
+		display: none:
+		background-color: #FFFFFF;
+		margin: 0;
+		padding: 1em; 
+		border-style: solid;
+		border-width: 1px;
+		border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
+}
+
+.banner h1
+{
+		font-size: 1.3em;
+}
+
+.banner img
+{
+	float: right;
+	margin-left: 300px;
+	display: none;
+}
+
+.banner_text
+{
+		width: 200px;
+}
+
+
+/************************** Home page items ************************/
+.main_item
+{
+		background-color: white;
+		width: 150px;
+		height: 100px;
+		padding: 1em;
+		margin: 1em;
+		float: left;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
+}
+
+.main_item a
+{
+		color: black;
+}
+
+
+/************************ lists **********************/
+
+th
+{
+		font-size: 1em;
+		font-weight: bold;
+		text-align: left;
+		border-width: 1px;
+		border-style: solid;
+		background-color: #9EB7D1;
+		border-color: #BED7F1 #4E6781 #4E6781 #BED7F1;
+		padding-left: 1em;
+		padding-top: 0.2em;
+		padding-right: 1em;
+		padding-bottom: 0.2em;
+}
+
+
+th.on
+{
+		border-color: #4E6781 #BED7F1 #BED7F1 #4E6781;
+		padding-left: 1.1em;
+		padding-top: 0.3em;
+		padding-right: 0.9em;
+		padding-bottom: 0.1em;
+}
+
+.list
+{
+		border-collapse: separate;
+		border-spacing: 0px;
+		width: 100%;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #868686 #ffffff #ffffff #868686;
+		background-color: #ffffff;
+}
+
+
+.list td
+{
+		
+		border: 0px none;
+		border-right: 1px;
+		border-style: solid;
+		border-color: #999
+		
+}
+
+
+.list tr.on
+{
+		background-color: #CCE5FF;
+}
+
+.list tr:hover
+{
+		background-color: #62AEFD;
+}
+
+.list tr
+{
+		height: 25px;
+}
+		
+
+/*************** Context menu *************/
+.context_menu
+{
+		border: 1px solid gray;
+		padding: 5px;
+		background-color: white;
+		width: 150px;
+		position: absolute;
+		/*display: none;*/
+		
+}
+
+.context_menu_item a:hover
+{
+		background-color: #0099ff;
+}
+
+.context_menu_title
+{
+		/*border-bottom: 1px solid gray;*/
+		font-weight: bold;
+}
+
+.context_menu hr
+{
+		
+		
+}
+
+
+/***************** Forms ******************/
+
+
+input
+{
+		border: 1px solid gray;
+}
+
+
+
+.field_title
+{
+		font-size: 12px;
+		background-color: #3999FC;
+		display: block;
+		color: white;
+		padding: 3px;
+		margin: 0;
+}
+
+.field_box
+{
+		padding: 10px;
+		margin-bottom: 25px
+}
+
+
+.field_info
+{
+		text-align: right;
+		vertical-align: top;
+		width: 100px;
+		cursor: help;
+		font-weight: bold;
+}
+
+
+.field_ui
+{
+		padding-left: 10px;
+		padding-bottom: 20px;
+}
+
+
+/************************* Buttons *********************/
+
+a.action_button, .action_button, a.action_button:visited, a.action_button:hover 
+{
+		background-color: #6699FF;
+		color: white;
+		font-size : 0.9em;
+		font-weight : bold;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #99CCFF #0066FF #0066FF #99CCFF;
+		text-decoration: none;
+		cursor: pointer;
+		vertical-align: text-top;
+		height: 20px;
+		padding: 3px;
+}
+
+a.action_button:active
+{
+		outline: none;
+		border-style: inset;
+}
+
+.alpha_letters
+{
+		color: #5E5E5E;
+		width: 17px;
+		font-size : 10px;
+		font-weight : bold;
+}
+
+/*************************** Misc . **********************/
+
+hr
+{
+		border: 0;
+		color: #000;
+		background-color: #000;
+		height: 1px;
+		width: 100%;
+}
+
+li,ul
+{
+		margin: 0;
+		padding: 0;
+		cursor: default;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+}
+
+img
+{
+		border: 0;
+}
+
+
+.spacer
+{
+		clear: both;
+}

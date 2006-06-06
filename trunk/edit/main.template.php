@@ -1,9 +1,13 @@
-
-<div class="content">
+<div class="content panel">
 
 <?php if (is_array($out['item'])): ?>
-<div class="white bigbox">
+
+<div class="spacer">
+ &nbsp;
+</div>
+
 <?php foreach ($out['item'] as $item): ?>
+<div class="main_item pannel">
 <a href="<?php echo $item['action']?>">
 <h1>
 
@@ -19,8 +23,13 @@
 <?php echo $item['help']?>
 </p>
 </a>
-<?php endforeach; ?>
 </div>
+<?php endforeach; ?>
+
+<div class="spacer">
+ &nbsp;
+</div>
+
 <?php endif; ?>
 
 </div>

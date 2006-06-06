@@ -1,55 +1,32 @@
-<div class="content" id="list">
+<div class="content panel" id="list">
 
 <iframe name="status" width="500" height="20" frameborder="0" scrolling="no"></iframe>
 
-<?php if (isset($out['structure_breadcrumb'])): ?>
-<div class="white bigbox">
+<?php $x=1; ?>
 
-<?php echo translate('you_are_here') ?> : 
-
-<?php $x=1 ?>
-
-
-<?php foreach ($out['structure_breadcrumb'] as $breadcrumb) : ?>
-
-<a class="structure_breadcrumb" href="<?php echo $breadcrumb['url']  ?>"><?php echo $breadcrumb['title']  ?>  </a>
-
-<?php if ($x < count($out['structure_breadcrumb'])): ?>
- > 
-<?php endif;?>
-
-<?php $x++ ?>
-<?php endforeach; ?>
-</div>
-<?php endif; ?>
-
-
-
-<div class="power_margin">
 
 
 <?php if (isset($out['go_up_url'])): ?>
+<div class="panel">
 <a class="action_button" style="margin-bottom: 30px;" href="<?php echo $out['go_up_url'] ?>"><?php echo translate('go_up')?></a>
-<br/>
+</div>
 <?php endif;?>
 
 <?php if (isset($out['nodes'])) : ?>
 
-<table class="power_table" border="0" cellspacing="0" cellpadding="0">
+<table class="list">
 <?php  $i=0 ?>
-
 <?php foreach ($out['nodes'] as $node): ?>
-
 
 <?php 
 // used to alternate rows, of course)
 if (($i % 2)==0)
 {
-$class = "tr_off";
+$class = "off";
 }
 else
 {
-$class = "tr_on";
+$class = "on";
 }
 
 if (isset($node['is_current']))
@@ -63,7 +40,7 @@ $i++;
 <tr class="<?php echo $class?>" id="node_<?php echo $node['id']?>">
 
 
-<td class="power_cell power_cell_border" style="cursor:pointer" onClick="document.location.href='<?php echo $node['url']?>';">
+<td style="cursor:pointer" onClick="document.location.href='<?php echo $node['url']?>';">
 <a href="<?php echo $node['url']?>" title="<?php echo  $node['full_title'] ?>">
 
 
@@ -77,7 +54,7 @@ $i++;
 </td>
 
 
-<td class="power_cell power_cell_border">
+<td>
 
 <a class="action_button" onclick="toggle_and_move('context_menu_node_<?php echo $node['id']?>', event)">
 <?php echo translate('menu');?>
@@ -229,15 +206,10 @@ $i++;
 
 </table>
 <?php else: ?>
-<div class="white bigbox">
+<div class="panel">
 <?php echo translate('node_empty')?>
 </div>
 <?php endif; ?>
-
-
 </div>
 
 
-
-
-</div>

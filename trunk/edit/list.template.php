@@ -1,8 +1,6 @@
-<div class="content">
+<div class="content panel">
 
 <?php /****************** Pagination ***************/ ?>
-
-<div class="power_margin">
 
 <?php if (isset($out['pagination'])): ?>
 <!--
@@ -10,38 +8,23 @@ Num of pages : <?php echo $out['pagination']['num_of_pages'] ?>
 / 
 Current page : <?php echo $out['pagination']['current_page'] ?>
 -->
-
-<table cellpadding="0" cellspacing="0" border="0" class="power_numbers_table">
-<tr>
 <?php foreach ($out['pagination'] as $pagination) : ?>
 <?php if (isset($pagination['current'])): ?>
-
-<th class="table_numbers_header_on">
-<b>
-<?php echo $pagination['title'] ?></b>
-</th>
-
+<div class="pagination on">
+<?php echo $pagination['title'] ?>
+</div>
 <?php else: ?>
-
-<th class="table_numbers_header">
+<div class="pagination off">
 <a class="number" href="<?php echo $pagination['url'] ?>">
 <?php echo $pagination['title'] ?>
-</a>
-</th>
-
+</div>
 <?php endif; ?>
 <?php endforeach; ?>
-</tr>
-</table>
 <?php endif; ?>
 
 
-<table class="power_table" border="0" cellspacing="0" cellpadding="0">
-
-
+<table class="list">
 <tr>
-
-
 <?php /****************** Thumbnails / icons ***************/ ?>
 <?php if (isset($out['enable_thumbnails'])) : ?>
 <th class="table_header">
@@ -57,11 +40,11 @@ Current page : <?php echo $out['pagination']['current_page'] ?>
 
 <?php /****************** Sorting ***************/ ?>
 <?php if (isset ($out['sort_field']) && $key==$out['sort_field']): ?>
-<th class="table_header_on">
+<th class="on">
 <?php echo $field['title']; ?>
 
 <?php else: ?>
-<th class="table_header">
+<th class="off">
 <?php if (isset($field['sortable'])) : ?>
 <a href="<?php echo $field['sort_url']; ?>">
 <?php echo $field['title']; ?>
@@ -80,37 +63,33 @@ Current page : <?php echo $out['pagination']['current_page'] ?>
 
 <?php /****************** TOOLS ***************/ ?>
 
-<th class="table_header" width="55px">
+<th>
 <?php echo translate('tool_row'); ?></th>
-
 
 
 <?php /****************** Order of items ***************/ ?>
 <?php if (isset($out['enable_sort'])) : ?>
-<th class="table_header" width="60px">
-<?php echo translate('sort_row'); ?></th>
+<th>
+<?php echo translate('sort_row'); ?>
+</th>
 <?php endif; ?>
-</tr>
 
+</tr>
 
 <?php  $i=0 ?>
 
-
 <?php /****************** Data loop ***************/ ?>
-
 <?php if (isset($out['data'])): ?>
-
 <?php foreach ($out['data'] as $id=>$data) : ?>
-
 <?php 
 // used to alternate rows, of course)
 if (($i % 2)==0)
 {
-		$class = "tr_off";
+		$class = "off";
 }
 else
 {
-		$class = "tr_on";
+		$class = "on";
 }
 $i++;
 ?>
@@ -120,7 +99,7 @@ $i++;
 
 <!-- thumbnails -->
 <?php if (isset($out['enable_thumbnails'])) : ?>
-<td class="power_cell power_cell_border">
+<td>
 <img src="<?php echo $data['icon']?>"></td>
 <?php endif; ?>
 
@@ -132,15 +111,9 @@ $i++;
 ?> 
 
 <?php foreach ($out['field'] as $key=>$field) : ?>
-
-
-
-<td class="power_cell power_cell_border" style="cursor:pointer" onClick="document.location.href='<?php echo $data['edit_url']?>'">
+<td>
 <a href="<?php echo $data['edit_url']?>">
-
 <?php echo $data['field'][$key]; ?>
-
-
 </a>
 </td>
 <?php endforeach; ?>
@@ -148,8 +121,7 @@ $i++;
 
 
 <!-- tools follow : -->
-<td class="power_cell_border" align="center" width="55px">
-
+<td>
 <?php if (isset($out['mode']) && $out['mode'] == 'relation'): ?>
 <a class="action_url" href="<?php echo $data['relate_url']?>">
 <?php echo translate('make_relation'); ?>
@@ -234,9 +206,6 @@ $i++;
 </table>
 <?php endif; ?>
 
-
-
-</div>
 
 </div>
 
