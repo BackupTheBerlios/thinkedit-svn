@@ -66,9 +66,53 @@ class record_multilingual extends record
 		* 
 		*
 		*/
-		function getTranslationsList()
+		function getLocaleList()
 		{
+				$where['id'] = $this->getId();
+				$results = $this->find($where);
+				
+				if ($results)
+				{
+						foreach ($results as $result)
+						{
+								$locales[] = $result->field[$result->getLocaleFieldId()]->get();
+						}
+						return $locales;
+				}
+				else
+				{
+						trigger_error('record_multiligual::getTranslationsList() :  strange, no locales found for this record');
+						return false;
+				}				
 		}
+		
+		function loadByArray($data)
+		{
+				return $this->load();
+		}
+		
+		function getArray()
+		{
+				return true;
+		}
+		
+		function load()
+		{
+				//this is tricky : we first try to load the record
+				if (parent::load()) 
+				{
+						return true;
+				}
+				// if it fails ...
+				else
+				{
+						// we set the locale of the record to the first found locale for this record
+						$locale_list = $this->getLocaleList();
+						$this->setLocale($locale_list[0]);
+						return parent::load();
+				}
+		}
+		
 }
 
 ?>

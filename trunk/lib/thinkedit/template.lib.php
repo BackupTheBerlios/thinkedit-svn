@@ -227,6 +227,32 @@ function te_admin_toolbox()
 }
 
 
+/*
+Will render a locale chooser link list
+*/
+function te_locale_chooser()
+{
+		global $thinkedit;
+		global $content;
+		$out = '';
+		if ($content->isMultilingual())
+		{
+				$url = $thinkedit->newUrl();
+				$url->keep('node_id');
+				$locales = $content->getLocaleList();
+				foreach ($locales as $locale)
+				{
+						$url->set('locale', $locale);
+						$out .= '[<a href="' . $url->render() . '">' . $locale . '</a>]';
+						$out .= ' ';
+				}
+			return $out;
+		}
+		else
+		{
+				return false;
+		}
+}
 
 
 ?>

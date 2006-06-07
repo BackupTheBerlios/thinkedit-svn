@@ -72,8 +72,29 @@ class context
 		
 		function getLocale()
 		{
-			// todo: use the user class and browser to know which locale is default	
-			return 'fr';
+				if (isset ($this->locale))
+				{
+						return $this->locale;
+				}
+				else
+				{
+						global $thinkedit;
+						$url = $thinkedit->newUrl();
+						// todo: use the user class and browser to know which locale is default
+						if ($url->get('locale')) // todo security : check agains known list of locales
+						{
+								return $url->get('locale');
+						}
+						else
+						{
+								return 'fr';
+						}
+				}
+		}
+		
+		function setLocale($locale)
+		{
+				$this->locale = $locale;
 		}
 		
 		

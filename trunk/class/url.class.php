@@ -95,22 +95,9 @@ class url
 				
 				$this->url = $_SERVER['REQUEST_URI'];
 				
-				//echo $this->url;
-				
-				//$this->keepParam('debug');
 				$this->keepParam('debug');
-				//$this->keepParam('table');
+				$this->keepParam('locale');
 				
-				// those three parameters are what I call a GUID of a class
-				//$this->keepParam('action');
-				//$this->keepParam('class');
-				//$this->keepParam('type');
-				//$this->keepParam('id');
-				//$this->keepParam('node_id');
-				
-				//$this->set('referrer', $this->url);
-				
-				//$this->keepAll();
 		}
 		
 		

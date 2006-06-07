@@ -631,7 +631,7 @@ class record
 	*/
 	function setArray($array)
 	{
-		//die ('deprecated');
+		trigger_error('deprecated, use $this->loadByArray instead');
 		$this->is_loaded = false;
 		if (is_array($array))
 		{

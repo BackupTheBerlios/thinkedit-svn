@@ -54,4 +54,8 @@
 	<?php echo $content->getTitle(); ?>
 </div>
 
+<div class="locale">
+	<?php echo te_locale_chooser(); ?>
+</div>
+
 

@@ -13,7 +13,7 @@ $url = new url();
 
 
 
-$cache_id = 'node_' . $url->get('node_id');
+$cache_id = 'node_' . $url->get('node_id') . $url->get('locale');
 
 $cache_enabled = true;
 //$cache_enabled = false;
@@ -34,7 +34,6 @@ if ($url->get('clear_cache'))
 
 if ($cache_enabled && $thinkedit->outputcache->start($cache_id))
 {
-		
 		require_once ROOT . '/lib/thinkedit/template.lib.php';
 		echo te_admin_toolbox();
 		
