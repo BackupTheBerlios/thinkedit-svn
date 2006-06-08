@@ -233,7 +233,7 @@ class table
 								*/
 								
 								
-								$pk_locale_sql = 'ALTER TABLE `multilingual_page` DROP PRIMARY KEY ,';
+								$pk_locale_sql = 'ALTER TABLE `' . $this->getTableName() . '` DROP PRIMARY KEY ,';
 								$pk_locale_sql .= 'ADD PRIMARY KEY ( `id` , `'. $name .'` )';
 								$this->db->query($pk_locale_sql);
 						}

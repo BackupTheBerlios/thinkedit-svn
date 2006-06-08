@@ -50,12 +50,17 @@
 	
 </div>
 <div id="content">
+
+<?php if ($content->isMultilingual()): ?>
+<div class="locale">
+	<?php echo te_translate('page_available_in')?> : <?php echo te_locale_chooser(); ?>
+</div>
+<?php endif; ?>
+
 <div class="title">
 	<?php echo $content->getTitle(); ?>
 </div>
 
-<div class="locale">
-	<?php echo te_locale_chooser(); ?>
-</div>
+
 
 
