@@ -30,9 +30,8 @@
 <body onLoad="page_loaded()">
 <div class="thinkedit">
 
-
 <div class="header panel">
-<a href="main.php"><img src="ressource/image/general/thinkedit_logo.gif" alt="" border="0"/></a>			
+<a href="main.php"><img src="ressource/image/general/thinkedit_logo.gif" alt="" border="0"/></a>	
 </div>
 
 			
@@ -70,10 +69,6 @@
 
 
 
-<div class="breadcrumb panel">
+<div class="breadcrumb">
 <?php include ('breadcrumb.template.php') ?>
 </div>
-
-
-
-

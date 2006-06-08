@@ -1,3 +1,4 @@
+
       <div class="footer">
 			
 			&reg; <a href="http://www.thinkedit.org">THINKEDIT.ORG open source CMS</a>
