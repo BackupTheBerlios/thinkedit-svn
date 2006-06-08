@@ -12,7 +12,7 @@
 
 <div id="container">
 	<div id="header">
-		<div id="logo"><img src="<?php echo te_design() ?>/sources/logo.gif" alt="" width="167" height="55" border="0"></div>
+		<div id="logo"><a href="<?php echo te_root_link() ?>"><img src="<?php echo te_design() ?>/sources/logo.gif" alt="" width="167" height="55" border="0"></a></div>
 		<div id="menu">
 		<?php if (isset($main_menu) && $main_menu->getArray()) : ?>
 				<?php foreach ($main_menu->getArray() as $main_menu_item): ?>

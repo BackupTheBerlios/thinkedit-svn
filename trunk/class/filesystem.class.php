@@ -489,6 +489,7 @@ class filesystem
 						global $thinkedit;
 						
 						$url = $thinkedit->newUrl();
+						$url->unsetParam('locale');
 						$url->set('src', $this->getRealPath());
 						if (is_array($parameters))
 						{

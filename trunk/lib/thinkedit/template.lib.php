@@ -85,6 +85,12 @@ function te_root()
 }
 
 
+// returns a link to the root node
+function te_root_link()
+{
+		return te_link(te_root());
+}
+
 /*********** Menu handling template tags ***************/
 /*
 Thos functions returns an array if a menu exists or false if no menu is found.
