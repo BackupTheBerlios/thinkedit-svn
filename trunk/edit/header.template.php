@@ -69,6 +69,8 @@
 
 
 
-<div class="breadcrumb">
+<div class="breadcrumb panel">
 <?php include ('breadcrumb.template.php') ?>
 </div>
+
+

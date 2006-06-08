@@ -62,6 +62,13 @@ a
 		border-width: 1px; 
 		border-color: #FFFFFF #666666 #666666 #E9E9E9;
 		height: 5em;
+		/*
+		position: fixed;
+		left: 0;
+  	right: 0;
+  	top: 0;
+		*/
+		
 }
 
 
@@ -119,6 +126,11 @@ a
 		border-style: solid; 
 		border-width: 1px;
 		border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
+		/*
+		margin-top: 5em;
+		margin-bottom: 6em;
+		*/
+		
 }
 
 
