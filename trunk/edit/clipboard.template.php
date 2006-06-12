@@ -11,6 +11,25 @@
 		<![endif]-->
 </head>
 <body>
+<?php if (isset($out['info'])): ?>
 <?php echo $out['info'];?>
+<?php endif; ?>
+
+
+<?php if (isset($out['reload'])): ?>
+<script>
+window.parent.location.reload();
+</script>
+<?php endif; ?>
+
+
+<?php if (isset($out['change_url'])): ?>
+<script>
+location.href = '<?php echo $out['change_url']?>';
+</script>
+<?php endif; ?>
+
+
+
 </body>
 </html>

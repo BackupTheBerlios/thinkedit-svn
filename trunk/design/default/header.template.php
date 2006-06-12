@@ -10,7 +10,7 @@
 				
 						<div id="container">
 								<div id="header">
-										<h1><?php echo $content->getTitle();?></h1>
+										<h1><?php echo te_title();?></h1>
 								</div>
 								
 								

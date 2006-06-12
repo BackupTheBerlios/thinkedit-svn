@@ -81,7 +81,7 @@ class record_multilingual extends record
 				}
 				else
 				{
-						trigger_error('record_multiligual::getTranslationsList() :  strange, no locales found for this record');
+						// trigger_error('record_multiligual::getTranslationsList() :  strange, no locales found for this record');
 						return false;
 				}				
 		}

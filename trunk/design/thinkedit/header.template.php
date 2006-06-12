@@ -14,18 +14,17 @@
 	<div id="header">
 		<div id="logo"><a href="<?php echo te_root_link() ?>"><img src="<?php echo te_design() ?>/sources/logo.gif" alt="" width="167" height="55" border="0"></a></div>
 		<div id="menu">
-		<?php if (isset($main_menu) && $main_menu->getArray()) : ?>
-				<?php foreach ($main_menu->getArray() as $main_menu_item): ?>
+		<?php if ($main_menu = te_main_menu()) : ?>
+				<?php foreach ($main_menu as $main_menu_item): ?>
 				<a href="<?php echo te_link($main_menu_item->node);?>"><?php echo $main_menu_item->getTitle(); ?></a> 
 				<?php if (!$main_menu_item->isEnd()):?><span class="menu_separator"></span><?php endif; ?>
 				<?php endforeach; ?>
 		<?php endif; ?>
 		</div>
-		
 	</div>
 <div id="submenu">
-		<?php if (isset($context_menu) && $context_menu->getArray()) : ?>
-				<?php foreach ($context_menu->getArray() as $context_menu_item): ?>
+		<?php if ($context_menu = te_context_menu()) : ?>
+				<?php foreach ($context_menu as $context_menu_item): ?>
 					
 					<?php if ($context_menu_item->node->getLevel() == 3): ?>
 					<div style="margin-left: 15px">
@@ -53,13 +52,24 @@
 
 <?php if ($content->isMultilingual()): ?>
 <div class="locale">
-	<?php echo te_translate('page_available_in')?> : <?php echo te_locale_chooser(); ?>
+	<?php echo te_locale_chooser(); ?>
 </div>
 <?php endif; ?>
 
 <div class="title">
 	<?php echo $content->getTitle(); ?>
 </div>
+
+
+
+	<div id="breadcrumb">
+		<?php if ($breadcrumb_menu = te_breadcrumb_menu()) : ?>
+				<?php foreach ($breadcrumb_menu as $breadcrumb_menu_item): ?>
+				<a href="<?php echo te_link($breadcrumb_menu_item->node);?>"><?php echo $breadcrumb_menu_item->getTitle(); ?></a> 
+				<?php if (!$breadcrumb_menu_item->isEnd()):?> > <?php endif; ?>
+				<?php endforeach; ?>
+		<?php endif; ?>
+		</div>
 
 
 

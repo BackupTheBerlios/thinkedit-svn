@@ -21,6 +21,7 @@ include_once('common.inc.php');
 check_user();
 
 
+
 $session = $thinkedit->newSession();
 
 if ($url->get('action') == 'cut')
@@ -65,6 +66,12 @@ if ($url->get('action') == 'paste' && $url->get('target_node'))
 				if ($source_node->changeParent($target_node->getId()))
 				{
 						$out['info'] = translate('node_paste_ok');
+						$session->delete('clipboard_action');
+						$session->delete('clipboard_source_node');
+						$url = $thinkedit->newUrl();
+						$session->set('clipboard_reload', 1);
+						$out['change_url'] = $url->render();
+						
 				}
 				else
 				{
@@ -81,6 +88,13 @@ if ($url->get('action') == 'paste' && $url->get('target_node'))
 		
 }
 
+
+$url = $thinkedit->newUrl();
+if ($session->get('clipboard_reload'))
+{
+		$out['reload'] = true;
+		$session->delete('clipboard_reload');
+}
 
 include_once('clipboard.template.php');
 

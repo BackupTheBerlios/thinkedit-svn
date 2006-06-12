@@ -1,3 +1,5 @@
+See the website for up to date documentation : http://thinkedit.org/think/?node_id=25
+
 In templates, on content objects, you can use :
 
 $content->isUsedIn($something);

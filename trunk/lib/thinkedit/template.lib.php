@@ -4,13 +4,7 @@ Thinkedit template functions
 */
 
 
-// this is a sample
-/*
-function te_link($ressource)
-{
-		return ROOT_URL . $ressource;
-}
-*/
+/************************ Content related functions **********************/
 
 
 function te_title()
@@ -19,19 +13,21 @@ function te_title()
 		return $content->getTitle();
 }
 
-
-/*
-Returns a short version of the string passed with [...] apended to it if the stirng is longer than size
-*/
-function te_short($string, $size)
+function te_get($id)
 {
-		if (strlen($string) > $size)
-		{
-				return strip_tags((substr($string, 0, $size -4) . '...'));
-		}
-		return strip_tags($string);
+		global $content;
+		return $content->get($id);
 }
 
+
+
+function te_translate($id)
+{
+		return $id;
+}
+
+
+/*************************** Paths, urls, links *******************/
 /*
 Returns the url of the current design (usefull for linking to css or design images)
 */
@@ -41,28 +37,6 @@ function te_design()
 		$configuration = $thinkedit->newConfig();
 		$design = $configuration->getDesign();
 		return ROOT_URL . '/design/' . $design;
-}
-
-
-
-function te_every($size)
-{
-		static $i;
-		$i++;
-		if (($i % $size) == 0)
-		{
-				return true;
-		}
-		else
-		{
-				return false;
-		}
-}
-
-
-function te_translate($id)
-{
-		return $id;
 }
 
 
@@ -89,28 +63,6 @@ function te_root()
 function te_root_link()
 {
 		return te_link(te_root());
-}
-
-/*********** Menu handling template tags ***************/
-/*
-Thos functions returns an array if a menu exists or false if no menu is found.
-The array is an array of menuitems objects, providing some methods
-*/
-
-// returns a main menu
-function te_main_menu()
-{
-}
-
-// returns a contextual menu
-function te_context_menu()
-{
-}
-
-
-// returns a child menu
-function te_child_menu()
-{
 }
 
 
@@ -146,6 +98,81 @@ function te_link($object)
 				return false;
 		}
 }
+
+/*********** Menu handling template tags ***************/
+/*
+This functions returns an array if a menu exists or false if no menu is found.
+The array is an array of menuitems objects, providing some methods
+*/
+
+// returns an array of menu items of the main menu
+function te_main_menu()
+{
+		require_once ROOT . '/class/menu.main.class.php';
+		//global $node;
+		$menu = new menu_main();
+		return $menu->getArray();
+}
+
+// returns a contextual menu
+function te_context_menu()
+{
+		require_once ROOT . '/class/menu.context.class.php';
+		global $node;
+		$menu = new menu_context($node);
+		return $menu->getArray();
+}
+
+
+// returns a child menu
+function te_child_menu()
+{
+		require_once ROOT . '/class/menu.child.class.php';
+		global $node;
+		$menu = new menu_child($node);
+		return $menu->getArray();
+}
+
+
+function te_breadcrumb_menu()
+{
+		require_once ROOT . '/class/menu.breadcrumb.class.php';
+		global $node;
+		$menu = new menu_breadcrumb($node);
+		return $menu->getArray();
+}
+
+/**************************** UI widgets ***********************/
+
+/*
+Will render a locale chooser link list
+*/
+function te_locale_chooser()
+{
+		global $thinkedit;
+		global $content;
+		$out = '';
+		if ($content->isMultilingual())
+		{
+				$url = $thinkedit->newUrl();
+				$url->keep('node_id');
+				$locales = $content->getLocaleList();
+				foreach ($locales as $locale)
+				{
+						$url->set('locale', $locale);
+						$out .= '[<a href="' . $url->render() . '">' . $locale . '</a>]';
+						$out .= ' ';
+				}
+			return $out;
+		}
+		else
+		{
+				return false;
+		}
+}
+
+
+
 
 function te_admin_toolbox()
 {
@@ -233,32 +260,34 @@ function te_admin_toolbox()
 }
 
 
+/************************ Tools / helpers *********************/
+
 /*
-Will render a locale chooser link list
+Returns a short version of the string passed with [...] apended to it if the stirng is longer than size
 */
-function te_locale_chooser()
+function te_short($string, $size)
 {
-		global $thinkedit;
-		global $content;
-		$out = '';
-		if ($content->isMultilingual())
+		if (strlen($string) > $size)
 		{
-				$url = $thinkedit->newUrl();
-				$url->keep('node_id');
-				$locales = $content->getLocaleList();
-				foreach ($locales as $locale)
-				{
-						$url->set('locale', $locale);
-						$out .= '[<a href="' . $url->render() . '">' . $locale . '</a>]';
-						$out .= ' ';
-				}
-			return $out;
+				return strip_tags((substr($string, 0, $size -4) . '...'));
+		}
+		return strip_tags($string);
+}
+
+
+
+function te_every($size)
+{
+		static $i;
+		$i++;
+		if (($i % $size) == 0)
+		{
+				return true;
 		}
 		else
 		{
 				return false;
 		}
 }
-
 
 ?>

@@ -115,5 +115,6 @@ $data['node_cut_ok']='!node_cut_ok!';
 $data['node_cut_failled']='!node_cut_failled!';
 $data['node_paste_ok']='!node_paste_ok!';
 $data['node_paste_failed']='!node_paste_failed!';
+$data['no_node_in_clipboard']='!no_node_in_clipboard!';
 
 ?>

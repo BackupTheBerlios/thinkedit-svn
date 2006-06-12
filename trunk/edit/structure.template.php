@@ -203,13 +203,43 @@ $i++;
 
 </tr>
 <?php endforeach; ?>
-
 </table>
+
 <?php else: ?>
 <div class="panel">
 <?php echo translate('node_empty')?>
 </div>
 <?php endif; ?>
+
+<div class="toolbar">
+
+<?php if (isset($out['allowed_items'])) : ?>
+<select size="1" onChange="jump('parent',this,0)">
+<option value=""><?php echo translate('node_add_new') ?></option>
+<?php foreach ($out['allowed_items'] as $item): ?>
+<option value="<?php echo $item['action'] ?>"><?php echo ucfirst($item['title']) ?></option>
+<?php endforeach; ?>
+</select>
+<?php endif; ?>
+
+
+<?php if (isset($out['clipboard']['cut_link'])) : ?>
+<a href="<?php echo $out['clipboard']['cut_link']?>" target="status" class="action_button">
+<?php echo translate('cut');?>
+</a>
+<?php endif; ?>
+
+<?php if (isset($out['clipboard']['paste_link'])) : ?>
+<a href="<?php echo $out['clipboard']['paste_link']?>" target="status" class="action_button">
+<?php echo translate('paste');?>
+</a>
+<?php endif; ?>
+
+
+
+</div>
+
+
 </div>
 
 
