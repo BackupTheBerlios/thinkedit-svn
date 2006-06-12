@@ -1,6 +1,8 @@
 <html>
-
+<head>
+<link type="text/css" href="../edit/style2.css" rel="stylesheet" media="screen"/>
 <style>
+
 body
 {
 		font-family: verdana, arial, helvetica, sans-serif;
@@ -8,22 +10,40 @@ body
 		background-color: #F6F6F6; 
 }
 
-.content
+.content a
 {
-		width: 500px;
-		padding: 20px;
-		background-color: #E7E7E7;
+		text-decoration: underline;
+		font-weight: bold;
+}
+
+h1, h2
+{
+		font-family: verdana, arial, sans;
+		font-weight: normal;
+}
+
+h1
+{
+		font-size: 2em;
+}
+
+h2
+{
+		font-size: 1em;
+		font-weight: bold;
 		
-		border-style: solid; 
-		border-width: 1px;
-		border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
 }
 
 </style>
-
+</head>
 <body>
+<div class="thinkedit">
 
-<div class="content">
+<div class="header panel">
+<a href="main.php"><img src="../edit/ressource/image/general/thinkedit_logo.gif" alt="" border="0"/></a>	
+</div>
+
+<div class="content panel">
 
 <h1>Thinkedit installation wizard</h1>
 
@@ -46,9 +66,16 @@ body
 <?php else: ?>
 <a href="">Go to next step</a>
 <?php endif; ?>
+</div>
+
+
+<div class="footer">
+			&reg; <a href="http://www.thinkedit.org">THINKEDIT.ORG open source CMS</a>
+</div>
 
 
 </div>
+
 </body>
 
 </html>

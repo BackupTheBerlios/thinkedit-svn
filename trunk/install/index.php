@@ -71,7 +71,7 @@ if (!isset($thinkedit->config['site']['database']['main']))
 				}
 				else
 				{
-						$out['info'] = 'The configuration (in /config/db.php) file cannot be saved, please unprotect it by changing permissions on it (chmod 777 or somthing similar)';
+						$out['info'] = 'The configuration (in /config/db.php) file cannot be saved, please unprotect it by changing permissions on it (chmod 777 or something similar)';
 						
 						$out['content'] = 'If you cannot do this, you can also create the file manually and reload this installation wizard. 
 						<p>A sample config file is provided in /config/db.dist.php';

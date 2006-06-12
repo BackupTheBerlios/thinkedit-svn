@@ -93,10 +93,12 @@ a
 
 .footer {
 	color: #FFF;
+	/*
 	position: fixed;
   	left: 0;
   	right: 0;
   	bottom: 0;
+		*/
   	background-color: #999999;
 	margin: 0px;
 	padding: 0.5em;
