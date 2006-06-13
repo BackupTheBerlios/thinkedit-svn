@@ -14,6 +14,7 @@ General TODO (General features that affect more than one file / class):
 
 
 TODO (by order of importance) :
+- when deleting a record, it should also delete references to this record in the node table (in the tree)
 - node cache must be refeshed when a new field is added to the DB (else, objects are allways loaded in a separate query, lowering performance)
 - handling of path separators in *nix and windows. Define a constant, like PATH_SEPARATOR and use it everywhere
 - review all security todo in the code
@@ -38,7 +39,7 @@ New fields :
 - email
 - user_login
 - user_ip
-- catpcha (for public comments for instance, but it must be only used on the public facing website)
+- catpcha (for public comments for instance, but it must be only used on the public facing website) -> this is NOT a field type but something from the logic (not the model) 
 
 
 ATOMIC TODO (small bugs to fix)

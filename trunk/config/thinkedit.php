@@ -1,11 +1,7 @@
 <?php
-
 $data['table']['page']['field']['locale']['type']='locale';
 
 $data['table']['page']['allowed_items']['record']['screenshot']='true';
-
-
-
 
 $data['table']['screenshot']['icon']='book.png';
 $data['table']['screenshot']['title_field']='title';

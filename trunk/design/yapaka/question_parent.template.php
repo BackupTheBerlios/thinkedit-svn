@@ -38,6 +38,12 @@
 </div>
 
 
+<?php 
+include 'comment.php'; 
+?>
+
+
+
 <?php include 'content_footer.php'; ?>
 
 

@@ -1,5 +1,3 @@
-<?php
-
 /*
 This is a concept that must be extended.
 Work in progress, only interface is defined here
@@ -18,7 +16,7 @@ This is translated to : render a public friendly form to add content to a websit
 */
 
 /*
-Example implementation can be found in /doc/participation.txt
+Example implementation
 */
 
 
@@ -58,13 +56,3 @@ $participation->setFailure('Too bad, it didn\'t work');
 
 
 
-class participation
-{
-		function render()
-		{
-		}
-		
-}
-
-
-?>
