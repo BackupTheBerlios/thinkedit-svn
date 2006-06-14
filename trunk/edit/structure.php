@@ -339,6 +339,7 @@ if (isset($nodes) && is_array($nodes))
 				$node_info = false;
 				
 				/********************* Visit link *****************/
+				
 				$url = new url();
 				$url->set('node_id', $node_item->getId());
 				$content = $node_item->getContent();
@@ -351,6 +352,18 @@ if (isset($nodes) && is_array($nodes))
 				$node_info['icon'] = $content->getIcon();
 				$node_info['url'] = $url->render();
 				$node_info['level'] = $node_item->getLevel() + 1;
+				
+				
+				/********************* Visit link *****************/
+				// a node can be "visited" only if it is allowed to add something inside it
+				// else users could go inside a node and nothing could be done there
+				if ($node_item->getAllowedItems())
+				{
+						$url = new url();
+						$url->set('node_id', $node_item->getId());
+						$node_info['visit_url'] = $url->render();
+				}
+				
 				
 				
 				
@@ -374,6 +387,7 @@ if (isset($nodes) && is_array($nodes))
 				$node_info['movebottom_url'] = $url->render();
 				
 				/********************* Edit link *****************/
+				
 				$url = new url();
 				$url->set('node_id', $node_item->getId());
 				$url->addObject($content);

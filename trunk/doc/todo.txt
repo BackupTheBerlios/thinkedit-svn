@@ -9,8 +9,10 @@ General TODO (General features that affect more than one file / class):
 - permissions / roles / users
 - validation
 - filters
+- plugins
 - encrypted passwords (?)
-- multilingual records mostly done !!!
+- multilingual records (mostly done !!!)
+- participation framework
 
 
 TODO (by order of importance) :
@@ -18,14 +20,13 @@ TODO (by order of importance) :
 - node cache must be refeshed when a new field is added to the DB (else, objects are allways loaded in a separate query, lowering performance)
 - handling of path separators in *nix and windows. Define a constant, like PATH_SEPARATOR and use it everywhere
 - review all security todo in the code
-- friendly urls (in node class) / and node->loadByPath($path)
 - plugin/hooks/alert system
 - validation of fields, with feedback in the edit UI
 - fields in/out filters (filters before a field is saved to the db and after it is loaded from the db)
 - optimize node->getAllNodes and menu classes
-- locale support in public site / in record class
 - te_translate() for public website (where are public translations stored, in another table with fallback to admin translations?)
 - mysql backticks
+- friendly urls (in node class) / and node->loadByPath($path)
 - password reminder (feature disabled in admin until there)
 - handle record delete only if it is not located somewhere in the node tree
 - custom error handlers with pretty display
@@ -47,8 +48,7 @@ ATOMIC TODO (small bugs to fix)
 - better record find options (where with and / or, etc ...) see ruby on rails active record and zend active db object for ideas.
 
 ALMOST THERE :
-- node publish + preview
-- deprecate old stuff / delete unused files
+
 
 
 OPTIMIZATION STUFF :
@@ -56,6 +56,8 @@ OPTIMIZATION STUFF :
 - caching where needed (using pear cache lite) (done)
 	
 DONE :
+- node publish + preview
+- deprecate old stuff / delete unused files
 - node template : you can use custom templates per nodes by adding php template files in /design/**yourdesign**/templates
 - nodeOptimized refresh (redirect to the same page) on edit in structure moveup/down
 - simple install (it is, but need some more features to be totally usefull)

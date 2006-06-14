@@ -40,8 +40,11 @@ $i++;
 <tr class="<?php echo $class?>" id="node_<?php echo $node['id']?>">
 
 
-<td style="cursor:pointer" onClick="document.location.href='<?php echo $node['url']?>';">
-<a href="<?php echo $node['url']?>" title="<?php echo  $node['full_title'] ?>">
+<td <?php if (isset($node['visit_url'])): ?>style="cursor:pointer" onClick="document.location.href='<?php echo $node['visit_url']?>';"<?php endif;?>>
+
+<?php if (isset($node['visit_url'])): ?>
+<a href="<?php echo $node['visit_url']?>" title="<?php echo  $node['full_title'] ?>">
+<?php endif;?>
 
 
 <?php if (isset($node['helper_icon'])): ?>
@@ -50,20 +53,36 @@ $i++;
 
 <img src="<?php echo $node['icon']; ?>" style="vertical-align: middle;">
 <?php echo  $node['title'] ?>
+
+<?php if (isset($node['visit_url'])): ?>
 </a>
+<?php endif;?>
+
 </td>
 
 
 <td>
 
+
+<?php if (isset($node['edit_url'])): ?>
+<a class="action_button" href="<?php echo $node['edit_url']?>">
+<!--
+<img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('node_edit'); ?>">
+-->
+<?php echo translate('edit'); ?>
+</a>
+<?php endif; ?>
+
+
 <a class="action_button" onclick="toggle_and_move('context_menu_node_<?php echo $node['id']?>', event)">
 <?php echo translate('menu');?>
 </a>
 
-
+<!--
 <a class="action_button" onclick="toggle_and_move('add_menu_node_<?php echo $node['id']?>', event)">
 <?php echo translate('add');?>
 </a>
+-->
 
 
 <?php if (isset($node['publish_url'])): ?>
@@ -179,6 +198,7 @@ $i++;
 
 
 
+<!--
 <?php /******************* Add subitems *******************/ ?>
 <div class="context_menu" id="add_menu_node_<?php echo $node['id']?>" style="display:none">
 
@@ -195,8 +215,8 @@ $i++;
 <?php else: ?>
 <?php echo translate('cannot_add_here');?>
 <?php endif; ?>
-
 </div>
+-->
 
 
 </td>
@@ -212,6 +232,7 @@ $i++;
 <?php endif; ?>
 
 <div class="toolbar">
+
 
 <?php if (isset($out['allowed_items'])) : ?>
 <select size="1" onChange="jump('parent',this,0)">
