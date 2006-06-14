@@ -500,7 +500,13 @@ $out['breadcrumb'][1]['title'] = translate('structure_title');
 $out['breadcrumb'][1]['url'] = $url->render();
 
 
-$i = 2;
+
+$url = new url();
+$out['structure_breadcrumb'][0]['title'] = translate('root');
+$out['structure_breadcrumb'][0]['url'] = $url->render();
+
+
+$i = 1;
 if ($current_node->hasParent())
 {
 		$parents = $current_node->getParentUntilRoot();
@@ -511,12 +517,12 @@ if ($current_node->hasParent())
 				$content = $parent->getContent();
 				$content->load();
 				
-				$out['breadcrumb'][$i]['title'] = $content->getTitle();
+				$out['structure_breadcrumb'][$i]['title'] = $content->getTitle();
 				
 				$url = new url();
 				$url->set('node_id', $parent->getId());
 				//$url->addObject($parent, 'current_');
-				$out['breadcrumb'][$i]['url'] = $url->render();
+				$out['structure_breadcrumb'][$i]['url'] = $url->render();
 				$i++;
 				
 		}
@@ -526,11 +532,12 @@ if ($current_node->hasParent())
 // add current
 $content = $current_node->getContent();
 $content->load();
-$out['breadcrumb'][$i]['title'] = $content->getTitle();
+$out['structure_breadcrumb'][$i]['title'] = $content->getTitle();
 $url = new url();
 $url->set('node_id', $current_node->getId());
 //$url->addObject($current_node, 'current_');
-$out['breadcrumb'][$i]['url'] = $url->render();
+$out['structure_breadcrumb'][$i]['url'] = $url->render();
+$out['structure_breadcrumb'][$i]['current'] = true;
 
 
 

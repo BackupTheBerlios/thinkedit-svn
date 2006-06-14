@@ -5,12 +5,25 @@
 <?php $x=1; ?>
 
 
+<div class="panel">
+
+<?php if (isset($out['structure_breadcrumb'])) : ?>
+<select size="1" onChange="jump('parent',this,0)">
+<?php foreach ($out['structure_breadcrumb'] as $i=>$bread): ?>
+<option value="<?php echo $bread['url'] ?>" <?php if (isset($bread['current'])): ?>selected="selected"<?php endif; ?>>
+<?php echo str_repeat('&nbsp;&nbsp;', $i); ?>
+<?php echo ucfirst($bread['title']) ?>
+</option>
+<?php endforeach; ?>
+</select>
+<?php endif; ?>
 
 <?php if (isset($out['go_up_url'])): ?>
-<div class="panel">
 <a class="action_button" style="margin-bottom: 30px;" href="<?php echo $out['go_up_url'] ?>"><?php echo translate('go_up')?></a>
-</div>
 <?php endif;?>
+
+
+</div>
 
 <?php if (isset($out['nodes'])) : ?>
 

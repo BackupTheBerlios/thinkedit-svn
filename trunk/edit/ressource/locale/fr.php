@@ -111,10 +111,11 @@ $data['translate']='Traduire';
 $data['cannot_add_here']='On ne peut rien ajouter ici';
 $data['actions']='Actions';
 $data['menu']='Menu';
-$data['node_cut_ok']='!node_cut_ok!';
-$data['node_cut_failled']='!node_cut_failled!';
-$data['node_paste_ok']='!node_paste_ok!';
-$data['node_paste_failed']='!node_paste_failed!';
-$data['no_node_in_clipboard']='!no_node_in_clipboard!';
+$data['node_cut_ok']='L\'emplacement a bien été mis dans le presse papier';
+$data['node_cut_failled']='L\'emplacement n\'a pas été mis dans le presse papier';
+$data['node_paste_ok']='L\'emplacement a bien été collé';
+$data['node_paste_failed']='L\'emplacement n\'a pas été collé';
+$data['no_node_in_clipboard']='Pas d\'emplacement dans le presse papier';
+$data['root']='Racine';
 
 ?>
