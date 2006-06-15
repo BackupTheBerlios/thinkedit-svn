@@ -40,17 +40,26 @@ h2
 <div class="thinkedit">
 
 <div class="header panel">
-<a href="main.php"><img src="../edit/ressource/image/general/thinkedit_logo.gif" alt="" border="0"/></a>	
+<a href="index.php"><img src="../edit/ressource/image/general/thinkedit_logo.gif" alt="" border="0"/></a>	
 </div>
 
-<div class="content panel">
-
-<h1>Thinkedit installation wizard</h1>
+<div class="title panel">
+Thinkedit installation wizard
+</div>
 
 
 <?php if (isset($out['info'])): ?>
-<div class="info"><?php echo $out['info']?></div>
+<div class="info panel"><?php echo $out['info']?></div>
 <?php endif; ?>
+
+
+
+<div class="content panel">
+
+
+
+
+
 
 
 <?php if (isset($out['title'])): ?>

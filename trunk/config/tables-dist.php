@@ -1,6 +1,8 @@
 <?php
 $data['table']['page']['title']['fr']='Page';
+$data['table']['page']['title']['en']='Page';
 $data['table']['page']['help']['fr']='Une page du sites';
+$data['table']['page']['help']['en']='A page of the site';
 $data['table']['page']['title_field']='title';
 $data['table']['page']['allowed_items']['record']['page']='true';
 $data['table']['page']['use']['navigation']='true';
@@ -8,22 +10,29 @@ $data['table']['page']['use']['navigation']='true';
 
 $data['table']['page']['field']['id']['type']='id';
 $data['table']['page']['field']['title']['title']['fr']='Titre';
+$data['table']['page']['field']['title']['title']['en']='Title';
 $data['table']['page']['field']['title']['help']['fr']='Un titre court est plus percutant';
+$data['table']['page']['field']['title']['help']['en']='A short title is often better';
 $data['table']['page']['field']['title']['type']='string';
 $data['table']['page']['field']['title']['is_title']='true';
 
 $data['table']['page']['field']['sub_title']['title']['fr']='Sous titre';
 $data['table']['page']['field']['sub_title']['help']['fr']='Utilisé dans la page si vous en proposez un';
+$data['table']['page']['field']['sub_title']['title']['en']='Sub title';
+$data['table']['page']['field']['sub_title']['help']['en']='May be used by the page template if you provide one';
 $data['table']['page']['field']['sub_title']['type']='string';
 
 
 $data['table']['page']['field']['intro']['title']['fr']='Introduction';
+$data['table']['page']['field']['intro']['title']['en']='Introduction';
 $data['table']['page']['field']['intro']['type']='richtext';
 $data['table']['page']['field']['body']['title']['fr']='Corps du texte';
-$data['table']['page']['field']['body']['help']['fr']='Regardez dans l\'aide pour ajouter des images';
+$data['table']['page']['field']['body']['title']['en']='Body';
 $data['table']['page']['field']['body']['type']='richtext';
 $data['table']['page']['field']['cover']['title']['fr']='Image de présentation';
-$data['table']['page']['field']['cover']['help']['fr']='Facultative. Si vous en ajoutez une, elle apparaitra dans le site, dans chaque page de listing des sous pages';
+$data['table']['page']['field']['cover']['help']['fr']='Facultative';
+$data['table']['page']['field']['cover']['title']['en']='"Cover" image';
+$data['table']['page']['field']['cover']['help']['en']='Not mandatory';
 $data['table']['page']['field']['cover']['type']='file';
 
 
@@ -81,6 +90,9 @@ $data['table']['relation']['field']['sort_order']['use']['list']='true';
 
 $data['table']['user']['title']['fr']='Utilisateurs';
 $data['table']['user']['help']['fr']='Liste des personnes pouvant utiliser le site et modifier son contenu';
+$data['table']['user']['title']['fr']='Users';
+$data['table']['user']['help']['fr']='List of the users that can log in to the system';
+
 $data['table']['user']['use']['main']='true';
 $data['table']['user']['use']['navigation']='false';
 $data['table']['user']['field']['id']['type']='id';
@@ -121,8 +133,10 @@ $data['table']['node']['field']['cache']['type']='text';
 $data['table']['node']['field']['cache']['use']['list']='false';
 $data['table']['node']['field']['cache']['use']['edit']='false';
 $data['table']['node']['field']['template']['title']['fr']='Modèle de page';
+$data['table']['node']['field']['template']['title']['en']='Page template';
 $data['table']['node']['field']['template']['type']='template';
 $data['table']['node']['field']['publish']['title']['fr']='Statut de publication';
+$data['table']['node']['field']['publish']['title']['en']='Publish status';
 $data['table']['node']['field']['publish']['type']='publish';
 $data['table']['node']['field']['left_id']['type']='int';
 $data['table']['node']['field']['left_id']['use']['list']='false';

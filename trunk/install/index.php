@@ -431,10 +431,11 @@ $node->rebuild();
 
 $out['title'] = 'Congratulation!';
 $out['help'] = 'It seems everything is ready to roll!';
+$out['info'] = 'Installation finished';
 $out['content'] = '
 You can now start using thinkedit. <a href="../">Go to your root folder and see your site</a>. You can also <a href="../edit/">go to the admin interface</a>.
 Don\'t forget to return here if you change your database schema, your config files or if you upgrade. The process will be the same each time.
-		<p>Currently, it is better to delete the install folder. This is alpha software ;-)</p>		
+		<p><em>Currently, it is better to delete the install folder (/install) for security reasons.</em> Move it outside document root for instance, in case you need it again. Or password protect it.</p>		
 
 ';
 
