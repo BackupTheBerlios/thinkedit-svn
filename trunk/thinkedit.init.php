@@ -106,8 +106,12 @@ require_once dirname(__FILE__) . '/class/thinkedit.class.php';
 
 
 
-/*********************** Configuration object ******************/
+/*********************** Thinkedit object ******************/
 $thinkedit = new thinkedit();
+
+
+
+/*********************** Configuration object ******************/
 $thinkedit->configuration = $thinkedit->newConfig();
 
 

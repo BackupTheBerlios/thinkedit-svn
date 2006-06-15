@@ -137,7 +137,9 @@ class user
 				}
 				else
 				{
-						return 'fr';
+						// return first locale defined in config
+						return $thinkedit->configuration->getMainLocale();
+						
 				}
 		}
 		

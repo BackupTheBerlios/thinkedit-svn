@@ -209,6 +209,11 @@ class config
 				}
 		}
 		
+	function getMainLocale()
+		{
+				return current($this->getLocaleList());
+		}
+		
 		
 }
 

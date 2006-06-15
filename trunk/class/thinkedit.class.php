@@ -823,7 +823,26 @@ class thinkedit
 		
 		
 		
-		
+		/**
+		* Return true if Thinkedit is installed
+		* Installed currently means : there is a db.php file in /config
+		* 
+		*/
+		function isInstalled()
+		{
+				if (file_exists(ROOT . '/config/db.php'))
+				{
+						return true;
+				}
+				else
+				{
+						return false;
+				}
+		}
+
+
+
+
 }
 
 

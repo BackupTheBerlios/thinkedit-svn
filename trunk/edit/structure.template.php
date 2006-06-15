@@ -2,10 +2,10 @@
 
 <iframe name="status" width="500" height="20" frameborder="0" scrolling="no"></iframe>
 
-<?php $x=1; ?>
 
+<?php /*************************** Top toolbar *****************************/?>
 
-<div class="panel">
+<div class="toolbar">
 
 <?php if (isset($out['structure_breadcrumb'])) : ?>
 <select size="1" onChange="jump('parent',this,0)">
@@ -21,9 +21,11 @@
 <?php if (isset($out['go_up_url'])): ?>
 <a class="action_button" style="margin-bottom: 30px;" href="<?php echo $out['go_up_url'] ?>"><?php echo translate('go_up')?></a>
 <?php endif;?>
-
-
 </div>
+
+
+
+<?php /*************************** List *****************************/?>
 
 <?php if (isset($out['nodes'])) : ?>
 
@@ -244,8 +246,11 @@ $i++;
 </div>
 <?php endif; ?>
 
-<div class="toolbar">
 
+<?php /*************************** Bottom toolbar *****************************/?>
+
+
+<div class="toolbar">
 
 <?php if (isset($out['allowed_items'])) : ?>
 <select size="1" onChange="jump('parent',this,0)">

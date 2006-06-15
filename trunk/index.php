@@ -4,6 +4,18 @@
 //user
 //thinkedit
 require_once('thinkedit.init.php');
+
+
+/*********************** Is thinkedit installed ? ******************/
+if (!$thinkedit->isInstalled())
+{
+		$msg = 'Thinkedit is not installed. Go to the <a href="' . ROOT_URL . '/install/">installer</a> to install it';
+		trigger_error($msg);
+		echo ($msg);
+}
+
+
+
 require_once ROOT . '/class/url.class.php';
 
 
