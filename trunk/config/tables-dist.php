@@ -90,8 +90,8 @@ $data['table']['relation']['field']['sort_order']['use']['list']='true';
 
 $data['table']['user']['title']['fr']='Utilisateurs';
 $data['table']['user']['help']['fr']='Liste des personnes pouvant utiliser le site et modifier son contenu';
-$data['table']['user']['title']['fr']='Users';
-$data['table']['user']['help']['fr']='List of the users that can log in to the system';
+$data['table']['user']['title']['en']='Users';
+$data['table']['user']['help']['en']='List of the users that can log in to the system';
 
 $data['table']['user']['use']['main']='true';
 $data['table']['user']['use']['navigation']='false';
