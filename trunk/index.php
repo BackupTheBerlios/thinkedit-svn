@@ -9,7 +9,7 @@ require_once('thinkedit.init.php');
 /*********************** Is thinkedit installed ? ******************/
 if (!$thinkedit->isInstalled())
 {
-		$msg = 'Thinkedit is not installed. Go to the <a href="' . ROOT_URL . '/install/">installer</a> to install it';
+		$msg = '<h1>Thinkedit is not installed. Go to the <a href="./install/">installer</a> to install it</h1>';
 		trigger_error($msg);
 		echo ($msg);
 }

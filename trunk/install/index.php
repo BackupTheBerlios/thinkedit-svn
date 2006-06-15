@@ -85,10 +85,10 @@ if (!isset($thinkedit->config['site']['database']['main']))
 				$out['help'] = 'Enter your database settings here';
 				$out['content'] = '
 				<form method="post">
-				Host : <input type="text" name="db_host" value="localhost"> <br/>
-				Database name : <input type="text" name="db_database"> <br/>
-				Login : <input type="text" name="db_login"> <br/>
-				Password : <input type="text" name="db_password"> <br/>
+				Host : <br/> <input type="text" name="db_host" value="localhost"> <br/> <br/>
+				Database name :  <br/><input type="text" name="db_database"> <br/> <br/>
+				Login :  <br/><input type="text" name="db_login"> <br/> <br/>
+				Password :  <br/><input type="text" name="db_password"> <br/> <br/>
 				
 				<input type="submit">
 				
@@ -132,10 +132,10 @@ if (!$thinkedit->db->canConnect())
 				$out['help'] = '(re)enter your database settings here, and ensure that the database exists and the login and password are ok';
 				$out['content'] = '
 				<form method="post">
-				Host : <input type="text" name="db_host" value="localhost"> <br/>
-				Database name : <input type="text" name="db_database"> <br/>
-				Login : <input type="text" name="db_login"> <br/>
-				Password : <input type="text" name="db_password"> <br/>
+				Host : <br/><input type="text" name="db_host" value="localhost"> <br/><br/>
+				Database name :<br/> <input type="text" name="db_database"> <br/><br/>
+				Login : <br/><input type="text" name="db_login"> <br/><br/>
+				Password : <br/><input type="text" name="db_password"> <br/><br/>
 				
 				<input type="submit">
 				
@@ -317,8 +317,8 @@ if ($user->count() == 0)
 		$out['help'] = 'Please create the first admin user bellow';
 		$out['content'] = '
 				<form method="post">
-				Login : <input type="text" name="te_login"> <br/>
-				Password : <input type="text" name="te_password"> <br/>
+				Login :<br/> <input type="text" name="te_login"> <br/><br/>
+				Password : <br/><input type="text" name="te_password"> <br/><br/>
 				
 				<input type="submit">
 				
@@ -366,7 +366,7 @@ if (!$node->loadRootNode())
 		$out['help'] = 'Please create your first page. The title can be changed later';
 		$out['content'] = '
 				<form method="post">
-				Title : <input type="text" name="te_node_title" value="Homepage"> <br/>
+				Title :<br/> <input type="text" name="te_node_title" value="Homepage"> <br/><br/>
 				<input type="submit">
 				
 				</form>
@@ -376,6 +376,45 @@ if (!$node->loadRootNode())
 		include_once 'install.template.php';
 		exit;
 		}
+}
+
+/***************************** Paths and urls *****************************/
+if (!isset($thinkedit->config['site']['root_url']))
+{
+		// if form has been sent, update config
+		if ($url->get('root_url'))
+		{
+				
+				$path_config['site']['root_url'] = $url->get('root_url');
+				require_once ROOT . '/class/php_parser.class.php';
+				$parser = new php_parser();
+				$parser->save(ROOT . '/config/path.php', $path_config);
+				$out['info'] = 'The configuration (in /config/path.php) file has been saved';
+				$out['content'] = '<a href="">Go to next step</a>';
+				include_once 'install.template.php';
+				exit;
+		}
+		else
+		{
+				$url = new url();
+				$root_url = $url->self;
+				// remove parts of the url (/install/index.php is not needed)
+				$root_url = str_replace('/index.php', '', $root_url);
+				$root_url = str_replace('install', '', $root_url);
+				
+				$out['title'] = 'Root url';
+				$out['help'] = 'Verify the url to your thinkedit installation';
+				$out['content'] = '
+				<form method="post">
+				URL :<br/> <input type="text" name="root_url" value="' . $root_url . '" size="50"> <br/><br/>
+				<input type="submit">
+				
+				</form>
+				';
+		}
+		// include template :
+		include_once 'install.template.php';
+		exit;
 }
 
 

@@ -67,7 +67,7 @@ $data['preview']='Preview';
 $data['structure_title']='Web site structure';
 $data['you_are_here']='You are here';
 $data['node_add_new']='Add';
-$data['confirm_node_delete']='Are you sure you want to delete this location ?';
+$data['confirm_node_delete']='Are you sure you want to delete this node ?';
 $data['file_delete']='Delete this file';
 $data['folder_empty']='Folder is empty';
 $data['empty_foldername_provided']='Empty foldername provided';
@@ -86,7 +86,7 @@ $data['relate']='Relate';
 $data['unrelate']='Unrelate';
 $data['save_before_relating']='You must save this item before you can make relations to it';
 $data['headers_sent_help']='HTTP headers have been already sent. You can still continue using the tool by clicking on this link';
-$data['node_deleted_successfully']='The node has been deleted successfully';
+$data['node_deleted_successfully']='This node has been deleted successfully';
 $data['custom_templates_not_found']='Custom template not found';
 $data['menu']='Menu';
 $data['actions']='Actions';
@@ -96,5 +96,9 @@ $data['copy']='Copy';
 $data['paste']='Paste';
 $data['translate']='Translate';
 $data['cannot_add_here']='Cannot add here';
+$data['root']='Root';
+$data['node_cut_ok']='Node has been cut';
+$data['node_empty']='This node is empty';
+$data['node_unpublished_successfully']='The node has been unpublished successfully';
 
 ?>

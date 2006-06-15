@@ -150,7 +150,7 @@ class config
 				}
 				else
 				{
-						trigger_error('config::getRootUrl() root_url not defined in config, please define it in config.xml', E_USER_ERROR);
+						trigger_error('config::getRootUrl() root_url not defined in config, please define it in config.xml');
 						return false;
 				}
 				

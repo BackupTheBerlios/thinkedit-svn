@@ -33,10 +33,11 @@ class filesystem
 				}
 				else
 				{
-						trigger_error('filesystem:filesystem() : you must provide a root_url in filesystem config', E_USER_ERROR);
+						//trigger_error('filesystem:filesystem() : you must provide a root_url in filesystem config', E_USER_ERROR);
+						$this->root_url = ROOT_URL . $this->config['root_path']['relative'];
 				}
 				
-				
+				//echo $this->root_url .'<br/>';
 				
 				// get path from config
 				if (isset($this->config['root_path']['relative']))
