@@ -256,7 +256,7 @@ class table
 				if (isset($this->config['use'][$what]))
 				{
 						//print_r ( $this->config['use']);
-						if ($this->config['use'][$what] == 'true')
+						if ($this->config['use'][$what] == 'true' || $this->config['use'][$what] == 1)
 						{
 								return true;
 						}

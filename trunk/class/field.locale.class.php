@@ -29,6 +29,11 @@ class field_locale extends field
 			return $this->get();
 	}
 	
+	
+	function validate()
+	{
+			
+	}
 
 }
 ?>

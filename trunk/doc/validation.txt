@@ -1,0 +1,10 @@
+Validation
+
+
+An example in a config file : 
+
+$data['table']['page']['field']['title']['validation']['validate']=true;
+-> this would ask the field to validate before submiting a form
+For instance, you don't always need to validate fields
+
+You can also add validators

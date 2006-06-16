@@ -77,6 +77,10 @@ class field_id extends field
 		}
 	
 		
+		function validate()
+		{
+				
+		}
 		
 		
 }
