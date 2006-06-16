@@ -53,6 +53,7 @@ $participation->enableAkismet();
 
 
 // will send an email to $email when something is posted
+// will add links to the interface to edit the post
 $participation->notifyByEmail($email);
 
 // Various strings
