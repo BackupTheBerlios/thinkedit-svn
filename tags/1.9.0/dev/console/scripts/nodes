@@ -1,0 +1,41 @@
+include '../../thinkedit.init.php';
+
+
+$page = $thinkedit->newRecord('multilingual_page');
+
+$page->set('id', 1);
+$page->load();
+echo $page->debug();
+
+
+/*
+
+include '../../thinkedit.init.php';
+
+$node = $thinkedit->newNode();
+$node->loadRootNode();
+echo $node->getTitle();
+*/
+/*
+$page = $thinkedit->newRecord('page');
+
+$page->set('title', 'bonjour les amis');
+
+$page->save();
+
+$node->add($page);
+*/
+/*
+$children = $node->getChildren(true);
+
+if ($children)
+{
+foreach ($children as $child)
+{
+echo $child->getTitle();
+echo '<br>';
+}
+}
+
+print_r(count($node->getChildren()));
+*/
