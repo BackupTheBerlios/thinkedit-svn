@@ -16,6 +16,7 @@ $data['table']['page']['field']['title']['help']['en']='A short title is often b
 $data['table']['page']['field']['title']['type']='string';
 $data['table']['page']['field']['title']['is_title']='true';
 
+
 $data['table']['page']['field']['sub_title']['title']['fr']='Sous titre';
 $data['table']['page']['field']['sub_title']['help']['fr']='Utilisé dans la page si vous en proposez un';
 $data['table']['page']['field']['sub_title']['title']['en']='Sub title';
@@ -29,6 +30,7 @@ $data['table']['page']['field']['intro']['type']='richtext';
 $data['table']['page']['field']['body']['title']['fr']='Corps du texte';
 $data['table']['page']['field']['body']['title']['en']='Body';
 $data['table']['page']['field']['body']['type']='richtext';
+//$data['table']['page']['field']['body']['validation']['is_required']=1;
 $data['table']['page']['field']['cover']['title']['fr']='Image de présentation';
 $data['table']['page']['field']['cover']['help']['fr']='Facultative';
 $data['table']['page']['field']['cover']['title']['en']='"Cover" image';

@@ -100,5 +100,9 @@ $data['root']='Root';
 $data['node_cut_ok']='Node has been cut';
 $data['node_empty']='This node is empty';
 $data['node_unpublished_successfully']='The node has been unpublished successfully';
+$data['title_field_is_required']='Title field is required!';
+$data['field_is_required']='Field is required!';
+$data['node_added_sucessfully']='Node added sucessfully!';
+$data['please_enter_title']='Please enter the title';
 
 ?>

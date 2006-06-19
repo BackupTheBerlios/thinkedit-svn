@@ -80,7 +80,7 @@ $i++;
 
 
 <?php if (isset($node['edit_url'])): ?>
-<a class="action_button" href="<?php echo $node['edit_url']?>">
+<a class="action_button" href="<?php echo $node['edit_url']?>" onclick="custompopup('<?php echo $node['edit_url']?>', 80);return false">
 <!--
 <img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('node_edit'); ?>">
 -->
@@ -253,6 +253,17 @@ $i++;
 <div class="toolbar">
 
 <?php if (isset($out['allowed_items'])) : ?>
+<select size="1" onChange="ask_title('parent',this,1, '<?php echo translate('please_enter_title');?>')">
+<option value=""><?php echo translate('node_add_new') ?></option>
+<?php foreach ($out['allowed_items'] as $item): ?>
+<option value="<?php echo $item['direct_add_action'] ?>"><?php echo ucfirst($item['title']) ?></option>
+<?php endforeach; ?>
+</select>
+<?php endif; ?>
+
+
+<!--
+<?php if (isset($out['allowed_items'])) : ?>
 <select size="1" onChange="jump('parent',this,0)">
 <option value=""><?php echo translate('node_add_new') ?></option>
 <?php foreach ($out['allowed_items'] as $item): ?>
@@ -260,7 +271,7 @@ $i++;
 <?php endforeach; ?>
 </select>
 <?php endif; ?>
-
+-->
 
 <?php if (isset($out['clipboard']['cut_link'])) : ?>
 <a href="<?php echo $out['clipboard']['cut_link']?>" target="status" class="action_button">

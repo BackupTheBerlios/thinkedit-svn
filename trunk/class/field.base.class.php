@@ -1,5 +1,5 @@
 <?php
-
+require_once('validation.class.php');
 
 class field
 {
@@ -78,10 +78,7 @@ class field
 				return $out;
 		}
 		
-		function validate()
-		{
-				return true;
-		}
+	
 		
 		function getHelp()
 		{
@@ -230,6 +227,51 @@ class field
 		{
 				trigger_error('todo');
 		}
+		
+		
+		function isRequired()
+		{
+				if (isset($this->config['validation']['is_required']))
+				{
+						return true;
+				}
+				else
+				{
+						return false;
+				}
+		}
+		
+		function validate()
+		{
+				if ($this->isRequired() && $this->isEmpty())
+				{
+						$error['type'] = 'required';
+						$error['help'] = translate('field_is_required');
+						$this->errors[] = $error;
+				}
+				
+				if ($this->isTitle() && $this->isEmpty())
+				{
+						$error['type'] = 'required';
+						$error['help'] = translate('title_field_is_required');
+						$this->errors[] = $error;
+				}
+				
+				
+				if (isset($this->errors) && is_array($this->errors))
+				{
+						return false;
+				}
+				else
+				{
+						return true;
+				}
+		}
+		
+		
+		
+		
+		
 		
 }
 

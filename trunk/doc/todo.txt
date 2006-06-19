@@ -22,6 +22,8 @@ TODO (by order of importance) :
 - review all security todo in the code
 - plugin/hooks/alert system
 - validation of fields, with feedback in the edit UI
+- logout button (logout when browser is closed)
+- avoid duplication of actions (framework wide utility)
 - fields in/out filters (filters before a field is saved to the db and after it is loaded from the db)
 - optimize node->getAllNodes and menu classes
 - te_translate() for public website (where are public translations stored, in another table with fallback to admin translations?)

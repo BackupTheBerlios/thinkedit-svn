@@ -112,8 +112,29 @@ if ($url->get('mode') == 'new_node')
 }
 
 
-// handle adding new node from existing record
-// it's the same
+
+/********************* New node action **********************/
+// handle adding new node directly
+// would be called like this : structure.php?action=new_node&object_class=record&object_type=page&title=hello+world
+if ($url->get('action') == 'new_node')
+{
+		$url = $thinkedit->newUrl();
+		$object = $url->getObject('object_');
+		$object->setTitle($url->get('title'));
+		
+		//echo $object->debug();
+		
+		$object->save();
+		$current_node->add($object);
+		$out['info'] = translate('node_added_sucessfully');
+		/*
+		$url->keep('node_id');
+		//$url->debug();
+		$url->redirect();
+		*/
+		
+}
+
 
 /********************* Delete action **********************/
 // handle deleting node
@@ -557,6 +578,15 @@ if (is_array($allowed_items))
 						$url->set('node_id', $current_node->getId());
 						$url->addObject($table);
 						$item['action'] = $url->render('edit.php');
+						
+						$url = new url();
+						$url->set('action', 'new_node');
+						$url->set('node_id', $current_node->getId());
+						$tmp_record = $thinkedit->newRecord($table->getId()); 
+						$url->addObject($tmp_record, 'object_');
+						$item['direct_add_action'] = $url->render();
+						
+						
 						$out['allowed_items'][] = $item;
 				}
 		}

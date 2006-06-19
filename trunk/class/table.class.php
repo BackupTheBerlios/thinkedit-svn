@@ -95,6 +95,11 @@ class table
 				return $data;
 		}
 		
+		function getId()
+		{
+				return $this->getTableName();
+		}
+		
 		
 		function hasField($field_name)
 		{

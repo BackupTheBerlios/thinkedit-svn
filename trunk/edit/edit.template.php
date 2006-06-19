@@ -92,10 +92,14 @@ blablabla
 <?php else: ?>
 <!--<input class="action_button" type="submit" value="<?php echo translate('save_button') ?>" name="save">-->
 <input class="action_button" type="submit" value="<?php echo translate('save_and_return_to_node_button') ?>" name="save_and_return_to_structure">
+<input class="action_button" type="submit" value="<?php echo translate('cancel') ?>" name="save_and_return_to_structure" onclick="self_close(); return false;">
 <?php endif; ?>
 
 </form>
 
+<br/>
+<br/>
+<br/>
 
 </div>
 
