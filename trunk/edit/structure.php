@@ -359,7 +359,7 @@ if (isset($nodes) && is_array($nodes))
 				// reset node_info for next loop
 				$node_info = false;
 				
-				/********************* Visit link *****************/
+				/********************* Init *****************/
 				
 				$url = new url();
 				$url->set('node_id', $node_item->getId());
@@ -411,8 +411,6 @@ if (isset($nodes) && is_array($nodes))
 				
 				$url = new url();
 				$url->set('node_id', $node_item->getId());
-				$url->addObject($content);
-				$url->set('mode', 'edit_node');
 				$node_info['edit_url'] = $url->render('edit.php');
 				
 				/********************* Publish link *****************/

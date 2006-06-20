@@ -1,10 +1,8 @@
-<style>
-.field_box
-{
-		
-}
+<?php if (isset($out['js'])): ?>
+<?php echo $out['js'] ?>
+<?php endif; ?>
 
-</style>
+
 
 
 <div class="content">

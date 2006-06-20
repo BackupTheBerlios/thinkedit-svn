@@ -8,54 +8,60 @@ function popup(url, title)
 
 /* from http://www.quirksmode.org/js/croswin.html */
 
-var newwindow = '';
-
-
-function popup(url)
+function popup(url, name)
 {
-	if (!newwindow.closed && newwindow.location)
-	{
-		newwindow.location.href = url;
-	}
-	else
-	{
-		newwindow=window.open(url,'name','height=400,width=500,scrollbars=yes,resizable=yes,modal=yes');
-		if (!newwindow.opener) newwindow.opener = self;
-	}
-	if (window.focus) {newwindow.focus()}
-	return false;
+		var newwindow = window.open(url,name,'height=400,width=500,scrollbars=yes,resizable=yes,modal=yes');
+		//window.open(url,'name','height=400,width=500,scrollbars=yes,resizable=yes,modal=yes');
+		
+		
+		if (!newwindow.opener)
+		{
+				newwindow.opener = self;
+		}
+		
+		if (window.focus) 
+		{
+				newwindow.focus();
+		}
+		
+		return false;
 }
 
 
-function custompopup(url, size)
+function custompopup(url, name, size)
 {
-	if (!newwindow.closed && newwindow.location)
-	{
-			newwindow.location.href = url;
-	}
-	else
-	{
-			if(!size)
-			{
-					size = 50;
-			}
-			w = screen.width * size / 100;
+		//alert(window.title);
 		
-			
-			h = screen.height * size / 100;
-			var winl = (screen.width-w)/2;
-			var wint = (screen.height-h)/2;
-			var settings ='height='+h+',';
-			settings +='width='+w+',';
-			settings +='top='+wint+',';
-			settings +='left='+winl+',';
-			settings +='scrollbars=yes,';
-			settings +='resizable=yes';
-			newwindow=window.open(url,'name',settings);
-			if (!newwindow.opener) newwindow.opener = self;
-	}
-	if (window.focus) {newwindow.focus()}
-	return false;
+		if(!size)
+		{
+				size = 50;
+		}
+		w = screen.width * size / 100;
+		
+		
+		h = screen.height * size / 100;
+		var winl = (screen.width-w)/2;
+		var wint = (screen.height-h)/2;
+		var settings ='height='+h+',';
+		settings +='width='+w+',';
+		settings +='top='+wint+',';
+		settings +='left='+winl+',';
+		settings +='scrollbars=yes,';
+		settings +='resizable=yes';
+		var newwindow=window.open(url,'name',settings);
+		//window.open(url,name,settings);
+		
+		if (!newwindow.opener)
+		{
+				newwindow.opener = self;
+		}
+		
+		if (window.focus) 
+		{
+				newwindow.focus()
+		}
+		
+		return false;
 }
 
 
@@ -77,17 +83,17 @@ function toggle(targetId)
 
 function hide_menus(id)
 {
-menus = document.getElementsByClassName('context_menu');
+		menus = document.getElementsByClassName('context_menu');
 		menus.each(function(menu)
 		{
-			if (id && menu.id == id)
-			{
-			}
-			else
-			{
-			Element.hide(menu);
-			}
-			
+				if (id && menu.id == id)
+				{
+				}
+				else
+				{
+						Element.hide(menu);
+				}
+				
 		});
 }
 
@@ -100,46 +106,46 @@ function toggle_and_move(id, e)
 
 function moveObject( obj, e ) 
 {
-  // step 1
-  var tempX = 0;
-  var tempY = 0;
-  var offset = 5;
-  var objHolder = obj;
-
-  // step 2
-  obj = document.getElementById( obj )
-  if (obj==null) return;
-
-  // step 3
-  if (document.all) 
-	{
-    tempX = event.clientX + document.body.scrollLeft;
-    tempY = event.clientY + document.body.scrollTop;
-  } 
-	else 
-	{
-    tempX = e.pageX;
-    tempY = e.pageY;
-  }
-
-  // step 4
-  if (tempX < 0)
-			{
-			tempX = 0
-			}
-			
-  if (tempY < 0)
-			{
-			tempY = 0
-			}
-
-  // step 5
-  obj.style.top  = (tempY + offset) + 'px';
-  obj.style.left = (tempX + offset) + 'px';
-
-  // step 6
-  toggle(objHolder);
- }
+		// step 1
+		var tempX = 0;
+		var tempY = 0;
+		var offset = 5;
+		var objHolder = obj;
+		
+		// step 2
+		obj = document.getElementById( obj )
+		if (obj==null) return;
+		
+		// step 3
+		if (document.all) 
+		{
+				tempX = event.clientX + document.body.scrollLeft;
+				tempY = event.clientY + document.body.scrollTop;
+		} 
+		else 
+		{
+				tempX = e.pageX;
+				tempY = e.pageY;
+		}
+		
+		// step 4
+		if (tempX < 0)
+		{
+				tempX = 0
+		}
+		
+		if (tempY < 0)
+		{
+				tempY = 0
+		}
+		
+		// step 5
+		obj.style.top  = (tempY + offset) + 'px';
+		obj.style.left = (tempX + offset) + 'px';
+		
+		// step 6
+		toggle(objHolder);
+}
 
 
 
@@ -174,13 +180,13 @@ function popup_cancel()
 
 function edit_save()
 {
-self.close();
+		self.close();
 }
 
 
 function to_opener_field(field, value)
 {
-	window.opener.document.edit_form[field].value = value;
+		window.opener.document.edit_form[field].value = value;
 }
 
 
@@ -203,7 +209,7 @@ function confirm_link(message, url)
 {
 		input_box=confirm(message);
 		if (input_box==true)
-		
+				
 		{ 
 				// Output when OK is clicked
 				window.location.href=url; 
@@ -279,19 +285,19 @@ function set_user_changed()
 
 function adjustIFrameSize (iframeWindow) 
 {
-  if (iframeWindow.document.height) {
-    var iframeElement = parent.document.getElementById(iframeWindow.name);
-    iframeElement.style.height = iframeWindow.document.height + 50 + 'px';
+		if (iframeWindow.document.height) {
+				var iframeElement = parent.document.getElementById(iframeWindow.name);
+				iframeElement.style.height = iframeWindow.document.height + 50 + 'px';
     }
-  else if (document.all) {
-    var iframeElement = parent.document.all[iframeWindow.name];
-    if (iframeWindow.document.compatMode && iframeWindow.document.compatMode != 'BackCompat') 
-    {
-      iframeElement.style.height = iframeWindow.document.documentElement.scrollHeight +  50 +  'px';
-
-    }
-    else {
-      iframeElement.style.height = iframeWindow.document.body.scrollHeight  + 50 +  'px';
-    }
-  }
+		else if (document.all) {
+				var iframeElement = parent.document.all[iframeWindow.name];
+				if (iframeWindow.document.compatMode && iframeWindow.document.compatMode != 'BackCompat') 
+				{
+						iframeElement.style.height = iframeWindow.document.documentElement.scrollHeight +  50 +  'px';
+						
+				}
+				else {
+						iframeElement.style.height = iframeWindow.document.body.scrollHeight  + 50 +  'px';
+				}
+		}
 }

@@ -4,20 +4,13 @@ See licence.txt for licence
 Edit displays an edit page for the current $table, $id, $db_locale
 todo : validation of the request arguments agains the config file to avoid hack
 
-input :
-
-
-- action : edit_node, new_node, edit, new
-- object_ : the object to edit
-
-
 big simplification :
 
 Input is :
 
-- id
-- class
-- type
+- object_id
+- object_class
+- object_type
 -> record edit mode
 
 
@@ -37,60 +30,36 @@ check_user();
 $url = $thinkedit->newUrl();
 
 
-if (!$url->getParam('type'))
-{
-		trigger_error('edit : you must supply a type in the url');
-}
-
-if (!$url->getParam('class'))
-{
-		trigger_error('edit : you must supply a class in the url');
-}
-
-
-if ($url->get('mode') == 'edit_node')
+/**************** node or record ? ****************/
+if ($url->getParam('node_id')) // node and record
 {
 		$out['edit_node'] = true;
 		$edit_node = true;
 		$node_id = $url->get('node_id');
-		
 		$node = $thinkedit->newNode();
 		$node->setId($node_id);
 		$node->load();
+		$record = $node->getContent();
+}
+else // only a record
+{
+		$table = $url->get('type');
+		$out['table'] = $table;
 		
-}
-
-
-if ($url->get('mode') == 'new_node')
-{
-		$out['edit_node'] = true;
-		$node = $thinkedit->newNode();
-		$new_node = true;
-}
-else
-{
-		$new_node = false;
-}
-
-
-
-$table = $url->get('type');
-$out['table'] = $table;
-
-$record = $thinkedit->newRecord($url->getParam('type'));
-$table_object = $thinkedit->newTable($url->getParam('type'));
-
-$keys = $record->getPrimaryKeys();
-
-foreach ($keys as $key)
-{
-		if ($url->getParam($key))
+		$record = $thinkedit->newRecord($url->getParam('type'));
+		$table_object = $thinkedit->newTable($url->getParam('type'));
+		
+		$keys = $record->getPrimaryKeys();
+		
+		foreach ($keys as $key)
 		{
-				$record->set($key, $url->getParam($key));
+				if ($url->getParam($key))
+				{
+						$record->set($key, $url->getParam($key));
+				}
 		}
+		$record->load();
 }
-
-$record->load();
 
 /****************** Handle save ******************/
 if ($url->get('action')=='save')
@@ -108,87 +77,50 @@ if ($url->get('action')=='save')
 		if ($record->save())
 		{
 				$out['info'] = translate('item_save_successfully');
+				$save_and_close = true;
 		}
 		else
 		{
 				trigger_error('edit : failed saving record');
+				$save_and_close = false;
 		}
 }
+
 
 
 /****************** Handle Node save ******************/
-// we save only if the node already exists
-if ($url->get('mode') <> 'new_node')
+if (isset($node) && $url->get('action')=='save')
 {
-		if ($url->get('action')=='save' && isset($node))
+		debug($_REQUEST, '(node) Request');
+		foreach ($node->record->field as $field)
 		{
-				debug($_REQUEST, '(node) Request');
-				foreach ($node->record->field as $field)
+				// we take only the posted form data with the node_ prefix
+				if (isset($_POST['node_' . $field->getName()]))
 				{
-						// we take only the posted form data with the node_ prefix
-						if (isset($_POST['node_' . $field->getName()]))
-						{
-								$node->record->set($field->getName(), $_POST['node_' . $field->getName()]);
-						}
-				}
-				
-				debug($record, 'Node record before saving');
-				if ($node->save())
-				{
-						$out['info'] = translate('item_save_successfully');
-				}
-				else
-				{
-						trigger_error('edit : failed saving node record');
-				}
-				if ($url->get('mode') == 'edit_node')
-				{
-						$node->clearContentCache();
+						$node->record->set($field->getName(), $_POST['node_' . $field->getName()]);
 				}
 		}
-}
-
-
-
-/************** handle add node *****************/
-// if we have saved something, and if we need to add to thge node tree, we redirect with the record ID
-
-$url = $thinkedit->newUrl();
-
-if ($url->get('action')=='save' && $url->get('mode') == 'new_node')
-{
-		$url->keep('mode');
-		$url->keep('node_id');
-		// $url->debug();
 		
-		
-		$url->addObject($record, 'object_');
-		$url->redirect('structure.php');
-		/*
-		$redirect = $url->linkTo($record, 'structure.php');
-		header('location: ' . $redirect); // todo better url class api
-		*/
-}
-
-if ($url->get('action')=='save' && $url->get('mode') == 'edit_node')
-{
-		
-		if ($url->get('save_and_return_to_structure'))
+		debug($record, 'Node record before saving');
+		if ($node->save())
 		{
-				$url->set('info', 'edit_successfull');
-				$url->keep('mode');
-				$url->keep('node_id');
-				$url->redirect('structure.php');
+				$out['info'] = translate('item_save_successfully');
+				$save_and_close = true;
 		}
-		
-		
-		/*
-		$redirect = $url->linkTo($record, 'structure.php');
-		header('location: ' . $redirect); // todo better url class api
-		*/
+		else
+		{
+				trigger_error('edit : failed saving node record');
+				$save_and_close = false;
+		}
+		$node->clearContentCache();
 }
 
 
+/******************* Handle close window ************/
+if (isset($save_and_close) && $save_and_close)
+{
+		$out['js'] =  '<script>popup_save()</script>';
+}
 
 
 // generating the items list from the config array
@@ -257,62 +189,15 @@ $out['relation']['url'] = $url->render('relation.php');
 $url = new url();
 
 
-// generates the breadcrumb data
-
-
-//$out['breadcrumb'][0]['title'] = translate('home_link');
-//$out['breadcrumb'][0]['url'] = 'main.php';
-
-
-// if we are from a node form
-if ($url->get('mode') == 'edit_node' or $url->get('mode') == 'new_node')
-{
-		$out['breadcrumb'][1]['title'] = translate('structure');
-		
-		if ($parent = $node->getParent())
-		{
-				$url->set('node_id', $parent->getId());
-		}
-		else
-		{
-				$url->set('node_id', $node->getId());
-				//	$url->keep('node_id');
-		}
-		$out['breadcrumb'][1]['url'] = $url->render('structure.php');
-}
-else
-{
-		$out['breadcrumb'][1]['title'] = $table_object->getTitle();
-		$out['breadcrumb'][1]['url'] = $url->linkTo($table_object, 'list.php');
-}
-
-$out['breadcrumb'][2]['title'] = translate('editing_link');
-$out['breadcrumb'][2]['url'] = '';
-
-
-
 // describes the banner :
 $out['banner']['needed'] = true;
-$out['banner']['title'] = $table_object->getTitle();
-$out['banner']['message'] = $table_object->getHelp();
-$out['banner']['image'] = $table_object->getIcon();
-
-
-
+$out['banner']['title'] = $record->getTitle();
+//$out['banner']['message'] = $record->getHelp();
+$out['banner']['image'] = $record->getIcon();
 
 
 debug($out, 'OUT');
 debug($_REQUEST, 'Request');
-
-
-if ($url->get('save_and_return_to_list'))
-{
-		$url->set('info', 'edit_successfull');
-		$url->set('action', 'save');
-		$url->keepParam('type');
-		$url->keepParam('class');
-		$url->redirect('list.php');
-}
 
 
 // include the templates
@@ -321,7 +206,4 @@ include('header.template.php');
 include('edit.template.php');
 include('footer.template.php');
 
-
-
 ?>
-

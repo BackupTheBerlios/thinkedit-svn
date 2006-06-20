@@ -80,7 +80,7 @@ $i++;
 
 
 <?php if (isset($node['edit_url'])): ?>
-<a class="action_button" href="<?php echo $node['edit_url']?>" onclick="custompopup('<?php echo $node['edit_url']?>', 80);return false">
+<a class="action_button" href="<?php echo $node['edit_url']?>" onclick="custompopup('<?php echo $node['edit_url']?>', 'editor' , 80);return false">
 <!--
 <img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('node_edit'); ?>">
 -->

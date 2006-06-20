@@ -81,7 +81,7 @@ $i++;
 
 
 <div style="margin-top:20px">
-<a class="action_button" href="<?php echo $out['browse_url']?>" target="_blank" onClick="popup('<?php echo $out['browse_url']?>');return false"><?php echo translate('add_relation') ?></a>
+<a class="action_button" href="<?php echo $out['browse_url']?>" target="_blank" onClick="popup('<?php echo $out['browse_url']?>', 'relation_browser');return false"><?php echo translate('add_relation') ?></a>
 </div>
 
 </div>
