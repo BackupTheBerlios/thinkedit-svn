@@ -72,6 +72,7 @@ class url
 				foreach ($_GET as $key=>$value)
 				{
 						$this->orig_param[$key] = $value;
+						$this->orig_get_param[$key] = $value;
 				}
 				
 				// security todo
@@ -247,6 +248,21 @@ class url
 						$this->keepParam($key);
 				}
 		}
+		
+		/*
+		Keep all existing GET parameters when rendering an url
+		*/
+		function keepAllGet()
+		{
+				if (isset($this->orig_get_param))
+				{
+						foreach ($this->orig_get_param as $key=>$value)
+						{
+								$this->keepParam($key);
+						}
+				}
+		}
+		
 		
 		/*
 		unset a user defined parameter

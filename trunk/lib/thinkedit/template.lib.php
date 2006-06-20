@@ -163,7 +163,7 @@ function te_locale_chooser()
 						$out .= '[<a href="' . $url->render() . '">' . $locale . '</a>]';
 						$out .= ' ';
 				}
-			return $out;
+				return $out;
 		}
 		else
 		{
@@ -289,5 +289,35 @@ function te_every($size)
 				return false;
 		}
 }
+
+/*
+Todo
+
+function te_get_caller_context($levels='', $die=FALSE) 
+{
+		$debug = debug_backtrace();
+		if ($levels == '') 
+		{
+				$levels = count($debug);//print count($debug);die();
+		}
+		$caller_context = '';
+		$ctr = -1;
+		while ($ctr < ($levels-1)) 
+		{
+				$ctr++;
+				$caller_context = $debug[$ctr]["file"] . '::' . $debug[$ctr]["function"] . '::' . $debug[$ctr]["line"] . '==>' . "\n" . $caller_context;
+		}
+		$caller_context = trim($caller_context);
+		$caller_context = preg_replace("/==>$/", '', $caller_context);
+		$caller_context = preg_replace("/^::::==>/", '', $caller_context);
+		$caller_context = preg_replace("/\/var\/www\/[a-z]+\.ookles\.net/", '.', $caller_context);
+		print "\n\n\n\n$caller_context\n\n\n\n";
+		if ($die) 
+		{
+				die('Died in function te_get_caller_context');
+		}
+}
+*/
+
 
 ?>

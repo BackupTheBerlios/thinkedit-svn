@@ -182,10 +182,50 @@ class field
 				trigger_error('useInView() is deprecated, use isUsedIn() instead');
 		}
 		
+		/*
+		
+		// Implicit behavior is not always a good idea.
+		// reimplented isUsedIn below
+		
 		function isUsedIn($what)
 		{
 				// enable by default title columns in list view
-				if ($this->isTitle())
+				if ($this->isTitle() && $what == 'list')
+				{
+						return true;
+				}
+				
+				
+				if (isset($this->config['use'][$what]))
+				{
+						//print_r ( $this->config['use']);
+						if ($this->config['use'][$what] == 'false' || $this->config['use'][$what] == false)
+						{
+								return false;
+						}
+						else
+						{
+								return true;
+						}
+				}
+				elseif($what == 'participation')
+				{
+						return false;
+				}
+				else
+				{
+						// this is the default behavior. 
+						// If a particular use is not defined in config, we assume the field must be shown. 
+						return true;
+				}
+		}
+		*/
+		
+		/*
+		function isUsedIn($what)
+		{
+				// enable by default title columns in list view
+				if ($this->isTitle() && $what == 'list')
 				{
 						return true;
 				}
@@ -198,10 +238,27 @@ class field
 						{
 								return false;
 						}
-						else
+						
+						if (!$this->config['use'][$what])
+						{
+								return false;
+						}
+						
+						if ($this->config['use'][$what] == 'true')
 						{
 								return true;
 						}
+						
+						if ($this->config['use'][$what])
+						{
+								return true;
+						}
+						
+						
+				}
+				elseif($what == 'participation')
+				{
+						return false;
 				}
 				else
 				{
@@ -210,6 +267,33 @@ class field
 						return true;
 				}
 		}
+		*/
+		
+		
+		// third attempt : return true always, but when false is defined :
+		function isUsedIn($what)
+		{
+				if (isset($this->config['use'][$what]))
+				{
+						//print_r ( $this->config['use']);
+						if ($this->config['use'][$what] == 'false')
+						{
+								return false;
+						}
+						
+						if (!$this->config['use'][$what])
+						{
+								return false;
+						}
+				}		
+				
+					// this is the default behavior. 
+						// If a particular use is not defined in config, we assume the field must be shown. 
+						return true;
+				
+		}
+		
+		
 		
 		
 		/*
@@ -249,8 +333,7 @@ class field
 						$error['help'] = translate('field_is_required');
 						$this->errors[] = $error;
 				}
-				
-				if ($this->isTitle() && $this->isEmpty())
+				elseif ($this->isTitle() && $this->isEmpty())
 				{
 						$error['type'] = 'required';
 						$error['help'] = translate('title_field_is_required');
@@ -268,6 +351,26 @@ class field
 				}
 		}
 		
+		function getErrorMessage()
+		{
+				$out = '';
+				
+				if (isset($this->errors))
+				{
+						foreach ($this->errors as $error)
+						{
+								$out .= $error['help'] . ' ';
+						}
+						return $out;
+				}
+				else
+				{
+						return false;
+				}
+				
+				
+				
+		}
 		
 		
 		

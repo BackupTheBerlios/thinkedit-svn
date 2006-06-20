@@ -624,14 +624,14 @@ class record
 		
 		
 		/**
-		* Will set all fields from an array of fields
+		* Will set all fields from an array of key=> values (for instance from $_POST)
 		* 
-		* 
+		* Then you can validate and or save
 		* 
 		*/
 		function setArray($array)
 		{
-				trigger_error('deprecated, use $this->loadByArray instead');
+				// trigger_error('deprecated, use $this->loadByArray instead');
 				$this->is_loaded = false;
 				if (is_array($array))
 				{
@@ -733,10 +733,12 @@ class record
 		
 		function getTitle($size = false)
 		{
+				/*
 				if (!$this->is_loaded)
 				{
 						trigger_error('record::getTitle() trying to get title on an unloaded record');
 				}
+				*/
 				$title = '';
 				foreach ($this->field as $field)
 				{
@@ -868,21 +870,23 @@ class record
 		
 		function validate()
 		{
+				$validate = true;
 				if (is_array($this->field))
 				{
 						foreach ($this->field as $field)
 						{
-								if (!$field->validate())
+								if (!$this->field[$field->getId()]->validate())
 								{
-										return false;
+										$validate = false;
 								}
 						}
-						return true;
 				}
 				else
 				{
-						return false;
+						$validate = false;
 				}
+				
+				return $validate;
 		}
 		
 		

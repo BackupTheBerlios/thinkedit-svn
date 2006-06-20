@@ -1,9 +1,6 @@
 <?php
-
 /*
 This is a concept that must be extended.
-Work in progress, only interface is defined here
-
 
 Participation is a tool to let the public of a website participate actively.
 
@@ -20,7 +17,7 @@ This is translated to : render a public friendly form to add content to a websit
 /*
 Example implementation can be found in /doc/participation.txt
 */
-
+/*
 
 // Simple use : render a comment post form
 $participation = new participation('discussion');
@@ -49,7 +46,7 @@ $participation->enablePreview();
 
 // enable akismet.com spam check
 // this disables moderation
-$participation->enableAkismet();
+$participation->enable_akismet = true;
 
 
 // will send an email to $email when something is posted
@@ -60,21 +57,71 @@ $participation->notifyByEmail($email);
 $participation->setTitle('Please submit your comment bellow');
 $participation->setSucces('Good!, your comment has been posted');
 $participation->setFailure('Too bad, it didn\'t work');
-
+*/
 
 
 class participation
 {
+		/**
+		* Form title
+		*/
 		var $title = 'Participate!';
+		
+		/**
+		* message in case all went well
+		*/
 		var $success_message = 'Your participation has been added';
-		var $failure_message = 'System failure : your participation has not been added';
+		
+		/**
+		* Message if something went wrong
+		*/
+		var $failure_message = 'System failure : your participation has not been added'; 
+		
+		/**
+		* Message if form has invalid content
+		*/
+		var $invalid_message = 'Your submited content is not valid, please check the form and resend';
+		
+		/**
+		* If set to true, messages won't appear directly, you will need to publish them
+		*/
 		var $enable_moderation = true;
-		var $enable_askimet = false;
-		var $parent_node;
+		
+		/**
+		* If set to true, message content will be submited to askimet
+		*/
+		var $enable_askimet = false; 
+		
+		/**
+		* If set to true, participation will be moved in the bottom of the tree (in the curent branch)
+		*/
+		var $move_to_bottom = true; 
+		
+		/**
+		* Current node
+		*/
+		var $parent_node; 
+		
+		/**
+		* Email of the person to contact in case of new submission
+		* This may be changed later to use a general logging system, with email subscriptions
+		*/
+		var $notification_email = false;
+		
+		/**
+		* Subject of the email sent in case of new participation
+		*
+		*/
+		var $notification_email_subject = 'A new participation : ';
+		
 		
 		function participation($content_type)
 		{
 				$this->content_type = $content_type;
+				
+				global $thinkedit;
+				$this->content = $thinkedit->newRecord($content_type);
+				
 				global $node;
 				$this->parent_node = $node;
 		}
@@ -97,10 +144,125 @@ class participation
 				$form->add($this->title);
 				$form->add('</h1>');
 				
-				// if sent :
-				// check spam
-				// add item to node
-				// publish if needed
+				// if form sent, validate
+				if ($form->isSent())
+				{
+						$this->content->setArray($_POST);
+						
+						// first case : invalid content
+						if (!$this->content->validate())
+						{
+								$form->add('<div class="participation_error">');
+								$form->add($this->invalid_message);
+								$form->add('</div>');
+						}
+						// second case : valid content submited
+						else
+						{
+								$failure = false;
+								// save content to db
+								if (!$this->content->insert())
+								{
+										$failure = true;
+								}
+								
+								// add content to curent node
+								if (isset($this->parent_node))
+								{
+										$new_node = $this->parent_node->add($this->content);
+										
+										// publish if needed
+										if ($this->enable_moderation)
+										{
+												$new_node->set('publish', 0);
+										}
+										else
+										{
+												$new_node->set('publish', 1);
+										}
+										
+										// update db
+										if (!$new_node->save())
+										{
+												$failure = true;
+										}
+										
+										// move to bottom of curent branch if needed
+										if ($this->move_to_bottom)
+										{
+												$new_node->moveBottom();
+										}
+										else
+										{
+												$new_node->rebuild();
+										}
+								}
+								
+								if ($failure)
+								{
+										$form->add('<div class="participation_error">');
+										$form->add($this->failure_message);
+										$form->add('</div>');
+								}
+								else
+								{
+										if (isset($this->notification_email))
+										{
+												require_once ROOT . '/class/mailer.class.php';
+												$mailer = new mailer();
+												$mailer->isHtml(true);
+												$mailer->setTo($this->notification_email);
+												
+												// todo : find the first email field type in the record to use it as a sender
+												// $mailer->setFrom($this->notification_email);
+												$mailer->setSubject($this->notification_email_subject . $this->content->getTitle());
+												
+												$message = '';
+												foreach ($this->content->field as $field)
+												{
+														$message .= $field->getTitle();
+														$message .= ' : ';
+														$message .= '<br/>';
+														$message .= $field->get();
+														$message .= '<br/>';
+														$message .= '<br/>';
+												}
+												$mailer->setBody($message);
+												$mailer->send();
+												
+										}
+										$form->add('<div class="participation_success">');
+										$form->add($this->success_message);
+										$form->add('</div>');
+								}
+								
+						}
+						
+				}
+				
+				
+				// In all cases, build form UI
+				foreach ($this->content->field as $field)
+				{
+						if ($field->isUsedIn('participation') && $field->getType() <> 'id')
+						{
+								$form->add($field->getTitle() . ' : ' );
+								$form->add('<br/>');
+								
+								if ($form->isSent() && $field->getErrorMessage())
+								{
+										$form->add('<div class="participation_field_error">');
+										$form->add($field->getErrorMessage());
+										$form->add('</div>');
+								}
+								
+								$form->add($field->renderUi());
+								$form->add('<br/>');
+								$form->add('<br/>');
+						}
+				}
+				
+				return $form->render();
 				
 				
 		}

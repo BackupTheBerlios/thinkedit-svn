@@ -10,6 +10,22 @@ input :
 - action : edit_node, new_node, edit, new
 - object_ : the object to edit
 
+
+big simplification :
+
+Input is :
+
+- id
+- class
+- type
+-> record edit mode
+
+
+Input is
+- node_id
+- (locale)
+-> node edit mode
+
 */
 
 include_once('common.inc.php');

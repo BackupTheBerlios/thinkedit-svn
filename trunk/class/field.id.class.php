@@ -76,11 +76,12 @@ class field_id extends field
 				return true; 
 		}
 	
-		
+		/*
 		function validate()
 		{
 				return true;
 		}
+		*/
 		
 		
 }

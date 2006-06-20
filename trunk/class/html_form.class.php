@@ -8,7 +8,8 @@ class html_form
 		function html_form($id = 'default')
 		{
 				$this->url = new url();
-				$this->url->keepAll();
+				$this->url->keepAllGet();
+				$this->url->set('refresh', 1); // this is a hack to disable cache when a form is sent
 				$this->id = $id;
 		}
 		

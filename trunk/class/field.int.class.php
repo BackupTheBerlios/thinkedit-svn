@@ -10,11 +10,12 @@ class field_int extends field
     return (int) $this->data;
     
   }
-	
+	/*
 	function validate()
 	{
 			// return (strval(intval($value)) == $value);
 	}
+	*/
 
 }
 ?>

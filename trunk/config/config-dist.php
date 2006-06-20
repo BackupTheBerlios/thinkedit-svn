@@ -3,10 +3,11 @@ $data['site']['help']['fr']='Bienvenue sur Thinkedit, le système de gestion de 
 $data['site']['help']['en']='Welcome to Thinkedit, the easy to use content management system';
 $data['site']['run_mode']='development';
 $data['site']['design']='thinkedit';
-$data['site']['locale']['en']['help']['fr']='Anglais';
-$data['site']['locale']['en']['help']['en']='English';
 $data['site']['locale']['fr']['help']['fr']='Français';
 $data['site']['locale']['fr']['help']['en']='French';
+$data['site']['locale']['en']['help']['fr']='Anglais';
+$data['site']['locale']['en']['help']['en']='English';
+
 
 
 $data['filesystem']['main']['type']='local';

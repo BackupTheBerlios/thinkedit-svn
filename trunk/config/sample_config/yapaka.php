@@ -128,6 +128,7 @@ $data['table']['discussion']['title_field']='title';
 $data['table']['discussion']['use']['navigation']='false';
 $data['table']['discussion']['use']['main']='true';
 $data['table']['discussion']['field']['id']['type']='id';
+$data['table']['discussion']['field']['title']['use']['participation']=true;
 $data['table']['discussion']['field']['title']['title']['fr']='Sujet';
 $data['table']['discussion']['field']['title']['type']='string';
 $data['table']['discussion']['field']['title']['is_title']='true';
