@@ -1,13 +1,9 @@
-/*
-function popup(url, title)
-{
-		window.open(url, title,'width=400,height=500')
-}
-*/
+// javascript is not my cup of tea
+
+/************************** Popups *******************************/
 
 
 /* from http://www.quirksmode.org/js/croswin.html */
-
 function popup(url, name)
 {
 		var newwindow = window.open(url,name,'height=400,width=500,scrollbars=yes,resizable=yes,modal=yes');
@@ -65,92 +61,51 @@ function custompopup(url, name, size)
 }
 
 
-function toggle(targetId)
+
+/************************** Context menu *******************************/
+document.onclick=hideMenu;
+previous_menu = false;
+function showContextMenu(id, event)
 {
-		if (document.getElementById)
+		hideMenu();
+		menu = $(id);
+		
+		menu.style.top = Event.pointerY(event) + 'px';
+		menu.style.left = Event.pointerX(event) + 'px';
+		
+		Element.show(menu);
+		previous_menu = menu;
+		// remove menu after 10 secs
+		//timer = new PeriodicalExecuter(timeOutMenu, 10);
+}
+
+i = 0;
+function timeOutMenu()
+{
+		if (i>0)
 		{
-				target = document.getElementById( targetId );
-				if (target.style.display == "none")
+				if (previous_menu)
 				{
-						target.style.display = "block";
+						Element.hide(previous_menu);
 				}
-				else 
-				{
-						target.style.display = "none";
-				}
+				i=0;
 		}
-}
-
-function hide_menus(id)
-{
-		menus = document.getElementsByClassName('context_menu');
-		menus.each(function(menu)
-		{
-				if (id && menu.id == id)
-				{
-				}
-				else
-				{
-						Element.hide(menu);
-				}
-				
-		});
-}
-
-function toggle_and_move(id, e)
-{
-		moveObject(id, e);
-		hide_menus(id);
+		i++;
 }
 
 
-function moveObject( obj, e ) 
+function hideMenu()
 {
-		// step 1
-		var tempX = 0;
-		var tempY = 0;
-		var offset = 5;
-		var objHolder = obj;
-		
-		// step 2
-		obj = document.getElementById( obj )
-		if (obj==null) return;
-		
-		// step 3
-		if (document.all) 
+		if (previous_menu)
 		{
-				tempX = event.clientX + document.body.scrollLeft;
-				tempY = event.clientY + document.body.scrollTop;
-		} 
-		else 
-		{
-				tempX = e.pageX;
-				tempY = e.pageY;
+				Element.hide(previous_menu);
 		}
-		
-		// step 4
-		if (tempX < 0)
-		{
-				tempX = 0
-		}
-		
-		if (tempY < 0)
-		{
-				tempY = 0
-		}
-		
-		// step 5
-		obj.style.top  = (tempY + offset) + 'px';
-		obj.style.left = (tempX + offset) + 'px';
-		
-		// step 6
-		toggle(objHolder);
 }
 
 
 
 
-
+/************************** Popup communication *******************************/
 function to_opener(url)
 {
 		opener.location.href = url;
@@ -191,20 +146,7 @@ function to_opener_field(field, value)
 
 
 
-function confirm_link(message, url)
-{
-		input_box=confirm(message);
-		if (input_box==true)
-		{ 
-				// Output when OK is clicked
-				window.location.href=url; 
-		}
-		else
-		{
-				return false;
-		}
-}
-
+/************************** Dialog boxes *******************************/
 function confirm_link(message, url)
 {
 		input_box=confirm(message);
@@ -239,6 +181,8 @@ function ask_title(targ,selObj,restore,text)
 		if (restore) selObj.selectedIndex=0;
 }
 
+
+/************************** Various page wide stuff *******************************/
 function page_loaded() 
 {
 		document.getElementById('loading').style.display='none';

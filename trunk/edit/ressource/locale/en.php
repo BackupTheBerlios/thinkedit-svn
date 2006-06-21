@@ -104,5 +104,6 @@ $data['title_field_is_required']='Title field is required!';
 $data['field_is_required']='Field is required!';
 $data['node_added_sucessfully']='Node added sucessfully!';
 $data['please_enter_title']='Please enter the title';
-
+$data['cancel']='Cancel';
+$data['save']='Save';
 ?>

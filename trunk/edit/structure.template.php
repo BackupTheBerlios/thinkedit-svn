@@ -1,3 +1,8 @@
+<script type="text/javascript">
+</script>
+
+
+
 <div class="content panel" id="list">
 
 <iframe name="status" width="500" height="20" frameborder="0" scrolling="no"></iframe>
@@ -37,11 +42,11 @@
 // used to alternate rows, of course)
 if (($i % 2)==0)
 {
-$class = "off";
+		$class = "off";
 }
 else
 {
-$class = "on";
+		$class = "on";
 }
 
 if (isset($node['is_current']))
@@ -52,7 +57,7 @@ if (isset($node['is_current']))
 $i++;
 ?>
 
-<tr class="<?php echo $class?>" id="node_<?php echo $node['id']?>">
+<tr class="<?php echo $class?>" id="node_<?php echo $node['id']?>" oncontextmenu="showContextMenu('context_menu_node_<?php echo $node['id']?>', event);return false;">
 
 
 <td <?php if (isset($node['visit_url'])): ?>style="cursor:pointer" onClick="document.location.href='<?php echo $node['visit_url']?>';"<?php endif;?>>
@@ -88,10 +93,11 @@ $i++;
 </a>
 <?php endif; ?>
 
-
-<a class="action_button" onclick="toggle_and_move('context_menu_node_<?php echo $node['id']?>', event)">
+<!--
+<a class="action_button" onclick="showContextMenu('context_menu_node_<?php echo $node['id']?>', event);return false;">
 <?php echo translate('menu');?>
 </a>
+-->
 
 <!--
 <a class="action_button" onclick="toggle_and_move('add_menu_node_<?php echo $node['id']?>', event)">

@@ -1,3 +1,11 @@
+/****************** Init *****************/
+*
+{
+		margin: 0;
+		padding: 0;
+}
+
+
 /***************** Typo ******************/
 body 
 {
@@ -423,10 +431,16 @@ th.on
 		width: 150px;
 		position: absolute;
 		/*display: none;*/
+		z-index: 10;
 		
 }
 
-.context_menu_item a:hover
+.context_menu_item
+{
+		height: 2em;
+}
+
+.context_menu_item:hover, .context_menu_item a:hover
 {
 		background-color: #0099ff;
 }
@@ -450,6 +464,14 @@ th.on
 input
 {
 		border: 1px solid gray;
+		padding: 0;
+		margin: 0;
+}
+
+.field
+{
+		padding: 0;
+		margin-bottom: 25px;
 }
 
 
@@ -457,33 +479,26 @@ input
 .field_title
 {
 		font-size: 12px;
-		background-color: #3999FC;
-		display: block;
-		color: white;
-		padding: 3px;
-		margin: 0;
-}
-
-.field_box
-{
-		padding: 10px;
-		margin-bottom: 25px
-}
-
-
-.field_info
-{
-		text-align: right;
-		vertical-align: top;
-		width: 100px;
-		cursor: help;
 		font-weight: bold;
+		margin-bottom: 5px;
+}
+
+
+
+.field_help
+{
+		/*float: right;*/
+		width: 150px;
+		height: auto;
+		background-color: #ffffcc;
+		border: 1px solid black;
+		padding: 10px;
+		margin: 10px;
 }
 
 
 .field_ui
 {
-		padding-left: 10px;
 		padding-bottom: 20px;
 }
 

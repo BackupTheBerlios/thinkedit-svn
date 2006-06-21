@@ -588,7 +588,7 @@ class node
 				}
 		}
 		
-		function add($child_object)
+		function add($child_object, $where = 'top')
 		{
 				if ($child_object->getUid())
 				{

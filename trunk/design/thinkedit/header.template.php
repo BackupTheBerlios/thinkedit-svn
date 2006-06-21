@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title></title>
+<title><?php echo $content->getTitle(); ?></title>
 <meta name="generator" content="Thinkedit" />
 
 <link href="<?php echo te_design() ?>/style.css" rel="stylesheet" type="text/css" media="all">

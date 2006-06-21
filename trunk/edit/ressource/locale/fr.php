@@ -121,6 +121,7 @@ $data['title_field_is_required']='Le champ titre doit être rempli';
 $data['field_is_required']='Ce champ doit être rempli';
 $data['node_added_sucessfully']='L\'emplacement a bien été ajouté';
 $data['please_enter_title']='Veuillez entrer un titre';
-$data['cancel']='!cancel!';
+$data['cancel']='Annuler';
+$data['save']='Enregistrer';
 
 ?>
