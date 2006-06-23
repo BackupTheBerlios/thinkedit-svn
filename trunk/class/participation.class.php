@@ -98,9 +98,10 @@ class participation
 		var $move_to_bottom = true; 
 		
 		/**
-		* Current node
+		* The node where you want to put your participation. Default to global $node
 		*/
 		var $parent_node; 
+		
 		
 		/**
 		* Email of the person to contact in case of new submission
@@ -135,6 +136,8 @@ class participation
 		
 		function render()
 		{
+				global $thinkedit;
+				
 				// init form
 				require_once ROOT . '/class/html_form.class.php';
 				$form = new html_form();
@@ -169,16 +172,57 @@ class participation
 								// add content to curent node
 								if (isset($this->parent_node))
 								{
+										/*
+										if (isset($this->container_node_type))
+										{
+												// find a node of this type in parent_node
+												
+												$children = $this->parent_node->getChildren();
+												
+												if ($children)
+												{
+														foreach ($children as $child)
+														{
+																$child_content = $child->getContent();
+																if ($child_content->getType() == $this->container_node_type)
+																{
+																		$container = $child;
+																}
+														}
+												}
+												
+												// if no container, create one
+												
+												if (!isset($container))
+												{
+														$container_content = $thinkedit->newRecord($this->container_node_type);
+														$container_content->setTitle($this->container_node_title);
+														$container_content->save();
+														$container = $this->parent_node->add($container_content);
+												}
+												
+											
+												
+										}
+										else // if no container is defined, container is parent node
+										{
+												$container = $this->parent_node;
+										}
+										*/
+										
+										//$container = $this->parent_node;
+										
+										// add content in the container
 										$new_node = $this->parent_node->add($this->content);
 										
 										// publish if needed
 										if ($this->enable_moderation)
 										{
-												$new_node->set('publish', 0);
+												
 										}
 										else
 										{
-												$new_node->set('publish', 1);
+												$new_node->publish();
 										}
 										
 										// update db
@@ -220,13 +264,20 @@ class participation
 												$message = '';
 												foreach ($this->content->field as $field)
 												{
-														$message .= $field->getTitle();
-														$message .= ' : ';
+														$message .= '<b>' .  $field->getTitle();
+														$message .= ' : '  . '</b>';
 														$message .= '<br/>';
 														$message .= $field->get();
 														$message .= '<br/>';
 														$message .= '<br/>';
 												}
+												$url = $thinkedit->newUrl();
+												
+												$url->set('node_id', $this->parent_node->getId());
+												
+												$message .= '<a href="'.  $url->renderAbsoluteUrl('/edit/structure.php')  .'">' . translate('participation_email_admin_link') . '</a>';
+												
+												
 												$mailer->setBody($message);
 												$mailer->send();
 												

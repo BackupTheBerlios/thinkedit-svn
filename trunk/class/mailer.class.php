@@ -38,6 +38,7 @@ class mailer extends PHPMailer
 		
 		function send()
 		{
+				$this->CharSet = 'utf-8';
 				return parent::Send();
 		}
 }

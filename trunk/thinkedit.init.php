@@ -130,6 +130,7 @@ $thinkedit->timer->marker('start init');
 // define ('ROOT', $thinkedit->configuration->getRootPath(dirname(__FILE__)));
 define ('ROOT_PATH', $thinkedit->configuration->getRootPath(dirname(__FILE__)));
 define ('ROOT_URL', $thinkedit->configuration->getRootUrl());
+define ('SITE_URL', $thinkedit->configuration->getSiteUrl());
 define ('TMP_PATH', $thinkedit->configuration->getTmpPath());
 
 

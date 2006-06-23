@@ -30,18 +30,18 @@
 				<?php if ($sub_content->isUsedIn('navigation')): ?>
 				<h1><?php echo $sub_content->getTitle(); ?></h1>
 				
-				<?php if ($child->getChildren()): ?>
-				<?php foreach ($child->getChildren() as $children2): ?>
-				<li>
-				<?php echo $children2->getTitle(); ?>
-				<br/><a href="<?php echo te_link($children2); ?>" class="link_intro color100">Lire...</a>
-				</li>
-				<?php endforeach; ?>
-				<?php endif; ?>
+						<?php if ($child->getChildren()): ?>
+						<?php foreach ($child->getChildren() as $children2): ?>
+						<li>
+						<?php echo $children2->getTitle(); ?>
+						<?php $content2 = $children2->getContent(); ?>
+						 (<?php echo trim($content2->get('authors')); ?>)
+						<br/><a href="<?php echo te_link($children2); ?>" class="link_intro color100">Lire...</a>
+						</li>
+						<?php endforeach; ?>
+						<?php endif; ?>
 				
 				<?php endif;?>
-						
-	
 				<?php endforeach; ?>
 
 				

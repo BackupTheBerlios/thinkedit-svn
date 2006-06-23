@@ -123,5 +123,6 @@ $data['node_added_sucessfully']='L\'emplacement a bien été ajouté';
 $data['please_enter_title']='Veuillez entrer un titre';
 $data['cancel']='Annuler';
 $data['save']='Enregistrer';
+$data['participation_email_admin_link']='Cliquez ici pour gérer cette participation';
 
 ?>

@@ -9,7 +9,7 @@ class html_form
 		{
 				$this->url = new url();
 				$this->url->keepAllGet();
-				$this->url->set('refresh', 1); // this is a hack to disable cache when a form is sent
+				$this->url->set('no_cache', 1); // this is a hack to disable cache when a form is sent
 				$this->id = $id;
 		}
 		

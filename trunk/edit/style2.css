@@ -471,7 +471,7 @@ input
 .field
 {
 		padding: 0;
-		margin-bottom: 25px;
+		margin-bottom: 10px;
 }
 
 
@@ -480,7 +480,7 @@ input
 {
 		font-size: 12px;
 		font-weight: bold;
-		margin-bottom: 5px;
+		margin-bottom: 2px;
 }
 
 
@@ -499,7 +499,7 @@ input
 
 .field_ui
 {
-		padding-bottom: 20px;
+		padding-bottom: 10px;
 }
 
 

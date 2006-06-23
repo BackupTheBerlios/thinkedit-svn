@@ -106,4 +106,5 @@ $data['node_added_sucessfully']='Node added sucessfully!';
 $data['please_enter_title']='Please enter the title';
 $data['cancel']='Cancel';
 $data['save']='Save';
+$data['participation_email_admin_link']='Clcik here to manage this participation';
 ?>

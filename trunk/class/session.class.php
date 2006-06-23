@@ -5,7 +5,14 @@ class session
 		
 		function session() 
 		{
+				
+				// session will be valid for one month
+				// todo security : make it configurable
+				session_set_cookie_params(60*60*24*30);
+				session_cache_expire(60*24*30);
+				
 				//session_start();
+				
 				if (!isset($_SESSION))
 				{
 						if (!headers_sent())

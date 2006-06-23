@@ -32,8 +32,17 @@ $url = new url();
 
 $cache_id = 'node_' . $url->get('node_id') . $url->get('locale');
 
-$cache_enabled = true;
-//$cache_enabled = false;
+
+if ($url->get('no_cache'))
+{
+		$cache_enabled = false;
+}
+else
+{
+		$cache_enabled = true;
+}
+
+
 
 if ($url->get('refresh'))
 {

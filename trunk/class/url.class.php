@@ -368,10 +368,27 @@ class url
 		}
 		
 		
+		function renderAbsoluteUrl($filename = false)
+		{
+				if ($filename)
+				{
+						$url = $filename;
+				}
+				else
+				{
+						$url = $this->self;
+				}
+				return SITE_URL . $url . $this->getQueryString();
+		}
+		
+		
+		
 		function renderHref($title, $filename=false)
 		{
 				return '<a href="' . $this->render($filename) . '">' . $title . '</a>';
 		}
+		
+		
 		/*
 		Links an object to an action
 		

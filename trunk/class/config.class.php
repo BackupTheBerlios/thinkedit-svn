@@ -153,6 +153,21 @@ class config
 						trigger_error('config::getRootUrl() root_url not defined in config, please define it in config.xml');
 						return false;
 				}
+		}
+		
+		
+		function getSiteUrl()
+		{
+				
+				if (isset($this->config['site']['root_url'] ) )
+				{
+						return 'http://' . $_SERVER['HTTP_HOST'] . $this->cleanPath($this->config['site']['root_url']);
+				}
+				else
+				{
+						trigger_error('config::getRootUrl() root_url not defined in config, please define it in config.xml');
+						return false;
+				}
 				
 		}
 		

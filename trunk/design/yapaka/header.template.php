@@ -5,9 +5,7 @@
 
 <?php if ($content->get('intro')): ?> 
 <meta name="description" content="<?php echo htmlentities(te_short($content->get('intro'), 400)) ?>"/>
-<?php endif; ?>
-
-<?php if ($content->get('body')): ?> 
+<?php elseif ($content->get('body')): ?> 
 <meta name="description" content="<?php echo htmlentities(te_short($content->get('body'), 400)) ?>"/>
 <?php endif; ?>
 
@@ -152,10 +150,19 @@ urchinTracker();
 <tr>
 <td>
 <img src="<?php echo te_design() ?>/sources/logo.gif" alt="" width="351" height="76" border="0" id="logo"></td>
-<td valign="top" width="168">
+<td valign="top" width="268">
 <!--
 <input class="search" type="text" name="textfieldName" value="Rechercher..." size="24">
 -->
+
+<!-- Search Google -->
+<div class="search">
+<FORM method="GET" action="http://www.google.com/u/yapaka">
+<INPUT TYPE="text" name="q" size="20" maxlength="255" value="" class="search_box">
+<INPUT type="submit" name="sa" VALUE="Ok" class="search_button">
+</FORM>
+</div>
+<!-- Search Google -->
 
 </td>
 

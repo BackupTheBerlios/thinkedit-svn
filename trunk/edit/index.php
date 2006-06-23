@@ -3,6 +3,6 @@
 include ('common.inc.php');
 
 $url = $thinkedit->newUrl();
-$url->redirect('login.php');
+$url->redirect('main.php');
 
 ?>
