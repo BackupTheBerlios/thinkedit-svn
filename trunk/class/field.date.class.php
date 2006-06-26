@@ -52,17 +52,17 @@ class field_date extends field
 				}
 				
 				// day
-				$out.=sprintf('<select name="%s">', $prefix . $this->getName() . '[day]');
+				$out.=sprintf('<select name="%s" size="1">', $prefix . $this->getName() . '[day]');
 				// todo : configurable interval for years
 				for ($day = 1; $day <= 31; $day ++)
 				{
 						if ($day == $selected_day)
 						{
-								$out .= sprintf('<option value="%s" selected="selected">%s </option>', $day, $day);
+								$out .= sprintf('<option value="%s" selected="selected">%s &nbsp;</option>', $day, $day);
 						}
 						else
 						{
-								$out .= sprintf('<option value="%s">%s</option>', $day, $day);
+								$out .= sprintf('<option value="%s">%s &nbsp;</option>', $day, $day);
 						}
 						
 				}
@@ -75,11 +75,11 @@ class field_date extends field
 				{
 						if ($month == $selected_month)
 						{
-								$out .= sprintf('<option value="%s" selected="selected">%s </option>', $month, $month);
+								$out .= sprintf('<option value="%s" selected="selected">%s &nbsp;</option>', $month, $month);
 						}
 						else
 						{
-								$out .= sprintf('<option value="%s">%s</option>', $month, $month);
+								$out .= sprintf('<option value="%s">%s &nbsp;</option>', $month, $month);
 						}
 						
 				}
@@ -93,11 +93,11 @@ class field_date extends field
 				{
 					  if ($year == $selected_year)
 						{
-								$out .= sprintf('<option value="%s" selected="selected">%s </option>', $year, $year);
+								$out .= sprintf('<option value="%s" selected="selected">%s &nbsp;</option>', $year, $year);
 						}
 						else
 						{
-								$out .= sprintf('<option value="%s">%s</option>', $year, $year);
+								$out .= sprintf('<option value="%s">%s &nbsp;</option>', $year, $year);
 						}
 						
 				}

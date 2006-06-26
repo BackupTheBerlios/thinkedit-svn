@@ -210,7 +210,7 @@ class node
 		}
 		
 		/**
-		* Load node data form an array ($data)
+		* Load node data from an array ($data)
 		* This array must contain all the fields of the node table defined in config
 		* 
 		* 
@@ -758,10 +758,17 @@ class node
 		
 		/**
 		* Loads the root node
-		* @todo optimize this to avoid 2 requests
 		*/
 		function loadRootNode()
 		{
+				// optimization done : if root is on id = 1, it is deirectly returned
+				$root = $this->load(1);
+				
+				if ($root)
+				{
+						return $root;
+				}
+				
 				
 				$root = $this->record->find(array('parent_id' => 0));
 				
@@ -773,12 +780,12 @@ class node
 				{
 						if ($this->record->count() == 0)
 						{
-								trigger_error('node::loadRootNode() : no nodes found in db. Please create at least one node in admin', E_USER_WARNING);
+								trigger_error('node::loadRootNode() : no nodes found in db. Please create at least one node in admin or in installer', E_USER_WARNING);
 								return false;
 						}
 						else
 						{
-						trigger_error('node::loadRootNode() : no nodes with parent_id = 0 found in db. Please create at least one node in admin', E_USER_WARNING);
+						trigger_error('node::loadRootNode() : no nodes with parent_id = 0 found in db. Please create at least one node in admin or in installer', E_USER_WARNING);
 						return false;
 						}
 				}

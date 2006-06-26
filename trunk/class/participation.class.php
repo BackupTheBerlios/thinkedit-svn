@@ -21,9 +21,9 @@ Example implementation can be found in /doc/participation.txt
 
 // Simple use : render a comment post form
 $participation = new participation('discussion');
-$participation->render();
-$participation->renderForm(); // ?
+$participation->render(); // render a participation form
 
+$participation->handlePost(); // handle data posted by users
 
 // where is this stuff being put ?
 // default to the curent node (global $node)
@@ -115,7 +115,10 @@ class participation
 		*/
 		var $notification_email_subject = 'A new participation : ';
 		
-		
+		/**
+		* Create a new participation tool
+		* $content type is the type of content you want people to participate (news, review, book, wathever)
+		*/
 		function participation($content_type)
 		{
 				$this->content_type = $content_type;
@@ -125,39 +128,47 @@ class participation
 				
 				global $node;
 				$this->parent_node = $node;
+				
+			  // init form
+				require_once ROOT . '/class/html_form.class.php';
+				$this->form = new html_form();
 		}
 		
+		/**
+		* $node where the participation will be put
+		*/
 		function setParentNode($node)
 		{
 				$this->parent_node = $node;
 		}
 		
-		
-		
-		function render()
+		/**
+		* Handle content posted by a user.
+		* This should be called before you try to list new participations (else, freshly submited content won't be shwown)
+		* 
+		* Valid order is :
+		* - $this->handlePost()
+		* - list and display validated participations
+		* - show participaiton form ($this->render() )
+		*
+		* handlePost() does nothing if the particiaption form has not been submited 
+		*
+		*/
+		function handlePost()
 		{
 				global $thinkedit;
 				
-				// init form
-				require_once ROOT . '/class/html_form.class.php';
-				$form = new html_form();
-				
-				// add content
-				$form->add('<h1>');
-				$form->add($this->title);
-				$form->add('</h1>');
-				
 				// if form sent, validate
-				if ($form->isSent())
+				if ($this->form->isSent())
 				{
 						$this->content->setArray($_POST);
 						
 						// first case : invalid content
 						if (!$this->content->validate())
 						{
-								$form->add('<div class="participation_error">');
-								$form->add($this->invalid_message);
-								$form->add('</div>');
+								$this->form->add('<div class="participation_error">');
+								$this->form->add($this->invalid_message);
+								$this->form->add('</div>');
 						}
 						// second case : valid content submited
 						else
@@ -201,7 +212,7 @@ class participation
 														$container = $this->parent_node->add($container_content);
 												}
 												
-											
+												
 												
 										}
 										else // if no container is defined, container is parent node
@@ -244,9 +255,9 @@ class participation
 								
 								if ($failure)
 								{
-										$form->add('<div class="participation_error">');
-										$form->add($this->failure_message);
-										$form->add('</div>');
+										$this->form->add('<div class="participation_error">');
+										$this->form->add($this->failure_message);
+										$this->form->add('</div>');
 								}
 								else
 								{
@@ -282,38 +293,66 @@ class participation
 												$mailer->send();
 												
 										}
-										$form->add('<div class="participation_success">');
-										$form->add($this->success_message);
-										$form->add('</div>');
+										$this->form->add('<div class="participation_success">');
+										$this->form->add($this->success_message);
+										$this->form->add('</div>');
 								}
 								
 						}
 						
 				}
 				
+		}
+		
+		/**
+		* Renders a participation form. This form is ready to be echo'ed in your template
+		*/
+		function render()
+		{
+				global $thinkedit;
+				// add content
+				$this->form->add('<h1>');
+				$this->form->add($this->title);
+				$this->form->add('</h1>');
 				
 				// In all cases, build form UI
 				foreach ($this->content->field as $field)
 				{
 						if ($field->isUsedIn('participation') && $field->getType() <> 'id')
 						{
-								$form->add($field->getTitle() . ' : ' );
-								$form->add('<br/>');
+								$this->form->add('<div class="participation_field">');
 								
-								if ($form->isSent() && $field->getErrorMessage())
+								$this->form->add('<div class="participation_field_title">');
+								if ($field->isRequired())
 								{
-										$form->add('<div class="participation_field_error">');
-										$form->add($field->getErrorMessage());
-										$form->add('</div>');
+										$this->form->add('<span class="participation_field_required">*</span>');
+								}
+								$this->form->add($field->getTitle() . ' : ' );
+								$this->form->add('</div>');
+								
+								if ($field->getHelp())
+								{
+										$this->form->add('<div class="participation_field_help">');
+										$this->form->add($field->getHelp());
+										$this->form->add('</div>');
 								}
 								
-								$form->add($field->renderUi());
-								$form->add('<br/>');
-								$form->add('<br/>');
+								if ($this->form->isSent() && $field->getErrorMessage())
+								{
+										$this->form->add('<div class="participation_field_error">');
+										$this->form->add($field->getErrorMessage());
+										$this->form->add('</div>');
+								}
+								
+								$this->form->add('<div class="participation_field_ui">');
+								$this->form->add($field->renderUi());
+								$this->form->add('</div>');
+								
+								$this->form->add('</div>');
 						}
 				}
 				
-				return $form->render();
+				return $this->form->render();
 				
 				
 		}

@@ -162,7 +162,10 @@ else
 		
 		/******************* Render *******************/
 		
+		// include renderer
+		include(ROOT . '/design/'. $design .'/render.php');
 		
+		/*
 		// include header
 		include(ROOT . '/design/'. $design .'/header.template.php');
 		
@@ -171,7 +174,7 @@ else
 		
 		// include footer
 		include(ROOT . '/design/'. $design .'/footer.template.php');
-    
+    */
 		
 		
 		if ($cache_enabled)

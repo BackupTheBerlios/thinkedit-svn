@@ -46,16 +46,13 @@ if (!headers_sent())
 
 /******************* Disable magic quotes ***************/
 // from http://fr.php.net/manual/en/security.magicquotes.disabling.php
-
+/*
 if (get_magic_quotes_gpc()) 
 {
-		/*
-		echo '<pre>';
-		echo '<h1>Before conversion</h1>';
-		print_r($_REQUEST);
-		echo '</pre>';
-		*/
-		
+		//echo '<pre>';
+		//echo '<h1>Before conversion</h1>';
+		//print_r($_REQUEST);
+		//echo '</pre>';
 		
 		function stripslashes_deep($value)
 		{
@@ -77,15 +74,34 @@ if (get_magic_quotes_gpc())
 		$_REQUEST = array_map('stripslashes_deep', $_REQUEST);
 		// todo check if $_SESSION must be changed as well. Php doc is unclear on this subject
 		
-		/*
-		echo '<pre>';
-		echo '<h1>After conversion</h1>';
-		print_r($_REQUEST);
-		echo '</pre>';
-		*/
+		
+		//echo '<pre>';
+		//echo '<h1>After conversion</h1>';
+		//print_r($_REQUEST);
+		//echo '</pre>';
+		
 }
+*/
 
+// now from : http://talks.php.net/show/php-best-practices/26  :
 
+if (get_magic_quotes_gpc()) 
+{
+		$in = array(&$_GET, &$_POST, &$_COOKIE);
+		while (list($k,$v) = each($in)) 
+		{
+				foreach ($v as $key => $val) 
+				{
+						if (!is_array($val))
+						{
+								$in[$k][$key] = stripslashes($val);
+								continue;
+						}
+						$in[] =& $in[$k][$key];
+				}
+		}
+		unset($in);
+}
 
 
 /******************* Profiling ***************/

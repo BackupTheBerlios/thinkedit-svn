@@ -203,10 +203,11 @@ $data['table']['annonce']['field']['title']['type']='string';
 $data['table']['annonce']['field']['title']['is_title']='true';
 
 $data['table']['annonce']['field']['date_start']['title']['fr']='Date';
-$data['table']['annonce']['field']['date_start']['help']['fr']='Si il y a plusieurs dates, entrez la permière et précisez ci-dessous';
+$data['table']['annonce']['field']['date_start']['help']['fr']='Si il y a plusieurs dates, entrez la première et précisez ci-dessous';
 $data['table']['annonce']['field']['date_start']['type']='date';
 
 $data['table']['annonce']['field']['horaire']['title']['fr']='Horaire';
+$data['table']['annonce']['field']['horaire']['help']['fr']='Entrez un texte court';
 $data['table']['annonce']['field']['horaire']['type']='text';
 
 $data['table']['annonce']['field']['intervenants']['title']['fr']='Intervenant(s)';
@@ -214,6 +215,7 @@ $data['table']['annonce']['field']['intervenants']['help']['fr']='Veuillez préc
 $data['table']['annonce']['field']['intervenants']['type']='text';
 
 $data['table']['annonce']['field']['lieu']['title']['fr']='Lieu';
+$data['table']['annonce']['field']['lieu']['validation']['is_required']=1;
 $data['table']['annonce']['field']['lieu']['type']='text';
 
 
@@ -221,7 +223,8 @@ $data['table']['annonce']['field']['cout']['title']['fr']='Coût';
 $data['table']['annonce']['field']['cout']['type']='text';
 
 $data['table']['annonce']['field']['organisateur']['title']['fr']='Organisateur';
-$data['table']['annonce']['field']['organisateur']['help']['fr']='Indiquez un maximum d\'informations';
+$data['table']['annonce']['field']['organisateur']['validation']['is_required']=1;
+$data['table']['annonce']['field']['organisateur']['help']['fr']='Entrez un texte court';
 $data['table']['annonce']['field']['organisateur']['type']='text';
 
 
