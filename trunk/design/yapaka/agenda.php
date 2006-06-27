@@ -7,7 +7,7 @@ $participation = new participation('annonce');
 $participation->title = 'Proposez un événement';
 $participation->success_message = 'Votre contribution a bien été envoyée, elle sera validée et ajoutée sur le site';
 $participation->failure_message = 'Problème technique : votre message n\'a pas été envoyé';
-$participation->invalid_message = 'Votre contribution n\'est pas valable : certains champ doivent être remplis correctement. Vérifiez ci dessous et ré-essayez';
+$participation->invalid_message = 'Votre contribution n\'est pas valable : certains champ doivent être remplis correctement. Vérifiez ci-dessous et ré-essayez';
 //$participation->enable_moderation = false;
 
 // personne qui reçoit un mail quand il y a du neuf 
@@ -48,9 +48,19 @@ $participation->handlePost();
 
 <p>
 [contact] 
+
+<?php if ($annonce_content->get('site')): ?> 
+<a href="http://<?php echo $annonce_content->get('site');?>"><?php echo $annonce_content->get('organisateur');?></a>
+<?php else: ?>
 <?php echo $annonce_content->get('organisateur');?>
-<?php echo $annonce_content->get('site');?>
-<?php echo $annonce_content->get('email');?>
+<?php endif; ?>
+
+<?php if ($annonce_content->get('email')): ?> 
+<a href="mailto:<?php echo $annonce_content->get('email');?>"><?php echo $annonce_content->get('email');?></a>
+<?php endif; ?>
+
+
+
 </p>
 
 
@@ -64,5 +74,7 @@ $participation->handlePost();
 
 
 <?php
+
+// affiche le formulaire
 echo $participation->render();
 ?>

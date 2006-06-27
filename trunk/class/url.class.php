@@ -42,6 +42,8 @@ class url
 		var $url;
 		var $param;
 		var $self;
+		var $anchor;
+		
 		
 		
 		/*
@@ -364,7 +366,16 @@ class url
 				{
 						$url = $this->self;
 				}
-				return $url . $this->getQueryString();
+				
+				if (isset($this->anchor))
+				{
+						$anchor = '#' . $this->anchor;
+				}
+				else
+				{
+						$anchor = false;
+				}
+				return $url . $this->getQueryString() . $anchor;
 		}
 		
 		

@@ -1,3 +1,5 @@
+Deprecated
+
 API used by more than one object in the system.
 If an object want to  implement a specific API, here are the details :
 

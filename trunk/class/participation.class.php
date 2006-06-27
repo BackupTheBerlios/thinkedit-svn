@@ -315,6 +315,7 @@ class participation
 				$this->form->add($this->title);
 				$this->form->add('</h1>');
 				
+				
 				// In all cases, build form UI
 				foreach ($this->content->field as $field)
 				{
@@ -323,7 +324,7 @@ class participation
 								$this->form->add('<div class="participation_field">');
 								
 								$this->form->add('<div class="participation_field_title">');
-								if ($field->isRequired())
+								if ($field->isRequired() || $field->isTitle())
 								{
 										$this->form->add('<span class="participation_field_required">*</span>');
 								}

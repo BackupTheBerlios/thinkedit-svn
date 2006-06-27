@@ -1,3 +1,5 @@
+For a complete history, look at the svn comit logs
+
 31/05/2006 : Approaching a 2.0 public release ! 
 
 10/02/2005 : session::persist() and api.txt

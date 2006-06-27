@@ -58,9 +58,12 @@ class html_form
 		{
 				$out = '';
 				
+				// we add an anchor to have the form post render page go to the where the form is located
+				$this->url->anchor = 'participation_' . $this->id; 
 				
+				
+				$out .= '<a name="participation_' . $this->id . '"></a>';
 				$out .= sprintf('<form action="%s" method="post" id="%s">', $this->url->render(), $this->id);
-				
 				
 				if (isset($this->data) && is_array($this->data ))
 				{
