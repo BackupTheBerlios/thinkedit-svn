@@ -17,6 +17,8 @@ $participation->notification_email_subject = 'Un commentaire sur yapaka.be : ';
 
 $participation->handlePost();
 
+//print_r($participation);
+
 ?>
 
 

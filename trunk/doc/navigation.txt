@@ -1,3 +1,15 @@
+New menu system (proposal)
+
+te_menu($root, $depth)
+
+if root is a root node and depth = 1, it will return a main menu
+
+if root is the current node and level = 3, it will return a 3 level contextual menu.
+
+
+
+
+Deprecated : 
 How navigation in templates works
 
 

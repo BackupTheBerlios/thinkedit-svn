@@ -129,7 +129,7 @@ class db
 		}
 		
 		/**
-		* Returns an instance of MySQLResult to fetch rows with
+		* Returns true if succesfful or false if sql failure
 		* @param $sql string the database query to run
 		* @return MySQLResult
 		* @access public
@@ -189,7 +189,7 @@ class db
 				if (isset($db_cache) && isset($db_cache[$hash]))
 				{
 						// one line debugging tool :-)
-						//debug($sql . '[cached]', 'db:select()');
+						debug($sql . '[cached]', 'db:select()');
 						return ($db_cache[$hash]);
 				}
 				else
@@ -369,8 +369,12 @@ class db
 		
 		function clearCache()
 		{
+				debug('cache cleared', 'DB');
 				global $db_cache;
-				unset($db_cache);
+				//$db_ca
+				// global can only be unsetted this way from inside functions:
+				unset($GLOBALS['db_cache']);
+				//unset($db_cache);
 		}
 		
 		

@@ -226,31 +226,48 @@ class participation
 										// add content in the container
 										$new_node = $this->parent_node->add($this->content);
 										
-										// publish if needed
-										if ($this->enable_moderation)
+										
+										if (!$new_node)
 										{
-												
-										}
-										else
-										{
-												$new_node->publish();
+												$failure = true;
 										}
 										
+										/*
 										// update db
 										if (!$new_node->save())
 										{
 												$failure = true;
 										}
+										*/
+										
+										echo 'publish : ' . $new_node->get('publish');
+										
+										// publish if needed
+										if ($this->enable_moderation)
+										{
+												echo 'moderation enabled';
+										}
+										else
+										{
+												echo 'moderation disabled, publishing directly';
+												$new_node->publish();
+										}
+										
+										echo 'publish after : ' . $new_node->get('publish');
 										
 										// move to bottom of curent branch if needed
 										if ($this->move_to_bottom)
 										{
 												$new_node->moveBottom();
+												echo 'publish after move to bottom : ' . $new_node->get('publish');
 										}
 										else
 										{
 												$new_node->rebuild();
+												echo 'publish after rebuild : ' . $new_node->get('publish');
 										}
+										
+										
 								}
 								
 								if ($failure)

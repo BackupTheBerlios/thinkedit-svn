@@ -265,7 +265,7 @@ function te_admin_toolbox()
 /*
 Returns a short version of the string passed with [...] apended to it if the stirng is longer than size
 */
-function te_short($string, $size)
+function te_short($string, $size=30)
 {
 		if (strlen($string) > $size)
 		{

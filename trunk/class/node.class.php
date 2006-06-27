@@ -209,6 +209,8 @@ class node
 				return false;
 		}
 		
+		
+		
 		/**
 		* Load node data from an array ($data)
 		* This array must contain all the fields of the node table defined in config
@@ -599,6 +601,26 @@ class node
 						$node->set('object_type', $uid['type']);
 						$node->set('object_id', $uid['id']);
 						$node->set('parent_id', $this->getId());
+						
+						
+						// todo optimization (heavy optimisation possible, currently, the whole table is updated twice !!!!)
+						
+						// here is the plan :
+						
+						// compute values of left and right
+												
+						// if where = top, 
+						// use left = $this->left +1 
+						// and right = $this->left + 2
+						// add 2 to any left or right > $this->left
+						
+						
+						// if where = bottom
+						// use left = $this->right 
+						// and right = $this->right + 1
+						// add 2 to any left or right > $this->right
+						
+						
 						$results = $node->record->insert();
 						if ($results)
 						{
@@ -1290,12 +1312,23 @@ class node
 		
 		function publish()
 		{
+				global $thinkedit;
+				$db = $thinkedit->getDb();
+				$db->clearCache();
+				
 				$this->record->set('publish', 1);
+				$this->is_loaded = false;
+				
 				return $this->record->save();
 		}
 		
 		function unPublish()
 		{
+				global $thinkedit;
+				$db = $thinkedit->getDb();
+				$db->clearCache();
+				
+				$this->is_loaded = false;
 				$this->record->set('publish', 0);
 				return $this->record->save();
 		}

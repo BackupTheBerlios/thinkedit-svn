@@ -177,6 +177,7 @@ class record
 		}
 		
 		
+		
 		/**
 		* given an array, the record is filled with the data, as long as the array contains all the fields of this record
 		* if it is the case, $this->is_loaded = true, and further request for $this->load() won't do an sql query 
