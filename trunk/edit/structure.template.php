@@ -16,7 +16,7 @@
 <select size="1" onChange="jump('parent',this,0)">
 <?php foreach ($out['structure_breadcrumb'] as $i=>$bread): ?>
 <option value="<?php echo $bread['url'] ?>" <?php if (isset($bread['current'])): ?>selected="selected"<?php endif; ?>>
-<?php echo str_repeat('&nbsp;&nbsp;', $i); ?>
+<?php //echo str_repeat('&nbsp;&nbsp;', $i); ?>
 <?php echo ucfirst($bread['title']) ?>
 </option>
 <?php endforeach; ?>
@@ -262,7 +262,7 @@ $i++;
 <select size="1" onChange="ask_title('parent',this,1, '<?php echo translate('please_enter_title');?>')">
 <option value=""><?php echo translate('node_add_new') ?></option>
 <?php foreach ($out['allowed_items'] as $item): ?>
-<option value="<?php echo $item['direct_add_action'] ?>"><?php echo ucfirst($item['title']) ?></option>
+<option style="background-image: url('<?php echo $item['icon'] ?>'); background-repeat: no-repeat; padding-left: 20px; margin: 2px" value="<?php echo $item['direct_add_action'] ?>"><?php echo ucfirst($item['title']) ?></option>
 <?php endforeach; ?>
 </select>
 <?php endif; ?>

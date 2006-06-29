@@ -571,6 +571,7 @@ if (is_array($allowed_items))
 				{
 						$table = $thinkedit->newTable($allowed_item['type']);
 						$item['title'] = $table->getTitle();
+						$item['icon'] = $table->getIcon();
 						$url = new url();
 						$url->set('mode', 'new_node');
 						$url->set('node_id', $current_node->getId());

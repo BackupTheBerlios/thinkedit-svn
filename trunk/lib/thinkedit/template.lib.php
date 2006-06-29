@@ -188,19 +188,22 @@ function te_admin_toolbox()
 				{
 						position: absolute;
 						position: fixed;
-						top: 1em;
-						right: 1em;
-						width: 8em;
-						background-color : white;
-						padding: 1em;
+						top: 0;
+						left: 0;
+						width: 100%;
+						background-color: gray;
+						opacity: 0.8;
+						/*padding: 1em;*/
 				}
 				
 				.admin_toolbox_button
 				{
 						background-color : #0080ff;
-						/*margin: 5px;*/
+						border: 1px solid white;
+						margin: 5px;
 						padding: 5px;
-						display: block;
+						display: inline;
+						float: right;
 						text-decoration: none;
 						color: white;
 				}
@@ -212,18 +215,15 @@ function te_admin_toolbox()
 				$url = new url();
 				$url->keep('node_id');
 				$url->set('refresh', 1);
-				$out .= '<br/>';
 				$out .= '<a href="' . $url->render() . '" class="admin_toolbox_button">'. te_translate('refresh') .'</a>';
 				
 				$url = new url();
 				$url->keep('node_id');
 				$url->set('clear_cache', 1);
-				$out .= '<br/>';
 				$out .= '<a href="' . $url->render() . '" class="admin_toolbox_button">'. te_translate('clear_cache') .'</a>';
 				
 				$url = new url();
 				$url->keep('node_id');
-				$out .= '<br/>';
 				$out .= '<a href="' . $url->render('./edit/structure.php') . '" target="_blank" class="admin_toolbox_button">'. te_translate('edit') .'</a>';
 				$out .= '</div>';
 				

@@ -194,7 +194,7 @@ a.news_parents
 		padding-left: 10px;
 		margin-bottom:2px ;
 		color: #FF3300;
-		display: block;
+		/*display: block;*/
 }
 
 a.news_parents:hover   
@@ -214,7 +214,7 @@ a.news_enfants
 		padding-left: 10px;
 		margin-bottom:2px ;
 		color: #91B81B;;
-		display: block;
+		/*display: block;*/
 }
 
 a.news_enfants:hover   
@@ -234,7 +234,7 @@ a.news_adolescents
 		padding-left: 10px;
 		margin-bottom:2px ;
 		color: #993366;
-		display: block;
+		/*display: block;*/
 }
 
 a.news_adolescents:hover   
@@ -254,7 +254,7 @@ a.news_professionnels
 		padding-left: 10px;
 		margin-bottom:2px ;
 		color: #ff9900;
-		display: block;
+		/*display: block;*/
 }
 
 a.news_professionnels:hover   {

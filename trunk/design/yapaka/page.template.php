@@ -90,7 +90,7 @@ if ($content->get('cover'))
 
 
 <?php 
-include 'forum.php'; 
+//include 'forum.php'; 
 ?>
 
 

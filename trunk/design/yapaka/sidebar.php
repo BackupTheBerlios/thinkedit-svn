@@ -16,22 +16,50 @@
 <hr>
 <?php foreach ($news as $actu): ?>
 <div class="actu">
-<?php $actu_content = $actu->getContent(); ?>
+<?php
+// contenu de l'actu :
+$actu_content = $actu->getContent(); 
+?>
+
+
+<?php
+// relation éventuelles :
+$actu_relation = $thinkedit->newRelation(); 
+$actu_relations =  $actu_relation->getRelations($actu_content);
+
+// determination du lien de l'actu :
+if ($actu_relations)
+{
+		$actu_link = te_link($actu_relations[0]);
+}
+else
+{
+		$actu_link = te_link($actu);
+}
+?>
 
 
 <div class="actu_title"><?php echo te_short($actu_content->get('title'), 50); ?></div>
+
+
+<?php if ($actu_content->get('image')): ?>
+<div class="actu_image">
+<?php $actu_image = $actu_content->field['image']->getFilesystem(); ?>
+<a href="<?php echo $actu_link?>">
+<img src="<? echo $actu_image->getThumbnail(array('w' => 50) )?>"/>
+</a>
+</div>
+<?php endif; ?>
+
+
+
+
 <div class="actu_intro">
 <?php echo te_short($actu_content->get('body'), 200); ?>
 <br/>
-<?php
-$actu_relation = $thinkedit->newRelation(); 
-$actu_relations =  $actu_relation->getRelations($actu_content);
-?>
-<?php if ($actu_relations): ?>
-<a href="<?php echo te_link($actu_relations[0]); ?>" class="color100 bold">Suite...</a>
-<?php else: ?>
-<a href="<?php echo te_link($actu); ?>" class="color100 bold">Suite...</a>
-<?php endif; ?>
+
+<a href="<?php echo $actu_link; ?>" class="color100 bold">Suite...</a>
+
 </div>
 
 

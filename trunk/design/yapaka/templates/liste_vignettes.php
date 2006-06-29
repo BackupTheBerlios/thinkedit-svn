@@ -46,7 +46,7 @@
 						<?php if ($sub_content->isUsedIn('navigation')): ?>
 		
 										<div class="vignette">
-										<a href="<?php echo te_link($child);?>">
+										<a href="<?php echo te_link($child);?>" title="<?php echo $sub_content->getTitle(); ?>">
 										<?php if ($cover_file): ?>
 										<img src="<?php echo $cover_file->getThumbnail(array('w' => 80, 'h' => 80, 'zc' => 1))?>" alt="<?php echo te_short($sub_content->getTitle(), 50); ?>" title="<?php echo te_short($sub_content->get('body'), 200)?>">
 										<?php else: ?>
@@ -54,7 +54,7 @@
 										<?php endif; ?>
 										<br/>
 										<div class="vignette_title">
-										<?php echo te_short($sub_content->getTitle(), 30); ?>
+										<?php echo te_short($sub_content->getTitle(), 25); ?>
 										</div>
 										</a>
 										</div>

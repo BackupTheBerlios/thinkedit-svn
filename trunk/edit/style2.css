@@ -464,8 +464,15 @@ th.on
 input
 {
 		border: 1px solid gray;
+		/*
 		padding: 0;
 		margin: 0;
+		*/
+}
+
+option
+{
+		margin: 2px;
 }
 
 .field

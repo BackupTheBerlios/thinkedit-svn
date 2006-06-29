@@ -5,7 +5,7 @@
 
 <?php
 $filesystem = $thinkedit->newFilesystem();
-$filesystem->setPath('/ressources/photos/');
+$filesystem->setPath('/ressources/photos/' . te_get_section_name($node));
 $intro_photo = $filesystem->getRandomFile();
 
 ?>
