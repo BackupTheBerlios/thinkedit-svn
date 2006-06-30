@@ -12,6 +12,7 @@
 
 <div class="toolbar">
 
+<!--
 <?php if (isset($out['structure_breadcrumb'])) : ?>
 <select size="1" onChange="jump('parent',this,0)">
 <?php foreach ($out['structure_breadcrumb'] as $i=>$bread): ?>
@@ -22,11 +23,29 @@
 <?php endforeach; ?>
 </select>
 <?php endif; ?>
+-->
+
 
 <?php if (isset($out['go_up_url'])): ?>
 <a class="action_button" style="margin-bottom: 30px;" href="<?php echo $out['go_up_url'] ?>"><?php echo translate('go_up')?></a>
 <?php endif;?>
 </div>
+
+<?php if (isset($out['structure_breadcrumb'])) : ?>
+<?php $x=1 ?>
+
+<?php foreach ($out['structure_breadcrumb'] as $i=>$bread): ?>
+<a href="<?php echo $bread['url'] ?>">
+<?php echo ucfirst($bread['title']) ?>
+
+<?php if ($x < count($out['structure_breadcrumb'])): ?>
+ > 
+<?php endif; ?>
+
+<?php $x++; ?>
+
+<?php endforeach; ?>
+<?php endif; ?>
 
 
 
@@ -151,7 +170,7 @@ $i++;
 
 <?php if (isset($node['edit_url'])): ?>
 <div class="context_menu_item">
-<a href="<?php echo $node['edit_url']?>">
+<a href="<?php echo $node['edit_url']?>" onclick="custompopup('<?php echo $node['edit_url']?>', 'editor' , 80);return false">
 <img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('node_edit'); ?>">
 <?php echo translate('edit'); ?>
 </a>
@@ -170,7 +189,7 @@ $i++;
 
 <?php if (isset($node['preview_url'])): ?>
 <div class="context_menu_item">
-<a href="<?php echo $node['preview_url']?>" target="_blank">
+<a href="<?php echo $node['preview_url']?>" target="thinkedit_preview">
 <?php echo  $node['preview_title'];?>
 </a>
 </div>

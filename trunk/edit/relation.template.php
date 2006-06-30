@@ -55,7 +55,7 @@ $i++;
 <tr class="<?php echo $class?>">
 
 <td class="power_cell power_cell_border"><img src="<?php echo $item['icon']?>"/></td>
-<td class="power_cell power_cell_border"><?php echo $item['title']?></td>
+<td class="power_cell power_cell_border"><?php echo te_short($item['title'], 30)?></td>
 <td class="power_cell power_cell_border">
 <a class="action_button" href="<?php echo $item['remove_url']?>">
 <img src="ressource/image/icon/small/list-remove.png">

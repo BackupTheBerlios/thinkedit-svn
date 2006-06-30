@@ -62,7 +62,7 @@ $news_nodes = $node->getChildren(array('class' => 'record', 'type' => 'news'));
 						<div class="accueil_actu_relations">
 								<?php foreach ($news_relations as $news_relation): ?>
 								<a class="news_<?php echo te_get_section_name($news_relation); ?>" href="<?php echo te_link($news_relation); ?>"><?php echo $news_relation->getTitle(); ?></a>
-								<br/>
+								
 								<?php endforeach; ?>
 						</div>
 						<?php endif; ?>

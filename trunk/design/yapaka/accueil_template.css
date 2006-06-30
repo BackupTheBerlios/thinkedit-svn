@@ -193,8 +193,8 @@ a.news_parents
 		border-left-style: solid;
 		padding-left: 10px;
 		margin-bottom:2px ;
-		color: #FF3300;
-		/*display: block;*/
+		color: #D83006;
+		display: block;
 }
 
 a.news_parents:hover   
@@ -214,7 +214,7 @@ a.news_enfants
 		padding-left: 10px;
 		margin-bottom:2px ;
 		color: #91B81B;;
-		/*display: block;*/
+		display: block;
 }
 
 a.news_enfants:hover   
@@ -234,7 +234,7 @@ a.news_adolescents
 		padding-left: 10px;
 		margin-bottom:2px ;
 		color: #993366;
-		/*display: block;*/
+		display: block;
 }
 
 a.news_adolescents:hover   
@@ -244,17 +244,22 @@ a.news_adolescents:hover
 
 a.news_professionnels   
 {
-		font-weight:normal ;
+		padding: 0;
+		margin: 0;
+		/*font-weight: bold ;*/
 		font-size: 11px;
 		text-decoration: none;
-		line-height: 11px;
+		/*line-height: 11px;*/
+		
 		border-left: 3px;
-		border-left-color: #ff9900;
+		border-left-color: #FF9900;
 		border-left-style: solid;
+		
 		padding-left: 10px;
-		margin-bottom:2px ;
-		color: #ff9900;
-		/*display: block;*/
+		margin-bottom: 2px;
+		
+		color: #FF6600;
+		display: block;
 }
 
 a.news_professionnels:hover   {

@@ -21,11 +21,31 @@ paste() will add() the items cutted, and will change parents
 class clipboard
 {
 		
+		
+		function clipboard()
+		{
+				global $thinkedit;
+				$this->session = $thinkedit->newSession();
+		}
+		
+		
 		/**
 		* Adds the item to the clipboard, and marks it for "move" (deletion) if (and only if) it is pasted somewhere
 		*/
 		function cut($source)
 		{
+				if ($source->getUid())
+				{
+						$clipboard_cut = $this->session->get('clipboard_cut');
+						$clipboard_cut[] = $source->getUid();
+						$this->session->set('clipboard_cut', $clipboard_cut);
+						return true;
+				}
+				else
+				{
+						trigger_error('clipboard::cut() : $source has no getUid() method');
+						return false;
+				}
 				
 		}
 		
@@ -34,6 +54,18 @@ class clipboard
 		*/
 		function copy($source)
 		{
+				if ($source->getUid())
+				{
+						$clipboard_copy = $this->session->get('clipboard_copy');
+						$clipboard_copy[] = $source->getUid();
+						$this->session->set('clipboard_copy', $clipboard_copy);
+						return true;
+				}
+				else
+				{
+						trigger_error('clipboard::copy() : $source has no getUid() method');
+						return false;
+				}
 		}
 		
 		/**
@@ -42,6 +74,18 @@ class clipboard
 		*/
 		function paste($target)
 		{
+				// check if $target is a node
+				if ($target->getType() == 'node')
+				{
+						
+						$clipboard_cut = $this->session->get('clipboard_cut');
+						$clipboard_copy = $this->session->get('clipboard_copy');
+				}
+				else
+				{
+						trigger_error('clipboard::paste() $target must be a node');
+						return false;
+				}
 		}
 		
 		
@@ -50,6 +94,9 @@ class clipboard
 		*/
 		function clear()
 		{
+				$this->session->delete('clipboard_cut');
+				$this->session->delete('clipboard_copy');
+				return true;
 		}
 		
 		
@@ -59,6 +106,24 @@ class clipboard
 		*/
 		function getContent()
 		{
+				global $thinkedit;
+				
+				$clipboard_cut = $this->session->get('clipboard_cut');
+				$clipboard_copy = $this->session->get('clipboard_copy');
+				$clipboard_content = array_merge((array)$clipboard_cut, (array)$clipboard_copy);
+				
+				if (is_array($cliboard_content))
+				{
+						foreach ($clipboard_content as $clipboard_item)
+						{
+								$content[] = $thinkedit->newObject($content);
+						}
+						return $content;
+				}
+				else
+				{
+						return false;
+				}
 		}
 		
 }
