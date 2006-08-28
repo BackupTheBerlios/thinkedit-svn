@@ -22,10 +22,16 @@ $participation->title = $forum_content->getTitle();
 $participation->success_message = 'Votre message a bien été posté !';
 $participation->failure_message = 'Problème technique : votre message n\'a pas été envoyé';
 $participation->invalid_message = 'Votre message n\'est pas valable : certains champ doivent être remplis correctement. Vérifiez ci dessous et ré-essayez';
+
 $participation->enable_moderation = false;
+$participation->enable_captcha = true;
+$participation->captcha_title = 'Vérification';
+$participation->captcha_help = 'Veuillez entrer le code ci dessous pour vérifier que vous êtes un humain';
+$participation->captcha_error = 'Le code que vous avez entré n\'est pas le bon';
+
 
 // personne qui reçoit un mail quand il y a du neuf 
-$participation->notification_email = 'philippe.jadin@cfwb.be';
+$participation->notification_email = 'coordination.maltraitance@cfwb.be';
 $participation->notification_email_subject = 'Un commentaire sur yapaka.be : ';
 
 

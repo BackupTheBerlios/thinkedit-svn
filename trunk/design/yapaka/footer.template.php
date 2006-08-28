@@ -1,7 +1,7 @@
 										</td>
 									</tr>
 									<tr height="12">
-										<td align="left" valign="top" width="717"><span class="copyright">&copy;2006 YAPAKA | <a href="./edit">admin</a></span></td>
+										<td align="left" valign="top" width="717"><span class="copyright">&copy;2006 YAPAKA | <a href="<?php echo te_admin_link() ?>">Admin</a> | <a href="<?php echo te_edit_link() ?>" target="_blank">Edit</a></span></td>
 									</tr>
 								</table>
 							</td>

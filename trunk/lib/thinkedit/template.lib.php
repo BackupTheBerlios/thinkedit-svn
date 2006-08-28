@@ -66,6 +66,36 @@ function te_root_link()
 }
 
 
+// returns a link to the administrative view of the current page
+function te_admin_link()
+{
+		global $node;
+		if ($node)
+		{
+				return ROOT_URL . '/edit/structure.php?node_id=' . $node->getId();
+		}
+		else
+		{
+				return ROOT_URL . '/edit/structure.php';
+		}
+}
+
+
+// returns a link to the edit view of the current page
+function te_edit_link()
+{
+		global $node;
+		if ($node)
+		{
+				return ROOT_URL . '/edit/edit.php?node_id=' . $node->getId();
+		}
+		else
+		{
+				return ROOT_URL . '/edit/structure.php';
+		}
+}
+
+
 
 /*
 Returns the local path of the current design (usefull for including design specific php files)

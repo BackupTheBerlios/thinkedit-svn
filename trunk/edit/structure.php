@@ -347,9 +347,12 @@ else
 		if ($current_node->hasChildren())
 		{
 				$children = $current_node->getChildren();
-				foreach ($children as $child)
+				if (is_array($children))
 				{
-						$nodes[] = $child;
+						foreach ($children as $child)
+						{
+								$nodes[] = $child;
+						}
 				}
 				//$nodes[] = $current_node->getChildren();
 		}

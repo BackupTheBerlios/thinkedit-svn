@@ -92,6 +92,25 @@ class participation
 		*/
 		var $enable_captcha = true;
 		
+		
+		
+		/**
+		* Captcha title
+		*/
+		var $captcha_title = 'Verification';
+		
+		/**
+		* Captcha help message
+		*/
+		var $captcha_help = 'Please enter the following code in order to verify you are a human';
+		
+		
+		/**
+		* Captcha help message
+		*/
+		var $captcha_error = 'Invalid code entered';
+		
+		
 		/**
 		* If set to true, message content will be submited to askimet
 		*/
@@ -154,9 +173,9 @@ class participation
 		* Valid order is :
 		* - $this->handlePost()
 		* - list and display validated participations
-		* - show participaiton form ($this->render() )
+		* - show participation form ($this->render() )
 		*
-		* handlePost() does nothing if the particiaption form has not been submited 
+		* handlePost() does nothing if the participation form has not been submited 
 		*
 		*/
 		function handlePost()
@@ -168,8 +187,22 @@ class participation
 				{
 						$this->content->setArray($_POST);
 						
+						
+						
+						$valid_captcha = true;
+						if ($this->enable_captcha)
+						{
+								require_once ROOT . '/class/captcha.class.php';
+								$captcha = new captcha();
+								if ($_REQUEST['captcha'] <> $captcha->get())
+								{
+										$valid_captcha = false;
+								}
+						}
+						
+						
 						// first case : invalid content
-						if (!$this->content->validate())
+						if (!$this->content->validate() || (!$valid_captcha))
 						{
 								$this->form->add('<div class="participation_error">');
 								$this->form->add($this->invalid_message);
@@ -178,6 +211,13 @@ class participation
 						// second case : valid content submited
 						else
 						{
+								// if a captcha was used, reset it in order to have a new one for another message
+								if ($this->enable_captcha)
+								{
+										$captcha->reset();
+										unset ($_REQUEST['captcha']);
+								}
+								
 								$failure = false;
 								// save content to db
 								if (!$this->content->insert())
@@ -188,10 +228,9 @@ class participation
 								// add content to curent node
 								if (isset($this->parent_node))
 								{
-										//$container = $this->parent_node;
-										
+																				
 										// add content in the container
-										$new_node = $this->parent_node->add($this->content);
+										$new_node = $this->parent_node->add($this->content, 'bottom');
 										
 										
 										if (!$new_node)
@@ -207,20 +246,20 @@ class participation
 										}
 										*/
 										
-										echo 'publish : ' . $new_node->get('publish');
+										//echo 'publish : ' . $new_node->get('publish');
 										
 										// publish if needed
 										if ($this->enable_moderation)
 										{
-												echo 'moderation enabled';
+												//echo 'moderation enabled';
 										}
 										else
 										{
-												echo 'moderation disabled, publishing directly';
+												//echo 'moderation disabled, publishing directly';
 												$new_node->publish();
 										}
 										
-										echo 'publish after : ' . $new_node->get('publish');
+										//echo 'publish after : ' . $new_node->get('publish');
 										
 										
 										/*
@@ -339,6 +378,61 @@ class participation
 								$this->form->add('</div>');
 						}
 				}
+				
+				// add captcha if needed
+				if ($this->enable_captcha)
+				{
+						require_once ROOT . '/class/captcha.class.php';
+						$captcha = new captcha();
+						
+						$this->form->add('<div class="participation_field">');
+						
+						
+						
+						
+						$this->form->add('<div class="participation_field_title">');
+						$this->form->add('<span class="participation_field_required">*</span>');
+						$this->form->add($this->captcha_title);
+						$this->form->add('</div>');
+						
+						$this->form->add('<div class="participation_field_help">');
+						$this->form->add($this->captcha_help);
+						$this->form->add('</div>');
+						
+						
+						if ($this->form->isSent())
+						{
+								if (isset($_REQUEST['captcha']) && ($_REQUEST['captcha'] <> $captcha->get()))
+								{
+										$this->form->add('<div class="participation_field_error">');
+										$this->form->add($this->captcha_error);
+										$this->form->add('</div>');
+										$captcha->reset();
+								}
+							
+						}
+						
+						if (isset($_REQUEST['captcha']))
+						{
+									$captcha_entered = $_REQUEST['captcha'];
+						}
+						else
+						{
+								$captcha_entered = '';
+						}
+						
+						
+						$this->form->add('<div class="participation_field_ui">');
+						$this->form->add('<br/>');
+						$this->form->add('<img src="' . $captcha->render() . '">');
+						$this->form->add('<br/> <br/>');
+						$this->form->add('Code : <input type="text" name="captcha" value="' . $captcha_entered .'">');
+						
+						$this->form->add('</div>');
+						
+						$this->form->add('</div>');
+				}
+				
 				
 				return $this->form->render();
 				

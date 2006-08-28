@@ -280,6 +280,8 @@ class node
 		**/
 		function rebuild($parent_id = 0, $left = 1)
 		{
+				//echo "<h1>rebuild called</h1>";
+				
 				global $thinkedit;
 				$db = $thinkedit->getDb();
 				$db->clearCache();
@@ -295,10 +297,10 @@ class node
 				
 				if (is_array($results))
 				{
-					foreach ($results as $result)
-					{
-						$right = $this->rebuild($result['id'], $right);
-					}
+						foreach ($results as $result)
+						{
+								$right = $this->rebuild($result['id'], $right);
+						}
 				}
 				
 				// we've got the left value, and now that we've processed
@@ -382,7 +384,7 @@ class node
 						}
 				}
 				return false;
-						
+				
 		}
 		
 		/**
@@ -590,7 +592,7 @@ class node
 				}
 		}
 		
-		function add($child_object, $where = 'top')
+		function add($child_object, $where = 'bottom')
 		{
 				if ($child_object->getUid())
 				{
@@ -604,22 +606,134 @@ class node
 						
 						
 						// todo optimization (heavy optimisation possible, currently, the whole table is updated twice !!!!)
+						// almost done
+						if ($where=='top')
+						{
+								// if we add to TOP :
+								// compute left and right values
+								
+								$parent_left = $this->record->get('left_id');
+								
+								$left = $parent_left + 1;
+								$right = $parent_left + 2;
+								/*
+								echo 'parent left : ' . $parent_left . '<br/>';
+								echo 'left : ' . $left . '<br/>';
+								echo 'right : ' . $right . '<br/>';
+								*/
+								// create a "hole" in the tree
+								// SQL used : update node set left_id = left_id + 1 where left_id > $parent_left
+								
+								$sql = "update {$this->table} set left_id = left_id + 2 where left_id > {$parent_left}";
+								$results = $thinkedit->db->query($sql);
+								
+								$sql = "update {$this->table} set right_id = right_id + 2 where right_id > {$parent_left}";
+								$results = $thinkedit->db->query($sql);
+								
+								$node->set('left_id', $left);
+								$node->set('right_id', $right);
+								
+								// set order
+								$id = $this->getId();
+								$orders = $thinkedit->db->select("select min(sort_order) as sort_order from {$this->table} where parent_id = {$id}"); 
+								
+								if (is_array($orders))
+								{
+										$order = $orders[0]['sort_order'];
+										//echo 'order = ' . $order;
+										
+										$node->set('sort_order', $order - 1);
+								}
+								
+								
+								// insert the new node
+								
+								$results = $node->record->insert();
+								if ($results)
+								{
+										//$node->moveTop();
+										//$this->rebuild();
+										// because we rebuild, left, right and level values are changed.
+										// we have to reload the node from the db.
+										$node->is_loaded = false;
+										$node->is_new = true;
+										return $node;
+								}
+								else
+								{
+										trigger_error('node::add() failed saving node', E_USER_WARNING);
+										return false;
+								}
+								
+						}
 						
-						// here is the plan :
 						
-						// compute values of left and right
-												
-						// if where = top, 
-						// use left = $this->left +1 
-						// and right = $this->left + 2
-						// add 2 to any left or right > $this->left
+						if ($where=='bottom')
+						{
+								// if we add to TOP :
+								// compute left and right values
+								
+								$parent_right = $this->record->get('right_id');
+								
+								$left = $parent_right;
+								$right = $parent_right + 1;
+								/*
+								echo 'parent right : ' . $parent_right . '<br/>';
+								echo 'left : ' . $left . '<br/>';
+								echo 'right : ' . $right . '<br/>';
+								*/
+								
+								// create a "hole" in the tree
+								// SQL used : update node set left_id = left_id + 1 where left_id > $parent_left
+								
+								$sql = "update {$this->table} set left_id = left_id + 2 where left_id >= {$parent_right}";
+								$results = $thinkedit->db->query($sql);
+								
+								$sql = "update {$this->table} set right_id = right_id + 2 where right_id >= {$parent_right}";
+								$results = $thinkedit->db->query($sql);
+								
+								
+								
+								$node->set('left_id', $left);
+								$node->set('right_id', $right);
+								
+								
+								// set order
+								$id = $this->getId();
+								$orders = $thinkedit->db->select("select max(sort_order) as sort_order from {$this->table} where parent_id = {$id}"); 
+								
+								if (is_array($orders))
+								{
+										$order = $orders[0]['sort_order'];
+										//echo 'order = ' . $order;
+										
+										$node->set('sort_order', $order + 1);
+								}
+								
+								
+								// insert the new node
+								
+								$results = $node->record->insert();
+								if ($results)
+								{
+										//$node->moveTop();
+										//$this->rebuild();
+										// because we rebuild, left, right and level values are changed.
+										// we have to reload the node from the db.
+										$node->is_loaded = false;
+										$node->is_new = true;
+										return $node;
+								}
+								else
+								{
+										trigger_error('node::add() failed saving node', E_USER_WARNING);
+										return false;
+								}
+								
+						}
 						
 						
-						// if where = bottom
-						// use left = $this->right 
-						// and right = $this->right + 1
-						// add 2 to any left or right > $this->right
-						
+					
 						
 						$results = $node->record->insert();
 						if ($results)
@@ -651,8 +765,8 @@ class node
 		{
 				if ($this->isRoot())
 				{
-								trigger_error('node::changeParent() cannot change the parent of this node : it is root');
-								return false;
+						trigger_error('node::changeParent() cannot change the parent of this node : it is root');
+						return false;
 				}
 				
 				if ($this->load())
@@ -807,8 +921,8 @@ class node
 						}
 						else
 						{
-						trigger_error('node::loadRootNode() : no nodes with parent_id = 0 found in db. Please create at least one node in admin or in installer', E_USER_WARNING);
-						return false;
+								trigger_error('node::loadRootNode() : no nodes with parent_id = 0 found in db. Please create at least one node in admin or in installer', E_USER_WARNING);
+								return false;
 						}
 				}
 		}
@@ -1019,22 +1133,22 @@ class node
 				
 				if ($content)
 				{
-				// first let's say we can add anything
-				if (isset($content->config['allowed_items']['record']))
-				{
-						foreach ($content->config['allowed_items']['record'] as $key=>$value)
+						// first let's say we can add anything
+						if (isset($content->config['allowed_items']['record']))
 						{
-								$item['class'] = 'record';
-								$item['type'] = $key;
-								$items[] = $item;
+								foreach ($content->config['allowed_items']['record'] as $key=>$value)
+								{
+										$item['class'] = 'record';
+										$item['type'] = $key;
+										$items[] = $item;
+								}
+								return $items;
+								
 						}
-						return $items;
-						
-				}
-				else
-				{
-						return false;
-				}
+						else
+						{
+								return false;
+						}
 				}
 				else
 				{
@@ -1348,7 +1462,7 @@ class node
 				}
 				else
 				{
-					return false;
+						return false;
 				}
 		}
 		

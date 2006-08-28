@@ -1,3 +1,5 @@
+<!-- DEPRECATED -->
+
 <?php /**************** Affichage liste de commentaires *******************/ ?>
 
 

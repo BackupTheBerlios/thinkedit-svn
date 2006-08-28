@@ -172,11 +172,30 @@ function jump(targ,selObj,restore)
 
 
 function ask_title(targ,selObj,restore,text)
-{ //v3.0
+{ 
+		//v3.0
 		title =  prompt(text);
 		if (title)
 		{
-				eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"&title=" + title +"'");
+				encoded_title = encodeURIComponent(title);
+				//encoded_title = escape(title);
+				//encoded_title.replace(/\+/g, '%2B').replace(/\"/g,'%22').replace(/\'/g, '%27').replace(/\//g,'%2F');
+				var result = "";
+				var length = encoded_title.length;
+				for (var i = 0; i < length; i++) 
+				{
+						var ch = encoded_title.charAt(i);
+						switch (ch) 
+						{
+								case "'":
+								result += "%27";
+								break;
+								default:
+								result += ch;
+						}
+				}
+				
+				eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"&title=" + result +"'");
 		}
 		if (restore) selObj.selectedIndex=0;
 }

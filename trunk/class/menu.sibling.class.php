@@ -28,10 +28,14 @@ class menu_sibling extends menu_base
 						foreach ($siblings as $child)
 						{
 								$content = $child->getContent();
-								$content->load();
-								$url = new url();
-								$url->set('node_id', $child->getId());
-								$out .= '<a href="' . $url->render() . '">' . $content->getTitle() . '</a> <br/>';
+								
+								if ($content->isUsedIn('navigation'))
+								{
+										$content->load();
+										$url = new url();
+										$url->set('node_id', $child->getId());
+										$out .= '<a href="' . $url->render() . '">' . $content->getTitle() . '</a> <br/>';
+								}
 						}
 						return $out;
 				}
@@ -49,7 +53,8 @@ class menu_sibling extends menu_base
 						foreach ($siblings as $entry)
 						{
 								$content = $entry->getContent();
-								if ($content->isUsedIn('navigation') || $get_all)
+								//if ($content->isUsedIn('navigation') || $get_all) // todo fix this get_all behavior
+								if ($content->isUsedIn('navigation'))
 								{
 										$menuitem = new menuitem($entry);
 										if ($entry->getId() == $this->node->getId())
@@ -75,9 +80,9 @@ class menu_sibling extends menu_base
 				
 		}
 		
-
-
-
+		
+		
+		
 }
 
 ?>

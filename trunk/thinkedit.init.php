@@ -218,4 +218,9 @@ require_once ROOT . '/class/interface_locale.class.php';
 $interface_locale = new interface_locale();
 
 
+/******************* Template helpers (aka "tags") *******************/
+require_once ROOT . '/lib/thinkedit/template.lib.php';
+
+
+
 ?>
