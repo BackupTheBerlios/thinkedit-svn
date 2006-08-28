@@ -126,4 +126,28 @@ $relations = $relation->getRelations($content, array('class'=>'node'));
 
 
 
+
+<!-- Articles à lire (pour "question parents") -->
+<?php if ($content->getType() =='question_parent') :?>
+		<?php 
+		$articles = $node->getChildren(array('type'=>'page'));
+		?>
+		
+		<?php if (is_array($articles)): ?>
+				<div id="articles">
+				<div class="title color100">Articles à lire...</div>
+						<?php foreach($articles as $my_article): ?>
+						<div>
+						<a class="<?php echo te_get_section_name($my_article) ?>_sub" href="<?php echo te_link($my_article); ?>" title="<?php echo $my_article->getTitle(); ?>">
+						<img src="<?php echo te_design() ?>/sources/fleche.gif">
+						<?php echo te_short($my_article->getTitle(), 25); ?>
+						</a>
+						</div>
+						<?php endforeach; ?>
+				</div>
+		<?php endif; ?>
+
+<?php endif; ?>
+
+
 </div>

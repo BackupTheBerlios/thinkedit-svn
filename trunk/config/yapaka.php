@@ -10,7 +10,8 @@ $data['table']['page']['allowed_items']['record']['adresse']='true';
 $data['table']['page']['allowed_items']['record']['texte']='true';
 
 
-
+$data['table']['question_parent']['allowed_items']['record']['forum']='true';
+$data['table']['question_parent']['allowed_items']['record']['page']='true';
 // tables sépcifiques à yapaka
 
 $data['table']['publication']['title']['fr']='Publication';

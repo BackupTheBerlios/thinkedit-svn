@@ -1,11 +1,25 @@
+<?php if ($forums = $node->getChildren(array('type' => 'forum'))): ?>
+
+<?php
+// on ne prend que le premier forum défini dans ce node, pour ne pas avoir plusieurs forums sur une même page
+$forum = $forums[0]; 
+$forum_content = $forum->getContent();
+
+?>
+
+
+
+
 <?php
 require_once ROOT . '/class/participation.class.php';
 
 $participation = new participation('discussion');
 
+$participation->setParentNode($forum);
+
 // définition des variables importantes : 
-$participation->title = 'Donnez votre avis';
-$participation->success_message = 'Votre message a bien été envoyé, il sera validé et ajouté sur le site';
+$participation->title = $forum_content->getTitle();
+$participation->success_message = 'Votre message a bien été posté !';
 $participation->failure_message = 'Problème technique : votre message n\'a pas été envoyé';
 $participation->invalid_message = 'Votre message n\'est pas valable : certains champ doivent être remplis correctement. Vérifiez ci dessous et ré-essayez';
 $participation->enable_moderation = false;
@@ -22,7 +36,8 @@ $participation->handlePost();
 ?>
 
 
-<?php $discussions = $node->getChildren(array('type' => 'discussion')); ?>
+
+<?php $discussions = $forum->getChildren(array('type' => 'discussion')); ?>
 <?php if ($discussions): ?>
 <br/>
 <br/>
@@ -44,8 +59,11 @@ Posté le <?php echo $discussion_content->get('posted');?> par <?php echo $discu
 <br/>
 <?php endif; ?>
 
-
-
 <?php
 echo $participation->render();
 ?>
+
+<?php endif; ?>
+
+
+

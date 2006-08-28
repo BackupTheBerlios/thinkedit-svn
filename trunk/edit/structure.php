@@ -133,6 +133,10 @@ if ($url->get('action') == 'new_node')
 		$url->redirect();
 		*/
 		
+		
+		$url->keep('node_id');
+		//$url->debug();
+		$url->redirect();
 }
 
 

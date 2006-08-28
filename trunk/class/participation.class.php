@@ -88,6 +88,11 @@ class participation
 		var $enable_moderation = true;
 		
 		/**
+		* If set to true, users will need to enter a captcha in order to post a message
+		*/
+		var $enable_captcha = true;
+		
+		/**
 		* If set to true, message content will be submited to askimet
 		*/
 		var $enable_askimet = false; 
@@ -183,44 +188,6 @@ class participation
 								// add content to curent node
 								if (isset($this->parent_node))
 								{
-										/*
-										if (isset($this->container_node_type))
-										{
-												// find a node of this type in parent_node
-												
-												$children = $this->parent_node->getChildren();
-												
-												if ($children)
-												{
-														foreach ($children as $child)
-														{
-																$child_content = $child->getContent();
-																if ($child_content->getType() == $this->container_node_type)
-																{
-																		$container = $child;
-																}
-														}
-												}
-												
-												// if no container, create one
-												
-												if (!isset($container))
-												{
-														$container_content = $thinkedit->newRecord($this->container_node_type);
-														$container_content->setTitle($this->container_node_title);
-														$container_content->save();
-														$container = $this->parent_node->add($container_content);
-												}
-												
-												
-												
-										}
-										else // if no container is defined, container is parent node
-										{
-												$container = $this->parent_node;
-										}
-										*/
-										
 										//$container = $this->parent_node;
 										
 										// add content in the container
@@ -255,6 +222,8 @@ class participation
 										
 										echo 'publish after : ' . $new_node->get('publish');
 										
+										
+										/*
 										// move to bottom of curent branch if needed
 										if ($this->move_to_bottom)
 										{
@@ -266,6 +235,7 @@ class participation
 												$new_node->rebuild();
 												echo 'publish after rebuild : ' . $new_node->get('publish');
 										}
+										*/
 										
 										
 								}

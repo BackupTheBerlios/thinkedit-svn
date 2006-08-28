@@ -39,7 +39,7 @@
 
 
 <?php 
-include 'comment.php'; 
+include 'forum.php'; 
 ?>
 
 

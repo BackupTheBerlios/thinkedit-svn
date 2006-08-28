@@ -1,3 +1,6 @@
+<?php /**************** Affichage liste de commentaires *******************/ ?>
+
+
 <?php if ($forums = $node->getChildren(array('type' => 'forum'))): ?>
 
 <?php foreach ($forums as $forum): ?>
@@ -22,10 +25,47 @@ Posté le <?php echo $discussion_content->get('posted');?> par <?php echo $discu
 <?php echo nl2br($discussion_content->get('body'));?>
 </p>
 </div>
+
+
+
+
+<?php /**************** affichage formulaire de participation *******************/ ?>
+
+<?php
+require_once ROOT . '/class/participation.class.php';
+
+$participation = new participation('discussion');
+
+
+$participation->setParentNode($discussion_node);
+
+// définition des variables importantes : 
+$participation->title = 'Donnez votre avis';
+$participation->success_message = 'Votre message a bien été envoyé, il sera validé et ajouté sur le site';
+$participation->failure_message = 'Problème technique : votre message n\'a pas été envoyé';
+$participation->invalid_message = 'Votre message n\'est pas valable : certains champ doivent être remplis correctement. Vérifiez ci dessous et ré-essayez';
+$participation->enable_moderation = false;
+
+// personne qui reçoit un mail quand il y a du neuf 
+$participation->notification_email = 'philippe.jadin@cfwb.be';
+$participation->notification_email_subject = 'Un commentaire sur yapaka.be : ';
+
+
+$participation->handlePost();
+
+print_r($participation);
+
+echo $participation->render();
+
+?>
+
 <?php endforeach; ?>
 <?php endif; ?>
 
 
+
+
+<!--
 
 
 
@@ -115,7 +155,9 @@ $form->add('</div>');
 echo $form->render();
 
 ?>
-
-
 <?php endforeach; ?>
 <?php endif; ?>
+
+
+-->
+
