@@ -253,4 +253,23 @@ $data['table']['annonce']['field']['posted']['use']['participation']='false';
 
 
 
+
+/*
+
+$data['table']['ecard']['title']['fr']='Forum';
+$data['table']['ecard']['help']['fr']='Boite qui contient les messages postés par les utilisateurs du site';
+$data['table']['ecard']['icon']='comments.png';
+$data['table']['ecard']['title_field']='title';
+$data['table']['ecard']['use']['navigation']='false';
+$data['table']['ecard']['use']['main']='false';
+$data['table']['ecard']['allowed_items']['record']['discussion']='true';
+$data['table']['ecard']['field']['id']['type']='id';
+$data['table']['ecard']['field']['title']['title']['fr']='Sujet';
+$data['table']['ecard']['field']['title']['type']='string';
+$data['table']['ecard']['field']['title']['is_title']='true';
+$data['table']['ecard']['field']['intro']['title']['fr']='Introduction';
+$data['table']['ecard']['field']['intro']['type']='text';
+
+*/
+
 ?>

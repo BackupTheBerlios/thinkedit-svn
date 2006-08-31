@@ -4,6 +4,19 @@
 <?php if (isset($sidebar_image)): ?>
 <div id="cover">
 <img src="<?php echo $sidebar_image->getThumbnail(array('w' => 170) ); ?>"/>
+
+<?php
+// fabrication lien vers ecard 
+$url = new url();
+$url->set('image', $sidebar_image->getPath());
+$url->set('template', '/ecards/' . te_get_section_name($node) . '.png');
+$ecard_url = $url->render(ROOT_URL . '/plugin/ecards/');
+?>
+
+<a onclick="popup(this.href, 'ecard');  return false;" target="_blank" class="<?php echo te_get_section_name($node) ?>_sub" href="<?php echo $ecard_url; ?>">
+<img src="<?php echo te_design() ?>/sources/fleche.gif">
+Envoyer cette image en carte postale
+</a>
 </div>
 <?php endif; ?>
 
@@ -122,6 +135,9 @@ $relations = $relation->getRelations($content, array('class'=>'filesystem'));
 						</div>
 						<?php endforeach; ?>
 				</div>
+				
+				<br/>
+				<br/>
 		<?php endif; ?>
 
 <?php endif; ?>

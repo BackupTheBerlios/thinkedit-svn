@@ -22,7 +22,7 @@ $intro_photo = $filesystem->getRandomFile();
 <td width="15"></td>
 
 
-<td valign="top">
+<td valign="top" id="content">
 
 
 <?php if ($node->getLevel() == 4): ?>
@@ -39,6 +39,18 @@ $intro_photo = $filesystem->getRandomFile();
 <?php endif; ?>
 
 
+<?php
+// render thumbnail
 
+if ($content->get('cover'))
+{
+		$file = $content->field['cover']->getFilesystem();
+		if ($file)
+		{
+				$sidebar_image = $file;
+		}
+}
+
+?>
 
 

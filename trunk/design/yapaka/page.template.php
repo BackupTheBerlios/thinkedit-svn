@@ -20,20 +20,6 @@
 <?php echo $content->get('body'); ?>
 </div>
 
-<?php
-// render thumbnail
-
-if ($content->get('cover'))
-{
-		$file = $content->field['cover']->getFilesystem();
-		if ($file)
-		{
-				$sidebar_image = $file;
-		}
-}
-
-?>
-
 
 <?php $children =  $node->getChildren(); ?>
 <?php if ($children) : ?>

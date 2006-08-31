@@ -10,7 +10,7 @@
 					</table>
 				</td>
 			</tr>
-			<tr>
+			<tr id="footer">
 				<td align="center" valign="top"><img src="<?php echo te_design(); ?>/sources/shadow_bottom.gif" alt="" width="777" height="15" border="0"></td>
 			</tr>
 		</table>

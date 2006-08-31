@@ -46,9 +46,58 @@ include_once('common.inc.php');
 //check_user
 check_user();
 
-// check class
-//$class = $url->get('class') or $session->get('class');
-$class = $url->get('class');
+// Load parameters from url or session :
+
+// Class
+if  ($url->get('class'))
+{
+		$class = $url->get('class');
+		$session->set('browser_class', $class);
+		
+}
+elseif ($session->get('browser_class'))
+{
+		$class = $session->get('browser_class');
+}
+else
+{
+		$class = false;
+}
+
+// Path
+if  ($url->get('path'))
+{
+		$path = $url->get('path');
+		$session->set('browser_path', $path);
+		
+}
+elseif ($session->get('browser_path'))
+{
+		$path = $session->get('browser_path');
+}
+else
+{
+		$path = false;
+}
+
+
+// Node ID
+if  ($url->get('node_id'))
+{
+		$node_id = $url->get('node_id');
+		$session->set('browser_node_id', $node_id);
+		
+}
+elseif ($session->get('browser_node_id'))
+{
+		$node_id = $session->get('browser_node_id');
+}
+else
+{
+		$node_id = false;
+}
+
+
 
 if ($url->get('mode') == 'field')
 {
@@ -69,6 +118,9 @@ if ($url->get('mode') == 'relation')
 
 // check type
 $type = $url->get('type');
+
+
+
 
 
 /*************************** First dropdown ***********/
@@ -134,7 +186,7 @@ if ($class=='file')
 						$url->set('class', 'file');
 						$folder_out['title'] = $folder->getPath();
 						$folder_out['url'] = $url->render();
-						if ($folder->getPath() == $url->get('path'))
+						if ($folder->getPath() == $path)
 						{
 								$folder_out['selected'] = 1;
 						}
@@ -144,11 +196,10 @@ if ($class=='file')
 }
 
 /*************************** Files items ***********/
-
-if ($class=='file' && $url->get('path'))
+if ($class=='file' && $path)
 {
 		$filesystem = $thinkedit->newFilesystem();
-		$filesystem->setPath($url->get('path'));
+		$filesystem->setPath($path);
 		
 		$childs = $filesystem->getFiles();
 		
@@ -211,9 +262,8 @@ if ($class=='table' && $type)
 if ($class=='node')
 {
 		$current_node = $thinkedit->newNode();
-		if ($url->get('node_id'))
+		if ($node_id)
 		{
-				$node_id = $url->get('node_id');
 				$current_node->setId($node_id);
 				
 				if (!$current_node->load())

@@ -6,7 +6,7 @@ body
 
 
 
-#menu, #cfwb, #header
+#menu, #cfwb, #header, #sidebar, #footer
 {
 		display: none;
 }

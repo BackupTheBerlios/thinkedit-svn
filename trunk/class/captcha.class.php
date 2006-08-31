@@ -2,6 +2,13 @@
 
 class captcha
 {
+		
+		/**
+		* Default captcha size (in chars)
+		* 
+		*/
+		var $size = 3; 
+		
 		/**
 		* Returns the url to the captcha
 		* 
@@ -15,6 +22,10 @@ class captcha
 						unset ($_SESSION['captcha']);
 				}
 				*/
+				// generate captcha string :
+				$this->get();
+				
+				
 				return ROOT_URL . '/lib/gotcha/captcha_image.php';
 		}
 		
@@ -33,7 +44,8 @@ class captcha
 				else
 				{
 						$t =  md5(uniqid(rand(), 1));
-						$text = strtolower(substr($t, rand(0, (strlen($t)-6)), rand(3,6)));
+						//$text = strtolower(substr($t, rand(0, (strlen($t)-6)), rand(3,6)));
+						$text = strtolower(substr($t, 0, $this->size));
 						$_SESSION['captcha'] = $text;
 				}
 				
