@@ -213,20 +213,24 @@ class config
 				{
 						foreach ($this->config['site']['locale'] as $id=>$locale)
 						{
+								//echo '<h1>' . $id;
 								$result[$id] = $id;
 						}
+						//print_r ($result);
 						return $result;
 				}
 				else
 				{
-						trigger_error('no locale, even main one found in config, please setup at least one locale');
+						trigger_error('no locale, even a main one found in config, please setup at least one locale');
 						return array('en');
 				}
 		}
 		
 	function getMainLocale()
 		{
-				return current($this->getLocaleList());
+				$list = $this->getLocaleList();
+				reset ($list);
+				return current($list);
 		}
 		
 		

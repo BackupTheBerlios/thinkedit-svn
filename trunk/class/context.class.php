@@ -87,7 +87,9 @@ class context
 						}
 						else
 						{
-								return 'fr';
+								global $thinkedit;
+								return $thinkedit->configuration->getMainLocale();
+								//return 'fr';
 						}
 				}
 		}
