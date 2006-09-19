@@ -76,7 +76,7 @@
 
 
 <?php 
-//include 'forum.php'; 
+include 'forum.php'; 
 ?>
 
 

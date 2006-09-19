@@ -1,5 +1,5 @@
 <?php
-
+$data['site']['design']='yapaka';
 
 $data['table']['page']['allowed_items']['record']['publication']='true';
 $data['table']['page']['allowed_items']['record']['news']='true';
@@ -8,7 +8,7 @@ $data['table']['page']['allowed_items']['record']['question_parent']='true';
 $data['table']['page']['allowed_items']['record']['multimedia']='true';
 $data['table']['page']['allowed_items']['record']['adresse']='true';
 $data['table']['page']['allowed_items']['record']['texte']='true';
-$data['table']['page']['allowed_items']['filesystem']['main']='true';
+
 
 
 // tables sépcifiques à yapaka
@@ -99,7 +99,7 @@ $data['table']['news']['use']['navigation']='false';
 $data['table']['news']['field']['id']['type'] = 'id';
 $data['table']['news']['field']['title']['type'] = 'string';
 $data['table']['news']['field']['title']['is_title'] = 'true';
-$data['table']['news']['field']['intro']['type'] = 'text';
+//$data['table']['news']['field']['intro']['type'] = 'text';
 $data['table']['news']['field']['body']['type'] = 'text';
 $data['table']['news']['field']['image']['type'] = 'file';
 
@@ -128,7 +128,6 @@ $data['table']['discussion']['title_field']='title';
 $data['table']['discussion']['use']['navigation']='false';
 $data['table']['discussion']['use']['main']='true';
 $data['table']['discussion']['field']['id']['type']='id';
-$data['table']['discussion']['field']['title']['use']['participation']=true;
 $data['table']['discussion']['field']['title']['title']['fr']='Sujet';
 $data['table']['discussion']['field']['title']['type']='string';
 $data['table']['discussion']['field']['title']['is_title']='true';
@@ -136,12 +135,14 @@ $data['table']['discussion']['field']['email']['title']['fr']='Adresse email';
 $data['table']['discussion']['field']['email']['type']='string';
 $data['table']['discussion']['field']['name']['title']['fr']='Nom ou pseudo';
 $data['table']['discussion']['field']['name']['type']='string';
+$data['table']['discussion']['field']['name']['validation']['is_required']=1;
 $data['table']['discussion']['field']['body']['title']['fr']='Message';
 $data['table']['discussion']['field']['body']['help']['fr']='Texte plus long (si nécessaire)';
 $data['table']['discussion']['field']['body']['type']='text';
+$data['table']['discussion']['field']['body']['validation']['is_required']=1;
 $data['table']['discussion']['field']['posted']['type']='created';
 $data['table']['discussion']['field']['posted']['title']['fr']='Date de création';
-$data['table']['discussion']['field']['posted']['use']['public']='false';
+$data['table']['discussion']['field']['posted']['use']['participation']='false';
 
 
 
@@ -186,6 +187,68 @@ $data['table']['adresse']['field']['url']['type']='string';
 $data['table']['adresse']['field']['email']['title']['fr']='Adresse email';
 $data['table']['adresse']['field']['email']['type']='string';
 
+
+
+
+$data['table']['annonce']['title']['fr']='Annonces en ligne';
+$data['table']['annonce']['help']['fr']='Annonces proposées par les utilisateurs professionnels du site';
+$data['table']['annonce']['icon']='bell.png';
+$data['table']['annonce']['title_field']='title';
+$data['table']['annonce']['use']['navigation']='true';
+$data['table']['annonce']['use']['main']='true';
+$data['table']['annonce']['field']['id']['type']='id';
+
+$data['table']['annonce']['field']['title']['title']['fr']='Titre';
+$data['table']['annonce']['field']['title']['type']='string';
+$data['table']['annonce']['field']['title']['is_title']='true';
+
+$data['table']['annonce']['field']['date_start']['title']['fr']='Date';
+$data['table']['annonce']['field']['date_start']['help']['fr']='Si il y a plusieurs dates, entrez la première et précisez ci-dessous';
+$data['table']['annonce']['field']['date_start']['type']='date';
+
+$data['table']['annonce']['field']['horaire']['title']['fr']='Horaire';
+$data['table']['annonce']['field']['horaire']['help']['fr']='Entrez un texte court';
+$data['table']['annonce']['field']['horaire']['type']='text';
+
+$data['table']['annonce']['field']['intervenants']['title']['fr']='Intervenant(s)';
+$data['table']['annonce']['field']['intervenants']['help']['fr']='Veuillez préciser le nom, prénom, ainsi que la fonction de chaque intervenant';
+$data['table']['annonce']['field']['intervenants']['type']='text';
+
+$data['table']['annonce']['field']['lieu']['title']['fr']='Lieu';
+$data['table']['annonce']['field']['lieu']['validation']['is_required']=1;
+$data['table']['annonce']['field']['lieu']['type']='text';
+
+
+$data['table']['annonce']['field']['cout']['title']['fr']='Coût';
+$data['table']['annonce']['field']['cout']['type']='text';
+
+$data['table']['annonce']['field']['organisateur']['title']['fr']='Organisateur';
+$data['table']['annonce']['field']['organisateur']['validation']['is_required']=1;
+$data['table']['annonce']['field']['organisateur']['help']['fr']='Entrez un texte court';
+$data['table']['annonce']['field']['organisateur']['type']='text';
+
+
+
+$data['table']['annonce']['field']['site']['title']['fr']='Site web';
+$data['table']['annonce']['field']['site']['type']='string';
+
+$data['table']['annonce']['field']['email']['title']['fr']='Adresse email';
+$data['table']['annonce']['field']['email']['type']='string';
+
+
+$data['table']['annonce']['field']['descriptif']['title']['fr']='Bref descriptif';
+$data['table']['annonce']['field']['descriptif']['help']['fr']='Cette information ne sera pas publiée';
+$data['table']['annonce']['field']['descriptif']['type']='text';
+
+$data['table']['annonce']['field']['public_cible']['title']['fr']='Public visé';
+$data['table']['annonce']['field']['public_cible']['help']['fr']='Cette information ne sera pas publiée';
+$data['table']['annonce']['field']['public_cible']['type']='text';
+
+
+$data['table']['annonce']['field']['posted']['type']='created';
+$data['table']['annonce']['field']['posted']['title']['fr']='Date de création de l\'annonce';
+$data['table']['annonce']['field']['posted']['help']['fr']='Information ajoutée automatiquement';
+$data['table']['annonce']['field']['posted']['use']['participation']='false';
 
 
 
