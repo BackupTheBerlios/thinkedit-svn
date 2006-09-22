@@ -669,7 +669,42 @@ class filesystem
 		}
 		
 		
-		
+		/**
+		* Handle uploaded file content from an html form.
+		* Simply pass the field name used in the html form, and the file will be added to the current directory
+		* A safe filename is generated automatically
+		*/
+		function addFileFromUpload($field_name)
+		{
+				if (isset($_FILES[$field_name]['size']) && $_FILES[$field_name]['size'] > 0)
+				{
+						if (is_uploaded_file($_FILES[$field_name]['tmp_name']))
+						{
+								$content = file_get_contents($_FILES[$field_name]['tmp_name']);
+								$name = $_FILES[$field_name]['name'];
+								if ($this->addFile($name, $content))
+								{
+										return true;
+								}
+								else
+								{
+										trigger_error('filesystem::addFileFromUpload() : a file has been uploaded, but an error occured when saving it to the filesystem');
+										return false;
+								}
+						}
+						else
+						{
+								trigger_error('filesystem::addFileFromUpload() : the file has not been uploaded by POST, aborting', E_USER_ERROR);
+								return false;
+						}
+				}
+				else
+				{
+						// no error reporting needed
+						//trigger_error('filesystem::addFileFromUpload() : no file uploaded or file is empty');
+						return false;
+				}
+		}
 		
 }
 ?>

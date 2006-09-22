@@ -124,5 +124,6 @@ $data['please_enter_title']='Veuillez entrer un titre';
 $data['cancel']='Annuler';
 $data['save']='Enregistrer';
 $data['participation_email_admin_link']='Cliquez ici pour gérer cette participation';
+$data['no_help_in_config']='!no_help_in_config!';
 
 ?>

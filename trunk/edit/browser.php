@@ -97,7 +97,7 @@ else
 		$node_id = false;
 }
 
-
+//echo 'node_id ' . $node_id;
 
 if ($url->get('mode') == 'field')
 {
@@ -201,6 +201,34 @@ if ($class=='file' && $path)
 		$filesystem = $thinkedit->newFilesystem();
 		$filesystem->setPath($path);
 		
+		if ($url->get('action') == 'upload_file')
+		{
+				if ($filesystem->addFileFromUpload('uploaded_file'))
+				{
+						$out['info'] = translate('file_added_successfully');
+				}
+				else
+				{
+						$out['error'] = translate('file_added_failed');
+				}
+		}
+		
+		// handle uploading of files
+		$out['enable_upload'] = true;
+		// define action buttons urls
+		$url = new url();
+		$url->keep('mode');
+		$url->set('action', 'add_folder');
+		$out['add_folder_url'] = $url->render();
+		
+		$url = new url();
+		$url->keep('mode');
+		$url->set('action', 'upload_file');
+		$out['upload_file_url'] = $url->render();
+		
+		
+		
+		
 		$childs = $filesystem->getFiles();
 		
 		if ($childs)
@@ -225,6 +253,8 @@ if ($class=='file' && $path)
 						$out['items'][] = $item;
 				}
 		}
+		
+		
 		
 		
 }
@@ -266,12 +296,15 @@ if ($class=='node')
 		{
 				$current_node->setId($node_id);
 				
+				$we_are_root = false;
 				if (!$current_node->load())
 				{
-						trigger_error('structure : node not found', E_USER_ERROR);
+						trigger_error('structure : node not found');
+						$current_node->loadRootNode();
+						$we_are_root = true;
 				}
 				
-				$we_are_root = false;
+				
 				$parent_node = $current_node->getParent();
 		}
 		else // we are in root

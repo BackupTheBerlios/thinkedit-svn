@@ -73,6 +73,8 @@ $i++;
 <?php endif; ?>
 </div>
 
+<div class="toolbar">
+
 <div class="panel">
 <form action="<?php echo $out['upload_file_url']?>" enctype="multipart/form-data" method="post">
 <input type="file" name="uploaded_file" class="action_button" size="30">
@@ -87,7 +89,7 @@ $i++;
 </form>
 </div>
 
-
+</div>
 
 
 

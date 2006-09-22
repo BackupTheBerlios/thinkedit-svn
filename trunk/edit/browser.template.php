@@ -10,7 +10,9 @@
       <?php echo translate('image_browser_title') ?>
     </title>
 
-    <link type="text/css" href="style.css" rel="stylesheet"
+		<link type="text/css" href="style.css" rel="stylesheet"
+    media="screen">	
+    <link type="text/css" href="style2.css" rel="stylesheet"
     media="screen">	
 		
 <script src="thinkedit.js" type="text/javascript"></script>
@@ -155,5 +157,26 @@ $i++;
 
 </table>
 </div>
+
+<?php if (isset ($out['enable_upload'])) : ?>
+
+<div class="toolbar">
+<div class="panel">
+<form action="<?php echo $out['upload_file_url']?>" enctype="multipart/form-data" method="post">
+<input type="file" name="uploaded_file" class="action_button" size="30">
+<button class="action_button" type="submit"><?php echo translate('upload_file_button') ?></button>
+</form>
+</div>
+
+<div class="panel">
+<form action="<?php echo $out['add_folder_url']?>" method="post">
+<input type="text" name="folder_name"  size="30">
+<button class="action_button" type="submit"><?php echo translate('create_folder_button') ?></button>
+</form>
+</div>
+
+</div>
+<?php endif; ?>
+
 </div>
 </html>

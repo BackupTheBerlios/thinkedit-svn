@@ -26,6 +26,17 @@ $out['path'] =  $filesystem->getPath();
 // handle adding of a new file from http upload
 if ($url->get('action') == 'upload_file')
 {
+		if ($filesystem->addFileFromUpload('uploaded_file'))
+		{
+				$out['info'] = translate('file_added_successfully');
+		}
+		else
+		{
+				$out['error'] = translate('file_added_failed');
+		}
+}
+		
+		/*
 		// Check if we have a file uploaded
 		if (isset($_FILES['uploaded_file']['size']) && $_FILES['uploaded_file']['size'] > 0)
 		{
@@ -36,7 +47,8 @@ if ($url->get('action') == 'upload_file')
 						//safe filename
 						
 						// todo move this name conversion to filesystem class :
-						$safe_filename = ereg_replace("[^a-z0-9._]", "",str_replace(" ", "_",str_replace("%20", "_", strtolower($_FILES['uploaded_file']['name']))));
+						// done
+						$safe_filename = $filesystem->safeFileName($_FILES['uploaded_file']['name']);
 						
 						$content = file_get_contents($_FILES['uploaded_file']['tmp_name']);
 						
@@ -54,13 +66,15 @@ if ($url->get('action') == 'upload_file')
 				{
 						die('not an uploaded file aborting');
 				}
+				
 		}
 		else
 		{
 				$out['error'] = translate('empty_file_provided');
 		}
+	
 }
-
+*/
 
 
 // handle adding of a new folder 
