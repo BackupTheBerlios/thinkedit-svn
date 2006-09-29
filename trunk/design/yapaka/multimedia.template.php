@@ -19,6 +19,14 @@ Cliquez ci-dessous pour visionner la vidéo :<br/>
   <param name="wmode" value="transparent" />
 </object>
 
+
+<hr/>
+Vous pouvez télécharger le fichier flv pour le regarder 
+<a href="<?php echo $video_file->getUrl(); ?>">Cliquez ici</a>
+<hr/>
+<br/>
+<br/>
+
 <?php endif; ?>
 
 
