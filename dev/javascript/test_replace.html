@@ -1,0 +1,27 @@
+<script>
+title =  "bonjour les amis, comment cela vat-il? j'ai mangé";
+if (title)
+{
+		encoded_title = encodeURIComponent(title);
+		//encoded_title = escape(title);
+		//encoded_title.replace(/\+/g, '%2B').replace(/\"/g,'%22').replace(/\'/g, '%27').replace(/\//g,'%2F');
+		var result = "";
+		var length = encoded_title.length;
+		for (var i = 0; i < length; i++) 
+		{
+				var ch = encoded_title.charAt(i);
+				switch (ch) 
+				{
+						case "'":
+						result += "%27";
+						break;
+						default:
+						result += ch;
+		}
+		}
+		
+		alert (result);
+		eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"&title=" + encoded_title +"'");
+}
+
+</script>

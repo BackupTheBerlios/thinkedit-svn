@@ -1,0 +1,71 @@
+<html>
+<head>
+
+<style type="text/css">
+/*
+ul {
+   list-style-type: none;
+   padding: 2px;
+   margin: 2px;
+}
+
+li {
+   padding: 2px;
+   margin: 2px;
+   min-height: 1px;
+}
+*/
+</style>
+
+<script type="text/javascript" src="scriptaculous/lib/prototype.js"></script>
+<script type="text/javascript" src="scriptaculous/src/scriptaculous.js"></script>
+
+
+</head>
+<body>
+
+
+<ul id="cats">
+    <li>
+        <div>Cat A</div>
+        <ul id="cat_a">
+            <li>A_1</li>
+            <li>A_2</li>
+        </ul>
+    </li>
+    <li>
+        <div>Cat B</div>
+        <ul id="cat_b">
+        </ul>
+    </li>
+    <li>
+        <div>Cat C</div>
+        <ul id="cat_c">
+            <li>C_1</li>
+        </ul>
+    </li>
+</ul>
+
+
+<script type='text/javascript'>
+
+Sortable.create("cats", {tag:["ul", "li"]});
+/*
+Sortable.create("cat_a",
+     {dropOnEmpty:true,
+      containment:["cat_a","cat_b","cat_c"],
+      constraint: false});
+Sortable.create("cat_b",
+     {dropOnEmpty:true,
+      containment:["cat_a","cat_b","cat_c"],
+      constraint: false});
+Sortable.create("cat_c",
+     {dropOnEmpty:true,
+      containment:["cat_a","cat_b","cat_c"],
+      constraint: false});
+Sortable.create("cats");
+*/
+</script>
+
+</body>
+</html>
