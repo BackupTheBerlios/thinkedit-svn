@@ -1,0 +1,1045 @@
+------------------------------------------------------------------------
+r239 | philippejadin | 2006-09-19 21:13:05 +0200 (mar., 19 sept. 2006) | 1 line
+
+plugin infrastructure update / minor interest :-)
+------------------------------------------------------------------------
+r238 | philippejadin | 2006-08-31 16:40:00 +0200 (jeu., 31 ao–t 2006) | 1 line
+
+Releasing 1.9.2 ;-)
+------------------------------------------------------------------------
+r237 | philippejadin | 2006-08-31 16:05:00 +0200 (jeu., 31 ao–t 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r236 | philippejadin | 2006-08-28 16:37:44 +0200 (lun., 28 ao–t 2006) | 5 lines
+
+- serious improvement when a node is added : only a few queries used, even if we have a huge node list.
+
+- yapaka forum improved
+
+- "gotcha" captcha lib added, and used in the participation class to avoid spam. This will replace securimage
+------------------------------------------------------------------------
+r235 | philippejadin | 2006-08-28 10:47:31 +0200 (lun., 28 ao–t 2006) | 1 line
+
+yapaka participation / forum / templates
+------------------------------------------------------------------------
+r234 | philippejadin | 2006-06-30 17:02:59 +0200 (ven., 30 juin 2006) | 1 line
+
+clipboard will soon work
+------------------------------------------------------------------------
+r233 | philippejadin | 2006-06-29 15:12:52 +0200 (jeu., 29 juin 2006) | 4 lines
+
+- Clipboard class progress (use case documented)
+- yapaka design
+- structure.php cleanup
+
+------------------------------------------------------------------------
+r232 | philippejadin | 2006-06-27 16:28:36 +0200 (mar., 27 juin 2006) | 1 line
+
+node optimisation
+------------------------------------------------------------------------
+r231 | philippejadin | 2006-06-27 11:35:14 +0200 (mar., 27 juin 2006) | 5 lines
+
+new design template, based on css framework 
+
+http://www.contentwithstyle.co.uk/Articles/17/
+
+...work in progress
+------------------------------------------------------------------------
+r230 | philippejadin | 2006-06-26 17:11:12 +0200 (lun., 26 juin 2006) | 1 line
+
+participation clean up, some more doc
+------------------------------------------------------------------------
+r229 | philippejadin | 2006-06-23 17:49:35 +0200 (ven., 23 juin 2006) | 1 line
+
+announce, docs
+------------------------------------------------------------------------
+r228 | philippejadin | 2006-06-23 17:09:49 +0200 (ven., 23 juin 2006) | 5 lines
+
+- participation class finished (first release)
+- date field now has dropdowns (need some more work)
+- session don't expire as soon as you close the browser
+- minor cache system update (adding ?no_cache=1 to urls disable caching)
+
+------------------------------------------------------------------------
+r227 | philippejadin | 2006-06-21 17:10:53 +0200 (mer., 21 juin 2006) | 1 line
+
+context menu js, structure and edit cleanup
+------------------------------------------------------------------------
+r226 | philippejadin | 2006-06-20 17:43:32 +0200 (mar., 20 juin 2006) | 1 line
+
+popup hell solved :-)
+------------------------------------------------------------------------
+r225 | philippejadin | 2006-06-20 16:36:58 +0200 (mar., 20 juin 2006) | 1 line
+
+validation and participation are on a good track !
+------------------------------------------------------------------------
+r224 | philippejadin | 2006-06-19 17:11:52 +0200 (lun., 19 juin 2006) | 2 lines
+
+- validation begins
+- new way of editing content, using popups. Not finished
+------------------------------------------------------------------------
+r223 | philippejadin | 2006-06-16 17:29:36 +0200 (ven., 16 juin 2006) | 1 line
+
+validation system begins. this is a  must have for any serious application isn't it ?
+------------------------------------------------------------------------
+r222 | philippejadin | 2006-06-16 17:03:17 +0200 (ven., 16 juin 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r220 | philippejadin | 2006-06-15 17:49:32 +0200 (jeu., 15 juin 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r219 | philippejadin | 2006-06-15 17:34:43 +0200 (jeu., 15 juin 2006) | 1 line
+
+index now shows clean warning if thinkedit is not installed
+------------------------------------------------------------------------
+r218 | philippejadin | 2006-06-15 17:30:41 +0200 (jeu., 15 juin 2006) | 1 line
+
+fixed config folder issues
+------------------------------------------------------------------------
+r217 | philippejadin | 2006-06-15 17:08:28 +0200 (jeu., 15 juin 2006) | 2 lines
+
+config cleanup, samples added
+
+------------------------------------------------------------------------
+r216 | philippejadin | 2006-06-15 13:54:49 +0200 (jeu., 15 juin 2006) | 1 line
+
+some more english translations  in default config files
+------------------------------------------------------------------------
+r215 | philippejadin | 2006-06-15 11:56:34 +0200 (jeu., 15 juin 2006) | 2 lines
+
+Installer now provides a way to setup the root url of an installation.
+
+------------------------------------------------------------------------
+r214 | philippejadin | 2006-06-15 10:53:16 +0200 (jeu., 15 juin 2006) | 1 line
+
+Thinkedit will now warn if it not yet installed (in index.php)
+------------------------------------------------------------------------
+r213 | philippejadin | 2006-06-15 10:51:22 +0200 (jeu., 15 juin 2006) | 1 line
+
+added tiny_mce in trunk. (tiny_mce = wysiwyg editor)
+------------------------------------------------------------------------
+r212 | philippejadin | 2006-06-14 16:45:35 +0200 (mer., 14 juin 2006) | 1 line
+
+Breadcrumb-like drop down menu in structure.template.php. Also to comply with the new design (essaie mon gars ;-))
+------------------------------------------------------------------------
+r211 | philippejadin | 2006-06-14 16:22:46 +0200 (mer., 14 juin 2006) | 1 line
+
+todo updated, participation class introduced, structure now more compliant to new design.
+------------------------------------------------------------------------
+r210 | philippejadin | 2006-06-13 16:32:46 +0200 (mar., 13 juin 2006) | 1 line
+
+participation progress
+------------------------------------------------------------------------
+r209 | philippejadin | 2006-06-12 17:06:56 +0200 (lun., 12 juin 2006) | 1 line
+
+some work on the clipboard feature. This is giving me headache. Multiligual record cleanup, template tags documented
+------------------------------------------------------------------------
+r208 | philippejadin | 2006-06-12 13:42:28 +0200 (lun., 12 juin 2006) | 1 line
+
+installer now uses interface css. 
+------------------------------------------------------------------------
+r207 | philippejadin | 2006-06-08 18:19:30 +0200 (jeu., 08 juin 2006) | 1 line
+
+Some doc on how we could link to nodes inside content
+------------------------------------------------------------------------
+r206 | philippejadin | 2006-06-08 17:50:11 +0200 (jeu., 08 juin 2006) | 1 line
+
+Scroll tests, unfinished
+------------------------------------------------------------------------
+r205 | pierrelecrenier | 2006-06-08 16:48:16 +0200 (jeu., 08 juin 2006) | 1 line
+
+Header and Footer > Clean up
+------------------------------------------------------------------------
+r204 | philippejadin | 2006-06-08 15:10:23 +0200 (jeu., 08 juin 2006) | 3 lines
+
+New te_admin_toolbox() function = te_root_link() provides a link to the root node
+
+te_admin_toolbox() functions are used inside templates.
+------------------------------------------------------------------------
+r203 | pierrelecrenier | 2006-06-08 12:38:50 +0200 (jeu., 08 juin 2006) | 1 line
+
+style2.css
+------------------------------------------------------------------------
+r202 | philippejadin | 2006-06-08 12:33:40 +0200 (jeu., 08 juin 2006) | 1 line
+
+Locale field creation bug fixed + thinkedit design locale aware
+------------------------------------------------------------------------
+r201 | pierrelecrenier | 2006-06-08 12:32:31 +0200 (jeu., 08 juin 2006) | 2 lines
+
+Remise du margin ge_ne_ral a_ '0em'
+Main margin back to '0em'
+------------------------------------------------------------------------
+r200 | philippejadin | 2006-06-07 16:32:08 +0200 (mer., 07 juin 2006) | 1 line
+
+A lot of progress on the multilingual capability : the page cache is aware of locale, page can be translated, a locale chooser can be used in templates.
+------------------------------------------------------------------------
+r199 | philippejadin | 2006-06-06 16:21:11 +0200 (mar., 06 juin 2006) | 1 line
+
+login template html & css simplified
+------------------------------------------------------------------------
+r198 | philippejadin | 2006-06-06 15:49:15 +0200 (mar., 06 juin 2006) | 2 lines
+
+Big simplification of the html and css in /edit. Added /edit/style2.css containing only the needed css styles. Some more cleanup needed.
+
+------------------------------------------------------------------------
+r197 | philippejadin | 2006-06-02 11:09:39 +0200 (ven., 02 juin 2006) | 1 line
+
+dialog test css in /dev/layouts/test_dialog.html
+------------------------------------------------------------------------
+r196 | philippejadin | 2006-06-02 10:31:44 +0200 (ven., 02 juin 2006) | 1 line
+
+dialog test css in /dev/layouts/test_dialog.html
+------------------------------------------------------------------------
+r195 | philippejadin | 2006-06-01 17:52:48 +0200 (jeu., 01 juin 2006) | 2 lines
+
+css layouts
+
+------------------------------------------------------------------------
+r194 | philippejadin | 2006-06-01 16:16:03 +0200 (jeu., 01 juin 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r193 | philippejadin | 2006-06-01 16:14:23 +0200 (jeu., 01 juin 2006) | 1 line
+
+clipboard, status bar
+------------------------------------------------------------------------
+r192 | philippejadin | 2006-06-01 15:54:24 +0200 (jeu., 01 juin 2006) | 1 line
+
+new structure attempt
+------------------------------------------------------------------------
+r191 | philippejadin | 2006-06-01 15:05:53 +0200 (jeu., 01 juin 2006) | 2 lines
+
+sortable table test
+
+------------------------------------------------------------------------
+r190 | philippejadin | 2006-06-01 14:58:13 +0200 (jeu., 01 juin 2006) | 2 lines
+
+sortable table test
+
+------------------------------------------------------------------------
+r189 | philippejadin | 2006-05-31 20:38:48 +0200 (mer., 31 mai 2006) | 1 line
+
+updated css file
+------------------------------------------------------------------------
+r188 | philippejadin | 2006-05-31 17:06:24 +0200 (mer., 31 mai 2006) | 1 line
+
+docs update
+------------------------------------------------------------------------
+r181 | philippejadin | 2006-05-30 16:52:52 +0200 (mar., 30 mai 2006) | 2 lines
+
+clipboard works (mostly)
+multilingual records need some love
+------------------------------------------------------------------------
+r180 | philippejadin | 2006-05-29 22:07:22 +0200 (lun., 29 mai 2006) | 1 line
+
+context menu in structure.template.php some use of prototype after all :-)
+------------------------------------------------------------------------
+r179 | philippejadin | 2006-05-29 17:23:58 +0200 (lun., 29 mai 2006) | 1 line
+
+js context menu in structure
+------------------------------------------------------------------------
+r178 | philippejadin | 2006-05-28 22:10:19 +0200 (dim., 28 mai 2006) | 1 line
+
+some js tests
+------------------------------------------------------------------------
+r177 | philippejadin | 2006-05-27 16:52:47 +0200 (sam., 27 mai 2006) | 1 line
+
+preliminary multiligual support
+------------------------------------------------------------------------
+r176 | philippejadin | 2006-05-25 12:51:52 +0200 (jeu., 25 mai 2006) | 1 line
+
+yui tree works
+------------------------------------------------------------------------
+r175 | philippejadin | 2006-05-24 16:47:15 +0200 (mer., 24 mai 2006) | 1 line
+
+Yahoo ui test, console test. /dev cannot be provided to end users on production sites !
+------------------------------------------------------------------------
+r174 | philippejadin | 2006-05-16 20:08:19 +0200 (mar., 16 mai 2006) | 1 line
+
+Node documentation
+------------------------------------------------------------------------
+r173 | philippejadin | 2006-05-16 17:05:32 +0200 (mar., 16 mai 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r172 | philippejadin | 2006-05-15 17:54:14 +0200 (lun., 15 mai 2006) | 1 line
+
+node changeParent function, some more docs. This is getting closer to reality. Php console is a great tool, but too much insecure to be included currently.
+------------------------------------------------------------------------
+r171 | philippejadin | 2006-05-12 17:09:46 +0200 (ven., 12 mai 2006) | 1 line
+
+yapaka + scriptaculous import (maybe not needed)
+------------------------------------------------------------------------
+r170 | philippejadin | 2006-05-11 16:26:07 +0200 (jeu., 11 mai 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r169 | philippejadin | 2006-05-09 18:26:03 +0200 (mar., 09 mai 2006) | 1 line
+
+test with dojo tree in /dev/dojo/tree3.php and /dev/dojo/rpc.php
+------------------------------------------------------------------------
+r168 | philippejadin | 2006-05-09 11:28:48 +0200 (mar., 09 mai 2006) | 1 line
+
+interesitng experiments in /dev/tree : dynamic tree loading !
+------------------------------------------------------------------------
+r167 | philippejadin | 2006-05-08 17:59:44 +0200 (lun., 08 mai 2006) | 1 line
+
+yapaka
+------------------------------------------------------------------------
+r166 | philippejadin | 2006-05-05 17:13:30 +0200 (ven., 05 mai 2006) | 1 line
+
+small tests in /dev, new template tags
+------------------------------------------------------------------------
+r165 | philippejadin | 2006-05-03 16:53:11 +0200 (mer., 03 mai 2006) | 1 line
+
+yapaka
+------------------------------------------------------------------------
+r164 | philippejadin | 2006-05-03 11:14:26 +0200 (mer., 03 mai 2006) | 1 line
+
+yapaka
+------------------------------------------------------------------------
+r163 | philippejadin | 2006-04-28 17:56:19 +0200 (ven., 28 avr. 2006) | 1 line
+
+thinkedit first site design ;-)
+------------------------------------------------------------------------
+r162 | philippejadin | 2006-04-28 17:12:42 +0200 (ven., 28 avr. 2006) | 1 line
+
+ajax test with dojo, it may take some time to work
+------------------------------------------------------------------------
+r161 | philippejadin | 2006-04-28 14:47:09 +0200 (ven., 28 avr. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r160 | philippejadin | 2006-04-25 14:54:01 +0200 (mar., 25 avr. 2006) | 2 lines
+
+relation class new feature : limit get relations by class or by type (or both)
+filesystem getIcon better handling
+------------------------------------------------------------------------
+r159 | philippejadin | 2006-04-24 19:33:03 +0200 (lun., 24 avr. 2006) | 1 line
+
+locale/en.php
+------------------------------------------------------------------------
+r158 | philippejadin | 2006-04-21 17:32:29 +0200 (ven., 21 avr. 2006) | 1 line
+
+yapaka 
+------------------------------------------------------------------------
+r157 | philippejadin | 2006-04-20 17:18:55 +0200 (jeu., 20 avr. 2006) | 1 line
+
+Testing ajax features in /dev/
+------------------------------------------------------------------------
+r156 | philippejadin | 2006-04-18 17:08:08 +0200 (mar., 18 avr. 2006) | 1 line
+
+yapaka clean up
+------------------------------------------------------------------------
+r155 | philippejadin | 2006-04-18 10:35:48 +0200 (mar., 18 avr. 2006) | 3 lines
+
+yapaka specific changes
+
+node cache needs some love to be efficient. this will speed rendering quite a lot.
+------------------------------------------------------------------------
+r154 | philippejadin | 2006-04-14 16:44:09 +0200 (ven., 14 avr. 2006) | 1 line
+
+updated yapaka template internal work
+------------------------------------------------------------------------
+r153 | philippejadin | 2006-04-14 15:51:57 +0200 (ven., 14 avr. 2006) | 1 line
+
+new forum feature. This is a prototype that must be converted to a good class plugin.
+------------------------------------------------------------------------
+r152 | philippejadin | 2006-04-13 16:59:44 +0200 (jeu., 13 avr. 2006) | 1 line
+
+captcha field type prototype, and discussion on how to start a participation class class/participation.class.php
+------------------------------------------------------------------------
+r151 | philippejadin | 2006-04-13 10:46:29 +0200 (jeu., 13 avr. 2006) | 1 line
+
+updated isUsedIn() now allows isUsedIn('navigation') to filter content items you want to see in your navigation see /doc/templates
+------------------------------------------------------------------------
+r150 | philippejadin | 2006-04-12 17:44:02 +0200 (mer., 12 avr. 2006) | 1 line
+
+new "created" field type : store the creation date/time of something
+------------------------------------------------------------------------
+r149 | philippejadin | 2006-04-11 11:27:16 +0200 (mar., 11 avr. 2006) | 1 line
+
+yapaka specific changes (will be discarded in final release)
+------------------------------------------------------------------------
+r148 | philippejadin | 2006-04-11 10:00:07 +0200 (mar., 11 avr. 2006) | 1 line
+
+yapaka specific changes + html safe fields (text input allow any characters)
+------------------------------------------------------------------------
+r147 | philippejadin | 2006-03-29 16:24:23 +0200 (mer., 29 mars 2006) | 1 line
+
+Thinkedit layout starts
+------------------------------------------------------------------------
+r146 | philippejadin | 2006-03-28 16:22:38 +0200 (mar., 28 mars 2006) | 1 line
+
+relation and browser window cleanup (titles too long are now cropped). Also added a go up button in relation browser
+------------------------------------------------------------------------
+r145 | philippejadin | 2006-03-24 17:13:42 +0100 (ven., 24 mars 2006) | 1 line
+
+Better handling of admin links on the public site (use of some css to show the buttons on the top of the public page)
+------------------------------------------------------------------------
+r144 | philippejadin | 2006-03-24 16:36:30 +0100 (ven., 24 mars 2006) | 1 line
+
+Edit structure cleanup : you see where you are, "add" dropdown menu now where it should be.
+------------------------------------------------------------------------
+r143 | philippejadin | 2006-03-23 16:42:12 +0100 (jeu., 23 mars 2006) | 1 line
+
+edit design cleanup (needs more work, even more for internet explorer...)
+------------------------------------------------------------------------
+r142 | philippejadin | 2006-03-22 17:07:33 +0100 (mer., 22 mars 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r141 | philippejadin | 2006-03-21 17:32:42 +0100 (mar., 21 mars 2006) | 1 line
+
+some more bug fixes. Navigation will only display page records (for the moment. will add configuration option later)
+------------------------------------------------------------------------
+r140 | philippejadin | 2006-03-20 13:43:22 +0100 (lun., 20 mars 2006) | 1 line
+
+fixed display problem in edit with internet explorer
+------------------------------------------------------------------------
+r139 | philippejadin | 2006-03-17 17:31:23 +0100 (ven., 17 mars 2006) | 1 line
+
+Disabled node content cache : it need some way to be invalidated. When done, this will reduce a lot the number of sql queries needed to render a page !
+------------------------------------------------------------------------
+r138 | philippejadin | 2006-03-17 17:09:21 +0100 (ven., 17 mars 2006) | 1 line
+
+nested tree now fully works. Need some more testing
+------------------------------------------------------------------------
+r137 | philippejadin | 2006-03-17 11:18:00 +0100 (ven., 17 mars 2006) | 1 line
+
+Added preliminary node optimization using nested set in complement to the adjacency list model. Node schema updated, so installer must be rerun to add the two fields to the db.
+------------------------------------------------------------------------
+r136 | philippejadin | 2006-03-16 17:28:22 +0100 (jeu., 16 mars 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r135 | philippejadin | 2006-03-16 11:59:21 +0100 (jeu., 16 mars 2006) | 1 line
+
+yapaka test design updated
+------------------------------------------------------------------------
+r134 | philippejadin | 2006-03-14 16:21:05 +0100 (mar., 14 mars 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r133 | philippejadin | 2006-03-14 14:24:50 +0100 (mar., 14 mars 2006) | 1 line
+
+Custom templates for each nodes. Front end also supports this
+------------------------------------------------------------------------
+r132 | philippejadin | 2006-03-14 14:23:43 +0100 (mar., 14 mars 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r131 | philippejadin | 2006-03-13 15:05:38 +0100 (lun., 13 mars 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r130 | philippejadin | 2006-03-13 11:36:50 +0100 (lun., 13 mars 2006) | 1 line
+
+deleted old config files
+------------------------------------------------------------------------
+r129 | philippejadin | 2006-03-12 17:21:34 +0100 (dim., 12 mars 2006) | 1 line
+
+thinkedit design folder added
+------------------------------------------------------------------------
+r128 | philippejadin | 2006-03-12 17:20:06 +0100 (dim., 12 mars 2006) | 1 line
+
+install fully works now
+------------------------------------------------------------------------
+r127 | philippejadin | 2006-03-11 19:28:08 +0100 (sam., 11 mars 2006) | 1 line
+
+install now create first user
+------------------------------------------------------------------------
+r126 | philippejadin | 2006-03-11 18:13:23 +0100 (sam., 11 mars 2006) | 1 line
+
+install now update db schema
+------------------------------------------------------------------------
+r125 | philippejadin | 2006-03-11 17:44:27 +0100 (sam., 11 mars 2006) | 1 line
+
+install wizard in progress, using the write feature of the new config file format (php)
+------------------------------------------------------------------------
+r124 | philippejadin | 2006-03-11 15:41:11 +0100 (sam., 11 mars 2006) | 1 line
+
+Now I use php config files, it is faster, simple to understand, and require no cache (simple include). Also, the xml php extension is not required anymore. I can save a php array in a human friendly format. Locale system has been updated. En locale has been created. Need some more work
+------------------------------------------------------------------------
+r123 | philippejadin | 2006-03-10 17:19:02 +0100 (ven., 10 mars 2006) | 1 line
+
+Beginning of the install system !
+------------------------------------------------------------------------
+r122 | philippejadin | 2006-03-10 16:49:22 +0100 (ven., 10 mars 2006) | 5 lines
+
+xml config for now, will use php format later (but php is less human writable).
+
+Implemented "allowed items" in structure
+
+
+------------------------------------------------------------------------
+r121 | philippejadin | 2006-03-10 15:39:49 +0100 (ven., 10 mars 2006) | 3 lines
+
+Finally, I won't use yaml. It is too hard to write good yaml files (indentation is a bit weak imho)
+
+Final thinkedit config files will probably be php. But I will ensure that you can use what you want.
+------------------------------------------------------------------------
+r120 | philippejadin | 2006-03-09 17:14:05 +0100 (jeu., 09 mars 2006) | 1 line
+
+transistion phase, a lot of config problem could be solved later...
+------------------------------------------------------------------------
+r119 | philippejadin | 2006-03-09 15:43:33 +0100 (jeu., 09 mars 2006) | 1 line
+
+after this commit, config files will be yaml (yaml.org) based if all goes well
+------------------------------------------------------------------------
+r118 | philippejadin | 2006-03-08 17:15:36 +0100 (mer., 08 mars 2006) | 1 line
+
+New layouts, new date field (need some love for nice html inputs). Fixed bug where two rich texts on the same page would be duplicated (tinymce must be initialized only once)
+------------------------------------------------------------------------
+r117 | philippejadin | 2006-03-07 20:34:46 +0100 (mar., 07 mars 2006) | 1 line
+
+added some icons
+------------------------------------------------------------------------
+r116 | philippejadin | 2006-03-07 17:04:36 +0100 (mar., 07 mars 2006) | 5 lines
+
+Performance issues are driving me nuts. I need a good tree handling in mysql / php.
+
+I will end up storing my trees in something else :-(
+
+Added locale support using yaml files and caching system
+------------------------------------------------------------------------
+r115 | philippejadin | 2006-03-05 17:20:49 +0100 (dim., 05 mars 2006) | 1 line
+
+week end light work
+------------------------------------------------------------------------
+r114 | philippejadin | 2006-03-03 17:09:52 +0100 (ven., 03 mars 2006) | 1 line
+
+need optimization, performance is bad with 100 nodes!
+------------------------------------------------------------------------
+r113 | philippejadin | 2006-03-03 09:15:42 +0100 (ven., 03 mars 2006) | 1 line
+
+reimport /design
+------------------------------------------------------------------------
+r112 | philippejadin | 2006-03-03 09:13:13 +0100 (ven., 03 mars 2006) | 1 line
+
+reimport /design
+------------------------------------------------------------------------
+r111 | philippejadin | 2006-03-02 17:26:29 +0100 (jeu., 02 mars 2006) | 5 lines
+
+Publish / unpublish feature for nodes.
+
+Need to decide a way to manage unpushed items in node->getChildren() for instance in menus (unpublished nodes must be shwon in the interface, but not in the public website. But the user should be able to preview content even in the public website).
+
+It must be based on context
+------------------------------------------------------------------------
+r110 | philippejadin | 2006-03-01 17:57:26 +0100 (mer., 01 mars 2006) | 1 line
+
+Node optimize still doesn't work when we move a node it needs some refresh...
+------------------------------------------------------------------------
+r109 | philippejadin | 2006-02-28 17:22:06 +0100 (mar., 28 f‚vr. 2006) | 3 lines
+
+more world domination plans ;-)
+
+new fields (template and publish)
+------------------------------------------------------------------------
+r108 | philippejadin | 2006-02-24 17:20:42 +0100 (ven., 24 f‚vr. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r107 | philippejadin | 2006-02-24 17:18:39 +0100 (ven., 24 f‚vr. 2006) | 3 lines
+
+yaml is maybe an interesting path to follow for config files. But later, not now.
+
+Optimization will start soon, I managed to install xdebug. Some interesting results will come.
+------------------------------------------------------------------------
+r106 | philippejadin | 2006-02-23 17:24:58 +0100 (jeu., 23 f‚vr. 2006) | 3 lines
+
+speed ups speed ups ...
+
+plugin system documentation, thinkings
+------------------------------------------------------------------------
+r105 | philippejadin | 2006-02-23 13:30:42 +0100 (jeu., 23 f‚vr. 2006) | 1 line
+
+Context menu speed up, disabled node->getAllNodes because it's too slow. Will need to find a workaround.
+------------------------------------------------------------------------
+r104 | philippejadin | 2006-02-22 17:06:27 +0100 (mer., 22 f‚vr. 2006) | 1 line
+
+Need more optimization :-(
+------------------------------------------------------------------------
+r103 | philippejadin | 2006-02-20 17:57:19 +0100 (lun., 20 f‚vr. 2006) | 4 lines
+
+re added icons
+
+fixed login bug due to non existent user global var (not needed anymore)
+global $user becomes global $thinkedit->user (lessglobal namespace polution)
+------------------------------------------------------------------------
+r102 | philippejadin | 2006-02-20 17:41:08 +0100 (lun., 20 f‚vr. 2006) | 1 line
+
+new design (tmp) for Yapaka.be (this is a use case ;-) )
+------------------------------------------------------------------------
+r101 | philippejadin | 2006-02-20 17:40:35 +0100 (lun., 20 f‚vr. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r100 | philippejadin | 2006-02-20 17:40:06 +0100 (lun., 20 f‚vr. 2006) | 3 lines
+
+Optimized node now works. It's not a lot faster, but it reduces drastically the number of sql queries...
+
+node->getAllNodes() could be optimized as well !
+------------------------------------------------------------------------
+r99 | philippejadin | 2006-02-20 16:47:59 +0100 (lun., 20 f‚vr. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r98 | philippejadin | 2006-02-20 16:46:19 +0100 (lun., 20 f‚vr. 2006) | 1 line
+
+A lot of cleanups. Menu system revamped
+------------------------------------------------------------------------
+r97 | philippejadin | 2006-02-17 17:27:28 +0100 (ven., 17 f‚vr. 2006) | 1 line
+
+deleted a few unused files
+------------------------------------------------------------------------
+r96 | philippejadin | 2006-02-17 17:21:04 +0100 (ven., 17 f‚vr. 2006) | 3 lines
+
+Bug fixing at it's best. A quite productive day.
+
+todo.txt updated with a lot of things to do, and so little time...
+------------------------------------------------------------------------
+r95 | philippejadin | 2006-02-16 17:52:43 +0100 (jeu., 16 f‚vr. 2006) | 3 lines
+
+node_optimized.class.php introduced. It reduces by 2 the number of sql queries needed. Need some more work trough.
+
+The use of the instead of the normal one is managed inside thinkedit->newNode() (node factory method)
+------------------------------------------------------------------------
+r94 | philippejadin | 2006-02-15 17:41:24 +0100 (mer., 15 f‚vr. 2006) | 3 lines
+
+Node order works in the node class!!
+
+Node order arows added in structure, but need some love : when changing order in the interface, the display is not updated...
+------------------------------------------------------------------------
+r93 | philippejadin | 2006-02-14 16:41:05 +0100 (mar., 14 f‚vr. 2006) | 5 lines
+
+context menu works... somewhat
+
+need more thinking
+
+node need a lot of optimisation...
+------------------------------------------------------------------------
+r92 | philippejadin | 2006-02-13 17:44:56 +0100 (lun., 13 f‚vr. 2006) | 4 lines
+
+class/filesystem.class.php hardening, should not allow files outside filesystem root
+need some more love
+
+contextual menu in progress
+------------------------------------------------------------------------
+r91 | philippejadin | 2006-02-10 17:20:41 +0100 (ven., 10 f‚vr. 2006) | 1 line
+
+New path handling in config. Additional field type support in db auto create
+------------------------------------------------------------------------
+r90 | philippejadin | 2006-02-09 16:48:41 +0100 (jeu., 09 f‚vr. 2006) | 2 lines
+
+New api for different kinds of menu to be used in the public part of a website. New classes ( class/menu.base.class.php class/menu.breadcrumb.class.php class/menu.child.class.php class/menu.main.class.php class/menu.sitemap.class.php )
+
+------------------------------------------------------------------------
+r89 | philippejadin | 2006-02-08 17:36:13 +0100 (mer., 08 f‚vr. 2006) | 3 lines
+
+Relations work
+
+File manager doesn't work anymore, need some more thinking about paths and "chrooted" filesystem for security
+------------------------------------------------------------------------
+r88 | philippejadin | 2006-02-07 17:31:03 +0100 (mar., 07 f‚vr. 2006) | 1 line
+
+some more work on the relations. Need to implement a general browser I think.
+------------------------------------------------------------------------
+r87 | philippejadin | 2006-02-06 17:34:10 +0100 (lun., 06 f‚vr. 2006) | 1 line
+
+Structure, I found a way to select something in the interface, using sessions to have un-ambiguous url's
+------------------------------------------------------------------------
+r86 | philippejadin | 2006-02-06 15:40:27 +0100 (lun., 06 f‚vr. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r85 | philippejadin | 2006-02-06 15:40:11 +0100 (lun., 06 f‚vr. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r84 | philippejadin | 2006-02-03 17:01:13 +0100 (ven., 03 f‚vr. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r83 | philippejadin | 2006-02-02 17:33:50 +0100 (jeu., 02 f‚vr. 2006) | 1 line
+
+Structure workflow, javascript centralised in a single file, url api rework
+------------------------------------------------------------------------
+r82 | philippejadin | 2006-02-01 17:25:46 +0100 (mer., 01 f‚vr. 2006) | 1 line
+
+structure let's you add something and redirect to structure works. Url loading of objects needs some more love
+------------------------------------------------------------------------
+r81 | philippejadin | 2006-01-31 17:03:07 +0100 (mar., 31 janv. 2006) | 1 line
+
+structure allowed items drop down
+------------------------------------------------------------------------
+r80 | philippejadin | 2006-01-31 16:45:37 +0100 (mar., 31 janv. 2006) | 3 lines
+
+Works done on main page template
+
+Structure.php need some love
+------------------------------------------------------------------------
+r79 | philippejadin | 2006-01-20 17:38:18 +0100 (ven., 20 janv. 2006) | 1 line
+
+Structure, filemanager and tutti quanti
+------------------------------------------------------------------------
+r78 | philippejadin | 2006-01-17 17:25:37 +0100 (mar., 17 janv. 2006) | 5 lines
+
+File manager works quite a bit. Need to add icons support to filesystem class/filesystem.class.php
+You can now add folders and upload files
+
+Browsing with an html dropdown won't scale for huge directory trees, but it is not the typical use case
+
+------------------------------------------------------------------------
+r77 | philippejadin | 2006-01-16 17:45:14 +0100 (lun., 16 janv. 2006) | 1 line
+
+some work on the file manager. I hate understanding recursive functions. And in fact I don't understand them properly (yet?)
+------------------------------------------------------------------------
+r76 | philippejadin | 2006-01-10 11:51:23 +0100 (mar., 10 janv. 2006) | 2 lines
+
+Main, edit and delete work quite good.
+Need to fix all the todo's
+------------------------------------------------------------------------
+r75 | philippejadin | 2006-01-09 17:17:41 +0100 (lun., 09 janv. 2006) | 6 lines
+
+Next step for integration : edit and list mostly works in simple cases.
+
+Using my new classes, code size for the controllers is much smaller
+Templates are simplified too.
+
+My conclusion : compromise is always the best route...
+------------------------------------------------------------------------
+r74 | philippejadin | 2006-01-09 14:11:14 +0100 (lun., 09 janv. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r73 | philippejadin | 2006-01-09 14:07:08 +0100 (lun., 09 janv. 2006) | 1 line
+
+moved ressource inside edit folder
+------------------------------------------------------------------------
+r72 | philippejadin | 2006-01-09 13:59:36 +0100 (lun., 09 janv. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r71 | philippejadin | 2006-01-09 13:58:33 +0100 (lun., 09 janv. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r70 | philippejadin | 2006-01-09 12:51:55 +0100 (lun., 09 janv. 2006) | 3 lines
+
+begin integration. Login works. main.php and main.template.php are updated. Need new layouts.
+
+user test file added. need some more work testing user login security
+------------------------------------------------------------------------
+r69 | philippejadin | 2006-01-08 20:39:33 +0100 (dim., 08 janv. 2006) | 1 line
+
+index main public stub (?) 
+------------------------------------------------------------------------
+r68 | philippejadin | 2006-01-06 16:56:07 +0100 (ven., 06 janv. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r67 | philippejadin | 2006-01-06 16:55:56 +0100 (ven., 06 janv. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r66 | philippejadin | 2006-01-06 14:42:08 +0100 (ven., 06 janv. 2006) | 3 lines
+
+adjust copyright notice. may be changed again to someone instead
+
+Licence is GPL
+------------------------------------------------------------------------
+r65 | philippejadin | 2006-01-06 12:36:32 +0100 (ven., 06 janv. 2006) | 6 lines
+
+First attempt at integration of thinkedit 1.0 and the new codebase.
+
+So far login mostly works...
+
+I will keep the new config file format and all the new classes of course (so far the record class is quite solid, and I really like the active record pattern), and keep the old templates. This is the best compromise imho
+
+------------------------------------------------------------------------
+r64 | philippejadin | 2006-01-06 11:30:05 +0100 (ven., 06 janv. 2006) | 3 lines
+
+Finally, I'll use the Thinkedit 1.0 code base. All code has reorganized for this. This should speed up development.
+
+Yes, this means that Thinkedit 1.0 has been open sourced!
+------------------------------------------------------------------------
+r63 | philippejadin | 2006-01-06 11:03:09 +0100 (ven., 06 janv. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r62 | philippejadin | 2006-01-06 11:01:40 +0100 (ven., 06 janv. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r61 | philippejadin | 2006-01-06 11:01:25 +0100 (ven., 06 janv. 2006) | 1 line
+
+
+------------------------------------------------------------------------
+r60 | philippejadin | 2006-01-05 14:28:20 +0100 (jeu., 05 janv. 2006) | 1 line
+
+structure
+------------------------------------------------------------------------
+r59 | philippejadin | 2006-01-05 10:18:55 +0100 (jeu., 05 janv. 2006) | 1 line
+
+template admin folder
+------------------------------------------------------------------------
+r58 | philippejadin | 2006-01-05 10:18:35 +0100 (jeu., 05 janv. 2006) | 1 line
+
+template admin folder
+------------------------------------------------------------------------
+r57 | philippejadin | 2006-01-04 16:54:26 +0100 (mer., 04 janv. 2006) | 1 line
+
+browser
+------------------------------------------------------------------------
+r56 | philippejadin | 2006-01-04 13:08:52 +0100 (mer., 04 janv. 2006) | 1 line
+
+menu features
+------------------------------------------------------------------------
+r55 | philippejadin | 2006-01-04 13:08:31 +0100 (mer., 04 janv. 2006) | 1 line
+
+menu features
+------------------------------------------------------------------------
+r54 | philippejadin | 2006-01-03 17:28:00 +0100 (mar., 03 janv. 2006) | 1 line
+
+structure work
+------------------------------------------------------------------------
+r53 | philippejadin | 2006-01-03 17:02:15 +0100 (mar., 03 janv. 2006) | 1 line
+
+structure work
+------------------------------------------------------------------------
+r52 | philippejadin | 2006-01-03 15:42:28 +0100 (mar., 03 janv. 2006) | 1 line
+
+structure work
+------------------------------------------------------------------------
+r51 | philippejadin | 2006-01-02 21:05:27 +0100 (lun., 02 janv. 2006) | 1 line
+
+bug
+------------------------------------------------------------------------
+r50 | philippejadin | 2005-12-23 16:19:35 +0100 (ven., 23 d‚c. 2005) | 1 line
+
+cache
+------------------------------------------------------------------------
+r49 | philippejadin | 2005-12-23 16:17:15 +0100 (ven., 23 d‚c. 2005) | 1 line
+
+structure is harder than previously thought. I need to grasp the C in MVC I gues :-) 
+------------------------------------------------------------------------
+r48 | philippejadin | 2005-12-22 17:21:02 +0100 (jeu., 22 d‚c. 2005) | 1 line
+
+node works api setled
+------------------------------------------------------------------------
+r47 | philippejadin | 2005-12-22 15:58:34 +0100 (jeu., 22 d‚c. 2005) | 1 line
+
+relation return items
+------------------------------------------------------------------------
+r46 | philippejadin | 2005-12-21 15:54:24 +0100 (mer., 21 d‚c. 2005) | 1 line
+
+record->save now has also record->insert and record->update. Relations mostly work
+------------------------------------------------------------------------
+r45 | philippejadin | 2005-12-21 15:30:55 +0100 (mer., 21 d‚c. 2005) | 1 line
+
+record->save now has also record->insert and record->update. Relations mostyl work
+------------------------------------------------------------------------
+r44 | philippejadin | 2005-12-20 17:32:10 +0100 (mar., 20 d‚c. 2005) | 1 line
+
+schema updater works! ui  need some love
+------------------------------------------------------------------------
+r43 | philippejadin | 2005-12-19 22:06:14 +0100 (lun., 19 d‚c. 2005) | 1 line
+
+db create table, table create field, shcema will soon work :-) 
+------------------------------------------------------------------------
+r42 | philippejadin | 2005-12-19 20:05:17 +0100 (lun., 19 d‚c. 2005) | 1 line
+
+uid
+------------------------------------------------------------------------
+r41 | philippejadin | 2005-12-19 17:51:56 +0100 (lun., 19 d‚c. 2005) | 1 line
+
+new layout,  add buttons in list, begins work on schema
+------------------------------------------------------------------------
+r40 | philippejadin | 2005-12-17 16:27:48 +0100 (sam., 17 d‚c. 2005) | 1 line
+
+Basic security checks added user::hasPermission() must be implemented
+------------------------------------------------------------------------
+r39 | philippejadin | 2005-12-16 17:27:21 +0100 (ven., 16 d‚c. 2005) | 1 line
+
+todo updated
+------------------------------------------------------------------------
+r38 | philippejadin | 2005-12-16 17:15:04 +0100 (ven., 16 d‚c. 2005) | 1 line
+
+Config parser will now parse a config folder and not a single config file
+------------------------------------------------------------------------
+r37 | philippejadin | 2005-12-15 17:53:29 +0100 (jeu., 15 d‚c. 2005) | 1 line
+
+delete and edit, record class cleanup
+------------------------------------------------------------------------
+r36 | philippejadin | 2005-12-14 17:42:50 +0100 (mer., 14 d‚c. 2005) | 1 line
+
+file manager starts
+------------------------------------------------------------------------
+r35 | philippejadin | 2005-12-14 17:42:44 +0100 (mer., 14 d‚c. 2005) | 1 line
+
+file manager starts
+------------------------------------------------------------------------
+r34 | philippejadin | 2005-12-13 17:53:19 +0100 (mar., 13 d‚c. 2005) | 1 line
+
+removed temp files
+------------------------------------------------------------------------
+r33 | philippejadin | 2005-12-13 17:52:31 +0100 (mar., 13 d‚c. 2005) | 1 line
+
+templates are no good. added filesystem class with test
+------------------------------------------------------------------------
+r32 | philippejadin | 2005-12-07 17:41:52 +0100 (mer., 07 d‚c. 2005) | 1 line
+
+records cleanup, need to think if I like the templates
+------------------------------------------------------------------------
+r31 | philippejadin | 2005-12-06 16:52:02 +0100 (mar., 06 d‚c. 2005) | 1 line
+
+node
+------------------------------------------------------------------------
+r30 | philippejadin | 2005-12-05 20:45:19 +0100 (lun., 05 d‚c. 2005) | 1 line
+
+GUID = global unique id
+------------------------------------------------------------------------
+r29 | philippejadin | 2005-12-05 17:46:57 +0100 (lun., 05 d‚c. 2005) | 4 lines
+
+guid = global unique id
+orderedrecord supports user defined order
+
+
+------------------------------------------------------------------------
+r28 | philippejadin | 2005-12-05 17:43:51 +0100 (lun., 05 d‚c. 2005) | 3 lines
+
+test node (like act as tree)
+
+
+------------------------------------------------------------------------
+r27 | philippejadin | 2005-12-02 17:08:23 +0100 (ven., 02 d‚c. 2005) | 1 line
+
+db class should return what on updating?
+------------------------------------------------------------------------
+r26 | philippejadin | 2005-12-02 16:45:36 +0100 (ven., 02 d‚c. 2005) | 1 line
+
+Changed template file names
+------------------------------------------------------------------------
+r25 | philippejadin | 2005-12-02 16:44:34 +0100 (ven., 02 d‚c. 2005) | 1 line
+
+Changed template file names
+------------------------------------------------------------------------
+r24 | philippejadin | 2005-12-02 16:41:26 +0100 (ven., 02 d‚c. 2005) | 1 line
+
+record::find()
+------------------------------------------------------------------------
+r23 | philippejadin | 2005-11-30 17:46:27 +0100 (mer., 30 nov. 2005) | 1 line
+
+first attempts using stupid templates (kiss they say)
+------------------------------------------------------------------------
+r22 | philippejadin | 2005-11-30 17:23:31 +0100 (mer., 30 nov. 2005) | 1 line
+
+first attempts using stupid templates (kiss they say)
+------------------------------------------------------------------------
+r21 | philippejadin | 2005-11-29 21:19:29 +0100 (mar., 29 nov. 2005) | 1 line
+
+layout and css
+------------------------------------------------------------------------
+r20 | philippejadin | 2005-11-29 17:19:05 +0100 (mar., 29 nov. 2005) | 1 line
+
+layout par ci par l…
+------------------------------------------------------------------------
+r19 | philippejadin | 2005-11-28 17:15:14 +0100 (lun., 28 nov. 2005) | 1 line
+
+getters and setters are not evil, at least in php
+------------------------------------------------------------------------
+r18 | philippejadin | 2005-11-25 17:49:05 +0100 (ven., 25 nov. 2005) | 1 line
+
+new
+------------------------------------------------------------------------
+r17 | philippejadin | 2005-11-25 17:48:06 +0100 (ven., 25 nov. 2005) | 1 line
+
+new layouts
+------------------------------------------------------------------------
+r16 | philippejadin | 2005-11-23 17:41:38 +0100 (mer., 23 nov. 2005) | 1 line
+
+
+------------------------------------------------------------------------
+r15 | philippejadin | 2005-11-23 17:20:16 +0100 (mer., 23 nov. 2005) | 1 line
+
+Record insert and update
+------------------------------------------------------------------------
+r14 | philippejadin | 2005-11-21 21:08:17 +0100 (lun., 21 nov. 2005) | 1 line
+
+
+------------------------------------------------------------------------
+r13 | philippejadin | 2005-11-21 21:00:35 +0100 (lun., 21 nov. 2005) | 1 line
+
+
+------------------------------------------------------------------------
+r12 | philippejadin | 2005-11-21 20:40:27 +0100 (lun., 21 nov. 2005) | 5 lines
+
+tools.inc.php::translate() : now uses the record class
+
+It's far simplier this way (no sql in the function
+
+
+------------------------------------------------------------------------
+r11 | philippejadin | 2005-11-21 20:39:36 +0100 (lun., 21 nov. 2005) | 5 lines
+
+record::load() fully implememented
+started record::delete() (need rework)
+
+
+
+------------------------------------------------------------------------
+r10 | philippejadin | 2005-11-21 19:03:32 +0100 (lun., 21 nov. 2005) | 3 lines
+
+A simple record test, meant to replace all this table and sql query crap
+
+
+------------------------------------------------------------------------
+r9 | philippejadin | 2005-11-21 19:01:22 +0100 (lun., 21 nov. 2005) | 9 lines
+
+DB doesn't cache non cacheable queries (only select can be cached)
+
+new record paradigm, inspired by ruby on rails (of course :-)
+
+I won't try to do a full fledged sql <-> object mapper
+
+repeat 100 times
+
+
+------------------------------------------------------------------------
+r8 | philippejadin | 2005-11-16 17:29:18 +0100 (mer., 16 nov. 2005) | 1 line
+
+end of the day - layout
+------------------------------------------------------------------------
+r7 | philippejadin | 2005-11-16 17:03:25 +0100 (mer., 16 nov. 2005) | 1 line
+
+new layout test file
+------------------------------------------------------------------------
+r6 | philippejadin | 2005-11-16 16:56:39 +0100 (mer., 16 nov. 2005) | 1 line
+
+layout tests
+------------------------------------------------------------------------
+r5 | philippejadin | 2005-11-15 17:26:08 +0100 (mar., 15 nov. 2005) | 1 line
+
+Simplification is allways good
+------------------------------------------------------------------------
+r4 | philippejadin | 2005-11-15 14:10:17 +0100 (mar., 15 nov. 2005) | 1 line
+
+
+------------------------------------------------------------------------
+r3 | philippejadin | 2005-11-10 19:59:24 +0100 (jeu., 10 nov. 2005) | 1 line
+
+
+------------------------------------------------------------------------
+r2 | philippejadin | 2005-11-10 18:39:13 +0100 (jeu., 10 nov. 2005) | 1 line
+
+
+------------------------------------------------------------------------
+r1 | philippejadin | 2005-11-10 18:29:36 +0100 (jeu., 10 nov. 2005) | 1 line
+
+First real import
+------------------------------------------------------------------------
