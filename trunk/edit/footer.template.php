@@ -26,8 +26,13 @@
 			?>
 			
 			
-			<script type="text/javascript" src="<?php echo ROOT_URL?>/lib/prototype/prototype.js"></script>				
+			<!--
+			<script type="text/javascript" src="<?php echo ROOT_URL?>/lib/prototype/prototype.js"></script>
+			-->
 			<script src="thinkedit.js" type="text/javascript"></script>
+			
+		
+			
 			
 			</body>
 			</html>

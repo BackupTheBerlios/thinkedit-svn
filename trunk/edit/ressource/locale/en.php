@@ -107,5 +107,7 @@ $data['please_enter_title']='Please enter the title';
 $data['cancel']='Cancel';
 $data['save']='Save';
 $data['participation_email_admin_link']='Click here to manage this participation';
+$data['refresh_page']='Refresh page';
+$data['refresh_site']='Refresh site!';
 
 ?>
