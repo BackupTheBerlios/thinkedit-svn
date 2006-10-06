@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title><?php echo te_title()?></title>
+    
+    <style type="text/css" media="screen">
+        @import url("<?php echo te_design() ?>/css/tools.css");
+        @import url("<?php echo te_design() ?>/css/typo.css");
+        @import url("<?php echo te_design() ?>/css/forms.css");
+        /* swap layout stylesheet: 
+        layout-navtop-localleft.css
+		layout-navtop-subright.css
+		layout-navtop-3col.css
+		layout-navtop-1col.css
+		layout-navleft-1col.css
+		layout-navleft-2col.css*/
+        @import url("<?php echo te_design() ?>/css/layout-navtop-localleft.css");
+        @import url("<?php echo te_design() ?>/css/layout.css");
+    </style>
+</head>
+
+<body>
+    
+    <div id="page">
+    
+        <div id="header" class="clearfix">
+        
+            <div id="branding">
+               Logo
+            </div><!-- end branding -->
+            
+            <div id="search">
+                <form method="post" action="">
+					<div><label for="search-site">Search</label>
+					<input type="text" name="search" id="search-site" />
+                    <input type="submit" value="go" name="search" id="search" /></div>
+				</form>
+            </div><!-- end search -->
+            	
+            <hr />
+        </div><!-- end header -->
+        
+        
+        <div id="content" class="clearfix">
+        
+            <div id="main">
+                <h1><?php echo te_title() ?></h1>
+                
+                <?php echo $content->get('body'); ?>
+                <hr />
+            </div><!-- end main -->
+            
+            <div id="sub">
+            
+                <h2>Sub</h2>
+                <p>Proin pellentesque ullamcorper ipsum. Sed tincidunt tincidunt mi. Vestibulum magna wisi, vehicula eu, ullamcorper et, egestas in, tortor. Vestibulum interdum, massa in faucibus laoreet, tortor massa congue ligula, et feugiat elit mauris nec enim. Phasellus pellentesque tellus nec nisl. Mauris dignissim iaculis leo. Maecenas id lorem. Aenean tortor eros, dignissim eu, vehicula id, dictum eu, neque. Maecenas nisl. Proin dui lacus, aliquam eget, volutpat vel, aliquam quis, velit. Proin neque. Etiam turpis odio, tincidunt id, accumsan tincidunt, mollis a, nibh. Donec porta.</p>
+                
+            </div><!-- end sub -->
+            
+            
+            <div id="local">
+                <h2>Local</h2>
+                <ul>
+                    <li><a href="somewhere.html">Content page 1</a></li>
+                    <li><a href="somewhere.html">Content page 2</a></li>
+                    <li><a href="somewhere.html">Content page 3</a></li>
+                    <li><a href="somewhere.html">Content page 4</a></li>
+                    <li><a href="somewhere.html">Content page 5</a></li>
+                    <li><a href="somewhere.html">Content page 6</a></li>
+                </ul>
+                
+            </div><!-- end sub -->
+            
+            
+            <div id="nav">
+                <div class="wrapper">
+                <h2 class="accessibility">Navigation</h2>
+                <ul class="clearfix">
+                     <li><strong><a href="home.html">Home</a></strong></li>
+                     <li><a href="articles.html">Articles</a></li>
+                     <li><a href="archive.html">Archive</a></li>
+                     <li><a href="photos.html">Photos</a></li>
+                     <li><a href="about.html">About</a></li>
+                     <li class="last"><a href="contact.html">Contact</a></li>
+                </ul>
+                </div>
+                <hr />
+            </div><!-- end nav -->
+            
+        </div><!-- end content -->
+        
+        
+        <div id="footer" class="clearfix">
+            <p>&copy; Copyright 2005 Nobody</p>
+        </div><!-- end footer -->
+        
+    </div><!-- end page -->
+    
+    <div id="extra1">&nbsp;</div>
+    <div id="extra2">&nbsp;</div>
+    
+</body>
+</html>
