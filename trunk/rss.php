@@ -21,8 +21,11 @@ From http://www.xul.fr/xml-rss.html#cr%E9ation-flux
 </channel>
 </rss>
 */
-
 require_once 'thinkedit.init.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+
 header("Content-type: text/xml");
 echo '<' . '?xml version="1.0"?>'. "\n";
 echo '<rss version="2.0">'. "\n";
@@ -54,7 +57,8 @@ if ($results)
 				echo '<title>' . ' <![CDATA[' . "\n" . $node->getTitle() . "\n" . ']]>' . '</title>'. "\n";
 				echo '<link>' . ' <![CDATA[' . "\n" . 'http://' . $_SERVER["SERVER_NAME"] . te_link($node) . "\n" . ']]>' . '</link>'. "\n";
 				
-				$content = $node->getcontent();
+				$content = $node->getContent();
+				$content->load();
 				
 				if ($content->get('intro'))
 				{
