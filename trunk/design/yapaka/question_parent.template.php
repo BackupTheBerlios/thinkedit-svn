@@ -38,10 +38,6 @@
 </div>
 
 
-<?php 
-include 'forum.php'; 
-?>
-
 
 
 <?php include 'content_footer.php'; ?>

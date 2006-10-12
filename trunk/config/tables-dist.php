@@ -140,6 +140,10 @@ $data['table']['node']['field']['template']['type']='template';
 $data['table']['node']['field']['publish']['title']['fr']='Statut de publication';
 $data['table']['node']['field']['publish']['title']['en']='Publish status';
 $data['table']['node']['field']['publish']['type']='publish';
+$data['table']['node']['field']['created_date']['title']['fr']='Date de création';
+$data['table']['node']['field']['created_date']['title']['en']='Creation date';
+$data['table']['node']['field']['created_date']['type']='created';
+
 $data['table']['node']['field']['left_id']['type']='int';
 $data['table']['node']['field']['left_id']['use']['list']='false';
 $data['table']['node']['field']['left_id']['use']['edit']='false';

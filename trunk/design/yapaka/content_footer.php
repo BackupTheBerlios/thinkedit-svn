@@ -1,3 +1,9 @@
+<?php 
+include 'forum.php'; 
+?>
+
+
+
 
 </td>
 
