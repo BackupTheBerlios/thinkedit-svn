@@ -30,6 +30,9 @@ $data['table']['page']['field']['intro']['type']='richtext';
 $data['table']['page']['field']['body']['title']['fr']='Corps du texte';
 $data['table']['page']['field']['body']['title']['en']='Body';
 $data['table']['page']['field']['body']['type']='richtext';
+$data['table']['page']['field']['body']['css']='content.css';
+
+
 //$data['table']['page']['field']['body']['validation']['is_required']=1;
 $data['table']['page']['field']['cover']['title']['fr']='Image de présentation';
 $data['table']['page']['field']['cover']['help']['fr']='Facultative';

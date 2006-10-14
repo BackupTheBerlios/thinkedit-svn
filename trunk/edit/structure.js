@@ -17,38 +17,44 @@ function init_nodes()
 	$("#loader").hide();
 	
 	$("#loader").ajaxStart(function(){
-    $(this).show();
-  });
-
-  $("#loader").ajaxStop(function(){
-    $(this).hide();
-  });
+		$(this).show();
+	});
+	
+	$("#loader").ajaxStop(function(){
+		$(this).hide();
+	});
+	
 	
 	$(".node").click(function()
 	{
-		//alert('node ' + $(this).id() + ' cliqued');
-		//$(this).append(("main.php"))
-		//content = $.get("main.php");
-		
-		var test;
-		
-		//$(test).load("tree.php");
-		
-		//$(this).html( $(this).html() + $.get("tree.php"));
-		
-		//test = $.get("tree.php");
-		
-		//$(this).load("tree.php").$(this).html();
-		
-		node = $(this);
-		
-		$(node).load("tree.php");
-		
+		$(this).append("<div class=\"temp\"></div>");
+		$(".temp", this).load("tree.php?id=" + $(this).id());
+		init_nodes();
 		//$(this).append("test").load("tree.php");
 	});
 	
+	
+	//node_click_handler();
+	//load_node(1)
+	
 }
 
+function load_node(node_id)
+{
+	$('#' + node_id).append("<div class=\"temp\"></div>");
+	$('#' + node_id + ".temp").load("tree.php?id=" + node_id);
+	//node_click_handler();
+}
+
+
+function node_click_handler()
+{
+	$(".node").unclick();
+	$(".node").click(function()
+	{
+		load_node($(this).id());
+	});
+}
 
 
 

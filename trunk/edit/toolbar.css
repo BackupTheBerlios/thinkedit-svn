@@ -1,0 +1,46 @@
+.te_toolbar
+{
+	margin: 0px;
+	color: white;
+	font-family: Verdana, Helvetica, Arial;
+	font-size: 10px;
+	background: #999;
+	border: 1px solid;
+	border-color: #FFFFFF #555454 #555454 #FFFFFF;
+	border-right: 0px;
+	height: 20px;
+	bottom: 0;
+	position: fixed;
+}
+
+
+.te_toolbar_logo
+{
+	padding: 4px;
+	padding-left: 8px;
+	padding-right: 10px;
+	float: left;
+}
+
+
+a.te_toolbar_button
+{
+	color: white;
+	text-decoration: none;
+	float: right;
+	padding: 4px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left: 1px solid;
+	border-right: 1px solid;
+	border-left-color: #CFCACA;
+	border-right-color: #555454;
+}
+
+
+a.te_toolbar_button:hover
+{
+	color: white;
+	text-decoration: none;
+	background-color: #777;
+}

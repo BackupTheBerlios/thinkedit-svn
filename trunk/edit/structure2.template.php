@@ -1,11 +1,17 @@
-<script type="text/javascript" src="<?php echo ROOT_URL?>/lib/jquery/jquery.js"></script>				
 <script type="text/javascript" src="structure.js"></script>
 
+<style>
+.node
+{
+	padding-left: 10px;
+}
+</style>
 
-<div id="loader">Loading ...</div>
+
+<div id="loader">Ajax loading ...</div>
 
 
-<div class="node" id="1">Title</div>
+<div class="node" id="<?php echo $root->getId(); ?>"><?php echo $root->getTitle(); ?></div>
 
 
 

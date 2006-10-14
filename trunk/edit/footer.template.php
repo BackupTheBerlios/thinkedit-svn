@@ -1,6 +1,15 @@
+ <?php
+ // echo te_admin_toolbox(); // todo  
+ ?>
+ <?php
+ // echo te_error_log(); // todo
+ ?>
+
 
       <div class="footer">
 			
+	 
+	  
 			&reg; <a href="http://www.thinkedit.org">THINKEDIT.ORG open source CMS</a>
 			| 
 			<?php 
@@ -26,9 +35,7 @@
 			?>
 			
 			
-			<!--
-			<script type="text/javascript" src="<?php echo ROOT_URL?>/lib/prototype/prototype.js"></script>
-			-->
+			
 			<script src="thinkedit.js" type="text/javascript"></script>
 			
 		

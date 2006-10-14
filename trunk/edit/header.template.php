@@ -16,13 +16,14 @@
 
     <link type="text/css" href="style2.css" rel="stylesheet" media="screen"/>
 		
-		
+	<script type="text/javascript" src="<?php echo ROOT_URL?>/lib/prototype/prototype.js"></script>
+    <script type="text/javascript" src="<?php echo ROOT_URL?>/lib/jquery/jquery.js"></script>	
 <!--[if lt IE 7.]>
 <script defer type="text/javascript" src="pngfix.js"></script>
 <![endif]-->
 </head>
 	
-<body onLoad="page_loaded()">
+<body>
 <div class="thinkedit">
 
 <div class="header panel">

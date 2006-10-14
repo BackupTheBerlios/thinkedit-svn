@@ -36,9 +36,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 // needed for ms iexplorer
 
 if (!headers_sent())
-						{
-								header ("Content-Type: text/html; charset=utf-8");
-						}
+{
+	header ("Content-Type: text/html; charset=utf-8");
+}
 
 
 
@@ -50,37 +50,37 @@ if (!headers_sent())
 /*
 if (get_magic_quotes_gpc()) 
 {
-		//echo '<pre>';
-		//echo '<h1>Before conversion</h1>';
-		//print_r($_REQUEST);
-		//echo '</pre>';
-		
-		function stripslashes_deep($value)
+	//echo '<pre>';
+	//echo '<h1>Before conversion</h1>';
+	//print_r($_REQUEST);
+	//echo '</pre>';
+	
+	function stripslashes_deep($value)
+	{
+		if (is_array($value))
 		{
-				if (is_array($value))
-				{
-						$value = array_map('stripslashes_deep', $value);
-				}
-				else
-				{
-						$value = stripslashes($value);
-				}
-				
-				return $value;
+			$value = array_map('stripslashes_deep', $value);
+		}
+		else
+		{
+			$value = stripslashes($value);
 		}
 		
-		$_POST = array_map('stripslashes_deep', $_POST);
-		$_GET = array_map('stripslashes_deep', $_GET);
-		$_COOKIE = array_map('stripslashes_deep', $_COOKIE);
-		$_REQUEST = array_map('stripslashes_deep', $_REQUEST);
-		// todo check if $_SESSION must be changed as well. Php doc is unclear on this subject
-		
-		
-		//echo '<pre>';
-		//echo '<h1>After conversion</h1>';
-		//print_r($_REQUEST);
-		//echo '</pre>';
-		
+		return $value;
+	}
+	
+	$_POST = array_map('stripslashes_deep', $_POST);
+	$_GET = array_map('stripslashes_deep', $_GET);
+	$_COOKIE = array_map('stripslashes_deep', $_COOKIE);
+	$_REQUEST = array_map('stripslashes_deep', $_REQUEST);
+	// todo check if $_SESSION must be changed as well. Php doc is unclear on this subject
+	
+	
+	//echo '<pre>';
+	//echo '<h1>After conversion</h1>';
+	//print_r($_REQUEST);
+	//echo '</pre>';
+	
 }
 */
 
@@ -88,20 +88,20 @@ if (get_magic_quotes_gpc())
 
 if (get_magic_quotes_gpc()) 
 {
-		$in = array(&$_GET, &$_POST, &$_COOKIE, &$_REQUEST);
-		while (list($k,$v) = each($in)) 
+	$in = array(&$_GET, &$_POST, &$_COOKIE, &$_REQUEST);
+	while (list($k,$v) = each($in)) 
+	{
+		foreach ($v as $key => $val) 
 		{
-				foreach ($v as $key => $val) 
-				{
-						if (!is_array($val))
-						{
-								$in[$k][$key] = stripslashes($val);
-								continue;
-						}
-						$in[] =& $in[$k][$key];
-				}
+			if (!is_array($val))
+			{
+				$in[$k][$key] = stripslashes($val);
+				continue;
+			}
+			$in[] =& $in[$k][$key];
 		}
-		unset($in);
+	}
+	unset($in);
 }
 
 
@@ -110,27 +110,27 @@ if (get_magic_quotes_gpc())
 // taken from wordpress
 function unregisterGlobals() 
 {
-		if ( !ini_get('register_globals') )
+	if ( !ini_get('register_globals') )
+	{
+		return;
+	}
+	
+	if ( isset($_REQUEST['GLOBALS']) )
+	{
+		die('GLOBALS overwrite attempt detected');
+	}
+	
+	// Variables that shouldn't be unset
+	$noUnset = array('GLOBALS', '_GET', '_POST', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES');
+	
+	$input = array_merge($_GET, $_POST, $_COOKIE, $_SERVER, $_ENV, $_FILES, isset($_SESSION) && is_array($_SESSION) ? $_SESSION : array());
+	foreach ( $input as $k => $v ) 
+	{
+		if ( !in_array($k, $noUnset) && isset($GLOBALS[$k]) )
 		{
-				return;
+			unset($GLOBALS[$k]);
 		}
-		
-		if ( isset($_REQUEST['GLOBALS']) )
-		{
-				die('GLOBALS overwrite attempt detected');
-		}
-		
-		// Variables that shouldn't be unset
-		$noUnset = array('GLOBALS', '_GET', '_POST', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES');
-		
-		$input = array_merge($_GET, $_POST, $_COOKIE, $_SERVER, $_ENV, $_FILES, isset($_SESSION) && is_array($_SESSION) ? $_SESSION : array());
-		foreach ( $input as $k => $v ) 
-		{
-				if ( !in_array($k, $noUnset) && isset($GLOBALS[$k]) )
-				{
-						unset($GLOBALS[$k]);
-				}
-		}
+	}
 }
 
 unregisterGlobals();  
@@ -141,7 +141,7 @@ unregisterGlobals();
 //ini_set('display_errors', true);
 if (function_exists('xdebug_start_profiling'))
 {
-		xdebug_start_profiling();
+	xdebug_start_profiling();
 }
 
 
@@ -204,13 +204,13 @@ $thinkedit->context = $thinkedit->getContext();
 // turn on error reporting
 if ($thinkedit->isInProduction())
 {
-		error_reporting(0);
-		ini_set('display_errors', false);
+	error_reporting(0);
+	ini_set('display_errors', false);
 }
 else
 {
-		error_reporting(E_ALL);
-		ini_set('display_errors', true);
+	error_reporting(E_ALL);
+	ini_set('display_errors', true);
 }
 
 $thinkedit->timer->marker('end init');
