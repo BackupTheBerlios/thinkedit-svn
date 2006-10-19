@@ -14,7 +14,7 @@
 		<?php endif; ?>
 		</title>
 
-    <link type="text/css" href="style2.css" rel="stylesheet" media="screen"/>
+    <link type="text/css" href="<?php echo ROOT_URL?>/edit/ressource/css/style.css" rel="stylesheet" media="screen"/>
 		
 	<script type="text/javascript" src="<?php echo ROOT_URL?>/lib/prototype/prototype.js"></script>
     <script type="text/javascript" src="<?php echo ROOT_URL?>/lib/jquery/jquery.js"></script>	

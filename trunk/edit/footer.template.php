@@ -1,45 +1,20 @@
- <?php
- // echo te_admin_toolbox(); // todo  
- ?>
- <?php
- // echo te_error_log(); // todo
- ?>
+
+<div class="tools">
+
+<?php
+echo te_admin_toolbox(); // todo
+// echo te_error_log(); // todo
+?>
+</div>
+
+</div>
 
 
-      <div class="footer">
-			
-	 
-	  
-			&reg; <a href="http://www.thinkedit.org">THINKEDIT.ORG open source CMS</a>
-			| 
-			<?php 
-			$db = $thinkedit->getDb();
-			echo $db->getTotalQueries() ;
-			?> queries.
-			| 
-			<?php
-			$timer = $thinkedit->getTimer();
-			echo $timer->render(); 
-			?>
-			elapsed time
-			
-			</div>
 
-			</div>
-			
-			<?php
-			if (function_exists('xdebug_dump_function_profile') && !$thinkedit->isInProduction())
-			{
-					//xdebug_dump_function_profile(4);
-			}
-			?>
-			
-			
-			
-			<script src="thinkedit.js" type="text/javascript"></script>
-			
-		
-			
-			
-			</body>
-			</html>
+<script src="thinkedit.js" type="text/javascript"></script>
+
+
+
+
+</body>
+</html>

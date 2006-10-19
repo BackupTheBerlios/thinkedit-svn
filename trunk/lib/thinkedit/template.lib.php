@@ -213,29 +213,40 @@ function te_admin_toolbox()
 		$out = '';
 		// todo move style sheet somewhere, but this one is common to all designs, and designs author can do what they want with it
 		// done, file is in /edit/toolbar.css
-		$out .= '<link type="text/css" href="' . ROOT_URL . '/edit/toolbar.css" rel="stylesheet" media="screen"/>';
+		$out .= '<link type="text/css" href="' . ROOT_URL . '/edit/ressource/css/toolbar.css" rel="stylesheet" media="screen"/>';
+		
+		$out .= '<div class="te_tools">';
 		$out .= '<div class="te_toolbar">';
 		
 		$out .= '<div class="te_toolbar_logo">';
 		$out .= '<b>ThinkEDIT</b>'; // todo add version number automagically
 		$out .= '</div>';
 		
+		
+		// refresh page link
 		$url = new url();
 		$url->keep('node_id');
 		$url->set('refresh', 1);
 		$out .= '<a href="' . $url->render() . '" class="te_toolbar_button">'. translate('refresh_page') .'</a>';
 		
+		// refresh site link
 		$url = new url();
 		$url->keep('node_id');
 		$url->set('clear_cache', 1);
 		$out .= '<a href="' . $url->render() . '" class="te_toolbar_button">'. translate('refresh_site') .'</a>';
 		
+		
+		// edit page link
 		$url = new url();
 		$url->keep('node_id');
 		$out .= '<a href="' . $url->render('./edit/structure.php') . '" target="_blank" class="te_toolbar_button">'. translate('edit') .'</a>';
-		$out .= '</div>';
 		
-		$out .= '<div class="te_profiling">';
+		// show hide profiling
+		$out .= '<a class="te_toolbar_button" onclick="$(\'.te_profiling\').toggle()">'. translate('toggle_profiling') .'</a>';
+		
+		$out .= '</div>'; // end of toolbar
+		
+		$out .= '<div class="te_profiling" style="display: none">';
 		$out .= 'Total Queries : ' . $thinkedit->db->getTotalQueries();
 		$out .= '<br/>';
 		$out .= 'Total time : ' . $thinkedit->timer->render();
@@ -257,7 +268,9 @@ function te_admin_toolbox()
 				$out .= "<li>SQL not shown in production mode</li>";
 			}
 		}
-		$out .= '</div>';
+		$out .= '</div>'; // end of profiling
+		
+		$out .= '</div>'; // end of tools
 		
 		return $out;
 	}

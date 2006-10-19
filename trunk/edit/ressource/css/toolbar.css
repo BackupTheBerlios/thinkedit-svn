@@ -1,3 +1,9 @@
+.te_tools
+{
+		position: fixed;
+		bottom: 0px;
+}
+
 .te_toolbar
 {
 		font-family: Verdana, Helvetica, Arial;
@@ -10,11 +16,7 @@
 		border-right: 0px;
 		height: 20px;
 }
-.tools
-{
-		position: fixed;
-		bottom: 0px;
-}
+
 .te_toolbar_logo
 {
 		padding: 4px;
@@ -43,12 +45,13 @@ a.te_toolbar_button:hover
 }
 
 
-.te_debug
+.te_profiling
 {
-background-color: #000000;
-color: #6CFF00;
-padding: 10px;
-font-size: 10px;
-font-family: Verdana, Arial, Helvetica;
-line-height: 14px;
+		background-color: #000000;
+		color: #6CFF00;
+		padding: 10px;
+		font-size: 10px;
+		font-family: Verdana, Arial, Helvetica;
+		line-height: 14px;
+		height: 100px;
 }
