@@ -127,5 +127,6 @@ $data['participation_email_admin_link']='Cliquez ici pour gérer cette participa
 $data['no_help_in_config']='!no_help_in_config!';
 $data['refresh_page']='Recharger la page';
 $data['refresh_site']='Recharger le site!';
+$data['toggle_profiling']='Afficher le debug';
 
 ?>

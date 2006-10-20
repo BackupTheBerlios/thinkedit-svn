@@ -109,7 +109,7 @@ $data['save']='Save';
 $data['participation_email_admin_link']='Click here to manage this participation';
 $data['refresh_page']='Refresh page';
 $data['refresh_site']='Refresh site!';
-$data['node_not_deleted']='!node_not_deleted!';
-$data['toggle_profiling']='!toggle_profiling!';
+$data['node_not_deleted']='Node not deleted';
+$data['toggle_profiling']='Toggle profiling';
 
 ?>
