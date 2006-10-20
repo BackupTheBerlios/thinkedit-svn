@@ -6,6 +6,7 @@
 <meta name="generator" content="Thinkedit" />
 
 <link href="<?php echo te_design() ?>/style.css" rel="stylesheet" type="text/css" media="all">
+
 </head>
 
 <body>

@@ -207,10 +207,17 @@ function te_locale_chooser()
 
 function te_admin_toolbox()
 {
+	
+	
+	
 	global $thinkedit;
 	if ($thinkedit->user->isAdmin())
 	{
 		$out = '';
+		
+		// add jquery code
+		$out = te_jquery();
+		
 		// todo move style sheet somewhere, but this one is common to all designs, and designs author can do what they want with it
 		// done, file is in /edit/toolbar.css
 		$out .= '<link type="text/css" href="' . ROOT_URL . '/edit/ressource/css/toolbar.css" rel="stylesheet" media="screen"/>';
@@ -301,9 +308,24 @@ function te_error_log()
 		return false;
 	}
 	
-	
-	
 }
+
+/**
+* Will return the script tag to have jquery added to your page. Echo this in the head of your template header.
+*/
+function te_jquery()
+{
+	global $te_jquery_added;
+	
+	if (isset($te_jquery_added))
+	{
+	}
+	else
+	{
+		return  '<script type="text/javascript" src="' . ROOT_URL . '/lib/jquery/jquery.js"></script>';
+		$te_jquery_added = true;
+	}
+}	
 
 /************************ Tools / helpers *********************/
 
