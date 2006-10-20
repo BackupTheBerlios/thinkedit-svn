@@ -111,5 +111,6 @@ $data['refresh_page']='Refresh page';
 $data['refresh_site']='Refresh site!';
 $data['node_not_deleted']='Node not deleted';
 $data['toggle_profiling']='Toggle profiling';
+$data['logout']='Logout';
 
 ?>

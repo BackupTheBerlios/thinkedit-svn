@@ -128,5 +128,9 @@ $data['no_help_in_config']='!no_help_in_config!';
 $data['refresh_page']='Recharger la page';
 $data['refresh_site']='Recharger le site!';
 $data['toggle_profiling']='Afficher le debug';
+$data['logout']='Déconnexion';
+
+
+
 
 ?>

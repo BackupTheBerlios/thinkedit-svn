@@ -222,6 +222,11 @@ function te_admin_toolbox()
 		$out .= '<b>ThinkEDIT</b>'; // todo add version number automagically
 		$out .= '</div>';
 		
+		// logout
+		$url = new url();
+		$out .= '<a href="' . ROOT_URL . '/edit/logout.php" class="te_toolbar_button">'. translate('logout') .'</a>';
+		
+		
 		
 		// refresh page link
 		$url = new url();
