@@ -408,12 +408,12 @@ class thinkedit
 		{
 				if (!isset($uid['class']))
 				{
-						trigger_error('thinkedit::newObject() $uid[\'class\'] not defined', E_USER_ERROR);
+						trigger_error('thinkedit::newObject() $uid[\'class\'] not defined', E_USER_WARNING);
 				}
 				
 				if (!isset($uid['type']))
 				{
-						trigger_error('thinkedit::newObject() $uid[\'type\'] not defined', E_USER_ERROR);
+						trigger_error('thinkedit::newObject() $uid[\'type\'] not defined', E_USER_WARNING);
 				}
 				
 				if ($uid['class'] == 'record')
@@ -447,7 +447,7 @@ class thinkedit
 				
 				else
 				{
-						trigger_error("thinkedit::newObject() class " . $uid['class'] . "not supported", E_USER_ERROR);
+						trigger_error("thinkedit::newObject() class " . $uid['class'] . "not supported", E_USER_WARNING);
 				}
 		}
 		

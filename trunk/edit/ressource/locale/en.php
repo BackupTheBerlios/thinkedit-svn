@@ -113,5 +113,6 @@ $data['node_not_deleted']='Node not deleted';
 $data['toggle_profiling']='Toggle profiling';
 $data['logout']='Logout';
 $data['node_moved_successfully']='!node_moved_successfully!';
+$data['node_cut_failed']='!node_cut_failed!';
 
 ?>

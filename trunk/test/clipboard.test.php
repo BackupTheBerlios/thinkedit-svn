@@ -16,7 +16,7 @@ $tmp_node = $root->add($tmp);
 
 
 $tmp2 = $thinkedit->newRecord('page');
-$tmp2->setTitle('testing_clipboard 2');
+$tmp2->setTitle('testing_clipboard 2, in root later');
 $tmp2->save();
 
 $tmp_node2 = $tmp_node->add($tmp2);
@@ -36,4 +36,10 @@ echo $clipboard->debug();
 
 print_r($_SESSION);
 
+
+
+/*
+$tmp_node->delete();
+$tmp_node2->delete();
+*/
 ?>

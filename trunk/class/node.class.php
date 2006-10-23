@@ -1082,11 +1082,13 @@ class node
 				{
 						return 0;
 				}
-				
+				/*
+				// Optimisation currently removed because this is a kind of cache that must be cleaned on every node move
 				if ($this->get('level') > 0)
 				{
 						return $this->get('level');
 				}
+				*/
 				else
 				{
 						global $thinkedit;
