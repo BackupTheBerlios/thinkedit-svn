@@ -230,7 +230,7 @@ function te_admin_toolbox()
 		$out .= '</div>';
 		
 		// logout
-		$url = new url();
+		$url = $thinkedit->newUrl();
 		$out .= '<a href="' . ROOT_URL . '/edit/logout.php" class="te_toolbar_button">'. translate('logout') .'</a>';
 		
 		
