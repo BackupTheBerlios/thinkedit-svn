@@ -122,7 +122,7 @@ blablabla
 <?php /****************** Save buttons ***********/ ?>
 
 
-<div class="toolbar">
+<div class="save_toolbar inset panel">
 <?php if (!isset($out['edit_node'])) : ?>
 <input class="action_button" type="submit" value="<?php echo translate('save_button') ?>" name="save">
 <input class="action_button" type="submit" value="<?php echo translate('save_and_return_to_list_button') ?>" name="save_and_return_to_list">

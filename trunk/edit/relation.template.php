@@ -14,8 +14,9 @@
 <title>
 </title>
 
-<link type="text/css" href="style.css" rel="stylesheet" media="screen"/>
+<link type="text/css" href="<?php echo ROOT_URL?>/edit/ressource/css/style.css" rel="stylesheet" media="screen"/>
 
+<?php echo te_jquery(); ?>
 <script src="thinkedit.js" type="text/javascript"></script>
 
 

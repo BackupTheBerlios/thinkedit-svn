@@ -109,6 +109,16 @@ a
 		margin-bottom: 1em;
 }
 
+.save_toolbar
+{
+		height: 40px;
+		position: fixed;
+		bottom: 0px;
+		left: 0;
+		right: 0;
+		background-color: #dddcdb;
+		border-top: 1px solid #c3c3c2;
+}
 
 .centered 
 {
