@@ -23,6 +23,7 @@ function te_get($id)
 
 function te_translate($id)
 {
+	trigger_error('translation support not yet added for frontend duties')
 	return $id;
 }
 
@@ -125,7 +126,7 @@ function te_link($object)
 	}
 	else
 	{
-		trigger_error('te_link() : object is not a node or a filesystem, not yet supported');
+		trigger_error('te_link() : object is not a node or a filesystem, not yet supported. Most probably, you made a relation to a file or a content object instead of a node. Delete the relations you made to those. Or ask on Thinkedit mailing list');
 		return false;
 	}
 }
