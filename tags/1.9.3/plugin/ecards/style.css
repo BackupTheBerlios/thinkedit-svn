@@ -1,0 +1,91 @@
+body
+{
+		font-size: 10px;
+		font-family: verdana, arial, sans; 
+		/*background-color: #eee;*/ 
+}
+
+.ui
+{
+		/*
+		margin: 5px;
+		padding: 5px;
+		background-color: #fff;
+		height: 365px;
+		*/
+		
+		
+}
+
+.photo
+{
+		float: left;
+}
+
+
+.separator
+{
+		width: 10px;
+		float: left;
+}
+
+.preview_photo
+{
+		
+}
+
+
+.ui_box
+{
+		float: left;
+		border: 1px solid #ddd;
+		background-color: #ffffcc;
+		margin: 5px;
+		padding: 5px;
+		width: 600px;
+}
+
+.small
+{
+		width: 140px;
+		height: 150px;
+}
+
+.white
+{
+		background-color: white;
+}
+
+.clear
+{
+		clear: both;
+}
+
+.ui_box div, .ui_box h2
+{
+		padding: 3px;
+		margin: 0;
+}
+
+.preview_ui, .preview_ui form
+{
+		display: inline;
+}
+.formulaire
+{
+		float: left;
+		/*width: 300px;*/
+}
+
+
+.field
+{
+		margin-bottom: 10px;
+}
+
+h1, h2
+{
+		font-size: 1.1em;
+		margin, padding: 0;
+}
+
