@@ -207,6 +207,13 @@ $i++;
 <?php echo translate('cut');?>
 </a>
 </div>
+
+<div class="context_menu_item">
+<a href="<?php echo $node['clipboard']['copy_link']?>" target="status" onclick="hide_menus()">
+<?php echo translate('copy');?>
+</a>
+</div>
+
 <!--
 <div class="context_menu_item">
 <a href="clipboard.php" target="status"><?php echo translate('copy');?></a>
@@ -214,7 +221,9 @@ $i++;
 -->
 
 <div class="context_menu_item">
-<a href="<?php echo $node['clipboard']['paste_link']?>" target="status" onclick="hide_menus()"><?php echo translate('paste');?></a>
+<a href="<?php echo $node['clipboard']['paste_link']?>" target="status" onclick="hide_menus()">
+<?php echo translate('paste');?>
+</a>
 </div>
 
 

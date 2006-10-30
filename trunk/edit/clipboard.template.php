@@ -11,8 +11,11 @@
 		<![endif]-->
 </head>
 <body>
+
 <?php if (isset($out['info'])): ?>
+<div class="clipboard_info">
 <?php echo $out['info'];?>
+</div>
 <?php endif; ?>
 
 

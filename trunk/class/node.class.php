@@ -162,7 +162,7 @@ class node
 		* 
 		* 
 		**/
-		function delete($keep_content = false)
+		function delete($keep_content = true)
 		{
 				if ($this->hasChildren())
 				{
@@ -1082,13 +1082,14 @@ class node
 				{
 						return 0;
 				}
-				/*
+				
 				// Optimisation currently removed because this is a kind of cache that must be cleaned on every node move
+				// re added, testing in progress
 				if ($this->get('level') > 0)
 				{
 						return $this->get('level');
 				}
-				*/
+				
 				else
 				{
 						global $thinkedit;

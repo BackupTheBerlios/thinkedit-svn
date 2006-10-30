@@ -37,7 +37,7 @@ class timer
 						foreach ($this->marker as $marker)
 						{
 								$out .= $marker['id'] . ' : ';
-								$out .= ($marker['time'] - $this->start);
+								$out .= round ($marker['time'] - $this->start, 3);
 								$out .= '<br/>';
 						}
 				}
@@ -46,7 +46,7 @@ class timer
 				{
 						$this->stop();
 				}
-				$out .=  'stop : ' . ($this->stop - $this->start);
+				$out .=  'stop : ' . round (($this->stop - $this->start), 3);
 				
 				//echo '<pre>';
 				//print_r($this->marker);

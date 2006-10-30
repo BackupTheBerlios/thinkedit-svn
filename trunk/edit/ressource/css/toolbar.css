@@ -53,5 +53,5 @@ a.te_toolbar_button:hover
 		font-size: 10px;
 		font-family: Verdana, Arial, Helvetica;
 		line-height: 14px;
-		height: 100px;
+		/*height: 100px;*/
 }

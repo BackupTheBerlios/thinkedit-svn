@@ -478,11 +478,21 @@ if (isset($nodes) && is_array($nodes))
 				}
 				
 				/******* clipboard links ****/
+				/*
+				include_once('../class/clipboard.class.php');
+				$clipboard = new clipboard();
+				*/
 				
 				$url = new url();
 				$url->set('source_node', $node_item->getId());
 				$url->set('action', 'cut');
 				$node_info['clipboard']['cut_link'] = $url->render('clipboard.php');
+				
+				$url = new url();
+				$url->set('source_node', $node_item->getId());
+				$url->set('action', 'copy');
+				$node_info['clipboard']['copy_link'] = $url->render('clipboard.php');
+				
 				
 				$url = new url();
 				$url->set('target_node', $node_item->getId());

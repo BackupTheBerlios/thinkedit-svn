@@ -32,5 +32,5 @@ foreach ($tree as $node)
 echo '</ul>';
 
 
-echo te_admin_toolboxypk();
+echo te_admin_toolbox();
 ?>
