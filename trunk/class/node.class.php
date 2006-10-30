@@ -1006,6 +1006,28 @@ class node
 				}
 		}
 		
+		
+		/**
+		* Return the parent of the curent node which is at the $level level.
+		*/
+		function getParentByLevel($level)
+		{
+			$parents = $this->getParentUntilRoot();
+			if (is_array($parents))
+			{
+				foreach ($parents as $parent)
+				{
+					if ($parent->getLevel() == $level)
+					{
+						return $parent;
+					}
+					
+				}
+			}
+			return false;
+		}
+		
+		
 		/**
 		* Generate the path of this node and save it to the DB
 		* 

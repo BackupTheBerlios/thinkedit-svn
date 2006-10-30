@@ -23,7 +23,7 @@ function te_get($id)
 
 function te_translate($id)
 {
-	trigger_error('translation support not yet added for frontend duties')
+	trigger_error('translation support not yet added for frontend duties');
 	return $id;
 }
 
