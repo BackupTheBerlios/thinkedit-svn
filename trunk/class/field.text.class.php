@@ -10,7 +10,7 @@ class field_text extends field
 		$rows = round(strlen($this->get()) / 60) + 8;
 		if ($rows > 30) $rows = 30;
 		$out = '';
-		$out .= sprintf('<textarea name="%s" cols="60" rows="%s">%s</textarea>', $prefix . $this->getName(), $rows, $this->getHtmlSafe());
+		$out .= sprintf('<textarea name="%s" cols="40" rows="%s">%s</textarea>', $prefix . $this->getName(), $rows, $this->getHtmlSafe());
 		return $out;
 	}
 	
