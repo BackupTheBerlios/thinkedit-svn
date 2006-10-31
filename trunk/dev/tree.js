@@ -22,6 +22,7 @@ function load_node(id)
 
 function bind_click()
 {
+	
 	// remove all click handlers
 	$('.node').unclick();
 	

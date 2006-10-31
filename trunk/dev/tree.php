@@ -5,6 +5,7 @@ require_once('../thinkedit.init.php');
 <html>
 <head>
 <?php echo te_jquery(); ?>
+<script src="<?php echo ROOT_URL ?>/lib/interface/interface.js"></script>
 
 <script src="tree.js"></script>
 
