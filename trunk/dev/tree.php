@@ -9,6 +9,15 @@ require_once('../thinkedit.init.php');
 
 <script src="tree.js"></script>
 
+
+<style>
+.node
+{
+	cursor: pointer;
+}
+
+</style>
+
 </head>
 <body>
 <div id="loader">loading</div>
@@ -22,7 +31,8 @@ $tree = $root->getAllChildren();
 
 echo '<ul>';
 //echo '<li class="node" id="node_'. $root->getId()  .'" onclisck="load_node(' . $root->getId() . ')">' . $root->getTitle() .  '<div class="child"></div></li>';
-echo '<li class="node" id="node_'. $root->getId()  .'">' . $root->getTitle() .  '<div class="child"></div></li>';
+//echo '<li class="node" id="node_'. $root->getId()  .'">' . $root->getTitle() .  '<div class="child"></div></li>';
+echo '<li class="node" id="node_'. $root->getId()  .'">' . $root->getTitle() .  '</li>';
 echo '</ul>';
 
 die;
@@ -43,7 +53,8 @@ foreach ($tree as $node)
 		{
 				echo '</ul>';
 		}
-		echo '<li id="node_'. $node->getId()  .'" onclick="load_node(' . $node->getId() . ')">' . $node->getTitle() .  '<div class="child"></div></li>';
+		//echo '<li id="node_'. $node->getId()  .'" onclick="load_node(' . $node->getId() . ')">' . $node->getTitle() .  '<div class="child"></div></li>';
+		echo '<li id="node_'. $node->getId()  .'" onclick="load_node(' . $node->getId() . ')">' . $node->getTitle() .  '</li>';
 		
 		$previous_level = $level;
 		

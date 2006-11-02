@@ -1,75 +1,40 @@
-<script type="text/javascript" src="structure.js"></script>
+<script type="text/javascript" src="tree.js"></script>
 
 <style>
 .node
 {
-	padding-left: 10px;
+	cursor: pointer;
 }
+
+.node img
+{
+	vertical-align: middle;
+	/*margin-top: 10px;*/
+	padding-bottom: 5px;
+	padding-right: 5px;
+	/*border: 1px solid red;*/
+}
+
+li
+{
+	padding-left: 20px;
+	margin: 2px;
+	
+}
+
 </style>
+
 
 
 <div id="loader">Ajax loading ...</div>
 
-
-<div class="node" id="<?php echo $root->getId(); ?>"><?php echo $root->getTitle(); ?></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="content panel" id="list">
 
-<iframe name="status" width="500" height="20" frameborder="0" scrolling="no"></iframe>
+<ul>
+<li class="node" id="node_<?php echo $root->getId(); ?>"><img src="<?php echo $root->getIcon(); ?>"><?php echo $root->getTitle(); ?></li>
+</ul>
 
-
-<?php /*************************** Top toolbar *****************************/?>
-
-<div class="toolbar">
-
-<!--
-<?php if (isset($out['structure_breadcrumb'])) : ?>
-<select size="1" onChange="jump('parent',this,0)">
-<?php foreach ($out['structure_breadcrumb'] as $i=>$bread): ?>
-<option value="<?php echo $bread['url'] ?>" <?php if (isset($bread['current'])): ?>selected="selected"<?php endif; ?>>
-<?php //echo str_repeat('&nbsp;&nbsp;', $i); ?>
-<?php echo ucfirst($bread['title']) ?>
-</option>
-<?php endforeach; ?>
-</select>
-<?php endif; ?>
--->
-
-
-<?php if (isset($out['go_up_url'])): ?>
-<a class="action_button" style="margin-bottom: 30px;" href="<?php echo $out['go_up_url'] ?>"><?php echo translate('go_up')?></a>
-<?php endif;?>
 </div>
-
-<?php if (isset($out['structure_breadcrumb'])) : ?>
-<?php $x=1 ?>
-
-<?php foreach ($out['structure_breadcrumb'] as $i=>$bread): ?>
-<a href="<?php echo $bread['url'] ?>">
-<?php echo ucfirst($bread['title']) ?>
-
-<?php if ($x < count($out['structure_breadcrumb'])): ?>
- > 
-<?php endif; ?>
-
-<?php $x++; ?>
-
-<?php endforeach; ?>
-<?php endif; ?>
 
 
 

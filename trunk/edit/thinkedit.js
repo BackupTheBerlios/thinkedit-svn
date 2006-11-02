@@ -69,21 +69,11 @@ function showContextMenu(id, event)
 {
 	hideMenu();
 	menu = $('#' + id);
-	/*
-	menu.style.top = Event.pointerY(event) + 'px';
-	menu.style.left = Event.pointerX(event) + 'px';
-	*/
-	
 	menu.top(Event.pointerY(event) + 'px');
 	menu.left(Event.pointerX(event) + 'px');
-	
-	//Element.show(menu);
-	
 	menu.show();
-	
 	previous_menu = menu;
-	// remove menu after 10 secs
-	//timer = new PeriodicalExecuter(timeOutMenu, 10);
+	
 }
 
 i = 0;
@@ -93,7 +83,6 @@ function timeOutMenu()
 	{
 		if (previous_menu)
 		{
-			//Element.hide(previous_menu);
 			previous_menu.hide();
 		}
 		i=0;
@@ -106,7 +95,6 @@ function hideMenu()
 {
 	if (previous_menu)
 	{
-		//Element.hide(previous_menu);
 		previous_menu.hide();
 	}
 }
