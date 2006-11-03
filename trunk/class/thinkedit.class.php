@@ -288,6 +288,12 @@ class thinkedit
 				return new user();
 		}
 		
+		function getClipboard()
+		{
+				require_once ROOT . '/class/clipboard.class.php';
+				return new clipboard();
+		}
+		
 		
 		/**
 		* Returns a cache object used for output caching

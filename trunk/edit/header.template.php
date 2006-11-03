@@ -38,6 +38,16 @@
 </div>
 <?php endif; ?>
 
+<div  class="error panel" id="error" style="display: none">
+<img src="ressource/image/icon/error.gif"/>
+</div>
+
+<div  class="info panel"id="info" style="display: none">
+<img src="ressource/image/icon/info.gif">
+</div>
+
+
+
 
 <?php if (isset($out['info'])) : ?>
 <div class="info panel">

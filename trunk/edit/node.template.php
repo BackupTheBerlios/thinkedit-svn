@@ -43,7 +43,7 @@
 <?php endif; ?>
 
 
-
+<!--
 <?php if (isset($node['movetop_url'])): ?>
 <a href="<?php echo $node['movetop_url']?>">
 <img src="ressource/image/icon/small/go-top.png">
@@ -67,6 +67,8 @@
 <img src="ressource/image/icon/small/go-bottom.png">
 </a>
 <?php endif; ?>
+-->
+
 
 </span>
 
@@ -114,19 +116,24 @@
 
 <div class="context_menu_title"><?php echo translate('clipboard');?></div>
 <div class="context_menu_item">
-<a href="<?php echo $node['clipboard']['cut_link']?>" target="status" onclick="hide_menus()">
+<a class="cut_button">
 <?php echo translate('cut');?>
 </a>
 </div>
-<!--
-<div class="context_menu_item">
-<a href="clipboard.php" target="status"><?php echo translate('copy');?></a>
-</div>
--->
 
 <div class="context_menu_item">
-<a href="<?php echo $node['clipboard']['paste_link']?>" target="status" onclick="hide_menus()"><?php echo translate('paste');?></a>
+<a class="copy_button">
+<?php echo translate('copy');?>
+</a>
 </div>
+
+<div class="context_menu_item">
+<a class="paste_button">
+<?php echo translate('paste');?>
+</a>
+</div>
+
+
 
 
 <?php if (isset($node['locale'])) : ?>

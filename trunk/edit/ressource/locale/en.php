@@ -122,5 +122,6 @@ $data['api_unknown_action requested']='!api_unknown_action requested!';
 $data['api_node_published']='!api_node_published!';
 $data['api_no_node_id_defined']='!api_no_node_id_defined!';
 $data['api_node_unpublished']='!api_node_unpublished!';
+$data['api_node_cut']='!api_node_cut!';
 
 ?>

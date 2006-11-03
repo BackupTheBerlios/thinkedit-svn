@@ -14,7 +14,50 @@ $(document).ready(function()
 });
 
 
+/************************** Thinkedit api *******************************/
+// todo ;-)
+function te_api_call(action, params)
+{
+	$.post("api.php?action=" + action, params,function(xml)
+	{
+		alert( $("message",xml).text() );
+		return xml;
+	});
+	
+	/*
+	$.ajax({
+		type: "POST",
+		url: "api.php",
+		data: "action=" + action + "params",
+		success: function(data){
+			message =  $('message', data).text();
+			result = $('result', data).text();
+			if (result == 1)
+			{
+				// todo
+				
+			}
+			else
+			{
+				alert (message);
+			}
+		}
+	});
+	*/
+}
 
+/************************** User information *******************************/
+function te_info(message)
+{
+	//alert(message);
+	$('#info').html(message).show();
+}
+
+function te_error(message)
+{
+	//alert(message);
+	$('#error').html(message).show();
+}
 
 /************************** Popups *******************************/
 

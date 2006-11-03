@@ -11,11 +11,12 @@ Input :
 - node_rename
 
 - format (json, xml, php, ...)
-- + any others 
++ any other parameters 
 
 
 Output :
 - will return a php/xml/json structure in the asked format
+Curently only xml is sent.
 
 Root tag/aray key/ is <thinkedit> 
 
@@ -25,6 +26,9 @@ False is converted to 0
 */
 
 require_once 'common.inc.php';
+// disable error reporting, we are handling this in the xml outputed
+ini_set('display_errors', false);
+
 check_user();
 
 $action = $url->get('action');
@@ -32,6 +36,7 @@ $format = $url->get('format');
 $results = false;
 $out = false;
 
+/************************** Actions ***********************/
 // all actions are placed here :
 if ($action == 'node_publish')
 {
@@ -83,6 +88,87 @@ elseif ($action == 'node_unpublish')
 	}
 	
 }
+elseif ($action == 'node_cut')
+{
+	$node = $thinkedit->newNode();
+	if ($url->get('node_id'))
+	{
+		$clipboard = $thinkedit->getClipboard();
+			
+		$node->load($url->get('node_id'));
+		
+		if ($clipboard->cut($node))
+		{
+			$out['result'] = true;
+			$out['message'] = translate('node_cut_ok');
+		}
+		else
+		{
+			$out['result'] = false;
+			$out['message'] = translate('node_cut_failed');
+		}
+	}
+	else
+	{
+		$out['result'] = false;
+		$out['message'] = translate('api_no_node_id_defined');
+	}
+	
+}
+elseif ($action == 'node_copy')
+{
+	$node = $thinkedit->newNode();
+	if ($url->get('node_id'))
+	{
+		$clipboard = $thinkedit->getClipboard();
+			
+		$node->load($url->get('node_id'));
+		
+		if ($clipboard->copy($node))
+		{
+			$out['result'] = true;
+			$out['message'] = translate('node_copy_ok');
+		}
+		else
+		{
+			$out['result'] = false;
+			$out['message'] = translate('node_copy_failed');
+		}
+	}
+	else
+	{
+		$out['result'] = false;
+		$out['message'] = translate('api_no_node_id_defined');
+	}
+	
+}
+elseif ($action == 'node_paste')
+{
+	$node = $thinkedit->newNode();
+	if ($url->get('node_id'))
+	{
+		$clipboard = $thinkedit->getClipboard();
+			
+		$node->load($url->get('node_id'));
+		
+		if ($clipboard->paste($node))
+		{
+			$out['result'] = true;
+			$out['message'] = translate('node_paste_ok');
+		}
+		else
+		{
+			$out['result'] = false;
+			$out['message'] = translate('node_paste_failed');
+		}
+	}
+	else
+	{
+		$out['result'] = false;
+		$out['message'] = translate('api_no_node_id_defined');
+	}
+	
+}
 else
 {
 	$out['message'] = translate('api_unknown_action requested');
@@ -90,14 +176,13 @@ else
 }
 
 
-// output results
+/************************** output results ***********************/
 header("Content-Type: text/xml");
 echo array_to_xml($out);
 
 
 
-
-
+/* Helper function that could be moved to /lib*/
 function array_to_xml($array, $level=1) 
 {
 	if (is_array($array))
