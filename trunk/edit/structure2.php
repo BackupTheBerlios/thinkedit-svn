@@ -9,6 +9,9 @@ $root = $thinkedit->newNode();
 
 $root->loadRootNode();
 
+
+$node_id = $root->getId();
+
 // include template :
 include('header.template.php');
 include('structure2.template.php');

@@ -200,6 +200,15 @@ a
 		border-color: #FFE8F5 #80004B #80004B #FFE8F5;
 }
 
+#loader
+{
+	position: fixed;
+	top: 0;
+	right: 0;
+	background-color: red;
+}
+
+
 
 /*********************** Header **************************/
 
@@ -545,6 +554,41 @@ th.on
 		
 		
 }
+
+/***************** Nodes ******************/
+
+.node img
+{
+	cursor: pointer;
+}
+
+.node img
+{
+	vertical-align: middle;
+	/*margin-top: 10px;*/
+	padding-bottom: 5px;
+	padding-right: 5px;
+	/*border: 1px solid red;*/
+}
+
+
+
+li .node
+{
+	padding-left: 20px;
+	margin: 2px;
+	
+}
+
+.node .tools
+{
+	text-align: right;
+	/*
+	margin-left: 200px;
+	position: absolute;
+	*/
+}
+
 
 
 /***************** Forms ******************/

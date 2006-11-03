@@ -1,9 +1,76 @@
 <?php if (isset ($out['nodes']) && is_array ($out['nodes'])): ?>
 <?php foreach ($out['nodes'] as $node): ?>
 <li class="node" id="node_<?php echo $node['id']?>">
-<img src="<?php echo $node['icon']?>">
-<?php echo $node['title']?>
-</li>
+<img src="<?php echo $node['icon']?>" class="icon">
+<span class="node_title"><?php echo $node['title']?></span>
+
+
+<?php /******************* Tools *******************/ ?>
+
+<span class="tools">
+
+<?php if (isset($node['edit_url'])): ?>
+<a class="action_button" href="<?php echo $node['edit_url']?>" onclick="custompopup('<?php echo $node['edit_url']?>', 'editor' , 80);return false">
+<!--
+<img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('node_edit'); ?>">
+-->
+<?php echo translate('edit'); ?>
+</a>
+<?php endif; ?>
+
+<!--
+<a class="action_button" onclick="showContextMenu('context_menu_node_<?php echo $node['id']?>', event);return false;">
+<?php echo translate('menu');?>
+</a>
+-->
+
+<!--
+<a class="action_button" onclick="toggle_and_move('add_menu_node_<?php echo $node['id']?>', event)">
+<?php echo translate('add');?>
+</a>
+-->
+
+
+<?php if (isset($node['publish_url'])): ?>
+<?php if ($node['published']): ?>
+<a href="<?php echo $node['publish_url']?>" class="published">
+<img src="ressource/image/icon/small/lightbulb.png" title="<?php echo  $node['publish_title'];?>">
+<?php else: ?>
+<a href="<?php echo $node['publish_url']?>" class="unpublished">
+<img src="ressource/image/icon/small/lightbulb_off.png" title="<?php echo  $node['publish_title'];?>">
+<?php endif; ?>
+</a>
+<?php endif; ?>
+
+
+
+<?php if (isset($node['movetop_url'])): ?>
+<a href="<?php echo $node['movetop_url']?>">
+<img src="ressource/image/icon/small/go-top.png">
+</a>
+<?php endif; ?>
+
+<?php if (isset($node['moveup_url'])): ?>
+<a href="<?php echo $node['moveup_url']?>">
+<img src="ressource/image/icon/small/go-up.png">
+</a>
+<?php endif; ?>
+
+<?php if (isset($node['movedown_url'])): ?>
+<a href="<?php echo $node['movedown_url']?>">
+<img src="ressource/image/icon/small/go-down.png">
+</a>
+<?php endif; ?>
+
+<?php if (isset($node['movebottom_url'])): ?>
+<a href="<?php echo $node['movebottom_url']?>">
+<img src="ressource/image/icon/small/go-bottom.png">
+</a>
+<?php endif; ?>
+
+</span>
+
+
 
 <?php /******************* Context menu *******************/ ?>
 
@@ -79,6 +146,8 @@
 
 </div>
 
+
+</li>
 
 
 <?php endforeach;?>

@@ -1,7 +1,22 @@
 // javascript is not my cup of tea
+// but it may change, thanks to jquery (jquery.com)
+// global todo : use unobstrusive html classes to trigger javascript
+
+
+
+
+/************************** Various page wide stuff *******************************/
+
+// nicer isn't it : we use jquery to hide loading bar when doc is ready :
+$(document).ready(function()
+{
+	$("#loading").hide();
+});
+
+
+
 
 /************************** Popups *******************************/
-
 
 /* from http://www.quirksmode.org/js/croswin.html */
 function popup(url, name)
@@ -198,59 +213,10 @@ function ask_title(targ,selObj,restore,text)
 }
 
 
-/************************** Various page wide stuff *******************************/
-
-/*
-function page_loaded() 
-{
-	document.getElementById('loading').style.display='none';
-}
-*/
-
-// nicer isn't it : we use jquery to hide loading bar when doc is ready :
-$(document).ready(function(){
-	$("#loading").hide();
-	});
 
 
-function protect_links()
-{
-	var links = document.getElementsByTagName("a");
-	for (i = 0; i < links.length; i++) 
-	{
-		//links[i].style.display = "none";
-		links[i].setAttribute('onclick', "return is_page_saved();");
-	} 
-}
 
-function is_page_saved()
-{
-	if (user_changed == 1)
-	{
-		if (window.confirm('Cliquez sur OK pour quitter cette page sans sauver votre travail'))
-		{
-			// alert('ok');
-			return true;
-		}
-		else
-		{
-			//alert('Cancel');
-			return false;
-		}
-	}
-	else
-	{
-		return true;
-	}
-}
-
-// use this to request a save confirm dialog on change of content on the poweredit
-function set_user_changed()
-{
-	user_changed = 1;
-}
-
-
+// This will soon be deprecated, we will use ajax for partial page loading
 function adjustIFrameSize (iframeWindow) 
 {
 	if (iframeWindow.document.height) {

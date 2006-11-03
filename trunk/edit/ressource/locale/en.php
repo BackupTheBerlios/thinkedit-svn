@@ -117,5 +117,10 @@ $data['node_cut_failed']='!node_cut_failed!';
 $data['node_paste_failed']='!node_paste_failed!';
 $data['node_paste_ok']='!node_paste_ok!';
 $data['node_copy_ok']='!node_copy_ok!';
+$data['unknown api action requested']='!unknown api action requested!';
+$data['api_unknown_action requested']='!api_unknown_action requested!';
+$data['api_node_published']='!api_node_published!';
+$data['api_no_node_id_defined']='!api_no_node_id_defined!';
+$data['api_node_unpublished']='!api_node_unpublished!';
 
 ?>
