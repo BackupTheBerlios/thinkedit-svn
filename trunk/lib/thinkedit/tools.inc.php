@@ -1,54 +1,59 @@
 <?php
-
-
-function default_error_handler($errno, $errstr, $errfile, $errline)
+function default_error_handler($errno, $errstr, $errfile, $errline, $errcontext)
 {
-	global $error_log;
-	
-	switch ($errno) 
+	if ($errno < E_ALL)
 	{
-		case E_USER_ERROR:
-		echo "<b></b> [$errno] $errstr<br />\n";
-		echo "  Erreur fatale à la ligne $errline dans le fichier $errfile";
-		echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
-		echo "Abandon...<br />\n";
-		exit(1);
-		break;
-		case E_USER_WARNING:
-		$error_log .= "<b>Mon ALERTE</b> [$errno] $errstr<br />\n";
-		break;
-		case E_USER_NOTICE:
-		$error_log .= "<b>Ma NOTICE</b> [$errno] $errstr<br />\n";
-		break;
-		default:
-		$error_log .= "Type d'erreur inconnu : [$errno] $errstr<br />\n";
-		break;
+		if ($errno == E_USER_NOTICE)
+		{
+			$type = 'notice';
+		}
+		elseif ($errno == E_USER_WARNING)
+		{
+			$type = 'warning';
+		}
+		elseif ($errno == E_USER_ERROR)
+		{
+			$type = 'error';
+		}
+		else
+		{
+			$type = $errno;
+		}
+		
+		$error['message'] = "[$type] <b>$errstr</b> in line $errline of file $errfile";
+		//$error['message']  .= "Error in line $errline of file $errfile";
+		
+		
+		$error['string'] = $errstr;
+		$error['file'] = $errfile;
+		$error['line'] = $errline;
+		//$error['context'] = $errcontext;
+		
+		global $thinkedit;
+		
+		$thinkedit->errors[] = $error;
 	}
+	return true;
 }
 
 function production_error_handler($errno, $errstr , $errfile , $errline , $errcontext)
 {
-	$error_message = "[$errno] $errstr<br />\n";
-	$error_message .= "Fatal error in line $errline of file $errfile";
-	$error_message .= "Aborting...<br />\n";
-	switch ($errno)
+	if ($errno < E_USER_WARNING)
 	{
-		case E_USER_ERROR:
-		echo "<b>ERROR</b> An error occured<br />\n";
-		$out['title'] = 'An error occured';
-		/*
-		include(ROOT . '/edit/header.template.php');
-		include(ROOT . '/edit/error.template.php');
-		include(ROOT . '/edit/footer.template.php');
-		*/
-		die();
-		break;
+		$error['message'] = "[$errno] $errstr<br />\n";
+		$error['message']  .= "Fatal error in line $errline of file $errfile";
+		$error['message']  .= "Aborting...<br />\n";
 		
-		case E_USER_WARNING:
-		echo "<b>WARNING</b> [$errno] $errstr in line $errline of file $errfile<br />\n";
-		break;
+		$error['string'] = $errstr;
+		$error['file'] = $errfile;
+		$error['line'] = $errline;
+		//$error['context'] = $errcontext;
+		
+		global $thinkedit;
+		
+		$thinkedit->errors[] = $error;
 	}
-	
+	return true;
 }
 
 //set_error_handler ('production_error_handler');
@@ -57,7 +62,11 @@ function production_error_handler($errno, $errstr , $errfile , $errline , $errco
 
 if ($thinkedit->isInProduction())
 {
-	//set_error_handler ('production_error_handler');
+	set_error_handler ('production_error_handler');
+}
+else
+{
+	set_error_handler ('default_error_handler');
 }
 
 

@@ -38,6 +38,7 @@ a.te_toolbar_button
 		border-right: 1px solid;
 		border-left-color: #CFCACA;
 		border-right-color: #555454;
+		cursor: pointer;
 }
 a.te_toolbar_button:hover
 {
@@ -47,7 +48,7 @@ a.te_toolbar_button:hover
 }
 
 
-.te_profiling
+.te_console
 {
 		background-color: #000000;
 		color: #6CFF00;
@@ -56,4 +57,13 @@ a.te_toolbar_button:hover
 		font-family: Verdana, Arial, Helvetica;
 		line-height: 14px;
 		/*height: 100px;*/
+}
+
+a.te_toolbar_error_button
+{
+	padding-left: 20px;
+	/*background-color: red;*/
+	background-image: url("../image/icon/clanbomber.png");
+	background-repeat:  no-repeat;
+	background-position: 3px 3px; 
 }

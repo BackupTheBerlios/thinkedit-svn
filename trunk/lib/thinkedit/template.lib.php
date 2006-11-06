@@ -257,9 +257,15 @@ function te_admin_toolbox()
 		// show hide profiling
 		$out .= '<a class="te_toolbar_button" onclick="$(\'.te_profiling\').toggle()">'. translate('toggle_profiling') .'</a>';
 		
+		// show hide errors
+		if (is_array($thinkedit->errors))
+		{
+			$out .= '<a class="te_toolbar_button te_toolbar_error_button" onclick="$(\'.te_error_log\').toggle()">'. translate('toggle_errors') .'</a>';
+		}
+		
 		$out .= '</div>'; // end of toolbar
 		
-		$out .= '<div class="te_profiling" style="display: none">';
+		$out .= '<div class="te_profiling te_console" style="display: none">';
 		$out .= 'Total Queries : ' . $thinkedit->db->getTotalQueries();
 		$out .= '<br/>';
 		$out .= 'Total time : ' . $thinkedit->timer->render();
@@ -281,7 +287,12 @@ function te_admin_toolbox()
 				$out .= "<li>SQL not shown in production mode</li>";
 			}
 		}
+		
+		
 		$out .= '</div>'; // end of profiling
+		
+		// include error log
+		$out .= te_error_log();
 		
 		$out .= '</div>'; // end of tools
 		
@@ -296,18 +307,31 @@ function te_admin_toolbox()
 // will return the html needed to show errors
 function te_error_log()
 {
-	global $error_log;
-	if (isset($error_log))
+	global $thinkedit;
+	// global var that is used to know if errors have been written already
+	global $te_error_written;
+	
+	if (!isset($te_error_written))
 	{
-		$out = '<div class="te_error_log">';
-		$out .= $error_log;
-		$out .= '</div>';
-		return $out;
+		if (isset($thinkedit->errors))
+		{
+			$out = '<div class="te_error_log te_console" style="display: none">';
+			foreach ($thinkedit->errors as $error)
+			{
+				$out .= '<div>';
+				$out .= $error['message'];
+				$out .= '<div>';
+			}
+			$out .= '</div>';
+			$te_error_written = true;
+			return $out;
+		}
+		else 
+		{
+			return false;
+		}
 	}
-	else 
-	{
-		return false;
-	}
+	
 	
 }
 

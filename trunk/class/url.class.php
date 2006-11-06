@@ -87,7 +87,16 @@ class url
 				*/
 				//$this->self = $_SERVER['PHP_SELF'];
 				// becomes :
-				$this->self = substr($_SERVER['PHP_SELF'], 0, (strlen($_SERVER['PHP_SELF']) - @strlen($_SERVER['PATH_INFO'])));
+				if (isset($_SERVER['PATH_INFO']))
+				{
+					$path_info_len = strlen($_SERVER['PATH_INFO']);
+				}
+				else
+				{
+					$path_info_len = 0;
+				}
+				
+				$this->self = substr($_SERVER['PHP_SELF'], 0, (strlen($_SERVER['PHP_SELF']) - $path_info_len));
 				
 				
 				// fix for IIS

@@ -123,5 +123,7 @@ $data['api_node_published']='!api_node_published!';
 $data['api_no_node_id_defined']='!api_no_node_id_defined!';
 $data['api_node_unpublished']='!api_node_unpublished!';
 $data['api_node_cut']='!api_node_cut!';
+$data['cannot_delete_root_node']='!cannot_delete_root_node!';
+$data['toggle_errors']='Show errors';
 
 ?>
