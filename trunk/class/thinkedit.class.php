@@ -501,7 +501,17 @@ class thinkedit
 						
 						// find if the record has a locale field
 						$multilingual = false;
-						if (isset($this->config['table'][$table]['field']))
+						if (isset($this->config['content'][$table]['field']))
+						{
+							foreach ($this->config['content'][$table]['field'] as $field)
+							{
+								if ($field['type'] == 'locale')
+								{
+									$multilingual = true;
+								}
+							}
+						}
+						elseif (isset($this->config['table'][$table]['field']))
 						{
 							foreach ($this->config['table'][$table]['field'] as $field)
 							{
@@ -624,38 +634,26 @@ class thinkedit
 		*/
 		function newField($table, $field, $data = false)
 		{
-				
-				if (isset($this->config['table'][$table]['field'][$field]))
-				{
-						if (isset($this->config['table'][$table]['field'][$field]['type']))
-						{
-								$type = $this->config['table'][$table]['field'][$field]['type'];
-								
-								// todo : class path management
-								$file = ROOT . '/class/field.' . $type . '.class.php';
-								$class = 'field_' . $type;
-								
-								
-								// this is an optimization : 
-								//if (file_exists($file))
-								//{
-										require_once($file);
-										return new $class($table, $field, $data);
-								//}
-								//else
-								//{
-										trigger_error("thinkedit::newField config error, type $type for element $field not supported (class file not found)");
-								//}
-								
-						}
-						else // we default for string if no type defined
-						{
-								trigger_error("thinkedit::newElement config error, type $field not found in config");
-						}
-						
-				}
-				trigger_error("thinkedit::newElement config error, type $field not found in config");
-				
+			if (isset($this->config['content'][$table]['field'][$field]['type']))
+			{
+				$type = $this->config['content'][$table]['field'][$field]['type'];
+			}
+			elseif (isset($this->config['table'][$table]['field'][$field]['type']))
+			{
+				$type = $this->config['table'][$table]['field'][$field]['type'];
+				trigger_error('record::record() : you are still using the old config format. Please rename table to content in you config files');
+			}
+			else
+			{
+				trigger_error("thinkedit::newElement config error, $field type not found in config");
+			}
+			
+			// todo : class path management
+			$file = ROOT . '/class/field.' . $type . '.class.php';
+			$class = 'field_' . $type;
+			
+			require_once($file);
+			return new $class($table, $field, $data);
 		}
 		
 		/**
@@ -709,31 +707,6 @@ class thinkedit
 				return 'fr';
 		}
 		
-		
-		/**
-		* Returns a list of available modules type in config
-		*
-		*
-		**/
-		function getTableList()
-		{
-				trigger_error('deprecated');
-				trigger_error('deprecated, use config::getTableList() instead');
-				if (isset($this->config['table']))
-				{
-						foreach ($this->config['table'] as $table_id=>$table)
-						{
-								//$list[] = $this->new_module($module_id);
-								$list[] = $table_id;
-						}
-						return $list;
-				}
-				else
-				{
-						trigger_error(translate('no_tables_in_config'));
-						return false;
-				}
-		}
 		
 		
 		

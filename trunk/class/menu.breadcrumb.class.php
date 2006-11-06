@@ -41,42 +41,6 @@ class menu_breadcrumb extends menu_base
 				return $out;
 		}
 		
-		/*
-		function getArray()
-		{
-				// add current
-				$content = $this->node->getContent();
-				$content->load();
-				$url = new url();
-				$url->set('node_id', $this->node->getId());
-				$item['title'] = $content->getTitle();
-				$item['content'] = $content;
-				$item['url'] =  $url->render();
-				
-				$items[] = $item;
-				
-				// add parents
-				if ($this->node->getParentUntilRoot())
-				{
-						foreach ($this->node->getParentUntilRoot() as $parent)
-						{
-								$content = $parent->getContent();
-								$content->load();
-								$url = new url();
-								$url->set('node_id', $parent->getId());
-								$item['title'] = $content->getTitle();
-								$item['content'] = $content;
-								$item['url'] =  $url->render();
-								$items[] = $item;
-						}
-						
-				}
-				$items = array_reverse($items);
-				
-				return $items;
-		}
-		*/
-		
 		
 		function getArray()
 		{

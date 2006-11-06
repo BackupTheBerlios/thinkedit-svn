@@ -16,7 +16,15 @@ class config
 	
 	function getTitleFields($table)
 	{
-		foreach ($this->config['table'][$table]['field'] as $id=>$field)
+		if (isset($this->config['content'][$table]))
+		{
+			$config = $this->config['content'][$table];
+		}
+		else
+		{
+			$config = $this->config['table'][$table];
+		}
+		foreach ($config['field'] as $id=>$field)
 		{
 			$all_fields[] = $id;
 			if ($field['is_title'] == 1 || $field['is_title'] == 'true')
@@ -38,7 +46,16 @@ class config
 	
 	function getPrimaryFields($table)
 	{
-		foreach ($this->config['table'][$table]['field'] as $id=>$field)
+		if (isset($this->config['content'][$table]))
+		{
+			$config = $this->config['content'][$table];
+		}
+		else
+		{
+			$config = $this->config['table'][$table];
+		}
+		
+		foreach ($config['field'] as $id=>$field)
 		{
 			$all_fields[] = $id;
 			if (isset($field['primary']))
@@ -64,11 +81,22 @@ class config
 	
 	function getAllFields($table)
 	{
-		foreach ($this->config['table'][$table]['field'] as $id=>$field)
+		if (isset($this->config['content'][$table]))
 		{
-			$all_fields[] = $id;
-			
+			foreach ($this->config['content'][$table]['field'] as $id=>$field)
+			{
+				$all_fields[] = $id;
+			}
 		}
+		
+		if (isset($this->config['table'][$table]))
+		{
+			foreach ($this->config['table'][$table]['field'] as $id=>$field)
+			{
+				$all_fields[] = $id;
+			}
+		}
+		
 		if (is_array($all_fields))
 		{
 			return $all_fields;
@@ -89,6 +117,14 @@ class config
 	**/
 	function getTableList()
 	{
+		if (isset($this->config['content']))
+		{
+			foreach ($this->config['content'] as $table_id=>$table)
+			{
+				//$list[] = $this->new_module($module_id);
+				$list[] = $table_id;
+			}
+		}
 		if (isset($this->config['table']))
 		{
 			foreach ($this->config['table'] as $table_id=>$table)
@@ -96,6 +132,9 @@ class config
 				//$list[] = $this->new_module($module_id);
 				$list[] = $table_id;
 			}
+		}
+		if (is_array($list))
+		{
 			return $list;
 		}
 		else

@@ -12,9 +12,14 @@ class table
 				global $thinkedit;
 				$this->db = $thinkedit->getDb();
 				
-				if (isset($thinkedit->config['table'][$table]))
+				if (isset($thinkedit->config['content'][$table]))
 				{
-						$this->config = $thinkedit->config['table'][$table];
+						$this->config = $thinkedit->config['content'][$table];
+				}
+				elseif (isset($thinkedit->config['table'][$table]))
+				{
+					$this->config = $thinkedit->config['table'][$table];
+					trigger_error('record::record() : you are still using the old config format. Please rename table to content in you config files');
 				}
 				else
 				{
