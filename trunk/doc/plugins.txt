@@ -2,6 +2,27 @@ Thinkedit plugin system
 (work in progress)
 
 
+6 nov 2006
+----------
+In all cases, there are multiple sorts of plugins :
+
+- content plugins, that allow us to add new types of content with new edit forms / templates / hooks
+- general plugins, which add new features, they need settings (forms + storage) and a place in the admin menu of the interface
+- general plugins that work silently no admin interface, no settings, no content
+
+
+1 nov 2006
+----------
+Instead of hooks, it will be based on the concept of "events". See event.class.php for more infos
+basically :
+
+$event->on()
+and
+$event->register()
+
+
+01 Aug 2006
+-----------
 I'd like to use the same "hooks" system as wordpress which seems very sucessfull.
 Hooks look like observer pattern
 
@@ -93,6 +114,10 @@ class test
 		
 }
 ?>
+
+
+
+
  
 
 

@@ -1,0 +1,5 @@
+<?php
+$thinkedit->get('event');
+
+
+?>

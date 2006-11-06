@@ -1,17 +1,4 @@
 <?php
-
-
-
-/**
-* 
-* 
-* 
-* 
-* 
-* 
-*/
-
-
 /**
 * Thinkedit Base class
 * This is the thinkedit most important class. It is a factory class for important thinkedit objects
@@ -230,6 +217,25 @@ class thinkedit
 				
 		}
 		
+		
+		/*********************** Simplified factory system **************************/
+		// work in progress, maybe not a good idea. The idea is to minify the $thinkedit api
+		/*
+		Returns an $object_type. It is instanciated only once  
+		*/
+		function get($object_type)
+		{
+				
+		}
+		
+		/*
+		*/
+		function new_($object_type)
+		{
+				if ($object_type=='url')
+				{
+				}
+		}
 		
 		/************************* Factory methods for single instance objects **************************/
 		
