@@ -1158,7 +1158,6 @@ class node
 				
 				if ($content)
 				{
-						// first let's say we can add anything
 						if (isset($content->config['allowed_items']['record']))
 						{
 								foreach ($content->config['allowed_items']['record'] as $key=>$value)

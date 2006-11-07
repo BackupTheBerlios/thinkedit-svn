@@ -169,6 +169,61 @@ elseif ($action == 'node_paste')
 	}
 	
 }
+elseif ($action == 'node_info')
+{
+	$node = $thinkedit->newNode();
+	if ($url->get('node_id'))
+	{
+		if ($node->load($url->get('node_id')))
+		{
+		}
+		else
+		{
+			$node = false;
+		}
+	}
+	else
+	{
+		$node->loadRootNode();
+	}
+	
+	if ($node)
+	{
+		// get basic node info
+		$node_info['title'] = $node->getTitle();
+		$node_info['icon'] = $node->getIcon();
+		
+		// get allowed items
+		if ($allowed_items = $node->getAllowedItems())
+		{
+			foreach ($allowed_items as $allowed_item)
+			{
+				$node_info['allowed_items'] = $allowed_item['type'];
+			}
+		}
+		
+		// get children
+		if ($children = $node->getChildren())
+		{
+			foreach ($children as $child)
+			{
+				$child_info['title'] = $child->getTitle();
+				$child_info['id'] = $child->getId();
+				$node_info['children'][] = $child_info; 
+			}
+		}
+		
+		
+		$out['node'][] = $node_info;
+		$out['result'] = true;
+		$out['message'] = translate('api_node_info_done');
+	}
+	else
+	{
+		$out['result'] = false;
+		$out['message'] = translate('api_node_not_found');
+	}
+}
 else
 {
 	$out['message'] = translate('api_unknown_action requested');
