@@ -1,54 +1,54 @@
 /****************** Init *****************/
 *
 {
-		margin: 0;
-		padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 
 /***************** Typo ******************/
 body 
 {
-		font-family: verdana, arial, helvetica, sans-serif;
-		font-size : 10px;
-		margin : 0px;
-		color: rgb(0,0,0);
-		background-color: #F6F6F6; 
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size : 10px;
+	margin : 0px;
+	color: rgb(0,0,0);
+	background-color: #F6F6F6; 
 }
 
 h1
 {
-		font-size: 1.5em;
+	font-size: 1.5em;
 }
 
 h2
 {
-		font-size: 1.2em;
+	font-size: 1.2em;
 }
 
 h3
 {
-		font-size: 0.9em;
-		font-weight: lighter;
+	font-size: 0.9em;
+	font-weight: lighter;
 }
 
 h4
 {
-		font-size: 0.9em;
-		font-weight: bold;
+	font-size: 0.9em;
+	font-weight: bold;
 }
 
 
 a
 {
-		text-decoration: none;
-		color: black;
+	text-decoration: none;
+	color: black;
 }
 
 
 .thinkedit
 {
-		margin: 0em;
+	margin: 0em;
 }
 
 
@@ -56,21 +56,21 @@ a
 
 .panel
 {		
-		margin: 0em;
-		padding: 1em;
-		/*background-color: white;*/
+	margin: 0em;
+	padding: 1em;
+	/*background-color: white;*/
 }
 
 
 
 /*.content
 {
-		background-color: #E7E7E7;
-		padding: 0px;
-		margin: 0px;
-		border-style: solid; 
-		border-width: 1px;
-		border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
+	background-color: #E7E7E7;
+	padding: 0px;
+	margin: 0px;
+	border-style: solid; 
+	border-width: 1px;
+	border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
 }
 */
 
@@ -78,126 +78,125 @@ a
 
 .content
 {
-		background-color: #E7E7E7;
-		border-style: solid; 
-		border-width: 1px;
-		border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
-		/*
-		margin-top: 5em;
-		margin-bottom: 6em;
-		*/
-		
+	background-color: #E7E7E7;
+	border-style: solid; 
+	border-width: 1px;
+	border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
+	/*
+	margin-top: 5em;
+	margin-bottom: 6em;
+	*/
+	
 }
 
 .title
 {
-		font-size: 1.2em;
-		font-weight: bold;
-		/*color: white;*/
-		background-color: #ccc; 
-		
-		border-style: solid;
-		border-width: 1px; 
-		border-color: #FFFFFF #666666 #666666 #E9E9E9;
-		
-		
+	/*	
+	font-size: 1.2em;
+	font-weight: bold;
+	background-color: #ccc; 
+	border-style: solid;
+	border-width: 1px; 
+	border-color: #FFFFFF #666666 #666666 #E9E9E9;
+	*/
+	
 }
 
 .toolbar
 {
-		margin-top: 1em;
-		margin-bottom: 1em;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 .save_toolbar
 {
-		height: 40px;
-		position: fixed;
-		bottom: 0px;
-		left: 0;
-		right: 0;
-		background-color: #dddcdb;
-		border-top: 1px solid #c3c3c2;
+	height: 40px;
+	position: fixed;
+	bottom: 0px;
+	left: 0;
+	right: 0;
+	background-color: #dddcdb;
+	border-top: 1px solid #c3c3c2;
 }
 
 .centered 
 {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		width: 50%;
-		height: 50%;
-		margin: auto;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 50%;
+	height: 50%;
+	margin: auto;
 } 
 
 
 .dialog
 {
-		border-style: solid;
-		border-width: 1px; 
-		border-color: #FFFFFF #666666 #666666 #E9E9E9;
-		background-color: #ccc;
-		padding: 2em;
+	border-style: solid;
+	border-width: 1px; 
+	border-color: #FFFFFF #666666 #666666 #E9E9E9;
+	background-color: #ccc;
+	padding: 2em;
 }
 
 .opaque
 {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		margin: auto;
-		background-color: black;
-		color: white;
-		opacity: .4;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	background-color: black;
+	color: white;
+	opacity: .4;
 } 
 
 .error
 {
-		background-color: #FFF600;
-		color: #FF0000;
-		margin: 0px;
-		padding-left: 1.5em;
-		padding-right: 1.5em;
-		padding-top: 0.8em;
-		padding-bottom: 0.8em;
-		border-style: solid;
-		border-width: 1px;
-		border-color: #FFFFFF #AEAE00 #AEAE00 #E9E9E9;
+	background-color: #FFF600;
+	color: #FF0000;
+	margin: 0px;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	padding-top: 0.8em;
+	padding-bottom: 0.8em;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #FFFFFF #AEAE00 #AEAE00 #E9E9E9;
 }
 
 
 .info
 {
-		background-color: #99CCFF;
-		color: #3366FF;
-		margin: 0px;
-		padding-left: 1.5em;
-		padding-right: 1.5em;
-		padding-top: 0.8em;
-		padding-bottom: 0.8em;
-		border-style: solid;
-		border-width: 1px;
-		border-color: #CCFFFF #003399 #003399 #E9E9E9;
+	background-color: #99CCFF;
+	color: #3366FF;
+	margin: 0px;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	padding-top: 0.8em;
+	padding-bottom: 0.8em;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #CCFFFF #003399 #003399 #E9E9E9;
 }
 
 .loading
 {
-		background-color: #FF9FD7;
-		color: #FF0096;
-		margin: 0px;
-		padding-left: 1.5em;
-		padding-right: 1.5em;
-		padding-top: 0.8em;
-		padding-bottom: 0.8em;
-		border-style: solid;
-		border-width: 1px;
-		border-color: #FFE8F5 #80004B #80004B #FFE8F5;
+	background-color: #FF9FD7;
+	color: #FF0096;
+	margin: 0px;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	padding-top: 0.8em;
+	padding-bottom: 0.8em;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #FFE8F5 #80004B #80004B #FFE8F5;
 }
 
 #loader
@@ -214,85 +213,85 @@ a
 
 .te_header_main
 {
-		background-color: #DFDDDD; 
-		margin: 0px;
-		padding: 12px;
-		border-style: solid;
-		border-width: 1px; 
-		border-color: #FFFFFF #666666 #666666 #E9E9E9;
+	background-color: #DFDDDD; 
+	margin: 0px;
+	padding: 12px;
+	border-style: solid;
+	border-width: 1px; 
+	border-color: #FFFFFF #666666 #666666 #E9E9E9;
 }
 
 
 .header
 {
-		background-color: #999999; 
-		margin: 0;
-		border-style: solid;
-		border-width: 1px; 
-		border-color: #FFFFFF #666666 #666666 #E9E9E9;
-		height: 5em;
-		/*
-		position: fixed;
-		left: 0;
+	background-color: #999999; 
+	margin: 0;
+	border-style: solid;
+	border-width: 1px; 
+	border-color: #FFFFFF #666666 #666666 #E9E9E9;
+	height: 5em;
+	/*
+	position: fixed;
+	left: 0;
   	right: 0;
   	top: 0;
-		*/
-		
+	*/
+	
 }
 /*********************** Footer **************************/
 
 
 .footer 
 {
-		color: #FFF;
-		/*
-		position: fixed;
+	color: #FFF;
+	/*
+	position: fixed;
   	left: 0;
   	right: 0;
   	bottom: 0;
-		*/
+	*/
   	background-color: #999999;
-		margin: 0px;
-		padding: 0.5em;
+	margin: 0px;
+	padding: 0.5em;
   	border-style: solid;
-		border-width: 1px;
-		border-color: #ffffff #666666 #666666 #e9e9e9;
-		
+	border-width: 1px;
+	border-color: #ffffff #666666 #666666 #e9e9e9;
+	
 }
 
 /*********************** breadcrumbs **************************/
 
 .breadcrumb
 {
-		background-color: #D6D6D6;
-		color: white;
-		margin: 0px;
-		padding: 0.2em;
-		height: 2em;
-		border-style: solid;
-		border-width: 1px;
-		border-color: #FFFFFF #666666 #666666 #E9E9E9;
+	background-color: #D6D6D6;
+	color: white;
+	margin: 0px;
+	padding: 0.2em;
+	height: 2em;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #FFFFFF #666666 #666666 #E9E9E9;
 }
 
 
 .breadcrumb_inside
 {
-		background-color: white;
-		color: #7f7f7f;
-		margin: 0em;
-		padding: 0em;
-		border-style: inset;
-		border-width: 1px;
-		border-color: #666666 #ffffff #ffffff #666666;
+	background-color: white;
+	color: #7f7f7f;
+	margin: 0em;
+	padding: 0em;
+	border-style: inset;
+	border-width: 1px;
+	border-color: #666666 #ffffff #ffffff #666666;
 }
 
 a.breadcrumb
 {
-		background-color: white;
-		color: #7F7F7F;
-		margin: 1em;
-		padding: 0em;
-		border-width:0em;
+	background-color: white;
+	color: #7F7F7F;
+	margin: 1em;
+	padding: 0em;
+	border-width:0em;
 }
 
 /*
@@ -301,52 +300,52 @@ New breadcrumb CSS
 
 .te_breadcrumb
 {
-		background-color: #DFDDDD; 
-		margin: 0px;
-		padding: 3px;
-		border-style: solid;
-		border-width: 1px; 
-		border-color: #FFFFFF #666666 #666666 #E9E9E9;
+	background-color: #DFDDDD; 
+	margin: 0px;
+	padding: 3px;
+	border-style: solid;
+	border-width: 1px; 
+	border-color: #FFFFFF #666666 #666666 #E9E9E9;
 }
 .te_breadcrumb_inside
 {
-		display: table;
-		background-color: #FFFFFF; 
-		padding-left: 3px;
-		border-style: solid;
-		border-width: 1px; 
-		border-color: #393939 #393939 #FFFFFF #FFFFFF;
+	display: table;
+	background-color: #FFFFFF; 
+	padding-left: 3px;
+	border-style: solid;
+	border-width: 1px; 
+	border-color: #393939 #393939 #FFFFFF #FFFFFF;
 }
 .te_breadcrumb_button
 {
-		color: #7f7f7f;
-		font-size: 10px;
-		font-family: Verdana, Arial, Helvetica;
-		line-height: 15px;
-		text-decoration: none;
-		background-color: white;
-		background-image: url("ressource/image/general/bread_arrow.gif");
-		background-repeat: no-repeat;
-		background-position: right center;
-		display: inline;
-		margin: 0 0 0 0;
-		padding: 1px 15px 1px 5px;
-		height: 30px;
-		border: 0px;
+	color: #7f7f7f;
+	font-size: 10px;
+	font-family: Verdana, Arial, Helvetica;
+	line-height: 15px;
+	text-decoration: none;
+	background-color: white;
+	background-image: url("ressource/image/general/bread_arrow.gif");
+	background-repeat: no-repeat;
+	background-position: right center;
+	display: inline;
+	margin: 0 0 0 0;
+	padding: 1px 15px 1px 5px;
+	height: 30px;
+	border: 0px;
 }
 .te_breadcrumb_last_item
 {
-		color: #7f7f7f;
-		font-size: 10px;
-		font-family: Verdana, Arial, Helvetica;
-		line-height: 15px;
-		text-decoration: none;
-		background-color: white;
-		display: inline;
-		margin: 0 0 0 0;
-		padding: 1px 10px 1px 5px;
-		height: 30px;
-		border: 0px;
+	color: #7f7f7f;
+	font-size: 10px;
+	font-family: Verdana, Arial, Helvetica;
+	line-height: 15px;
+	text-decoration: none;
+	background-color: white;
+	display: inline;
+	margin: 0 0 0 0;
+	padding: 1px 10px 1px 5px;
+	height: 30px;
+	border: 0px;
 }
 
 
@@ -356,101 +355,101 @@ New breadcrumb CSS
 
 .banner
 {
-		display: none:
-		background-color: #FFFFFF;
-		margin: 0;
-		padding: 1em; 
-		border-style: solid;
-		border-width: 1px;
-		border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
+	display: none:
+	background-color: #FFFFFF;
+	margin: 0;
+	padding: 1em; 
+	border-style: solid;
+	border-width: 1px;
+	border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
 }
 
 .banner h1
 {
-		font-size: 1.3em;
+	font-size: 1.3em;
 }
 
 .banner img
 {
-		float: right;
-		margin-left: 300px;
-		display: none;
+	float: right;
+	margin-left: 300px;
+	display: none;
 }
 
 .banner_text
 {
-		width: 200px;
+	width: 200px;
 }
 
 /************************** login *********************************/
 
 .login
 {
-		
+	
 }
 
 .login_container
 {
-		width: 400px;
+	width: 400px;
 }
 
 .login .intro
 {
-		width: 200px;
-		float: left;
-		border-right: 1px solid gray;
-		/*height: 200px;*/
+	width: 200px;
+	float: left;
+	border-right: 1px solid gray;
+	/*height: 200px;*/
 }
 
 
 .login .form
 {
-		float: right;
+	float: right;
 }
 
 /************************** Home page items ************************/
 .main_item
 {
-		background-color: white;
-		width: 150px;
-		height: 100px;
-		padding: 1em;
-		margin: 1em;
-		float: left;
-		border-style: solid;
-		border-width: 1px;
-		border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
+	background-color: white;
+	width: 150px;
+	height: 100px;
+	padding: 1em;
+	margin: 1em;
+	float: left;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
 }
 
 .main_item a
 {
-		color: black;
+	color: black;
 }
 
 
 .te_main_list
 {
-		height: 106px;
-		border-style: solid;
-		border: 1px solid;
-		border-left: 0px;
-		border-right: 0px;
-		border-top: 0px;
-		border-color: #000000;
-		display: block;
+	height: 106px;
+	border-style: solid;
+	border: 1px solid;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	border-color: #000000;
+	display: block;
 }
 .mainIcon
 {
-		float: left;
-		margin: 40px;
-		margin-bottom: 0px;
-		margin-top: 0px;
+	float: left;
+	margin: 40px;
+	margin-bottom: 0px;
+	margin-top: 0px;
 }
 .mainTitle
 {
-		margin-bottom: 0px;
-		margin-top: 20px;
-		font-size: 20px;
+	margin-bottom: 0px;
+	margin-top: 20px;
+	font-size: 20px;
 }
 
 
@@ -458,101 +457,101 @@ New breadcrumb CSS
 
 th
 {
-		font-size: 1em;
-		font-weight: bold;
-		text-align: left;
-		border-width: 1px;
-		border-style: solid;
-		background-color: #9EB7D1;
-		border-color: #BED7F1 #4E6781 #4E6781 #BED7F1;
-		padding-left: 1em;
-		padding-top: 0.2em;
-		padding-right: 1em;
-		padding-bottom: 0.2em;
+	font-size: 1em;
+	font-weight: bold;
+	text-align: left;
+	border-width: 1px;
+	border-style: solid;
+	background-color: #9EB7D1;
+	border-color: #BED7F1 #4E6781 #4E6781 #BED7F1;
+	padding-left: 1em;
+	padding-top: 0.2em;
+	padding-right: 1em;
+	padding-bottom: 0.2em;
 }
 
 
 th.on
 {
-		border-color: #4E6781 #BED7F1 #BED7F1 #4E6781;
-		padding-left: 1.1em;
-		padding-top: 0.3em;
-		padding-right: 0.9em;
-		padding-bottom: 0.1em;
+	border-color: #4E6781 #BED7F1 #BED7F1 #4E6781;
+	padding-left: 1.1em;
+	padding-top: 0.3em;
+	padding-right: 0.9em;
+	padding-bottom: 0.1em;
 }
 
 .list
 {
-		border-collapse: separate;
-		border-spacing: 0px;
-		width: 100%;
-		border-width: 1px;
-		border-style: solid;
-		border-color: #868686 #ffffff #ffffff #868686;
-		background-color: #ffffff;
+	border-collapse: separate;
+	border-spacing: 0px;
+	width: 100%;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #868686 #ffffff #ffffff #868686;
+	background-color: #ffffff;
 }
 
 
 .list td
 {
-		
-		border: 0px none;
-		border-right: 1px;
-		border-style: solid;
-		border-color: #999
-		
+	
+	border: 0px none;
+	border-right: 1px;
+	border-style: solid;
+	border-color: #999
+	
 }
 
 
 .list tr.on
 {
-		background-color: #CCE5FF;
+	background-color: #CCE5FF;
 }
 
 .list tr:hover
 {
-		background-color: #62AEFD;
+	background-color: #62AEFD;
 }
 
 .list tr
 {
-		height: 25px;
+	height: 25px;
 }
 
 
 /*************** Context menu *************/
 .context_menu
 {
-		border: 1px solid gray;
-		padding: 5px;
-		background-color: white;
-		width: 150px;
-		position: absolute;
-		/*display: none;*/
-		z-index: 10;
-		
+	border: 1px solid gray;
+	padding: 5px;
+	background-color: white;
+	width: 150px;
+	position: absolute;
+	/*display: none;*/
+	z-index: 10;
+	
 }
 
 .context_menu_item
 {
-		height: 2em;
+	height: 2em;
 }
 
 .context_menu_item:hover, .context_menu_item a:hover
 {
-		background-color: #0099ff;
+	background-color: #0099ff;
 }
 
 .context_menu_title
 {
-		/*border-bottom: 1px solid gray;*/
-		font-weight: bold;
+	/*border-bottom: 1px solid gray;*/
+	font-weight: bold;
 }
 
 .context_menu hr
 {
-		
-		
+	
+	
 }
 
 /***************** Nodes ******************/
@@ -596,50 +595,50 @@ li .node
 
 input
 {
-		border: 1px solid gray;
-		/*
-		padding: 0;
-		margin: 0;
-		*/
+	border: 1px solid gray;
+	/*
+	padding: 0;
+	margin: 0;
+	*/
 }
 
 option
 {
-		margin: 2px;
+	margin: 2px;
 }
 
 .field
 {
-		padding: 0;
-		margin-bottom: 10px;
+	padding: 0;
+	margin-bottom: 10px;
 }
 
 
 
 .field_title
 {
-		font-size: 12px;
-		font-weight: bold;
-		margin-bottom: 2px;
+	font-size: 12px;
+	font-weight: bold;
+	margin-bottom: 2px;
 }
 
 
 
 .field_help
 {
-		/*float: right;*/
-		width: 150px;
-		height: auto;
-		background-color: #ffffcc;
-		border: 1px solid black;
-		padding: 10px;
-		margin: 10px;
+	/*float: right;*/
+	width: 150px;
+	height: auto;
+	background-color: #ffffcc;
+	border: 1px solid black;
+	padding: 10px;
+	margin: 10px;
 }
 
 
 .field_ui
 {
-		padding-bottom: 10px;
+	padding-bottom: 10px;
 }
 
 
@@ -647,62 +646,62 @@ option
 
 a.action_button, .action_button, a.action_button:visited, a.action_button:hover 
 {
-		background-color: #6699FF;
-		color: white;
-		font-size : 0.9em;
-		font-weight : bold;
-		border-width: 1px;
-		border-style: solid;
-		border-color: #99CCFF #0066FF #0066FF #99CCFF;
-		text-decoration: none;
-		cursor: pointer;
-		vertical-align: text-top;
-		height: 20px;
-		padding: 3px;
+	background-color: #6699FF;
+	color: white;
+	font-size : 0.9em;
+	font-weight : bold;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #99CCFF #0066FF #0066FF #99CCFF;
+	text-decoration: none;
+	cursor: pointer;
+	vertical-align: text-top;
+	height: 20px;
+	padding: 3px;
 }
 
 a.action_button:active
 {
-		outline: none;
-		border-style: inset;
+	outline: none;
+	border-style: inset;
 }
 
 .alpha_letters
 {
-		color: #5E5E5E;
-		width: 17px;
-		font-size : 10px;
-		font-weight : bold;
+	color: #5E5E5E;
+	width: 17px;
+	font-size : 10px;
+	font-weight : bold;
 }
 
 /*************************** Misc . **********************/
 
 hr
 {
-		border: 0;
-		color: #000;
-		background-color: #000;
-		height: 1px;
-		width: 100%;
+	border: 0;
+	color: #000;
+	background-color: #000;
+	height: 1px;
+	width: 100%;
 }
 
 li,ul
 {
-		margin: 0;
-		padding: 0;
-		cursor: default;
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
+	margin: 0;
+	padding: 0;
+	cursor: default;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 img
 {
-		border: 0;
+	border: 0;
 }
 
 
 .spacer
 {
-		clear: both;
+	clear: both;
 }

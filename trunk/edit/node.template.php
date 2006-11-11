@@ -1,6 +1,12 @@
 <?php if (isset ($out['nodes']) && is_array ($out['nodes'])): ?>
 <?php foreach ($out['nodes'] as $node): ?>
-<li class="node" id="node_<?php echo $node['id']?>">
+
+<?php if ($node['haschildren']) : ?>
+<li class="node closed" id="node_<?php echo $node['id']?>" haschildren="<?php echo $node['haschildren'] ?>">
+<?php else: ?>
+<li class="node" id="node_<?php echo $node['id']?>" haschildren="<?php echo $node['haschildren'] ?>">
+<?php endif; ?>
+
 <img src="<?php echo $node['icon']?>" class="icon">
 <span class="node_title"><?php echo $node['title']?></span>
 

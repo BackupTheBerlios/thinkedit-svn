@@ -16,6 +16,54 @@ $('document').ready(function()
 
 
 
+
+function load_node(id)
+{
+	if (id)
+	{
+		data = "action=node_info&node_id=" + id;
+	}
+	else
+	{
+		data = "action=node_info";
+	}
+
+	$.ajax(
+	{
+		type: "POST",
+		url: "api.php",
+		data: data,
+		success: function(data)
+		{
+			message =  $('message', data).text();
+			result = $('result', data).text();
+			
+			if (result == 1)
+			{
+				$('#node_' + id).append('<ul></ul>');
+				
+				$('children', data).each(function()
+				{
+					$('#node_' + id + ' ul').append('<li>' +  $('title', this).text() + '</li>');
+					$('#node_' + id + ' ul li').click(load_node($('id', this).text()));
+				});
+				
+			}
+			else
+			{
+				alert (message);
+			}
+		}
+	});
+	/*
+	$('#node_' + id).append('<ul></ul>');
+	$('#node_' + id + ' ul').load('node.php?node_id=' + id, init_nodes);
+	$('#node_' + id).attr('loaded', 1);
+	*/
+}
+
+
+
 $(document).ready(function()
 {
 	handle_node_publish();
@@ -196,7 +244,7 @@ function handle_node_clipboard()
 		});
 		return false;
 	});
-
+	
 }
 
 
@@ -235,65 +283,30 @@ function reload_node(id)
 	$('#node_' + id + " ul").remove();
 	load_node(id);
 }
-
+/*
 function load_node(id)
 {
-	node = $('#node_' + id);
-	
-	if (node.attr('loaded') == 1)
+	if ($('#node_' + id).attr('loaded') == 1)
 	{
-		if (node.attr('open') == 1)
-		{
-			$('ul', node).hide();
-			node.attr('open', 0);
-			node.removeClass('opened');
-			node.addClass('closed');
-			//node.prepend('<img src="ressource/image/icon/small/plus.gif">');
-			//$('.plusminus', node).src("ressource/image/icon/small/plus.gif");
-		}
-		else
-		{
-			//alert ($('ul', node).size());
-			$('ul', node).show();
-			node.attr('open', 1);
-			node.removeClass('closed');
-			node.addClass('opened');
-			//node.prepend('<img src="ressource/image/icon/small/minus.gif">');
-			//$('.plusminus', node).src("ressource/image/icon/small/minus.gif");
-		}
-		
+		$('#node_' + id + ' ul').toggle();
 	}
 	else
 	{
-		if (node.attr('haschildren') == 1)
-		{
-		node.append('<ul></ul>');
-		$('ul', node).load('node.php?node_id=' + id, init_nodes);
-		node.attr('loaded', 1);
-		node.attr('open', 1);
-		node.removeClass('closed');
-		node.addClass('opened');
-		//node.prepend('<img src="ressource/image/icon/small/minus.gif" class="plusminus">');
-		}
-		else
-		{
-		node.removeClass('closed');
-		node.removeClass('opened');
-		}
-		
+		$('#node_' + id).append('<ul></ul>');
+		$('#node_' + id + ' ul').load('node.php?node_id=' + id, init_nodes);
+		$('#node_' + id).attr('loaded', 1);
 	}
 }
-
+*/
 function init_nodes()
 {
 	// remove all click handlers
-	$('.node').unclick();
+	$('.node .icon').unclick();
 	
 	// add open close click handler
-	$('.node').click(function()
+	$('.node .icon').click(function()
 	{
-		//node_id = $(this).parent().id();
-		node_id = $(this).id();
+		node_id = $(this).parent().id();
 		id = node_id.substring(5, node_id.length);
 		/*alert ('clicked on ' + id );*/
 		load_node(id);

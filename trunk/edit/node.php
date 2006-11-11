@@ -55,6 +55,8 @@ if ($children)
 		$node_info['icon'] = $content->getIcon();
 		$node_info['url'] = $url->render();
 		
+		$node_info['haschildren'] = $node_item->hasChildren();
+		
 		
 		
 		

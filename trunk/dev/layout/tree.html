@@ -1,0 +1,220 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+
+<title>Thinkedit</title>
+
+<link type="text/css" href="../../edit/ressource/css/style.css" rel="stylesheet" media="screen">
+
+
+<style>
+.opened
+{
+background-image: url('../../edit/ressource/image/icon/small/minus.gif');
+background-repeat: no-repeat;
+/*background-position: 0 0;*/
+}
+
+.closed
+{
+background-image: url('../../edit/ressource/image/icon/small/plus.gif');
+background-repeat: no-repeat;
+}
+
+.node
+{
+padding-left: 15px;
+font-size: 12px;
+/*border: 1px solid blue;*/
+}
+
+/*
+.node .icon
+{
+padding-top: 20px;
+padding-bottom: 20px;
+}
+*/
+
+.node .tools
+{
+display: inline;
+position: absolute;
+left: 30%;
+}
+
+
+.tree
+{
+width: 500px;
+border: 1px solid red;
+}
+
+
+.node .title, .node .icon
+{
+display: inline;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+<div class="thinkedit">
+
+<div class="header panel"></div>
+
+<div class="content panel" id="list">
+
+
+<div class="tree">
+
+<div class="node opened">
+<div class="icon"><img src="../../edit/ressource/image/icon/small/page_white.png"></div>
+<div class="title">Root</div>
+<div class="tools">
+<a class="action_button">Edit</a>
+<a class="action_button published">Publish</a>
+<a class="action_button">Menu</a>
+</div>
+
+
+<div class="node closed">
+<div class="icon"><img src="../../edit/ressource/image/icon/small/page_white.png"></div>
+<div class="title">Page 1</div>
+<div class="tools">
+<a class="action_button">Edit</a>
+<a class="action_button published">Publish</a>
+<a class="action_button">Menu</a>
+</div>
+
+</div>
+
+<div class="node opened">
+<div class="icon"><img src="../../edit/ressource/image/icon/small/page_white.png"></div>
+<div class="title">Page 2</div>
+<div class="tools">
+<a class="action_button">Edit</a>
+<a class="action_button published">Publish</a>
+<a class="action_button">Menu</a>
+</div>
+
+
+<div class="node closed">
+<div class="icon"><img src="../../edit/ressource/image/icon/small/page_white.png"></div>
+<div class="title">Page 2.1</div>
+<div class="tools">
+<a class="action_button">Edit</a>
+<a class="action_button published">Publish</a>
+<a class="action_button">Menu</a>
+</div>
+
+</div>
+
+<div class="node closed">
+<div class="icon"><img src="../../edit/ressource/image/icon/small/page_white.png"></div>
+<div class="title">Page 2.2</div>
+<div class="tools">
+<a class="action_button">Edit</a>
+<a class="action_button published">Publish</a>
+<a class="action_button">Menu</a>
+</div>
+
+</div>
+
+<div class="node closed">
+<div class="icon"><img src="../../edit/ressource/image/icon/small/page_white.png"></div>
+<div class="title">Page 2.3</div>
+<div class="tools">
+<a class="action_button">Edit</a>
+<a class="action_button published">Publish</a>
+<a class="action_button">Menu</a>
+</div>
+
+</div>
+
+</div>
+
+<div class="node closed">
+<div class="icon"><img src="../../edit/ressource/image/icon/small/page_white.png"></div>
+<div class="title">Page 3</div>
+<div class="tools">
+<a class="action_button">Edit</a>
+<a class="action_button published">Publish</a>
+<a class="action_button">Menu</a>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<ul class="tree">
+<li class="node opened">
+root
+<ul>
+<li class="node closed">page 1
+
+</li>
+<li class="node closed">page 2</li>
+<li class="node closed">page 3</li>
+</ul>
+
+</li>
+</ul>
+
+
+<ul class="tree">
+<li open="1" loaded="1" class="node open" id="node_1">
+<img src="../../edit/ressource/image/icon/small/page_white.png" class="icon">
+<span class="node_title">Homepage</span>
+
+<span class="node_tools">
+<a class="action_button">Edit</a>
+<a class="action_button published">Publish</a>
+</span>
+
+<span class="node_menu">
+<a class="node_menu_button">Edit</a>
+</span>
+
+
+<ul>
+<li open="0" loaded="1" class="node" id="node_2">
+<img src="ressource/image/icon/small/minus.gif" class="plusminus">
+<img src="ressource/image/icon/small/page_white.png" class="icon">
+<span class="node_title">About</span>
+
+<span class="node_tools">
+<a class="action_button">Edit</a>
+<a class="action_button published">Publish</a>
+</span>
+
+<span class="node_menu">
+<a class="node_menu_button">Edit</a>
+</span>
+
+
+<ul>
+
+<li class="node" id="node_50">
+<img src="ressource/image/icon/small/page_white.png" class="icon">
+<span class="node_title">page 1</span>
+</li>
+
+</ul>
+</li>
+
+</ul>
+
+
+
+</div>
+</body>
+</html>

@@ -208,6 +208,7 @@ elseif ($action == 'node_info')
 			foreach ($children as $child)
 			{
 				$child_info['title'] = $child->getTitle();
+				$child_info['icon'] = $child->getIcon();
 				$child_info['id'] = $child->getId();
 				$node_info['children'][] = $child_info; 
 			}
