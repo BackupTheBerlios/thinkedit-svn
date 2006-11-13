@@ -61,19 +61,6 @@
 <?php echo translate('loading_in_progress') ?>
 </div>
 
-<!--
-<?php if (isset($out['banner']['needed'])) : ?>
-<div class="banner panel">
-<img class="banner_image" src="<?php echo $out['banner']['image'] ?>"/>
-<div class="banner_text">
-<h1><?php echo $out['banner']['title'] ?></h1>
-<?php echo $out['banner']['message'] ?>
-</div>
-</div>
-<?php endif; ?>
--->
-
-
 
 <div class="breadcrumb panel">
 <?php include ('breadcrumb.template.php') ?>

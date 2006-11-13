@@ -30,8 +30,18 @@ $data['content']['page']['field']['intro']['type']='richtext';
 $data['content']['page']['field']['body']['title']['fr']='Corps du texte';
 $data['content']['page']['field']['body']['title']['en']='Body';
 $data['content']['page']['field']['body']['type']='richtext';
-$data['content']['page']['field']['body']['css']='content.css';
 
+// we could use fck instead :  
+//$data['content']['page']['field']['body']['engine']='fck';
+
+// a css could be provided to tinymce :
+//$data['content']['page']['field']['body']['css']='content.css';
+
+// bbcode could be used as an output filter
+//$data['content']['page']['field']['body']['outputfilter']='bbcode';
+
+// we could trim before saving
+//$data['content']['page']['field']['body']['inputfilter']='trim';
 
 //$data['content']['page']['field']['body']['validation']['is_required']=1;
 $data['content']['page']['field']['cover']['title']['fr']='Image de présentation';

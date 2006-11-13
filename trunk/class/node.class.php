@@ -853,15 +853,23 @@ class node
 				}
 				else
 				{
-						$object = $thinkedit->newObject($uid);
+					$object = $thinkedit->newObject($uid);
+					if ($object)
+					{
 						$object->load();
 						if ($data = $object->getArray())
 						{
-								$cache = serialize($data);
-								$this->set('cache', $cache);
-								$this->save();
+							$cache = serialize($data);
+							$this->set('cache', $cache);
+							$this->save();
 						}
 						return $object;
+					}
+					else
+					{
+						trigger_error('node::getContent() : cannot get content');
+						return false;
+					}
 				}
 		}
 		

@@ -7,6 +7,10 @@
 
 <link href="<?php echo te_design() ?>/style.css" rel="stylesheet" type="text/css" media="all">
 
+
+<link rel="stylesheet" href="<?php echo ROOT_URL ?>/lib/star-light/star-light.css" type="text/css"/>
+
+
 </head>
 
 <body>

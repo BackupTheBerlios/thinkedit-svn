@@ -33,14 +33,6 @@ class php_parser
 		/*
 		Home made conversion of php array to a human readable (and writable) php representation
 		
-		Will output something like : 
-		$data['content']['page']['title']['fr']='Page';
-		$data['content']['page']['help']['fr']='Une page du site';
-		$data['content']['page']['title_field']='title';
-		$data['content']['page']['allowed_items']['record']['page']='true';
-		$data['content']['page']['allowed_items']['record']['publication']='true';
-		$data['content']['page']['allowed_items']['filesystem']['main']='true';
-		$data['content']['page']['field']['id']['type']='id';
 		*/
 		function toPhpHumanFriendly($data, $variable_name = 'data', $path = false)
 		{

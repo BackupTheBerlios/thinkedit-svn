@@ -24,7 +24,6 @@ class field
 		}
 		elseif (isset($thinkedit->config['table'][$table]['field'][$id]))
 		{
-			trigger_error('field::field() you are still using the old config format. Please rename table to content in your config files');	
 			$this->config = $thinkedit->config['table'][$table]['field'][$id];
 		}
 		else
