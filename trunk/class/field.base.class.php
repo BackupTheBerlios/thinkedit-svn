@@ -313,7 +313,7 @@ class field
 	*/
 	function handleFormPost($prefix = false)
 	{
-		trigger_error('todo');
+		//trigger_error('todo');
 	}
 	
 	

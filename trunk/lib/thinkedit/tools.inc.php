@@ -33,6 +33,8 @@ function default_error_handler($errno, $errstr, $errfile, $errline, $errcontext)
 		
 		$thinkedit->errors[] = $error;
 	}
+	
+	//if ($thinkedit->user->isAdmin()
 	return true;
 }
 

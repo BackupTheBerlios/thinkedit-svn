@@ -232,5 +232,12 @@ $interface_locale = new interface_locale();
 require_once ROOT . '/lib/thinkedit/template.lib.php';
 
 
+/******************* What to do on shutdown *************************/
+register_shutdown_function('te_shutdown');
+
+function te_shutdown()
+{
+	echo te_admin_toolbox();
+}
 
 ?>

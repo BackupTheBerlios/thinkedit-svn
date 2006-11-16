@@ -7,7 +7,7 @@ require_once 'html_form.class.php';
 The content form takes a content type as input, and renders a form based on it. 
 Validation is performed
 Content can be retrieved as an array
-Content can be preset as an array as well
+Content can be pre-set as an array as well
 
 it extends the html_form class
 */
@@ -34,7 +34,7 @@ class content_form extends html_form
 		$config = $thinkedit->config;
 		foreach ($config['content'][$this->content_type]['field'] as $field_id => $field_data)
 		{
-			echo $field_id;
+			//echo $field_id;
 			
 			$field = $thinkedit->newField($this->content_type, $field_id);
 			
@@ -43,7 +43,11 @@ class content_form extends html_form
 			// init field content
 			if ($this->isSent())
 			{
-				$field->set($_REQUEST[$field_id]);
+				if (isset($_REQUEST[$field_id]))
+				{
+					$field->set($_REQUEST[$field_id]);
+				}
+				$field->handleFormPost();
 				if (!$field->validate())
 				{
 					$this->valid = false;

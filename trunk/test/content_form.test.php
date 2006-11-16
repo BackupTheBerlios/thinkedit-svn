@@ -3,8 +3,10 @@
 require_once '../thinkedit.init.php';
 require_once '../class/content_form.class.php';
 
+error_reporting(E_ALL);
+ini_set('display_errors', true);
 
-$form = new content_form('page');
+$form = new content_form('participation');
 
 echo $form->render();
 
@@ -21,4 +23,6 @@ else
 echo '<pre>';
 print_r ($form->getContentAsArray());
 
+
+//echo te_admin_toolbox();
 ?>

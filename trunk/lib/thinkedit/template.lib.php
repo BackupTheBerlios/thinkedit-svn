@@ -208,99 +208,102 @@ function te_locale_chooser()
 
 function te_admin_toolbox()
 {
-	
-	
-	
-	global $thinkedit;
-	if ($thinkedit->user->isAdmin())
+	global $te_admin_toolbox_written;
+	if (!isset($te_admin_toolbox_written))
 	{
-		$out = '';
+		$te_admin_toolbox_written = true;
 		
-		// add jquery code
-		$out = te_jquery();
-		
-		// todo move style sheet somewhere, but this one is common to all designs, and designs author can do what they want with it
-		// done, file is in /edit/toolbar.css
-		$out .= '<link type="text/css" href="' . ROOT_URL . '/edit/ressource/css/toolbar.css" rel="stylesheet" media="screen"/>';
-		
-		$out .= '<div class="te_tools">';
-		$out .= '<div class="te_toolbar">';
-		
-		$out .= '<div class="te_toolbar_logo">';
-		$out .= '<b>ThinkEDIT</b>'; // todo add version number automagically
-		$out .= '</div>';
-		
-		// logout
-		$url = $thinkedit->newUrl();
-		$out .= '<a href="' . ROOT_URL . '/edit/logout.php" class="te_toolbar_button">'. translate('logout') .'</a>';
-		
-		
-		
-		// refresh page link
-		$url = new url();
-		$url->keep('node_id');
-		$url->set('refresh', 1);
-		$out .= '<a href="' . $url->render() . '" class="te_toolbar_button">'. translate('refresh_page') .'</a>';
-		
-		// refresh site link
-		$url = new url();
-		$url->keep('node_id');
-		$url->set('clear_cache', 1);
-		$out .= '<a href="' . $url->render() . '" class="te_toolbar_button">'. translate('refresh_site') .'</a>';
-		
-		
-		// edit page link
-		$url = new url();
-		$url->keep('node_id');
-		$out .= '<a href="' . $url->render('./edit/structure.php') . '" target="_blank" class="te_toolbar_button">'. translate('edit') .'</a>';
-		
-		// show hide profiling
-		$out .= '<a class="te_toolbar_button" onclick="$(\'.te_profiling\').toggle()">'. translate('toggle_profiling') .'</a>';
-		
-		// show hide errors
-		if (is_array($thinkedit->errors))
+		global $thinkedit;
+		if ($thinkedit->user->isAdmin())
 		{
-			$out .= '<a class="te_toolbar_button te_toolbar_error_button" onclick="$(\'.te_error_log\').toggle()">'. translate('toggle_errors') .'</a>';
-		}
-		
-		$out .= '</div>'; // end of toolbar
-		
-		$out .= '<div class="te_profiling te_console" style="display: none">';
-		$out .= 'Total Queries : ' . $thinkedit->db->getTotalQueries();
-		$out .= '<br/>';
-		$out .= 'Total time : ' . $thinkedit->timer->render();
-		
-		
-		
-		global $db_debug;
-		if (isset($db_debug))
-		{
-			if (!$thinkedit->isInProduction())
+			$out = '';
+			
+			// add jquery code
+			$out = te_jquery();
+			
+			// todo move style sheet somewhere, but this one is common to all designs, and designs author can do what they want with it
+			// done, file is in /edit/toolbar.css
+			$out .= '<link type="text/css" href="' . ROOT_URL . '/edit/ressource/css/toolbar.css" rel="stylesheet" media="screen"/>';
+			
+			$out .= '<div class="te_tools">';
+			$out .= '<div class="te_toolbar">';
+			
+			$out .= '<div class="te_toolbar_logo">';
+			$out .= '<b>ThinkEDIT</b>'; // todo add version number automagically
+			$out .= '</div>';
+			
+			// logout
+			$url = $thinkedit->newUrl();
+			$out .= '<a href="' . ROOT_URL . '/edit/logout.php" class="te_toolbar_button">'. translate('logout') .'</a>';
+			
+			
+			
+			// refresh page link
+			$url = new url();
+			$url->keep('node_id');
+			$url->set('refresh', 1);
+			$out .= '<a href="' . $url->render() . '" class="te_toolbar_button">'. translate('refresh_page') .'</a>';
+			
+			// refresh site link
+			$url = new url();
+			$url->keep('node_id');
+			$url->set('clear_cache', 1);
+			$out .= '<a href="' . $url->render() . '" class="te_toolbar_button">'. translate('refresh_site') .'</a>';
+			
+			
+			// edit page link
+			$url = new url();
+			$url->keep('node_id');
+			$out .= '<a href="' . $url->render('./edit/structure.php') . '" target="_blank" class="te_toolbar_button">'. translate('edit') .'</a>';
+			
+			// show hide profiling
+			$out .= '<a class="te_toolbar_button" onclick="$(\'.te_profiling\').toggle()">'. translate('toggle_profiling') .'</a>';
+			
+			// show hide errors
+			if (isset($thinkedit->errors))
 			{
-				foreach ($db_debug as $sql)
+				$out .= '<a class="te_toolbar_button te_toolbar_error_button" onclick="$(\'.te_error_log\').toggle()">'. translate('toggle_errors') .'</a>';
+			}
+			
+			$out .= '</div>'; // end of toolbar
+			
+			$out .= '<div class="te_profiling te_console" style="display: none">';
+			$out .= 'Total Queries : ' . $thinkedit->db->getTotalQueries();
+			$out .= '<br/>';
+			$out .= 'Total time : ' . $thinkedit->timer->render();
+			
+			
+			
+			global $db_debug;
+			if (isset($db_debug))
+			{
+				if (!$thinkedit->isInProduction())
 				{
-					$out .= "<li>{$sql}</li>";
+					foreach ($db_debug as $sql)
+					{
+						$out .= "<li>{$sql}</li>";
+					}
+				}
+				else
+				{
+					$out .= "<li>SQL not shown in production mode</li>";
 				}
 			}
-			else
-			{
-				$out .= "<li>SQL not shown in production mode</li>";
-			}
+			
+			
+			$out .= '</div>'; // end of profiling
+			
+			// include error log
+			$out .= te_error_log();
+			
+			$out .= '</div>'; // end of tools
+			
+			return $out;
 		}
-		
-		
-		$out .= '</div>'; // end of profiling
-		
-		// include error log
-		$out .= te_error_log();
-		
-		$out .= '</div>'; // end of tools
-		
-		return $out;
-	}
-	else
-	{
-		return false;
+		else
+		{
+			return false;
+		}
 	}
 }
 
@@ -315,7 +318,9 @@ function te_error_log()
 	{
 		if (isset($thinkedit->errors))
 		{
-			$out = '<div class="te_error_log te_console" style="display: none">';
+			//$out = '<div class="te_error_log te_console" style="display: none">';
+			// by default errors are shown
+			$out = '<div class="te_error_log te_console">';
 			foreach ($thinkedit->errors as $error)
 			{
 				$out .= '<div>';

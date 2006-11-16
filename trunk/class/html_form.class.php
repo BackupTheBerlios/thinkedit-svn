@@ -63,7 +63,7 @@ class html_form
 				
 				
 				$out .= '<a name="participation_' . $this->id . '"></a>';
-				$out .= sprintf('<form action="%s" method="post" id="%s">', $this->url->render(), $this->id);
+				$out .= sprintf('<form action="%s" method="post" id="%s" enctype="multipart/form-data">', $this->url->render(), $this->id);
 				
 				if (isset($this->data) && is_array($this->data ))
 				{
