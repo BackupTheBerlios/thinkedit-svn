@@ -10,6 +10,8 @@ Content can be retrieved as an array
 Content can be pre-set as an array as well
 
 it extends the html_form class
+
+Content and content fields (validation, error messages, etc...) are defined in config files
 */
 
 class content_form extends html_form
@@ -53,7 +55,7 @@ class content_form extends html_form
 					$this->valid = false;
 				}
 			}
-			$this->fields[] = $field;
+			$this->fields[$field->getId()] = $field;
 		}
 		
 		
@@ -72,7 +74,7 @@ class content_form extends html_form
 		}
 	}
 	
-	function setContentByArray($content)
+	function setArray($content)
 	{
 		foreach ($this->fields as $field)
 		{
@@ -85,7 +87,7 @@ class content_form extends html_form
 		return true;
 	}
 	
-	function getContentAsArray()
+	function getArray()
 	{
 		foreach ($this->fields as $field)
 		{
@@ -102,6 +104,13 @@ class content_form extends html_form
 	}
 	
 	
+	function clear()
+	{
+		foreach ($this->fields as $id=>$field)
+		{
+			$this->fields[$id]->set(false);
+		}
+	}
 	
 	/*
 	Sets the use case of this form

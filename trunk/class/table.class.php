@@ -136,6 +136,11 @@ class table
 								$sql .= $name . ' varchar(255)';
 						}
 						
+						elseif ($type == 'email')
+						{
+								$sql .= $name . ' varchar(255)';
+						}
+						
 						elseif ($type == 'login')
 						{
 								$sql .= $name . ' varchar(255)';
@@ -171,6 +176,11 @@ class table
 						}
 						
 						elseif ($type == 'file')
+						{
+								$sql .= $name . ' varchar(255)';
+						}
+						
+						elseif ($type == 'publicfile')
 						{
 								$sql .= $name . ' varchar(255)';
 						}

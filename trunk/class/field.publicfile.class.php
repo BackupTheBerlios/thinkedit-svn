@@ -42,7 +42,11 @@ class field_publicfile extends field_file
 		}
 		
 		
-		function handleFormPost($prefix = false)
+		/*
+		When called, the file submited by the user is uploaded and saved to the server. 
+		A filesystem object containing the file is returned
+		*/
+		function uploadFile($prefix = false)
 		{
 			global $thinkedit;
 			$filesystem = $thinkedit->newFilesystem();
@@ -61,7 +65,7 @@ class field_publicfile extends field_file
 			if ($added_file)
 			{
 				$this->set($added_file->getPath());
-				return true;
+				return $added_file;
 			}
 			else
 			{
