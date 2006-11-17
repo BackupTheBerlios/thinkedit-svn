@@ -493,7 +493,7 @@ class node
 		/*
 		Returns all sub nodes of this node
 		*/
-		function getAllChildren()
+		function getAllChildren($opened_nodes = false)
 		{
 				global $thinkedit;
 				$this->load();
@@ -501,7 +501,25 @@ class node
 				$right_id = $this->get('right_id');
 				// this is critical function, so we use direct sql to be faster (no use of the record class here)
 				// todo : check if it's faster this way
-				$sql = "SELECT * FROM {$this->table} WHERE left_id BETWEEN {$left_id} AND {$right_id} ORDER BY left_id ASC;";
+				
+				$select = '';
+				
+				if ($opened_nodes)
+				{
+					$select = ' and ('; 
+					foreach ($opened_nodes as $opened_node)
+					{
+						$select_opened[] = ' parent_id = ' . (int) $opened_node . ' '; 
+					}
+					
+					$select .= implode (' or ', $select_opened);
+					$select .= ')';
+					// echo $select;
+				}
+				
+				
+				
+				$sql = "SELECT * FROM {$this->table} WHERE left_id BETWEEN {$left_id} AND {$right_id} " . $select . " ORDER BY left_id ASC;";
 				
 				$results = $thinkedit->db->select($sql);
 				

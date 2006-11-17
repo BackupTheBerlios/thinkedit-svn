@@ -361,6 +361,8 @@ function te_jquery()
 
 /*
 Returns a short version of the string passed with [...] apended to it if the stirng is longer than size
+see http://be2.php.net/manual/en/function.explode.php#70574 for a better implementation (todo)
+
 */
 function te_short($string, $size=30)
 {
