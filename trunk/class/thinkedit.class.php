@@ -268,19 +268,20 @@ function connectToDb($id)
 /*
 Returns an $object_type. It is instanciated only once  
 */
-function get($object_type)
+function getObject($object_type)
 {
 	
 }
 
 /*
-*/
-function new_($object_type)
+
+function newObject($object_type)
 {
 	if ($object_type=='url')
 	{
 	}
 }
+*/
 
 /************************* Factory methods for single instance objects **************************/
 

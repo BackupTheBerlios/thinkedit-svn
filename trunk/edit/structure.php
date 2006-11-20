@@ -364,19 +364,28 @@ else
 
 // new approach using open and close actions to nodes : 
 $url = $thinkedit->newUrl();
+$session = $thinkedit->newSession();
+$opened_nodes = $session->get('opened_nodes');
 
-if ($opened_nodes = $url->get('opened_nodes'))
+if (!is_array($opened_nodes))
 {
-	$opened_nodes = explode(',', $opened_nodes);
-	if (!in_array(0, $opened_nodes))
-	{
 		$opened_nodes[] = 0;
-	}
 }
-else
+
+
+if ($url->get('action') == 'open_node')
 {
-	$opened_nodes = array(0);
+	$opened_nodes[] = $current_node->getId();
+	$session->set('opened_nodes', $opened_nodes);
 }
+
+if ($url->get('action') == 'close_node')
+{
+	//$opened_nodes[] = $open_node;
+	$opened_nodes = array_values(array_diff($opened_nodes,array($current_node->getId())));
+	$session->set('opened_nodes', $opened_nodes);
+}
+
 
 $root = $thinkedit->newNode();
 
@@ -414,9 +423,19 @@ if (isset($nodes) && is_array($nodes))
 				// else users could go inside a node and nothing could be done there
 				if ($node_item->getAllowedItems())
 				{
-						$url = new url();
-						$url->set('node_id', $node_item->getId());
+						
+					if (in_array($node_item->getId(), $opened_nodes))
+					{
+						//$url = new url();
+						$url->set('action', 'close_node');
 						$node_info['visit_url'] = $url->render();
+					}
+					else
+					{
+						//$url = new url();
+						$url->set('action', 'open_node');
+						$node_info['visit_url'] = $url->render();
+					}
 				}
 				
 				

@@ -29,8 +29,8 @@ $data['content']['page']['field']['intro']['title']['en']='Introduction';
 $data['content']['page']['field']['intro']['type']='richtext';
 $data['content']['page']['field']['body']['title']['fr']='Corps du texte';
 $data['content']['page']['field']['body']['title']['en']='Body';
-//$data['content']['page']['field']['body']['type']='richtext';
-$data['content']['page']['field']['body']['type']='wiki';
+$data['content']['page']['field']['body']['type']='richtext';
+//$data['content']['page']['field']['body']['type']='wiki';
 
 // we could use fck instead :  
 //$data['content']['page']['field']['body']['engine']='fck';
