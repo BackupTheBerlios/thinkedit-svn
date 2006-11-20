@@ -1,4 +1,4 @@
-<?php echo $content->get('body'); ?>
+<?php echo $content->field['body']->getParsed(); ?>
 
 
 <?php $children =  $node->getChildren(); ?>
