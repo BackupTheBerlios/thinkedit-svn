@@ -330,6 +330,8 @@ if ($current_node->hasParent())
 }
 */
 
+/*
+
 // build a list of nodes within the current node :
 
 // if we are in root
@@ -357,6 +359,31 @@ else
 				//$nodes[] = $current_node->getChildren();
 		}
 }
+*/
+
+
+// new approach using open and close actions to nodes : 
+$url = $thinkedit->newUrl();
+
+if ($opened_nodes = $url->get('opened_nodes'))
+{
+	$opened_nodes = explode(',', $opened_nodes);
+	if (!in_array(0, $opened_nodes))
+	{
+		$opened_nodes[] = 0;
+	}
+}
+else
+{
+	$opened_nodes = array(0);
+}
+
+$root = $thinkedit->newNode();
+
+$root->loadRootNode();
+
+$nodes = $root->getAllChildren($opened_nodes);
+
 
 if (isset($nodes) && is_array($nodes))
 {
@@ -379,7 +406,7 @@ if (isset($nodes) && is_array($nodes))
 				//$node_info['title'] .= $node_item->getLevel(); // . ' (' . $node_item->getOrder() . ')';
 				$node_info['icon'] = $content->getIcon();
 				$node_info['url'] = $url->render();
-				$node_info['level'] = $node_item->getLevel() + 1;
+				$node_info['level'] = $node_item->getLevel();
 				
 				
 				/********************* Visit link *****************/

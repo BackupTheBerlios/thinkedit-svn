@@ -78,8 +78,14 @@ $i++;
 
 <tr class="<?php echo $class?>" id="node_<?php echo $node['id']?>" oncontextmenu="showContextMenu('context_menu_node_<?php echo $node['id']?>', event);return false;">
 
-
 <td <?php if (isset($node['visit_url'])): ?>style="cursor:pointer" onClick="document.location.href='<?php echo $node['visit_url']?>';"<?php endif;?>>
+
+<?php echo str_repeat('<div class="tree_spacer">&nbsp;</div>', $node['level']); ?>
+
+<!--
+<div style="width: <?php echo $node['level'] * 20 ?>px"  class="tree_spacer">
+</div>
+-->
 
 <?php if (isset($node['visit_url'])): ?>
 <a href="<?php echo $node['visit_url']?>" title="<?php echo  $node['full_title'] ?>">

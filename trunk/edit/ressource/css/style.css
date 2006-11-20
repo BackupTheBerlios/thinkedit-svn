@@ -556,6 +556,12 @@ th.on
 
 /***************** Nodes ******************/
 
+.tree_spacer
+{
+	display: inline;
+	padding-left: 20px;
+}
+
 .node img
 {
 	cursor: pointer;
