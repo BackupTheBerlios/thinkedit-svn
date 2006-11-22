@@ -58,6 +58,12 @@ class field
 		return htmlspecialchars($this->get());
 	}
 	
+	function getParsed()
+	{
+		trigger_error('field::getParsed() : please subclass getParsed() in your custom field class');
+		return $this->get();
+	}
+	
 	
 	function set($data)
 	{
