@@ -8,52 +8,18 @@
 <iframe name="status" width="500" height="20" frameborder="0" scrolling="no"></iframe>
 
 
-<?php /*************************** Top toolbar *****************************/?>
-
-<div class="toolbar">
-
-<!--
-<?php if (isset($out['structure_breadcrumb'])) : ?>
-<select size="1" onChange="jump('parent',this,0)">
-<?php foreach ($out['structure_breadcrumb'] as $i=>$bread): ?>
-<option value="<?php echo $bread['url'] ?>" <?php if (isset($bread['current'])): ?>selected="selected"<?php endif; ?>>
-<?php //echo str_repeat('&nbsp;&nbsp;', $i); ?>
-<?php echo ucfirst($bread['title']) ?>
-</option>
-<?php endforeach; ?>
-</select>
-<?php endif; ?>
--->
-
-
-<?php if (isset($out['go_up_url'])): ?>
-<a class="action_button" style="margin-bottom: 30px;" href="<?php echo $out['go_up_url'] ?>"><?php echo translate('go_up')?></a>
-<?php endif;?>
-</div>
-
-<?php if (isset($out['structure_breadcrumb'])) : ?>
-<?php $x=1 ?>
-
-<?php foreach ($out['structure_breadcrumb'] as $i=>$bread): ?>
-<a href="<?php echo $bread['url'] ?>">
-<?php echo ucfirst($bread['title']) ?>
-
-<?php if ($x < count($out['structure_breadcrumb'])): ?>
- > 
-<?php endif; ?>
-
-<?php $x++; ?>
-
-<?php endforeach; ?>
-<?php endif; ?>
-
-
-
 <?php /*************************** List *****************************/?>
 
 <?php if (isset($out['nodes'])) : ?>
 
 <table class="list">
+<tr>
+<th><?php echo translate('title');?></th>
+<th width="120">Manage</th>
+<th width="20"></th>
+<th width="80">Move</th>
+</tr>
+
 <?php  $i=0 ?>
 <?php foreach ($out['nodes'] as $node): ?>
 
@@ -68,10 +34,6 @@ else
 		$class = "on";
 }
 
-if (isset($node['is_current']))
-{
-		$class = "tr_hilight";
-}
 
 $i++;
 ?>
@@ -81,6 +43,18 @@ $i++;
 <td <?php if (isset($node['visit_url'])): ?>style="cursor:pointer" onClick="document.location.href='<?php echo $node['visit_url']?>';"<?php endif;?>>
 
 <?php echo str_repeat('<div class="tree_spacer">&nbsp;</div>', $node['level']); ?>
+
+
+
+
+<?php if ($node['status'] == 'closed') : ?>
+<img src="ressource/image/general/node_closed.gif" style="vertical-align: middle;">
+<?php elseif ($node['status'] == 'opened') : ?>
+<img src="ressource/image/general/node_opened.gif" style="vertical-align: middle;">
+<?php else: ?>
+<img src="ressource/image/general/node_empty.gif" style="vertical-align: middle;">
+<?php endif; ?>
+
 
 <!--
 <div style="width: <?php echo $node['level'] * 20 ?>px"  class="tree_spacer">
@@ -97,6 +71,7 @@ $i++;
 <?php endif; ?>
 
 <img src="<?php echo $node['icon']; ?>" style="vertical-align: middle;">
+
 <?php echo  $node['title'] ?>
 
 <?php if (isset($node['visit_url'])): ?>
@@ -107,8 +82,6 @@ $i++;
 
 
 <td>
-
-
 <?php if (isset($node['edit_url'])): ?>
 <a class="action_button" href="<?php echo $node['edit_url']?>" onclick="custompopup('<?php echo $node['edit_url']?>', 'editor' , 80);return false">
 <!--
@@ -117,6 +90,18 @@ $i++;
 <?php echo translate('edit'); ?>
 </a>
 <?php endif; ?>
+
+
+
+<?php if (isset($node['allowed_items'])) : ?>
+<select size="1" onChange="ask_title('parent',this,1, '<?php echo translate('please_enter_title');?>')">
+<option value=""><?php echo translate('node_add_new') ?></option>
+<?php foreach ($node['allowed_items'] as $item): ?>
+<option style="background-image: url('<?php echo $item['icon'] ?>'); background-repeat: no-repeat; padding-left: 20px; margin: 2px" value="<?php echo $item['direct_add_action'] ?>"><?php echo ucfirst($item['title']) ?></option>
+<?php endforeach; ?>
+</select>
+<?php endif; ?>
+
 
 <!--
 <a class="action_button" onclick="showContextMenu('context_menu_node_<?php echo $node['id']?>', event);return false;">
@@ -130,6 +115,7 @@ $i++;
 </a>
 -->
 
+<td>
 
 <?php if (isset($node['publish_url'])): ?>
 <a href="<?php echo $node['publish_url']?>">
@@ -140,8 +126,10 @@ $i++;
 <?php endif; ?>
 </a>
 <?php endif; ?>
+</td>
 
 
+<td>
 <?php if (isset($node['movetop_url'])): ?>
 <a href="<?php echo $node['movetop_url']?>">
 <img src="ressource/image/icon/small/go-top.png">
@@ -165,7 +153,7 @@ $i++;
 <img src="ressource/image/icon/small/go-bottom.png">
 </a>
 <?php endif; ?>
-
+</td>
 
 <?php /******************* Context menu *******************/ ?>
 

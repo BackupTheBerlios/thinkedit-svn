@@ -382,7 +382,25 @@ if ($url->get('action') == 'open_node')
 if ($url->get('action') == 'close_node')
 {
 	//$opened_nodes[] = $open_node;
-	$opened_nodes = array_values(array_diff($opened_nodes,array($current_node->getId())));
+	// when we close a node, we have to look if it is not the ancestor of some other opened nodes. If it's the case, we remove them as well
+	foreach ($opened_nodes as $opened_node_id)
+	{
+		$opened_node = $thinkedit->newNode();
+		$opened_node->setId($opened_node_id);
+		if ($current_node->isAncestorOf($opened_node) || $current_node->getId() == $opened_node->getId())
+		{
+			// we remove it from the opened_node array
+			//echo $opened_node->getId() . ' must be closed';
+		}
+		else
+		{
+			//echo $opened_node->getId() . ' can stay open';
+			$new_opened_nodes[] = $opened_node_id;
+		}
+	}
+	
+	//$opened_nodes = array_values(array_diff($opened_nodes,array($current_node->getId())));
+	$opened_nodes = $new_opened_nodes;
 	$session->set('opened_nodes', $opened_nodes);
 }
 
@@ -503,6 +521,7 @@ if (isset($nodes) && is_array($nodes))
 				}
 				
 				/********* Allowed items *******/
+				/*
 				$allowed_items = $node_item->getAllowedItems();
 				if (is_array($allowed_items))
 				{
@@ -520,7 +539,41 @@ if (isset($nodes) && is_array($nodes))
 										$node_info['allowed_items'][] = $item;
 								}
 						}
-						
+				}
+				*/
+				
+				/************************ Allowed items ************************/
+				
+				$item = array();
+				
+				$allowed_items = $node_item->getAllowedItems();
+				if (is_array($allowed_items))
+				{
+					foreach ($allowed_items as $allowed_item)
+					{
+						if ($allowed_item['class'] == 'record')
+						{
+							$table = $thinkedit->newTable($allowed_item['type']);
+							$item['title'] = $table->getTitle();
+							$item['icon'] = $table->getIcon();
+							$url = new url();
+							$url->set('mode', 'new_node');
+							$url->set('node_id', $node_item->getId());
+							$url->addObject($table);
+							$item['action'] = $url->render('edit.php');
+							
+							$url = new url();
+							$url->set('action', 'new_node');
+							$url->set('node_id', $node_item->getId());
+							$tmp_record = $thinkedit->newRecord($table->getId()); 
+							$url->addObject($tmp_record, 'object_');
+							$item['direct_add_action'] = $url->render();
+							
+							
+							$node_info['allowed_items'][] = $item;
+						}
+					}
+					
 				}
 				
 				/******* clipboard links ****/
@@ -562,6 +615,24 @@ if (isset($nodes) && is_array($nodes))
 						}
 				}
 				
+				/******* opened / closed / empty class ****/
+				if ($node_item->hasChildren())
+				{
+					if (in_array($node_item->getId(), $opened_nodes))
+					{
+						$node_info['status'] = 'opened';
+					}
+					else
+					{
+						$node_info['status'] = 'closed';
+					}
+				}
+				else
+				{
+					$node_info['status'] = 'empty'; 
+				}
+				
+				
 				
 				/******* append this node info to out nodes list ****/
 				$out['nodes'][] = $node_info;
@@ -588,6 +659,8 @@ $out['structure_breadcrumb'][0]['title'] = translate('root');
 $out['structure_breadcrumb'][0]['url'] = $url->render();
 
 
+
+/*
 $i = 1;
 if ($current_node->hasParent())
 {
@@ -606,10 +679,9 @@ if ($current_node->hasParent())
 				//$url->addObject($parent, 'current_');
 				$out['structure_breadcrumb'][$i]['url'] = $url->render();
 				$i++;
-				
 		}
-		
 }
+
 
 // add current
 $content = $current_node->getContent();
@@ -620,11 +692,11 @@ $url->set('node_id', $current_node->getId());
 //$url->addObject($current_node, 'current_');
 $out['structure_breadcrumb'][$i]['url'] = $url->render();
 $out['structure_breadcrumb'][$i]['current'] = true;
-
+*/
 
 
 /************************ Allowed items ************************/
-
+/*
 $allowed_items = $current_node->getAllowedItems();
 if (is_array($allowed_items))
 {
@@ -654,6 +726,7 @@ if (is_array($allowed_items))
 		}
 		
 }
+*/
 
 /******************** Global paste ****************************/
 /*

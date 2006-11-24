@@ -556,6 +556,28 @@ th.on
 
 /***************** Nodes ******************/
 
+.open_close
+{
+	width: 20px;
+	border: 1px solid red;
+	display: inline
+}
+
+.empty
+{
+	
+}
+
+.opened
+{
+	
+}
+
+.closed
+{
+	
+}
+
 .tree_spacer
 {
 	display: inline;
