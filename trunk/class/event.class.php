@@ -5,6 +5,33 @@ The event class is an event manager. It can be used to :
 - call event when something happens
 
 This is a work in progress
+
+todo : explain carefully what this does. 
+This seems to be the observer pattern implemented in a very limited amount of lines :-)
+
+
+Let's say you want to be notified when a record is saved
+
+Inside the record class, everytime a record is saved, we (already/will soon) do this : 
+
+$thinkedit->event->call('record_save', $this);
+
+This means : "hey, I just saved a record, you can find it's content inside $this"
+
+
+Now let's say you want to register your supper loger plugin :
+
+$thinkedit->event->on('record_save', 'mylogger::log()');
+
+class mylogger
+{
+	function log($record)
+	{
+		echo $record->getTitle() . ' has been saved';
+	}
+}
+
+
 */
 class event
 {
@@ -30,22 +57,24 @@ class event
 	*/
 	function call($event)
 	{
-		
-		
-		// see if there are any funcitons or class method registered for this $event
-		
-		// call each function/class method for this $event using args
-		$args = func_get_args();
-		
-		call_user_func_array ($args);
-		
-		for($i = 1; $i < func_num_args(); $i++) 
+		// see if there are any functions or class method registered for this $event
+		if (is_array($this->events[$event]))
 		{
-			$string .= $glue;
-			$string .= func_get_arg($i);
+			
+			// call each function/class method for this $event using args
+			
+			// removes first arg (the $event name)
+			for($i = 1; $i < func_num_args(); $i++) 
+			{
+				$args[] = func_get_arg($i);
+			}
+			
+			foreach ($this->events[$event] as $event)
+			{
+				call_user_func_array ($event, $args);
+			}
+			
 		}
-		
-		return $string;
 		
 	}
 }
