@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<title>Thinkedit</title>
+<link type="text/css" href="../../edit/ressource/css/style.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="../../lib/jquery/jquery.js"></script>	
+
+<style>
+.menu
+{
+display: none;
+}
+
+.menu_box
+{
+padding: 3px;
+
+display: inline;
+background-color: #0066ff;
+border: 1px solid black;
+border-top: 1px solid #ccccff;
+border-left: 1px solid #ccccff;
+border-right: 1px solid #000066;
+border-bottom: 1px solid #000066;
+
+}
+
+</style>
+
+<script>
+$(document).ready(function()
+{
+	$(".menu_box").hover(function()
+	{
+	$(".menu", this).slideDown('fast');
+	}
+	,function()
+	{
+	$(".menu", this).slideUp('fast');
+	});
+	
+});
+
+
+$(document).ready(function(){
+    $("#nav-one li").hover(
+        function(){ $("ul", this).fadeIn("fast"); }, 
+        function() { } 
+    );
+    if (document.all) {
+        $("#nav-one li").hoverClass ("sfHover");
+    }
+});
+
+$.fn.hoverClass = function(c) {
+    return this.each(function(){
+        $(this).hover( 
+            function() { $(this).addClass(c);  },
+            function() { $(this).removeClass(c); }
+        );
+    });
+};    
+
+</script>
+
+</head>
+<body>
+<div class="thinkedit">
+
+<div class="header panel"></div>
+
+<div class="content panel" id="list">
+
+
+<div class="menu_box">manage<div class="menu">
+<div class="menu_item">Cut</div>
+<div class="menu_item">Copy</div>
+<div class="menu_item">Paste</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+</body>
+</html>
