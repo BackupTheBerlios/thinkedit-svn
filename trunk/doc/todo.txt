@@ -1,8 +1,13 @@
-TODO for version 1.0 (mandatory things to fix before the 1.0 release)
+TODO for version 2.0 (mandatory things to fix before the 1.0 release)
 - remove unneeded files
 - make a simple demo design
 
+- concept of filters for each field
+$field->getFiltered() on the public frontend
+Filters can be wiki, bbcode, safe html, trim etc...
 
+- Default validation rules for fields (good defaults that can be overwritten in config)
+(min size / max size / required, etc...)
 
 
 General TODO (General features that affect more than one file / class):

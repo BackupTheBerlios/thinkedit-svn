@@ -60,7 +60,17 @@ class field
 	
 	function getParsed()
 	{
-		trigger_error('field::getParsed() : please subclass getParsed() in your custom field class');
+		trigger_error('field::getParsed() : deprecated');
+		return $this->get();
+	}
+	
+	
+	/*
+	Return the field content passed trough filters defined in config files / content type definitions
+	*/
+	function getFiltered()
+	{
+		//trigger_error('field::getFiltered() : please subclass getFiltered() in your custom field class');
 		return $this->get();
 	}
 	

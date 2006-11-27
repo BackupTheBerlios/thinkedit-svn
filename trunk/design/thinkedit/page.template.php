@@ -1,4 +1,4 @@
-<?php echo $content->field['body']->getParsed(); ?>
+<?php echo $content->field['body']->getFiltered(); ?>
 
 
 <?php $children =  $node->getChildren(); ?>
