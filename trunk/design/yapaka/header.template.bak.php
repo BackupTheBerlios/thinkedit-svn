@@ -4,13 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <?php if ($content->get('intro')): ?> 
-<meta name="description" content="<?php echo html_entity_decode(te_short(strip_tags($content->get('intro')), 400), ENT_NOQUOTES, 'UTF-8') ?>"/>
+<meta name="description" content="<?php echo htmlentities(te_short($content->get('intro'), 400)) ?>"/>
 <?php elseif ($content->get('body')): ?> 
-<meta name="description" content="<?php echo html_entity_decode(te_short(strip_tags($content->get('body')), 400), ENT_NOQUOTES, 'UTF-8') ?>"/>
+<meta name="description" content="<?php echo htmlentities(te_short($content->get('body'), 400)) ?>"/>
 <?php endif; ?>
 
 
-<title><?php echo $content->getTitle(); ?> / www.yapaka.be</title>
+<title><?php echo $content->getTitle(); ?></title>
 <link href="<?php echo te_design() ?>/accueil_template.css" rel="stylesheet" type="text/css" media="all">
 <link href="<?php echo te_design() ?>/styles.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" type="text/css" media="print" href="<?php echo te_design() ?>/print.css" />

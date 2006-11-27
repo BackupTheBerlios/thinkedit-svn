@@ -227,7 +227,7 @@ class thinkedit
 							array_merge_2($complete_config, $config);
 						}
 					}
-					if (!$config)
+					if (!isset($config))
 					{
 						//trigger_error("we have a parsing error with $file");
 					}
@@ -886,7 +886,7 @@ function isInstalled()
 * Helper function used by this class only
 * 
 * taken from : http://php.belnet.be/manual/en/function.array-merge-recursive.php#38387
-* 
+* todo : optimize !!!!
 */
 function array_merge_2(&$array, &$array_i) 
 {

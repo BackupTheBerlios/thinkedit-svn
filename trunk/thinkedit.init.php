@@ -237,7 +237,7 @@ register_shutdown_function('te_shutdown');
 
 function te_shutdown()
 {
-	echo te_admin_toolbox();
+	// echo te_admin_toolbox();
 }
 
 ?>

@@ -15,7 +15,7 @@
 <table class="list">
 <tr>
 <th><?php echo translate('title');?></th>
-<th width="120">Manage</th>
+<th>Manage</th>
 <th width="20"></th>
 <th width="80">Move</th>
 </tr>

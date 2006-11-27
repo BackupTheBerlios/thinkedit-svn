@@ -10,6 +10,7 @@
 $url = new url();
 $url->set('image', $sidebar_image->getPath());
 $url->set('template', '/ecards/' . te_get_section_name($node) . '.png');
+$url->set('node_id', $node->getId());
 $ecard_url = $url->render(ROOT_URL . '/plugin/ecards/');
 ?>
 

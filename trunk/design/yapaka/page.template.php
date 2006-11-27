@@ -1,13 +1,13 @@
 <?php include 'content_header.php'; ?>
 
 <?php if ($content->get('sub_title') <> ''): ?>
-<div class="content_title">
+<h1 class="content_title">
 <?php echo $content->get('sub_title'); ?>
-</div>
+</h1>
 <?php else: ?>
-<div class="content_title">
+<h1 class="content_title">
 <?php echo $content->get('title'); ?>
-</div>
+</h1>
 <?php endif; ?>
 
 <?php if (!$content->get('body')): ?>
@@ -37,11 +37,11 @@
 				
 				
 				
-				<div class="title_intro">
+				<h2 class="title_intro">
 				<a href="<?php echo te_link($child);?>">
 				<?php echo $sub_content->getTitle(); ?>
 				</a>
-				</div>
+				</h2>
 				
 				
 				<?php /*

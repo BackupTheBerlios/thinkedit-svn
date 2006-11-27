@@ -51,4 +51,29 @@ Vous pouvez télécharger le fichier mp3 pour l'écouter
 
 
 
+
+<?php if ($content->get('image_file')): ?>
+<?php $image_file = $content->field['image_file']->getFilesystem(); ?>
+
+<hr/>
+Vous pouvez télécharger le fichier image original 
+<a href="<?php echo $image_file->getUrl(); ?>">Cliquez ici</a>
+<hr/>
+
+<a href="<?php echo $image_file->getUrl(); ?>">
+<img src="<?php echo $image_file->getThumbnail(array('w'=>300)); ?>">
+</a>
+
+<hr/>
+Vous pouvez télécharger le fichier image original 
+<a href="<?php echo $image_file->getUrl(); ?>">Cliquez ici</a>
+<hr/>
+
+<br/>
+<br/>
+
+<?php endif; ?>
+
+
+
 <?php include 'content_footer.php'; ?>
