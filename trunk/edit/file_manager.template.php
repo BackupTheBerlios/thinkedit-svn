@@ -1,4 +1,4 @@
-<div class="content panel">
+<div class="content">
 
 <?php if (isset($out['folders'])) : ?>
 <div class="panel">

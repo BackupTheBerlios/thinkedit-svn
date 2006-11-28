@@ -1,25 +1,26 @@
-<div class="content panel">
+<div class="content">
 
 <?php if (is_array($out['item'])): ?>
 
 <div class="spacer"></div>
 
 <?php foreach ($out['item'] as $item): ?>
-<div class="main_item pannel">
+<div class="main_item">
 <a href="<?php echo $item['action']?>">
-<h1>
 
-<?php if (isset($item['icon'])):?>
-<img src="<?php echo($item['icon']) ?>">
-<?php endif; ?>
 
-<?php echo $item['title']?>
+	<?php if (isset($item['icon'])):?>
+<div class="main_item_icon">
+	<img src="<?php echo($item['icon']) ?>">
+</div>
+	<?php endif; ?>
+<div class="main_item_text">
+	<div class="main_item_title">
+	<?php echo $item['title']?>
+	</div>
+	<?php echo $item['help']?>
+</div>
 
-</h1>
-
-<p>
-<?php echo $item['help']?>
-</p>
 </a>
 </div>
 <?php endforeach; ?>
@@ -31,7 +32,3 @@
 <?php endif; ?>
 
 </div>
-
-
-      
-
