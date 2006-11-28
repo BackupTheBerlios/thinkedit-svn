@@ -59,7 +59,7 @@
 </div>
 
 
-<div class="breadcrumb panel">
+<div class="breadcrumb">
 <?php include ('breadcrumb.template.php') ?>
 </div>
 

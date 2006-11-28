@@ -1,7 +1,7 @@
 <div class="content">
 
 <?php if (isset($out['folders'])) : ?>
-<div class="panel">
+
 <select size="1" onChange="jump('parent',this,0)">
 <?php foreach ($out['folders'] as $folder): ?>
 
@@ -21,11 +21,10 @@ $selected='';
 
 <?php endforeach; ?>
 </select>
-</div>
+
 <?php endif; ?>
 
 
-<div class="panel">
 <?php if (isset($out['files'])) : ?>
 
 <table class="list">
@@ -71,7 +70,7 @@ $i++;
 <?php else: ?>
 <?php echo translate('folder_empty')?>
 <?php endif; ?>
-</div>
+
 
 <div class="toolbar">
 

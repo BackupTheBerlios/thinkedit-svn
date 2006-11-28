@@ -57,8 +57,6 @@ a
 .panel
 {		
 	margin: 0em;
-	padding: 1em;
-	/*background-color: white;*/
 }
 
 
@@ -441,6 +439,7 @@ New breadcrumb CSS
 	font-size: 10px;
 	font-weight: normal;
 	line-height: 14px;
+	width: 210px;
 }
 
 .main_item_title
