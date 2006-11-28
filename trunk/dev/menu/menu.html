@@ -6,15 +6,10 @@
 <script type="text/javascript" src="../../lib/jquery/jquery.js"></script>	
 
 <style>
-.menu
-{
-display: none;
-}
 
-.menu_box
+.menu_button
 {
 padding: 3px;
-
 display: inline;
 background-color: #0066ff;
 border: 1px solid black;
@@ -22,7 +17,30 @@ border-top: 1px solid #ccccff;
 border-left: 1px solid #ccccff;
 border-right: 1px solid #000066;
 border-bottom: 1px solid #000066;
+}
 
+
+.menu_items
+{
+display: none;
+position: absolute;
+/*margin-top: 10px;*/
+/*top: 20px;*/
+border: 1px solid black;
+background-color: white;
+padding: 5px;
+}
+
+.menu_item
+{
+/*border-bottom: 1px solid gray;*/
+padding-bottom: 5px;
+}
+
+.menu
+{
+float: left;
+cursor: pointer;
 }
 
 </style>
@@ -30,36 +48,18 @@ border-bottom: 1px solid #000066;
 <script>
 $(document).ready(function()
 {
-	$(".menu_box").hover(function()
+	$(".menu").hover(function()
 	{
-	$(".menu", this).slideDown('fast');
+	//$(this).next('.menu').slideDown('fast');
+	$('.menu_items', this).show();
 	}
 	,function()
 	{
-	$(".menu", this).slideUp('fast');
+	//$(this).next('.menu').slideUp('fast');
+	$('.menu_items', this).hide();
 	});
 	
 });
-
-
-$(document).ready(function(){
-    $("#nav-one li").hover(
-        function(){ $("ul", this).fadeIn("fast"); }, 
-        function() { } 
-    );
-    if (document.all) {
-        $("#nav-one li").hoverClass ("sfHover");
-    }
-});
-
-$.fn.hoverClass = function(c) {
-    return this.each(function(){
-        $(this).hover( 
-            function() { $(this).addClass(c);  },
-            function() { $(this).removeClass(c); }
-        );
-    });
-};    
 
 </script>
 
@@ -72,14 +72,58 @@ $.fn.hoverClass = function(c) {
 <div class="content panel" id="list">
 
 
-<div class="menu_box">manage<div class="menu">
+
+<div class="menu">
+
+<div class="menu_button">manage</div>
+<div class="menu_items">
 <div class="menu_item">Cut</div>
 <div class="menu_item">Copy</div>
 <div class="menu_item">Paste</div>
 </div>
+
 </div>
 
 
+
+
+<div class="menu">
+
+<div class="menu_button">manage</div>
+<div class="menu_items">
+<div class="menu_item">Cut</div>
+<div class="menu_item">Copy</div>
+<div class="menu_item">Paste</div>
+</div>
+
+</div>
+
+
+
+<div class="menu">
+
+<div class="menu_button">manage</div>
+<div class="menu_items">
+<div class="menu_item">Cut</div>
+<div class="menu_item">Copy</div>
+<div class="menu_item">Paste</div>
+</div>
+
+</div>
+
+
+
+
+<div class="menu">
+
+<div class="menu_button">manage</div>
+<div class="menu_items">
+<div class="menu_item">Cut</div>
+<div class="menu_item">Copy</div>
+<div class="menu_item">Paste</div>
+</div>
+
+</div>
 
 
 </div>
