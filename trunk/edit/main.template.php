@@ -2,9 +2,7 @@
 
 <?php if (is_array($out['item'])): ?>
 
-<div class="spacer">
- &nbsp;
-</div>
+<div class="spacer"></div>
 
 <?php foreach ($out['item'] as $item): ?>
 <div class="main_item pannel">

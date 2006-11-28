@@ -26,7 +26,7 @@
 <body>
 <div class="thinkedit">
 
-<div class="header panel">
+<div class="te_header_main">
 <a href="main.php"><img src="ressource/image/general/thinkedit_logo.gif" alt="" border="0"/></a>	
 </div>
 
