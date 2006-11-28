@@ -46,9 +46,6 @@
 <img src="ressource/image/icon/info.gif">
 </div>
 
-
-
-
 <?php if (isset($out['info'])) : ?>
 <div class="info panel">
 <img src="ressource/image/icon/info.gif">
