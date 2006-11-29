@@ -1,5 +1,4 @@
 <div class="content">
-
 <?php if (isset($out['folders'])) : ?>
 
 <select size="1" onChange="jump('parent',this,0)">

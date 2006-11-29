@@ -1,11 +1,4 @@
-<script type="text/javascript">
-</script>
-
-
-
-<div class="content panel" id="list">
-
-<iframe name="status" width="500" height="20" frameborder="0" scrolling="no"></iframe>
+<div class="content" id="list">
 
 
 <?php /*************************** List *****************************/?>

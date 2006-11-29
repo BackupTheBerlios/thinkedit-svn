@@ -484,7 +484,7 @@ th.on
 	border-collapse: separate;
 	border-spacing: 0px;
 	width: 100%;
-	border-width: 1px;
+	border-width: 0px;
 	border-style: solid;
 	border-color: #868686 #ffffff #ffffff #868686;
 	background-color: #ffffff;
@@ -497,7 +497,7 @@ th.on
 	border: 0px none;
 	border-right: 1px;
 	border-style: solid;
-	border-color: #999
+	border-color: #999;
 	
 }
 
