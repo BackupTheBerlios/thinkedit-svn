@@ -42,11 +42,11 @@ class event
 	Register a $function to be called when an $event happens
 	
 	Example : 
-	$event->on('record_create', 'my_rss_builder');
+	$event->bind('record_create', 'my_rss_builder');
 	Would call my_rss_builder() each time a record is created
 	
 	*/
-	function on($event, $function)
+	function bind($event, $function, $priority = 1)
 	{
 		$this->events[$event][] = $function;
 	}
@@ -55,7 +55,7 @@ class event
 	Notify the event object that something happened. 
 	You can add aditional parameters those will be added to the registered function called 
 	*/
-	function call($event)
+	function trigger($event)
 	{
 		// see if there are any functions or class method registered for this $event
 		if (is_array($this->events[$event]))
