@@ -38,8 +38,8 @@ $(document).ready(function()
 <table class="list">
 <tr>
 <th><?php echo translate('title');?></th>
-<th>Manage</th>
-<th width="20"></th>
+<th width="150">Manage</th>
+<th width="10"></th>
 <th width="80">Move</th>
 </tr>
 
@@ -235,21 +235,23 @@ $i++;
 </a>
 -->
 
-<td>
+<td style="text-align: center">
+<?php /*************************** Publish... *****************************/?>
 
 <?php if (isset($node['publish_url'])): ?>
 <a href="<?php echo $node['publish_url']?>">
 <?php if ($node['published']): ?>
-<img src="ressource/image/icon/small/lightbulb.png" title="<?php echo  $node['publish_title'];?>">
+<img src="ressource/image/icon/lamp.png" title="<?php echo  $node['publish_title'];?>">
 <?php else: ?>
-<img src="ressource/image/icon/small/lightbulb_off.png" title="<?php echo  $node['publish_title'];?>">
+<img src="ressource/image/icon/lamp.png" title="<?php echo  $node['publish_title'];?>" class="disabled">
 <?php endif; ?>
 </a>
 <?php endif; ?>
 </td>
 
 
-<td>
+<td style="text-align: center">
+<?php /*************************** Move... *****************************/?>
 <?php if (isset($node['movetop_url'])): ?>
 <a href="<?php echo $node['movetop_url']?>">
 <img src="ressource/image/icon/small/go-top.png">
