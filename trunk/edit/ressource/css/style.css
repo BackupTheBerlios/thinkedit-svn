@@ -553,6 +553,47 @@ th.on
 	
 }
 
+/***************** Drop down menu in structure ******************/
+
+.menu_button
+{
+padding: 5px;
+display: inline;
+/*float: left;*/
+background-color: #0066ff;
+border: 1px solid black;
+border-top: 1px solid #ccccff;
+border-left: 1px solid #ccccff;
+border-right: 1px solid #000066;
+border-bottom: 1px solid #000066;
+}
+
+
+.menu_items
+{
+display: none;
+position: absolute;
+/*margin-top: 10px;*/
+/*top: 20px;*/
+border: 1px solid black;
+background-color: white;
+padding: 5px;
+}
+
+.menu_item
+{
+/*border-bottom: 1px solid gray;*/
+padding-bottom: 5px;
+}
+
+.menu
+{
+float: left;
+cursor: pointer;
+}
+
+
+
 /***************** Nodes ******************/
 
 .open_close

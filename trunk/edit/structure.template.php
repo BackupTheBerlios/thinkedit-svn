@@ -1,7 +1,28 @@
+<script>
+
+// init of the drop down menu hover effet
+$(document).ready(function()
+{
+	$(".menu").hover(function()
+	{
+	//$(this).next('.menu').slideDown('fast');
+	$('.menu_items', this).show();
+	}
+	,function()
+	{
+	//$(this).next('.menu').slideUp('fast');
+	$('.menu_items', this).hide();
+	});
+	
+});
+</script>
+
+
+
 <div class="content" id="list">
 
-
 <?php /*************************** List *****************************/?>
+
 
 <?php if (isset($out['nodes'])) : ?>
 
@@ -12,6 +33,10 @@
 <th width="20"></th>
 <th width="80">Move</th>
 </tr>
+
+
+<?php /*************************** List *****************************/?>
+
 
 <?php  $i=0 ?>
 <?php foreach ($out['nodes'] as $node): ?>
@@ -30,6 +55,8 @@ else
 
 $i++;
 ?>
+
+
 
 <tr class="<?php echo $class?>" id="node_<?php echo $node['id']?>" oncontextmenu="showContextMenu('context_menu_node_<?php echo $node['id']?>', event);return false;">
 
@@ -74,26 +101,109 @@ $i++;
 </td>
 
 
+<?php /*************************** Edit button *****************************/?>
+
 <td>
 <?php if (isset($node['edit_url'])): ?>
-<a class="action_button" href="<?php echo $node['edit_url']?>" onclick="custompopup('<?php echo $node['edit_url']?>', 'editor' , 80);return false">
+
+<div class="menu">
+<a class="menu_button" href="<?php echo $node['edit_url']?>" onclick="custompopup('<?php echo $node['edit_url']?>', 'editor' , 80);return false">
 <!--
 <img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('node_edit'); ?>">
 -->
 <?php echo translate('edit'); ?>
 </a>
+</div>
 <?php endif; ?>
 
-
+<?php /*************************** Add... *****************************/?>
 
 <?php if (isset($node['allowed_items'])) : ?>
-<select size="1" onChange="ask_title('parent',this,1, '<?php echo translate('please_enter_title');?>')">
-<option value=""><?php echo translate('node_add_new') ?></option>
+
+<div class="menu">
+
+<div class="menu_button"><?php echo translate('node_add_new') ?></div>
+
+<div class="menu_items">
+
 <?php foreach ($node['allowed_items'] as $item): ?>
-<option style="background-image: url('<?php echo $item['icon'] ?>'); background-repeat: no-repeat; padding-left: 20px; margin: 2px" value="<?php echo $item['direct_add_action'] ?>"><?php echo ucfirst($item['title']) ?></option>
+<div class="menu_item">
+<a href="<?php echo $item['direct_add_action'] ?>" onClick="ask_title2('<?php echo translate('please_enter_title');?>', '<?php echo $item['direct_add_action'] ?>');return false">
+<img src="<?php echo $item['icon'] ?>"/>
+<?php echo ucfirst($item['title']) ?>
+</a>
+</div>
 <?php endforeach; ?>
-</select>
+</div>
+</div>
+
 <?php endif; ?>
+
+
+
+<?php /*************************** Manage... *****************************/?>
+
+<div class="menu">
+<div class="menu_button"><?php echo translate('manage'); ?></div>
+<div class="menu_items">
+
+<div class="menu_item">
+<a href="<?php echo $node['clipboard']['cut_link']?>">
+<?php echo translate('cut');?>
+</a>
+</div>
+
+<div class="menu_item">
+<a href="<?php echo $node['clipboard']['copy_link']?>">
+<?php echo translate('copy');?>
+</a>
+</div>
+
+<div class="menu_item">
+<a href="<?php echo $node['clipboard']['paste_link']?>">
+<?php echo translate('paste');?>
+</a>
+</div>
+
+
+</div>
+</div>
+
+
+
+<!--
+<div class="context_menu_item">
+<a href="clipboard.php" target="status"><?php echo translate('copy');?></a>
+</div>
+-->
+
+<div class="context_menu_item">
+<a href="<?php echo $node['clipboard']['paste_link']?>" target="status" onclick="hide_menus()">
+<?php echo translate('paste');?>
+</a>
+</div>
+
+
+<?php if (isset($node['locale'])) : ?>
+
+<hr/>
+
+<?php /******************* Translate *******************/ ?>
+
+<div class="context_menu_title"><?php echo translate('translate');?></div>
+<?php foreach ($node['locale'] as $locale_info): ?>
+<div class="context_menu_item">
+<a href="<?php echo $locale_info['edit_url']?>"><?php echo $locale_info['locale']?></a>
+</div>
+<?php endforeach; ?>
+<?php endif; ?>
+
+
+</div>
+
+
+
+
 
 
 <!--

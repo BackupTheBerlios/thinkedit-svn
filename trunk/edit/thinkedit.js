@@ -257,6 +257,36 @@ function ask_title(targ,selObj,restore,text)
 
 
 
+function ask_title2(text, url)
+{ 
+	//v3.0
+	title =  prompt(text);
+	if (title)
+	{
+		encoded_title = encodeURIComponent(title);
+		//encoded_title = escape(title);
+		//encoded_title.replace(/\+/g, '%2B').replace(/\"/g,'%22').replace(/\'/g, '%27').replace(/\//g,'%2F');
+		var result = "";
+		var length = encoded_title.length;
+		for (var i = 0; i < length; i++) 
+		{
+			var ch = encoded_title.charAt(i);
+			switch (ch) 
+			{
+				case "'":
+				result += "%27";
+				break;
+				default:
+				result += ch;
+			}
+		}
+		
+		eval("parent.location='"+url+"&title=" + result +"'");
+	}
+	return false;
+	
+}
+
 
 
 // This will soon be deprecated, we will use ajax for partial page loading

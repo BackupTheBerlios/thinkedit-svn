@@ -127,5 +127,6 @@ $data['cannot_delete_root_node']='!cannot_delete_root_node!';
 $data['toggle_errors']='Show errors';
 $data['api_node_info_done']='!api_node_info_done!';
 $data['api_node_not_found']='!api_node_not_found!';
+$data['manage']='!manage!';
 
 ?>

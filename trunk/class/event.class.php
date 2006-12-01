@@ -14,14 +14,14 @@ Let's say you want to be notified when a record is saved
 
 Inside the record class, everytime a record is saved, we (already/will soon) do this : 
 
-$thinkedit->event->call('record_save', $this);
+$thinkedit->event->trigger('record_save', $this);
 
 This means : "hey, I just saved a record, you can find it's content inside $this"
 
 
 Now let's say you want to register your supper loger plugin :
 
-$thinkedit->event->on('record_save', 'mylogger::log()');
+$thinkedit->event->bind('record_save', 'mylogger::log()');
 
 class mylogger
 {
