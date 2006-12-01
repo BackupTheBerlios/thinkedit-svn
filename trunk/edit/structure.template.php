@@ -2,19 +2,28 @@
 
 // init of the drop down menu hover effet
 $(document).ready(function()
-{
-	$(".menu").hover(function()
 	{
-	//$(this).next('.menu').slideDown('fast');
-	$('.menu_items', this).show();
-	}
-	,function()
-	{
-	//$(this).next('.menu').slideUp('fast');
-	$('.menu_items', this).hide();
+		$(".menu").click(function()
+			{
+				//$(this).next('.menu').slideDown('fast');
+				$('.menu_items', this).show();
+			});
+		
+		/*
+		$(document).click(function()
+			{
+				$(".menu_items").hide();
+			});
+		*/
+		
+		
+		$(".menu").hover(function (){}, function()
+			{
+				//$(this).next('.menu').slideDown('fast');
+				$('.menu_items', this).hide();
+			});
+		
 	});
-	
-});
 </script>
 
 
@@ -148,12 +157,14 @@ $i++;
 <div class="menu_items">
 
 <div class="menu_item">
+<img src="ressource/image/icon/editcut.png"/>
 <a href="<?php echo $node['clipboard']['cut_link']?>">
 <?php echo translate('cut');?>
 </a>
 </div>
 
 <div class="menu_item">
+<img src="ressource/image/icon/editcopy.png"/>
 <a href="<?php echo $node['clipboard']['copy_link']?>">
 <?php echo translate('copy');?>
 </a>
@@ -161,45 +172,51 @@ $i++;
 
 <div class="menu_item">
 <a href="<?php echo $node['clipboard']['paste_link']?>">
+<img src="ressource/image/icon/editpaste.png"/>
 <?php echo translate('paste');?>
 </a>
 </div>
 
 
-</div>
-</div>
 
-
-
-<!--
-<div class="context_menu_item">
-<a href="clipboard.php" target="status"><?php echo translate('copy');?></a>
-</div>
--->
-
-<div class="context_menu_item">
-<a href="<?php echo $node['clipboard']['paste_link']?>" target="status" onclick="hide_menus()">
-<?php echo translate('paste');?>
+<?php if (isset($node['delete_url'])): ?>
+<div class="menu_item">
+<a href="<?php echo $node['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_node_delete') ?>', '<?php echo $node['delete_url']?>'); return false;">
+<img src="ressource/image/icon/small/user-trash-full.png" title="<?php echo translate('delete'); ?>">
+<?php echo translate('delete')?>
 </a>
 </div>
+<?php endif; ?>
+
+
+<?php if (isset($node['preview_url'])): ?>
+<div class="menu_item">
+<a href="<?php echo $node['preview_url']?>" target="thinkedit_preview">
+<img src="ressource/image/icon/system-search.png"/>
+<?php echo  $node['preview_title'];?>
+</a>
+</div>
+<?php endif; ?>
+</div>
+</div>
+
 
 
 <?php if (isset($node['locale'])) : ?>
-
-<hr/>
-
 <?php /******************* Translate *******************/ ?>
-
-<div class="context_menu_title"><?php echo translate('translate');?></div>
+<div class="menu">
+<div class="menu_button"><?php echo translate('translate'); ?></div>
+<div class="menu_items">
 <?php foreach ($node['locale'] as $locale_info): ?>
 <div class="context_menu_item">
 <a href="<?php echo $locale_info['edit_url']?>"><?php echo $locale_info['locale']?></a>
 </div>
 <?php endforeach; ?>
+</div>
+</div>
 <?php endif; ?>
 
 
-</div>
 
 
 

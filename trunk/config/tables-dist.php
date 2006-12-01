@@ -23,25 +23,17 @@ $data['content']['page']['field']['sub_title']['title']['en']='Sub title';
 $data['content']['page']['field']['sub_title']['help']['en']='May be used by the page template if you provide one';
 $data['content']['page']['field']['sub_title']['type']='string';
 
-
+/*
 $data['content']['page']['field']['intro']['title']['fr']='Introduction';
 $data['content']['page']['field']['intro']['title']['en']='Introduction';
 $data['content']['page']['field']['intro']['type']='richtext';
+*/
+
 $data['content']['page']['field']['body']['title']['fr']='Corps du texte';
 $data['content']['page']['field']['body']['title']['en']='Body';
 $data['content']['page']['field']['body']['type']='richtext';
 
 
-/*
-$data['content']['page']['field']['test2']['title']['fr']='Corps du texte test';
-$data['content']['page']['field']['test2']['title']['en']='Body test';
-$data['content']['page']['field']['test2']['type']='richtext';
-
-
-$data['content']['page']['field']['test3']['title']['fr']='Corps du texte test';
-$data['content']['page']['field']['test3']['title']['en']='Body test';
-$data['content']['page']['field']['test3']['type']='text';
-*/
 
 
 //$data['content']['page']['field']['body']['type']='wiki';
