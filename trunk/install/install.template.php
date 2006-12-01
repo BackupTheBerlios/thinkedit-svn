@@ -34,6 +34,18 @@ h2
 		
 }
 
+.content
+{
+	width: 60em;
+	padding: 15px;
+}
+
+.title
+{
+	padding: 15px;
+	background-color: #aaa;
+}
+
 </style>
 </head>
 <body>
@@ -44,7 +56,9 @@ h2
 </div>
 
 <div class="title panel">
+<h1>
 Thinkedit installation wizard
+</h1>
 </div>
 
 
@@ -79,7 +93,7 @@ Thinkedit installation wizard
 
 
 <div class="footer">
-			&reg; <a href="http://www.thinkedit.org">THINKEDIT.ORG open source CMS</a>
+			<a href="http://www.thinkedit.org">&copy; THINKEDIT.ORG open source CMS</a>
 </div>
 
 
