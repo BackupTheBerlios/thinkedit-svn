@@ -60,6 +60,10 @@ a
 }
 
 
+.edit
+{
+	padding: 20px;
+}
 
 
 .content
@@ -96,7 +100,8 @@ a
 
 .save_toolbar
 {
-	height: 40px;
+	height: 60px;
+	padding: 20px;
 	position: fixed;
 	bottom: 0px;
 	left: 0;
@@ -599,6 +604,10 @@ float: left;
 cursor: pointer;
 }
 
+.disabled
+{
+	opacity: 0.35;
+}
 
 
 /***************** Nodes ******************/
@@ -739,6 +748,18 @@ a.action_button:active
 {
 	outline: none;
 	border-style: inset;
+}
+
+.edit_action_button
+{
+  border: 0;
+	background-color: #dddcdb;
+	color: black;
+	font-size: 24px;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: normal;
+	margin: 6px;
+	padding: 3px;
 }
 
 .alpha_letters

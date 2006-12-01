@@ -119,7 +119,8 @@ if (isset($node) && $url->get('action')=='save')
 /******************* Handle close window ************/
 if (isset($save_and_close) && $save_and_close)
 {
-		$out['js'] =  '<script>popup_save()</script>';
+		//$out['js'] =  '<script>popup_save()</script>';
+		$url->redirect ('structure.php');
 }
 
 

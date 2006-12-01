@@ -7,7 +7,7 @@
 
 <div class="content">
 
-<div class="edit panel">
+<div class="edit panel edit_panel">
 
 <?php if (isset($out['error'])) :?>
 <div class="error"><?php echo translate('error') ?> : <?php echo $out['error'] ?></div>
@@ -127,9 +127,17 @@ blablabla
 <input class="action_button" type="submit" value="<?php echo translate('save_button') ?>" name="save">
 <input class="action_button" type="submit" value="<?php echo translate('save_and_return_to_list_button') ?>" name="save_and_return_to_list">
 <?php else: ?>
-<!--<input class="action_button" type="submit" value="<?php echo translate('save_button') ?>" name="save">-->
-<input class="action_button" type="submit" value="<?php echo translate('save') ?>" name="save">
-<input class="action_button" type="submit" value="<?php echo translate('cancel') ?>" name="cancel_and_return_to_structure" onclick="self_close(); return false;">
+
+<button class="edit_action_button" type="submit" value="<?php echo translate('save') ?>" name="save">
+<img src="ressource/image/icon/ok.png"/>
+<?php echo translate('save') ?>
+</button>
+
+<button class="edit_action_button" type="submit" value="<?php echo translate('cancel') ?>" name="cancel_and_return_to_structure">
+<img src="ressource/image/icon/cancel.png"/>
+<?php echo translate('cancel') ?>
+</button>
+
 <?php endif; ?>
 </div>
 
