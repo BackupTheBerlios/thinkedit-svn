@@ -88,8 +88,7 @@ a
 	border-style: solid;
 	border-width: 1px; 
 	border-color: #FFFFFF #666666 #666666 #E9E9E9;
-	*/
-	
+	*/	
 }
 
 .toolbar
@@ -100,10 +99,9 @@ a
 
 .save_toolbar
 {
-	height: 60px;
-	padding: 20px;
+	padding: 5px;
 	position: fixed;
-	bottom: 0px;
+	bottom: 20px;
 	left: 0;
 	right: 0;
 	background-color: #dddcdb;
@@ -298,6 +296,7 @@ New breadcrumb CSS
 	border-width: 1px; 
 	border-color: #FFFFFF #666666 #666666 #E9E9E9;
 }
+
 .te_breadcrumb_inside
 {
 	display: table;
@@ -307,6 +306,7 @@ New breadcrumb CSS
 	border-width: 1px; 
 	border-color: #393939 #393939 #FFFFFF #FFFFFF;
 }
+
 .te_breadcrumb_button
 {
 	color: #7f7f7f;
@@ -324,6 +324,7 @@ New breadcrumb CSS
 	height: 30px;
 	border: 0px;
 }
+
 .te_breadcrumb_last_item
 {
 	color: #7f7f7f;
@@ -509,7 +510,7 @@ th.on
 
 .list tr.on
 {
-	background-color: #CCE5FF;
+	background-color: #E5EEF8;
 }
 
 .list tr:hover
@@ -767,12 +768,17 @@ a.action_button:active
 {
   border: 0;
 	background-color: #dddcdb;
-	color: black;
+	color: #46484A;
 	font-size: 24px;
 	font-family: "Times New Roman", Times, serif;
 	font-weight: normal;
 	margin: 6px;
 	padding: 3px;
+}
+
+.edit_action_button:hover
+{
+color: black;
 }
 
 .alpha_letters
