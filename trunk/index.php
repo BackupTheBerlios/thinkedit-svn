@@ -108,23 +108,23 @@ else
 		
 		
 		/******************* Menu *******************/
-		require_once ROOT . '/class/menu.breadcrumb.class.php';
+		require_once ROOT . '/class/menu/menu.breadcrumb.class.php';
 		$breadcrumb = new menu_breadcrumb($node);
 		
-		require_once ROOT . '/class/menu.main.class.php';
+		require_once ROOT . '/class/menu/menu.main.class.php';
 		$main_menu = new menu_main();
 		
 		
-		require_once ROOT . '/class/menu.child.class.php';
+		require_once ROOT . '/class/menu/menu.child.class.php';
 		$child_menu = new menu_child($node);
 		
-		require_once ROOT . '/class/menu.sitemap.class.php';
+		require_once ROOT . '/class/menu/menu.sitemap.class.php';
 		$sitemap = new menu_sitemap($node);
 		
-		require_once ROOT . '/class/menu.context.class.php';
+		require_once ROOT . '/class/menu/menu.context.class.php';
 		$context_menu = new menu_context($node);
 		
-		require_once ROOT . '/class/menu.sibling.class.php';
+		require_once ROOT . '/class/menu/menu.sibling.class.php';
 		$sibling_menu = new menu_sibling($node);
 		
 		

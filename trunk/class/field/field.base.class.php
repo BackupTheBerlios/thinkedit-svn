@@ -1,5 +1,5 @@
 <?php
-require_once('validation.class.php');
+require_once(ROOT . '/class/validation.class.php');
 
 class field
 {

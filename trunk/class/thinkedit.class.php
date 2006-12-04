@@ -689,7 +689,7 @@ class thinkedit
 		}
 		
 		// todo : class path management
-		$file = ROOT . '/class/field.' . $type . '.class.php';
+		$file = ROOT . '/class/field/field.' . $type . '.class.php';
 		$class = 'field_' . $type;
 		
 		require_once($file);
