@@ -1,5 +1,4 @@
 <script>
-
 // init of the drop down menu hover effet
 $(document).ready(function()
 	{
@@ -20,7 +19,10 @@ $(document).ready(function()
 		$(".menu").hover(function (){}, function()
 			{
 				//$(this).next('.menu').slideDown('fast');
-				$('.menu_items', this).hide();
+				setTimeout(function()
+				{
+					$('.menu_items', this).hide();
+				}, 1000);
 			});
 		
 	});
@@ -38,9 +40,9 @@ $(document).ready(function()
 <table class="list">
 <tr>
 <th><?php echo translate('title');?></th>
-<th width="150">Manage</th>
+<th width="200">Manage</th>
 <th width="10"></th>
-<th width="80">Move</th>
+<th width="100">Move</th>
 </tr>
 
 
@@ -125,30 +127,6 @@ $i++;
 </div>
 <?php endif; ?>
 
-<?php /*************************** Add... *****************************/?>
-
-<?php if (isset($node['allowed_items'])) : ?>
-
-<div class="menu">
-
-<div class="menu_button"><?php echo translate('node_add_new') ?></div>
-
-<div class="menu_items">
-
-<?php foreach ($node['allowed_items'] as $item): ?>
-<div class="menu_item">
-<a href="<?php echo $item['direct_add_action'] ?>" onClick="ask_title2('<?php echo translate('please_enter_title');?>', '<?php echo $item['direct_add_action'] ?>');return false">
-<img src="<?php echo $item['icon'] ?>"/>
-<?php echo ucfirst($item['title']) ?>
-</a>
-</div>
-<?php endforeach; ?>
-</div>
-</div>
-
-<?php endif; ?>
-
-
 
 <?php /*************************** Manage... *****************************/?>
 
@@ -200,6 +178,29 @@ $i++;
 </div>
 </div>
 
+
+<?php /*************************** Add... *****************************/?>
+
+<?php if (isset($node['allowed_items'])) : ?>
+
+<div class="menu">
+
+<div class="menu_button"><?php echo translate('node_add_new') ?></div>
+
+<div class="menu_items">
+
+<?php foreach ($node['allowed_items'] as $item): ?>
+<div class="menu_item">
+<a href="<?php echo $item['direct_add_action'] ?>" onClick="ask_title2('<?php echo translate('please_enter_title');?>', '<?php echo $item['direct_add_action'] ?>');return false">
+<img src="<?php echo $item['icon'] ?>"/>
+<?php echo ucfirst($item['title']) ?>
+</a>
+</div>
+<?php endforeach; ?>
+</div>
+</div>
+
+<?php endif; ?>
 
 
 <?php if (isset($node['locale'])) : ?>
