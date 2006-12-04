@@ -128,5 +128,7 @@ $data['toggle_errors']='Show errors';
 $data['api_node_info_done']='!api_node_info_done!';
 $data['api_node_not_found']='!api_node_not_found!';
 $data['manage']='Manage';
+$data['click_to_open_close']='!click_to_open_close!';
+$data['click_to_edit']='!click_to_edit!';
 
 ?>

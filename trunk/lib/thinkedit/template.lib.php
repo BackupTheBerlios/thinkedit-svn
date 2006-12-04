@@ -140,7 +140,7 @@ The array is an array of menuitems objects, providing some methods
 // returns an array of menu items of the main menu
 function te_main_menu()
 {
-	require_once ROOT . '/class/menu.main.class.php';
+	require_once ROOT . '/class/menu/menu.main.class.php';
 	//global $node;
 	$menu = new menu_main();
 	return $menu->getArray();
@@ -149,7 +149,7 @@ function te_main_menu()
 // returns a contextual menu
 function te_context_menu()
 {
-	require_once ROOT . '/class/menu.context.class.php';
+	require_once ROOT . '/class/menu/menu.context.class.php';
 	global $node;
 	$menu = new menu_context($node);
 	return $menu->getArray();
@@ -159,7 +159,7 @@ function te_context_menu()
 // returns a child menu
 function te_child_menu()
 {
-	require_once ROOT . '/class/menu.child.class.php';
+	require_once ROOT . '/class/menu/menu.child.class.php';
 	global $node;
 	$menu = new menu_child($node);
 	return $menu->getArray();
@@ -168,7 +168,7 @@ function te_child_menu()
 
 function te_breadcrumb_menu()
 {
-	require_once ROOT . '/class/menu.breadcrumb.class.php';
+	require_once ROOT . '/class/menu/menu.breadcrumb.class.php';
 	global $node;
 	$menu = new menu_breadcrumb($node);
 	return $menu->getArray();
