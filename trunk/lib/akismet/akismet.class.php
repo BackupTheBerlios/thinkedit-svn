@@ -15,7 +15,7 @@
  * See the Akismet class documentation page linked to below for usage information.
  *
  * @package Akismet
- * @author Alex Potsides, {@link http://www.achingbrain.net http://www.achingbrain.net}, Bret Kuhns {@link http://www.l33thaxor.com}
+ * @author Alex Potsides, {@link http://www.achingbrain.net http://www.achingbrain.net}, Bret Kuhns {@link http://www.miphp.net}
  * @version 0.1
  * @copyright Alex Potsides, {@link http://www.achingbrain.net http://www.achingbrain.net}
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License
@@ -58,18 +58,20 @@ class Akismet {
 	var $akismetVersion;
 
 	// This prevents some potentially sensitive information from being sent accross the wire.
-	var $ignore = array('HTTP_COOKIE',
-							'HTTP_X_FORWARDED_FOR',
-							'HTTP_X_FORWARDED_HOST',
-							'HTTP_MAX_FORWARDS',
-							'HTTP_X_FORWARDED_SERVER',
-							'REDIRECT_STATUS',
-							'SERVER_PORT',
-							'PATH',
-							'DOCUMENT_ROOT',
-							'SERVER_ADMIN',
-							'QUERY_STRING',
-							'PHP_SELF' );
+	var $ignore = array(
+			'HTTP_COOKIE',
+			'HTTP_X_FORWARDED_FOR',
+			'HTTP_X_FORWARDED_HOST',
+			'HTTP_MAX_FORWARDS',
+			'HTTP_X_FORWARDED_SERVER',
+			'REDIRECT_STATUS',
+			'SERVER_PORT',
+			'PATH',
+			'DOCUMENT_ROOT',
+			'SERVER_ADMIN',
+			'QUERY_STRING',
+			'PHP_SELF'
+		);
 
 
 	/**
@@ -109,13 +111,15 @@ class Akismet {
 	}
 
 	function http_post($request, $host, $path) {
-		$http_request  = "POST " . $path . " HTTP/1.1\r\n";
-		$http_request .= "Host: " . $host . "\r\n";
-		$http_request .= "Content-Type: application/x-www-form-urlencoded; charset=utf-8\r\n";
-		$http_request .= "Content-Length: " . strlen($request) . "\r\n";
-		$http_request .= "User-Agent: Akismet PHP5 Class " . $this->version . " | Akismet/1.11\r\n";
-		$http_request .= "\r\n";
-		$http_request .= $request;
+		$http_request  = 
+				"POST " . $path . " HTTP/1.1\r\n" .
+				"Host: " . $host . "\r\n" .
+				"Content-Type: application/x-www-form-urlencoded; charset=utf-8\r\n" .
+				"Content-Length: " . strlen($request) . "\r\n" .
+				"User-Agent: Akismet PHP5 Class " . $this->version . " | Akismet/1.11\r\n" .
+				"\r\n" .
+				$request
+			;
 
 		$socketWriteRead = new SocketWriteRead($host, $this->apiPort, $http_request);
 		$socketWriteRead->send();
@@ -151,7 +155,7 @@ class Akismet {
 	 *
 	 *	@return		bool	True if the comment is spam, false if not
 	 */
-	function isCommentSpam() {
+	function isSpam() {
 		$response = $this->http_post($this->getQueryString(), $this->wordPressAPIKey . '.rest.akismet.com', '/' . $this->akismetVersion . '/comment-check');
 
 		return ($response[1] == 'true');
@@ -207,14 +211,14 @@ class Akismet {
 	 *
 	 *	May be blank, comment, trackback, pingback, or a made up value like "registration" or "wiki".
 	 */
-	function setCommentType($commentType) {
+	function setType($commentType) {
 		$this->comment['comment_type'] = $commentType;
 	}
 
 	/**
 	 *	The name that the author submitted with the comment.
 	 */
-	function setCommentAuthor($commentAuthor) {
+	function setAuthor($commentAuthor) {
 		$this->comment['comment_author'] = $commentAuthor;
 	}
 
@@ -223,21 +227,21 @@ class Akismet {
 	 *
 	 *	The address is assumed to be valid.
 	 */
-	function setCommentAuthorEmail($authorEmail) {
+	function setAuthorEmail($authorEmail) {
 		$this->comment['comment_author_email'] = $authorEmail;
 	}
 
 	/**
 	 *	The URL that the author submitted with the comment.
 	 */
-	function setCommentAuthorURL($authorURL) {
+	function setAuthorURL($authorURL) {
 		$this->comment['comment_author_url'] = $authorURL;
 	}
 
 	/**
 	 *	The comment's body text.
 	 */
-	function setCommentContent($commentBody) {
+	function setContent($commentBody) {
 		$this->comment['comment_content'] = $commentBody;
 	}
 
@@ -262,6 +266,7 @@ class Akismet {
 		$this->akismetVersion = $akismetVersion;
 	}
 }
+
 
 /**
  *	Utility class used by Akismet

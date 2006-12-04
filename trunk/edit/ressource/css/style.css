@@ -686,7 +686,10 @@ li .node
 	*/
 }
 
-
+a.node_title:hover
+{
+	text-decoration: underline;
+}
 
 /***************** Forms ******************/
 

@@ -1,29 +1,41 @@
 <script>
 // init of the drop down menu hover effet
+
+previous_menu = false;
+
 $(document).ready(function()
 	{
-		$(".menu").click(function()
+		$(".menu").click(function(event)
 			{
 				//$(this).next('.menu').slideDown('fast');
-				$('.menu_items', this).show();
+				if (previous_menu)
+					{
+						previous_menu.hide();
+					}
+				previous_menu = $('.menu_items', this).show();
+				event.stopPropagation();
 			});
+		
+		$(document).click(function()
+				{
+					if (previous_menu)
+					{
+						previous_menu.hide();
+					}
+				});
+		
 		
 		/*
-		$(document).click(function()
-			{
-				$(".menu_items").hide();
-			});
-		*/
-		
-		
 		$(".menu").hover(function (){}, function()
 			{
 				//$(this).next('.menu').slideDown('fast');
+				alert('out of menu');
 				setTimeout(function()
 				{
 					$('.menu_items', this).hide();
 				}, 1000);
 			});
+			*/
 		
 	});
 </script>
@@ -40,7 +52,9 @@ $(document).ready(function()
 <table class="list">
 <tr>
 <th><?php echo translate('title');?></th>
-<th width="200">Manage</th>
+<th width="30">Manage</th>
+<th width="70">Add</th>
+<th width="30">Translate</th>
 <th width="10"></th>
 <th width="100">Move</th>
 </tr>
@@ -71,12 +85,15 @@ $i++;
 
 <tr class="<?php echo $class?>" id="node_<?php echo $node['id']?>" oncontextmenu="showContextMenu('context_menu_node_<?php echo $node['id']?>', event);return false;">
 
-<td <?php if (isset($node['visit_url'])): ?>style="cursor:pointer" onClick="document.location.href='<?php echo $node['visit_url']?>';"<?php endif;?>>
+<!--<td <?php if (isset($node['visit_url'])): ?>style="cursor:pointer" onClick="document.location.href='<?php echo $node['visit_url']?>';"<?php endif;?>>-->
+
+<td>
+
+<?php if (isset($node['visit_url'])): ?>
+<a href="<?php echo $node['visit_url']?>" title="<?php echo translate('click_to_open_close'); ?> <?php echo  $node['full_title'] ?>">
+<?php endif;?>
 
 <?php echo str_repeat('<div class="tree_spacer">&nbsp;</div>', $node['level']); ?>
-
-
-
 
 <?php if ($node['status'] == 'closed') : ?>
 <img src="ressource/image/general/node_closed.gif" style="vertical-align: middle;">
@@ -87,13 +104,8 @@ $i++;
 <?php endif; ?>
 
 
-<!--
-<div style="width: <?php echo $node['level'] * 20 ?>px"  class="tree_spacer">
-</div>
--->
-
 <?php if (isset($node['visit_url'])): ?>
-<a href="<?php echo $node['visit_url']?>" title="<?php echo  $node['full_title'] ?>">
+</a>
 <?php endif;?>
 
 
@@ -103,33 +115,43 @@ $i++;
 
 <img src="<?php echo $node['icon']; ?>" style="vertical-align: middle;">
 
+<?php if (isset($node['edit_url'])): ?>
+<a class="node_title" href="<?php echo $node['edit_url']?>" title="<?php echo translate('click_to_edit') ?>">
+<?php endif; ?>
+
 <?php echo  $node['title'] ?>
 
-<?php if (isset($node['visit_url'])): ?>
+<?php if (isset($node['edit_url'])): ?>
 </a>
-<?php endif;?>
+<?php endif; ?>
+
 
 </td>
 
 
 <?php /*************************** Edit button *****************************/?>
 
+<!--
 <td>
 <?php if (isset($node['edit_url'])): ?>
 
 <div class="menu">
 <a class="menu_button" href="<?php echo $node['edit_url']?>">
+-->
 <!--
 <img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('node_edit'); ?>">
 -->
+<!--
 <?php echo translate('edit'); ?>
 </a>
 </div>
 <?php endif; ?>
-
+</td>
+-->
 
 <?php /*************************** Manage... *****************************/?>
 
+<td>
 <div class="menu">
 <div class="menu_button"><?php echo translate('manage'); ?></div>
 <div class="menu_items">
@@ -178,9 +200,12 @@ $i++;
 </div>
 </div>
 
+</td>
+
 
 <?php /*************************** Add... *****************************/?>
 
+<td>
 <?php if (isset($node['allowed_items'])) : ?>
 
 <div class="menu">
@@ -201,8 +226,10 @@ $i++;
 </div>
 
 <?php endif; ?>
+</td>
 
 
+<td>
 <?php if (isset($node['locale'])) : ?>
 <?php /******************* Translate *******************/ ?>
 <div class="menu">
@@ -216,7 +243,7 @@ $i++;
 </div>
 </div>
 <?php endif; ?>
-
+</td>
 
 
 

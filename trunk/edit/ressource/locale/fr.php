@@ -131,5 +131,7 @@ $data['toggle_profiling']='Afficher le debug';
 $data['logout']='Déconnexion';
 $data['toggle_errors']='Il y a des erreurs';
 $data['manage']='Gérer';
+$data['click_to_edit']='Cliquez pour modifier';
+$data['click_to_open_close']='Cliquez pour ouvrir / fermer';
 
 ?>

@@ -19,7 +19,7 @@ class field_publicfile extends field_file
 			else // else, we present a simple file upload input, usable by the public part of a website
 			{
 				$out = '';
-				$out .= sprintf('<input type="file" value="%s" name="%s", size="64">', $this->getHtmlSafe(), $this->getName());
+				$out .= sprintf('<input type="file" value="%s" name="%s", size="16">', $this->getHtmlSafe(), $this->getName());
 			}
 			return $out;
 			
