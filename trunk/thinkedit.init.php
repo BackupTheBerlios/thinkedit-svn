@@ -33,6 +33,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 */
 
+// Remote include vulnerability found by "r0ut3r"
+if(basename(__FILE__) == basename($_SERVER['PHP_SELF']))
+{
+	die('you cannot view this file directly in a browser');
+}
+
+
 // needed for ms iexplorer
 
 if (!headers_sent())
