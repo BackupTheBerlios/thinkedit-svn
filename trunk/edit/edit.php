@@ -29,6 +29,18 @@ check_user();
 
 $url = $thinkedit->newUrl();
 
+/*
+echo '<pre>';
+print_r($_REQUEST);
+*/
+
+/**************** Handle Cancel first ****************/
+
+if ($url->get('cancel_and_return_to_structure'))
+{
+	$url->redirect('structure.php');
+}
+
 
 /**************** node or record ? ****************/
 if ($url->getParam('node_id')) // node and record
@@ -119,7 +131,6 @@ if (isset($node) && $url->get('action')=='save')
 /******************* Handle close window ************/
 if (isset($save_and_close) && $save_and_close)
 {
-		//$out['js'] =  '<script>popup_save()</script>';
 		$url->redirect ('structure.php');
 }
 

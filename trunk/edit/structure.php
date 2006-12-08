@@ -130,35 +130,69 @@ if ($url->get('action') == 'delete')
 
 if ($url->get('action') == 'publish')
 {
-		if ($current_node->publish())
+	if ($current_node->publish())
+	{
+		if ($url->get('output') == 'xml')
 		{
-				
-				$url->set('info', 'node_published_successfully');
-				$url->redirect();
+			$out['result'] = 1;
+			$out['node_status'] = 'published';
+			$out['message'] = translate('node_published_successfully');
 		}
 		else
 		{
-				$url->set('error', 'node_not_published');
-				$url->redirect();
+			$url->set('info', 'node_published_successfully');
+			$url->redirect();
 		}
 		
+	}
+	else
+	{
+		if ($url->get('output') == 'xml')
+		{
+			$out['result'] = 0;
+			$out['message'] = translate('node_not_published');
+		}
+		else
+		{
+			$url->set('error', 'node_not_published');
+			$url->redirect();
+		}
+	}
 }
 
 
 if ($url->get('action') == 'unpublish')
 {
-		if ($current_node->unPublish())
+	if ($current_node->unPublish())
+	{
+		if ($url->get('output') == 'xml')
 		{
-				
-				$url->set('info', 'node_unpublished_successfully');
-				$url->redirect();
+			$out['result'] = 1;
+			$out['node_status'] = 'unpublished';
+			$out['message'] = translate('node_unpublished_successfully');
 		}
 		else
 		{
-				$url->set('error', 'node_not_unpublished');
-				$url->redirect();
+			$url->set('info', 'node_unpublished_successfully');
+			$url->redirect();
 		}
 		
+	}
+	else
+	{
+		if ($url->get('output') == 'xml')
+		{
+			$out['result'] = 0;
+			$out['message'] = translate('node_not_unpublished');
+		}
+		else
+		{
+			$url->set('error', 'node_not_unpublished');
+			$url->redirect();
+		}
+		
+	}
+	
 }
 
 
@@ -551,6 +585,7 @@ $out['breadcrumb'][1]['url'] = $url->render();
 
 debug($out, 'OUT');
 
+$url = new url();
 if ($url->get('output') == 'xml')
 {
 	header("Content-Type: text/xml");

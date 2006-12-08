@@ -207,27 +207,11 @@ $i++;
 
 
 
-
-
-
-
-<!--
-<a class="action_button" onclick="showContextMenu('context_menu_node_<?php echo $node['id']?>', event);return false;">
-<?php echo translate('menu');?>
-</a>
--->
-
-<!--
-<a class="action_button" onclick="toggle_and_move('add_menu_node_<?php echo $node['id']?>', event)">
-<?php echo translate('add');?>
-</a>
--->
-
 <td style="text-align: center">
 <?php /*************************** Publish... *****************************/?>
 
 <?php if (isset($node['publish_url'])): ?>
-<a href="<?php echo $node['publish_url']?>">
+<a href="<?php echo $node['publish_url']?>" class="structure_publish">
 <?php if ($node['published']): ?>
 <img src="ressource/image/icon/lamp.png" title="<?php echo  $node['publish_title'];?>">
 <?php else: ?>
@@ -263,116 +247,9 @@ $i++;
 <img src="ressource/image/icon/small/go-bottom.png">
 </a>
 <?php endif; ?>
-</td>
-
-<?php /******************* Context menu *******************/ ?>
-
-<div class="context_menu" id="context_menu_node_<?php echo $node['id']?>" style="display:none">
-
-<?php /******************* Actions *******************/ ?>
-<div class="context_menu_title"><?php echo translate('actions');?></div>
-
-<?php if (isset($node['edit_url'])): ?>
-<div class="context_menu_item">
-<a href="<?php echo $node['edit_url']?>" onclick="custompopup('<?php echo $node['edit_url']?>', 'editor' , 80);return false">
-<img src="ressource/image/icon/small/accessories-text-editor.png" border="0" alt="<?php echo translate('node_edit'); ?>">
-<?php echo translate('edit'); ?>
-</a>
-</div>
-<?php endif; ?>
-
-<?php if (isset($node['delete_url'])): ?>
-<div class="context_menu_item">
-<a href="<?php echo $node['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_node_delete') ?>', '<?php echo $node['delete_url']?>'); return false;">
-<img src="ressource/image/icon/small/user-trash-full.png" title="<?php echo translate('delete'); ?>">
-<?php echo translate('delete')?>
-</a>
-</div>
-<?php endif; ?>
-
-
-<?php if (isset($node['preview_url'])): ?>
-<div class="context_menu_item">
-<a href="<?php echo $node['preview_url']?>" target="thinkedit_preview">
-<?php echo  $node['preview_title'];?>
-</a>
-</div>
-<?php endif; ?>
-
-
-
-<hr/>
-
-<?php /******************* Clipboard *******************/ ?>
-
-<div class="context_menu_title"><?php echo translate('clipboard');?></div>
-<div class="context_menu_item">
-<a href="<?php echo $node['clipboard']['cut_link']?>" target="status" onclick="hide_menus()">
-<?php echo translate('cut');?>
-</a>
-</div>
-
-<div class="context_menu_item">
-<a href="<?php echo $node['clipboard']['copy_link']?>" target="status" onclick="hide_menus()">
-<?php echo translate('copy');?>
-</a>
-</div>
-
-<!--
-<div class="context_menu_item">
-<a href="clipboard.php" target="status"><?php echo translate('copy');?></a>
-</div>
--->
-
-<div class="context_menu_item">
-<a href="<?php echo $node['clipboard']['paste_link']?>" target="status" onclick="hide_menus()">
-<?php echo translate('paste');?>
-</a>
-</div>
-
-
-<?php if (isset($node['locale'])) : ?>
-
-<hr/>
-
-<?php /******************* Translate *******************/ ?>
-
-<div class="context_menu_title"><?php echo translate('translate');?></div>
-<?php foreach ($node['locale'] as $locale_info): ?>
-<div class="context_menu_item">
-<a href="<?php echo $locale_info['edit_url']?>"><?php echo $locale_info['locale']?></a>
-</div>
-<?php endforeach; ?>
-<?php endif; ?>
-
-
-</div>
-
-
-
-
-<!--
-<?php /******************* Add subitems *******************/ ?>
-<div class="context_menu" id="add_menu_node_<?php echo $node['id']?>" style="display:none">
-
-<div class="context_menu_title"><?php echo translate('node_add_new');?></div>
-
-<?php if (isset($node['allowed_items'])) : ?>
-<?php foreach ($node['allowed_items'] as $item): ?>
-<div class="context_menu_item">
-<a href="<?php echo $item['action'] ?>">
-<?php echo ucfirst($item['title']) ?>
-</a>
-</div>
-<?php endforeach; ?>
-<?php else: ?>
-<?php echo translate('cannot_add_here');?>
-<?php endif; ?>
-</div>
--->
-
 
 </td>
+
 
 </tr>
 <?php endforeach; ?>

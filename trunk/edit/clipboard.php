@@ -15,6 +15,9 @@ Simple translated messages in clear text, to be shown inside an iframe (status b
 
 */
 
+die('deprecated');
+
+
 include_once('common.inc.php');
 include_once('../class/clipboard.class.php');
 
