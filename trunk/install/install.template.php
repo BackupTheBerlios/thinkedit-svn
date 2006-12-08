@@ -1,95 +1,45 @@
 <html>
 <head>
 <link type="text/css" href="../edit/ressource/css/style.css" rel="stylesheet" media="screen"/>
-<style>
+<link type="text/css" href="install.css" rel="stylesheet" media="screen"/>
 
-body
-{
-		font-family: verdana, arial, helvetica, sans-serif;
-		font-size : 10px;
-		background-color: #F6F6F6; 
-}
-
-.content a
-{
-		text-decoration: underline;
-		font-weight: bold;
-}
-
-h1, h2
-{
-		font-family: verdana, arial, sans;
-		font-weight: normal;
-}
-
-h1
-{
-		font-size: 2em;
-}
-
-h2
-{
-		font-size: 1em;
-		font-weight: bold;
-		
-}
-
-.content
-{
-	width: 60em;
-	padding: 15px;
-}
-
-.title
-{
-	padding: 15px;
-	background-color: #aaa;
-}
-
-</style>
 </head>
 <body>
 <div class="thinkedit">
 
-<div class="header panel">
+<div class="install_header">
 <a href="index.php"><img src="../edit/ressource/image/general/thinkedit_logo.gif" alt="" border="0"/></a>	
 </div>
 
-<div class="title panel">
-<h1>
+<div class="install_main_title">
 Thinkedit installation wizard
-</h1>
 </div>
+
+
+<?php if (isset($out['title'])): ?>
+<div class="install_title"><?php echo $out['title']?></div>
+<?php endif; ?>
 
 
 <?php if (isset($out['info'])): ?>
-<div class="info panel"><?php echo $out['info']?></div>
-<?php endif; ?>
-
-
-
-<div class="content panel">
-
-<?php if (isset($out['title'])): ?>
-<h2><?php echo $out['title']?></h2>
+<div class="install_info"><?php echo $out['info']?></div>
 <?php endif; ?>
 
 <?php if (isset($out['help'])): ?>
-<p><?php echo $out['help']?></p>
+<div class="install_help"><?php echo $out['help']?></div>
 <?php endif; ?>
 
 <?php if (isset($out['content'])): ?>
-<p><?php echo $out['content']?></p>
+<div class="install_content"><?php echo $out['content']?></div>
 <?php else: ?>
-<a href="">Go to next step</a>
+<div class="install_next_step_button"><a href="">Go to next step</a></div>
 <?php endif; ?>
+
+
+
+<div class="install_footer">
+<a href="http://www.thinkedit.org">&copy; THINKEDIT.ORG open source CMS</a>
 </div>
-
-
-<div class="footer">
-			<a href="http://www.thinkedit.org">&copy; THINKEDIT.ORG open source CMS</a>
-</div>
-
 
 </div>
 

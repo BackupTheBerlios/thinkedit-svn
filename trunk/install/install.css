@@ -1,0 +1,53 @@
+body
+{
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size : 10px;
+	background-color: #F6F6F6; 
+}
+
+a
+{
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.install_header
+{
+	background-color: #DFDDDD; 
+	margin: 0px;
+	padding: 12px;
+	border-style: solid;
+	border-width: 1px; 
+	border-color: #FFFFFF #666666 #666666 #E9E9E9;
+}
+
+.install_main_title
+{
+	font-size: 2em;
+}
+
+.install_title
+{
+	font-size: 1em;
+	font-weight: bold;
+	padding: 15px;
+	background-color: #aaa;
+	
+}
+
+.install_content
+{
+	width: 60em;
+	padding: 15px;
+}
+
+.install_info
+{
+	
+}
+
+
+.install_next_step_button
+{
+}
+
