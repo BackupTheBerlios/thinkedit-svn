@@ -1,64 +1,41 @@
-/*
+// init of the drop down menu hover effet
+
+previous_menu = false;
+
 $(document).ready(function()
 {
-	// $(".node").hide("slow");
+	$(".menu").click(function(event)
+	{
+		//$(this).next('.menu').slideDown('fast');
+		if (previous_menu)
+		{
+			previous_menu.hide();
+		}
+		previous_menu = $('.menu_items', this).show();
+		event.stopPropagation();
+	});
 	
-	//$(".node").click(;
+	$(document).click(function()
+	{
+		if (previous_menu)
+		{
+			previous_menu.hide();
+		}
+	});
+	
+	
+	/*
+	$(".menu").hover(function (){}, function()
+	{
+		//$(this).next('.menu').slideDown('fast');
+		alert('out of menu');
+		setTimeout(function()
+		{
+			$('.menu_items', this).hide();
+		}, 1000);
+	});
+	*/
 	
 });
-*/
-
-$(document).ready(init_nodes);
-
-function init_nodes()
-{
-	//$(".node").hide("slow");
-	
-	$("#loader").hide();
-	
-	$("#loader").ajaxStart(function(){
-		$(this).show();
-	});
-	
-	$("#loader").ajaxStop(function(){
-		$(this).hide();
-	});
-	
-	
-	$(".node").click(function()
-	{
-		$(this).append("<div class=\"temp\"></div>");
-		$(".temp", this).load("tree.php?id=" + $(this).id());
-		init_nodes();
-		//$(this).append("test").load("tree.php");
-	});
-	
-	
-	//node_click_handler();
-	//load_node(1)
-	
-}
-
-function load_node(node_id)
-{
-	$('#' + node_id).append("<div class=\"temp\"></div>");
-	$('#' + node_id + ".temp").load("tree.php?id=" + node_id);
-	//node_click_handler();
-}
-
-
-function node_click_handler()
-{
-	$(".node").unclick();
-	$(".node").click(function()
-	{
-		load_node($(this).id());
-	});
-}
-
-
-
-
-
 
 

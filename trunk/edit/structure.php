@@ -13,6 +13,9 @@ INPUT :
 
 */
 
+
+/************************* INIT ****************************/
+
 include_once('common.inc.php');
 
 //check_user
@@ -35,14 +38,10 @@ if ($url->get('node_id'))
 {
 		$node_id = $url->get('node_id');
 		$current_node->setId($node_id);
-		
 		if (!$current_node->load())
 		{
 				trigger_error('structure : node not found', E_USER_WARNING);
 		}
-		
-		$we_are_root = false;
-		$parent_node = $current_node->getParent();
 		
 }
 else // we are in root
@@ -52,42 +51,16 @@ else // we are in root
 		{
 				die('No root node found : go to installer and create your first node');
 		}
-		$we_are_root = true;
 }
-
-// we define parent node in case of
-if (!isset($parent_node) || !$parent_node)
-{
-		$parent_node = $current_node;
-		$url = $thinkedit->newUrl();
-		/*$url->set('node_id', $parent_node->getId());*/
-		$out['go_up_url'] = $url->render();
-}
-else
-{
-		$url = $thinkedit->newUrl();
-		$url->set('node_id', $parent_node->getId());
-		$out['go_up_url'] = $url->render();
-}
-
-
 
 
 debug($current_node, 'Current node init');
 
 
+/************************* ACTIONS ****************************/
+
 
 /********************* Edit action **********************/
-
-// handle editing node thus we need to go to the parent
-if ($url->get('mode') == 'edit_node')
-{
-		if ($parent_node)
-		{
-				$current_node = $parent_node;
-		}
-}
-
 
 
 // handle adding new node from new record
@@ -97,12 +70,6 @@ if ($url->get('mode') == 'new_node')
 		// done ??
 		$url = $thinkedit->newUrl();
 		$object = $url->getObject('object_');
-		
-		/*
-		echo $current_node->getId();
-		echo '<hr>';
-		echo $current_node->debug();
-		*/
 		
 		$current_node->add($object);
 		$url->keep('node_id');
@@ -127,15 +94,8 @@ if ($url->get('action') == 'new_node')
 		$object->save();
 		$current_node->add($object);
 		$out['info'] = translate('node_added_sucessfully');
-		/*
-		$url->keep('node_id');
-		//$url->debug();
-		$url->redirect();
-		*/
-		
 		
 		$url->keep('node_id');
-		//$url->debug();
 		$url->redirect();
 }
 
@@ -148,20 +108,15 @@ if ($url->get('action') == 'delete')
 		
 		if ($node_to_delete->getParent())
 		{
-				$current_node = $node_to_delete->getParent();
 				if ($node_to_delete->delete())
 				{
-						$url->set('node_id', $current_node->getId());
 						$url->set('info', 'node_deleted_successfully');
 						$url->redirect();
-						//$out['info'] = translate('node_deleted_successfully');
 				}
 				else
 				{
-						$url->keep('node_id');
 						$url->set('error', 'node_not_deleted');
 						$url->redirect();
-						// $out['error'] = translate('node_not_deleted');
 				}
 		}
 		else
@@ -178,13 +133,11 @@ if ($url->get('action') == 'publish')
 		if ($current_node->publish())
 		{
 				
-				$url->set('node_id', $parent_node->getId());
 				$url->set('info', 'node_published_successfully');
 				$url->redirect();
 		}
 		else
 		{
-				$url->set('node_id', $parent_node->getId());
 				$url->set('error', 'node_not_published');
 				$url->redirect();
 		}
@@ -197,13 +150,11 @@ if ($url->get('action') == 'unpublish')
 		if ($current_node->unPublish())
 		{
 				
-				$url->set('node_id', $parent_node->getId());
 				$url->set('info', 'node_unpublished_successfully');
 				$url->redirect();
 		}
 		else
 		{
-				$url->set('node_id', $parent_node->getId());
 				$url->set('error', 'node_not_unpublished');
 				$url->redirect();
 		}
@@ -218,23 +169,15 @@ if ($url->get('action') == 'moveup')
 		
 		if ($current_node->moveUp())
 		{
-				$url->set('node_id', $parent_node->getId());
 				$url->set('info', 'node_moved_successfully');
 				$url->redirect();
 				//$out['info'] = translate('node_moved_successfully');
 		}
 		else
 		{
-				$url->set('node_id', $parent_node->getId());
 				$url->set('error', 'node_not_moved');
 				$url->redirect();
 				//$out['error'] = translate('node_not_moved');
-		}
-		
-		// use parent node as current node, so we'll still show the right node bellow
-		if (isset($parent_node))
-		{
-				$current_node = $parent_node;
 		}
 }
 
@@ -243,21 +186,13 @@ if ($url->get('action') == 'movedown')
 {
 		if ($current_node->moveDown())
 		{
-				$url->set('node_id', $parent_node->getId());
 				$url->set('info', 'node_moved_successfully');
 				$url->redirect();
 		}
 		else
 		{
-				$url->set('node_id', $parent_node->getId());
 				$url->set('error', 'node_not_moved');
 				$url->redirect();
-		}
-		
-		// use parent node as current node, so we'll still show the right node bellow
-		if ($parent_node)
-		{
-				$current_node = $parent_node;
 		}
 }
 
@@ -266,21 +201,13 @@ if ($url->get('action') == 'movetop')
 {
 		if ($current_node->moveTop())
 		{
-				$url->set('node_id', $parent_node->getId());
 				$url->set('info', 'node_moved_successfully');
 				$url->redirect();
 		}
 		else
 		{
-				$url->set('node_id', $parent_node->getId());
 				$url->set('error', 'node_not_moved');
 				$url->redirect();
-		}
-		
-		// use parent node as current node, so we'll still show the right node bellow
-		if ($parent_node)
-		{
-				$current_node = $parent_node;
 		}
 }
 
@@ -288,23 +215,70 @@ if ($url->get('action') == 'movebottom')
 {
 		if ($current_node->moveBottom())
 		{
-				$url->set('node_id', $parent_node->getId());
 				$url->set('info', 'node_moved_successfully');
 				$url->redirect();
 		}
 		else
 		{
-				$url->set('node_id', $parent_node->getId());
 				$url->set('error', 'node_not_moved');
 				$url->redirect();
 		}
-		
-		// use parent node as current node, so we'll still shwo the right node bellow
-		if ($parent_node)
-		{
-				$current_node = $parent_node;
-		}
 }
+
+
+/********************* Clipboard action **********************/
+
+include_once('../class/clipboard.class.php');
+$clipboard = new clipboard();
+
+if ($url->get('action') == 'cut')
+{
+	if ($clipboard->cut($current_node))
+	{
+		$out['info'] = translate('node_cut_ok');
+	}
+	
+	else
+	{
+		$out['info'] = translate('node_cut_failed');
+	}
+	
+}
+
+
+if ($url->get('action') == 'copy')
+{
+	if ($clipboard->copy($current_node))
+	{
+		$out['info'] = translate('node_copy_ok');
+	}
+	
+	else
+	{
+		$out['info'] = translate('node_copy_failed');
+	}
+	
+}
+
+
+if ($url->get('action') == 'paste')
+{
+	if ($clipboard->paste($current_node))
+	{
+		$out['info'] = translate('node_paste_ok');
+	}
+	
+	else
+	{
+		$out['info'] = translate('node_paste_failed');
+	}
+	
+}
+
+
+
+
+
 
 
 /********************** Locale *********************/
@@ -314,53 +288,6 @@ $out['locales'] = $thinkedit->configuration->getLocaleList();
 
 
 /********************** LIST *********************/
-
-/*
-// append the parents to the list :
-if ($current_node->hasParent())
-{
-		$parents = $current_node->getParentUntilRoot();
-		$parents = array_reverse($parents);
-		
-		foreach ($parents as $parent)
-		{
-				$nodes[] = $parent;
-		}
-		
-}
-*/
-
-/*
-
-// build a list of nodes within the current node :
-
-// if we are in root
-//debug($current_node, 'Current node before list');
-if ($we_are_root)
-{
-		
-		// root is now allways shown
-		$nodes[] = $current_node;
-}
-
-//else we are not in root, show childrens 
-else
-{
-		if ($current_node->hasChildren())
-		{
-				$children = $current_node->getChildren();
-				if (is_array($children))
-				{
-						foreach ($children as $child)
-						{
-								$nodes[] = $child;
-						}
-				}
-				//$nodes[] = $current_node->getChildren();
-		}
-}
-*/
-
 
 // new approach using open and close actions to nodes : 
 $url = $thinkedit->newUrl();
@@ -411,7 +338,6 @@ $root->loadRootNode();
 
 $nodes = $root->getAllChildren($opened_nodes);
 
-
 if (isset($nodes) && is_array($nodes))
 {
 		$i = 0;
@@ -430,7 +356,6 @@ if (isset($nodes) && is_array($nodes))
 				$node_info['id'] = $node_item->getId();
 				$node_info['title'] = te_short($node_item->getTitle(), 60); // . ' (' . $node_item->getOrder() . ')';
 				$node_info['full_title'] = $node_item->getTitle();
-				//$node_info['title'] .= $node_item->getLevel(); // . ' (' . $node_item->getOrder() . ')';
 				$node_info['icon'] = $content->getIcon();
 				$node_info['url'] = $url->render();
 				$node_info['level'] = $node_item->getLevel();
@@ -503,7 +428,6 @@ if (isset($nodes) && is_array($nodes))
 						$node_info['publish_url'] = $url->render();
 						$node_info['publish_title'] = translate('publish');
 						$node_info['published'] = 0;
-						
 				}
 				
 				
@@ -519,28 +443,6 @@ if (isset($nodes) && is_array($nodes))
 				{
 						$node_info['is_current'] = true;
 				}
-				
-				/********* Allowed items *******/
-				/*
-				$allowed_items = $node_item->getAllowedItems();
-				if (is_array($allowed_items))
-				{
-						foreach ($allowed_items as $allowed_item)
-						{
-								if ($allowed_item['class'] == 'record')
-								{
-										$table = $thinkedit->newTable($allowed_item['type']);
-										$item['title'] = $table->getTitle();
-										$url = new url();
-										$url->set('mode', 'new_node');
-										$url->set('node_id', $node_item->getId());
-										$url->addObject($table);
-										$item['action'] = $url->render('edit.php');
-										$node_info['allowed_items'][] = $item;
-								}
-						}
-				}
-				*/
 				
 				/************************ Allowed items ************************/
 				
@@ -577,26 +479,23 @@ if (isset($nodes) && is_array($nodes))
 				}
 				
 				/******* clipboard links ****/
-				/*
-				include_once('../class/clipboard.class.php');
-				$clipboard = new clipboard();
-				*/
+				
 				
 				$url = new url();
-				$url->set('source_node', $node_item->getId());
+				$url->set('node_id', $node_item->getId());
 				$url->set('action', 'cut');
-				$node_info['clipboard']['cut_link'] = $url->render('clipboard.php');
+				$node_info['clipboard']['cut_link'] = $url->render();
 				
 				$url = new url();
-				$url->set('source_node', $node_item->getId());
+				$url->set('node_id', $node_item->getId());
 				$url->set('action', 'copy');
-				$node_info['clipboard']['copy_link'] = $url->render('clipboard.php');
+				$node_info['clipboard']['copy_link'] = $url->render();
 				
 				
 				$url = new url();
-				$url->set('target_node', $node_item->getId());
+				$url->set('node_id', $node_item->getId());
 				$url->set('action', 'paste');
-				$node_info['clipboard']['paste_link'] = $url->render('clipboard.php');
+				$node_info['clipboard']['paste_link'] = $url->render();
 				
 				
 				/******* locales links ****/
@@ -640,11 +539,6 @@ if (isset($nodes) && is_array($nodes))
 		}
 		
 }
-/*
-echo '<pre> after list';
-print_r($db_cache);
-echo '</pre>';
-*/
 
 // build a breadcrumb of parent items
 // add breadcrumb
@@ -653,103 +547,24 @@ $out['breadcrumb'][1]['title'] = translate('structure_title');
 $out['breadcrumb'][1]['url'] = $url->render();
 
 
-
-$url = new url();
-$out['structure_breadcrumb'][0]['title'] = translate('root');
-$out['structure_breadcrumb'][0]['url'] = $url->render();
-
-
-
-/*
-$i = 1;
-if ($current_node->hasParent())
-{
-		$parents = $current_node->getParentUntilRoot();
-		$parents = array_reverse($parents);
-		
-		foreach ($parents as $parent)
-		{
-				$content = $parent->getContent();
-				$content->load();
-				
-				$out['structure_breadcrumb'][$i]['title'] = $content->getTitle();
-				
-				$url = new url();
-				$url->set('node_id', $parent->getId());
-				//$url->addObject($parent, 'current_');
-				$out['structure_breadcrumb'][$i]['url'] = $url->render();
-				$i++;
-		}
-}
-
-
-// add current
-$content = $current_node->getContent();
-$content->load();
-$out['structure_breadcrumb'][$i]['title'] = $content->getTitle();
-$url = new url();
-$url->set('node_id', $current_node->getId());
-//$url->addObject($current_node, 'current_');
-$out['structure_breadcrumb'][$i]['url'] = $url->render();
-$out['structure_breadcrumb'][$i]['current'] = true;
-*/
-
-
-/************************ Allowed items ************************/
-/*
-$allowed_items = $current_node->getAllowedItems();
-if (is_array($allowed_items))
-{
-		foreach ($allowed_items as $allowed_item)
-		{
-				if ($allowed_item['class'] == 'record')
-				{
-						$table = $thinkedit->newTable($allowed_item['type']);
-						$item['title'] = $table->getTitle();
-						$item['icon'] = $table->getIcon();
-						$url = new url();
-						$url->set('mode', 'new_node');
-						$url->set('node_id', $current_node->getId());
-						$url->addObject($table);
-						$item['action'] = $url->render('edit.php');
-						
-						$url = new url();
-						$url->set('action', 'new_node');
-						$url->set('node_id', $current_node->getId());
-						$tmp_record = $thinkedit->newRecord($table->getId()); 
-						$url->addObject($tmp_record, 'object_');
-						$item['direct_add_action'] = $url->render();
-						
-						
-						$out['allowed_items'][] = $item;
-				}
-		}
-		
-}
-*/
-
-/******************** Global paste ****************************/
-/*
-$url = new url();
-$url->set('source_node', $current_node->getId());
-$url->set('action', 'cut');
-$out['clipboard']['cut_link'] = $url->render('clipboard.php');
-*/
-if ($session->get('clipboard_source_node'))
-{
-		$url = new url();
-		$url->set('target_node', $current_node->getId());
-		$url->set('action', 'paste');
-		$out['clipboard']['paste_link'] = $url->render('clipboard.php');
-}
-
-
+/************************* TEMPLATES / RENDER TO XML ****************************/
 
 debug($out, 'OUT');
 
+if ($url->get('output') == 'xml')
+{
+	header("Content-Type: text/xml");
+	echo (array_to_xml($out));
+}
+else
+{
+	// include template :
+	include('header.template.php');
+	include('structure.template.php');
+	include('footer.template.php');
+}
 
-// include template :
-include('header.template.php');
-include('structure.template.php');
-include('footer.template.php');
+
+
+
 ?>
