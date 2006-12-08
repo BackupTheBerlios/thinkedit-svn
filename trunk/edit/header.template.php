@@ -15,11 +15,6 @@
 		</title>
 
     <link type="text/css" href="<?php echo ROOT_URL?>/edit/ressource/css/style.css" rel="stylesheet" media="screen"/>
-		
-	<!--
-	<script type="text/javascript" src="<?php echo ROOT_URL?>/lib/prototype/prototype.js"></script>
-	-->
-	
    	<?php echo te_jquery(); ?>	
 
 	<!--[if lt IE 7.]>

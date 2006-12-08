@@ -70,12 +70,6 @@ Thinkedit installation wizard
 
 <div class="content panel">
 
-
-
-
-
-
-
 <?php if (isset($out['title'])): ?>
 <h2><?php echo $out['title']?></h2>
 <?php endif; ?>
