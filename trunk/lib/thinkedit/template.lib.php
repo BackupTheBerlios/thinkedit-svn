@@ -110,14 +110,24 @@ function te_design_path()
 }
 
 
-function te_link($object)
+/*
+Returns a link to the passed object. If absolute is set to true, you will have an absolute link
+*/
+function te_link($object, $absolute = false)
 {
 	global $thinkedit;
 	$url = $thinkedit->newUrl();
 	if ($object->getType() == 'node')
 	{
 		$url->set('node_id', $object->getId());
-		return $url->render();
+		if ($absolute)
+		{
+			return $url->render(ROOT_URL . '/index.php');
+		}
+		else
+		{
+			return $url->render();
+		}
 	}
 	elseif ($object->getClass() == 'filesystem')
 	{

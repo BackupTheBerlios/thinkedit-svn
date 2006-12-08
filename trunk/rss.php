@@ -55,7 +55,7 @@ if ($results)
 				
 				echo '<item>'. "\n";
 				echo '<title>' . ' <![CDATA[' . "\n" . $node->getTitle() . "\n" . ']]>' . '</title>'. "\n";
-				echo '<link>' . ' <![CDATA[' . "\n" . 'http://' . $_SERVER["SERVER_NAME"] . te_link($node) . "\n" . ']]>' . '</link>'. "\n";
+				echo '<link>' . ' <![CDATA[' . "\n" . 'http://' . $_SERVER["SERVER_NAME"] . te_link($node, true) . "\n" . ']]>' . '</link>'. "\n";
 				
 				$content = $node->getContent();
 				$content->load();
