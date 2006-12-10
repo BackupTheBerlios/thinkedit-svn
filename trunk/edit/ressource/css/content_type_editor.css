@@ -1,0 +1,46 @@
+h1
+{
+	font-size: 2em;
+}
+
+h2
+{
+	font-size: 1.5em;
+}
+
+h3
+{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+
+h1, h2, h3
+{
+	margin-bottom: 10px;
+}
+
+.te_field_title
+{
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.te_field
+{
+	margin-bottom: 20px;
+}
+
+.content_type_editor
+{
+	padding: 10px;
+}
+
+.content_type_field
+{
+	padding: 20px;
+	margin-bottom: 20px;
+	border: 1px solid gray;
+	background-color: #ffffcc;
+}
+
