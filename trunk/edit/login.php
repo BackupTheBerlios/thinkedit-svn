@@ -115,8 +115,8 @@ $out['banner_needed'] = false;
 
 // no user or password in the request, we need to display a login page, which is done by default anyway
 
-include('header.template.php');
+//include('header.template.php');
 include('login.template.php');
-include('footer.template.php');
+//include('footer.template.php');
 
 ?>

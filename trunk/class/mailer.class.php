@@ -1,5 +1,5 @@
 <?php
-require_once ROOT . '/lib/phpmailer/class.phpmailer.php';
+
 
 /**
 * Very thin wrapper around phpmailer http://phpmailer.sourceforge.net/extending.html
@@ -7,39 +7,56 @@ require_once ROOT . '/lib/phpmailer/class.phpmailer.php';
 * todo : add email validation
 * todo : add throttling ?
 */
-class mailer extends PHPMailer
+class mailer
 {
+	function mailer()
+	{
+		require_once ROOT . '/lib/phpmailer/class.phpmailer.php';
+		$this->mailer = new phpmailer();
+	}
+	
 		
-		function setFrom($from)
+		function setFrom($email, $name = false)
 		{
-				$this->From = $from;
+				$this->mailer->From = $email;
+				if ($name)
+				{
+					$this->mailer->FromName = $name;
+				}
+			
 		}
 		
 		
 		function setTo($to)
 		{
-				$this->AddAddress($to);
+			trigger_error('deprecated');	
+			$this->mailer->AddAddress($to);
+		}
+		
+		function addAddress($email, $name = false)
+		{
+			$this->mailer->AddAddress($email, $name);
 		}
 		
 		function setSubject($subject)
 		{
-				$this->Subject = $subject;
+				$this->mailer->Subject = $subject;
 		}
 		
 		function setBody($body)
 		{
-				$this->Body = $body;
+				$this->mailer->Body = $body;
 		}
 		
 		function isHtml($value)
 		{
-				return parent::IsHTML($value);
+				return $this->mailer->IsHTML($value);
 		}
 		
 		function send()
 		{
-				$this->CharSet = 'utf-8';
-				return parent::Send();
+				$this->mailer->CharSet = 'utf-8';
+				return $this->mailer->Send();
 		}
 }
 

@@ -1,5 +1,11 @@
 <?php
 /**
+ * ----------------------------------------------------------------------
+ * Slightly modified for Thinkedit. This class works with both php 4 and 5  
+ * This class doesn't trigger_error E_USER_ERROR to avoid stoping a script 
+ * when akismet is down for instance or when there is a network error. 
+ * ----------------------------------------------------------------------
+ *
  * Akismet anti-comment spam service
  *
  * The class in this package allows use of the {@link http://akismet.com Akismet} anti-comment spam service in any PHP5 application.
@@ -106,7 +112,7 @@ class Akismet {
 
 		if($response[1] != 'valid') {
 			// Whoops, no it's not.  Throw an exception as we can't proceed without a valid API key.
-			trigger_error('Invalid API key.  Please obtain one from http://wordpress.com/api-keys/', E_USER_ERROR);
+			trigger_error('Invalid API key.  Please obtain one from http://wordpress.com/api-keys/', E_USER_WARNING);
 		}
 	}
 
@@ -318,7 +324,7 @@ class SocketWriteRead {
 		$fs = fsockopen($this->host, $this->port, $this->errorNumber, $this->errorString, 3);
 
 		if($this->errorNumber != 0) {
-			trigger_error('Error connecting to host: ' . $this->host . ' Error number: ' . $this->errorNumber . ' Error message: ' . $this->errorString, E_USER_ERROR);
+			trigger_error('Error connecting to host: ' . $this->host . ' Error number: ' . $this->errorNumber . ' Error message: ' . $this->errorString, E_USER_WARNING);
 		}
 
 		if($fs !== false) {
