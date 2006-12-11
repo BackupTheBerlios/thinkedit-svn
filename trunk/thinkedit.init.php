@@ -53,44 +53,6 @@ if (!headers_sent())
 
 
 /******************* Disable magic quotes ***************/
-// from http://fr.php.net/manual/en/security.magicquotes.disabling.php
-/*
-if (get_magic_quotes_gpc()) 
-{
-	//echo '<pre>';
-	//echo '<h1>Before conversion</h1>';
-	//print_r($_REQUEST);
-	//echo '</pre>';
-	
-	function stripslashes_deep($value)
-	{
-		if (is_array($value))
-		{
-			$value = array_map('stripslashes_deep', $value);
-		}
-		else
-		{
-			$value = stripslashes($value);
-		}
-		
-		return $value;
-	}
-	
-	$_POST = array_map('stripslashes_deep', $_POST);
-	$_GET = array_map('stripslashes_deep', $_GET);
-	$_COOKIE = array_map('stripslashes_deep', $_COOKIE);
-	$_REQUEST = array_map('stripslashes_deep', $_REQUEST);
-	// todo check if $_SESSION must be changed as well. Php doc is unclear on this subject
-	
-	
-	//echo '<pre>';
-	//echo '<h1>After conversion</h1>';
-	//print_r($_REQUEST);
-	//echo '</pre>';
-	
-}
-*/
-
 // now from : http://talks.php.net/show/php-best-practices/26  :
 
 if (get_magic_quotes_gpc()) 
@@ -158,12 +120,15 @@ define ('ROOT', dirname(__FILE__));
 
 /*********************** Required includes ******************/
 require_once dirname(__FILE__) . '/class/thinkedit.class.php';
-
+require_once dirname(__FILE__) . '/class/event.class.php';
 
 
 /*********************** Thinkedit object ******************/
 $thinkedit = new thinkedit();
 
+/*********************** Event manager object ******************/
+
+$thinkedit->event = new event();
 
 
 /*********************** Configuration object ******************/
@@ -247,4 +212,27 @@ function te_shutdown()
 	// echo te_admin_toolbox();
 }
 
-?>
+
+
+/***************** Include (load) plugins init.php files ****************/
+$plugin_folder = ROOT . '/plugin';
+
+// test if folder is found
+if (file_exists($plugin_folder))
+{
+	$ressource = opendir($plugin_folder);
+	// find files in this folder
+	while (($file = readdir($ressource)) !== false) 
+	{
+		$init_file = $plugin_folder . '/' . $file . '/init.php';
+		if (file_exists($init_file))
+		{
+			// this smells a bit like a security problem
+			// todo check if we are secure with this : 
+			include $init_file;
+		}
+	}
+}
+
+	
+	?>

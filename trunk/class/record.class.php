@@ -382,7 +382,10 @@ class record
 		*/
 		function save()
 		{
-				// build an array of primary fields
+			global $thinkedit;
+			$thinkedit->event->trigger('record_before_save', $this);
+			
+			// build an array of primary fields
 				foreach ($this->field as $field)
 				{
 						if ($field->isPrimary())
@@ -400,7 +403,8 @@ class record
 						// if I find the same record in the DB based on the keys, I update
 						if ($this->find($fields))
 						{
-								return $this->update();
+								
+							return $this->update();
 						}
 						else // else I insert
 						{
@@ -454,7 +458,8 @@ class record
 						debug($sql, 'record::update()');
 						if ($this->db->query($sql))
 						{
-								return true;
+							$thinkedit->event->trigger('record_after_update', $this);	
+							return true;
 						}
 						else
 						{
@@ -515,6 +520,9 @@ class record
 				{
 						// when finished, set the id of the field to the new autoinserted id (mysql at least)
 						$this->field[$this->getIdField()]->set($this->db->insertID());
+						
+						global $thinkedit;
+						$thinkedit->event->trigger('record_after_insert', $this);
 						return true;
 				}
 				else
@@ -525,7 +533,7 @@ class record
 		}
 		
 		/**
-		* Will delete this record form the DB
+		* Will delete this record from the DB
 		* 
 		* 
 		* 
@@ -534,6 +542,7 @@ class record
 		{
 				$this->is_loaded = false;
 				global $thinkedit;
+				$thinkedit->event->trigger('record_before_delete', $this);
 				$user = $thinkedit->getUser();
 				if ($user->hasPermission('delete', $this))
 				{
@@ -558,7 +567,8 @@ class record
 								
 								if ($results && count($results) == 1)
 								{
-										return true;
+									$thinkedit->event->trigger('record_after_delete', $this);	
+									return true;
 								}
 								else
 								{

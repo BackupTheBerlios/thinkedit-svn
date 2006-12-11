@@ -1,0 +1,9 @@
+Those files are not unit test, altough I'd like them to become real tests some day.
+
+They are meant to describe a use case for each Thinkedit class.
+
+Some of them are failled attempts, other are usefull documentations
+
+In all cases, DO NOT LEAVE THIS FOLDER ON A PUBLIC WEBSITE, 
+the files here do no security check most of the time, 
+and some perform destructive operations on the DB (most of the time they don't)

@@ -57,8 +57,10 @@ class event
 	*/
 	function trigger($event)
 	{
+		$this->triggered_events[] = $event;
+		
 		// see if there are any functions or class method registered for this $event
-		if (is_array($this->events[$event]))
+		if (isset($this->events[$event]) && is_array($this->events[$event]))
 		{
 			
 			// call each function/class method for this $event using args
@@ -77,8 +79,25 @@ class event
 		}
 		
 	}
-}
-
-
+	
+	
+	function debug()
+	{
+		if (is_array($this->triggered_events))
+		{
+			$out = '<h1>List of event encountered so far</h1>';
+			foreach($this->triggered_events as $event)
+			{
+				$out .= '<li>' . $event . '</li>';
+			}
+		}
+		else
+		{
+			$out = '<h1>No event encountered so far</h1>';
+		}
+		
+		return $out;
+	}
+	
 }
 ?>

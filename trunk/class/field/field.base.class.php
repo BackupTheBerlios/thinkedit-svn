@@ -70,7 +70,7 @@ class field
 	*/
 	function getFiltered()
 	{
-		trigger_error('deprecated also need to discuss api a bit more ;-) ');
+		//trigger_error('deprecated also need to discuss api a bit more ;-) ');
 		//trigger_error('field::getFiltered() : please subclass getFiltered() in your custom field class');
 		return $this->get();
 	}

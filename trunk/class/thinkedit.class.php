@@ -198,12 +198,14 @@ class thinkedit
 	Will parse all subfoders of the plugin folder to find config.php config files
 	They are merged with the main config file 
 	*/
-	function parsePhpPluginFolder($folder = "./plugin/")
+	function parsePhpPluginFolder($folder = '/plugin/')
 	{
 		
 		$complete_config = array();
 		require_once 'php_parser.class.php';
 		$parser = new php_parser();
+		
+		$folder = ROOT . $folder;
 		
 		// test if folder is found
 		if (file_exists($folder))

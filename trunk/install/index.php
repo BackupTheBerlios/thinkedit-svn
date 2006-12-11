@@ -30,7 +30,7 @@ Input :
 
 error_reporting(E_ALL ^ E_NOTICE ^ E_USER_NOTICE); 
 
-// init (note that init should work in all situations (even if db is down))
+// init (note that init should work in all situations (even if db is down or the Thinkedit not yet installed))
 require_once '../thinkedit.init.php';
 
 
@@ -44,7 +44,7 @@ $url = $thinkedit->newUrl();
 /***************************** General checkup *****************************/
 // check general php and server environment
 // if fatal problem, show info screen
-
+// todo warn user that register_globals on is a bad idea for security and stuff like that
 
 
 /***************************** DB config *****************************/

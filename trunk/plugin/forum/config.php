@@ -1,4 +1,6 @@
 <?php
+
+/*
 $data['content']['forum']['title']['fr']='Forum';
 $data['content']['forum']['help']['fr']='Forum qui contient les messages postés par les utilisateurs du site';
 $data['content']['forum']['icon']='comments.png';
@@ -54,5 +56,5 @@ $data['content']['discussion']['field']['body']['validation']['is_required']=1;
 $data['content']['discussion']['field']['posted']['type']='created';
 $data['content']['discussion']['field']['posted']['title']['fr']='Date de création';
 $data['content']['discussion']['field']['posted']['use']['participation']='false';
-
+*/
 ?>

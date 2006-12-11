@@ -4,10 +4,14 @@
 <?php
 echo te_admin_toolbox(); // todo
 // echo te_error_log(); // todo
+//echo $thinkedit->event->debug();
 ?>
+
 </div>
 
 </div>
+
+
 
 
 
