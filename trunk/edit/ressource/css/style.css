@@ -492,22 +492,21 @@ th.on
 	border-spacing: 0px;
 	width: 100%;
 	border-width: 0px;
-	border-style: solid;
-	border-color: #868686 #ffffff #ffffff #868686;
-	background-color: #ffffff;
 }
 
 
 .list td
 {
-	
 	border: 0px none;
 	border-right: 1px;
 	border-style: solid;
-	border-color: #999;
-	
+	border-color: #999;	
 }
 
+td.last_column
+{
+border-right: 0px;
+}
 
 .list tr.on
 {
@@ -792,6 +791,49 @@ color: black;
 	font-size : 10px;
 	font-weight : bold;
 }
+
+
+
+
+/*************************** Filemanager . **********************/
+.filemanager_panels
+{
+height: 100px;
+padding: 20px; 
+}
+
+.filemanager_panel
+{
+float: left;
+width: 225px;
+margin-right: 30px;
+}
+
+.filemanger_panels input
+{
+width: 150px;
+border: 1px solid red;
+}
+
+.preview
+{
+margin-left: 25px;
+margin-right: 25px;
+}
+
+.filename
+{
+margin-left: 20px;
+}
+
+.trash
+{
+margin-left: 10px;
+margin-right: 25px;
+}
+
+
+
 
 /*************************** Misc . **********************/
 

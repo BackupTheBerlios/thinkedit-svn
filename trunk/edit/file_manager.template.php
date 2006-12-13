@@ -1,4 +1,9 @@
 <div class="content">
+
+<div class="filemanager_panels">
+
+
+<div class="filemanager_panel">
 <?php if (isset($out['folders'])) : ?>
 
 <select size="1" onChange="jump('parent',this,0)">
@@ -22,6 +27,31 @@ $selected='';
 </select>
 
 <?php endif; ?>
+</div>
+
+
+<div class="filemanager_panel">
+<form action="<?php echo $out['upload_file_url']?>" enctype="multipart/form-data" method="post">
+<input type="file" class="filemanager_panels_input" name="uploaded_file" >
+<button type="submit"><?php echo translate('upload_file_button') ?></button>
+</form>
+</div>
+
+<div class="panel">
+<form action="<?php echo $out['add_folder_url']?>" method="post">
+<input type="text">
+<button type="submit"><?php echo translate('create_folder_button') ?></button>
+</form>
+</div>
+
+
+</div>
+
+
+
+
+<!-- ///////////// File listing ///////////// -->
+
 
 
 <?php if (isset($out['files'])) : ?>
@@ -52,14 +82,14 @@ $i++;
 <img class="preview" src="<?php echo $file['icon']; ?>">
 </td>
 
-<td>
-<?php echo  $file['filename'] ?>
+<td width="100%">
+<div class="filename"><?php echo  $file['filename'] ?></div>
 </td>
 
-<td>
+<td class="last_column">
 
 <a href="<?php echo $file['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_delete') ?>', '<?php echo $file['delete_url']?>'); return false;">
-<img src="ressource/image/icon/small/edit-delete.png" border="0" alt="<?php echo translate('file_delete'); ?>">
+<img class="trash" src="ressource/image/icon/small/edit-delete.png" border="0" alt="<?php echo translate('file_delete'); ?>">
 </a>
 </td>
 
@@ -69,27 +99,6 @@ $i++;
 <?php else: ?>
 <?php echo translate('folder_empty')?>
 <?php endif; ?>
-
-
-<div class="toolbar">
-
-<div class="panel">
-<form action="<?php echo $out['upload_file_url']?>" enctype="multipart/form-data" method="post">
-<input type="file" name="uploaded_file" class="action_button" size="30">
-<button class="action_button" type="submit"><?php echo translate('upload_file_button') ?></button>
-</form>
-</div>
-
-<div class="panel">
-<form action="<?php echo $out['add_folder_url']?>" method="post">
-<input type="text" name="folder_name"  size="30">
-<button class="action_button" type="submit"><?php echo translate('create_folder_button') ?></button>
-</form>
-</div>
-
-</div>
-
-
 
 
 </div>

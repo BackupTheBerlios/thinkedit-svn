@@ -77,6 +77,8 @@ if ($url->get('action') == 'upload_file')
 */
 
 
+
+
 // handle adding of a new folder 
 if ($url->get('action') == 'add_folder')
 {
@@ -234,6 +236,8 @@ $url = new url();
 $url->keep('path');
 $url->set('action', 'upload_file');
 $out['upload_file_url'] = $url->render();
+
+
 
 
 // add breadcrumb
