@@ -128,7 +128,16 @@ $data['toggle_errors']='Show errors';
 $data['api_node_info_done']='!api_node_info_done!';
 $data['api_node_not_found']='!api_node_not_found!';
 $data['manage']='Manage';
-$data['click_to_open_close']='!click_to_open_close!';
-$data['click_to_edit']='!click_to_edit!';
+$data['click_to_open_close']='Click to open / close';
+$data['click_to_edit']='Click to edit';
+$data['filemanager_save']='!filemanager_save!';
+$data['file_deleted']='!file_deleted!';
+$data['create_a_folder']='Create a folder';
+$data['add_a_file']='Add a file';
+$data['folder_added_successfully']='Folder added successfully';
+$data['file_added_failed']='File upload failed : maybe the file is too big';
+$data['file_delete_failled']='File deletion failled : is it still there ?';
+$data['browse_filemanager']='Browse filemanager';
+$data['create']='Create';
 
 ?>

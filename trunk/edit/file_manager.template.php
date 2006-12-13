@@ -7,7 +7,7 @@
 <?php if (isset($out['folders'])) : ?>
 
 <div class="filemanager_title">
-Parcourir la médiathèque:
+<?php echo translate('browse_filemanager'); ?>
 </div>
 <select class="filemanager_select" size="1" onChange="jump('parent',this,0)">
 <?php foreach ($out['folders'] as $folder): ?>
@@ -33,24 +33,24 @@ $selected='';
 
 <div class="filemanager_panel">
 <div class="filemanager_title">
-Créer un dossier:
+<?php echo translate('create_a_folder'); ?>
 </div>
 <form action="<?php echo $out['add_folder_url']?>" method="post">
-<input type="text" class="filemanager_folder">
+<input type="text" name="folder_name" class="filemanager_folder">
 <br>
-<button class="filemanager_action_button" type="submit"><?php echo translate('filemanager_save') ?></button>
+<button class="filemanager_action_button" type="submit"><?php echo translate('create') ?></button>
 </form>
 </div>
 
 <div class="filemanager_panel">
 <div class="filemanager_title">
-Ajouter un élément:
+<?php echo translate('add_a_file'); ?>
 </div>
 <div class="browse_form">
 <form action="<?php echo $out['upload_file_url']?>" enctype="multipart/form-data" method="post">
 <input type="file" name="uploaded_file" >
 </div>
-<button class="filemanager_action_button" type="submit"><?php echo translate('filemanager_save') ?></button>
+<button class="filemanager_action_button" type="submit"><?php echo translate('add') ?></button>
 </form>
 </div>
 

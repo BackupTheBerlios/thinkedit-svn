@@ -133,5 +133,13 @@ $data['toggle_errors']='Il y a des erreurs';
 $data['manage']='Gérer';
 $data['click_to_edit']='Cliquez pour modifier';
 $data['click_to_open_close']='Cliquez pour ouvrir / fermer';
+$data['file_deleted']='!file_deleted!';
+$data['create_a_folder']='Créez un dossier';
+$data['add_a_file']='Ajoutez un fichier';
+$data['folder_added_successfully']='Dossier créé avec succès';
+$data['file_added_failed']='L\'ajout du fichier n\'a pas résussi : peut être est-il trop lourd ?';
+$data['file_delete_failled']='L\'effacement du fichier n\'a pas réussi : est il toujours là ?';
+$data['browse_filemanager']='Parcourez la médiathèque';
+$data['create']='Créer';
 
 ?>
