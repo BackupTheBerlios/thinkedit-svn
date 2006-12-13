@@ -68,15 +68,7 @@ a
 
 .content
 {
-	/*
-	background-color: #E7E7E7;
-	border-style: solid; 
-	border-width: 1px;
-	border-color: #FFFFFF #CCCCCC #CCCCCC #E9E9E9;
-	margin-top: 5em;
-	margin-bottom: 6em;
-	*/
-
+	margin-bottom: 0px;
 }
 
 .title
@@ -492,6 +484,7 @@ th.on
 	border-spacing: 0px;
 	width: 100%;
 	border-width: 0px;
+	background-color: white;
 }
 
 
@@ -794,25 +787,88 @@ color: black;
 
 
 
-
 /*************************** Filemanager . **********************/
+
+
+.filemanager
+{
+}
+
+.filemanager_title
+{
+font-family: Times, "Times New Roman", serif;
+letter-spacing: 0.3px;
+font-size: 18px;
+color: #4B4343;
+margin-bottom: 10px;
+}
+
 .filemanager_panels
 {
-height: 100px;
-padding: 20px; 
+height: 70px;
+padding: 20px;
+background-color: #BFBEBE;
+border-top: solid 1px #EDECEC;
+border-right: solid 1px #7D7D7D;
+border-bottom: solid 1px #7D7D7D;
+border-left: solid 1px #EDECEC;
 }
 
 .filemanager_panel
 {
 float: left;
-width: 225px;
+width: 240px;
 margin-right: 30px;
 }
 
-.filemanger_panels input
+.filemanager_select
 {
-width: 150px;
-border: 1px solid red;
+border-top: 1px solid #564B47;
+border-right: 1px solid #FFFFFF;
+border-bottom: 1px solid #FFFFFF;
+border-left: 1px solid #564B47;
+color: #564B47;
+font-family: Verdana, Arial;
+font-size: 10px;
+width: 224px;
+padding: 1px;
+margin: 0px;
+}
+
+.filemanager_folder
+{
+border-top: 1px solid #564B47;
+border-right: 1px solid #FFFFFF;
+border-bottom: 1px solid #FFFFFF;
+border-left: 1px solid #564B47;
+color: #564B47;
+font-family: Verdana, Arial;
+font-size: 10px;
+width: 224px;
+padding: 1px;
+margin: 0px;
+}
+
+.filemanager_action_button
+{
+border: 0;
+background-color: #BFBEBE;
+color: white;
+font-size: 16px;
+font-family: "Times New Roman", Times, serif;
+font-weight: normal;
+margin-left: -5px;
+margin-top: 5px;
+padding: 0px;
+}
+
+.browse_form input
+{
+border: 1px solid #564B47;
+font-family: Verdana, arial;
+font-size: 10px;
+margin: 0px;
+width: 225px;
 }
 
 .preview
@@ -831,7 +887,6 @@ margin-left: 20px;
 margin-left: 10px;
 margin-right: 25px;
 }
-
 
 
 
