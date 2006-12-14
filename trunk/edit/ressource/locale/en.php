@@ -112,22 +112,36 @@ $data['refresh_site']='Refresh site!';
 $data['node_not_deleted']='Node not deleted';
 $data['toggle_profiling']='Toggle profiling';
 $data['logout']='Logout';
-$data['node_moved_successfully']='!node_moved_successfully!';
-$data['node_cut_failed']='!node_cut_failed!';
-$data['node_paste_failed']='!node_paste_failed!';
-$data['node_paste_ok']='!node_paste_ok!';
-$data['node_copy_ok']='!node_copy_ok!';
+$data['node_moved_successfully']='Node moved successfully';
+$data['node_cut_failed']='Node cut failed';
+$data['node_paste_failed']='Node paste failed';
+$data['node_paste_ok']='Node paste sucessfull';
+$data['node_copy_ok']='Node copy sucessfull';
 $data['unknown api action requested']='!unknown api action requested!';
 $data['api_unknown_action requested']='!api_unknown_action requested!';
-$data['api_node_published']='!api_node_published!';
-$data['api_no_node_id_defined']='!api_no_node_id_defined!';
-$data['api_node_unpublished']='!api_node_unpublished!';
-$data['api_node_cut']='!api_node_cut!';
-$data['cannot_delete_root_node']='!cannot_delete_root_node!';
+$data['api_node_published']='Node published';
+$data['api_no_node_id_defined']='No node id defined';
+$data['api_node_unpublished']='Node unpublished';
+$data['api_node_cut']='Node cut';
+$data['cannot_delete_root_node']='Cannot delete root node';
 $data['toggle_errors']='Show errors';
 $data['api_node_info_done']='!api_node_info_done!';
 $data['api_node_not_found']='!api_node_not_found!';
 $data['manage']='Manage';
+<<<<<<< .mine
+$data['click_to_open_close']='Click to open / close';
+$data['click_to_edit']='Click to edit';
+$data['field_is_not_an_email']='You must provide a valid email';
+
+
+
+
+
+
+
+
+
+=======
 $data['click_to_open_close']='Click to open / close';
 $data['click_to_edit']='Click to edit';
 $data['filemanager_save']='!filemanager_save!';
@@ -140,4 +154,5 @@ $data['file_delete_failled']='File deletion failled : is it still there ?';
 $data['browse_filemanager']='Browse filemanager';
 $data['create']='Create';
 
+>>>>>>> .theirs
 ?>
