@@ -335,6 +335,10 @@ class field
 	using multiple select boxes (one for day, one for month, one for year). 
 	This function would "merge" the different select box as one single "mysql understandable"
 	string.
+	
+	Third use case, is with a boolean checkbox field which is undefined in the post array but still is set to false. Which is something
+	An unchecked field is not defined in the post array
+	Go figure...
 	*/
 	function handleFormPost($prefix = false)
 	{

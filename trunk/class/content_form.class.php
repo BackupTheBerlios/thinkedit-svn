@@ -106,6 +106,9 @@ class content_form extends html_form
 	
 	function clear()
 	{
+		global $thinkedit;
+		$thinkedit->event->trigger('content_form_before_clear', &$this);
+		
 		foreach ($this->fields as $id=>$field)
 		{
 			$this->fields[$id]->set(false);
@@ -125,11 +128,16 @@ class content_form extends html_form
 	function render()
 	{
 		global $thinkedit;
+		
+		$thinkedit->event->trigger('content_form_before_render', &$this);
+		
 		if (isset ($this->content_type))
 		{
 			$config = $thinkedit->config;
 			foreach ($this->fields as $field)
 			{
+				$thinkedit->event->trigger('content_form_before_field_render', &$field, &$this);
+				
 				//if ($field->isUsedIn($this->use) && $field->getType() <> 'id')
 				if ($field->getType() <> 'id')
 				{
@@ -163,6 +171,8 @@ class content_form extends html_form
 					
 					$this->add('</div>');
 				}
+				
+				$thinkedit->event->trigger('content_form_after_field_render', &$field, &$this);
 			}
 		}
 		else

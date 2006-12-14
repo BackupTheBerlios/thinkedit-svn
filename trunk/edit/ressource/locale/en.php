@@ -128,22 +128,9 @@ $data['toggle_errors']='Show errors';
 $data['api_node_info_done']='!api_node_info_done!';
 $data['api_node_not_found']='!api_node_not_found!';
 $data['manage']='Manage';
-<<<<<<< .mine
 $data['click_to_open_close']='Click to open / close';
 $data['click_to_edit']='Click to edit';
 $data['field_is_not_an_email']='You must provide a valid email';
-
-
-
-
-
-
-
-
-
-=======
-$data['click_to_open_close']='Click to open / close';
-$data['click_to_edit']='Click to edit';
 $data['filemanager_save']='!filemanager_save!';
 $data['file_deleted']='!file_deleted!';
 $data['create_a_folder']='Create a folder';
@@ -153,6 +140,5 @@ $data['file_added_failed']='File upload failed : maybe the file is too big';
 $data['file_delete_failled']='File deletion failled : is it still there ?';
 $data['browse_filemanager']='Browse filemanager';
 $data['create']='Create';
-
->>>>>>> .theirs
+$data['field_checkbox_must_be_checked']='This checkbox must be checked';
 ?>

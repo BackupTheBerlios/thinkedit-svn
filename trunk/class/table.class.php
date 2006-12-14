@@ -156,6 +156,11 @@ class table
 								$sql .= $name . ' int';
 						}
 						
+						elseif ($type == 'boolean')
+						{
+								$sql .= $name . ' tinyint(1) ';
+						}
+						
 						elseif ($type == 'stringid')
 						{
 								$sql .= $name . ' varchar(255)';

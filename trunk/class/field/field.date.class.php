@@ -110,14 +110,15 @@ class field_date extends field
 		
 		function set($data)
 		{
-				if (is_array($data))
-				{
-						$this->data = $data['year'] . '-' . $data['month'] . '-' . $data['day']; 
-				}
-				else
-				{
-						$this->data = $data;
-				}
+			// if $data is an array it means it was a form who setted the $data 
+			if (is_array($data))
+			{
+				$this->data = $data['year'] . '-' . $data['month'] . '-' . $data['day']; 
+			}
+			else
+			{
+				$this->data = $data;
+			}
 		}
 		
 }

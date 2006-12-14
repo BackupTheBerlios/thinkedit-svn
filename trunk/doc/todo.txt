@@ -1,3 +1,8 @@
+Other todos :
+- build script (removes unneeded data like svn folders and create a zip file)
+- latest drafts latest elements on main page
+- switch to big images + session remembers choice in file manager
+
 TODO for version 2.0 (mandatory things to fix before the 1.0 release)
 - remove unneeded files
 - make a simple demo design

@@ -17,7 +17,6 @@
 <form name="edit_form" action="<?php echo $out['save_url']?>" method="post" onsubmit="return submitForm();">			
 
 
-
 <?php /****************** Field rendering ***********/ ?>
 <?php if (isset($out['field'])): ?>
 

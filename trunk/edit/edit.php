@@ -32,7 +32,9 @@ $url = $thinkedit->newUrl();
 /*
 echo '<pre>';
 print_r($_REQUEST);
+echo '</pre>';
 */
+
 
 /**************** Handle Cancel first ****************/
 
@@ -43,7 +45,7 @@ if ($url->get('cancel_and_return_to_structure'))
 
 
 /**************** node or record ? ****************/
-if ($url->getParam('node_id')) // node and record
+if ($url->getParam('node_id')) // node and record, we load the node wy node id found in url, and load it's attached content
 {
 		$out['edit_node'] = true;
 		$edit_node = true;
@@ -53,7 +55,7 @@ if ($url->getParam('node_id')) // node and record
 		$node->load();
 		$record = $node->getContent();
 }
-else // only a record
+else // only a record, we load it by primary keys found in url
 {
 		$table = $url->get('type');
 		$out['table'] = $table;
@@ -79,7 +81,8 @@ if ($url->get('action')=='save')
 		debug($_REQUEST, 'Request');
 		foreach ($record->field as $field)
 		{
-				if (isset($_POST[$field->getName()]))
+			//$record->field[$field->getName()]->handleFormPost();	
+			if (isset($_POST[$field->getName()]))
 				{
 						$record->set($field->getName(), $_POST[$field->getName()]);
 				}

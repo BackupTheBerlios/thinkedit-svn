@@ -30,9 +30,10 @@ class mylogger
 		echo $record->getTitle() . ' has been saved';
 	}
 }
-
-
 */
+
+define('NULL_ARG', 'DUMMY_ARGUMENT');
+
 class event
 {
 	
@@ -53,9 +54,11 @@ class event
 	
 	/**
 	Notify the event object that something happened. 
-	You can add aditional parameters those will be added to the registered function called 
+	You can add aditional parameters those will be added to the registered function called
+	
+	Because of a limitation of php4, we use an ugly hack documented here : http://be2.php.net/manual/en/function.func-get-args.php#18350
 	*/
-	function trigger($event)
+	function trigger($event, $arg0 = NULL_ARG, $arg1 = NULL_ARG, $arg2 = NULL_ARG,  $arg3 = NULL_ARG, $arg4 = NULL_ARG,$arg5 = NULL_ARG, $arg6 = NULL_ARG,$arg7 = NULL_ARG, $arg8 = NULL_ARG, $arg9 = NULL_ARG)	
 	{
 		$this->triggered_events[] = $event;
 		
@@ -65,10 +68,24 @@ class event
 			
 			// call each function/class method for this $event using args
 			
+			/*
 			// removes first arg (the $event name)
 			for($i = 1; $i < func_num_args(); $i++) 
 			{
 				$args[] = func_get_arg($i);
+			}
+			*/
+			
+			
+			// new solution, involves ugly hack
+			for ($args=array(), $i=0; $i < 10; $i++) 
+			{
+				$name = 'arg' . $i;
+				if ($i < func_num_args()) 
+				{
+					$args[$i] = &$$name;
+				}
+				unset($$name, $name);
 			}
 			
 			foreach ($this->events[$event] as $event)

@@ -141,5 +141,6 @@ $data['file_added_failed']='L\'ajout du fichier n\'a pas résussi : peut être e
 $data['file_delete_failled']='L\'effacement du fichier n\'a pas réussi : est il toujours là ?';
 $data['browse_filemanager']='Parcourez la médiathèque';
 $data['create']='Créer';
+$data['field_checkbox_must_be_checked']='Cette case doit être cochée';
 
 ?>
