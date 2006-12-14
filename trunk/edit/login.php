@@ -54,19 +54,22 @@ if ($url->get('login') && $url->get('password'))
 }
 
 
-
-
 if ($url->get('authentification') == 'failed')
 {
 		$out['error'] = translate('login_failed');
 }
 
 
+
+/*
 // if an email is found in the request, try to send an email to this user :
 
 if ($url->get('email'))
 {
 		die('this feature needs work');
+		
+		// todo security
+		
 		$email = $db->escape($url->get('email'));
 		$query = "select * from users where email='$email'";
 		$user = $db->get_row($query);
@@ -108,7 +111,7 @@ if ($url->get('email'))
 		}
 		
 }
-
+*/
 
 
 $out['banner_needed'] = false;
