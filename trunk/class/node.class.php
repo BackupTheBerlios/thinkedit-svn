@@ -1,8 +1,10 @@
 <?php
-
 /**
 * Node base class
 *
+* :folding=indent:
+* :collapseFolds=2:
+* 
 * I was thinking about extending the record object. Finally, I will use a proxy object (is it the right name for this)
 * $this->record contains the reocrd object used by this node.
 *

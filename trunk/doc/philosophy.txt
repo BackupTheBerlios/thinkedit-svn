@@ -1,0 +1,11 @@
+Here are the things I keep in my head when developping Thinkedit. Those are more personnal notes, but waybe those are usefull to someone else or a newcomer to the project.
+
+- All non-trivial abstractions, to some degree, are leaky. (http://www.joelonsoftware.com/articles/LeakyAbstractions.html)
+
+- Less is often more, but not always (http://www.joelonsoftware.com/items/2006/12/09.html and a lot of others)
+
+- OO Getters and setters are not evil, they allow validation of programmer suplied data in the context of a dynamic langage without strong typing such as php.
+
+- Writing uses cases is fun and very usefull
+
+

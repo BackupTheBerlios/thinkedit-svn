@@ -1,0 +1,21 @@
+Thinkedit, probably the best thing since sliced bread
+
+An open source CMS, see licence.txt (it's GPL)
+
+Welcome to ThinkEdit, a simple, web based, content and data management system. In short, Thinkedit is an open source (free) content management system, written in php.
+
+With thinkedit, you can quickly :
+
+    * create content types (you define the differents fields of your content)
+    * structure your content (in a tree)
+    * make relations between your content items
+
+This is all about separating content and presentation, and giving a powerfull tool that is an exact representation of your problem : managing content.
+
+
+
+Authors : 
+Philippe Jadin : code, ideas, project management
+Pierre Lecrenier : design, ideas
+Corrado Pizzi : italian translations
+
