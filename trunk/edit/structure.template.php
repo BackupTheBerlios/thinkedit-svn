@@ -12,11 +12,11 @@
 <table class="list">
 <tr>
 <th><?php echo translate('title');?></th>
-<th width="30">Manage</th>
-<th width="70">Add</th>
-<th width="30">Translate</th>
+<th width="30"><?php echo translate('manage');?></th>
+<th width="70"><?php echo translate('add');?></th>
+<th width="30"><?php echo translate('translate');?></th>
 <th width="10"></th>
-<th width="100">Move</th>
+<th width="100"><?php echo translate('move');?></th>
 </tr>
 
 
@@ -116,46 +116,46 @@ $i++;
 <div class="menu_button"><?php echo translate('manage'); ?></div>
 <div class="menu_items">
 
+<a href="<?php echo $node['clipboard']['cut_link']?>">
 <div class="menu_item">
 <img src="ressource/image/icon/editcut.png"/>
-<a href="<?php echo $node['clipboard']['cut_link']?>">
 <?php echo translate('cut');?>
-</a>
 </div>
+</a>
 
+<a href="<?php echo $node['clipboard']['copy_link']?>">
 <div class="menu_item">
 <img src="ressource/image/icon/editcopy.png"/>
-<a href="<?php echo $node['clipboard']['copy_link']?>">
 <?php echo translate('copy');?>
-</a>
 </div>
+</a>
 
-<div class="menu_item">
 <a href="<?php echo $node['clipboard']['paste_link']?>">
+<div class="menu_item">
 <img src="ressource/image/icon/editpaste.png"/>
 <?php echo translate('paste');?>
-</a>
 </div>
+</a>
 
 
 
 <?php if (isset($node['delete_url'])): ?>
-<div class="menu_item">
 <a href="<?php echo $node['delete_url']?>" onClick="JavaScript:confirm_link('<?php echo translate('confirm_node_delete') ?>', '<?php echo $node['delete_url']?>'); return false;">
+<div class="menu_item">
 <img src="ressource/image/icon/small/user-trash-full.png" title="<?php echo translate('delete'); ?>">
 <?php echo translate('delete')?>
-</a>
 </div>
+</a>
 <?php endif; ?>
 
 
 <?php if (isset($node['preview_url'])): ?>
-<div class="menu_item">
 <a href="<?php echo $node['preview_url']?>" target="thinkedit_preview">
+<div class="menu_item">
 <img src="ressource/image/icon/system-search.png"/>
 <?php echo  $node['preview_title'];?>
-</a>
 </div>
+</a>
 <?php endif; ?>
 </div>
 </div>
@@ -175,12 +175,12 @@ $i++;
 <div class="menu_items">
 
 <?php foreach ($node['allowed_items'] as $item): ?>
-<div class="menu_item">
 <a href="<?php echo $item['direct_add_action'] ?>" onClick="ask_title2('<?php echo translate('please_enter_title');?>', '<?php echo $item['direct_add_action'] ?>');return false">
+<div class="menu_item">
 <img src="<?php echo $item['icon'] ?>"/>
 <?php echo ucfirst($item['title']) ?>
-</a>
 </div>
+</a>
 <?php endforeach; ?>
 </div>
 </div>
@@ -195,10 +195,13 @@ $i++;
 <div class="menu">
 <div class="menu_button"><?php echo translate('translate'); ?></div>
 <div class="menu_items">
+
 <?php foreach ($node['locale'] as $locale_info): ?>
+<a href="<?php echo $locale_info['edit_url']?>">
 <div class="context_menu_item">
-<a href="<?php echo $locale_info['edit_url']?>"><?php echo $locale_info['locale']?></a>
+<?php echo $locale_info['locale']?>
 </div>
+</a>
 <?php endforeach; ?>
 </div>
 </div>

@@ -131,6 +131,20 @@ class url
 				return $this->getParam($id);
 		}
 		
+		// the next functions are TODO Security :
+		function getInt()
+		{
+			
+		}
+		
+		
+		function getAlpha()
+		{
+		}
+		
+		function getAlphaNum()
+		{
+		}
 		
 		function addObject($object, $prefix=false)
 		{

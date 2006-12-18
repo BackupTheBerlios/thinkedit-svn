@@ -58,7 +58,9 @@ class content_form extends html_form
 			$this->fields[$field->getId()] = $field;
 		}
 		
-		
+	
+		$this->use = '';
+	
 	}
 	
 	
@@ -120,7 +122,7 @@ class content_form extends html_form
 	For instance, a form can be used inside the admin interface or for public participations
 	This gives the possibility to show / hide some fields to the user
 	*/
-	function setUseCase($use)
+	function setUse($use)
 	{
 		$this->use = $use;
 	}
@@ -139,7 +141,7 @@ class content_form extends html_form
 				$thinkedit->event->trigger('content_form_before_field_render', &$field, &$this);
 				
 				//if ($field->isUsedIn($this->use) && $field->getType() <> 'id')
-				if ($field->getType() <> 'id')
+				if ($field->getType() <> 'id' && $field->isUsedIn($this->use))
 				{
 					$this->add('<div class="te_field">');
 					

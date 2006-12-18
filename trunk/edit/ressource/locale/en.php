@@ -141,4 +141,6 @@ $data['file_delete_failled']='File deletion failled : is it still there ?';
 $data['browse_filemanager']='Browse filemanager';
 $data['create']='Create';
 $data['field_checkbox_must_be_checked']='This checkbox must be checked';
+$data['move']='!move!';
+
 ?>

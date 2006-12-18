@@ -142,5 +142,6 @@ $data['file_delete_failled']='L\'effacement du fichier n\'a pas réussi : est il
 $data['browse_filemanager']='Parcourez la médiathèque';
 $data['create']='Créer';
 $data['field_checkbox_must_be_checked']='Cette case doit être cochée';
+$data['field_is_not_an_email']='Il faut entrer une adresse email valide';
 
 ?>
