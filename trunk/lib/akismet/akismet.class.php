@@ -147,7 +147,17 @@ class Akismet {
 
 		$query_string = '';
 
+		/*
+		echo '<pre>';
+		print_r ($this->comment);
+		*/
 		foreach($this->comment as $key => $data) {
+			
+			// Philippe addition : if $data is an array we take the first ite in this array. I show this happened with 'argv' server key
+			if (is_array ($data))
+			{
+				$data = $data[0];
+			}
 			$query_string .= $key . '=' . urlencode(stripslashes($data)) . '&';
 		}
 
