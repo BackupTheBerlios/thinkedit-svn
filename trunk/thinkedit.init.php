@@ -235,4 +235,4 @@ if (file_exists($plugin_folder))
 }
 
 	
-	?>
+?>

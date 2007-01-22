@@ -815,9 +815,18 @@ class node
 				return false;
 			}
 			
+			/*
+			echo '<pre>';
 			$this->set('parent_id', $new_parent_id);
+			echo '<h1>before change level</h1>';
+			*/
+			print_r($this);
 			$this->set('level', false);
 			$this->save();
+			/*
+			echo '<h1>after change level</h1>';
+			print_r($this);
+			*/
 			$this->rebuild();
 			return true;
 			

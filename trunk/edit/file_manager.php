@@ -90,7 +90,7 @@ if ($url->get('action') == 'delete')
 
 
 // handle view types TODO
-$session = $thinkedit->getSession();
+$session = $thinkedit->newSession();
 if ($url->get('view'))
 {
 	$view = $url->get('view');

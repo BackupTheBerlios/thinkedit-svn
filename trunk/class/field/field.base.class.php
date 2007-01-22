@@ -8,7 +8,7 @@ class field
 	
 	function field($table, $id, $data = false)
 	{
-		global $thinkedit;
+		//global $thinkedit;
 		
 		$this->table = $table;
 		$this->id = $id;
@@ -18,21 +18,33 @@ class field
 		}
 		
 		
+		/*
+		We try to clean up initialisation of fields and record to speed up things
+		
+		
+		instead of $thinkedit->config['content'][$this->table]['field'][$this->id], we use :
+		
+		global $thinkedit;
+		$thinkedit->config['content'][$this->table]['field'][$this->id]
+		
+		*/
+		
+		/*
 		if (isset($thinkedit->config['content'][$table]['field'][$id]))
 		{
-			$this->config = $thinkedit->config['content'][$table]['field'][$id];
+			$thinkedit->config['content'][$this->table]['field'][$this->id] = $thinkedit->config['content'][$table]['field'][$id];
 		}
 		elseif (isset($thinkedit->config['table'][$table]['field'][$id]))
 		{
-			$this->config = $thinkedit->config['table'][$table]['field'][$id];
+			$thinkedit->config['content'][$this->table]['field'][$this->id] = $thinkedit->config['table'][$table]['field'][$id];
 		}
 		else
 		{
 			die('field::field() Field called "' . $this->id . '" not found in config, check table id spelling in config file / in code');
 		}
-		
+		*/
 		// echo '<pre>';
-		// print_r ($this->config);
+		// print_r ($thinkedit->config['content'][$this->table]['field'][$this->id]);
 	}
 	
 	
@@ -112,9 +124,9 @@ class field
 	function getHelp()
 	{
 		global $thinkedit;
-		if (isset($this->config['help'][$thinkedit->user->getLocale()]))
+		if (isset($thinkedit->config['content'][$this->table]['field'][$this->id]['help'][$thinkedit->user->getLocale()]))
 		{
-			return $this->config['help'][$thinkedit->user->getLocale()];
+			return $thinkedit->config['content'][$this->table]['field'][$this->id]['help'][$thinkedit->user->getLocale()];
 		}
 		else
 		{
@@ -127,9 +139,9 @@ class field
 	function getTitle()
 	{
 		global $thinkedit;
-		if (isset($this->config['title'][$thinkedit->user->getLocale()]))
+		if (isset($thinkedit->config['content'][$this->table]['field'][$this->id]['title'][$thinkedit->user->getLocale()]))
 		{
-			return $this->config['title'][$thinkedit->user->getLocale()];
+			return $thinkedit->config['content'][$this->table]['field'][$this->id]['title'][$thinkedit->user->getLocale()];
 		}
 		else
 		{
@@ -145,11 +157,11 @@ class field
 	
 	function isPrimary()
 	{
-		// print_r ($this->config);
-		
-		if (isset($this->config['primary']))
+		// print_r ($thinkedit->config['content'][$this->table]['field'][$this->id]);
+		global $thinkedit;
+		if (isset($thinkedit->config['content'][$this->table]['field'][$this->id]['primary']))
 		{
-			if ($this->config['primary'] == 1 || $this->config['primary'] == 'true')
+			if ($thinkedit->config['content'][$this->table]['field'][$this->id]['primary'] == 1 || $thinkedit->config['content'][$this->table]['field'][$this->id]['primary'] == 'true')
 			{
 				return true;
 			}
@@ -159,7 +171,8 @@ class field
 	
 	function isTitle()
 	{
-		if (isset($this->config['is_title']))
+		global $thinkedit;
+		if (isset($thinkedit->config['content'][$this->table]['field'][$this->id]['is_title']))
 		{
 			return true;
 		}
@@ -171,9 +184,10 @@ class field
 	
 	function getType()
 	{
-		if (isset($this->config['type']))
+		global $thinkedit;
+		if (isset($thinkedit->config['content'][$this->table]['field'][$this->id]['type']))
 		{
-			return $this->config['type'];
+			return $thinkedit->config['content'][$this->table]['field'][$this->id]['type'];
 		}
 		else
 		{
@@ -225,10 +239,10 @@ class field
 		}
 		
 		
-		if (isset($this->config['use'][$what]))
+		if (isset($thinkedit->config['content'][$this->table]['field'][$this->id]['use'][$what]))
 		{
-			//print_r ( $this->config['use']);
-			if ($this->config['use'][$what] == 'false' || $this->config['use'][$what] == false)
+			//print_r ( $thinkedit->config['content'][$this->table]['field'][$this->id]['use']);
+			if ($thinkedit->config['content'][$this->table]['field'][$this->id]['use'][$what] == 'false' || $thinkedit->config['content'][$this->table]['field'][$this->id]['use'][$what] == false)
 			{
 				return false;
 			}
@@ -260,25 +274,25 @@ class field
 		}
 		
 		
-		if (isset($this->config['use'][$what]))
+		if (isset($thinkedit->config['content'][$this->table]['field'][$this->id]['use'][$what]))
 		{
-			//print_r ( $this->config['use']);
-			if ($this->config['use'][$what] == 'false')
+			//print_r ( $thinkedit->config['content'][$this->table]['field'][$this->id]['use']);
+			if ($thinkedit->config['content'][$this->table]['field'][$this->id]['use'][$what] == 'false')
 			{
 				return false;
 			}
 			
-			if (!$this->config['use'][$what])
+			if (!$thinkedit->config['content'][$this->table]['field'][$this->id]['use'][$what])
 			{
 				return false;
 			}
 			
-			if ($this->config['use'][$what] == 'true')
+			if ($thinkedit->config['content'][$this->table]['field'][$this->id]['use'][$what] == 'true')
 			{
 				return true;
 			}
 			
-			if ($this->config['use'][$what])
+			if ($thinkedit->config['content'][$this->table]['field'][$this->id]['use'][$what])
 			{
 				return true;
 			}
@@ -302,15 +316,16 @@ class field
 	// third attempt : return true always, but when false is defined :
 	function isUsedIn($what)
 	{
-		if (isset($this->config['use'][$what]))
+		global $thinkedit;
+		if (isset($thinkedit->config['content'][$this->table]['field'][$this->id]['use'][$what]))
 		{
-			//print_r ( $this->config['use']);
-			if ($this->config['use'][$what] == 'false')
+			//print_r ( $thinkedit->config['content'][$this->table]['field'][$this->id]['use']);
+			if ($thinkedit->config['content'][$this->table]['field'][$this->id]['use'][$what] == 'false')
 			{
 				return false;
 			}
 			
-			if (!$this->config['use'][$what])
+			if (!$thinkedit->config['content'][$this->table]['field'][$this->id]['use'][$what])
 			{
 				return false;
 			}
@@ -348,7 +363,8 @@ class field
 	
 	function isRequired()
 	{
-		if (isset($this->config['validation']['is_required']))
+		global $thinkedit;
+		if (isset($thinkedit->config['content'][$this->table]['field'][$this->id]['validation']['is_required']))
 		{
 			return true;
 		}
@@ -400,15 +416,7 @@ class field
 		{
 			return false;
 		}
-		
-		
-		
 	}
-	
-	
-	
-	
-	
 }
 
 ?>
