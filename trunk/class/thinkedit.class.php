@@ -567,12 +567,14 @@ class thinkedit
 			
 			if ($multilingual)
 			{
-				require_once('record.multilingual.class.php');
+				//require_once('record.multilingual.class.php');
+				class_exists('record_multilingual') or require_once 'record.multilingual.class.php';
 				$record = new record_multilingual($table);
 			}
 			else
 			{
-				require_once('record.class.php');
+				//require_once('record.class.php');
+				class_exists('record') or require_once 'record.class.php';
 				$record = new record($table);
 			}
 			
@@ -694,7 +696,16 @@ class thinkedit
 		$file = ROOT . '/class/field/field.' . $type . '.class.php';
 		$class = 'field_' . $type;
 		
-		require_once($file);
+		
+		// this will speed up the system by a factor of 3...
+		if (isset($this->loaded_file[$file]))
+		{
+		}
+		else
+		{
+			$this->loaded_file[$file] = true;
+			require_once($file);
+		}
 		return new $class($table, $field, $data);
 	}
 	
