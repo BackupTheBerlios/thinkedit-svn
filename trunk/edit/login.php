@@ -31,25 +31,28 @@ if ($url->get('login') && $url->get('password'))
 		{
 				// now we redirect to the correct page
 				// first case, we know where to send the user
+				
+				/*
 				if ($url->get('original_url'))
 				{
 						//echo 'original url';
 						$url->redirect($url->get('original_url'));
 				}
 				
+				
 				// second case, we don't, so we redirect to main
 				else
-				{
+				{*/
 						//echo 'main';
 						$url->redirect('main.php');
-				}
+				//}
 		}
 		// if invalid user, reload login page with error message
 		else
 		{
 				//echo 'failed';
 				$url->set('authentification', 'failed');
-				$url->redirect();
+				$url->redirect('login.php');
 		}
 }
 

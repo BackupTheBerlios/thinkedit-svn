@@ -195,7 +195,7 @@ class menu_context extends menu_base
 										$menuitems[] = $menuitem;
 								}
 						}
-						if (isset($menu_items))
+						if (isset($menuitems))
 						{
 						return $menuitems;
 						}

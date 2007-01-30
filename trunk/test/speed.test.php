@@ -20,6 +20,7 @@ $thinkedit->timer->marker('1000 records generation starts');
 for ($i=0; $i<1000; $i++)
 {
 $record = $thinkedit->newRecord('page');
+$record->getTitle();
 }
 
 $thinkedit->timer->marker('record generation stops');
