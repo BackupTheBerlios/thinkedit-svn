@@ -42,6 +42,16 @@ class user
 										{
 												$session->set('thinkedit_user_locale', $user_record->get('interface_locale'));
 										}
+										
+										if ($user_record->get('virtual_root'))
+										{
+												$session->set('virtual_root', $user_record->get('virtual_root'));
+										}
+										else
+										{
+											$session->delete('virtual_root');
+										}
+										
 										return true;
 								}
 								else
@@ -143,7 +153,22 @@ class user
 				}
 		}
 		
-		
+		function getVirtualRoot()
+		{
+			global $thinkedit;
+			$session = $thinkedit->newSession();
+			
+			if ($session->get('virtual_root'))
+			{
+				if  ($session->get('virtual_root') > 0)
+				{
+					return (int) $session->get('virtual_root');
+				}
+			}
+			
+			return false;
+			
+		}
 		
 }
 

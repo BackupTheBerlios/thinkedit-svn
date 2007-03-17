@@ -942,6 +942,26 @@ class node
 	*/
 	function loadRootNode()
 	{
+		
+		// if we are in admin and if virtual root is defined for user, return this root : 
+		
+		global $thinkedit;
+		if ($thinkedit->context->get('admin'))
+		{
+			$user = $thinkedit->getUser();
+			if ($user->getVirtualRoot())
+			{
+				$root = $this->load($user->getVirtualRoot());
+				if ($root)
+				{
+					return $root;
+				}
+				else
+				{
+					trigger_error('node::loadRootNode() : virtual root defined for user cannot be found, will load real root instead');
+				}
+			}
+		}
 		// optimization done : if root is on id = 1, it is deirectly returned
 		$root = $this->load(1);
 		

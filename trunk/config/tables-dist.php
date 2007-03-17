@@ -127,6 +127,13 @@ $data['content']['user']['field']['interface_locale']['type']='string';
 $data['content']['user']['field']['interface_locale']['title']['fr']='Langue de l\'interface';
 $data['content']['user']['field']['interface_locale']['title']['en']='Interface locale';
 
+$data['content']['user']['field']['virtual_root']['type']='int';
+$data['content']['user']['field']['virtual_root']['title']['fr']='Chemin racine virtuel pour cet utilisateur';
+$data['content']['user']['field']['virtual_root']['title']['en']='Virtual root node for this user';
+$data['content']['user']['field']['virtual_root']['description']['fr']='Permet de limiter un utilisateur à une section de site (entrez le numéro du node racine pour cet utilisateur)';
+$data['content']['user']['field']['virtual_root']['description']['en']='Allows you to limit a user to a specific section of a website. (Enter the virtual root node id for this user)';
+
+
 
 $data['content']['node']['field']['id']['type']='id';
 $data['content']['node']['field']['id']['primary']='true';
